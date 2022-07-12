@@ -1,0 +1,31 @@
+site_name: Metacentrum Documentation
+docs_dir: docs
+site_url: https://docs.metacentrum.cz
+
+extra:
+  generator: false
+  version: !ENV [SITE_VERSION, 'undef_build_number']
+  site_title: e-INFRA CZ Documentation
+
+theme:
+  name: material
+  language: 'en'
+  features:
+    - navigation.tabs
+  font:
+    text: 'Ubuntu'
+    code: 'Source Code Pro'
+
+nav:
+  - 'Overview': index.md
+  - Grid:
+    - Getting started:
+      - Create first job: grid/getting-started/create-first-job-in-grid.md
+    - How to guides:
+      - Overview: grid/how-to-guides/index.md
+    - Technical reference:
+      - Overview: grid/technical-reference/index.md
+    - Additional information:
+      - Overview: grid/additional-information/index.md
+  - Galaxy:
+    - galaxy/index.md
