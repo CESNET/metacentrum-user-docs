@@ -1,3 +1,3 @@
 # Welcome!    
 
-This is demo of Metacentrum Documentation in MarkDown.
+This is dededemo of Metacentrum Documentation in MarkDown.
