@@ -18,14 +18,13 @@ theme:
 
 nav:
   - 'Overview': index.md
-  - Grid:
-    - Getting started:
-      - Create first job: grid/getting-started/create-first-job-in-grid.md
-    - How to guides:
-      - Overview: grid/how-to-guides/index.md
-    - Technical reference:
-      - Overview: grid/technical-reference/index.md
-    - Additional information:
-      - Overview: grid/additional-information/index.md
-  - Galaxy:
-    - galaxy/index.md
+  - Access: 
+      - Get account: access/get-account/get-account-meta.md
+  - Basics:
+    - basics/index.md
+  - Advanced:
+    - advanced/index.md
+  - Applications:
+    - applications/index.md
+  - Troubleshooting:
+    - troubleshooting/index.md

@@ -21,7 +21,7 @@ h) print_usage
    exit 1 ;;
 esac
 done
-shift $OPTIND-1
+#AM shift $OPTIND-1
 
 ${DOCKER_BIN} run -it --rm \
 	-v ${PWD}:/docs:z \
