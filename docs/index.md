@@ -6,3 +6,5 @@ Stranka se vyviji. Aktualne
 
 - na GitHub v repu CESNET/metacentrum-user-docs
 
+test git workflow 
+
