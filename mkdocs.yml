@@ -18,8 +18,9 @@ theme:
 
 nav:
   - 'Overview': index.md
-  - Access: 
-      - Get account: access/get-account/get-account-meta.md
+  - Access: access/index.md
+#  - Access: 
+#      - Get account: access/get-account/get-account-meta.md
   - Basics:
     - basics/index.md
   - Advanced:
