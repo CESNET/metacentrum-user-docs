@@ -16,6 +16,11 @@ theme:
     text: 'Ubuntu'
     code: 'Source Code Pro'
 
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
 nav:
   - 'Overview': index.md
   - Access: access/index.md

@@ -25,6 +25,10 @@ a dale
 Otazka zda na nejakem vyssim levelu dokumentace vznikne nejaka srovnavaci tabulka, ktera bude charakterizovat jednotlive typy sluzeb (grid vs cloud vs supercomputing vs ...) potom by tento vycet byl zbytecny a uvodni stranka by se omezila na nejakou jedoduchou welcome stranku
 
 
+Co potrebuju zjistit: 
+
+- kam se budou dava "novinky a vypadky"? Pokud maji byt zde v doku, je potreba jim vymyslet nejaky space. Dala bych je rovnou na titulni stranku, jinde imho nemaji cenu. Vypadky kazdopadne. U novinek (instalace sw apod) by se dalo uvazovat o nejake sekci "What's new" nekde
+
 
 ## Pro devel
 
@@ -49,7 +53,10 @@ Tohle je zase normalni radek.
 Emailova adresa: <anezka.melounova@cesnet.cz>
 
 
-Ruzne markdownove defaultni warningy, noticy a zvyrazneni...
+Ruzne markdownove defaultni warningy, noticy a zvyrazneni... pouzivat budeme <https://www.markdownguide.org/basic-syntax/> a **[jedine ty!](https://www.markdownguide.org/basic-syntax/)**.
+
+Viz napriklad:
+
 
 > **Note**
 > Note please that...
@@ -59,7 +66,14 @@ anebo
 > **Warning**
 > Warning! The page is under construction!
 
-Hmm... 
+!!! note "note title"
+
+    bla bla bla
+
+!!! warning
+
+    warningy a noty musi byt odsazene ctyrma mezerama!
+
 
 
 
