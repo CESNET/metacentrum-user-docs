@@ -1,14 +1,12 @@
 # Troubleshooting 
 
-This is Troubleshooting section
+## FAQs
 
-V teto sekci by melo byt vse co souvisi s praci supportu a co dela uzivatelum problemy
+- rozdelit podle temat, viz csc.fi
 
-Takze 
-1. FAQy rozdelene do sekci podle temat
-2. Jak psat listek
+## user support
 
-k 2. - je potreba dat kompletnejsi navod co nam uzivatele maji psat a jak - v tomto i ve FAQach se mi velmi libi jak to maji popsane a roztridene na csc.fi, pokusit se o podobnou strukturu
+- je potreba dat kompletnejsi navod co nam uzivatele maji psat a jak - v tomto i ve FAQach se mi velmi libi jak to maji popsane a roztridene na csc.fi, pokusit se o podobnou strukturu
 
 
 
