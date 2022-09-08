@@ -9,9 +9,11 @@ extra:
 
 theme:
   name: material
-  language: 'en'
+  language: 'en'    
   features:
     - navigation.tabs
+#    - navigation.sections
+#    - navigation.sections 
   font:
     text: 'Ubuntu'
     code: 'Source Code Pro'
@@ -30,5 +32,11 @@ nav:
     - advanced/index.md
   - Applications:
     - applications/index.md
-  - Troubleshooting:
-    - troubleshooting/index.md
+  - 'Troubleshooting':
+    - troubleshooting/faqs/index.md
+    - troubleshooting/outages/index.md
+    - troubleshooting/known-issues/index.md
+  - Contact:
+    - contact/index.md
+  - Tutorials:
+    - tutorials/index.md

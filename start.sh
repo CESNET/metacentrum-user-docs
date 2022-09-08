@@ -7,8 +7,6 @@ print_usage() {
 }
 
 DOCKER_BIN=${DOCKER_BIN:-"docker"}
-# DOCS_IMAGE="it4innovations/docker-mkdocscheck"
-# DOCS_IMAGE="einfra/mkdocs-test"
 DOCS_IMAGE="hub.cerit.io/einfracz/mkdocs:latest"
 
 while getopts 'pbh' option
