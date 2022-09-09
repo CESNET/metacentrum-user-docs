@@ -1,0 +1,3 @@
+# I get an error "^M: command not found" or "$'\r': command not found" after submitting a script
+
+Described problem is related to the fact that your script for PBS system originated in the competitive operational system (DOS/Windows) which treats line ends of a text file differently compared to Unix/Linux. Users are allowed to convert their files from DOS/Windows before submission using command dos2unix (fromdos). If you want to verify the presence of DOS/Windows line endings you should use file command. E.g. file /path/to/the/script.txt. If the command says with CRLF line terminator it means your file has MS/DOS line endings. 
