@@ -1,3 +1,7 @@
 # I get "No Kerberos credentials found" error after submitting the script
 
-A valid Kerberos ticket is required for successful submission of a computational job into PBS batch system. Commonly an user obtains Kerberos ticket automatically after successful login to Metacentrum machine. A ticket is valid for 10 hours. If the Kerberos ticket expires and the user wants to submit a job into the system the mentioned error message will appear. This can be solved by renewal of the ticket validity by command kauth (or kinit) or by new login. Current state of your Kerberos tickets can be checked using command klist. More information can be found in Kerberos documentation. 
+You need a valid **Kerberos ticket (link do doku sekce Kerberos)**  to submit a job. Normally you ontain a Kerberos ticket when upon login to  a frontend. A ticket is valid for 10 hours. If the user stays logged in for longer time and Kerberos ticket expires meanwhile, the above-mentioned error message will appear.
+
+To check for current Kerberos tickets, use `klist`.
+
+To get a new Kerberos ticket, use `kinit`.

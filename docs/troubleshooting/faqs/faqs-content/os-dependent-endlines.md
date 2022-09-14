@@ -1,3 +1,13 @@
 # I get an error "^M: command not found" or "$'\r': command not found" after submitting a script
 
-Described problem is related to the fact that your script for PBS system originated in the competitive operational system (DOS/Windows) which treats line ends of a text file differently compared to Unix/Linux. Users are allowed to convert their files from DOS/Windows before submission using command dos2unix (fromdos). If you want to verify the presence of DOS/Windows line endings you should use file command. E.g. file /path/to/the/script.txt. If the command says with CRLF line terminator it means your file has MS/DOS line endings. 
+Described problem is caused by the fact that your batch script was written in non-Unix operational system (Windows) which uses different characters to mark end of a line. To get rid of the faulty endlines, use `dos2unix` command:
+
+    (BUSTER)user123@skirit:~$ dos2unix myscriph.sh
+
+To test for the type of endlines, use command `file`:
+
+    (BUSTER)user123@skirit:~$ file myscriph.sh
+    myscript.sh: UTF-8 Unicode text, with CRLF line terminators
+
+If the `file` report `CRLF line terminators`, your script needs to be converted to run on Linux. 
+
