@@ -13,7 +13,6 @@ theme:
   features:
     - navigation.tabs
 #    - navigation.sections
-#    - navigation.sections 
   font:
     text: 'Ubuntu'
     code: 'Source Code Pro'
@@ -28,8 +27,10 @@ nav:
   - Access: access/index.md
   - Basics:
     - basics/index.md
-  - Advanced:
+  - 'Advanced':
     - advanced/index.md
+    - advanced/pbs-options/index.md
+    - advanced/queues-in-meta/index.md
   - Applications:
     - applications/index.md
   - 'Troubleshooting':
