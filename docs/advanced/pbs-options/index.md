@@ -34,7 +34,7 @@ The volume of displayed information can be adjusted by -v and -vv parameters.
 ## qsub
 
 
-**Number of nodes and processors**
+### **Number of nodes and processors**
 
 Number of processors and "chunks" is set with -l select=[number]:ncpus=[number]. Terminology of PBS Pro defines "chunk" as further indivisible set of resources allocated to a job on 1 physical node. Chunks can be on one machine next to each other or conversely always on different machines, eventually they can be placed according to available resources. Note that only one select argument is allowed at a time. Examples:
 
@@ -51,7 +51,7 @@ If you are not sure about the number of needed processors, ask for an exclusive 
         -l select=3:ncpus=1 -l place=scatter:excl – it is possible to combine exclusivity with specification of chunk planning
         -l select=102:place=group=cluster – 102 cpus on one cluster
 
-**Size of scratch**
+### **Size of scratch**
 
 Scratch directory is a disk space on current computational node used to store temporary files. Always specify type and size of scratch, PBS has no default scratch assigned. Scratch type can be one of scratch\_local|scratch\_ssd|scratch\_shared. Examples:
 
@@ -59,13 +59,14 @@ Scratch directory is a disk space on current computational node used to store te
         -l select=1:ncpus=1:mem=4gb:scratch_ssd=1gb
         -l select=1:ncpus=1:mem=4gb:scratch_shared=1gb
 
+
 After the request for scratch if specified, following variables are present in work environment:
 
     $SCRATCH_VOLUME = size of scratch
     $SCRATCHDIR = path to scratch directory
     $SCRATCH_TYPE = either of scratch_local,scratch_ssd, scratch_shared
 
-**Memory**
+### **Memory**
 
 Amount of needed memory – job is implicitly assigned with 400MB of memory if not specified otherwise. Examples:
 
@@ -73,14 +74,14 @@ Amount of needed memory – job is implicitly assigned with 400MB of memory if n
         -l select=1:ncpus=1:mem=200mb
 
 
-**Walltime**
+### **Walltime**
 
 Maximal duration of a job is set by -l walltime=[[hh:]mm:]ss, default walltime is 24:00:00. Queues q_ (such as q\_2h, q\_2d etc.) are not accessible for submit jobs, rout queue (default) automatically chose appropriate time queue based on specified walltime. Examples:
 
         -l walltime=1:00:00 (one hour)
 
 
-**Licence**
+### **Licence**
 
 Some software require licence. Licence is set by parameter -l
 
@@ -88,7 +89,7 @@ Some software require licence. Licence is set by parameter -l
         -l walltime=120:00:00 (5 days)
 
 
-**Email notification**
+### **Email notification**
 
 PBS server sends email notification when the job changes state.
 
@@ -106,7 +107,7 @@ The email can be sent to any email address using the -M option:
         -M james@pbspro.com
 
 
-**Save output elsewhere**
+### **Path for output**
 
 By default the job output (output, and error files) is saved in a folder from which the job was submitted (variable PBS\_O\_WORKDIR).
 
@@ -115,7 +116,7 @@ This behaviour for output, resp. error files can be changed by parameters -o, re
         -o /custom-path/myOutputFile
         -e /custom-path/myErrorFile
 
-**Choose queue or PBS server**
+### **Queue and/or PBS server**
 
 If you need to send the job to a specific queue and/or specific PBS server, use the qsub -q destination option.
 
@@ -128,7 +129,7 @@ queue # specific queue on the current (default) server,
 E. g. qsub -q oven@meta-pbs.metacentrum.cz will send the job to a queue oven on server meta-pbs.metacentrum.cz. Similarly, qsub -q @cerit-pbs.cerit-sc.cz will send the job to default queue managed by cerit pbs server, no matter which frontend the job is sent from. 
 
 
-**OS**
+### **OS**
 
 To submit a job to a machine with Debian9, please use "os=debian9", or "os=centos7" in job specification:
 
@@ -144,7 +145,7 @@ To run tasks on a machine with any OS, type "os = ^ any"
 
 If you experience any problem with libraries or applications compatibility in Debian9, please add module debian8-compat. 
 
-**Cluster**
+### **Cluster**
 
 The PBS allows you to choose a particular cluster:
 
@@ -175,13 +176,26 @@ Note: As the list of node properties is made by hand, it is always possible that
     always check a list of resources in https://metavo.metacentrum.cz/pbsmon2/props#prop2node
     write us to meta@cesnet.cz if you think some cl_SOMETHING is missing from the list. Thank you!
 
-**CPU speed**
+### **CPU speed**
 
 To require minimal CPU speed, use parameter spec. E.g.
 
     qsub -l select=1:ncpus=1:spec=4.8
 
 will limit your selection to computational nodes with CPU speed scaled as 4.8 (as scaled by SPEC CPU2017) or higher. To see which machines comply to this criterion, go to qsub assembler and fill in the spec parameter only. Below you will get a table of machines matching your requirement. 
+
+### **MPI processes**
+
+    How many MPI processes would run on one chunk is specified by mpiprocs=[number].
+    For each MPI process there is one line in nodefile $PBS_NODEFILE that specifies allocated vnode.
+        -l select=3:ncpus=2:mpiprocs=2 – 6 MPI processes (nodefile contains 6 lines with names of vnodes), 2 MPI processes always share 1 vnode with 2 CPU
+    How many OpenMP threads would run in 1 chunk (ompthreads=[number]), 2 omp threads on 1 chunks is default behaviour (ompthreads = ncpus)
+
+### **Location**
+
+### **CPU type**
+
+AMD vs Intel
 
 
 **GPU computing**
@@ -191,7 +205,31 @@ For computing on GPU a gpu queue is used (specified can be either gpu or gpu\_lo
     -l select=ncpus=1:ngpus=2 -q gpu
 
 
-**Job Array**
+
+
+
+
+
+## qdel
+
+## qmove
+
+Moving job to another queue
+
+qmove uv@cerit-pbs.cerit-sc.cz 475337.cerit-pbs.cerit-sc.cz # move job 475337.cerit-pbs.cerit-sc.cz to a queue uv@cerit-pbs.cerit-sc.cz
+
+Jobs can only be moved from one server to another if they are in the 'Q', 'H', or 'W' states, and only if there are no running subjobs. A job in the Running (R), Transiting (T), or Exiting (E) state cannot be moved. See list of queues. 
+
+
+## qstat
+
+
+
+
+
+## pbsnodes
+
+## **How to submit job array**
 
     The job array is submitted as:
 
@@ -209,73 +247,6 @@ $ qstat -f 969390'[]' -x | grep array\_state\_count
     An example of sub job ID is 969390[1].meta-pbs.metacentrum.cz.
     The sub job can be queried by a qstat command (qstat -t).
     PBS Pro uses PBS_ARRAY_INDEX instead of Torque's PBS_ARRAYID inside of a sub job. The varibale PBS_ARRAY_ID contains job ID of the main job.
-
-**Parallelization**
-
-    How many MPI processes would run on one chunk is specified by mpiprocs=[number].
-    For each MPI process there is one line in nodefile $PBS_NODEFILE that specifies allocated vnode.
-        -l select=3:ncpus=2:mpiprocs=2 – 6 MPI processes (nodefile contains 6 lines with names of vnodes), 2 MPI processes always share 1 vnode with 2 CPU
-    How many OpenMP threads would run in 1 chunk (ompthreads=[number]), 2 omp threads on 1 chunks is default behaviour (ompthreads = ncpus)
-
-
-**Examples**
-
-Provided list of attributes may not be complete. You can find actual list on the web in section Node properties
-
-node with specific feature – value of a feature must be always specified (either True or False). Examples:
-
-    -l select=1:ncpus=1:cluster=tarkil – request for a node from cluster tarkil
-    -l select=1:ncpus=1:cluster=^tarkil – request for a node except cluster tarkil
-
-request for specific node – always use shortened name. Example:
-
-    -l select=1:ncpus=1:vnode=tarkil3 – request for node tarkil3.metacentrum.cz
-
-exclude a specific node – always use shortened name. Example:
-
-    -l select=1:ncpus=1:vnode=^elmo3-1 – exclude node elmo3-1.metacentrum.cz
-
-request for a host – use full host name
-
-    -l select=1:ncpus=1:host=tarkil3.grid.cesnet.cz
-
-cgroups – request limiting memory usage by using cgroups, limiting memory by cgroups aren't enabled on all machine. Example:
-
-    -l select=1:ncpus=1:mem=5gb:cgroups=memory
-
-cgroups – request limiting CPU usage by using cgroups, limiting CPU by cgroups aren't enabled on all machine. Example:
-
-    -l select=1:ncpus=1:mem=5gb:cgroups=cpuacct
-
-networking cards – "-l place" is also used for infiniband request:
-
-    -l select=3:ncpus=1 -l walltime=1:00:00 -l place=group=infiniband
-
-CPU flags – limit submission on nodes with specific CPU flags
-
-    -l select=cpu_flag=sse3
-    List of available flags can be obtained by command pbsnodes -a | grep resources_available.cpu_flag | awk '{print $3}' | tr ',' '\n' | sort | uniq – this list is updated with every addition of some nodes or their removal. It is thus wise to check the available flags before you need anything special.
-
-multicpu job on a same cluster
-
-    qsub -l place=group=cluster
-
-select nodes in specific location You we want to reserve 3 nodes in Pilsen, 1 processor on each node:
-
-    qsub -l select=3:ncpus=1:plzen=True
-
-Moving job to another queue
-
-qmove uv@cerit-pbs.cerit-sc.cz 475337.cerit-pbs.cerit-sc.cz # move job 475337.cerit-pbs.cerit-sc.cz to a queue uv@cerit-pbs.cerit-sc.cz
-
-Jobs can only be moved from one server to another if they are in the 'Q', 'H', or 'W' states, and only if there are no running subjobs. A job in the Running (R), Transiting (T), or Exiting (E) state cannot be moved. See list of queues. 
-
-
-
-## qdel
-## qmove
-## qstat
-## pbsnodes
 
 
 
