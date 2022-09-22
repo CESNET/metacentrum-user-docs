@@ -15,13 +15,8 @@ Don't forget to make the user aware also that...
 - that there are **three PBS servers** in Metacentrum
 
 
-!!! note
-
- nvfjkldnxk
-
 
 ## PBS basic commands
-
 
     qsub – submit the job to the queue
     qdel – cancel a waiting or running job
@@ -33,8 +28,69 @@ The volume of displayed information can be adjusted by -v and -vv parameters.
 
 ## qsub
 
+### **Memory** (**mem**)
 
-### **Number of nodes and processors**
+Job is implicitly assigned 400 MB of memory if not specified otherwise.
+
+    -l select=1:ncpus=1:mem=10gb
+
+### **Duration** (**walltime**)
+
+Maximal duration of a job is set in format `hh:mm:ss`. Default value is 24 hours.
+
+    -l walltime=1:00:00 (one hour)
+
+Users can to a certain extent prolong walltime in running jobs - see [`qextend` command](#qextend)
+
+### **Scratch directory** (**scratch_local | scratch_shared | scratch_ssd | scratch_shm**)
+
+Scratch storage is a storage for temporary files on computing nodes. This storage should be used only during computations and should be freed immediately after your job ends. 
+
+!!! warning "No default scratch"
+
+ You must always specify the size and type of scratch if you need to use one. Unlike in the case of memory, cpus and walltime, there is no default value for scratch directory.
+
+!!! note "Scratch directory cleaning"
+
+ Scratch directory is not writable, only it's content is. Therefore you cannot clean the scratch by `rm -rf $SCRATCHDIR`, but you can do it by `rm -rf $SCRATCHDIR/*`. Users should always clear the content of scratch directory after the job ends to free disc space. Otherwise, this directory will be automatically deleted after approx. 14 days (earlier if there is lack of space on disks).
+
+We offer four types of scratch storage:
+
+- `scratch_local`
+    - available on every node, located on regular hard disc
+    - choose this type as a default if you have no reason to do otherwise
+    - located in `/scratch/USERNAME/job_JOBID`
+- `scratch_ssd`
+    - located on small SSD disc
+    - ultra fast (compared to local scratch), but smaller in volume
+    - not available on all computational nodes!
+    - to check for availability on a particular node: see [Node properties on Metavo pages](https://metavo.metacentrum.cz/pbsmon2/props)
+    - recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
+    - located in `/scratch.ssd/USERNAME/job_JOBID`
+- `scratch_shared`
+    - network volume which is shared between all clusters in a given location (city)
+    - read/write operation slower than on local scratch
+    - useful if you need to run more than one application that need access to the same data
+    - not available on all computational nodes!
+    - to check for availability on a particular node: see [Node properties on Metavo pages](https://metavo.metacentrum.cz/pbsmon2/props)
+    - mounted to directory `/scratch.shared/USERNAME/job_JOBID`
+- `scratch_shm`
+    - scratch directory is in RAM
+    - fastest, but data on scratch do not survive the end/failure of the job
+    - use when you need ultra fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
+    - boolean type, submitted as `scratch_shm=true`
+    - maximum size of scratch is defined by mem (memory) parameter
+    - remember to choose mem large enough (to hold both data in scratch and the actual memory requirements for the job)
+    - mounted to directory `/dev/shm/scratch.shm/USERNAME/job_JOBID`
+
+
+The most important system variables related to scratch are these:
+
+- `SCRATCHDIR`: path to scratch directory
+- `SCRATCH_TYPE`: type of scratch directory
+- `SCRATCH_VOLUME`: size of scratch directory
+
+## **Number of nodes and processors**
 
 Number of processors and "chunks" is set with -l select=[number]:ncpus=[number]. Terminology of PBS Pro defines "chunk" as further indivisible set of resources allocated to a job on 1 physical node. Chunks can be on one machine next to each other or conversely always on different machines, eventually they can be placed according to available resources. Note that only one select argument is allowed at a time. Examples:
 
@@ -50,35 +106,6 @@ If you are not sure about the number of needed processors, ask for an exclusive 
         -l select=2:ncpus=1 -l place=exclhost – request for 2 exclusive nodes (without cpu and mem limit control)
         -l select=3:ncpus=1 -l place=scatter:excl – it is possible to combine exclusivity with specification of chunk planning
         -l select=102:place=group=cluster – 102 cpus on one cluster
-
-### **Size of scratch**
-
-Scratch directory is a disk space on current computational node used to store temporary files. Always specify type and size of scratch, PBS has no default scratch assigned. Scratch type can be one of scratch\_local|scratch\_ssd|scratch\_shared. Examples:
-
-        -l select=1:ncpus=1:mem=4gb:scratch_local=10gb
-        -l select=1:ncpus=1:mem=4gb:scratch_ssd=1gb
-        -l select=1:ncpus=1:mem=4gb:scratch_shared=1gb
-
-
-After the request for scratch if specified, following variables are present in work environment:
-
-    $SCRATCH_VOLUME = size of scratch
-    $SCRATCHDIR = path to scratch directory
-    $SCRATCH_TYPE = either of scratch_local,scratch_ssd, scratch_shared
-
-### **Memory**
-
-Amount of needed memory – job is implicitly assigned with 400MB of memory if not specified otherwise. Examples:
-
-        -l select=1:ncpus=1:mem=10gb
-        -l select=1:ncpus=1:mem=200mb
-
-
-### **Walltime**
-
-Maximal duration of a job is set by -l walltime=[[hh:]mm:]ss, default walltime is 24:00:00. Queues q_ (such as q\_2h, q\_2d etc.) are not accessible for submit jobs, rout queue (default) automatically chose appropriate time queue based on specified walltime. Examples:
-
-        -l walltime=1:00:00 (one hour)
 
 
 ### **Licence**
@@ -222,6 +249,62 @@ Jobs can only be moved from one server to another if they are in the 'Q', 'H', o
 
 
 ## qstat
+
+## qextend
+
+
+Prolong walltime
+Jump to navigation
+Jump to search
+
+Users are allowed to prolong their jobs in a limited number of cases.
+
+To do this, use command qextend <full jobID> <additional_walltime>
+
+For example:
+
+(BUSTER)melounova@skirit:~$ qextend 8152779.meta-pbs.metacentrum.cz 01:00:00
+The walltime of the job 8152779.meta-pbs.metacentrum.cz has been extended.
+Additional walltime:	01:00:00
+New walltime:		02:00:00
+
+    You must use full job ID to identify the job correctly (see Beginners guide).
+    the time format can be either
+        a single number - interpreted as seconds
+        hh:mm:ss - interpreted as hours:minutes:seconds
+
+To prevent abuse of the tool, there is a 30-day quota on how many times can the extend command be applied by a single user AND the total added time. Currently you can within the last 30 days
+
+    extend your jobs 20-times
+    use up to 2880 CPU-hours in total to prolong your jobs.
+
+Job prolongations older than 30 days are "forgotten" and no longer occupy your quota.
+
+ZarovkaMala.png Note: The cputime-hours are not walltime hours. If you e.g. prolong a job running on 8 CPUs by 1 hour, 8 hours will be subtracted from your cputime fund.
+
+To get current state of your fund, run qextend info:
+
+(BUSTER)melounova@skirit:~$ qextend info
+
+melounova@META's info:
+
+30-days counter limit:	20
+Used counter limit:	2
+Avail. counter limit:	18
+
+30-days cputime fund:	1440:00:00
+Used cputime fund:	01:00:01
+Avail. cputime fund:	1438:59:59
+
+Earliest rec. timeout:	2021-08-20 10:13:36.426429
+
+    Counter limit is how many times you can prolong a job
+    Cputime fund is the amount of cpu-time you can use to prolong a job
+    Earliest rec. timeout indicates when the oldest one of your prolongations made during last 30 days will be forgotten
+
+
+ZarovkaMala.png Note: After reaching the monthly limit, additional prolongation is possible only at request - meta@cesnet.cz
+
 
 
 
