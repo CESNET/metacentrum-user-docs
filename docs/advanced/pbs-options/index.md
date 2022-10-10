@@ -1,6 +1,6 @@
 # PBS options 
 
-The three Metacentrum PBS servers are:
+Metacentrum has three PBS servers. Those are:
 
 - `meta-pbs.metacentrum.cz` 
 - `cerit-pbs.cerit-sc.cz` 
@@ -8,23 +8,37 @@ The three Metacentrum PBS servers are:
 
 ## Chunk vs job
 
-Terminology of PBS Pro defines **chunk** as further indivisible set of resources allocated to a job on 1 physical node. Number of chunks and processors is set with `-l select=[number]:ncpus=[number]`. Chunks can be on one machine next to each other or conversely always on different machines, eventually they can be placed according to available resources.
+PBS concept is based on so-called **chunks** as basic computational units. A chunk is further indivisible set of resources placed on the same host . User may require one (default) or more chunks for a job.
 
-Chunks are typically used to optimize the resource usage of parallelized computations. There may be e.g. a driving process placed on one chunk with relatively few CPUs combined with parallelized parts of a job running on other chunk(s) with many CPUs.  
+Some resources can be defined per chunk, i.e. user can request them for each chunk separately. Examples of **chunk-wide resources** are number of CPUs, GPUs or scratch directory type and volume. 
 
-Note that only one select argument is allowed at a time. Examples:
+Other resources can be defined only for the job as a whole. Examples of **job-wide resources** are walltime, type of queue or software licence. 
 
-    -l select=1:ncpus=2 – two processors on one chunk
-    -l select=2:ncpus=1 – two chunks each with one processor
-    -l select=1:ncpus=1+1:ncpus=2 – two chunks, one with one processor and second with two processors
-    -l select=2:ncpus=1 -l place=pack – all chunks must be on one node (if there is not any big enough node, the job will never run)
-    -l select=2:ncpus=1 -l place=scatter – each chunk will be placed on different node
-    -l select=2:ncpus=1 -l place=free – permission to place chunks arbitrarily according to resource availability on nodes (default behavior for PBS Pro)
+Chunks are typically used to optimize the resource usage of parallelized computations. There may be e.g. a driving process placed on one chunk with relatively few CPUs combined with parallelized parts of a job running on other chunk(s) with many CPUs. 
 
-If you are not sure about the number of needed processors, ask for an exclusive reservation of the whole machine using the parameter "-l place=":
+Chunks can be on one machine next to each other or always on different machines, depending on job-wide option `place`.
 
-    -l select=2:ncpus=1 -l place=exclhost – request 2 exclusive nodes (without cpu and mem limit control)
-    -l select=102:place=group=cluster – 102 cpus on one cluster
+Number of chunks `N` is set with `-l select=[N]:`. When user needs to set up more chunks with different resources, they are concatenated with `+`. The `select` keyword can be used only once.
+
+`N` is not mandatory in the `select` statement. Default value of `N` is 1.
+
+Examples of chunk specification:
+
+    -l select=:ncpus=2 # one chunk with two CPUs
+    -l select=1:ncpus=2 # same as above
+    -l select=1:ncpus=1+1:ncpus=2 # two chunks, one with one CPU and one with two CPUs
+    -l select=6:ncpus=2:mem=4gb+3:ncpus=8:mem=4GB # six chunks with 2 CPUs and 4 GB of memory each and three chunks with 8 CPUs and 4 GB of memory each
+
+Examples of `place` usage:
+
+    -l select=2:ncpus=1 -l place=pack # two chunks, both must be on one host
+    -l select=2:ncpus=1 -l place=scatter # two chunks which must be on different hosts
+    -l select=2:ncpus=1 -l place=free # two chunks placed arbitrarily according to resource availability on (default)
+
+If you are not sure about the number of needed processors, ask for an exclusive reservation of the whole machine:
+
+    -l select=2:ncpus=1 -l place=exclhost # request whole host allocated to this job (without cpu and mem limit control)
+    -l select=102:place=group=cluster # 102 cpus on one cluster
 
 ## Chunk-wide resources
 
@@ -32,7 +46,7 @@ If you are not sure about the number of needed processors, ask for an exclusive 
 
 Resource name: `ncpus`. Default value: `1`.
 
-Examples:
+Example:
 
     -l select=1:ncpus=2 # request 2 CPUs
 
@@ -40,34 +54,38 @@ Examples:
 
 Resource name: `mem`. Default value: `400 MB`.
 
-Examples:
+Example:
 
     -l select=1:ncpus=1:mem=10gb # request 10 GB memory job
 
 
-### **CPU type (cpu_vendor)**
+### **CPU type**
 
-Some software versions may or may not run correctly on AMD vs Intel processors. Therefore you can request a specific CPU vendor:
+Resource name: `cpu_vendor`. Default value: `???`.
 
-    qsub -l select=1:ncpus=1:cpu_vendor=amd 
-    qsub -l select=1:ncpus=1:cpu_vendor=intel
+In the Metacentrum grid there are both machines with AMD as well as Intel processors. Some software may be sensitive to the processor used (although most applications run seamlessly on both). Therefore you can request a specific CPU vendor:
 
-### **CPU speed (spec)**
+    qsub -l select=1:ncpus=1:cpu_vendor=amd  # use machine with AMD processor
+    qsub -l select=1:ncpus=1:cpu_vendor=intel # dtto with Intel
 
-To require minimal CPU speed, use parameter `spec`:
+### **CPU speed**
 
-    qsub -l select=1:ncpus=1:spec=4.8
+Resource name: `spec`. Default value: `???`.
 
-will limit your selection to computational nodes with CPU speed scaled as 4.8 (as scaled by [SPEC CPU2017](https://www.spec.org/cpu2017/)) or higher. To see which machines comply to this criterion, go to [qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) and fill in the spec parameter only. Below you will get a table of machines matching your requirement. 
+CPUs across Metacentrum grid differ in their how fast they are. Therefore they are classed by parameter `spec` according to methodology of [SPEC CPU2017](https://www.spec.org/cpu2017/).  To see the `spec` values, go to [qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) and see the drop-down menu in the `spec` parameter.
 
 !!! todo
  Jak nastavit odkaz tak, aby proklik sel na EN verzi qsub assembleru?
 
+Example:
+
+    qsub -l select=:spec=4.8 # 1 CPU with speed class 4.8 or higher
+
 ### **Scratch directory**
 
-Resource names: `scratch_local`, `scratch_shared`, `scratch_ssd`, `scratch_shm`.
+Resource names: `scratch_local`, `scratch_shared`, `scratch_ssd`, `scratch_shm`. 
 
-No default value.
+Default value: none.
 
 We offer four types of scratch storage:
 
@@ -118,14 +136,20 @@ Example:
     (BULLSEYE)user123@elmo3-3:~$ echo $SCRATCH_VOLUME
     21474836480
 
+### **Number of GPUs**
 
+Resource name: `ngpus`. Default value: `0`.
 
-### **Number of GPUs (ngpus)**
+!!! todo
+ sem dat vic ke gpu vypoctum, do jake fronty to posilat apod.
 
     -l select=ncpus=1:ngpus=2 -q gpu
-### **OS (os | osfamily)**
 
-To submit a job to a machine with specific operation system, use `os=OS_name`
+### **OS**
+
+Resource name: `os`, `osfamily`. Default value: `???`.
+
+To submit a job to a machine with specific operation system, use `os=OS_name`:
 
     zuphux$ qsub -l select=1:ncpus=2:mem=1gb:scratch_local=1gb:os=debian11 …
 
@@ -134,12 +158,14 @@ To submit a job to a machine with a specific OS type, use `osfamily=OS_type_name
     zuphux$ qsub -l select=1:ncpus=2:mem=1gb:scratch_local=1gb:osfamily=debian …
 
 
-### **Cluster (cluster | cl_NAME)**
+### **Cluster**
+
+Resource name: `cluster`, `cl_NAME`. Default value: none.
 
 PBS allows you to choose a particular cluster (using either resource `cluster` or `cl_NAME`:
 
-    qsub -l select=1:ncpus=2:cluster=halmir
-    qsub -l select=1:ncpus=2:cl_halmir=True
+    qsub -l select=1:ncpus=2:cluster=halmir # run the job on cluster "halmir"
+    qsub -l select=1:ncpus=2:cl_halmir=True # same as above
 
 Alternatively, you can avoid a particular cluster:
 
@@ -165,22 +191,26 @@ The same can be done with
 
 ### **Location**
 
+Resource names: `brno`, `budejovice`, `liberec`, `olomouc`, `plzen`, `praha`, `pruhonice`, `vestec`.
+
+Default value: none.
+
 As the physical machines are distributed over multiple locations in Czech republic, it may be useful to be ble to specify the location of the machine(s)
 
-    qsub -l select=1:ncpus=1:brno=True run on machines located in Brno.
+    qsub -l select=1:ncpus=1:brno=True # run on machines located in Brno.
 
-Currently possible locations are `brno`, `budejovice`, `liberec`, `olomouc`, `plzen`, `praha`, `pruhonice` and `vestec`.
+### **MPI processes**
 
-### **MPI processes (mpiprocs | ompthreads)**
+Resource name: `mpiprocs`, `ompthreads`. Default value: `???`.
 
 How many MPI processes would run on one chunk is specified by `mpiprocs=[number]`:
 
-    -l select=3:ncpus=2:mpiprocs=2 – 6 MPI processes (nodefile contains 6 lines with names of vnodes), 2 MPI processes always share 1 vnode with 2 CPU
+    -l select=3:ncpus=2:mpiprocs=2 # 6 MPI processes (nodefile contains 6 lines with names of vnodes), 2 MPI processes always share 1 vnode with 2 CPU
 
 How many OpenMP threads would run in 1 chunk `ompthreads=[number]`, 2 omp threads on 1 chunks is default behaviour (`ompthreads = ncpus`).
 
-
 ## Job-wide resources
+
 ### **Duration**
 
 Resource name: `walltime`. Default value: `24:00:00` (24 hours).
@@ -195,6 +225,7 @@ Users can to a certain extent prolong walltime in running jobs - see [`qextend` 
 
 ### **Queue and/or PBS server**
 
+Resource name: ``. Default value: ``.
 If you need to send the job to a specific queue and/or specific PBS server, use the `qsub -q` option.
 
     qsub -q queue@server # specific queue on specific server
@@ -210,6 +241,7 @@ For example, `qsub -q @cerit-pbs.cerit-sc.cz` will send the job to default queue
 
 ### **Licence**
 
+Resource name: ``. Default value: ``.
 Some software requires licence to run. Licence is set by parameter `-l`
 
     -l select=3:ncpus=1 -l walltime=1:00:00 -l matlab=1 – one licence for Matlab
