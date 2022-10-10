@@ -234,17 +234,11 @@ If you need to send the job to a specific queue and/or specific PBS server, use 
 
 For example, `qsub -q @cerit-pbs.cerit-sc.cz` will send the job to default queue managed by cerit pbs server, no matter which frontend the job is sent from. 
 
-
-
-
-
-
 ### **Licence**
 
-Resource name: ``. Default value: ``.
 Some software requires licence to run. Licence is set by parameter `-l`
 
-    -l select=3:ncpus=1 -l walltime=1:00:00 -l matlab=1 – one licence for Matlab
+    -l select=3:ncpus=1 -l walltime=1:00:00 -l matlab=1 # one licence for Matlab
 
 ## **Email notifications**
 
@@ -274,7 +268,7 @@ This behaviour for output, resp. error files can be changed by parameters -o, re
 
 ## PBS commands usage
 
-The most relevant native PBS commands (and related options) discussed here will be:
+The most relevant native PBS commands (and related options) are:
 
 - `qsub` - submit the job
 - `qmove` - move the job to another queue 
@@ -304,56 +298,56 @@ Jobs can only be moved from one server to another if they are in the 'Q', 'H', o
 
 ### qextend
 
-
-Prolong walltime
-
 Users are allowed to prolong their jobs in a limited number of cases.
 
-To do this, use command qextend <full jobID> <additional_walltime>
+To do this, use command `qextend job_ID additional_walltime`.
 
-For example:
+Time can be set as:
 
-(BUSTER)melounova@skirit:~$ qextend 8152779.meta-pbs.metacentrum.cz 01:00:00
-The walltime of the job 8152779.meta-pbs.metacentrum.cz has been extended.
-Additional walltime:	01:00:00
-New walltime:		02:00:00
+- a single number - interpreted as seconds
+- `hh:mm:ss` - interpreted as hours:minutes:seconds
 
-    You must use full job ID to identify the job correctly (see Beginners guide).
-    the time format can be either
-        a single number - interpreted as seconds
-        hh:mm:ss - interpreted as hours:minutes:seconds
+Example:
 
-To prevent abuse of the tool, there is a 30-day quota on how many times can the extend command be applied by a single user AND the total added time. Currently you can within the last 30 days
+    (BUSTER)user123@skirit:~$ qextend 8152779.meta-pbs.metacentrum.cz 01:00:00
+    The walltime of the job 8152779.meta-pbs.metacentrum.cz has been extended.
+    Additional walltime:	01:00:00
+    New walltime:		02:00:00
 
-    extend your jobs 20-times
-    use up to 2880 CPU-hours in total to prolong your jobs.
+To prevent abuse of the tool, there is a quota limiting the `qextend` usage to:
 
-Job prolongations older than 30 days are "forgotten" and no longer occupy your quota.
+- max. 20 times within the last 30 days, `AND`
+- prolong the job(s) by up to 2880 CPU-hours within the last 30 days.
 
-ZarovkaMala.png Note: The cputime-hours are not walltime hours. If you e.g. prolong a job running on 8 CPUs by 1 hour, 8 hours will be subtracted from your cputime fund.
+Job prolongations older than 30 days are "forgotten" and no longer occupy user's quota.
 
-To get current state of your fund, run qextend info:
+!!! warning "CPU-hours are not walltime hours"
 
-(BUSTER)melounova@skirit:~$ qextend info
+User quota is set to hours-per-CPU. If you e.g. prolong a job running on 8 CPUs by 1 hour, 8 hours will be subtracted from your cputime fund.
 
-melounova@META's info:
+To get current state of your fund, run `qextend info`:
 
-30-days counter limit:	20
-Used counter limit:	2
-Avail. counter limit:	18
+    (BUSTER)user123@skirit:~$ qextend info
 
-30-days cputime fund:	1440:00:00
-Used cputime fund:	01:00:01
-Avail. cputime fund:	1438:59:59
+    user123@META's info:
 
-Earliest rec. timeout:	2021-08-20 10:13:36.426429
+    30-days counter limit:	20
+    Used counter limit:	2
+    Avail. counter limit:	18
 
-    Counter limit is how many times you can prolong a job
-    Cputime fund is the amount of cpu-time you can use to prolong a job
-    Earliest rec. timeout indicates when the oldest one of your prolongations made during last 30 days will be forgotten
+    30-days cputime fund:	1440:00:00
+    Used cputime fund:	01:00:01
+    Avail. cputime fund:	1438:59:59
 
+    Earliest rec. timeout:	2021-08-20 10:13:36.426429
 
-ZarovkaMala.png Note: After reaching the monthly limit, additional prolongation is possible only at request - meta@cesnet.cz
+Counter limit is how many times you can prolong a job.
+Cputime fund is the amount of cpu-time you can use to prolong a job.
+Earliest rec. timeout indicates when the oldest one of your prolongations made during last 30 days will be forgotten.
+
+!!! note "What to do if you run out of quota"
+
+If you reach the monthly limit and still need to prolong a job, it can be done upon request to user support at <meta@cesnet.cz>.
 
 
 ## Job arrays
