@@ -286,13 +286,13 @@ Further we discuss a custom PBS command:
 
 ### qmove
 
-(only waiting jobs!)
-Moving job to another queue
+The `qmove` command moves a job to another queue.
 
-qmove uv@cerit-pbs.cerit-sc.cz 475337.cerit-pbs.cerit-sc.cz # move job 475337.cerit-pbs.cerit-sc.cz to a queue uv@cerit-pbs.cerit-sc.cz
+Jobs can only be moved from one server to another if they are in the `Q` (queued), `H` (held), or `W` (waiting) states, and only if there are no running subjobs. A job in the Running (`R`), Transiting (`T`), or Exiting (`E`) state cannot be moved.
 
-Jobs can only be moved from one server to another if they are in the 'Q', 'H', or 'W' states, and only if there are no running subjobs. A job in the Running (R), Transiting (T), or Exiting (E) state cannot be moved. See list of queues. 
+Example:
 
+    qmove uv@cerit-pbs.cerit-sc.cz 475337.cerit-pbs.cerit-sc.cz # move job 475337.cerit-pbs.cerit-sc.cz to a queue uv@cerit-pbs.cerit-sc.cz
 
 ### qstat
 
@@ -368,8 +368,6 @@ $ qstat -f 969390'[]' -x | grep array\_state\_count
     An example of sub job ID is 969390[1].meta-pbs.metacentrum.cz.
     The sub job can be queried by a qstat command (qstat -t).
     PBS Pro uses PBS_ARRAY_INDEX instead of Torque's PBS_ARRAYID inside of a sub job. The varibale PBS_ARRAY_ID contains job ID of the main job.
-
-
 
 ## Node properties
 
