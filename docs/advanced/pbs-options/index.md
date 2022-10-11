@@ -351,8 +351,19 @@ If you reach the monthly limit and still need to prolong a job, it can be done u
 
 ### Job state codes
 
-M E Q etc. - explain
+PBS Pro uses different codes to mark job state within the PBS ecosystem. 
 
+| State | Description |
+|-------|-------------|
+| Q | Queued |
+| M | Moved to another PBS server |
+| H | Held. Job is put into a held state by the server, user or administrator. Job stays in a held state until it is released by a user or administrator.|
+| R | Running |
+| S | Suspended (substate of R) |
+| E | Exiting after having run |
+| F | Finished |
+| W | Waiting. Job is waiting for its requested execution time to be reached, or job is delayed due to stagein failure. |
+ 
 ### qstat
 
 The `qstat` command provides info about queues and jobs.
@@ -418,7 +429,6 @@ Example of the output:
 
 !!! note
 The `pbs-get-job-history` utility does not retrieve input data and job results (they are not stored anywhere).
-
 
 !!! note
 Output for interactive jobs does not contain `.ER`, `.OU` and `.SC` files
