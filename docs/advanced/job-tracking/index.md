@@ -24,13 +24,27 @@ PBS Pro uses different codes to mark job state within the PBS ecosystem.
 | S | Suspended (substate of R) |
 | E | Exiting after having run |
 | F | Finished |
+| X | Finished (subjobs only) |
 | W | Waiting. Job is waiting for its requested execution time to be reached, or job is delayed due to stagein failure. |
 
-## Paths to files
- 
-- where is temporary input and output
-- where is IO files copied to
+## Output of running jobs
 
+Although the input and temporary files for calculation lie in $SCRACHDIR, the standard output (STDOUT, `job_ID.OU`) and standard error output (STDERR, `job_ID.ER`) are elsewhere. 
+
+To see current state of these files in a running job, do
+
+1. find on which host the job runs by `qstat job_ID`
+2. `ssh` to this host
+3. navigate to `/var/spool/pbs/spool/` directory and examine the files:
+
+    $PBS_JOBID.OU for STDOUT, e.g. “1234.meta-pbs.metacentrum.cz.OU”
+    $PBS_JOBID.ER for STDERR, e.g. “1234.meta-pbs.metacentrum.cz.ER”
+
+To watch a file continuously, you can also use a command `tail -f`:
+
+    user123@zapat112.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 1234.meta-pbs.metacentrum.cz.OU 
+
+ 
 ## Finished jobs
 
 ### Last 24 hours

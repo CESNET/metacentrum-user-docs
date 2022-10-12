@@ -16,31 +16,6 @@ The default queue is only **routing** one: it serves only to sort jobs into anot
 
 The latter queues are **execution** ones, i.e. they serve to actually run the jobs.
 
-### List queue details
-
-To see the details of a queue, use:
-
-    qstat -Q -f queue_name@server_name
-
-Example of output of `qstat -Q -f default@meta-pbs.metacentrum.cz`:
-
-    (BULLSEYE)user123@halmir1:~$ qstat -Q -f default@meta-pbs.metacentrum.cz
-    Queue: default
-        queue_type = Route
-        total_jobs = 0
-        state_count = Transit:0 Queued:0 Held:0 Waiting:0 Running:0 Exiting:0 Begun
-    	:0 
-        max_queued = [u:PBS_GENERIC=30000]
-        resources_max.ngpus = 0
-        resources_max.walltime = 720:00:00
-        resources_min.mem = 50mb
-        resources_min.ncpus = 1
-        resources_default.place = free
-        resources_default.walltime = 24:00:00
-        comment = Default queue (routing)|Implicitni fronta
-        route_destinations = q_2h,q_4h,q_1d,q_2d,q_4d,q_1w,q_2w,q_2w_plus
-        enabled = True
-        started = True
 
 ## Specific queues
 
@@ -55,16 +30,47 @@ In some cases, it is possible or even recommended that the user choses a particu
 | phi@cerit-pbs.cerit-sc.cz | Jobs optimized to run on Intel Phi architecture |
 | uv@cerit-pbs.cerit-sc.cz | Jobs requiring >100 CPUs OR >%)) GB of memory |
 
-## qstat command usage
+## Queue info by qstat
 
 The `qstat` command provides info about queues and jobs.
 
-The `qstat` command by default displays info only about queued or running jobs. To get also info about finished jobs, use `qstat -x` or custom command `pbs-get-job-history` (see below).
-
-Example - queues:
+Example:
 
     qstat -q  # get list of queues and their properties on current PBS server
     qstat -Q  # dtto, different format
     qstat -q @cerit-pbs.cerit-sc.cz # list queues on cerit-pbs.cerit-sc.cz PBS server
     qstat -q @cerit-pbs.cerit-sc.cz @meta-pbs.metacentrum.cz @elixir-pbs.elixir-czech.cz # list queues on all servers
 
+To see details for a selected queue, use:
+
+    qstat -Q -f queue_name@server_name
+
+Example of output of `qstat -Q -f gpu_long@meta-pbs.metacentrum.cz`:
+
+    (BUSTER)user123@skirit:~$ qstat -Q -f gpu_long@meta-pbs.metacentrum.cz
+    Queue: gpu_long
+        queue_type = Execution
+        Priority = 66
+        total_jobs = 24
+        state_count = Transit:0 Queued:14 Held:0 Waiting:0 Running:10 Exiting:0 Beg
+    	un:0 
+        max_queued = [u:PBS_GENERIC=2000]
+        resources_max.ngpus = 99
+        resources_max.walltime = 336:00:00
+        resources_min.mem = 50mb
+        resources_min.ncpus = 1
+        resources_min.ngpus = 1
+        resources_default.ngpus = 0
+        comment = Queue for long time computations on GPU|Fronta pro dlouhodob\u00e
+    	9 v\u00fdpo\u010dty na GPU
+        default_chunk.queue_list = q_gpu_long
+        resources_assigned.mem = 1760gb
+        resources_assigned.mpiprocs = 124
+        resources_assigned.ncpus = 124
+        resources_assigned.nodect = 10
+        max_run_res.ncpus = [u:PBS_GENERIC=200]
+        backfill_depth = 2
+        enabled = True
+        started = True
+
+In this particular queue, no jobs can run unless they require at least 1 GPU (`resources_min.ngpus`).
