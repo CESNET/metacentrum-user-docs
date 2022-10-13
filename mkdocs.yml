@@ -31,6 +31,7 @@ nav:
     - advanced/pbs-options/index.md
     - advanced/queues-in-meta/index.md
     - advanced/job-tracking/index.md
+    - advanced/grid-infrastruct/index.md
     #    - advanced/modules/index.md
     #    - advanced/move-data/index.md
     #    - advanced/run-graphical/index.md

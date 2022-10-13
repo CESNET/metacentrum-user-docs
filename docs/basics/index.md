@@ -1,19 +1,59 @@
 # Basics 
 
-**Prerequisites**
+## Prerequisites
 
-- mam jiz pristup do metacentra
-- umim se tam prihlasit
-- basic knowledge of Linux command line
-- I can login to a frontend node
+1. I have Metacentrum account
+2. I am able to login to a frontend node
+3. I have basic knowledge of Linux command line
+ 
+## Frontend dos and donts
+
+- co muzou na frontendu delat
+- na co si uz maji vzit interactive job
 
 
-## General
+## Lifecycle of a job
 
-- nejak znazornit proces poslani jobu - priprava skriptu na frontendu, vypocet, presun vystupu zpatky na storage
-- co delat na frontendu a co tam nedelat (viz csc.fi, tam to meli dobre zapsane)
-- batch job or interactive? rozdily
-- poznamku ze se porad bavime jen o ulohach s textovym vstupem, na GUI odkaz do advanced sekce
+### Batch job
+
+A typical usecase for grid computing is non-interactive batch job, when the user only prepares input and set of instructions at the beginning. The calculation itself then runs independently on  user.
+
+Batch jobs consists of the following steps:
+
+1. User prepares data to be used in the calculation and instruction what is to be done with them (input files + batch script).
+2. The batch script is submitted to the job planner (PBS server), which stages the job until required resources are available.
+3. After the PBS server has released the job to be run, the job runs on one of computational nodes.
+4. At this time the applications (software) are loaded.
+5. When the job is finished, results are copied back to user's directory according to instructions in the batch script.
+
+**schema graficky**
+
+### Interactive job
+
+Interactive job works in different way. User does not need to specify in advance what will be done, neither does not need to prepare any input data. Insted they first reserve computational resources and after the job start to run, works interactively on CLI.
+
+Interactive job consists of following steps:
+
+1. User submits request for specified resources to the PBS server
+2. PBS server stages this request until the resources are available.
+3. When the job starts running, user is redirected to a computational node's CLI.
+4. User does whatever they need on the CLI. 
+5. When the user logs out of the computational node, or when the time reserved for the job runs out, the job is done
+
+**schema graficky**
+
+### Batch vs interactive 
+
+A basic ("default") choice for grid computing is batch job. Batch jobs allow user to run massive sets of calculation without need to overview them, manipulate data etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
+
+Interactive jobs are good for:
+
+- testing what works and what does not (software versions, input data format, bash constructions to be used in batch script later etc)
+- getting first guess about the resources for a certain type of calculation
+- compiling your own software
+- learning your way around Metacentrum grid computing catches and caveats
+- processing, moving or archiving large amount of data
+
 
 
 ## Batch job example
@@ -53,17 +93,6 @@ BEGINNERS GUIDE RAW COPY
 MetaCentrum offers resources for a so-called grid computing. Roughly speaking, a grid is a network of many interconnected computers, whose properties (type and size of disk, RAM, CPU, GPU etc.) may differ and which may be located in different places (cities, institutes).
 
 The scheduling system keeps track of the grid's resources (memory, CPU time, disk space) and keeps the computational jobs waiting in queues until there is enough resources free for them to run. The users prepare and submit their jobs on so-called frontends, machines reserved to user activity. The rest of the grid's machines, computational nodes, does the computation itself.
-
-The grid graphics
-Log on a frontend machine
-Related topics
-Usage of PuTTY 	
-Other ways to access the grid from Linux 	
-Other ways to access the grid from Windows 	
-Remote desktop: graphical access 	
-Kerberos: single sign-on system 	
-Kerberos on Linux 	
-Kerberos on Windows 	
 
 Accessing the grid means logging on to one of the frontends. All frontend machines run on OS Linux. Linux' users only need to open a terminal. Windows users will need to install PuTTY, which enables them to open a Linux terminal from a Windowx PC.
 
