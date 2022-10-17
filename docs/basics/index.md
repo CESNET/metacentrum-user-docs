@@ -119,41 +119,50 @@ If both resource specifications are present (on CLI as well as inside the script
 
 ## Interactive job example
 
-- priklad interactive jobu (treba nejaka instalace condou)
-- opet pouze okomentovany skript
+An interactive job is requested via `qsub -I` command (uppercase "i").
 
+<!---
+Opet jen okometovany script
+Zde treba instalace neceho Condou na 8 jadrech, rekneme - rict si Jirkovi o nejaky priklad
+--->
 
- Run interactive job
+    (BUSTER)user123@skirit:~$ qsub -I -l select=1:ncpus=8:mem=4gb:scratch_local=10gb -l walltime=2:00:00 # submit interactive job 
+    qsub: waiting for job 13010171.meta-pbs.metacentrum.cz to start
+    qsub: job 13010171.meta-pbs.metacentrum.cz ready # 13010171.meta-pbs.metacentrum.cz is the job ID
+    (BULLSEYE)melounova@elmo3-1:~$ # elmo3-1 is computational node
 
-An interactive job is requested via qsub command and the -I (uppercase "i") option.
+    Unless you log out, after 1 hour you will get following message:
 
-jenicek@elmo5-26~: qsub -I -l select=1:ncpus=2:mem=4gb:scratch_local=10gb -l walltime=1:00:00
+    user123@elmo3-1:~$ =>> PBS: job killed: walltime 7230 exceeded limit 7200
+    logout
+    qsub: job 13010171.meta-pbs.metacentrum.cz completed
 
-The command in this example submits an interactive job to be run on machine with 2 processors, take up to 4 GB of RAM and last at most 1 hour. After hitting Enter, a line similar to the following will appear:
+## job ID
 
-qsub: waiting for job 11681412.meta-pbs.metacentrum.cz to start
+Job ID is unique identifier in a job. Job ID is a crucial thing to track, manipulate or delete job, as well as to identify your problem to user support.
 
-After some time, 2 lines similar to following will appear.
+Under some circumstances the job can be identified by the number only (e.g. `13010171.`). In general, however, the PBS server suffix is needed, too, to fully identify the job (e.g. `13010171.meta-pbs.metqcentrum.cz`).  
 
-qsub: job 11681412.meta-pbs.metacentrum.cz ready # in this example, 11681412 is the ID of interactive job
-jenicek@elmo5-26:~$ # note that user "jenicek" has been moved from a frontend (skirit) to a computational node (in this case elmo5-26)
+You can get the job ID:
 
-Now, you can run calculation, compile, tar files on the command line, e.g.
+- after running `qsub` command
+- by running `echo $PBS_JOBID` in interactive job  or in the batch script
+- by running `qstat -u your_username @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz`
 
-jenicek@elmo5-26:~$ module load g16-B.01 # load Gaussian 16
-jenicek@elmo5-26:~$ g16 <h2o.com >h2o.out   # run Gaussian calculation with "h2o.com" input file, output will be in "h2o.out" file
+Within interactive job:
 
-Unless you log out, after 1 hour you will get following message:
+    (BULLSEYE)user123@elmo3-1:~$ echo $PBS_JOBID
+    13010171.meta-pbs.metacentrum.cz
 
-jenicek@elmo5-26:~$ =>> PBS: job killed: walltime 3630 exceeded limit 3600
-logout
+By `qstat` command:
 
-qsub: job 11681412.meta-pbs.metacentrum.cz completed
-
-This means the PBS scheduling system sent alert that some resource has run out (in this case time) and has therefore terminated the job.
-
-
-
+    (BULLSEYE)user123@elmo3-1s :~$ qstat -u user123 @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz 
+    
+    elixir-pbs.elixir-czech.cz: 
+                                                                 Req'd  Req'd   Elap
+    Job ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
+    -------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
+    13010171.meta-pbs.m* user123  global   STDIN      366884   1   8    4gb 02:00 R 00:17
 
 
 ## Resources
@@ -166,18 +175,12 @@ There are three PBS servers that send the jobs to computational machines: meta-p
 
 Each of the PBS servers "sees" a different and mutually exclusive set of computing machines. Similarly, every frontend is connected with one of the three PBS servers. As a consequence, it depends on the frontend from which the job was submitted by which PBS server the job will be managed and on which computational nodes the job will be run. In this sense the frontends are not equivalent.
 
-
-
-
-
-ZarovkaMala.png Note: It is up to the user to provide educated guess of resources to the PBS.
-
 The information about resources goes into qsub command options.
 Request time memory, and number of CPUs
 
 In the qsub command, the colons (:) and lowercase "L" (l) are divisors, and the options go in pairs of <resource>=<value>.
 
-qsub -l select=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
+    qsub -l select=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
 
 where
 
@@ -188,9 +191,6 @@ where
 
 The qsub command has a deal more options than the ones shown here; for example, it is possible to specify a number of computational nodes, type of their OS or their physical placement. A more in-depth information about PBS commands can be found in the page About scheduling system.
 
-## job ID
-
-- co je job ID, kde ho ziskat
 
 ## Queues
 
@@ -198,22 +198,23 @@ jake mame fronty a jak cist znacky
 
 ## Scratch directory
 
-opet jen zakladni koncepty
-Specify scratch directory
-
 Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
 
-ZarovkaMala.png Note: There is no default scratch directory and the user must always specify its type.
-Related topics
-Types of scratch 	
+!!! warning
+There is no default scratch directory and the user must always specify its type an d volume.
 
-As a default choice, we recommend users to use local scratch, e.g.:
+Currently we offer four types of scratch storage:
 
-qsub -l select=1:ncpus=1:mem=4gb:scratch_local=100gb
+| Type | Available on every node? | Location on machine | `$SCRATCHDIR` value | Key characteristic |
+|------| -------------------------|---------------------|-------------------|----------------------|
+| local | yes | `/scratch/USERNAME/job_JOBID` | `scratch_local`|  universal, large capacity, available everywhere |	
+| ssd   | no  | `/scratch.ssd/USERNAME/job_JOBID` | `scratch_ssd`| fast I/O operations |
+| shared | no  | `/scratch.shared/USERNAME/job_JOBID` | `scratch_shared`| can be shared by more jobs | 	
+| shm | no  | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `scratch_shm`| exists in RAM, ultra fast |
 
-In the above example you will get scratch directory of 100 GB size.
+As a default choice, we recommend users to use **local scratch**.
 
-To access the scratch directory, use the system variable SCRATCHDIR
+To read more about scratch storages, see [Scratch storage page](/advanced/grid-infrastruct/#Scratch-storages)To access the scratch directory, use the system variable SCRATCHDIR
 
 
 
