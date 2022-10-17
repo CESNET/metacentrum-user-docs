@@ -31,7 +31,5 @@ co potrebuju zjistit:
 
 relevantni stranky: <https://wiki.metacentrum.cz/wiki/Beginners_guide#Log_on_a_frontend_machine> a odkazy tamtez
 
-Co potrebuju zjistit:
-
-- i do budoucna je jako s jedinym zabezpecenim pristupu pocitano s Kerberem? Zadne SSH klice?
+odkaz na stranku specialne k pripojovani a autentizaci [Connecting](/advanced/connect-auth)
 

@@ -8,58 +8,17 @@
  
 ## Frontend dos and donts
 
-MetaCentrum offers resources for a so-called grid computing. Roughly speaking, a grid is a network of many interconnected computers, whose properties (type and size of disk, RAM, CPU, GPU etc.) may differ and which may be located in different places (cities, institutes).
+Frontend usage policy is different from the one on computational nodes. The frontend nodes are shared by all users, the command typed by any user is performed immediately and there is no resource planning. Frontend node are not intended for heavy computing.
 
-The scheduling system keeps track of the grid's resources (memory, CPU time, disk space) and keeps the computational jobs waiting in queues until there is enough resources free for them to run. The users prepare and submit their jobs on so-called frontends, machines reserved to user activity. The rest of the grid's machines, computational nodes, does the computation itself.
+Frontends should be used only for:
 
-Accessing the grid means logging on to one of the frontends. 
+- preparing inputs, data post processing
+- managing batch jobs
+- light compiling and testing
 
-- co muzou na frontendu delat
-- na co si uz maji vzit interactive job
+!!! warning
 
-ZarovkaMala.png Note: Depending on the chosen frontend, you may see different content in your /home directory. To find out more about the infrastructure, read Frontend#Home_directory or Working with data.
-
-On frontends there must not be done any resource-demanding operations, such as computing or large-scale compiling and archiving, as it affects negatively all other logged in users. It is necessary to submit such operations as an interactive job.
-
-If you log in for the first time, you will be probably prompted by a query similar to the following:
-
-The authenticity of host 'skirit.ics.muni.cz (2001:718:ff01:1:216:3eff:fe20:382)' can't be established. ECDSA key fingerprint is SHA256:Splg9bGTNCeVSLE0E4tB30pcLS80sWuv0ezHrH1p0xE. Are you sure you want to continue connecting (yes/no)?
-
-Type "yes" and hit Enter. After that you will be prompted for a MetaCentrum password, type it and hit Enter. A MetaCentrum welcome logo and a bunch of information about your last login, home directories etc. will appear, with a line similar to the following right at the bottom.
-
-ZarovkaMala.png Note: Remember! Running calculation on frontend is prohibited.
-
-The correct way is to send the computational job to PBS (portable batch system). PBS keeps track of the computational resources across the whole grid and runs the job only after enough resources have been freed.
-
-PBS needs an estimate of how much resources (number of CPUs, time and memory) a job will need and where the temporary files shall be located.
-
-The trinity frontend - PBS server - set of computing machines is summed in the table below. Note that the list of computing machines is not complete!
-PBS server 	Frontend(s) 	Computing machines
-meta-pbs.metacentrum.cz 	skirit.ics.muni.cz
-alfrid.meta.zcu.cz
-tarkil.grid.cesnet.cz
-nympha.zcu.cz
-charon.metacentrum.cz
-minos.zcu.cz
-perian.ncbr.muni.cz
-onyx.ncbr.muni.cz 	lex.ncbr.muni.cz
-zubat.ncbr.muni.cz
-perian41-56.ncbr.muni.cz
-aman.ics.muni.cz
-...
-cerit-pbs.cerit-sc.cz 	zuphux.cerit-sc.cz 	ursa.cerit-sc.cz
-urga.cerit-sc.cz
-zefron.cerit-sc.cz
-phi.cerit-sc.cz
-...
-All physical machines with cerit-sc.cz ending are managed by cerit, and vice versa
-elixir-pbs.elixir-czech.cz 	elmo.elixir-czech.cz 	elmoXX.hw.elixir-czech.cz
-All physical machines with elixir-czech.cz ending are managed by elixir, and vice versa
-
-ZarovkaMala.png Note: Every single job requires some resources on the scheduler site. In case of very short jobs, the planning may take longer than the job itself. Therefore, if you need to submit many (more then thousand) short (less than 10 minutes) jobs, we strongly recommend to run them in batches submitted as one job. To prevent PBS server glutting, there is a quota of 10 000 jobs (running or queuing) per user.
-
-
-here general idea about resources, infrastructure, frontends
+The resource load on frontend is monitored continuously and processes not adhering to usage rules will be terminated without warning. For large compilations (> 1 CPU, > 10 min), running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
 
 ## Lifecycle of a job
 
@@ -167,21 +126,10 @@ In case you want to specify requested resources outside batch script, move the P
 
 
 
-
-
-
-
-
-
-
-
 ## Interactive job example
 
 - priklad interactive jobu (treba nejaka instalace condou)
 - opet pouze okomentovany skript
-
-
-
 
 
  Run interactive job
@@ -276,24 +224,6 @@ In the above example you will get scratch directory of 100 GB size.
 
 To access the scratch directory, use the system variable SCRATCHDIR
 
-
-## Modules
-
-uvod do toho jak u nas funguji moduly (to bude pain!)
-
-There is numerous scientific software installed on MetaCentrum machines, spanning from mathematical and statistical software through computational chemistry, bioinformatics to technical and material modelling software.
-
-You can load an application offered by MetaCentrum to your job or machine via command module add + name of the selected application. If you are not sure which version of the application you would like to use, check complete list of applications page first.
-
-For example:
-
-jenicek@skirit:~$ module avail # shows all currently available applications
-jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
-jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
-jenicek@skirit:~$ module list # shows currently loaded applications in your environment
-jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
-
-Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
 
 
 ## Track running job
@@ -413,3 +343,30 @@ logout
 Connection to skirit.metacentrum.cz closed.
 
 Logging off will terminate any currently running interactive jobs. The batch jobs are independent on whether the user is logged on/off and will not be affected. 
+
+
+
+## Modules
+
+uvod do toho jak u nas funguji moduly (to bude pain!)
+
+There is numerous scientific software installed on MetaCentrum machines, spanning from mathematical and statistical software through computational chemistry, bioinformatics to technical and material modelling software.
+
+You can load an application offered by MetaCentrum to your job or machine via command module add + name of the selected application. If you are not sure which version of the application you would like to use, check complete list of applications page first.
+
+For example:
+
+jenicek@skirit:~$ module avail # shows all currently available applications
+jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
+jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
+jenicek@skirit:~$ module list # shows currently loaded applications in your environment
+jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
+
+Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
+
+## Storages, homes, frontend
+
+Sem nejake intro jak jsou provazany ruzne storage s ruznymi homy, v zasade o infrastrukture
+
+advaced page see [Advanced grid infrastructure](/advanced/grid-infrastruct)
+
