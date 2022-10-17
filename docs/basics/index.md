@@ -52,79 +52,70 @@ Interactive job consists of following steps:
 
 ### Batch vs interactive 
 
-A primarychoice for grid computing is batch job. Batch jobs allow user to run massive sets of calculation without need to overview them, manipulate data etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
+A primary choice for grid computing is batch job. Batch jobs allow user to run massive sets of calculation without need to overview them, manipulate data etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
 
 Interactive jobs are good for:
 
 - testing what works and what does not (software versions, input data format, bash constructions to be used in batch script later etc)
-- getting first guess about the resources for a certain type of calculation
+- getting first guess about resources
 - compiling your own software
-- learning your way around Metacentrum grid computing catches and caveats
 - processing, moving or archiving large amount of data
 
 Interactive jobs are **necessary** for running GUI application [here](/advanced/run-graphical/)
 
 ## Batch job example
 
-- A typical batch script could look like this (picture /script) popsany kde je co
-- sem pouze pokomentovany skript
-- ale s moznosti okopirovani, mozna zaradit formou nejakeho preklikavace jako komentovany obrazek/textove okno
+The batch script in the following example is called myJob.sh.
 
+    (BUSTER)user123@skirit:~$ cat myJob.sh
+    #!/bin/bash
+    #PBS -N batch_job_example
+    #PBS -l select=1:ncpus=4:mem=4gb:scratch_local=10gb
+    #PBS -l walltime=1:00:00 
+    # The 4 lines above are options for scheduling system: job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested
+    
+    # define a DATADIR variable: directory where the input files are taken from and where output will be copied to
+    DATADIR=/storage/brno3-cerit/home/user123/test_directory # substitute username and path to to your real username and path
+    
+    # append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of node it is run on and the path to a scratch directory
+    # this information helps to find a scratch directory in case the job fails and you need to remove the scratch directory manually 
+    echo "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR" >> $DATADIR/jobs_info.txt
+    
+    #loads the Gaussian's application modules, version 03
+    module add g03
+    
+    # test if scratch directory is set
+    # if scratch directory is not set, issue error message and exit
+    test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
+    
+    # copy input file "h2o.com" to scratch directory
+    # if the copy operation fails, issue error message and exit
+    cp $DATADIR/h2o.com  $SCRATCHDIR || { echo >&2 "Error while copying input file(s)!"; exit 2; }
+    
+    # move into scratch directory
+    cd $SCRATCHDIR 
+    
+    # run Gaussian 03 with h2o.com as input and save the results into h2o.out file
+    # if the calculation ends with an error, issue error message an exit
+    g03 <h2o.com >h2o.out || { echo >&2 "Calculation ended up erroneously (with a code $?) !!"; exit 3; }
+    
+    # move the output to user's DATADIR or exit in case of failure
+    cp h2o.out $DATADIR/ || { echo >&2 "Result file(s) copying failed (with a code $?) !!"; exit 4; }
+    
+    # clean the SCRATCH directory
+    clean_scratch
 
-Run batch jobs
+The job is then submitted as
 
-In the case of batch job, all the information is packed in a script - a short piece of code. The script is then submitted via the qsub command and no further care needs to be taken. In batch jobs it is possible to specify the PBS options either on the command line, or to put then inside the script. Both ways are absolutely correct, choose what you personally prefer.
+    (BUSTER)user123@skirit:~$ qsub myJob.sh 
+    11733571.meta-pbs.metacentrum.cz # job ID is 11733571.meta-pbs.metacentrum.cz
 
-Specifying the PBS options inside the script is done via #PBS line prefix + an option. The batch script in the following example is called myJob.sh.
+Alternatively, you can specify resources on the command line. In this case the lines starting by `#PBS` need not to be in the batch script.
 
+    (BUSTER)user123@skirit:~$qsub -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.sh 
 
-#!/bin/bash
-#PBS -N myFirstJob
-#PBS -l select=1:ncpus=4:mem=4gb:scratch_local=10gb
-#PBS -l walltime=1:00:00 
-#PBS -m ae
-# The 4 lines above are options for scheduling system: job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested, email notification will be sent when the job aborts (a) or ends (e)
-
-# define a DATADIR variable: directory where the input files are taken from and where output will be copied to
-DATADIR=/storage/brno3-cerit/home/jenicek/test_directory # substitute username and path to to your real username and path
-
-# append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of node it is run on and the path to a scratch directory
-# this information helps to find a scratch directory in case the job fails and you need to remove the scratch directory manually 
-echo "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR" >> $DATADIR/jobs_info.txt
-
-#loads the Gaussian's application modules, version 03
-module add g03
-
-# test if scratch directory is set
-# if scratch directory is not set, issue error message and exit
-test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
-
-# copy input file "h2o.com" to scratch directory
-# if the copy operation fails, issue error message and exit
-cp $DATADIR/h2o.com  $SCRATCHDIR || { echo >&2 "Error while copying input file(s)!"; exit 2; }
-
-# move into scratch directory
-cd $SCRATCHDIR 
-
-# run Gaussian 03 with h2o.com as input and save the results into h2o.out file
-# if the calculation ends with an error, issue error message an exit
-g03 <h2o.com >h2o.out || { echo >&2 "Calculation ended up erroneously (with a code $?) !!"; exit 3; }
-
-# move the output to user's DATADIR or exit in case of failure
-cp h2o.out $DATADIR/ || { echo >&2 "Result file(s) copying failed (with a code $?) !!"; exit 4; }
-
-# clean the SCRATCH directory
-clean_scratch
-
-You can then submit your job via qsub command.
-
-jenicek@skirit:~$ qsub myJob.sh # submit a batch script named "myJob.sh"
-11733571.meta-pbs.metacentrum.cz # job received ID 11733571 from a PBS server meta-pbs.metacentrum.cz
-jenicek@skirit:~$
-
-In case you want to specify requested resources outside batch script, move the PBS options to the submitting command: qsub -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.sh in the same way as when running the job interactively. For full description of PBS options, consult section About scheduling system.
-
-
+!!! note
+If both resource specifications are present (on CLI as well as inside the script), the values on CLI have priority.
 
 ## Interactive job example
 
