@@ -121,17 +121,34 @@ If both resource specifications are present (on CLI as well as inside the script
 
 An interactive job is requested via `qsub -I` command (uppercase "i").
 
-<!---
-Opet jen okometovany script
-Zde treba instalace neceho Condou na 8 jadrech, rekneme - rict si Jirkovi o nejaky priklad
---->
-
-    (BUSTER)user123@skirit:~$ qsub -I -l select=1:ncpus=8:mem=4gb:scratch_local=10gb -l walltime=2:00:00 # submit interactive job 
+    (BUSTER)user123@skirit:~$ qsub -I -l select=1:ncpus=4 -l walltime=2:00:00 # submit interactive job 
     qsub: waiting for job 13010171.meta-pbs.metacentrum.cz to start
     qsub: job 13010171.meta-pbs.metacentrum.cz ready # 13010171.meta-pbs.metacentrum.cz is the job ID
-    (BULLSEYE)melounova@elmo3-1:~$ # elmo3-1 is computational node
+    (BULLSEYE)user123@elmo3-1:~$ # elmo3-1 is computational node
+    (BULLSEYE)user123@elmo3-1:~$ conda # start conda
+    (BULLSEYE)user123@elmo3-1:~$ conda list | grep scipy # make sure there is no scipy package already installed
+    (BULLSEYE)user123@elmo3-1:~$ conda search scipy 
+    ... # conda returns list of scipy packages available in repositories
+    (BULLSEYE)user123@elmo3-1:~$ conda --create my_scipy # create my environment to install scipy into
+    ... 
+    environment location: /storage/praha1/home/melounova/.conda/envs/my_scipy 
+    ...
+    Proceed ([y]/n)? y
+    ...
+    (BULLSEYE)user123@elmo3-1:~$ conda activate my_scipy # enter the environment
+    (my_scipy) (BULLSEYE)user123@elmo3-1:~$ 
+    (my_scipy) (BULLSEYE)user123@elmo3-1:~$ conda install scipy
+    ...
+    Proceed ([y]/n)? y
+    ...
+    Downloading and Extracting Packages
+    ...
+    (my_scipy) (BULLSEYE)user123@elmo3-1:~$ python
+    ...
+    >>> import scipy as sp
+    >>> 
 
-    Unless you log out, after 1 hour you will get following message:
+Unless you log out, after 1 hour you will get following message:
 
     user123@elmo3-1:~$ =>> PBS: job killed: walltime 7230 exceeded limit 7200
     logout
