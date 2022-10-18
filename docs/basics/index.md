@@ -259,72 +259,59 @@ The letter under the header 'S' (status) gives the status of the job. The most c
 
 To learn more about how to track running job and how to retrieve job history, see [Job tracking page](/advanced/job-tracking)
 
+## Ended jobs
 
-## End the job
+### Output files
 
-When a job is completed (no matter how), two files are created in the directory from which you have submitted the job. One represents standard output and the other one standard error output:
+When a job is completed (no matter how), two files are created in the directory from which you have submitted the job:
 
- <job_name>.o<jobID> # contains job's output data
- <job_name>.e<jobID> # contains job's standard error output
+1. `<job_name>.o<jobID>` - job's standard output (STDOUT)
+2. `<job_name>.e<jobID>` - job's standard error output (STDERR)
 
-The standard error output contains all the error messages which occurred during the calculation. It is a first place where to look if the job has failed. The messages collected in standard error output are valuable source of information about why the job has failed. In case you contact user support to ask for help, do not remove the error file, but send it as an attachment together with your request.
+STDERR file contains all the error messages which occurred during the calculation. It is a first place where to look if the job has failed.
 
-You can copy these files to your personal computer (scp command) for further processing. You can also examine them directly on CLI by any of the following commands.
+### User termination
 
-jenicek@skirit.cz:~$ cat myjob.sh.o1234 # print whole content of file "myjob.sh.o1234" on standard output
-jenicek@skirit.cz:~$ cat myjob.sh.o1234 | more # print whole content of file "myjob.sh.o1234" on standard output screenful-by-screenful (press spacebar to go to another screen)
-jenicek@skirit.cz:~$ vi myjob.sh.o1234 # open file "myjob.sh.o1234" in text editor vi 
-jenicek@skirit.cz:~$ less myjob.sh.o1234 # open file "myjob.sh.o1234" read only
+Sometimes you need to delete submitted/running job. This can be done by `qdel` command:
 
-Job termination
-Forced termination by user
+    (BULLSEYE)user123@skirit~: qdel 21732596.elixir-pbs.elixir-czech.cz
 
-Sometimes you need to delete submitted/running job. This can be normally done by qdel command.
+If plain `qdel` does not work,, add `-W` (force del) option:
 
-jenicek@skirit~: qdel 21732596.elixir-pbs.elixir-czech.cz # delete the job with full job ID "21732596.elixir-pbs.elixir-czech.cz"
+    (BULLSEYE)user123@skirit~: qdel -W force 21732596.elixir-pbs.elixir-czech.cz
 
-If you have a "stuck" job (you can see it ion a list of your jobs as running or moved, although the job has terminated, etc.), add -W force option:
+### Termination by PBS server
 
-jenicek@skirit~: qdel -W force 21732596.elixir-pbs.elixir-czech.cz
+The PBS server keeps track of resources used by the job. In case the job uses more resources than it has reserved, PBS server sends a **SIGKILL** signal to the execution host.
 
-Forced job termination by PBS server
+You can see the signal as `Exit_status` on CLI:
 
-The PBS server keeps track of resources used by the job. In case the job uses more resources than it has reserved, PBS server receives a specific signal and kills the job.
+    (BULLSEYE)melounova@tarkil:~$ qstat -x -f 13030457.meta-pbs.metacentrum.cz | grep Exit_status
+        Exit_status = -29
 
-You can see the signal as Exit_status in Pbsmon and on CLI:
-
- (BUSTER)melounova@skirit:~$ qstat -x -f 21732596.meta-pbs.metacentrum.cz | grep Exit_status # -f = full output, -x = finished jobs
-  Exit_status = 1
+### Exit codes
 
 Most often you will meet one of the following three signals:
-Resource exceeded 	Exist status (name) 	Exit status (number)
-number of CPUs 	JOB_EXEC_KILL_NCPUS_SUM 	-25
-memory 	JOB_EXEC_KILL_MEM 	-27
-walltime 	JOB_EXEC_KILL_WALLTIME 	-29
-Normal termination
 
-For correctly finished jobs the Exit_status = 0.
-Clean the scratch manually
+| Type of job ending | Exist status (name) | Exit status (number) |
+|--------------------|---------------------|----------------------|
+| number of CPUs     | `JOB_EXEC_KILL_NCPUS_SUM` | -25 |
+| memory             | `JOB_EXEC_KILL_MEM` 	 | -27 |
+| walltime           | `JOB_EXEC_KILL_WALLTIME`  | -29 |
+| normal termination |                           | 0   |
+
+## Manual scratch clean
 
 In case of erroneous job ending, the data are left in the scratch directory. You should always clean the scratch after all potentially useful data has been retrieved. To do so, you need to know the hostname of machine where the job was run, and path to the scratch directory.
 
-ZarovkaMala.png Note: Users' rights settings allow to remove only the content of the scratch directory, not the directory itself.
+!!! note
+Users' rights settings allow only `rm -rf $SCRATCHDIR/*`, not `rm -rf $SCRATCHDIR`.
 
-jenicek@skirit:~$ ssh jenicek@luna13.fzu.cz # login to a hostname luna13.fzu.cz
-jenicek@luna13:~$ cd /scratch/jenicek/job_14053410.meta-pbs.metacentrum.cz # enter the scratch directory
-jenicek@luna13:/scratch/jenicek/job_14053410.meta-pbs.metacentrum.cz$ rm -r * # remove all files and subdirectories
+For example:
 
-Log off
-
-Logging off is simple.
-
-jenicek@skirit:~$ exit
-logout
-Connection to skirit.metacentrum.cz closed.
-
-Logging off will terminate any currently running interactive jobs. The batch jobs are independent on whether the user is logged on/off and will not be affected. 
-
-
+    user123@skirit:~$ ssh user123@luna13.fzu.cz # login to a hostname luna13.fzu.cz
+    user123@luna13:~$ cd /scratch/user123/job_14053410.meta-pbs.metacentrum.cz # enter the scratch directory
+    user123@luna13:/scratch/user123/job_14053410.meta-pbs.metacentrum.cz$ rm -r * # remove all files and subdirectories
 
 ## Modules
 
@@ -336,11 +323,11 @@ You can load an application offered by MetaCentrum to your job or machine via co
 
 For example:
 
-jenicek@skirit:~$ module avail # shows all currently available applications
-jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
-jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
-jenicek@skirit:~$ module list # shows currently loaded applications in your environment
-jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
+    jenicek@skirit:~$ module avail # shows all currently available applications
+    jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
+    jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
+    jenicek@skirit:~$ module list # shows currently loaded applications in your environment
+    jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
 
 Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
 

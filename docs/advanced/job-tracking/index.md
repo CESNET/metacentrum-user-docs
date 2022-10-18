@@ -98,3 +98,7 @@ The `pbs-get-job-history` utility does not retrieve input data and job results (
 !!! note
 Output for interactive jobs does not contain `.ER`, `.OU` and `.SC` files
 
+## Job exit codes
+
+Sem tabulku exit kodu, kde a jak je zjistit a co znamenaji 
+
