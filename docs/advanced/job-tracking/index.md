@@ -7,7 +7,7 @@ The current state of the job can be probed by `qstat` command.
 Example:
 
     qstat job_ID # display status of selected job (short format)
-    qstat -f job_ID # display status of job together with paths, resources and variables (long format)
+    qstat -f job_ID # display status of job (long format)
     qstat -u user123 # list all user123's running or waiting jobs on current PBS server 
     qstat -u user123 @cerit-pbs.cerit-sc.cz @meta-pbs.metacentrum.cz @elixir-pbs.elixir-czech.cz # dtto, on all PBS servers
 
@@ -29,21 +29,23 @@ PBS Pro uses different codes to mark job state within the PBS ecosystem.
 
 ## Output of running jobs
 
-Although the input and temporary files for calculation lie in $SCRACHDIR, the standard output (STDOUT, `job_ID.OU`) and standard error output (STDERR, `job_ID.ER`) are elsewhere. 
+Although the input and temporary files for calculation lie in `$SCRACHDIR`, the standard output (STDOUT) and standard error output (STDERR) are elsewhere. 
 
-To see current state of these files in a running job, do
+To see current state of these files in a running job, proceed in these steps:
 
-1. find on which host the job runs by `qstat job_ID`
+1. find on which host the job runs by `qstat -f job_ID | grep exec_host2`
 2. `ssh` to this host
-3. navigate to `/var/spool/pbs/spool/` directory and examine the files:
+3. on the host, navigate to `/var/spool/pbs/spool/` directory and examine the files
+    - `$PBS_JOBID.OU` for STDOUT, e.g. `13031539.meta-pbs.metacentrum.cz.OU`
+    - `$PBS_JOBID.ER` for STDERR, e.g. `13031539.meta-pbs.metacentrum.cz.ER`
+4. To watch a file continuously, you can also use a command `tail -f`
 
-    $PBS_JOBID.OU for STDOUT, e.g. “1234.meta-pbs.metacentrum.cz.OU”
-    $PBS_JOBID.ER for STDERR, e.g. “1234.meta-pbs.metacentrum.cz.ER”
+For example:
 
-To watch a file continuously, you can also use a command `tail -f`:
-
-    user123@zapat112.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 1234.meta-pbs.metacentrum.cz.OU 
-
+    (BULLSEYE)user123@tarkil:~$ qstat -f 13031539.meta-pbs.metacentrum.cz | grep exec_host2
+    exec_host2 = zenon41.cerit-sc.cz:15002/12
+    (BULLSEYE)user123@tarkil:~$ ssh zenon41.cerit-sc.cz
+    user123@zenon41.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 13031539.meta-pbs.metacentrum.cz.OU 
  
 ## Finished jobs
 

@@ -156,7 +156,7 @@ Unless you log out, after 1 hour you will get following message:
 
 ## job ID
 
-Job ID is unique identifier in a job. Job ID is a crucial thing to track, manipulate or delete job, as well as to identify your problem to user support.
+Job ID is unique identifier in a job. Job ID is crucial to track, manipulate or delete job, as well as to identify your problem to user support.
 
 Under some circumstances the job can be identified by the number only (e.g. `13010171.`). In general, however, the PBS server suffix is needed, too, to fully identify the job (e.g. `13010171.meta-pbs.metqcentrum.cz`).  
 
@@ -233,61 +233,32 @@ As a default choice, we recommend users to use **local scratch**.
 
 To read more about scratch storages, see [Scratch storage page](/advanced/grid-infrastruct/#Scratch-storages)To access the scratch directory, use the system variable SCRATCHDIR
 
+## Get job status
 
+Basic command for getting status about your jobs is `qstat` command.
 
-## Track running job
+    qstat -u user123 # list all jobs of user "user123" running or queuing on the current PBS server
+    qstat -u user123 @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz # list all running or queuing jobs of user "user123" on all PBS servers
+    qstat -xu user123 # list finished jobs for user "user123" 
+    qstat -f <jobID> # list details of the running or queueing job with a given jobID
+    qstat -xf <jobID> # list details of the finished job with a given jobID
 
-Qsub command returns jobID which you can use to track or delete your job (e.g. 1733571). If you are logged on a frontend managed by the same PBS server as the one which tracks the job, the number will suffice to identify the job. In other cases, you have to use full job ID = number + the name of the PBS server (e.g. 1733571.meta-pbs.metacentrum.cz).
+You will see something like following table:
 
-You can track jobs via online application PBSmon:
-
-    All waiting jobs from all users http://metavo.metacentrum.cz/pbsmon2/queues/jobsQueued
-    Your jobs http://metavo.metacentrum.cz/pbsmon2/person (change "person" for your META login)
-
-It is also possible to track your job on CLI via its ID (jobID). This is done by a command qstat. For example:
-
-qstat -u jenicek # list all jobs of user "jenicek" running or queuing on the current PBS server
-qstat -u jenicek @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz # list all running or queuing jobs of user "jenicek" on all PBS servers
-qstat -xu jenicek # list finished jobs for user "jenicek" 
-qstat -f <jobID> # list details of the running or queueing job with a given jobID
-qstat -xf <jobID> # list details of the finished job with a given jobID
-
-After submitting a job and checking its status, you will see typically something like the following.
-
-jenicek@skirit~: qstat -u jenicek # show the status of all running or queing jobs submitted by user "jenicek"
-meta-pbs.metacentrum.cz: 
-                                                                 Req'd  Req'd   Elap
-Job ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
--------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
-11733550.meta-pbs.*  jenicek q_2h     myJob.sh         --    1   1    1gb 00:05 Q   --
+                                                                     Req'd  Req'd   Elap
+    Job ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
+    -------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
+    11733550.meta-pbs.*  user123 q_2h     myJob.sh         --    1   1    1gb 00:05 Q   --
 
 The letter under the header 'S' (status) gives the status of the job. The most common states are:
 
-    Q – queued
-    R – running
-    F – finished
+- Q – queued
+- R – running
+- F – finished
+- M – moved to another PBS server
 
-Apart from these, quite often you can see on the PBSmon job list jobs with status denoted "M" (moved). This means the job has been moved from one PSB Pro server to another.
-Tracking running jobs
+To learn more about how to track running job and how to retrieve job history, see [Job tracking page](/advanced/job-tracking)
 
-Follow these steps if you would like to check outputs of a job, which has not finished yet:
-
-1. Find what machine is your job running: http://metavo.metacentrum.cz/pbsmon2/person -> "Show my jobs". You will see a page similar to the following: Job pbsmon 1.png
-
-A click on the job's ID will open a page with full information about a job, including the hostname (= machine where the job is running on) and a path to the scratch directory. Job pbsmon 2.png
-
-2. Login to the machine from any frontend or your computer using ssh command. E.g.
-
-ssh zapat112.cerit-sc.cz
-
-3. Navigate to the /var/spool/pbs/spool/ directory and examine the files:
-
-    $PBS_JOBID.OU for standard output (stdout – e.g. “1234.meta-pbs.metacentrum.cz.OU”)
-    $PBS_JOBID.ER for standard error output (stderr – e.g. “1234.meta-pbs.metacentrum.cz.ER”)
-
-To watch file a continuously, you can also use a command tail -f.
-
-jenicek@zapat112.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 1234.meta-pbs.metacentrum.cz.OU # this command outputs appended data as the file grows
 
 ## End the job
 
