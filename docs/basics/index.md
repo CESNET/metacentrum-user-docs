@@ -20,9 +20,27 @@ Frontends should be used only for:
 
 The resource load on frontend is monitored continuously and processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
 
-## Storages and homes
+## Frontends, storages, homes
 
 Sem nejake intro jak jsou provazany ruzne storage s ruznymi homy, v zasade o infrastrukture
+
+
+| Machine name 	          | System 	| Home directory 	        |  PBS server 	              |
+|---------------|------------------|---------------|------------|
+| skirit.ics.muni.cz 	  | Debian 10 	| /storage/brno2/home/ 	        |  meta-pbs.metacentrum.cz    |  
+| alfrid.meta.zcu.cz 	  | Debian 11 	| /storage/plzen1/home/ 	|  meta-pbs.metacentrum.cz    |  
+| tarkil.grid.cesnet.cz   | Debian 11 	| /storage/praha1/home/ 	|  meta-pbs.metacentrum.cz    |  
+| nympha.zcu.cz 	  | Debian 11 	| /storage/plzen1/home/ 	|  meta-pbs.metacentrum.cz    |  
+| charon.nti.tul.cz 	  | Debian 11 	| /storage/liberec3-tul/home/ 	|  meta-pbs.metacentrum.cz    |  
+| minos.zcu.cz 	          | Debian 11 	| /storage/plzen1/home/ 	|  meta-pbs.metacentrum.cz    |  
+| perian.grid.cesnet.cz   | Debian 10 	| /storage/brno2/home/ 	        |  meta-pbs.metacentrum.cz    |  
+| onyx.metacentrum.cz 	  | Debian 10 	| /storage/brno2/home/ 	        |  meta-pbs.metacentrum.cz    |  
+| tilia.ibot.cas.cz 	  | Debian 11 	| /storage/pruhonice1-ibot/home/|  meta-pbs.metacentrum.cz    |
+| zuphux.cerit-sc.cz 	  | CentOS 7.9 	| /storage/brno3-cerit/home/ 	|  cerit-pbs.cerit-sc.cz      | 	
+| elmo.elixir-czech.cz 	  | Debian 10 	| /storage/praha5-elixir/home/ 	|  elixir-pbs.elixir-czech.cz |	
+
+
+
 
 Advanced page see [Advanced grid infrastructure](/advanced/grid-infrastruct)
 
@@ -76,7 +94,7 @@ To optimize resource usage, jobs can be moved from a PBS server to another one, 
 
 Although non-elixir users cannot submit directly to `elixir-pbs.elixir-czech.cz` server, jobs from the other two are often moved there.
 
-Every frontend has some default (primary) PBS server - see **Table of frontends**
+Every frontend has some default (primary) PBS server - see table in [**Table of frontends**](#Frontends, storages, homes)
 
 !!! todo
 kde bude ta tabulka umistena?
