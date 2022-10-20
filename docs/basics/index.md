@@ -18,7 +18,32 @@ Frontends should be used only for:
 
 !!! warning
 
-The resource load on frontend is monitored continuously and processes not adhering to usage rules will be terminated without warning. For large compilations (> 1 CPU, > 10 min), running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
+The resource load on frontend is monitored continuously and processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
+
+## Storages and homes
+
+Sem nejake intro jak jsou provazany ruzne storage s ruznymi homy, v zasade o infrastrukture
+
+Advanced page see [Advanced grid infrastructure](/advanced/grid-infrastruct)
+
+## Modules
+
+uvod do toho jak u nas funguji moduly (to bude pain!)
+
+There is numerous scientific software installed on MetaCentrum machines, spanning from mathematical and statistical software through computational chemistry, bioinformatics to technical and material modelling software.
+
+You can load an application offered by MetaCentrum to your job or machine via command module add + name of the selected application. If you are not sure which version of the application you would like to use, check complete list of applications page first.
+
+For example:
+
+    jenicek@skirit:~$ module avail # shows all currently available applications
+    jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
+    jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
+    jenicek@skirit:~$ module list # shows currently loaded applications in your environment
+    jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
+
+Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
+
 
 ## Lifecycle of a job
 
@@ -276,7 +301,7 @@ Sometimes you need to delete submitted/running job. This can be done by `qdel` c
 
     (BULLSEYE)user123@skirit~: qdel 21732596.elixir-pbs.elixir-czech.cz
 
-If plain `qdel` does not work,, add `-W` (force del) option:
+If plain `qdel` does not work, add `-W` (force del) option:
 
     (BULLSEYE)user123@skirit~: qdel -W force 21732596.elixir-pbs.elixir-czech.cz
 
@@ -286,8 +311,13 @@ The PBS server keeps track of resources used by the job. In case the job uses mo
 
 You can see the signal as `Exit_status` on CLI:
 
-    (BULLSEYE)melounova@tarkil:~$ qstat -x -f 13030457.meta-pbs.metacentrum.cz | grep Exit_status
+    (BULLSEYE)user123@tarkil:~$ qstat -x -f 13030457.meta-pbs.metacentrum.cz | grep Exit_status
         Exit_status = -29
+
+In case of moved (PBS code **M**) jobs, append to job ID the name of the PBS server the job was moved to: 
+
+    (BULLSEYE)user123@tarkil:~$ qstat -x -f 13031539.meta-pbs.metacentrum.cz@cerit-pbs.cerit-sc.cz | grep Exit_status
+        Exit_status = 0
 
 ### Exit codes
 
@@ -313,27 +343,4 @@ For example:
     user123@luna13:~$ cd /scratch/user123/job_14053410.meta-pbs.metacentrum.cz # enter the scratch directory
     user123@luna13:/scratch/user123/job_14053410.meta-pbs.metacentrum.cz$ rm -r * # remove all files and subdirectories
 
-## Modules
-
-uvod do toho jak u nas funguji moduly (to bude pain!)
-
-There is numerous scientific software installed on MetaCentrum machines, spanning from mathematical and statistical software through computational chemistry, bioinformatics to technical and material modelling software.
-
-You can load an application offered by MetaCentrum to your job or machine via command module add + name of the selected application. If you are not sure which version of the application you would like to use, check complete list of applications page first.
-
-For example:
-
-    jenicek@skirit:~$ module avail # shows all currently available applications
-    jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
-    jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
-    jenicek@skirit:~$ module list # shows currently loaded applications in your environment
-    jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
-
-Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
-
-## Storages, homes, frontend
-
-Sem nejake intro jak jsou provazany ruzne storage s ruznymi homy, v zasade o infrastrukture
-
-advaced page see [Advanced grid infrastructure](/advanced/grid-infrastruct)
 
