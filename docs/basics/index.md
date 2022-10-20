@@ -44,6 +44,69 @@ For example:
 
 Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
 
+## Resources
+
+The information about resources goes into qsub command options.
+Request time memory, and number of CPUs
+
+In the qsub command, the colons (:) and lowercase "L" (l) are divisors, and the options go in pairs of <resource>=<value>.
+
+    qsub -l select=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
+
+where
+
+    ncpus is number of processors (2 in this example)
+    mem is the size of memory that will be reserved for the job (4 GB in this example, default 400 MB),
+    scratch_local specifies the size and type of scratch directory (1 GB in this example, no default)
+    walltime is the maximum time the job will run, set in the format hh:mm:ss (2 hours in this example, default 24 hours)
+
+The qsub command has a deal more options than the ones shown here; for example, it is possible to specify a number of computational nodes, type of their OS or their physical placement. A more in-depth information about PBS commands can be found in the page About scheduling system.
+
+## PBS servers
+
+**PBS server** schedules jobs to run according to which resources are available, priority of the job, user's faishare score and others.
+
+Metacentrum has three PBS servers:
+
+- `meta-pbs.metacentrum.cz`, shorthand *meta* (accessible to all Metacentrum users)
+- `cerit-pbs.cerit-sc.cz`, shorthand *cerit*  (accessible to all Metacentrum users)
+- `elixir-pbs.elixir-czech.cz`, shorthand *elixir* (accessible only to Elixir group members)
+
+To optimize resource usage, jobs can be moved from a PBS server to another one, which is less busy. 
+
+Although non-elixir users cannot submit directly to `elixir-pbs.elixir-czech.cz` server, jobs from the other two are often moved there.
+
+Every frontend has some default (primary) PBS server - see **Table of frontends**
+
+!!! todo
+kde bude ta tabulka umistena?
+
+
+
+## Queues
+
+jake mame fronty a jak cist znacky 
+
+## Scratch directory
+
+Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
+
+!!! warning
+There is no default scratch directory and the user must always specify its type an d volume.
+
+Currently we offer four types of scratch storage:
+
+| Type | Available on every node? | Location on machine | `$SCRATCHDIR` value | Key characteristic |
+|------| -------------------------|---------------------|-------------------|----------------------|
+| local | yes | `/scratch/USERNAME/job_JOBID` | `scratch_local`|  universal, large capacity, available everywhere |	
+| ssd   | no  | `/scratch.ssd/USERNAME/job_JOBID` | `scratch_ssd`| fast I/O operations |
+| shared | no  | `/scratch.shared/USERNAME/job_JOBID` | `scratch_shared`| can be shared by more jobs | 	
+| shm | no  | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `scratch_shm`| exists in RAM, ultra fast |
+
+As a default choice, we recommend users to use **local scratch**.
+
+To read more about scratch storages, see [Scratch storage page](/advanced/grid-infrastruct/#Scratch-storages)To access the scratch directory, use the system variable SCRATCHDIR
+
 
 ## Lifecycle of a job
 
@@ -207,56 +270,6 @@ By `qstat` command:
     13010171.meta-pbs.m* user123  global   STDIN      366884   1   8    4gb 02:00 R 00:17
 
 
-## Resources
-
-- kolik mame PBS planovacu, jak se jmenujou
-
-basic PBS options, resources, koncept planovani a planovace
-
-There are three PBS servers that send the jobs to computational machines: meta-pbs.metacentrum.cz (shortnamed meta), cerit-pbs.cerit-sc.cz (cerit) and elixir-pbs.elixir-czech.cz. The server elixir-pbs.elixir-czech.cz stands a bit apart, as its machines are reserved for the Elixir group. Typically the user will come accross the first two, meta and cerit.
-
-Each of the PBS servers "sees" a different and mutually exclusive set of computing machines. Similarly, every frontend is connected with one of the three PBS servers. As a consequence, it depends on the frontend from which the job was submitted by which PBS server the job will be managed and on which computational nodes the job will be run. In this sense the frontends are not equivalent.
-
-The information about resources goes into qsub command options.
-Request time memory, and number of CPUs
-
-In the qsub command, the colons (:) and lowercase "L" (l) are divisors, and the options go in pairs of <resource>=<value>.
-
-    qsub -l select=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
-
-where
-
-    ncpus is number of processors (2 in this example)
-    mem is the size of memory that will be reserved for the job (4 GB in this example, default 400 MB),
-    scratch_local specifies the size and type of scratch directory (1 GB in this example, no default)
-    walltime is the maximum time the job will run, set in the format hh:mm:ss (2 hours in this example, default 24 hours)
-
-The qsub command has a deal more options than the ones shown here; for example, it is possible to specify a number of computational nodes, type of their OS or their physical placement. A more in-depth information about PBS commands can be found in the page About scheduling system.
-
-
-## Queues
-
-jake mame fronty a jak cist znacky 
-
-## Scratch directory
-
-Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
-
-!!! warning
-There is no default scratch directory and the user must always specify its type an d volume.
-
-Currently we offer four types of scratch storage:
-
-| Type | Available on every node? | Location on machine | `$SCRATCHDIR` value | Key characteristic |
-|------| -------------------------|---------------------|-------------------|----------------------|
-| local | yes | `/scratch/USERNAME/job_JOBID` | `scratch_local`|  universal, large capacity, available everywhere |	
-| ssd   | no  | `/scratch.ssd/USERNAME/job_JOBID` | `scratch_ssd`| fast I/O operations |
-| shared | no  | `/scratch.shared/USERNAME/job_JOBID` | `scratch_shared`| can be shared by more jobs | 	
-| shm | no  | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `scratch_shm`| exists in RAM, ultra fast |
-
-As a default choice, we recommend users to use **local scratch**.
-
-To read more about scratch storages, see [Scratch storage page](/advanced/grid-infrastruct/#Scratch-storages)To access the scratch directory, use the system variable SCRATCHDIR
 
 ## Get job status
 

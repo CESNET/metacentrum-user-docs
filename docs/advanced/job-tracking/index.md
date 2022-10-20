@@ -104,7 +104,6 @@ Sem tabulku exit kodu, kde a jak je zjistit a co znamenaji
 
 ## Trap command usage
 
-
 There does not exist a single optimal batch script for all possible types of calculations. The example script in Beginners guide follows a rather data-protective policy:
 
     clean the scratch directory only if there was no error,

@@ -1,16 +1,5 @@
 # PBS resources
 
-## PBS servers
-
-Metacentrum has three PBS servers. Those are:
-
-- `meta-pbs.metacentrum.cz` (accessible to all Metacentrum users)
-- `cerit-pbs.cerit-sc.cz`  (accessible to all Metacentrum users)
-- `elixir-pbs.elixir-czech.cz` (accessible only to Elixir group members)
-
-However jobs are often moved from either `meta-pbs.metacentrum.cz` or `cerit-pbs.cerit-sc.cz` to `elixir-pbs.elixir-czech.cz`, therefore we cannot avoid mentioning Elixir planner.
-
-
 ## Chunk vs job
 
 PBS concept is based on so-called **chunks** as basic computational units. A chunk is further indivisible set of resources placed on the same host . User may require one (default) or more chunks for a job.
