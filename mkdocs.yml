@@ -23,22 +23,21 @@ markdown_extensions:
   - pymdownx.superfences
 
 nav:
-  - 'Overview': index.md
   - Access: access/index.md
   - Basics:
     - basics/index.md
   - 'Advanced':
-    - advanced/connect-auth/index.md
+    #- advanced/connect-auth/index.md
     - advanced/pbs-options/index.md
     - advanced/queues-in-meta/index.md
     - advanced/job-tracking/index.md
     - advanced/grid-infrastruct/index.md
-    - advanced/modules/index.md
-    - advanced/move-data/index.md
-    - advanced/run-graphical/index.md
-    - advanced/parallel-comput/index.md
-    - advanced/gpu-comput/index.md
-    - advanced/install-software/index.md
+    #- advanced/modules/index.md
+    #- advanced/move-data/index.md
+    #- advanced/run-graphical/index.md
+    #- advanced/parallel-comput/index.md
+    #- advanced/gpu-comput/index.md
+    #- advanced/install-software/index.md
   - Applications:
     - applications/index.md
   - 'Troubleshooting':

@@ -69,7 +69,8 @@ Resource name: `spec`. Default value: `???`.
 CPUs across Metacentrum grid differ in their how fast they are. Therefore they are classed by parameter `spec` according to methodology of [SPEC CPU2017](https://www.spec.org/cpu2017/).  To see the `spec` values, go to [qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) and see the drop-down menu in the `spec` parameter.
 
 !!! todo
- Jak nastavit odkaz tak, aby proklik sel na EN verzi qsub assembleru?
+ 
+    Jak nastavit odkaz tak, aby proklik sel na EN verzi qsub assembleru?
 
 Example:
 
