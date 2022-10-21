@@ -1,11 +1,15 @@
 # Basics 
 
-## Prerequisites
+Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn here hor to **submit a job**, set up **resources**, how the system of **frontends**, **PBS servers**, **computational nodes** and **storages** works. 
 
-1. I have Metacentrum account
-2. I am able to login to a frontend node
-3. I have basic knowledge of Linux command line
+To start, you need to:
+
+1. have Metacentrum account
+2. be able to login to a frontend node
+3. have elementary knowledge of Linux command line
  
+More advanced topics are covered in the [Advanced section](/advanced/pbs-options/).
+
 ## Frontend dos and donts
 
 Frontend usage policy is different from the one on computational nodes. The frontend nodes are shared by all users, the command typed by any user is performed immediately and there is no resource planning. Frontend node are not intended for heavy computing.
