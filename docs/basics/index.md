@@ -60,7 +60,7 @@ For example, assume that `skirit.metacentrum.cz` frontend is down and you want t
 The overall schema can be summed up as shown below:
 
 !!! todo 
-    picture schematicky nakres toho jak jsou provazane storage frontendy
+    chematicky nakres toho jak jsou provazane storage s frontendy
 
 | Frontend name           | Alternative name            | Location of native home       |
 |-------------------------|-----------------------------|-------------------------------|
@@ -87,37 +87,63 @@ Frontends should be used only for:
 - light compiling and testing
 
 !!! warning
-    The resource load on frontend is monitored continuously and processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
-
+    The resource load on frontend is monitored continuously. Processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
 
 ### PBS servers
 
-**PBS server** schedules jobs to run according to which resources are available, priority of the job, user's faishare score and others.
+A set of instructions performed on computational nodes is **computational job**. Jobs require a set of **resources** such as CPUs, memory or time. A **scheduling system** plans execution of the jobs so as optimize the load and usage of computational nodes.
+
+In Metacentrum the **[PBR Pro](https://www.altair.com/pbs-professional)** scheduling system is used. The servers on which the scheduling system are called **PBS servers**.
 
 Metacentrum has three PBS servers:
 
 - `meta-pbs.metacentrum.cz`, shorthand *meta* (accessible to all Metacentrum users)
 - `cerit-pbs.cerit-sc.cz`, shorthand *cerit*  (accessible to all Metacentrum users)
-- `elixir-pbs.elixir-czech.cz`, shorthand *elixir* (accessible only to Elixir group members)
+- `elixir-pbs.elixir-czech.cz`, shorthand *elixir* (directly accessible only to Elixir group members)
 
-To optimize resource usage, jobs can be moved from a PBS server to another one, which is less busy. 
+Which PBS server will take care of particular job depends on from which frontend the job was submitted. Every frontend has some default (primary) PBS server (see table below). To optimize resource usage, jobs can be moved however from a certain PBS server less busy one.  Typically jobs from *meta* and *cerit* servers are moved to *elixir*.
 
-Although non-elixir users cannot submit directly to `elixir-pbs.elixir-czech.cz` server, jobs from the other two are often moved there.
+| PBS server | Frontends |
+|------------|-----------|
+| meta-pbs.metacentrum.cz | skirit.ics.muni.cz, alfrid.meta.zcu.cz, tarkil.grid.cesnet.cz, nympha.zcu.cz, charon.nti.tul.cz, minos.zcu.cz, perian.grid.cesnet.cz, onyx.metacentrum.cz |
+| cerit-pbs.cerit-sc.cz | zuphux.cerit-sc.cz |
+| elixir-pbs.elixir-czech.cz | elmo.elixir-czech.cz | 	
 
-Every frontend has some default (primary) PBS server - see table in [**Table of frontends**](#Frontends, storages, homes)
+The most important PBS Pro commands are:
 
-!!! todo
-kde bude ta tabulka umistena?
-
+- `qsub` - submit a computational job 
+- `qstat` - query status of a job
+- `qdel` - delete a job
 
 ### Resources
 
-The information about resources goes into qsub command options.
-Request time memory, and number of CPUs
+Every jobs need to have defined set of computational resources at the point of submission. The resources can be specified
 
-In the qsub command, the colons (:) and lowercase "L" (l) are divisors, and the options go in pairs of <resource>=<value>.
+- on CLI as `qsub` command options, or
+- inside the batch script on lines beginning with `#PBS` header.
 
-    qsub -l select=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
+In the PBS terminology, a **chunk** is a subset of computational nodes on which the job runs. In most cases the concept of chunks is useful for parallelized computing only and "normal" jobs run on one chunk. We cannot avoid the concept of chunks, though, as the specification of resources differ according to whether they can be applied on a job as a whole or on a chunk.
+
+According to PBS internal logic, the resources are either **chunk-wide** or **job-wide**.
+
+**Job-wide** resources are defined for the job as a whole, e.g. maximal duration of the job or a license to run a commercial software. The cannot be divided in parts and distributed among computational nodes on which the jo runs. Every job-wide resource is defined in the form of `-l <resource_name>=<resource_value>`, e.g. `-l walltime=1:00:00`.
+
+**Chunk-wide** resources can be ascribed to every chunk separately and differently. At this point we assume that the number of chunks is always 1, which is also a default value. Chunk-wide resources are defined as options of `select` statement in pairs `<resource_name>=<resource_value>` divided by `:`.
+
+The essential resources are:
+
+| Resource name | Keyword | Chunk-wide or job-wide? |
+|---------------|---------|-------------------------|
+| no. of CPUs | ncpus | chunk |
+| Memory | mem | chunk |
+| Maximal duration of the job | walltime | job |
+| Type and volume of space for temporary data | scratch\_local | chunk |
+
+There are a deal more resources than the ones shown here; for example, it is possible to specify a type of computational nodes' OS or their physical placement, software licences, speed of CPU, number pf GPU cards and more. For detailed information see [PBS options detailed page](/advanced/pbs-options/).
+
+Examples:
+
+    qsub -l select1=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00 myJob.sh
 
 where
 
@@ -126,37 +152,23 @@ where
     scratch_local specifies the size and type of scratch directory (1 GB in this example, no default)
     walltime is the maximum time the job will run, set in the format hh:mm:ss (2 hours in this example, default 24 hours)
 
-The qsub command has a deal more options than the ones shown here; for example, it is possible to specify a number of computational nodes, type of their OS or their physical placement. A more in-depth information about PBS commands can be found in the page About scheduling system.
-
 
 ### Queues
 
-jake mame fronty a jak cist znacky 
+!!! todo
+    jen predstavit zakladni koncept
 
 ### Modules
 
-uvod do toho jak u nas funguji moduly (to bude pain!)
-
-There is numerous scientific software installed on MetaCentrum machines, spanning from mathematical and statistical software through computational chemistry, bioinformatics to technical and material modelling software.
-
-You can load an application offered by MetaCentrum to your job or machine via command module add + name of the selected application. If you are not sure which version of the application you would like to use, check complete list of applications page first.
-
-For example:
-
-    jenicek@skirit:~$ module avail # shows all currently available applications
-    jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
-    jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
-    jenicek@skirit:~$ module list # shows currently loaded applications in your environment
-    jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
-
-Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
+!!! todo
+    Depends on modulefiles update
 
 ### Scratch directory
 
 Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
 
 !!! warning
-There is no default scratch directory and the user must always specify its type an d volume.
+    There is no default scratch directory and the user must always specify its type and volume.
 
 Currently we offer four types of scratch storage:
 
@@ -187,7 +199,8 @@ Batch jobs consists of the following steps:
 4. At this time the applications (software) are loaded.
 5. When the job is finished, results are copied back to user's directory according to instructions in the batch script.
 
-**schema graficky**
+!!! todo
+    schema graficky
 
 #### Interactive job
 
@@ -201,7 +214,8 @@ Interactive job consists of following steps:
 4. User does whatever they need on the CLI. 
 5. When the user logs out of the computational node, or when the time reserved for the job runs out, the job is done
 
-**schema graficky**
+!!! todo
+    schema graficky
 
 #### Which one?
 
@@ -268,7 +282,7 @@ Alternatively, you can specify resources on the command line. In this case the l
     (BUSTER)user123@skirit:~$qsub -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.sh 
 
 !!! note
-If both resource specifications are present (on CLI as well as inside the script), the values on CLI have priority.
+    If both resource specifications are present (on CLI as well as inside the script), the values on CLI have priority.
 
 ### Interactive job example
 
@@ -412,12 +426,11 @@ Most often you will meet one of the following three signals:
 In case of erroneous job ending, the data are left in the scratch directory. You should always clean the scratch after all potentially useful data has been retrieved. To do so, you need to know the hostname of machine where the job was run, and path to the scratch directory.
 
 !!! note
-Users' rights settings allow only `rm -rf $SCRATCHDIR/*`, not `rm -rf $SCRATCHDIR`.
+    Users' rights allow only `rm -rf $SCRATCHDIR/*`, not `rm -rf $SCRATCHDIR`.
 
 For example:
 
     user123@skirit:~$ ssh user123@luna13.fzu.cz # login to a hostname luna13.fzu.cz
     user123@luna13:~$ cd /scratch/user123/job_14053410.meta-pbs.metacentrum.cz # enter the scratch directory
     user123@luna13:/scratch/user123/job_14053410.meta-pbs.metacentrum.cz$ rm -r * # remove all files and subdirectories
-
 
