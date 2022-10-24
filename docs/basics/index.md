@@ -1,90 +1,96 @@
 # Basics 
 
-Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn here hor to **submit a job**, set up **resources**, how the system of **frontends**, **PBS servers**, **computational nodes** and **storages** works. 
+Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn how to
 
-To start, you need to:
+- navigate between **frontends**, **home directories** and **storages**,
+- make use of **batch** and **interactive** job,
+- **submit a job** to a **PBS server**,
+- set up **resources** for a job,
+- retrieve job **output**.
 
-1. have Metacentrum account
-2. be able to login to a frontend node
-3. have elementary knowledge of Linux command line
+*Most topics mentioned here are covered to greater depth in the [Advanced](/advanced/) section.*
+
+!!! note "To start, you need to"
+
+    1. have Metacentrum account
+    2. be able to login to a frontend node
+    3. have elementary knowledge of Linux command line
  
-More advanced topics are covered in the [Advanced section](/advanced/pbs-options/).
+    *If anything is missing, see [Access](/access/) section.*
 
-## Frontend dos and donts
+## Concepts
+
+### Frontends, storages, homes
+
+There are several **frontends** (login nodes) to access the grid. Each frontend has a native **home directory** on one of the **storages**. 
+
+There are several storages (large-capacity harddisc arrays). They are named according to their physical location (a city). 
+
+    user123@user123-XPS-13-9370:~$ ssh skirit.metacentrum.cz
+    user123@skirit.ics.muni.cz's password: 
+    ...
+    (BUSTER)user123@skirit:~$ pwd # print current directory
+    /storage/brno2/home/user123   # "brno2" is native storage for "skirit" frontend
+
+
+A frontend has a native home directory on one, and only one, storage; however this is not true the other way round: a home directory on a certain storage may be directed to by more than one frontend.
+
+    user123@user123-XPS-13-9370:~$ ssh nympha.zcu.cz 
+    ...
+    (BULLSEYE)user123@nympha:~$ pwd
+    /storage/plzen1/home/user123   # "plzen1" is native storage for "nympha" frontend
+    (BULLSEYE)user123@nympha:~$ exit 
+    user123@user123-XPS-13-9370:~$ ssh minos.zcu.cz
+    ...
+    (BULLSEYE)user123@minos:~$ pwd
+    /storage/plzen1/home/user123   # "plzen1" is native storage also for "minos" frontend
+
+To get to a certain home directory, user does not need to log on a specific frontend. Users can change their home directories by `cd` command.
+
+For example, assume that `skirit.metacentrum.cz` frontend is down and you want to access `brno2` storage:
+
+    user123@user123-XPS-13-9370:~$ ssh tarkil.metacentrum.cz # login to "tarkil" instead
+    ...
+    (BULLSEYE)user123@tarkil:~$ pwd
+    /storage/praha1/home/user123   # I am on "praha1" storage, but need "brno2"
+    (BULLSEYE)user123@tarkil:~$ cd /storage/brno2/home/user123 # change to home on "brno2" storage
+    (BULLSEYE)user123@tarkil:/storage/brno2/home/user123$ pwd 
+    /storage/brno2/home/user123 # I am now on "brno2" storage 
+
+The overall schema can be summed up as shown below:
+
+!!! todo 
+    picture schematicky nakres toho jak jsou provazane storage frontendy
+
+| Frontend name           | Alternative name            | Location of native home       |
+|-------------------------|-----------------------------|-------------------------------|
+| skirit.ics.muni.cz 	  | skirit.metacentrum.cz 	| /storage/brno2	        |
+| alfrid.meta.zcu.cz 	  | alfrid.metacentrum.cz 	| /storage/plzen1       	|
+| tarkil.grid.cesnet.cz   | tarkil.metacentrum.cz   	| /storage/praha1       	|
+| nympha.zcu.cz 	  | nympha.metacentrum.cz       | /storage/plzen1       	|
+| charon.nti.tul.cz 	  | charon.metacentrum.cz	| /storage/liberec3-tul       	|
+| minos.zcu.cz 	          | minos.metacentrum.cz        | /storage/plzen1       	|
+| perian.grid.cesnet.cz   | perian.metacentrum.cz   	| /storage/brno2       	        |
+| onyx.metacentrum.cz 	  | onyx.metacentrum.cz   	| /storage/brno2       	        |
+| zuphux.cerit-sc.cz 	  | zuphux.metacentrum.cz  	| /storage/brno3-cerit       	|
+| elmo.elixir-czech.cz 	  | elmo.metacentrum.cz    	| /storage/praha5-elixir       	|
+
+
+**Frontend do's and dont's**
 
 Frontend usage policy is different from the one on computational nodes. The frontend nodes are shared by all users, the command typed by any user is performed immediately and there is no resource planning. Frontend node are not intended for heavy computing.
 
 Frontends should be used only for:
 
-- preparing inputs, data post processing
+- preparing inputs, data pre- and postprocessing
 - managing batch jobs
 - light compiling and testing
 
 !!! warning
-
-The resource load on frontend is monitored continuously and processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
-
-## Frontends, storages, homes
-
-Sem nejake intro jak jsou provazany ruzne storage s ruznymi homy, v zasade o infrastrukture
+    The resource load on frontend is monitored continuously and processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
 
 
-| Machine name 	          | System 	| Home directory 	        |  PBS server 	              |
-|---------------|------------------|---------------|------------|
-| skirit.ics.muni.cz 	  | Debian 10 	| /storage/brno2/home/ 	        |  meta-pbs.metacentrum.cz    |  
-| alfrid.meta.zcu.cz 	  | Debian 11 	| /storage/plzen1/home/ 	|  meta-pbs.metacentrum.cz    |  
-| tarkil.grid.cesnet.cz   | Debian 11 	| /storage/praha1/home/ 	|  meta-pbs.metacentrum.cz    |  
-| nympha.zcu.cz 	  | Debian 11 	| /storage/plzen1/home/ 	|  meta-pbs.metacentrum.cz    |  
-| charon.nti.tul.cz 	  | Debian 11 	| /storage/liberec3-tul/home/ 	|  meta-pbs.metacentrum.cz    |  
-| minos.zcu.cz 	          | Debian 11 	| /storage/plzen1/home/ 	|  meta-pbs.metacentrum.cz    |  
-| perian.grid.cesnet.cz   | Debian 10 	| /storage/brno2/home/ 	        |  meta-pbs.metacentrum.cz    |  
-| onyx.metacentrum.cz 	  | Debian 10 	| /storage/brno2/home/ 	        |  meta-pbs.metacentrum.cz    |  
-| tilia.ibot.cas.cz 	  | Debian 11 	| /storage/pruhonice1-ibot/home/|  meta-pbs.metacentrum.cz    |
-| zuphux.cerit-sc.cz 	  | CentOS 7.9 	| /storage/brno3-cerit/home/ 	|  cerit-pbs.cerit-sc.cz      | 	
-| elmo.elixir-czech.cz 	  | Debian 10 	| /storage/praha5-elixir/home/ 	|  elixir-pbs.elixir-czech.cz |	
-
-
-
-
-Advanced page see [Advanced grid infrastructure](/advanced/grid-infrastruct)
-
-## Modules
-
-uvod do toho jak u nas funguji moduly (to bude pain!)
-
-There is numerous scientific software installed on MetaCentrum machines, spanning from mathematical and statistical software through computational chemistry, bioinformatics to technical and material modelling software.
-
-You can load an application offered by MetaCentrum to your job or machine via command module add + name of the selected application. If you are not sure which version of the application you would like to use, check complete list of applications page first.
-
-For example:
-
-    jenicek@skirit:~$ module avail # shows all currently available applications
-    jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
-    jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
-    jenicek@skirit:~$ module list # shows currently loaded applications in your environment
-    jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
-
-Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
-
-## Resources
-
-The information about resources goes into qsub command options.
-Request time memory, and number of CPUs
-
-In the qsub command, the colons (:) and lowercase "L" (l) are divisors, and the options go in pairs of <resource>=<value>.
-
-    qsub -l select=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
-
-where
-
-    ncpus is number of processors (2 in this example)
-    mem is the size of memory that will be reserved for the job (4 GB in this example, default 400 MB),
-    scratch_local specifies the size and type of scratch directory (1 GB in this example, no default)
-    walltime is the maximum time the job will run, set in the format hh:mm:ss (2 hours in this example, default 24 hours)
-
-The qsub command has a deal more options than the ones shown here; for example, it is possible to specify a number of computational nodes, type of their OS or their physical placement. A more in-depth information about PBS commands can be found in the page About scheduling system.
-
-## PBS servers
+### PBS servers
 
 **PBS server** schedules jobs to run according to which resources are available, priority of the job, user's faishare score and others.
 
@@ -104,12 +110,48 @@ Every frontend has some default (primary) PBS server - see table in [**Table of 
 kde bude ta tabulka umistena?
 
 
+### Resources
 
-## Queues
+The information about resources goes into qsub command options.
+Request time memory, and number of CPUs
+
+In the qsub command, the colons (:) and lowercase "L" (l) are divisors, and the options go in pairs of <resource>=<value>.
+
+    qsub -l select=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
+
+where
+
+    ncpus is number of processors (2 in this example)
+    mem is the size of memory that will be reserved for the job (4 GB in this example, default 400 MB),
+    scratch_local specifies the size and type of scratch directory (1 GB in this example, no default)
+    walltime is the maximum time the job will run, set in the format hh:mm:ss (2 hours in this example, default 24 hours)
+
+The qsub command has a deal more options than the ones shown here; for example, it is possible to specify a number of computational nodes, type of their OS or their physical placement. A more in-depth information about PBS commands can be found in the page About scheduling system.
+
+
+### Queues
 
 jake mame fronty a jak cist znacky 
 
-## Scratch directory
+### Modules
+
+uvod do toho jak u nas funguji moduly (to bude pain!)
+
+There is numerous scientific software installed on MetaCentrum machines, spanning from mathematical and statistical software through computational chemistry, bioinformatics to technical and material modelling software.
+
+You can load an application offered by MetaCentrum to your job or machine via command module add + name of the selected application. If you are not sure which version of the application you would like to use, check complete list of applications page first.
+
+For example:
+
+    jenicek@skirit:~$ module avail # shows all currently available applications
+    jenicek@skirit:~$ module avail 2>&1 | grep g16 # show all modules containing "g16" in their name
+    jenicek@skirit:~$ module add g16-B.01 # loads Gaussian 16, v. B.01 application
+    jenicek@skirit:~$ module list # shows currently loaded applications in your environment
+    jenicek@skirit:~$ module unload g16-B.01 # unloads Gaussian 16, v. B.01 application
+
+Users can install their own software. If you would like to install a new application or new version of an application, try to read [How to install an application](/advanced/install-software/) or contact User support.
+
+### Scratch directory
 
 Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
 
@@ -129,10 +171,11 @@ As a default choice, we recommend users to use **local scratch**.
 
 To read more about scratch storages, see [Scratch storage page](/advanced/grid-infrastruct/#Scratch-storages)To access the scratch directory, use the system variable SCRATCHDIR
 
+## Computing
 
-## Lifecycle of a job
+### Lifecycle of a job
 
-### Batch job
+#### Batch job
 
 A typical usecase for grid computing is non-interactive batch job, when the user only prepares input and set of instructions at the beginning. The calculation itself then runs independently on user.
 
@@ -146,7 +189,7 @@ Batch jobs consists of the following steps:
 
 **schema graficky**
 
-### Interactive job
+#### Interactive job
 
 Interactive job works in different way. User does not need to specify in advance what will be done, neither does not need to prepare any input data. Insted they first reserve computational resources and after the job start to run, works interactively on CLI.
 
@@ -160,7 +203,7 @@ Interactive job consists of following steps:
 
 **schema graficky**
 
-### Batch vs interactive 
+#### Which one?
 
 A primary choice for grid computing is batch job. Batch jobs allow user to run massive sets of calculation without need to overview them, manipulate data etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
 
@@ -173,7 +216,7 @@ Interactive jobs are good for:
 
 Interactive jobs are **necessary** for running GUI application [here](/advanced/run-graphical/)
 
-## Batch job example
+### Batch job example
 
 The batch script in the following example is called myJob.sh.
 
@@ -227,7 +270,7 @@ Alternatively, you can specify resources on the command line. In this case the l
 !!! note
 If both resource specifications are present (on CLI as well as inside the script), the values on CLI have priority.
 
-## Interactive job example
+### Interactive job example
 
 An interactive job is requested via `qsub -I` command (uppercase "i").
 
@@ -264,7 +307,7 @@ Unless you log out, after 1 hour you will get following message:
     logout
     qsub: job 13010171.meta-pbs.metacentrum.cz completed
 
-## job ID
+### job ID
 
 Job ID is unique identifier in a job. Job ID is crucial to track, manipulate or delete job, as well as to identify your problem to user support.
 
@@ -292,8 +335,7 @@ By `qstat` command:
     13010171.meta-pbs.m* user123  global   STDIN      366884   1   8    4gb 02:00 R 00:17
 
 
-
-## Get job status
+### Job status
 
 Basic command for getting status about your jobs is `qstat` command.
 
@@ -319,8 +361,6 @@ The letter under the header 'S' (status) gives the status of the job. The most c
 
 To learn more about how to track running job and how to retrieve job history, see [Job tracking page](/advanced/job-tracking)
 
-## Ended jobs
-
 ### Output files
 
 When a job is completed (no matter how), two files are created in the directory from which you have submitted the job:
@@ -330,7 +370,9 @@ When a job is completed (no matter how), two files are created in the directory 
 
 STDERR file contains all the error messages which occurred during the calculation. It is a first place where to look if the job has failed.
 
-### User termination
+### Job termination
+
+#### Done by user
 
 Sometimes you need to delete submitted/running job. This can be done by `qdel` command:
 
@@ -340,7 +382,7 @@ If plain `qdel` does not work, add `-W` (force del) option:
 
     (BULLSEYE)user123@skirit~: qdel -W force 21732596.elixir-pbs.elixir-czech.cz
 
-### Termination by PBS server
+#### Done by PBS server
 
 The PBS server keeps track of resources used by the job. In case the job uses more resources than it has reserved, PBS server sends a **SIGKILL** signal to the execution host.
 
@@ -365,7 +407,7 @@ Most often you will meet one of the following three signals:
 | walltime           | `JOB_EXEC_KILL_WALLTIME`  | -29 |
 | normal termination |                           | 0   |
 
-## Manual scratch clean
+### Manual scratch clean
 
 In case of erroneous job ending, the data are left in the scratch directory. You should always clean the scratch after all potentially useful data has been retrieved. To do so, you need to know the hostname of machine where the job was run, and path to the scratch directory.
 
