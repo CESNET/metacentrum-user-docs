@@ -59,8 +59,7 @@ For example, assume that `skirit.metacentrum.cz` frontend is down and you want t
 
 The overall schema can be summed up as shown below:
 
-!!! todo 
-    chematicky nakres toho jak jsou provazane storage s frontendy
+![picture](/assets/templ_001.png)
 
 | Frontend name           | Alternative name            | Location of native home       |
 |-------------------------|-----------------------------|-------------------------------|
@@ -181,7 +180,7 @@ Currently we offer four types of scratch storage:
 
 As a default choice, we recommend users to use **local scratch**.
 
-To read more about scratch storages, see [Scratch storage page](/advanced/grid-infrastruct/#Scratch-storages)To access the scratch directory, use the system variable SCRATCHDIR
+To access the scratch directory, use the system variable `SCRATCHDIR`.
 
 ## Computing
 
@@ -204,7 +203,7 @@ Batch jobs consists of the following steps:
 
 #### Interactive job
 
-Interactive job works in different way. User does not need to specify in advance what will be done, neither does not need to prepare any input data. Insted they first reserve computational resources and after the job start to run, works interactively on CLI.
+Interactive job works in different way. User does not need to specify in advance what will be done, neither does not need to prepare any input data. Instead they first reserve computational resources and after the job start to run, works interactively on CLI.
 
 Interactive job consists of following steps:
 
@@ -330,8 +329,8 @@ Under some circumstances the job can be identified by the number only (e.g. `130
 You can get the job ID:
 
 - after running `qsub` command
-- by running `echo $PBS_JOBID` in interactive job  or in the batch script
-- by running `qstat -u your_username @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz`
+- by `echo $PBS_JOBID` in interactive job  or in the batch script
+- by `qstat -u your_username @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz`
 
 Within interactive job:
 
@@ -373,7 +372,7 @@ The letter under the header 'S' (status) gives the status of the job. The most c
 - F – finished
 - M – moved to another PBS server
 
-To learn more about how to track running job and how to retrieve job history, see [Job tracking page](/advanced/job-tracking)
+To learn more about how to track running job and how to retrieve job history, see [Job tracking page](/advanced/job-tracking).
 
 ### Output files
 
