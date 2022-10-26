@@ -154,8 +154,29 @@ where
 
 ### Queues
 
+When the job is submitted, it is added to one of the **queues** managed by the scheduler. Queues can be defined arbitrarily by the admins based on various criteria - usually on walltime, but also on number of GPU cards, size of memory etc. Some queues are reserved for defined groups of users ("private" queues).
+
+Unless you [have a reason to send job to a specific queue](/advanced/queues-in-meta/), the job goes into a default queue.
+
+The default queue is only **routing** one: it serves to sort jobs into another queues according to the job's walltime - e.g. `q_1h` (1-hour jobs), `q_1d` (1-day jobs), etc.
+
+The latter queues are **execution** ones, i.e. they serve to actually run the jobs. 
+
+![Queue sorting schema](/assets/templ_002.png)
+
+In PBSmon, the [list of queues for all planners can be found](https://metavo.metacentrum.cz/pbsmon2/queues/list).
+
+![pic](/assets/pbsmon_screenshots/queues_top.png)
+![pic](/assets/pbsmon_screenshots/queues_bottom.png)
+
 !!! todo
-    jen predstavit zakladni koncept
+    tyto obrazky k sobe slepit a vysvetlit znacky routing, execution, soukroma.
+
+!!! warning
+    Users do not need to care about which queue the job is sent to. This is the scheduler's job. Do not e.g. try to skip other users by sending a job to a specific queue just because it seems to have more free machines. There is always some reason why some machines are seemingly idle. Moreover, the scheduler will not allow user doing so.
+
+!!! tip
+    If you however suspect that some queue accepts jobs that should not be there or behaves in a strange way, contact User support. 
 
 ### Modules
 
@@ -165,7 +186,7 @@ where
 ### Scratch directory
 
 Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
-
+ 
 !!! warning
     There is no default scratch directory and the user must always specify its type and volume.
 

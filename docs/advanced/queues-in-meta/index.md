@@ -10,13 +10,6 @@ Queues are a basic concept of PBS. When submitting a job, the user normally does
 
 where the job goes if not specified otherwise. 
 
-## Routing vs execution queues
-
-The default queue is only **routing** one: it serves only to sort jobs into another queues. The sorting criterion is requested walltime, therefore the existence of queues like `q_2h` (2 hour jobs),`q_4h` (4 hour),`q_1d` (1 day), `q_2d`, `q_4d`, `q_1w` (1 week),`q_2w` , etc.
-
-The latter queues are **execution** ones, i.e. they serve to actually run the jobs.
-
-
 ## Specific queues
 
 In some cases, it is possible or even recommended that the user choses a particular queue. This is the case when the job is characterized not by walltime as a major limiting factor, but by another resource - memory, GPU usage etc.
