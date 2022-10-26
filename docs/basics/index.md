@@ -156,7 +156,7 @@ where
 
 When the job is submitted, it is added to one of the **queues** managed by the scheduler. Queues can be defined arbitrarily by the admins based on various criteria - usually on walltime, but also on number of GPU cards, size of memory etc. Some queues are reserved for defined groups of users ("private" queues).
 
-Unless you [have a reason to send job to a specific queue](/advanced/queues-in-meta/), the job goes into a default queue.
+Unless you [have a reason to send job to a specific queue](/advanced/queues-in-meta/), do not specify any. The job will be submitted into a default queue and from there routed to one of execution queues.
 
 The default queue is only **routing** one: it serves to sort jobs into another queues according to the job's walltime - e.g. `q_1h` (1-hour jobs), `q_1d` (1-day jobs), etc.
 
@@ -172,8 +172,8 @@ In PBSmon, the [list of queues for all planners can be found](https://metavo.met
 !!! todo
     tyto obrazky k sobe slepit a vysvetlit znacky routing, execution, soukroma.
 
-!!! warning
-    Users do not need to care about which queue the job is sent to. This is the scheduler's job. Do not e.g. try to skip other users by sending a job to a specific queue just because it seems to have more free machines. There is always some reason why some machines are seemingly idle. Moreover, the scheduler will not allow user doing so.
+!!! warning 
+    Do not try to skip other users by sending a job to a specific queue just because it seems to have more free machines. There is always some reason why some machines are seemingly idle. Moreover, the scheduler will not allow user doing so.
 
 !!! tip
     If you however suspect that some queue accepts jobs that should not be there or behaves in a strange way, contact User support. 

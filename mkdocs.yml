@@ -23,7 +23,11 @@ markdown_extensions:
   - pymdownx.superfences
 
 nav:
-  - Access: access/index.md
+  - 'Access':
+    - access/account/index.md
+    - access/perun/index.md
+    - access/pbsmon/index.md
+    - access/log-in/index.md
   - Basics:
     - basics/index.md
   - 'Advanced':
