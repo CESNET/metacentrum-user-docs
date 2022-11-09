@@ -25,6 +25,8 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: snippets
   - codehilite
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
   - 'Access':
