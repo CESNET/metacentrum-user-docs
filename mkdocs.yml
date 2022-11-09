@@ -21,6 +21,10 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: snippets
+  - codehilite
 
 nav:
   - 'Access':

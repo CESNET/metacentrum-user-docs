@@ -1,9 +1,27 @@
 # Logging in
 
-- neco zlehka o logging nodes (frontends), priklad ssh na Linuxu i Windows
-- Kerberos autentizace
-- co uvidi po prihlaseni, kde se ocitnou (v homu)
-- upozornit na pridani SSH klice:
+Users access the grid through so-called **frontends** - Linux machines designed as exclusive entry points for users. No calculations run on frontends.
+
+Frontends run (as all the grid machines) on Linux, so the tools to log in is **ssh protocol** and a **Linux terminal**.
+
+![grid](/assets/templ_004.png)
+
+!!! note
+    Windows or Mac users will need some of the Linux CLI emulators, such as PuTTY. 
+
+!!! todo
+    Zjistit cim se AKTUALNE realisticky hlasi windowsari a macisti.
+
+=== "Linux"
+
+    This is Linux howto
+    ``` example
+    ssh centos@IP
+    ```
+
+=== "Windows"
+
+    This is Windows howto
 
 If you log in for the first time, you will be probably prompted by a query similar to the following:
 
@@ -13,3 +31,13 @@ If you log in for the first time, you will be probably prompted by a query simil
 
 Type "yes" and hit Enter. After that you will be prompted for a MetaCentrum password, type it and hit Enter.
 
+- co uvidi
+- kde muzou overit klice
+
+
+Kerberos
+
+
+List of frontend (table here)
+
+--8<-- "file.md"
