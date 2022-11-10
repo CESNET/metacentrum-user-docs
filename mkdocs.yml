@@ -21,6 +21,12 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: 'docs/snippets'
+  - codehilite
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
   - 'Access':
