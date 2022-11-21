@@ -1,4 +1,4 @@
-# Logging in
+# Log in
 
 Users access the grid through so-called **frontends** - Linux machines designed as exclusive entry points for users. No calculations run on frontends.
 

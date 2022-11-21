@@ -1,9 +1,19 @@
-# Green pages (PBSmon)
+# PBSmon
 
-!!! todo
-    Podle meho nazoru by se News and Outages mely v blizke budoucnosti presunout ze zelenych stranek sem do dokumentace. Stejne tak veci tykajici se sprravy uctu (link na prodluzovani, fairshare, kvoty apod.). Zelene stranky by mely slouzit JEN JAKO WEBOVY FRONTEND K PBS a k FYZICKE PREHLIDCE HARDWARU. Vyprazdnene zalozky by se mely zrusit. Proto se tato kapitola jmenuje Green pages, po uvedenych zmenach by se mela prejmenovat na PBSmon. 
+**[PBSmon](https://metavo.metacentrum.cz/en/index.html)** (shorthand from "PBS monitor") is a **web frontend** where
 
-Current state of MetaCentrum grid, news and outages as well as several useful links can be found at so-called [MetaVO green pages](https://metavo.metacentrum.cz/en/index.html).
+- **live data** concerning jobs, computing nodes and queues can be found,
+- useful **qsub assembler** is available to users,
+- specifications of **hardware** in use is collected,
+- **news and outages** are published,
+- **user quota overview** can be found,
+- **license agreements** for licensed software are available, as well as
+- some other **useful links** concerning account management and other miscella.
+
+!!! note
+    **PBSmon** is **not necessary for logging in**, neither it is essential for full-featured usage of Metacentrum grid. In principle all information displayed by PBSmon can be obtained through command-line interface, and all tasks connected with account management can be conducted via the [Perun user management system](https://perun.e-infra.cz/login). If you are new to Metacentrum, you can skip exploring the PBSmon service for now; later, as the list and complexity of your jobs grows, you will probably find it more useful.
+ 
+
 
 ## News and outages
 
@@ -35,4 +45,7 @@ This is not the most convenient way for many users, however. Thet's why there ex
 - also links to account prolongation requests
 - also links to quotas, publications....
 - PLUS: news and outpages
+
+!!! todo
+     Zelene stranky by mely slouzit JEN JAKO WEBOVY FRONTEND K PBS a k FYZICKE PREHLIDCE HARDWARU. Vyprazdnene zalozky by se mely zrusit. Na diskuzi je, zda News and Outage v blizke budoucnosti presunout ze zelenych stranek sem do dokumentace. 
 

@@ -30,10 +30,11 @@ markdown_extensions:
 
 nav:
   - 'Access':
+    - access/terms/index.md
     - access/account/index.md
+    - access/log-in/index.md
     - access/perun/index.md
     - access/pbsmon/index.md
-    - access/log-in/index.md
   - Basics:
     - basics/index.md
   - 'Advanced':
