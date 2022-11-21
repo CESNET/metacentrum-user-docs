@@ -10,42 +10,34 @@
 - **license agreements** for licensed software are available, as well as
 - some other **useful links** concerning account management and other miscella.
 
-!!! note
-    **PBSmon** is **not necessary for logging in**, neither it is essential for full-featured usage of Metacentrum grid. In principle all information displayed by PBSmon can be obtained through command-line interface, and all tasks connected with account management can be conducted via the [Perun user management system](https://perun.e-infra.cz/login). If you are new to Metacentrum, you can skip exploring the PBSmon service for now; later, as the list and complexity of your jobs grows, you will probably find it more useful.
+!!! note "PBSmon is optional tool for Metacentrum users"
+    **PBSmon is not necessary for logging in**, neither it is essential for full-featured usage of Metacentrum grid services. In principle all information displayed by PBSmon can be obtained through commandline interface. Similarly, all tasks connected with account management can be conducted via the [Perun user management system](https://perun.e-infra.cz/login). If you are new to Metacentrum, you can skip exploring the PBSmon service for now; later, as the list and complexity of your jobs grows, you will probably find it more useful.
  
+## Live data - jobs, queues, nodes
 
+**Live data** concerning current state of jobs, queues, nodes and physical machines can be found under the [Current state](https://metavo.metacentrum.cz/en/state/index.html) tab.
+
+## qsub assembler
+
+**An interactive PBS parameter selection tool** (shortly as **qsub assembler**) can be found under the  [Current state -> Qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) tab.
+
+Using this tool, users can assemble a set of parameters required for their job and see which machines match to their selection criteria and how busy the nodes are at the moment. Additionally, they get a line of the qsub command in correct syntax that can be used in a copy-and-paste way.
 
 ## News and outages
 
-Updates concerning changes in MetaCentrum infrastructure (PBS parameters changes, new hardware, **planned** outages...) are found under the [Current affairs -> News](https://metavo.metacentrum.cz/en/news/news.jsp) tab.
+**Planned changes** in MetaCentrum infrastructure, such as PBS parameters changes, new hardware, planned shutdowns, are listed under the [Current affairs -> News](https://metavo.metacentrum.cz/en/news/news.jsp) tab.
 
-Updates concerning **unplanned** outages, failures and emergencies are found under the [Current affairs -> Outages](https://metavo.metacentrum.cz/en/news/outages.jsp) tab.
+**Unplanned outages**, failures and emergencies are found under the [Current affairs -> Outages](https://metavo.metacentrum.cz/en/news/outages.jsp) tab.
 
-## Account, quotas etc.
+## User quotas
 
-Various links concerning 
+Current state of **user quotas** can be found under the [My account -> Quotas overview](https://metavo.metacentrum.cz/en/myaccount/kvoty) tab.
 
-- account management (prolongation),
-- quotas (quotas status, request to change quota),
-- publications (link to fill in publications),
-- licence agreements (licensed software)
+## Licensed software
 
-can be found under the [My account](https://metavo.metacentrum.cz/en/myaccount/index.html) tab.
+Some software installed in Metacentrum is licensed. Only users with confirmed aggreement to the license can use this software.
 
-## PBSmon
+List of licenses can be found under the [My account -> License](https://metavo.metacentrum.cz/en/myaccount/licence.html) tab. Clicking on any of the software listed will redirect you to Perun interface.
 
-In principle most data concerning the state of MetaCentrum grid infrastructure - your jobs, state of queues, computing node load - can be obtained through CLI from a terminal.
-
-This is not the most convenient way for many users, however. Thet's why there exists a web-based frontend which collects and displays current state of the infrastructure. This service is called [PBSmon (PBS monitor)](https://metavo.metacentrum.cz/en/state/index.html).
-
-
-
-- PBSmon (PBS monitor) is a web based frontend to live data from grid... OK
-- list of your jobs, other user's jobs, queues, physical state of computational nodes...
-- also links to account prolongation requests
-- also links to quotas, publications....
-- PLUS: news and outpages
-
-!!! todo
-     Zelene stranky by mely slouzit JEN JAKO WEBOVY FRONTEND K PBS a k FYZICKE PREHLIDCE HARDWARU. Vyprazdnene zalozky by se mely zrusit. Na diskuzi je, zda News and Outage v blizke budoucnosti presunout ze zelenych stranek sem do dokumentace. 
-
+!!! note "Once is enough"
+    For a particular software (or particular version of the software) you need to approve the license only once. After that, you should under your user profile in Perun be able so see a new group called *lic_SW_NAME*. For example, after you approve the license of Orca, you will be added to *lic_orca* user group.
