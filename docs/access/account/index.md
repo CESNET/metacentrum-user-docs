@@ -20,3 +20,6 @@
 - co delat kdyz se jim zabanuje ucet (IP adresa)
 - kam napsat, co potrebujeme vedet
 
+## Password change
+
+
