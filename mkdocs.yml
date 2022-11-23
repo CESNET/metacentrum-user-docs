@@ -49,6 +49,7 @@ nav:
     #- advanced/parallel-comput/index.md
     #- advanced/gpu-comput/index.md
     #- advanced/install-software/index.md
+    #- advanced/kerberos/index.md
   - Applications:
     - applications/index.md
   - 'Troubleshooting':

@@ -88,4 +88,22 @@ In case you need to list public keys of all hosts, there is also [a complete lis
 
 ### Kerberos 
 
+After the user enters MetaCentrum infrastructure by logging in, they will need also to be able to move between computational nodes, reach storage spaces residing on different machines etc. It would be very inconvenient to authenticate by password every time. Therefore the authentication of user **within** the MetaCentrum infrastructure is done by [Kerberos protocol](https://en.wikipedia.org/wiki/Kerberos_(protocol)).
+
+
+![grid](/assets/templ_005.png)
+
+After the user logs in, they automatically obtain a **Kerberos tickets**. As long as the ticket is valid, user can move between machines, run jobs, copy files without bothering about the authentication.
+
+!!! warning
+    The ticket is valid for 10 hours. If you stay logged in for longer, you will need to re-generate your ticket with `kinit` command.
+
+**Basic Kerberos commands**
+
+- `klist`  - list all current tickets
+- `kdestroy` - dump all tickets
+- `kinit` - create new Kerberos ticket
+
+It is also possible to install Kerberos on your PC. For more in-depth info, see [Kerberos advanced chapter](/advanced/kerberos).
+
 
