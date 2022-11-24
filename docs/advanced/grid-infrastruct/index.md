@@ -1,11 +1,43 @@
 # Grid infrastructure
 
 
-Sem dat ukecanejsi vysvetleni toho jak u nas funguje infrastruktura, homy, proc jsou ruzne frontendy na ruzne homy atd.
+## Frontends and storages
 
-## Frontends
 
-- vcetne overovani klicu
+
+A frontend has a native home directory on one, and only one, storage; however this is not true the other way round: a home directory on a certain storage may be mounted by more than one frontend.
+
+    user123@user123-XPS-13-9370:~$ ssh nympha.zcu.cz 
+    ...
+    (BULLSEYE)user123@nympha:~$ pwd
+    /storage/plzen1/home/user123   # "plzen1" is native storage for "nympha" frontend
+    (BULLSEYE)user123@nympha:~$ exit 
+    user123@user123-XPS-13-9370:~$ ssh minos.zcu.cz
+    ...
+    (BULLSEYE)user123@minos:~$ pwd
+    /storage/plzen1/home/user123   # "plzen1" is native storage also for "minos" frontend
+
+To get to a certain home directory, user does not need to log on a specific frontend. Users can change their home directories by `cd` command.
+
+For example, assume that `skirit.metacentrum.cz` frontend is down and you want to access `brno2` storage:
+
+    user123@user123-XPS-13-9370:~$ ssh tarkil.metacentrum.cz # login to "tarkil" instead
+    ...
+    (BULLSEYE)user123@tarkil:~$ pwd
+    /storage/praha1/home/user123   # I am on "praha1" storage, but need "brno2"
+    (BULLSEYE)user123@tarkil:~$ cd /storage/brno2/home/user123 # change to home on "brno2" storage
+    (BULLSEYE)user123@tarkil:/storage/brno2/home/user123$ pwd 
+    /storage/brno2/home/user123 # I am now on "brno2" storage 
+
+The overall schema can be summed up as shown below:
+
+![picture](/assets/templ_001.png)
+
+
+
+
+
+
 
 ## Scratch storages
 
