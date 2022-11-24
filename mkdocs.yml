@@ -38,7 +38,7 @@ nav:
   - Basics:
     - basics/index.md
   - 'Advanced':
-    #- advanced/connect-auth/index.md
+    - advanced/connect-auth/index.md
     - advanced/pbs-options/index.md
     - advanced/queues-in-meta/index.md
     - advanced/job-tracking/index.md
