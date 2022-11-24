@@ -1,6 +1,5 @@
 # Grid infrastructure
 
-
 ## Frontends and storages
 
 
@@ -32,6 +31,21 @@ For example, assume that `skirit.metacentrum.cz` frontend is down and you want t
 The overall schema can be summed up as shown below:
 
 ![picture](/assets/templ_001.png)
+
+
+**Storages**
+
+--8<-- "storages-table-1.md"
+
+<!--
+**Decomissioned storages**
+
+--8<-- "storages-decom-table-1.md"
+-->
+
+<!--
+Dodat ze reprezentace storagi v Perunovi se jmenuje jinak nez v Server name
+-->
 
 
 
