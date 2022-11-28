@@ -2,9 +2,18 @@
 
 ## Frontends and storages
 
+A **frontend** is a single machine intended for user logins and ligh pre- and post-processing of data.
 
+A **storage** is a large disc array where user data (user home directories) are kept.
 
-A frontend has a native home directory on one, and only one, storage; however this is not true the other way round: a home directory on a certain storage may be mounted by more than one frontend.
+!!! note "Storage names"
+    Storages are named according to their physical location (city) + number.
+
+As there is not one huge storage, but several large and loosely interconnected storages, users have access to **several different home directories**.
+
+Every frontend has a `/home` directory mounted to one of the storages, e.g. `/home` of frontend `skirit.metacentrum.cz` is mounted on `/storage/brno2/home`, so when an user is logged on `skirit`, the commands `ls ~` and `ls /storage/brno2/home/user123` are equivalent. 
+
+A frontend has a native home directory on one, and only one, storage; however this is not true the other way round: a home directory on a certain storage may be mounted by more than one frontend:
 
     user123@user123-XPS-13-9370:~$ ssh nympha.zcu.cz 
     ...
@@ -16,7 +25,11 @@ A frontend has a native home directory on one, and only one, storage; however th
     (BULLSEYE)user123@minos:~$ pwd
     /storage/plzen1/home/user123   # "plzen1" is native storage also for "minos" frontend
 
-To get to a certain home directory, user does not need to log on a specific frontend. Users can change their home directories by `cd` command.
+The overall schema can be summed up as shown below:
+
+![picture](/assets/templ_001.png)
+
+**Transition between storages is possible** no matter which frontend an user is logged to. To get to a certain home directory, user does not need to log on a specific frontend. Users can change their home directories by `cd` command.
 
 For example, assume that `skirit.metacentrum.cz` frontend is down and you want to access `brno2` storage:
 
@@ -28,34 +41,18 @@ For example, assume that `skirit.metacentrum.cz` frontend is down and you want t
     (BULLSEYE)user123@tarkil:/storage/brno2/home/user123$ pwd 
     /storage/brno2/home/user123 # I am now on "brno2" storage 
 
-The overall schema can be summed up as shown below:
-
-![picture](/assets/templ_001.png)
-
-
-**Storages**
+A complete list of storages can be found in table below:
 
 --8<-- "storages-table-1.md"
 
-<!--
-**Decomissioned storages**
+!!! warning "Backup policy for storages"
 
---8<-- "storages-decom-table-1.md"
--->
-
-<!--
-Dodat ze reprezentace storagi v Perunovi se jmenuje jinak nez v Server name
--->
-
-
-
-
-
+    All storages are backed up once a day (normally between 6 a.m. and 7 a.m.), by  snapshot backup. There backups are kept for 2 weeks. For a more complete understanding of how the data are backed up in MetaCentrum service, see #working-with-data chapter.  
 
 
 ## Scratch storages
 
-Scratch storage is a storage for temporary files on computing nodes. This storage should be used only during computations and should be freed immediately after your job ends. The location of scratch directory is defined by a system variable SCRATCHDIR.
+Scratch storage is a **storage for temporary files for running job**. This storage should be used only during computations and should be freed immediately after your job ends. The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 Scratch types
 
 We offer four types of scratch storage:
@@ -90,27 +87,28 @@ We offer four types of scratch storage:
         remember to choose mem large enough (to hold both data in scratch and the actual memory requirements for the job)
         mounted to directory /dev/shm/scratch.shm/USERNAME/job_JOBID
 
-Warning.gif Warning: You must set the size and type of scratch dir during job submission! There is no default type of scratch.
+!!! warning "No default scratch"
+    For a batch job, you must set the size and type of scratchdir! There is no default type of scratch.
 
+Directory `SCRATCHDIR` is not writable, only it's content is. Therefore you cannot e.g. do `rm -rf $SCRATCHDIR`, but you can `rm -rf $SCRATCHDIR/*`.
 
-$SCRATCHDIR is not writable, only it's content is. Therefore you cannot e.g. do rm -rf $SCRATCHDIR, but you can rm -rf $SCRATCHDIR/*. Users should always clear the content of scratch directory after the job ends to free disc space. Otherwise, this directory will be automatically deleted after 14 days at most (earlier if there is lack of space on disks).
-Examples
+Users should always clear the content of scratch directory after the job ends to free disc space. Otherwise, this directory will be automatically deleted after 14 days at most (earlier if there is lack of space on disks).
 
-    submit batch job with 100 GB scratch on local disc
+Examples:
 
-qsub -l select=1:ncpus=1:mem=4gb:scratch_local=100gb
+Submit batch job with 100 GB scratch on local disc:
 
-    submit interactive job with 20 GB memory and scratch in RAM
+    qsub -l select=1:ncpus=1:mem=4gb:scratch_local=100gb
 
-qsub -I -l select=1:ncpus=1:mem=20gb:scratch_shm=true
+Submit interactive job with 20 GB memory and scratch in RAM:
 
-    submit batch job with 1 GB of scratch on SSD disc
+    qsub -I -l select=1:ncpus=1:mem=20gb:scratch_shm=true
 
- qsub -l select=1:ncpus=1:mem=4gb:scratch_ssd=1gb
+Submit batch job with 1 GB of scratch on SSD disc:
 
-System variables
+    qsub -l select=1:ncpus=1:mem=4gb:scratch_ssd=1gb
 
-The most important system variables related to scratch are these:
+**System variables**
 
     SCRATCHDIR
         location of scratch directory
@@ -122,6 +120,46 @@ The most important system variables related to scratch are these:
         size of scratch directory
         echo $SCRATCH_VOLUME
 
+<!--
+
+## Computational nodes
+
+!!! todo
+    This is a new section to be added to docs
+
+### PBS servers and "their" nodes
+
+- zde vysvetlit ze nody "patri" vzdy primarne nejakemu serveru
+- tabulku co k cemu patri
+- taky CLI command jak zjistit kteremu serveru co patri a vice versa 
+
+### OS
+
+- o operacnim systemu
+- ze je vsude (skoro) Debian, ze se obcas upgraduje
+- o baliccich debian-compat
+- jak zjistit ktery debian zrovna mame
+
+### CPU architectures
+
+- kde mame jake procesory a v cem se to muze projevovat
+- jak zjistit jaka CPU arch kde je
+
+### GPU nodes
+
+- zde dat tabulku serveru s GPU kartami urcenych ke GPU vypoctum
+
+### Whateve
+
+- v zasade zde by se melo vlezt pokud mame nejakou zvlastni skupinu nodu na kterou chceme uzivatele upozornit
+
+-->
+
+## Decomissioned storages
+
+For reference we keep also some history of decomissioned storages and where the data have been moved to, see table below.
+
+--8<-- "storages-decom-table-1.md"
 
 
 

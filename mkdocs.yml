@@ -43,12 +43,12 @@ nav:
     - advanced/queues-in-meta/index.md
     - advanced/job-tracking/index.md
     - advanced/grid-infrastruct/index.md
-    #- advanced/modules/index.md
-    #- advanced/move-data/index.md
+    - advanced/work-data/index.md
     #- advanced/run-graphical/index.md
     #- advanced/parallel-comput/index.md
     #- advanced/gpu-comput/index.md
     #- advanced/install-software/index.md
+    #- advanced/modules/index.md
     - advanced/kerberos/index.md
   - Applications:
     - applications/index.md
