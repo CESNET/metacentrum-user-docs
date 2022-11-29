@@ -1,104 +1,156 @@
 # Working with data
 
-This topical guide provides the most important information about data manipulation, storage and archiving in MetaCentrum.
+This chapter provides basic guides on data manipulation, storage and archiving within MetaCentrum infrastructure. For general advice on scientific data management and data good practice, see **link to some einfra part on general data management**. 
 
 !!! todo
-    Definuj hned ze zacatku co je "large data" a "small data", protoze je to rozlisovaci kriterium tohoto clanku.
+    Meli bychom mit na urovni einfra (navod spolecny pro vsechny sluzby) neco podobneho jako [CSC.fi obecne o datech](https://docs.csc.fi/data/datasets/datamanagement/#overview).
 
+When dealing with data in general, the most important criteria is the total volume/number of files that are to be moved in a single operation.
 
-Data storage: managing large numbers of files
+As a rule of thumb,
 
-Keeping large number of files (>=million of files) in user's homes is problematic, since it significantly increases the time needed to backup the home directories as well as to manipulate them for any other purpose. At such quantities, the number of the files is the limiting factor, not their size. To keep the service operations sustainable, there is a quota on number of files. We encourage the users who exceed the quota either to remove the data, or to squash them into suitably sized chunks. It is our experience that often the directories with millions of files result from a job gone amok and as such present a "dead weight". Users who really need to store large numbers of files can contact user support meta@cesnet.cz and ask for an exception.
-Check your quota of number of files
+- Small data is up to **1 000 individual files** AND up to **100 GB** of total size.
+- Large data is more than any of that.
 
-You can see the state of your quotas at
+## Quotas on storages
 
-    the table that appears after you login on a frontend
-    your quota overview at MetaVO web
+Keeping large data volumes or too many files in user's homes is problematic, since it significantly increases the time needed to backup the home directories as well as to manipulate them for any other purpose. To keep the service operations sustainable, **a quota on number of files** as well as **a quota on total volume of data** is set on most storages.
 
-Remove, tar, or tar and archive the excess files
+You can see the state of your quotas:
 
-If the data is junk, remove it either within a single command, e.g.
+- in the table that appears every time when you login on a frontend,
+- at your [quota overview in PBSmon](http://metavo.metacentrum.cz/en/myaccount/kvoty).
 
-(BUSTER)melounova@tarkil:~$ ssh melounova@storage-brno6.metacentrum.cz rm -rf ~/junk_dir
+### When you exceed a quota 
+
+#### Delete it
+
+If you produce **large** amount of data by mistake, remove it either within a single command, e.g.
+
+    (BUSTER)user123@tarkil:~$ ssh user123@storage-brno6.metacentrum.cz rm -rf ~/junk_dir
 
 or wrap the command into a batch job to avoid waiting for the command to end:
 
-(BUSTER)melounova@tarkil:~$ qsub -l walltime=24:00:00 remove_junk_dir.sh
+    (BUSTER)user123@tarkil:~$ qsub -l walltime=24:00:00 remove_junk_dir.sh
 
-If the data is not junk, pack them them into larger chunks using the tar command either from a command line or from within a batch job:
+If you produce **insanely large** amount of files that need to be removed, contact our User support.
 
-(BUSTER)melounova@tarkil:~$ ssh melounova@storage-brno6.metacentrum.cz tar -cf not_junk_dir.tar ~/not_junk_dir
-(BUSTER)melounova@tarkil:~$ qsub -l walltime=24:00:00 tar_my_files.sh
+#### Pack small files into large chunks
 
-If you have enough space on your storage directories, you can keep the packed data there. However we encourage users to archive the data that are of permanent value, large and not accessed frequently.
+If the data is not junk, pack them them into larger chunks using the `tar` command either from a command line or from within a batch job:
 
-If you really need to keep large numbers of files in your home directory, contact us at user support mail meta@cesnet.cz. 
+    (BUSTER)user123@tarkil:~$ ssh usr123@storage-brno6.metacentrum.cz tar -cf not_junk_dir.tar ~/not_junk_dir
+    (BUSTER)user123@tarkil:~$ qsub -l walltime=24:00:00 tar_my_files.sh
 
+If you have enough space on your storage directories, you can keep the packed data there. However we encourage users to [archive](#data-archiving) any finished-project data of permanent value.
 
-## Basic commands for data transfer
+If you for some reason need to shift some of your quotas, [contact us](/contact).
 
-Basic commands for data transfer are scp, wget and sftp.
+#### Archive the data
 
-Windows alert: Windows users will need an application that emulates the Linux commands for data transfer. See How to ssh from Windows.
-scp
+Due both to operational reasons (regular backups of storages) and for safety reasons (storages have weaker backup policy than archives), users should [archive](#data-archiving) any data that are of permanent value to them and may be needed in future.
+
+Archiving data from finished projects also helps to avoid problems with storage quotas.
+
+#### Move the data to another storage
+
+This is an intermediate solution. The storages quotas are separate, so you can temporarily dump some data to different storage where you have more free space.
+
+## Quota on /tmp directory
+
+Zde popsat postup a rozdil mezi kvotami v /tmp diru a kvotami v homech
+
+V zasade tentyz navod co jim chodi mailem
+
+## Data manipulation commands
+
+**scp**
 
 scp works in pretty much the same way as normal cp command, only it allows you to copy files between different machines.
 
-marenka@home_PC:~$ scp my_file.txt jenicek@skirit.metacentrum.cz: # copy file "my_file.txt" to a home folder of user "jenicek" on a frontend "skirit.metacentrum.cz"
-marenka@home_PC:~$ scp -r my_dir jenicek@skirit.metacentrum.cz: # as above; copy directory "my_dir" together with all subdirectories
-marenka@home_PC:~$ scp -r jenicek@skirit.metacentrum.cz:~/results . # from jenicek's home on skirit, copy to marenka's local PC folder "results" 
-marenka@home_PC:~$ scp -r jenicek@storage-brno6.metacentrum.cz:~/../fsbrno2/home/jenicek/results . # copy jenicek's folder "results" directly from /storage/brno2 (see section below for explanation of the path and server address)
+    marenka@home_PC:~$ scp my_file.txt jenicek@skirit.metacentrum.cz: # copy file "my_file.txt" to a home folder of user "jenicek" on a frontend "skirit.metacentrum.cz"
+    marenka@home_PC:~$ scp -r my_dir jenicek@skirit.metacentrum.cz: # as above; copy directory "my_dir" together with all subdirectories
+    marenka@home_PC:~$ scp -r jenicek@skirit.metacentrum.cz:~/results . # from jenicek's home on skirit, copy to marenka's local PC folder "results" 
+    marenka@home_PC:~$ scp -r jenicek@storage-brno6.metacentrum.cz:~/../fsbrno2/home/jenicek/results . # copy jenicek's folder "results" directly from /storage/brno2 (see section below for explanation of the path and server address)
 
-wget
+**wget**
 
 Alternative way to download data is a wget command. wget will work only if the file is available via ftp or http(s) network protocols, typically when it is a downloadable file on some server. wget is faster and less safe than scp, so it may be a method of choice if you need to download larger amount of data from Internet where privacy is not an issue.
 
-ssh jenicek@skirit.metacentrum.cz # login to a frontend; replace "jenicek" by your real username
-jenicek@skirit.metacentrum.cz:~$ mkdir data; cd data # create and enter directory "data" where the data will be downloaded to
-jenicek@skirit.metacentrum.cz:~/data$ wget https://www.someServer.org/someData.zip # download file "someData.zip" from a server (= webpage) "https://www.someServer.org"
+    ssh jenicek@skirit.metacentrum.cz # login to a frontend; replace "jenicek" by your real username
+    jenicek@skirit.metacentrum.cz:~$ mkdir data; cd data # create and enter directory "data" where the data will be downloaded to
+    jenicek@skirit.metacentrum.cz:~/data$ wget https://www.someServer.org/someData.zip # download file "someData.zip" from a server (= webpage) "https://www.someServer.org"
 
 By wget you can only transfer data to Metacentrum machines. wget is of no use if you want to transfer from Metacentrum.
-sftp
+
+**sftp**
 
 sftp is just another protocol for transferring data. Contrary to scp it is interactive, slower and apart from copying it also enables the user to manipulate files and directories on the remote side. We recommend to use scp if you need only to copy the data.
-Related topics
-Usage of WinSCP 	
-About SFTP protocol 	
 
 Windows users need an SFTP client, we recommend the WinSCP application. Keep in mind you have to fill in as target chosen NFS4 server instead of frontend in Step 1. Make sure you have selected SFTP file protocol, too.
 
 Linux users just open a terminal and use sftp command as shown below. More about sftp command can be found in this external link.
 
-sftp 'META username'@target_NFS4_server # Login
-help # Shows available commands
-get target_file # Downloads target file to your local system
-get -r target_directory # Downloads target directory to your local system
-put target_file # Uploads target file to server
-put -r target_directory # Uploads target directory to server
+    sftp 'META username'@target_NFS4_server # Login
+    help # Shows available commands
+    get target_file # Downloads target file to your local system
+    get -r target_directory # Downloads target directory to your local system
+    put target_file # Uploads target file to server
+    put -r target_directory # Uploads target directory to server
 
 There is a bug affecting Ubuntu 14.04+ concerning the recursive copy command: put -r . If put -r fails, create the target directory on the server first to work around this issue.
 
-SFTP1.png
-rsync
+**picture here SFTP1.png**
+
+**rsync**
 
 The rsync command is a more advanced and versatile copying tool. It enables the user to synchronize the content of two directories in a more efficient way than scp, because rsync copies only the differences between the directories. Therefore it is often used as a tool for regular backups.
 
 Copy directory data to archive:
 
-$ rsync -zvh /storage/brno2/home/melounova/data /storage/du-cesnet/home/melounova/VO_metacentrum-tape_tape
+    $ rsync -zvh /storage/brno2/home/melounova/data /storage/du-cesnet/home/melounova/VO_metacentrum-tape_tape
 
 Copy only the content of directory data to archive:
 
-$ rsync -zvh /storage/brno2/home/melounova/data/ /storage/du-cesnet/home/melounova/VO_metacentrum-tape_tape
+    $ rsync -zvh /storage/brno2/home/melounova/data/ /storage/du-cesnet/home/melounova/VO_metacentrum-tape_tape
+
+**tar**
+
+tar command
+
+The tar (tape archiver) is a Linux command to pack files and directories into one file, a packed archive. tar by itself does not compress the size of the files, and the resulting volume of the packed archive is (roughly) the same as the sum of the volumes of individual files. Tar can cooperate with commands for file compression like gzip.
+
+In all examples, the option v in tar command options means "verbose", giving a more detailed output about how the archiving progresses.
+
+    In /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive, create (tar c) uncompressed archive of the directory named (tar f) ~/my-archive and its content:
+
+    tar cvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz ~/my-archive
+
+    In /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive, create archive of the directory named ~/my-archive and compress it by gzip command (tar z):
+
+    tar czvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz ~/my-archive
+
+    List (tar t) the content of the existing archive:
+
+    tar tzf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz
+
+    Unpack the WHOLE archive my-archive.tgz residing in storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/ into current directory:
+
+    tar xzvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz
+
+    Unpack PART of the archive:
+
+    tar tzf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz # list the content of the archive
+    # unpack only file PATH1/file1 and directory PATH2/dir2 into the current directory
+    tar xzvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz "PATH1/file1" "PATH2/dir2"
+
+There are many other options to customize the tar command. For the full description, read manual pages (man tar). 
 
 
+**gzip**
 
 
-
-
-
-## Moderate data: use a frontend  
+## Moderate data handling
 
 Moderate amount of data (hundreds of individual files and/or less that 100 GB) can be transferred to/from MetaCentrum machines in a straightforward way.
 
@@ -108,33 +160,29 @@ The path to locate your destination/source data is the same path you see when yo
 
 Example:
 
-melounova@home_PC:~$ scp melounova@skirit.ics.muni.cz:/storage/brno2/home/melounova/foo . # copy file "foo" from "brno2" storage through frontend skirit to my local PC
+    melounova@home_PC:~$ scp melounova@skirit.ics.muni.cz:/storage/brno2/home/melounova/foo . # copy file "foo" from "brno2" storage through frontend skirit to my local PC
 
-
-
-## Large data: avoid frontend
-
-Data transfer between storages and PC, principles
+## Large data handling
 
 When transferring large amount of data we ask users to avoid frontends. This is because transfer of large data can overload the frontend and cause slowdown, which is inconvenient to other users.
 
 For example, the command
 
-melounova@home_PC:~$ scp -r melounova@skirit.ics.muni.cz:/storage/brno2/home/melounova/dir-with-thousands-files .
+    melounova@home_PC:~$ scp -r melounova@skirit.ics.muni.cz:/storage/brno2/home/melounova/dir-with-thousands-files .
 
 does this:
 
-Scp frontend.jpg
+**picture here**Scp frontend.jpg
 
 The data are not stored on frontend, but they load its CPUs and RAM. Therefore for large data it is better to access the data storages (NFS4 servers) directly.
 
 The direct-access-equivalent to the command above is
 
-melounova@home_PC:~$ scp -r melounova@storage-brno6.metacentrum.cz:~/../fsbrno2/home/melounova/dir-with-thousands-files . 
+    melounova@home_PC:~$ scp -r melounova@storage-brno6.metacentrum.cz:~/../fsbrno2/home/melounova/dir-with-thousands-files . 
 
 and it can be visualised as:
 
-Scp direct.jpg
+**picture here** Scp direct.jpg
 
 Why do I log in to brno6, if I want to access brno2?
 
@@ -147,65 +195,63 @@ Since the direct access avoids the frontend, you cannot use the symbolic links, 
     TABLE
 
 
-
 ### Move data to/from a storage directly
 
 ### Move data between storages
 
-Data transfer between storages using scp
+Data transfer between storages using **scp**
 
 If you want to move large amount of data between storages, the setup is similar as in the case when you copy data between your PC and a storage. The only difference is the you cannot access storages interactively (see Working with data) and therefore the scp command has to be passed as an argument to ssh command.
 
 For example, copy file foo from plzen1 to your home at brno2:
 
-ssh USERNAME@storage-plzen1.metacentrum.cz "scp foo storage-brno6.metacentrum.cz:~/../fsbrno2/home/USERNAME/"
+    ssh USERNAME@storage-plzen1.metacentrum.cz "scp foo storage-brno6.metacentrum.cz:~/../fsbrno2/home/USERNAME/"
 
 If you are already logged on a frontend, you can simplify the command to:
 
-ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
+    ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
 
 The scp-command examples shown above will run only until you either disconnect, or the validity of Kerberos ticket expires. For longer-lasting copy operations, it is a good idea to submit the scp command within a job. Prepare a trivial batch script called e.g. copy_files.sh
 
- #!/bin/sh
- #PBS -N copy_files
- #PBS -l select=1:ncpus=1:scratch_local=1gb
- #PBS -l walltime=15:00:00
+    #!/bin/sh
+    #PBS -N copy_files
+    #PBS -l select=1:ncpus=1:scratch_local=1gb
+    #PBS -l walltime=15:00:00
 
- ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
+    ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
 
 and submit it as qsub copy_files.sh.
-Data transfer between storages using rsync
+
+Data transfer between storages using **rsync**
 
 Another option how to pass data between storages is to use rsync command.
 
 For example, to move all your data from plzen1 to brno12-cerit:
 
-(BUSTER)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
+    (BUSTER)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
 
 To move only a selected directory:
 
-(BUSTER)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~/my_dir storage-brno12-cerit:~/my_dir_from_plzen1/"
+    (BUSTER)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~/my_dir storage-brno12-cerit:~/my_dir_from_plzen1/"
 
 You can wrap the rsync command into a job, too.
 
- #!/bin/sh
- #PBS -N copy_files
- #PBS -l select=1:ncpus=1:scratch_local=1gb
- #PBS -l walltime=15:00:00
+    #!/bin/sh
+    #PBS -N copy_files
+    #PBS -l select=1:ncpus=1:scratch_local=1gb
+    #PBS -l walltime=15:00:00
 
- ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
+    ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
 
 If you then look at the output of running job you can check how the data transfer proceeds.
 
-USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
+   USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
 
-
-
-
-### Direct access to storages
+### Direct ssh to storages
 
 Other ways to access /storage directly
-ssh protocol
+
+**ssh protocol**
 
 Selected programs serving for data manipulation directly at the NFSv4 storage server can be run through SSH. On the other hand these operations can easily overload NFSv4 server. If you plan massive file moves, contact us in advance, please.
 
@@ -236,12 +282,11 @@ Example
 
 List the content of home directory on remote machine by the following command:
 
-ssh USERNAME@storage-brno6.metacentrum.cz ls -l
+    ssh USERNAME@storage-brno6.metacentrum.cz ls -l
 
 Full path can be used as well:
 
-ssh USERNAME@storage-brno6.metacentrum.cz ls -l /home/USERNAME
-
+    ssh USERNAME@storage-brno6.metacentrum.cz ls -l /home/USERNAME
 
 ### Mount storage on local station
 
@@ -250,23 +295,24 @@ Mount storage on local station
 For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk. Follow the tutorial in [Mounting data storages on local station] to learn how to mount the storages locally. 
 
 
-### How to remove large data
+### Removal of large data
 
 !!! todo
-    tdy by to chtelo dat nejaky navod tem uzivatelum kteri potrebuji VYMAZAT neco velkeho; jak to maji udelat a pokud to nastroji ktere maji k dispozici nejde tak jak maji poznat situaci kdy se o to nemaji pokouset a napsat na provoz
+    tady by to chtelo dat nejaky navod tem uzivatelum kteri potrebuji VYMAZAT neco velkeho; jak to maji udelat a pokud to nastroji ktere maji k dispozici nejde tak jak maji poznat situaci kdy se o to nemaji pokouset a napsat na provoz
 
-## Quotas on storages
+## Backup and archiving
 
-## Data backup policies
+### Backup policies
 
 Sem zpracovat z wiki vse od [Data storage](https://wiki.metacentrum.cz/wiki/Working_with_data#Data_storage) do konce stranky.
 
 
-
+### Data archiving
 
 !!! todo
 
     Plus sem dat tez veci z [Politika zalohovani](https://wiki.metacentrum.cz/wiki/Politika_zalohovani)
+    a [Filesender](https://wiki.metacentrum.cz/wiki/Filesender)
 
 
 
