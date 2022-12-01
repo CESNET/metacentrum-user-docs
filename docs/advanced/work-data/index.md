@@ -9,7 +9,7 @@ When dealing with data in general, the most important criteria is the total volu
 
 As a rule of thumb,
 
-- Small data is up to **1 000 individual files** AND up to **100 GB** of total size.
+- Moderate data is up to **1 000 individual files** AND up to **100 GB** of total size.
 - Large data is more than any of that.
 
 ## Quotas on storages
@@ -201,56 +201,54 @@ There are many other options to customize the tar command. For the full descript
 
 ## Moderate data handling
 
-Moderate amount of data (hundreds of individual files and/or less that 100 GB) can be transferred to/from MetaCentrum machines in a straightforward way.
-
-The server you login to is one of the frontends.
-
-The path to locate your destination/source data is the same path you see when you ale logged in on a frontend.
+Moderate amount of data can be transferred to/from MetaCentrum machines in a straightforward way *via the frontend*.
 
 Example:
 
-    melounova@home_PC:~$ scp melounova@skirit.ics.muni.cz:/storage/brno2/home/melounova/foo . # copy file "foo" from "brno2" storage through frontend skirit to my local PC
+    user123@home_PC:~$ scp user123@skirit.ics.muni.cz:/storage/brno2/home/user123/foo . # copy file "foo" from brno2 storage through skirit to a local PC
+
+The overall scheme of "transferring data through frontend":
+
+![pic](/advanced/work-data/templ_002.png)
+
+!!! warning
+    As you can see from the picture, all the traffic has to be processes by a frontend (data are not stored on frontend, but they load its CPUs and RAM), although the frontend is neither the source nor target of the data.
 
 ## Large data handling
 
-When transferring large amount of data we ask users to avoid frontends. This is because transfer of large data can overload the frontend and cause slowdown, which is inconvenient to other users.
+When transferring large amount of data we ask users to avoid frontends. Large data should be transferred directly to/from  storages (NFS4 servers).
 
-For example, the command
+!!! warning 
+    Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
 
-    melounova@home_PC:~$ scp -r melounova@skirit.ics.muni.cz:/storage/brno2/home/melounova/dir-with-thousands-files .
+Example:
 
-does this:
+    user123@home_PC:~$ scp user123@storage-brno2.metacentrum.cz:~/foo . # copy file "foo" from brno2 storage directly to a local PC
 
-**picture here**Scp frontend.jpg
+The overall scheme can be depicted as below:
 
-The data are not stored on frontend, but they load its CPUs and RAM. Therefore for large data it is better to access the data storages (NFS4 servers) directly.
+![pic](/advanced/work-data/templ_003.png)
 
+<!-- potrebujeme tuhle tabulku??? See ~/test_direct_access_storages.sh
+--8<-- "storages-direct-ssh-table.md"
+-->
+
+<!-- a todle slozite vysvetlovani jeste plati?
 The direct-access-equivalent to the command above is
 
     melounova@home_PC:~$ scp -r melounova@storage-brno6.metacentrum.cz:~/../fsbrno2/home/melounova/dir-with-thousands-files . 
-
-and it can be visualised as:
-
-**picture here** Scp direct.jpg
 
 Why do I log in to brno6, if I want to access brno2?
 
 As hardware is changing, the user data are moved to new disk fields with new names. For convenience the old names, such as "brno2" are kept as symlinks, so that users don't need to revise all their scripts and aliases every time there is a change. When working from a frontend, everything remains the same no matter the changes in the background. For example, the brno2 still exists as a symlink, although the original brno2-hardware was replaced and the data now reside physically on brno6.
 
-Since the direct access avoids the frontend, you cannot use the symbolic links, but you need to use real server names and correct paths. Although they can be figured out from the directory tree, for convenience we collect in the following table a list of storages, list of server names and corresponding paths. 
-
-
-!!! todo
-    TABLE
-
-
-### Move data to/from a storage directly
+Since the direct access avoids the frontend, you cannot use the symbolic links, but you need to use real server names and correct paths. Although they can be figured out from the directory tree, for convenience we collect in the following table a list of storages, list of server names and corresponding paths.-->
 
 ### Move data between storages
 
-Data transfer between storages using **scp**
+**Using scp**
 
-If you want to move large amount of data between storages, the setup is similar as in the case when you copy data between your PC and a storage. The only difference is the you cannot access storages interactively (see Working with data) and therefore the scp command has to be passed as an argument to ssh command.
+If you want to move large amount of data between storages, the setup is similar as in the case when you copy data between your PC and a storage. The only difference is the you cannot access storages interactively and therefore the scp command has to be passed as an argument to `ssh` command.
 
 For example, copy file foo from plzen1 to your home at brno2:
 
@@ -260,20 +258,22 @@ If you are already logged on a frontend, you can simplify the command to:
 
     ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
 
-The scp-command examples shown above will run only until you either disconnect, or the validity of Kerberos ticket expires. For longer-lasting copy operations, it is a good idea to submit the scp command within a job. Prepare a trivial batch script called e.g. copy_files.sh
+The examples shown above will run only until you either disconnect, or the validity of Kerberos ticket expires. For longer-lasting copy operations, it is a good idea to submit the `scp` command within a job. Prepare a trivial batch script called e.g. `copy_files.sh`
 
-    #!/bin/sh
-    #PBS -N copy_files
-    #PBS -l select=1:ncpus=1:scratch_local=1gb
-    #PBS -l walltime=15:00:00
+````
+#!/bin/sh
+#PBS -N copy_files
+#PBS -l select=1:ncpus=1:scratch_local=1gb
+#PBS -l walltime=15:00:00
 
-    ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
+ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
+````
 
-and submit it as qsub copy_files.sh.
+and submit it as `qsub copy_files.sh`.
 
-Data transfer between storages using **rsync**
+**Using rsync**
 
-Another option how to pass data between storages is to use rsync command.
+Another option how to pass data between storages is to use `rsync` command.
 
 For example, to move all your data from plzen1 to brno12-cerit:
 
@@ -283,24 +283,32 @@ To move only a selected directory:
 
     (BUSTER)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~/my_dir storage-brno12-cerit:~/my_dir_from_plzen1/"
 
-You can wrap the rsync command into a job, too.
+You can wrap the `rsync` command into a job, too.
 
-    #!/bin/sh
-    #PBS -N copy_files
-    #PBS -l select=1:ncpus=1:scratch_local=1gb
-    #PBS -l walltime=15:00:00
+````
+#!/bin/sh
+#PBS -N copy_files
+#PBS -l select=1:ncpus=1:scratch_local=1gb
+#PBS -l walltime=15:00:00
 
-    ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
+ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
+````
 
 If you then look at the output of running job you can check how the data transfer proceeds.
 
-   USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
+    USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
 
-### Direct ssh to storages
+### Removal of large data
+
+!!! todo
+    tady by to chtelo dat nejaky navod tem uzivatelum kteri potrebuji VYMAZAT neco velkeho; jak to maji udelat a pokud to nastroji ktere maji k dispozici nejde tak jak maji poznat situaci kdy se o to nemaji pokouset a napsat na provoz
+
+
+## Direct access to storages
 
 Other ways to access /storage directly
 
-**ssh protocol**
+### ssh protocol
 
 Selected programs serving for data manipulation directly at the NFSv4 storage server can be run through SSH. On the other hand these operations can easily overload NFSv4 server. If you plan massive file moves, contact us in advance, please.
 
@@ -343,11 +351,6 @@ Mount storage on local station
 
 For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk. Follow the tutorial in [Mounting data storages on local station] to learn how to mount the storages locally. 
 
-
-### Removal of large data
-
-!!! todo
-    tady by to chtelo dat nejaky navod tem uzivatelum kteri potrebuji VYMAZAT neco velkeho; jak to maji udelat a pokud to nastroji ktere maji k dispozici nejde tak jak maji poznat situaci kdy se o to nemaji pokouset a napsat na provoz
 
 ## Backup and archiving
 
