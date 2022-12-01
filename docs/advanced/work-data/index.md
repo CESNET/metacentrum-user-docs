@@ -113,94 +113,91 @@ If you redirect to `/dev/null`, the data will be dumped and there is no way to g
 
 The above mentioned causes are the most common ones. Your filesystem quota can be exceeded also in other ways. If you are not sure what caused the problem and how to prevent the situation to happen again, feel free to [contact us](/contact).
 
-
 ## Data manipulation commands
 
-**scp**
+### `scp`
 
-scp works in pretty much the same way as normal cp command, only it allows you to copy files between different machines.
+scp works in pretty much the same way as normal `cp`, only it allows you to copy files between different machines.
 
-    marenka@home_PC:~$ scp my_file.txt jenicek@skirit.metacentrum.cz: # copy file "my_file.txt" to a home folder of user "jenicek" on a frontend "skirit.metacentrum.cz"
-    marenka@home_PC:~$ scp -r my_dir jenicek@skirit.metacentrum.cz: # as above; copy directory "my_dir" together with all subdirectories
-    marenka@home_PC:~$ scp -r jenicek@skirit.metacentrum.cz:~/results . # from jenicek's home on skirit, copy to marenka's local PC folder "results" 
-    marenka@home_PC:~$ scp -r jenicek@storage-brno6.metacentrum.cz:~/../fsbrno2/home/jenicek/results . # copy jenicek's folder "results" directly from /storage/brno2 (see section below for explanation of the path and server address)
+    user123@home_PC:~$ scp -r my_dir user123@skirit.metacentrum.cz: # copy directory "my_dir" from user's PC to a home directory on skirit
+    user123@home_PC:~$ scp -r user123@skirit.metacentrum.cz:~/results . # from user123's home on skirit, copy to user123's PC folder "results" 
 
-**wget**
+### `wget`
 
-Alternative way to download data is a wget command. wget will work only if the file is available via ftp or http(s) network protocols, typically when it is a downloadable file on some server. wget is faster and less safe than scp, so it may be a method of choice if you need to download larger amount of data from Internet where privacy is not an issue.
+Alternative way to download data is a `wget` command. `wget` will work only if the **file is available via ftp or http(s) protocols**, typically when it is a downloadable file on some server. `wget` is faster and less safe than `scp`, so it may be a method of choice if you need to download larger amount of data from a server where privacy is not an issue.
 
-    ssh jenicek@skirit.metacentrum.cz # login to a frontend; replace "jenicek" by your real username
-    jenicek@skirit.metacentrum.cz:~$ mkdir data; cd data # create and enter directory "data" where the data will be downloaded to
-    jenicek@skirit.metacentrum.cz:~/data$ wget https://www.someServer.org/someData.zip # download file "someData.zip" from a server (= webpage) "https://www.someServer.org"
+    ssh user123@skirit.metacentrum.cz # login to a frontend
+    user123@skirit.metacentrum.cz:~$ mkdir data && cd data 
+    user123@skirit.metacentrum.cz:~/data$ wget https://www.someServer.org/someData.zip # download file someData.zip from server https://www.someServer.org
 
-By wget you can only transfer data to Metacentrum machines. wget is of no use if you want to transfer from Metacentrum.
+Using `wget` you can only transfer data **to** Metacentrum machines.
 
-**sftp**
+`wget` is of no use if you want to transfer **from** Metacentrum.
 
-sftp is just another protocol for transferring data. Contrary to scp it is interactive, slower and apart from copying it also enables the user to manipulate files and directories on the remote side. We recommend to use scp if you need only to copy the data.
+### `sftp`
 
-Windows users need an SFTP client, we recommend the WinSCP application. Keep in mind you have to fill in as target chosen NFS4 server instead of frontend in Step 1. Make sure you have selected SFTP file protocol, too.
+sftp is just another protocol for data transfer. Contrary to `scp` it is **interactive** and apart from copying it also enables the user to manipulate files and directories on the remote side. We recommend to use `scp` if you need only to copy the data.
 
-Linux users just open a terminal and use sftp command as shown below. More about sftp command can be found in this external link.
+!!! warning "Windows alert"
+    Windows users need an SFTP client, we recommend the WinSCP application. Keep in mind you have to fill in as target chosen NFS4 server instead of frontend in Step 1. Make sure you have selected SFTP file protocol, too.
 
-    sftp 'META username'@target_NFS4_server # Login
-    help # Shows available commands
-    get target_file # Downloads target file to your local system
-    get -r target_directory # Downloads target directory to your local system
-    put target_file # Uploads target file to server
-    put -r target_directory # Uploads target directory to server
+1.    `sftp user123@target_NFS4_server` # Login
+2.    `help` List available commands
+3.    `get target_file` Download target file to your local system
+4.    `get -r target_directory` Download target directory to your local system
+5.    `put target_file` Upload target file to server
+6.    `put -r target_directory` Upload target directory to server
 
-There is a bug affecting Ubuntu 14.04+ concerning the recursive copy command: put -r . If put -r fails, create the target directory on the server first to work around this issue.
+!!! bug
+    There is a bug affecting Ubuntu 14.04+ concerning the recursive copy command. If `put -r` fails, create the target directory on the server first to work around this issue.
 
-**picture here SFTP1.png**
+![pic](/advanced/work-data/SFTP1.png)
 
-**rsync**
+### `rsync`
 
-The rsync command is a more advanced and versatile copying tool. It enables the user to synchronize the content of two directories in a more efficient way than scp, because rsync copies only the differences between the directories. Therefore it is often used as a tool for regular backups.
+The `rsync` command is a more advanced and versatile copying tool. It enables the user to synchronize the content of two directories in a more efficient way than scp, because `rsync` copies only the differences between the directories. Therefore it is often used as a tool for regular backups.
+
+**Examples**
 
 Copy directory data to archive:
 
-    $ rsync -zvh /storage/brno2/home/melounova/data /storage/du-cesnet/home/melounova/VO_metacentrum-tape_tape
+    $ rsync -zvh /storage/brno2/home/user123/data /storage/du-cesnet/home/user123/VO_metacentrum-tape_tape
 
 Copy only the content of directory data to archive:
 
-    $ rsync -zvh /storage/brno2/home/melounova/data/ /storage/du-cesnet/home/melounova/VO_metacentrum-tape_tape
+    $ rsync -zvh /storage/brno2/home/user123/data/ /storage/du-cesnet/home/user123/VO_metacentrum-tape_tape
 
-**tar**
+### `tar`
 
-tar command
+`tar` (tape archiver) command enables to pack files and directories into one archive file. `tar` by itself does not compress the size of the files, and the resulting volume of the packed archive is roughly the same as the sum of the volumes of individual files.
 
-The tar (tape archiver) is a Linux command to pack files and directories into one file, a packed archive. tar by itself does not compress the size of the files, and the resulting volume of the packed archive is (roughly) the same as the sum of the volumes of individual files. Tar can cooperate with commands for file compression like gzip.
+`tar` is often used together with commands for file compression like `gzip`.
 
-In all examples, the option v in tar command options means "verbose", giving a more detailed output about how the archiving progresses.
+**Examples**
 
-    In /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive, create (tar c) uncompressed archive of the directory named (tar f) ~/my-archive and its content:
+In `/storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive`, create uncompressed archive of the directory `~/my-archive`:
 
     tar cvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz ~/my-archive
 
-    In /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive, create archive of the directory named ~/my-archive and compress it by gzip command (tar z):
+In `/storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive`, create archive of the directory `~/my-archive` and compress it by `gzip` command:
 
     tar czvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz ~/my-archive
 
-    List (tar t) the content of the existing archive:
+List the content of the existing archive:
 
     tar tzf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz
 
-    Unpack the WHOLE archive my-archive.tgz residing in storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/ into current directory:
+Unpack the *whole* archive `my-archive.tgz` residing in `storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/` into current directory:
 
     tar xzvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz
 
-    Unpack PART of the archive:
+Unpack *part* of the archive:
 
     tar tzf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz # list the content of the archive
     # unpack only file PATH1/file1 and directory PATH2/dir2 into the current directory
     tar xzvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz "PATH1/file1" "PATH2/dir2"
 
 There are many other options to customize the tar command. For the full description, read manual pages (man tar). 
-
-
-**gzip**
-
 
 ## Moderate data handling
 
