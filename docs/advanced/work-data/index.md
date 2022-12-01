@@ -35,6 +35,9 @@ or wrap the command into a batch job to avoid waiting for the command to end:
 
 If you produce **insanely large** amount of files that need to be removed, contact our User support.
 
+!!! todo
+    Existuje nejaky priklad manipulace s daty, kdy jsou tak velka, ze to nema mazat uzivatel ani v ramci batch jobu? (Nejake extremne rekurzivni vytvareni zanorenych adresaru apod...)
+
 #### Pack small files into large chunks
 
 If the data is not junk, pack them them into larger chunks using the `tar` command either from a command line or from within a batch job:
@@ -56,11 +59,60 @@ Archiving data from finished projects also helps to avoid problems with storage 
 
 This is an intermediate solution. The storages quotas are separate, so you can temporarily dump some data to different storage where you have more free space.
 
-## Quota on /tmp directory
+## Root filesystem quota
 
-Zde popsat postup a rozdil mezi kvotami v /tmp diru a kvotami v homech
+Apart of quota set on storage, there is a **separate quota for user's data outside the home directory**.
 
-V zasade tentyz navod co jim chodi mailem
+This applies to situations when **one of user's processes writes to /tmp directory** and (on computational node) when **the user's job produces large standard output (.OU) or error (.ER) files in /var/spool directory**.
+
+![pic](/advanced/work-data/pic_001.png)
+
+!!! warning
+    The root filesystem quota is relatively small. If it is exceeded, an email is sent to the user with instructions what to do. Until the data are deleted, no further calculations will be run on the computational node.
+
+**How to remove the files**
+
+1. Login onto the affected machine.
+
+    `ssh user123@halmir18.metacentrum.cz`
+
+2. List the files in your filesystem quota using the `check-local-quota` tool.
+
+    `check-local-quota`
+
+3. Inspect the files; if they contain valuable data, copy them to your home directory. After that remove them.
+4. Check local quota again; there should be no files left.
+
+**How to prevent the situation**
+
+*Redirect TMPDIR to SCRATCHDIR*
+
+A common variable name for a directory where temporary files shall be kept is `TMPDIR`.
+
+Some software uses a `/tmp` directory as a default for temporary files. Try adding 
+
+    export TMPDIR=$SCRATCHDIR
+
+to the beginning of your batch script. This will force the application to place the temporary files into scratch directory instead.
+
+*Dump/redirect large outputs*
+
+If the problem was caused by large `.OU` or `.ER` files, either redirect them to `/dev/null` directory
+
+    ./your_application ... > /dev/null # redirect .OU to /dev/null
+    ./your_application ... 2> /dev/null # redirect .ER to /dev/null
+    ./your_application ... > /dev/null 2>&1 # redirect both .OU and .ER to /dev/null
+
+or redirect them to a file in your scratch directory
+
+    ./your_application ... > standard_output.txt # redirect .OU to standard_output.txt
+    ./your_application ... 2> error_output.txt # redirect .ER to error_output.txt
+    ./your_application ... > std_err_output.txt 2>&1 # redirect both .OU and .ER to std_err_output.txt
+
+If you redirect to `/dev/null`, the data will be dumped and there is no way to get them back later. The second way will make possible to inspect the files after your calculation is done.
+
+The above mentioned causes are the most common ones. Your filesystem quota can be exceeded also in other ways. If you are not sure what caused the problem and how to prevent the situation to happen again, feel free to [contact us](/contact).
+
 
 ## Data manipulation commands
 
