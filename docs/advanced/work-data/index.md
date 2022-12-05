@@ -298,25 +298,22 @@ If you then look at the output of running job you can check how the data transfe
 
     USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
 
-### Removal of large data
-
-!!! todo
-    tady by to chtelo dat nejaky navod tem uzivatelum kteri potrebuji VYMAZAT neco velkeho; jak to maji udelat a pokud to nastroji ktere maji k dispozici nejde tak jak maji poznat situaci kdy se o to nemaji pokouset a napsat na provoz
-
-
 ## Direct access to storages
-
-Other ways to access /storage directly
 
 ### ssh protocol
 
-Selected programs serving for data manipulation directly at the NFSv4 storage server can be run through SSH. On the other hand these operations can easily overload NFSv4 server. If you plan massive file moves, contact us in advance, please.
+Selected commands for data manipulation directly at the storage server can be run through `ssh`. On the other hand these operations can easily overload NFSv4 server.
 
-Notes
+!!! warning
+    If you plan massive file moves directly accessing the storages, contact us in advance.
 
-    Apart from the cerit NFS4 servers, there is no shell available on storage servers, so typing simply ssh user@NFS4.storage.cz will not work (you can log in, but you will be immediately logged out). Instead, use the construction ssh user@NFS4.storage.cz command.
+!!! warning
     It is not possible to run programs at storage volume. No computation should be run at the NFSv4 server.
-    When copying files with dd set block size (bs parameter) to at least 1 M (comparing with default 512 byte). Operations will be faster.
+
+!!! tip
+    When copying files with `dd` set block size (bs parameter) to at least 1 M. Operations will be faster.
+
+Apart from the **cerit storages** (= storages with "cerit" in the name of the server), there is **no shell** available on storage servers, so `ssh user123@storage_name.metacentrum.cz` will not work. (You *will* log in, but you will be immediately logged out.) Instead, use the construction like `ssh user123@storage_name.metacentrum.cz command`.
 
 On storage servers, only the following commands are available:
 
@@ -335,13 +332,13 @@ On storage servers, only the following commands are available:
     /usr/bin/gzip,
     /usr/bin/gunzip
 
-Example
+**Example**
 
-List the content of home directory on remote machine by the following command:
+List the content of home directory on remote machine:
 
-    ssh USERNAME@storage-brno6.metacentrum.cz ls -l
+    ssh USERNAME@storage-brno6.metacentrum.cz ls -l 
 
-Full path can be used as well:
+or
 
     ssh USERNAME@storage-brno6.metacentrum.cz ls -l /home/USERNAME
 
