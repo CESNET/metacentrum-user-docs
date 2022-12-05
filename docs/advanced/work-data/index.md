@@ -348,9 +348,7 @@ For more advanced users, there is also the possibility to mount the data storage
 
 For more detail, follow the tutorial on [how to mount storages on local station](/advanced/mount-storages).
 
-## Backup and archiving
-
-### Backup 
+## Data backup 
 
 There are three data storages types offered by MetaCentrum **with respect to backup policy**:
 
@@ -380,18 +378,71 @@ Disk arrays with hierarchical storage have a more robust backup policy and shoul
 
 Use hierarchical storages for storing data which you do not currently use, but which are important and not easily reproducible in the future. 
 
-### Data archiving
+## Data archiving
 
-Sem zpracovat z wiki vse od [Data storage](https://wiki.metacentrum.cz/wiki/Working_with_data#Data_storage) do konce stranky.
+!!! info "Data archiving and backup is service of MetaCentrum grid computing"
+    Central to MetaCentrum grid computing service is computing, not storage of data. Although the data on user homes are backed up to a certain level, not all risks are covered. MetaCentrum grid storages are unsuitable for archiving the data. For serious back-up and archiving of data use [Cesnet data storage service](https://du.cesnet.cz/en/start). Information in this section is a rough overview of data services provided by Cesnet data storage service. In case of problems/questions, we recommend to [contact them](https://du.cesnet.cz/en/o_nas/start ) Cesnet storage department homepage or contact support@cesnet.cz (see Cesnet storage department FAQs).
+
+Since the data in "normal" home directories are backed-up only in a form of snapshots, they are not protected against loss due to hardware failure. The data of permanent value which would be hard to recreate should be backed-up on dedicated servers with hierarchical storage policy.
+
+**Current archive servers**
+
+| Server name | Mounted at | Note |
+|-------------|------------|-------|
+| storage-du-cesnet.metacentrum.cz | /storage/du-cesnet/ | for all Metacentrum users
+| storage-?????????????????.metacentrum.cz | /storage/brno4-cerit-hsm/ |                            |
+| storage-?????????????????.metacentrum.cz | /storage/ostrava2-archive/ |                            |
+| storage-brno10-ceitec-hsm.metacentrum.cz | /storage/brno10-ceitec-hsm/ | for NCBR/CEITEC users only |
 
 !!! todo
+    Obsah tabulky jak je na wiki neni aktualni, Dopartrat se u provozu/nekde ktera uloziste se jak jmenuji.
 
+The users are free to access any server in the table above directly, however we recommend to use directory:
+
+- `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape-archive/` for archiving, or
+- `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape/` for backup service.
+
+!!! warning
+    Never leave data directly in the home, i.e. in` /storage/du-cesnet/home/META_username/`. The home directory should serve only to keep SSH keys, making links to directories with the actual data and other configuration files. To enforce this, there is tiny quota set on home directory (see further [info on Cesnet data storage service pages](https://du.cesnet.cz/en/navody/home-migrace-plzen/start)).
+
+**`tape_tape_archive` vs `tape_tape` : differences**
+
+Permanent data archives are normally limited in size (typically results of some research, not raw data) and the user wants to keep then "forever". Therefore the `VO_metacentrum-tape_tape-archive` has user quota set for volume of data and/or number of files. On the other hand the data are not removed after a time (they do not "expire"). Use this link if you want to stash away data of permanent value.
+
+Backed-up data serve to protect from data loss in case the primary data are lost. Typically these data need not to be kept for a very long time. Therefore in `VO_metacentrum-tape_tape` the files older than 12 months are automatically removed (they are considered as "expired"). Use this link if you want to protect your current data e.g. from HW failure of the server where the primary data are stored.
+
+**A few notes:**
+
+- Actual usage of storages are on [PBSmon](http://metavo.metacentrum.cz/pbsmon2/nodes/physical), search for "Hierarchical storages"
+- The documentation of the directory structure in HSM servers can be found on [Cesnet data storage service page](https://du.cesnet.cz/wiki/doku.php/en/navody/home-migrace-plzen/start)
+- The complete [storage facility documentation](https://du.cesnet.cz/wiki/doku.php/en/navody/start)
+- On the HSM storages the user quota is not applied. Only a technical limitation of 5TB, involving an overloading of the HSM with a one-time data copy, is applied.
+
+**Transfering the files to/from the archive**
+
+!!! note "low in number, high in speed"
+    In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
+
+- if most of your files are large (hundreds of MBs, GBs, ...), don't bother with packing them and make a one-to-one copy to the archive,
+- if your files are smaller and you don't plan to search individual files, pack them into tar or zip files,
+- from the technical point of view, optimal "chunk" of packed data is 500 MB or bigger,
+- don't use front-end servers for anything else than moving several small files! Submit a regular job and/or take an interactive job instead to handle with the archival data
+- keep in mind that the master HOME directory of each HSM storage is dedicated just for initialization scripts, and thus has a limited quota of just 50 MB.
+
+
+
+
+
+<!--
+!!! todo
     Plus sem dat tez veci z [Politika zalohovani](https://wiki.metacentrum.cz/wiki/Politika_zalohovani)
-
+-->
 
 ## Send large data outside MetaCentrum
 
 [Filesender](https://wiki.metacentrum.cz/wiki/Filesender)
+
+Potom priclenit k Large data handling
 
 
 
