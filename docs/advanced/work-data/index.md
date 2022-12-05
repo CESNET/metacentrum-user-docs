@@ -348,20 +348,50 @@ For more advanced users, there is also the possibility to mount the data storage
 
 For more detail, follow the tutorial on [how to mount storages on local station](/advanced/mount-storages).
 
-
 ## Backup and archiving
 
-### Backup policies
+### Backup 
 
-Sem zpracovat z wiki vse od [Data storage](https://wiki.metacentrum.cz/wiki/Working_with_data#Data_storage) do konce stranky.
+There are three data storages types offered by MetaCentrum **with respect to backup policy**:
 
+| Storage type 	 | Basic description | Typical usecase| 
+|----------------|-------------------|----------------|
+| Scratch storages | Fast storages with minimum data capacity | Storing data during computations |
+| Disk arrays | Common `/storage` volumes, user homes | Storing data between computations |
+| Hierarchical storages | Storages with massive data capacity | Data archiving |
+
+
+!!! warning "Homes are not robustly backed up"
+    Keep in mind that the **data in your home directory** are backed up only in a form of **daily snapshots** stored **on the same disk** array, and thus are prone to loss in case of hardware failure or accident. For data of permanent value consider keeping your own copy or using hierarchical storages (see below).
+
+### Scratch storages
+
+Scratch storages are accessible via scratch directory on computational nodes. Use this storages during computations only. This means the batch script should clean up the scratch after the job is done or, if the data are left in scratch, it should be done manually (as is the case when the job fails or is killed). Data on scratch storages are automatically deleted after 14 days.
+
+### Disk arrays
+
+Disk arrays are several connected hard drives and are accessible via `/storage` directories. Files are stored on multiple drives, which guarantees higher I/O data speed and reliability. Use disk arrays for preparing data and storing data between jobs.
+
+Disk arrays have a backup policy of saving snapshots (once a day, usually at night/early morning) of user's data. The snapshots are kept at least 14 days backwards. This offers some protection in case user unintentionally deletes some of their files. Generally, data that existed the day before the accident can be recovered. The snapshots are stored, however, on the same disk arrays as the data, so in case of e.g. hardware failure of the disks these backups will be lost. Therefore we recommend strongly to backup any important data elsewhere. For archiving purposes MetaCentrum offers dedicated storage servers.
+
+### Disk arrays with hierarchical storage
+
+Disk arrays with hierarchical storage have a more robust backup policy and should be used primarily for archiving purposes. To increase redundancy of data, they contain several layers of storage media. The first layer is a disk array, lower layers are made of MAIDs (Massive Array of Idle Drives) or magnetic tape libraries. Lower layers have bigger capacity but slower access times. Data are moved automatically among these layers based on their last usage. The most important consequence from the user's point of view is that the access to long-unused data may be slower than to the recently-used ones.
+
+Use hierarchical storages for storing data which you do not currently use, but which are important and not easily reproducible in the future. 
 
 ### Data archiving
+
+Sem zpracovat z wiki vse od [Data storage](https://wiki.metacentrum.cz/wiki/Working_with_data#Data_storage) do konce stranky.
 
 !!! todo
 
     Plus sem dat tez veci z [Politika zalohovani](https://wiki.metacentrum.cz/wiki/Politika_zalohovani)
-    a [Filesender](https://wiki.metacentrum.cz/wiki/Filesender)
+
+
+## Send large data outside MetaCentrum
+
+[Filesender](https://wiki.metacentrum.cz/wiki/Filesender)
 
 
 
