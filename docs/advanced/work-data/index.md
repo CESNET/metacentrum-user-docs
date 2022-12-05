@@ -344,9 +344,9 @@ or
 
 ### Mount storage on local station
 
-Mount storage on local station
+For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk.
 
-For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk. Follow the tutorial in [Mounting data storages on local station] to learn how to mount the storages locally. 
+For more detail, follow the tutorial on [how to mount storages on local station](/advanced/mount-storages).
 
 
 ## Backup and archiving

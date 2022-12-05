@@ -44,6 +44,7 @@ nav:
     - advanced/job-tracking/index.md
     - advanced/grid-infrastruct/index.md
     - advanced/work-data/index.md
+    - advanced/mount-storages/index.md
     - advanced/kerberos/index.md
     #- advanced/modules/index.md
     #- advanced/run-graphical/index.md
