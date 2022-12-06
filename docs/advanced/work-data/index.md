@@ -302,7 +302,7 @@ If you then look at the output of running job you can check how the data transfe
 
 In case you need to pass large amount of data to someone without Metacentrum access, we recommend to use Cesnet Filesender upload. On this page we describe the CLI version, which can be used directly from Metacentrum frontends.
 
-#### Get filesender configuration file
+#### Get Filesender config file
 
 If you use filesender for the first time, you have to get the configuration file first. If you already have a configuration file, skip this step and go directly to the next chapter.
 
@@ -326,7 +326,7 @@ Then,
 
 The configuration file is a normal text file. Nothing needs to be modified or added to this file, just save it somewhere on your frontend.
 
-#### Upload files to Cesnet Filesender
+#### Upload files to Filesender
 
 To make filesender run, add it as a module:
 
@@ -340,7 +340,7 @@ Then you can upload the file:
 
     filesender.py -s "Subject" -r recipient_1@example.org    file.tar.gz     # upload file.tar.gz
 
-#### Download files from Cesnet Filesender on MetaCentrum storages
+#### Download files from Filesender
 
 Once you have received an email with a notification that some file has been uploaded to Filesender.Cesnet.cz and you have been granted permission to download its contents, click on the Download link.
 
@@ -447,13 +447,11 @@ Since the data in "normal" home directories are backed-up only in a form of snap
 
 | Server name | Mounted at | Note |
 |-------------|------------|-------|
-| storage-du-cesnet.metacentrum.cz | /storage/du-cesnet/ | for all Metacentrum users
-| storage-?????????????????.metacentrum.cz | /storage/brno4-cerit-hsm/ |                            |
-| storage-?????????????????.metacentrum.cz | /storage/ostrava2-archive/ |                            |
-| storage-brno10-ceitec-hsm.metacentrum.cz | /storage/brno10-ceitec-hsm/ | for NCBR/CEITEC users only |
+| storage-du-cesnet.metacentrum.cz | /storage/du-cesnet/ | primary for all Metacentrum users |
+| storage-?????????????????.metacentrum.cz | /storage/?????????????????/ | for NCBR/CEITEC users only |
 
 !!! todo
-    Obsah tabulky jak je na wiki neni aktualni, Dopartrat se u provozu/nekde ktera uloziste se jak jmenuji.
+    Dopatrat se jmena a mountpointu uloziste pro CEITECovske uzivatele
 
 The users are free to access any server in the table above directly, however we recommend to use directory:
 
@@ -478,7 +476,7 @@ Backed-up data serve to protect from data loss in case the primary data are lost
 
 **Transfering the files to/from the archive**
 
-!!! note "low in number, high in speed"
+!!! note 
     In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
 
 - if most of your files are large (hundreds of MBs, GBs, ...), don't bother with packing them and make a one-to-one copy to the archive,
