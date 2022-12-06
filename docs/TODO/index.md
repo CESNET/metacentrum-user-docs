@@ -6,6 +6,7 @@
 - kontakt na US a instrukce jak řešit problémy (troubleshooting, FAQy atd.)
 - základní návod ke spuštění NEgrafických jobů (aka Beginners guide)
 - část Advanced návodů zejména týkající se práce s daty, infrastruktury MetaCentra, PBS, bezpečnosti a přístupů
+- uspořádat obrázky v adresářích - udělat jednotný systém
 
 
 **Co NEbude do Vánoc**

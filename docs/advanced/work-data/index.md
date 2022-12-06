@@ -448,10 +448,7 @@ Since the data in "normal" home directories are backed-up only in a form of snap
 | Server name | Mounted at | Note |
 |-------------|------------|-------|
 | storage-du-cesnet.metacentrum.cz | /storage/du-cesnet/ | primary for all Metacentrum users |
-| storage-?????????????????.metacentrum.cz | /storage/?????????????????/ | for NCBR/CEITEC users only |
-
-!!! todo
-    Dopatrat se jmena a mountpointu uloziste pro CEITECovske uzivatele
+| storage-brno14.ceitec.metacentrum.cz | /storage/brno14-ceitec/ | for NCBR/CEITEC users only |
 
 The users are free to access any server in the table above directly, however we recommend to use directory:
 
