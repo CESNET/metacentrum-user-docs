@@ -127,8 +127,11 @@ The latter queues are **execution** ones, i.e. they serve to actually run the jo
 
 In PBSmon, the [list of queues for all planners can be found](https://metavo.metacentrum.cz/pbsmon2/queues/list).
 
-![pic](/assets/pbsmon_screenshots/queues_top.png)
-![pic](/assets/pbsmon_screenshots/queues_bottom.png)
+![Queues list (top)](queues_top.png)
+
+. . .
+
+![Queues list (bottom)](queues_bottom.png)
 
 !!! todo
     tyto obrazky k sobe slepit a vysvetlit znacky routing, execution, soukroma.
