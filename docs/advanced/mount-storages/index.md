@@ -40,7 +40,7 @@ You can, of course, choose arbitrary name and placing for the mounting points - 
 
 If your PC does not have Kerberos system support, you need to install it first. On Ubuntu use e.g. `apt search` command to check the package.
 
-    melounova@melounova-ThinkCentre-E93:~$ sudo apt search krb5-config
+    user_123@user_123-ThinkCentre-E93:~$ sudo apt search krb5-config
     Sorting... Done
     Full Text Search... Done
     krb5-config/bionic,bionic,now 2.6 all [installed,automatic]
@@ -152,7 +152,7 @@ For storages you wish to mount locally, add the following lines to the `/etc/fst
 
 The target in `/etc/fstab` must be a real directory, not a symlink. By using `ls -l` you can find where the symbolic links lead to. In case of brno2 this means brno6. For example:
 
-    (STRETCH)melounova@skirit:~$ ls -l /storage/
+    (STRETCH)user_123@skirit:~$ ls -l /storage/
     lrwxrwxrwx 1 root root 24 Oct 21  2019 brno2 -> /auto/brno6/home/fsbrno2
     ...
     lrwxrwxrwx 1 root root 11 Sep 17  2018 brno6 -> /auto/brno6
@@ -210,20 +210,20 @@ Now the Metacentrum NFSv4 volumes should be mounted to mount points specified in
 
 File `/etc/idmapd.conf` sets mapping of NFSv4 identities to local users (NFSv4 works with text principals of kerberos, POSIX interface of file system works with numeral representation of users and groups).
 
-Simple settings `/etc/idmapd.conf` consist on setting of configuration line: `Domain = META`. The users from domain @META will be map throught files `/etc/passwd` and `/etc/group`. So it means that for identity `xhejtman@META` must exist record in `/etc/passwd` with name xhejtman. Ordinary tools (`ls -l`) will show the names properly if the name in given files will be exist for their principal. For nonexisting name will be user mapping choosen as nobody and nogroup.
+Simple settings `/etc/idmapd.conf` consist on setting of configuration line: `Domain = META`. The users from domain @META will be map throught files `/etc/passwd` and `/etc/group`. So it means that for identity `user_123@META` must exist record in `/etc/passwd` with name user\_123. Ordinary tools (`ls -l`) will show the names properly if the name in given files will be exist for their principal. For nonexisting name will be user mapping choosen as nobody and nogroup.
 
 Example:
 
-    grep xhejtman /etc/passwd
-    xhejtman:x:1000:1000:Lukas Hejtmanek,,,:/home/xhejtman:/bin/bash
+    grep user_123 /etc/passwd
+    user_123:x:1000:1000:User 123       ,,,:/home/user_123:/bin/bash
     ls -l /mnt/nfs/software
     total 0
     drwxr-xr-x 4 nobody   nogroup   51 2008-06-12 12:49 etics
     -rw-r--r-- 1 nobody   nogroup    0 2008-06-06 14:26 hu
-    drwxr-xr-x 6 xhejtman soft-nfs4 54 2008-06-12 14:45 libnfsidmap
-    drwxr-xr-x 5 xhejtman soft-nfs4 40 2008-06-11 13:12 nsswitch
+    drwxr-xr-x 6 user_123 soft-nfs4 54 2008-06-12 14:45 libnfsidmap
+    drwxr-xr-x 5 user_123 soft-nfs4 40 2008-06-11 13:12 nsswitch
 
-Particular record for user xhejtman@META exists in `/etc/passwd` and record for group soft-nfs4@META also exists in `/etc/group`, so mapping runs properly and it is also properly shown. There is no record for users who own directory etics that is why it's shown as `nobody:nogroup`.
+Particular record for user user\_123@META exists in `/etc/passwd` and record for group soft-nfs4@META also exists in `/etc/group`, so mapping runs properly and it is also properly shown. There is no record for users who own directory etics that is why it's shown as `nobody:nogroup`.
 
 ### Accessing user data on NFS4 storage
 
@@ -243,7 +243,7 @@ With such a ticket you should be able to access login's data, however, it has li
 
 ### Kerberos identity
 
-Users using one identity should be satisfied with standart NFS tools in their Linux distribution. If you want to use more identities at one time like xhejtman@META, xhejtman@ADMIN.META and xhejtman@ICS.MUNI.CZ it's necessary to use patched rpc.gssd program. Patched program is in NFS utils version 1.1.3. Patching older version is not easy, best way is to contact us and we make patched package for you.
+Users using one identity should be satisfied with standart NFS tools in their Linux distribution. If you want to use more identities at one time like user\_123@META, user\_123@ADMIN.META and user\_123@ICS.MUNI.CZ it's necessary to use patched rpc.gssd program. Patched program is in NFS utils version 1.1.3. Patching older version is not easy, best way is to contact us and we make patched package for you.
 
 ### Kerberos tickets
 
