@@ -209,7 +209,7 @@ Example:
 
 The overall scheme of "transferring data through frontend":
 
-![pic](/advanced/work-data/templ_002.png)
+![pic](/advanced/work-data/cp-data-through-frontend.jpg)
 
 !!! warning
     As you can see from the picture, all the traffic has to be processes by a frontend (data are not stored on frontend, but they load its CPUs and RAM), although the frontend is neither the source nor target of the data.
