@@ -65,7 +65,7 @@ Apart of quota set on storage, there is a **separate quota for user's data outsi
 
 This applies to situations when **one of user's processes writes to /tmp directory** and (on computational node) when **the user's job produces large standard output (.OU) or error (.ER) files in /var/spool directory**.
 
-![pic](/advanced/work-data/pic_001.png)
+![Data quotas overview](/advanced/work-data/data-quotas-scheme.jpg)
 
 !!! warning
     The root filesystem quota is relatively small. If it is exceeded, an email is sent to the user with instructions what to do. Until the data are deleted, no further calculations will be run on the computational node.
@@ -151,7 +151,7 @@ sftp is just another protocol for data transfer. Contrary to `scp` it is **inter
 !!! bug
     There is a bug affecting Ubuntu 14.04+ concerning the recursive copy command. If `put -r` fails, create the target directory on the server first to work around this issue.
 
-![pic](/advanced/work-data/SFTP1.png)
+![SFTP screenshot bug](/advanced/work-data/sftp-bug.png)
 
 ### `rsync`
 
@@ -209,7 +209,7 @@ Example:
 
 The overall scheme of "transferring data through frontend":
 
-![pic](/advanced/work-data/cp-data-through-frontend.jpg)
+![Copy data to storage through frontend](/advanced/work-data/cp-data-through-frontend.jpg)
 
 !!! warning
     As you can see from the picture, all the traffic has to be processes by a frontend (data are not stored on frontend, but they load its CPUs and RAM), although the frontend is neither the source nor target of the data.
@@ -227,7 +227,7 @@ Example:
 
 The overall scheme can be depicted as below:
 
-![pic](/advanced/work-data/templ_003.png)
+![pic](/advanced/work-data/cp-data-directly-storage.jpg)
 
 <!-- potrebujeme tuhle tabulku??? See ~/test_direct_access_storages.sh
 --8<-- "storages-direct-ssh-table.md"
@@ -318,11 +318,11 @@ There is a small bug causing that the GUI does not display entry for users with 
 
 On main page, choose My Profile --> click on the link Download Python CLI client configuration.
 
-![pic](Step_1_mod.png)
+![Filesender](filesender_1.png)
 
 Then,
 
-![pic](Step_2_mod.png)
+![Filesender](filesender_2.png)
 
 The configuration file is a normal text file. Nothing needs to be modified or added to this file, just save it somewhere on your frontend.
 
@@ -344,7 +344,7 @@ Then you can upload the file:
 
 Once you have received an email with a notification that some file has been uploaded to Filesender.Cesnet.cz and you have been granted permission to download its contents, click on the Download link.
 
-![pic](1800px-Filesender_down1.png)
+![Filesender](filesender_3.png)
 
 A new window in your browser will be open where you have to copy a URL hidden under the Download button.
 
@@ -354,7 +354,7 @@ Go to the terminal and use wget utility to download the file. The syntax looks l
 
 Replace file\_name with name as you wish and URL by saved URL in your clipboard. Do not forget to use double quotes.
 
-![pic](1800px-Filesender_down2.png) 
+![Filesender](filesender_4.png) 
 
 ## Direct access to storages
 
