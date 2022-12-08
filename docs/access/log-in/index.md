@@ -2,7 +2,7 @@
 
 Users connect to MetaCentrum by using `ssh` to any of the login nodes called **frontends**.
 
-![grid](/assets/templ_004.png)
+![Grid overall scheme](grid-overall-scheme.jpg)
 
 In Linux, macOS, Windows PowerShell and MobaXterm the `ssh` command can be given in the terminal.
 
@@ -60,8 +60,7 @@ Type "yes". The public key of the frontend will be saved to your `~/.ssh/known_h
 
 After the user enters MetaCentrum infrastructure by logging in, they will need also to be able to move between computational nodes, reach storage spaces residing on different machines etc. It would be very inconvenient to authenticate by password every time. Therefore the authentication of user **within** the MetaCentrum infrastructure is done by [Kerberos protocol](https://en.wikipedia.org/wiki/Kerberos_(protocol)).
 
-
-![grid](/assets/templ_005.png)
+![Grid security protocols scheme](grid-ssh-kerberos.jpg)
 
 After the user logs in, they automatically obtain a **Kerberos tickets**. As long as the ticket is valid, user can move between machines, run jobs, copy files without bothering about the authentication.
 
