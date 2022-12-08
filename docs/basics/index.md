@@ -123,7 +123,7 @@ The default queue is only **routing** one: it serves to sort jobs into another q
 
 The latter queues are **execution** ones, i.e. they serve to actually run the jobs. 
 
-![Queue sorting schema](/assets/templ_002.png)
+![Queue sorting schema](routing-execution-queues.jpg)
 
 In PBSmon, the [list of queues for all planners can be found](https://metavo.metacentrum.cz/pbsmon2/queues/list).
 
