@@ -46,8 +46,9 @@ nav:
     - advanced/work-data/index.md
     - advanced/mount-storages/index.md
     - advanced/kerberos/index.md
+    - advanced/run-graphical/index.md
+    - advanced/ondemand/index.md
     #- advanced/modules/index.md
-    #- advanced/run-graphical/index.md
     #- advanced/parallel-comput/index.md
     #- advanced/gpu-comput/index.md
     #- advanced/install-software/index.md
