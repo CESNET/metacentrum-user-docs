@@ -1,8 +1,11 @@
-# GUI applications
+# GUI access
 
-## X term
 
-## gui module
+- this is a page about graphical connection and running jobs with GUI
+- mainly gui module, also will mention xterm
+- ondemand on page
+
+## gui module - fast and short
 
 
 ### Run GUI desktop in a web browser
@@ -112,7 +115,7 @@ Another easy way how to start GUI is via some VNC client. The following brief tu
 
 Your VNC session will remain active until you the interactive job runs out of time or until you stop it manually (either by command gui stop DISPLAYID or by Start->Logout from graphical interface.
 
-### General information
+## gui module - details
 
 #### VNC session, server-client connection, Security and SSH tunneling - basic terms
 
@@ -335,3 +338,8 @@ Run GUI application (Ansys Workbench in this case)
 
 
 
+## X term
+
+## OnDemand
+
+see [this page](/advanced/ondemand)
