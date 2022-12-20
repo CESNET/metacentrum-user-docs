@@ -153,13 +153,10 @@ You can also specify xterm font in `~/.Xdefaults` file. However, it's beyond the
 | -g 1920x1080<br />fullscreen mode | -g 3840x2160<br />increased fonts |
 |-----|------|
 | ![pic](Vnc-uhd-even.jpg) | ![pic](Vnc-uhd-uneven.jpg) |
- 	
 
 #### gui command options
 
-Once the job has started, load module for gui (module add gui) and start VNC session (gui start) with SSH tunneling enabled (default).
-
-There are several other parameters of gui command you may find useful (see gui --help):
+There are several other parameters of `gui` command you may find useful (see `gui --help`):
 
     gui start [-g GEOMETRY] [-c COLORS] ... starts a VNC session
 
@@ -181,7 +178,9 @@ There are several other parameters of gui command you may find useful (see gui -
     gui kill DISPLAYID ... kills a VNC session (DISPLAYID may be omitted if single session is running)
 
 
-Example 1: The gui info -p command will show information about running session/s on the actual node (minos1 for this example).
+**Example 1**
+
+`gui info -p` command will show information about running session/s on the actual node (minos1 for this example).
 
     (BULLSEYE)hoidekr@minos1:~$ gui info -p
     *****************************************
@@ -190,12 +189,16 @@ Example 1: The gui info -p command will show information about running session/s
        :62     SSH    minos36.zcu.cz:10222  (kizFGtpn)
     *****************************************
 
-Example 2: The gui stop :62 command will terminate running session.
+**Example 2** 
+
+`gui stop :62` command will terminate running session.
 
     (BULLSEYE)hoidekr@minos1:~$ gui stop :62
     The VNC session (display ':62') running at port 10222 has been successfully stopped...
 
-Example 3: The gui traverse command will search all nodes and show running sessions (if any).
+**Example 3**
+
+`gui traverse` command will search all nodes and show running sessions (if any).
 
     (BULLSEYE)hoidekr@minos1:~$ gui traverse
     *****************************************
@@ -205,50 +208,47 @@ Example 3: The gui traverse command will search all nodes and show running sessi
        !!! NO VNC SESSIONS FOUND !!!
     *****************************************
 
-
 #### VNC clients
 
-You'll need a VNC client (a piece of software) to establish a VNC session between your PC and Metacentrum machine.
+To open a GUI connection through VNC, you'll need to install a VNC client.
 
 We recommend:
-Remmina (Linux)
+
+*Remmina* (Linux)
 
 Simple VNC client, where desktop scaling seems to work seamlessly, even without fixed aspect ratio or in full screen mode.
 
-sudo apt-get install remmina
+    sudo apt-get install remmina
 
-TigerVNC (Linux, Windows, Intel-based macOS)
+*TigerVNC* (Linux, Windows, Intel-based macOS)
 
 General purpose VNC viewer, available on many platforms.
 
-sudo apt-get install xtigervncviewer
+    sudo apt-get install xtigervncviewer
 
-TightVNC (Linux, Windows, macOS)
+*TightVNC* (Linux, Windows, macOS)
 
 Multiplatform VNC viewer TightVNC Java Viewer. It needs to have Java JRE installed. Please note, that build-in SSH tunnelling uses old libraries not supporting modern encryption ciphers, hence separate SSH tunnel will be probably needed.
 
-sudo apt-get install xtightvncviewer
-
-Other VNC clients
-
-    Ultra VNC
-    RealVNC
+    sudo apt-get install xtightvncviewer
 
 #### Long-standing desktop session
 
-    If you need a long-standing remote desktop session with a possibility to reconnect, you can use the following simple example script (for example, named as file.sh):
+If you need a long-standing remote desktop session with a possibility to reconnect, you can use the following simple example script (for example, named as file.sh):
 
-    #!/bin/bash
-    #PBS -m abe
+```
+#!/bin/bash
+#PBS -m abe
 
-    module add gui
-    gui -f start
+module add gui
+gui -f start
+```
 
-    The user must submit this script as a batch job (with the specification of requested memory, walltime, CPU, ...). E.g.
+The user must submit this script as a batch job (with the specification of requested memory, walltime, CPU, ...). E.g.
 
     skirit$ qsub -l walltime=48:0:0 -l select=1:ncpus=2:mem=20gb:scratch_local=40gb file.sh
 
-When the job starts (you will be informed by e-mail), please log in to any frontend as soon as possible and type the commands:
+When the job starts, please log in to any frontend as soon as possible and type the commands:
 
     skirit$ module add gui
     skirit$ gui traverse -p
@@ -259,9 +259,9 @@ When the job starts (you will be informed by e-mail), please log in to any front
        :24     SSH    elmo3-3.hw.elixir-czech.cz:10086  (ZSYPlpxc)
     *****************************************
 
-    You will see all running VNC sessions with login information.
-    Use the VNC client for the connection to the running session. If you close the window of the VNC client, the job won't be stopped.
-    After the end of your work, please log out (Penguin on the bottom panel -> Logout). Otherwise job end after exhaust reserved time (walltime).
+You will see all running VNC sessions with login information.
+Use the VNC client for the connection to the running session. If you close the window of the VNC client, the job won't be stopped.
+After the end of your work, please log out (Penguin on the bottom panel -> Logout). Otherwise job end after exhaust reserved time (walltime).
 
 #### Connect with Putty in Windows
 
