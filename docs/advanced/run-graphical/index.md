@@ -119,37 +119,41 @@ The session will remain open until you log out or until the walltime runs out.
 
 ## gui module - details
 
-#### VNC session, server-client connection, Security and SSH tunneling - basic terms
+#### VNC session vs SSH tunneling
 
-When using software with a graphical interface (GUI), the user needs to establish a connection for graphical output between his/her PC and a Metacentrum machine.
+When using software with a graphical interface (GUI), the user needs to establish a connection for graphical output between their PC and a Metacentrum machine.
 
-To do this, we use a so-called VNC session (Virtual Vetwork Computing) between a Metacentrum machine (server side) and user's local PC (client side).
+To do this, we use a so-called VNC session (**V**irtual **N**etwork **C**omputing) between a Metacentrum machine (server side) and user's local PC (client side).
 
+However, the protocol that VNC uses to transfer data between a remote server and a local PC is not very secure. That's why a VNC session must be covered by an additional layer of security that encrypts all communication.
 
-However, the protocol that VNC uses to transfer data between a remote server and a local PC is not secure and is prone to man-in-the-middle attacks. That's why a VNC session must be covered by an additional layer of security that encrypts all communication.
-
-As a default choice, we use SSH protocol as a method of encryption. This is so-called SSH tunneling, because the open communication is hidden ("tunneled") by SSH encryption. The second way is to use noVNC service via the web browser.
+As a default choice, we use SSH protocol as a method of encryption. This is so-called SSH tunneling, because the open communication is hidden ("tunneled") by SSH encryption.
 
 #### Desktop resolution
 
-Please note, that choosing the correct remote desktop resolution may be crucial for a good user experience. The default screen resolution of our VNC server is FHD (1920x1080). It can be changed via the -g option (an argument of gui start command) or scaled using -S option (see below).
+Please note, that choosing the correct remote desktop resolution may be crucial for a good user experience. The default screen resolution of our VNC server is FHD (1920x1080). It can be changed via the `-g` option (an argument of `gui start` command) or scaled using `-S` option (see below).
 
-The best results can be obtained when local and remote screen sizes are in a ratio 1:1. Otherwise, letter fonts are blurred. I.e. if your display is FHD and you plan run VNC client in fullscreen mode, the result should be fine. However, if you plan to run the VNC in windowed mode, the remote display must be a bit squeezed on your local screen because of window decorations (title bar, slides, frame) resulting in ugly font letters. In such a case it is better to decrease the size of the remote desktop when starting it (-g parameter).
+The best results can be obtained when local and remote screen sizes are in a ratio 1:1. Otherwise, letter fonts are blurred. I.e. if your display is FHD and you plan run VNC client in fullscreen mode, the result should be fine. However, if you plan to run the VNC in windowed mode, the remote display must be a bit squeezed on your local screen because of window decorations (title bar, slides, frame) resulting in ugly font letters. In such a case it is better to decrease the size of the remote desktop when starting it (`-g` parameter).
 
-In the case that icons and letter fonts are too small, consider start a smaller remote desktop and scale it either on client side (easy way, usually via some icon or menu checkbox) or on the server side (some VNC clients do not support local scaling) using -S option. I.e. combination of parameters -g 1000x800 -S 2000x1600 will start remote desktop with resolution 1000x800 and scale it twice in X and Y direction. Again, uneven scaling may cause blurred results...
+In the case that icons and letter fonts are too small, consider start a smaller remote desktop and scale it either on client side (easy way, usually via some icon or menu checkbox) or on the server side (some VNC clients do not support local scaling) using `-S` option. I.e. combination of parameters `-g 1000x800 -S 2000x1600` will start remote desktop with resolution 1000 x 800 px and scale it twice in X and Y direction. Again, uneven scaling may cause blurred results.
 
 On screens with high resolution, the best results may be achieved simply by choosing bigger xterm font, either from xterm menu (Ctrl+right mouse button - note that Ctrl key is usually implemented as a SW key from menu of VNC client) or by using parameters like:
 
     xterm -fs 16 -fa 'Monospace'
 
-You can also specify xterm font in. Xdefaults file. However, it's beyond the scope of this documentation. To give you an idea of what to expect, can check the following table:
+You can also specify xterm font in `~/.Xdefaults` file. However, it's beyond the scope of this documentation. To give you an idea of what to expect, can check the following table:
 
-!!! note "obrazek"
-    obrazky rozliseni fontu
+**Resolution comparison** 
 
-Resolution comparison (click to enlarge) -g 3840x2160 	-g 3840x2160 	-g 1920x1080 	-g 1920x1080 	-g 3840x2160
-window maximized 	fullscreen mode 	window maximized 	fullscreen mode 	increased fonts
--g 3840x2160, window maximized 	-g 3840x2160, fullscreen mode 	-g 1920x1080, window maximized 	-g 1920x1080, fullscreen mode 	-g 3840x2160, increased fonts
+| -g 3840x2160 <br />window maximized | -g 3840x2160 <br />fullscreen mode | -g 1920x1080 <br />window maximized |
+|-----|------|------|
+| ![pic](Vnc-fhd-doubled-even.jpg) | ![pic](Vnc-fhd-doubled.jpg) | ![pic](Vnc-uhd-bigger-font.jpg) |
+
+
+| -g 1920x1080<br />fullscreen mode | -g 3840x2160<br />increased fonts |
+|-----|------|
+| ![pic](Vnc-uhd-even.jpg) | ![pic](Vnc-uhd-uneven.jpg) |
+ 	
 
 #### gui command options
 
