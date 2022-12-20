@@ -4,7 +4,7 @@ There are multiple options to run applications with graphical interface (GUI) or
 
 Currently these options are:
 
-- **X-term** - low-level solution using only system tools (described here),
+- **X-window** - low-level solution using only system tools (described here),
 - **`gui` module** - usage of specific module designed to run graphical jobs (described here), 
 - **OnDemand** - more complex browser-based service (described on [separate page about OnDemand](/advanced/ondemand)).
 
@@ -260,54 +260,50 @@ When the job starts, please log in to any frontend as soon as possible and type 
     *****************************************
 
 You will see all running VNC sessions with login information.
+
 Use the VNC client for the connection to the running session. If you close the window of the VNC client, the job won't be stopped.
-After the end of your work, please log out (Penguin on the bottom panel -> Logout). Otherwise job end after exhaust reserved time (walltime).
 
 #### Connect with Putty in Windows
 
-Establishing SSH tunel in PuTTy
+1. Open a new Putty connection.
+2. Fill in the SSH server address field (e.g. elmo3-3.hw.elixir-czech.cz).
+3. Select Connection > SSH > Tunnels in a side panel.
+4. Enter the PORT number into Source port field (5923 in our example) and set Destination field to localhost:PORT (localhost:5923 in our example).
+5. Choose Add and Open and enter your Metacentrum password.
+6. Use any VNC client to connect to address localhost:PORT (here localhost:5923) and enter the VNC password (n0pTu237 in our example).
 
-    open a new Putty connection
-    first, fill in the SSH server address field (elmo3-3.hw.elixir-czech.cz in our example)
-    select Connection > SSH > Tunnels in a side panel
-    enter the PORT number into Source port field (5923 in our example) and set Destination field to localhost:PORT (localhost:5923 in our example)
-    choose Add and Open and enter your Metacentrum password
-    use any VNC client to connect to address localhost:PORT (here localhost:5923) and enter the VNC password (n0pTu237 in our example)
+![pic](Putty-tunnel.png)
 
-#### Connect with remote desktop: only Windows 10 and newer
+#### Connect with remote desktop: Windows 10 and newer
 
-You can use a remote graphical desktop on your computer with Windows 10.
-VcXsrv X Server icon
+On Windows 10+ you can use a remote graphical desktop.
 
 Requirements:
 
-1. Installed X Server environment VcXsrv X Server on your computer with Windows. You can directly download the latest version from this page.
+1. Installed [X Server environment](https://sourceforge.net/projects/vcxsrv/) on your computer with Windows. You can directly download the latest version from this page.
 
-2. Installed Windows Subsystem for Linux (WSL), version 1 or 2. You can find many tutorials describing this step on the Internet, e.g. https://docs.microsoft.com/en-us/windows/wsl/install-win10 Following steps are tested on Linux distribution Ubuntu 18.04 LTS and Ubuntu 20.04 LTS.
+2. Installed Windows Subsystem for Linux (WSL), version 1 or 2. You can find many tutorials describing this step on the Internet, e.g. [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Following steps are tested on Linux distribution [Ubuntu 18.04 LTS](https://www.microsoft.com/cs-cz/p/ubuntu-1804-lts/9n9tngvndl3q) and [Ubuntu 20.04 LTS](https://www.microsoft.com/cs-cz/p/ubuntu-2004-lts/9n6svws3rx71).
 
 3. It is best practice to keep the WSL environment updated, you can enforce the update process by:
 
-sudo apt update && sudo apt upgrade
+    sudo apt update && sudo apt upgrade
 
 4. In the WSL environment you have to install a VNC viewer, you can do it by the command:
 
-sudo apt install xtightvncviewer
+    sudo apt install xtightvncviewer
 
-5a. In case of using WSL1 - append this line at the end of your .bashrc file. Open this file in your favorite text editor, e.g. nano ~/.bashrc
+5. In case of using WSL1 - append this line at the end of your .bashrc file:
 
-export DISPLAY=:0.0
+    export DISPLAY=:0.0
 
-5b. In case of using WSL2 - append these two lines at the end of your .bashrc file. Open this file in your favorite text editor, e.g. nano ~/.bashrc
+6. In case of using WSL2 - append these **two** lines at the end of your .bashrc file:
 
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
     export LIBGL_ALWAYS_INDIRECT=1
 
-Options of VcXsrv X Server icon - the first screen
+7. Start VcXsrv X Server in your Windows environment, e.g. by clicking on the Icon XLaunch. While using WSL1 you can have all options to its default values. In the case of WSL 2 you should tick the option "Disable access control".
 
-1. Start VcXsrv X Server in your Windows environment, e.g. by clicking on the Icon XLaunch. While using WSL1 you can have all options to its default values. In the case of WSL 2 you should tick the option "Disable access control".
-
-2. Now you can start WSL (open new terminal), and you can continue by steps described in section Linux.
-
+8. Now you can start WSL (open new terminal), and you can continue by steps described in section Linux.
 
 #### Connect VNC in Linux
 
@@ -318,18 +314,16 @@ Open a new terminal and type the following command:
 
 You will be prompted for your Metacentrum password type it and hit Enter. Nothing visible happens, and the terminal prompt stays at your local PC.
 
-In the same terminal run any VNC client. In this example we use xtightvncviewer
+In the same terminal run any VNC client. In this example we use xtightvncviewer.
 
     melounova@melounova-ThinkCentre-E93:~$ xtightvncviewer localhost:PORT
     melounova@melounova-ThinkCentre-E93:~$ xtightvncviewer localhost:5923 # e.g.
 
 You will be prompted for VNC password. Type it and hit Enter. You will see the splash (welcome) window.
 
-Run chosen GUI application
-
 You should now see a welcome splash screen:
 
-In this case, terminal launcher is at the bottom of the welcome VNC-client window
+![pic](splash-screen.png)
 
 At the bottom panel of the splash screen on the left, there is an icon for the terminal. Double-click on the icon. A terminal window opens on the splash screen.
 
@@ -340,12 +334,64 @@ To run chosen GUI application, proceed as in a standard interactive job. If you 
 
 Then the application's GUI interface will appear on your screen.
 
-Run GUI application (Ansys Workbench in this case) 
+## X-window
 
+X-window is a system for sharing the graphical interface of applications through network. In Metacentrum you can use it for accessing the graphical interface of certain application from the user's desktop.
 
+GUI of unix systems are build on X-Window system, which supposes, that a program and his GUI run on different computers in net. Programs in X-Window system display their GUI on so called [X-server](http://en.wikipedia.org/wiki/X_Window_System) which is defined by environment variable **DISPLAY**.
 
-## X term
+For example: We are sitting in front of computer named jenicek and start up X-Window program in machine called marenka. If we set variable **DISPLAY=jenicek:0** on marenka and if X-server is running in jenicek, execution of a program will be running in a remote computer, but will be displaying on screen in front us and reacting on keyboard an mouse on our table.
 
-## OnDemand
+There are X-servers for MS Windows, for example [Xming](http://sourceforge.net/projects/xming/), [Cygwin/X](http://x.cygwin.com/), [X-Win32](https://www.starnet.com/xwin32/), [Exceed](http://connectivity.opentext.com/products/exceed-products.aspx).
 
-see [this page](/advanced/ondemand)
+!!! info
+    This article describes a **low-level** method of how to run GUI applications on Metacentrum. Only system tools are used and it is therefore always available, but has also a few drawbacks. X-Windows connection will **use all available bandwidth**, can se used to **run a single application** only and if the session crashes, it **cannot be reconnected**. It is fairly useful over a LAN or if you need to run just single application.
+
+### X-protocol tunneling
+
+#### Windows
+
+PuTTy setting for X11 tunnel:
+
+1. Install Xming. Run it.
+2. Install PuTTy. Run it.
+3. Set the connection parameters in PuTTy according the image on the right and click "Open".
+4. Once you have a terminal window, proceed as a Linux user.
+
+![pic](Putty-tunnel.png)
+
+#### Linux
+
+The simplest way how to use X-window in MetaCentrum is to submit an **interactive** job with X-protocol tunneling enabled by running both `ssh -X` and `qsub -X`:
+
+    jenicek$ ssh -X skirit.metacentrum.cz
+    skirit$ qsub -X -I -l select=1:ncpus=2:mem=4gb:scratch_local=10gb -l walltime=1:00:00 -l matlab=1
+    konos6$ module add matlab ; matlab
+
+The graphical output should appear on your screen.
+
+If you get error informing about missing rights to use Xserver occurs, logout both from interactive job and a frontend, type
+
+    jenicek$ xhost +
+
+and repeat the procedure described above.
+
+### Direct connection by X-protocol
+
+!!! info "Only for specific usecases"
+    Direct connection is faster than tunneling through SSH, but it cannot be used when NAT (network address translation) is applied, as is typical for routers and local networks. This method is therefore limited only to certain situations and cannot be taken as equivalent of X-protocol tunneling.
+
+Direct connection by X-protocol is achieved by setting the **DISPLAY** variable on the computing machine to the IP address of your personal machine:
+
+    jenicek$ ssh skirit.metacentrum.cz
+    skirit$ qsub -I -l select=1:ncpus=2:mem=4gb:scratch_local=10gb -l walltime=1:00:00 -l matlab=1
+    konos6$ echo $DISPLAY
+    konos6$ export DISPLAY=jenicek.ics.muni.cz:0
+    konos6$ module add matlab ; matlab
+
+On your machine (jenicek.ics.muni.cz in this example) you have to allow incoming connections by
+
+    jenicek$ xhost +
+
+and make sure that your X-server does not have disabled incoming connections. For example, the standard setting on Ubuntu is to start X-server with the options `-nolisten tcp` that disables incoming connections. 
+
