@@ -49,9 +49,9 @@ nav:
     - advanced/run-graphical/index.md
     - advanced/ondemand/index.md
     #- advanced/modules/index.md
+    #- advanced/install-software/index.md
     #- advanced/parallel-comput/index.md
     #- advanced/gpu-comput/index.md
-    #- advanced/install-software/index.md
   - Applications:
     - applications/index.md
   - 'Troubleshooting':
