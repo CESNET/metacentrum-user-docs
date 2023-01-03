@@ -52,6 +52,7 @@ nav:
     #- advanced/install-software/index.md
     #- advanced/parallel-comput/index.md
     #- advanced/gpu-comput/index.md
+    #- advanced/singularity/index.md
   - Applications:
     - applications/index.md
   - 'Troubleshooting':
