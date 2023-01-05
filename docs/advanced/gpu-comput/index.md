@@ -135,57 +135,47 @@ You can clean cache with `singularity cache clean`.
 
 - Directories `/storage`, `/auto` and `home` are binded inside container by default.
 - Add `--nv` argument to singularity for GPU computing.
-- Versions of NGC images requiring CUDA version higher than 11.0 are not supported (see https://metavo.metacentrum.cz/pbsmon2/props and search for cuda_version)
+- Versions of NGC images requiring CUDA version higher than 11.0 are not supported (see https://metavo.metacentrum.cz/pbsmon2/props and search for cuda\_version)
 - Customizing images is possible. See Singularity
 - In case you would add NGC image or your own image to cmvfs, write ticket to meta@cesnet.cz.
 
+#### Get NGC API key
+
+If you have not done so already, you need to register first at [https://ngc.nvidia.com](https://ngc.nvidia.com) to get NGC API key. After you log in, you can find this API key under the Setup menu in you personal tab.
 
 
+#### Build Singularity image
 
-
-Use of NGC in detail
-Get NGC API key
-
-If you have not done so already, you need to register first at [2] to get NGC API key. After you log in, you can find this API key under the Setup menu in you personal tab.
-Build Singularity image
-
-Building the image is a resource-intensive process and must be done as interactive job with large enough scratch (at least 10 GB). Some temporary directories are by default bound to /tmp, which has a limited user quota on MetaCentrum. Therefore you should bind them to scratch directory instead.
+Building the image is a resource-intensive process and must be done as interactive job with large enough scratch (at least 10 GB). **Some temporary directories are by default bound to `/tmp`, which has a limited user quota on MetaCentrum.** Therefore you should **bind them to scratch directory instead**.
 
 Example of script to build image from NGC:
 
-#/bin/bash
-export NGCDIR="/storage/brno2/home/melounova/ngc_sandbox" # directory where the image will go
-export SINGULARITY_DOCKER_USERNAME='$oauthtoken'
-export SINGULARITY_DOCKER_PASSWORD=Yj..........Az # API Key you get after logging in at https://ngc.nvidia.com/
-export SINGULARITY_CACHEDIR="/storage/brno2/home/melounova/.singularity" # the cache dir must exist
-mkdir $SCRATCHDIR/tmp
-export SINGULARITY_TMPDIR=$SCRATCHDIR/tmp 
-export SINGULARITY_LOCALCACHEDIR="$SCRATCHDIR"
-
-singularity -v build $NGCDIR/TensorFlow.simg docker://nvcr.io/nvidia/tensorflow:20.03-tf2-py3 # build the image TensorFlow.simg
+    #/bin/bash
+    export NGCDIR="/storage/brno2/home/melounova/ngc_sandbox" # directory where the image will go
+    export SINGULARITY_DOCKER_USERNAME='$oauthtoken'
+    export SINGULARITY_DOCKER_PASSWORD=Yj..........Az # API Key you get after logging in at https://ngc.nvidia.com/
+    export SINGULARITY_CACHEDIR="/storage/brno2/home/melounova/.singularity" # the cache dir must exist
+    mkdir $SCRATCHDIR/tmp
+    export SINGULARITY_TMPDIR=$SCRATCHDIR/tmp 
+    export SINGULARITY_LOCALCACHEDIR="$SCRATCHDIR"
+    
+    singularity -v build $NGCDIR/TensorFlow.simg docker://nvcr.io/nvidia/tensorflow:20.03-tf2-py3 # build the image TensorFlow.simg
 
 It is possible to create custom images derived from NGC images. See Singularity how to do it.
-Prepared job scripts for JupyterLab inside NGC containers
 
-We have prepared job scripts for JupyterLab inside container with TensorFlow and Pytorch. See scripts in /cvmfs/singularity.metacentrum.cz/NGC.
+#### Job scripts for JupyterLab
 
-JupyterLabPyTorch_Job.sh
-JupyterLabTensorFlow1_Job.sh # run JupyterLab with TensorFlow v.1
-JupyterLabTensorFlow2_Job.sh # run JupyterLab with TensorFlow v.2
+We have prepared job scripts for JupyterLab inside container with TensorFlow and Pytorch. See scripts in `/cvmfs/singularity.metacentrum.cz/NGC`.
+
+    JupyterLabPyTorch_Job.sh
+    JupyterLabTensorFlow1_Job.sh # run JupyterLab with TensorFlow v.1
+    JupyterLabTensorFlow2_Job.sh # run JupyterLab with TensorFlow v.2
 
 In the header of scripts, you can change PBS parameters. Run the selected script in PBS, e.g.:
 
-qsub JupyterLabPyTorch_Job.sh
+    qsub JupyterLabPyTorch_Job.sh
 
-After the job starts you will get email with URL and password where JupyterLab is running. 
-
-
-
-
-
-
-
-
+After the job starts you will get email with **URL** and **password** where JupyterLab is running. 
 
 ## GPU clusters
 
