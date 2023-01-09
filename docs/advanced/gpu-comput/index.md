@@ -57,11 +57,12 @@ NGC containers are released monthly (RR.MM). You can find changelog and HW/drive
 NGC images are available on Docker Hub and saved as Singularity images in CVMFS instance mounted on `/cvmfs/singularity.metacentrum.cz/NGC`. The Singularity images stored on cvmfs are faster to use than running container directly from Docker Hub, in which case you have to rebuild first to Singularity image format.
 
 [Deep learning frameworks documentation](https://docs.nvidia.com/deeplearning/frameworks/index.htm):
-- [Kaldi](https://docs.nvidia.com/deeplearning/frameworks/kaldi-release-notes/index.html)
-- [MXNet](https://docs.nvidia.com/deeplearning/frameworks/mxnet-release-notes/index.html)
-- [NVCaffe](https://docs.nvidia.com/deeplearning/frameworks/caffe-release-notes/index.html)
-- [PyTorch](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/index.html)
-- [TensorFlow](https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/index.html)
+
+-  [Kaldi](https://docs.nvidia.com/deeplearning/frameworks/kaldi-release-notes/index.html)
+-  [MXNet](https://docs.nvidia.com/deeplearning/frameworks/mxnet-release-notes/index.html)
+-  [NVCaffe](https://docs.nvidia.com/deeplearning/frameworks/caffe-release-notes/index.html)
+-  [PyTorch](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/index.html)
+-  [TensorFlow](https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/index.html)
 
 ### Run as Singularity image
 
