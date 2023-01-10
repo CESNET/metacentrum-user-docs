@@ -2,9 +2,11 @@
 
 ## Singularity
 
-Singularity is a free, cross-platform and open-source computer program that performs operating-system-level virtualization also known as containerization.
+![pic](/advanced/containers/singularity-logo.png)
 
-Singularity is able to support natively high-performance interconnects, such as InfiniBand[24] and Intel Omni-Path Architecture (OPA). It also has native support for Open MPI library by utilizing a hybrid MPI container approach where OpenMPI exists both inside and outside the container. Singularity can import Docker images without having Docker installed or being a superuser.
+[Singularity](https://apptainer.org/docs-legacy) is a free, cross-platform and open-source computer program that performs operating-system-level virtualization also known as containerization.
+
+Singularity is able to support natively high-performance interconnects, such as InfiniBand and Intel Omni-Path Architecture. It also has native support for Open MPI library by utilizing a hybrid MPI container approach where OpenMPI exists both inside and outside the container. Singularity can import Docker images without having Docker installed or being a superuser.
 
 Unlike Docker, Singularity was designed do fit the high-performance computing (HPC) needs. HPC environments are typically multi-user systems where users should only have access to their own data. For all practical purposes, Docker gives superuser privileges. Singularity, on the other hand, runs under user identity. It blocks privilege escalation inside containers by using an immutable single-file container format that can be cryptographically signed and verified.
 
@@ -34,7 +36,7 @@ MetaCentrum offers a couple of ready-to-use Singularity images for our users. In
     │
     └── TE-Tools/ # Dfam TE Tools is a container that includes RepeatMasker, RepeatModeler, and coseg
 
-Singularity images (.sif files) in each folder can be listed by ls command. For example ls /cvmfs/singularity.metacentrum.cz/NGC/
+Singularity images (.sif files) in each folder can be listed by `ls` command, e.g. `ls /cvmfs/singularity.metacentrum.cz/NGC/`.
 
 ### Basic usecases
 
@@ -61,7 +63,7 @@ Some basic usecases covering the singularity usage are below. Please note, that 
 
     qsub -l select=1 -l walltime=24:00:00 -- /usr/bin/singularity exec -B /path/to/script:/home/username/script.sh my_image.img bash -c "/home/username/script.sh"
 
-The `-B /path/to/script:/home/username/script.sh` option will bind the host directory (/path/to/script) to container directory (in this example /home/username). Without this option, the container will automatically bind to itself host directories on computational node where the job is run and the script may not be found.
+The `-B /path/to/script:/home/username/script.sh` option will bind the host directory (`/path/to/script`) to container directory (in this example `/home/username`). Without this option, the container will automatically bind to itself host directories on computational node where the job is run and the script may not be found.
 
 #### PBS Pro: running parallel job using singularity
 
@@ -79,24 +81,26 @@ The scenario for this setup is: two nodes with common scratch dir
     # run job over ethernet or infiniband (mpirun autoselects better)
     mpirun -n 2 --hostfile nodes.txt singularity exec my_image.img /path/to/program
 
-More information about parallelization and different setups (specially for programs supporting MPI and OpenMP together) can be found in Parallelization.
-
 #### Starting docker image
 
     qsub -l select=1 -l walltime=24:00:00 -- /usr/bin/singularity exec docker://ubuntu:latest echo "Hello Dinosaur!"
 
 #### Preparing your own singularity image
 
-Preparing your own singularity image is intended for experienced users. Root privileges are needed or you can use system with User Namespace Remapping. Reading singularity documentation Singularity documentation is a good idea too :) In general, you do not need root privileges if you can (re)use existing docker image.
+Preparing your own singularity image is intended for experienced users. Root privileges are needed or you can use system with User Namespace Remapping. Reading [Singularity documentation](https://apptainer.org/docs-legacy) is a good idea too. In general, you do not need root privileges if you can (re)use existing docker image.
 
 Without root privileges you prepare singularity image from Docker image as:
 
     singularity build image.img docker://tensorflow/tensorflow:latest
 
 However, if you want to change something or make your own image from scratch, you'll need root privileges.
-builder.metacentrum.cz
 
-Builder.metacentrum.cz is server with User Namespace Remapping intended for Metacentrum users who need to build custom images. Users must apply for membership in group builders at meta@cesnet.cz.
+**builder.metacentrum.cz**
+
+`builder.metacentrum.cz` is server with User Namespace Remapping intended for Metacentrum users who need to build custom images. 
+
+!!! warning 
+    To access `builder.metacentrum.cz`, users must apply for membership in group "builders" at <meta@cesnet.cz>.
 
 Image file is read-only and to modify it you have to use sandbox directory. In this example we use Debian Buster docker image.
 
@@ -123,17 +127,17 @@ Build image from recipe file:
 
     singularity build –f test1.SIF test1.def
 
-For more details see `https://sylabs.io/guides/3.7/user-guide/definition_files.html`.
+For more details see [https://sylabs.io/guides/3.7/user-guide/definition\_files.html](https://sylabs.io/guides/3.7/user-guide/definition_files.html).
 
 #### Starting application docker image
 
 The Docker download instructions of the type
 
-docker pull sangerpathogens/circlator
+    docker pull sangerpathogens/circlator
 
 are in Singularity replaced as
 
-singularity pull docker://sangerpathogens/circlator
+    singularity pull docker://sangerpathogens/circlator
 
 This command will create `circlator_latest.sif`, a singularity image of docker image. The Docker mounting command of the type
 
@@ -143,9 +147,9 @@ are in Singularity replaced by
 
     mkdir circ_read; singularity run -B ./circ_read/:/data ./circlator_latest.sif
 
-where `circ_read` is folder used for getting data into image. By running the command you are in the image and using df -h you can check that the folder is mounted.
+where `circ_read` is folder used for getting data into image. By running the command you are in the image and using `df -h` you can check that the folder is mounted.
 
-If you need to explore the content of the Singularity image (.sif file) interactively, use the -C flag.
+If you need to explore the content of the Singularity image (.sif file) interactively, use the `-C` flag.
 
     singularity shell -C ./circlator_latest.sif
 
@@ -153,9 +157,9 @@ To run script or command, eg. here circlator, in the image you can use
 
     singularity exec -B ./circ_read/:/data ./circlator_latest.sif "circlator"
 
-inside the quotes, there is command that will be run inside the image. If you are using binding of specific directory (mostly containing input and output data), use absolute paths to the inputs (eg. /data/some.fasta) that are used as command parameters. After the exec you are back in standard environment (outside the image), here you must such paths (eg. circ_read).
+inside the quotes, there is command that will be run inside the image. If you are using binding of specific directory (mostly containing input and output data), use absolute paths to the inputs (eg. /data/some.fasta) that are used as command parameters. After the exec you are back in standard environment (outside the image), here you must such paths (eg. `circ_read`).
 
-For more details see [https://www.sylabs.io/guides/3.7/user-guide/singularity_and_docker.html](https://www.sylabs.io/guides/3.7/user-guide/singularity_and_docker.html).
+For more details see [https://www.sylabs.io/guides/3.7/user-guide/singularity\_and\_docker.html](https://www.sylabs.io/guides/3.7/user-guide/singularity_and_docker.html).
 
 #### Environment Settings (optional)
 
@@ -167,9 +171,9 @@ Before you start Singularity you may need to set:
     # Than you can start Singularity
     singularity build ...
 
-    CACHEDIR -- downloaded layers
-    LOCALCACHEDIR -- run shell exec
-    TMPDIR -- squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
+- `CACHEDIR` - downloaded layers
+- `LOCALCACHEDIR` - run shell exec
+- `TMPDIR` - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
 
 Documentation: [https://sylabs.io/docs/](https://sylabs.io/docs/).
 
