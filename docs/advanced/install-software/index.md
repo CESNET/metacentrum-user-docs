@@ -202,15 +202,13 @@ https://rt.cesnet.cz/rt/Ticket/Display.html?id=1103181
 https://rt.cesnet.cz/rt/Ticket/Display.html?id=1120618
 -->
 
-<!--
 ### Pip install
 
 How to install using pip
-https://rt.cesnet.cz/rt/Ticket/Display.html?id=1128040
 https://rt.cesnet.cz/rt/Ticket/Display.html?id=1125154
-https://rt.cesnet.cz/rt/Ticket/Display.html?id=918582
-https://rt.cesnet.cz/rt/Ticket/Display.html?id=793931
+https://rt.cesnet.cz/rt/Ticket/Display.html?id=1150197
 
+<!--
 ### Containers
 
 How to install something delivered as Docker / Singularity (Apptainer) container
