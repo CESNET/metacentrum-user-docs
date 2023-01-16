@@ -50,11 +50,11 @@ nav:
     - advanced/ondemand/index.md
     - advanced/gpu-comput/index.md
     - advanced/containers/index.md
-    - advanced/install-software/index.md
-    #- advanced/modules/index.md
     #- advanced/parallel-comput/index.md
-  - Applications:
+  - 'Software':
     - applications/index.md
+    - applications/install-software/index.md
+    - applications/modules/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md
     - troubleshooting/outages/index.md
