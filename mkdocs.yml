@@ -35,8 +35,9 @@ nav:
     - access/log-in/index.md
     - access/perun/index.md
     - access/pbsmon/index.md
-  - Basics:
-    - basics/index.md
+  - 'Basics':
+    - basics/concepts/index.md
+    - basics/jobs/index.md
   - 'Advanced':
     - 'Access and security':
       - advanced/connect-auth/index.md

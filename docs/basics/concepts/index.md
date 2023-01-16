@@ -1,4 +1,4 @@
-# Basic concepts
+# Grid concepts
 
 Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn how to
 
@@ -18,9 +18,7 @@ Welcome to the basic guide on how to run calculations in Metacentrum grid servic
  
     *If anything is missing, see [Access](/access/) section.*
 
-## Concepts
-
-### Frontends, storages, homes
+## Frontends, storages, homes
 
 There are several **frontends** (login nodes) to access the grid. Each frontend has a native **home directory** on one of the **storages**. 
 
@@ -49,7 +47,7 @@ Frontends should be used only for:
 !!! warning
     The resource load on frontend is monitored continuously. Processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
 
-### PBS servers
+## PBS servers
 
 A set of instructions performed on computational nodes is **computational job**. Jobs require a set of **resources** such as CPUs, memory or time. A **scheduling system** plans execution of the jobs so as optimize the load and usage of computational nodes.
 
@@ -75,7 +73,7 @@ The most important PBS Pro commands are:
 - `qstat` - query status of a job
 - `qdel` - delete a job
 
-### Resources
+## Resources
 
 Every jobs need to have defined set of computational resources at the point of submission. The resources can be specified
 
@@ -112,8 +110,7 @@ where
     scratch_local specifies the size and type of scratch directory (1 GB in this example, no default)
     walltime is the maximum time the job will run, set in the format hh:mm:ss (2 hours in this example, default 24 hours)
 
-
-### Queues
+## Queues
 
 When the job is submitted, it is added to one of the **queues** managed by the scheduler. Queues can be defined arbitrarily by the admins based on various criteria - usually on walltime, but also on number of GPU cards, size of memory etc. Some queues are reserved for defined groups of users ("private" queues).
 
@@ -142,12 +139,12 @@ In PBSmon, the [list of queues for all planners can be found](https://metavo.met
 !!! tip
     If you however suspect that some queue accepts jobs that should not be there or behaves in a strange way, contact User support. 
 
-### Modules
+## Modules
 
 !!! todo
-    Depends on modulefiles update
+    To be done.
 
-### Scratch directory
+## Scratch directory
 
 Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
  

@@ -1,4 +1,4 @@
-# Basics jobs
+# Computing
 
 Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn how to
 
@@ -18,11 +18,9 @@ Welcome to the basic guide on how to run calculations in Metacentrum grid servic
  
     *If anything is missing, see [Access](/access/) section.*
 
-## Computing
+## Lifecycle of a job
 
-### Lifecycle of a job
-
-#### Batch job
+### Batch job
 
 A typical usecase for grid computing is non-interactive batch job, when the user only prepares input and set of instructions at the beginning. The calculation itself then runs independently on user.
 
@@ -37,7 +35,7 @@ Batch jobs consists of the following steps:
 !!! todo
     schema graficky
 
-#### Interactive job
+### Interactive job
 
 Interactive job works in different way. User does not need to specify in advance what will be done, neither does not need to prepare any input data. Instead they first reserve computational resources and after the job start to run, works interactively on CLI.
 
@@ -52,7 +50,7 @@ Interactive job consists of following steps:
 !!! todo
     schema graficky
 
-#### Which one?
+### Which one?
 
 A primary choice for grid computing is batch job. Batch jobs allow user to run massive sets of calculation without need to overview them, manipulate data etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
 
@@ -65,7 +63,7 @@ Interactive jobs are good for:
 
 Interactive jobs are **necessary** for running GUI application [here](/advanced/run-graphical/)
 
-### Batch job example
+## Batch job example
 
 The batch script in the following example is called myJob.sh.
 
@@ -119,7 +117,7 @@ Alternatively, you can specify resources on the command line. In this case the l
 !!! note
     If both resource specifications are present (on CLI as well as inside the script), the values on CLI have priority.
 
-### Interactive job example
+## Interactive job example
 
 An interactive job is requested via `qsub -I` command (uppercase "i").
 
@@ -156,7 +154,7 @@ Unless you log out, after 1 hour you will get following message:
     logout
     qsub: job 13010171.meta-pbs.metacentrum.cz completed
 
-### job ID
+## job ID
 
 Job ID is unique identifier in a job. Job ID is crucial to track, manipulate or delete job, as well as to identify your problem to user support.
 
@@ -183,8 +181,7 @@ By `qstat` command:
     -------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
     13010171.meta-pbs.m* user123  global   STDIN      366884   1   8    4gb 02:00 R 00:17
 
-
-### Job status
+## Job status
 
 Basic command for getting status about your jobs is `qstat` command.
 
@@ -210,7 +207,7 @@ The letter under the header 'S' (status) gives the status of the job. The most c
 
 To learn more about how to track running job and how to retrieve job history, see [Job tracking page](/advanced/job-tracking).
 
-### Output files
+## Output files
 
 When a job is completed (no matter how), two files are created in the directory from which you have submitted the job:
 
@@ -219,9 +216,9 @@ When a job is completed (no matter how), two files are created in the directory 
 
 STDERR file contains all the error messages which occurred during the calculation. It is a first place where to look if the job has failed.
 
-### Job termination
+## Job termination
 
-#### Done by user
+### Done by user
 
 Sometimes you need to delete submitted/running job. This can be done by `qdel` command:
 
@@ -231,7 +228,7 @@ If plain `qdel` does not work, add `-W` (force del) option:
 
     (BULLSEYE)user123@skirit~: qdel -W force 21732596.elixir-pbs.elixir-czech.cz
 
-#### Done by PBS server
+### Done by PBS server
 
 The PBS server keeps track of resources used by the job. In case the job uses more resources than it has reserved, PBS server sends a **SIGKILL** signal to the execution host.
 
@@ -245,7 +242,7 @@ In case of moved (PBS code **M**) jobs, append to job ID the name of the PBS ser
     (BULLSEYE)user123@tarkil:~$ qstat -x -f 13031539.meta-pbs.metacentrum.cz@cerit-pbs.cerit-sc.cz | grep Exit_status
         Exit_status = 0
 
-### Exit codes
+## Exit codes
 
 Most often you will meet one of the following three signals:
 
@@ -256,7 +253,7 @@ Most often you will meet one of the following three signals:
 | walltime           | `JOB_EXEC_KILL_WALLTIME`  | -29 |
 | normal termination |                           | 0   |
 
-### Manual scratch clean
+## Manual scratch clean
 
 In case of erroneous job ending, the data are left in the scratch directory. You should always clean the scratch after all potentially useful data has been retrieved. To do so, you need to know the hostname of machine where the job was run, and path to the scratch directory.
 
