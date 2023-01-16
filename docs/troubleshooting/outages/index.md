@@ -1,6 +1,7 @@
 # Outages
 
-to see outage, go here...
+!!! todo
+    Zde asi jen odkaz na metavo. 
 
 
 

@@ -1,6 +1,14 @@
 # Modules
 
+!!! todo
+    This section is yet to be done.
 
+Zde bude:
+
+- vysvetlit uzivatelum jak u nas funguji moduly
+
+
+<!--
 ## Limit module span 
 
 In ciomplex jobs it may be necessary to limit the functionality of the module to a part of the script to avoid mismatch between libraries. ... 
@@ -18,4 +26,5 @@ command_1 ... <input> <output>
 command_2 ... <input> <output>
 )
 
+-->
 

@@ -44,27 +44,29 @@ nav:
     - 'PBS and job planning':    
       - advanced/pbs-options/index.md
       - advanced/queues-in-meta/index.md
-    - 'Job tracking':
+    - 'Job state and history':
       - advanced/job-tracking/index.md
     - 'Data and grid':  
       - advanced/grid-infrastruct/index.md
       - advanced/work-data/index.md
       - advanced/mount-storages/index.md
-    - 'Specific calculations':
-      - advanced/run-graphical/index.md
+    - 'Specific types of jobs':
       - advanced/gpu-comput/index.md
       - advanced/containers/index.md
-      - advanced/ondemand/index.md
       - advanced/parallel-comput/index.md
+    - 'Non-CLI access':
+      - advanced/run-graphical/index.md
+      - advanced/ondemand/index.md
   - 'Software':
-    - applications/available-soft/index.md
-    - applications/install-software/index.md
     - applications/modules/index.md
+    - applications/install-software/index.md
+    - applications/available-soft/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md
     - troubleshooting/outages/index.md
     - troubleshooting/known-issues/index.md
-  - Contact:
+  - 'User support':
     - contact/index.md
+    - contact/write-request/index.md
   - Tutorials:
     - tutorials/index.md
