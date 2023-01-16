@@ -59,9 +59,9 @@ nav:
       - advanced/run-graphical/index.md
       - advanced/ondemand/index.md
   - 'Software':
-    - applications/modules/index.md
-    - applications/install-software/index.md
-    - applications/available-soft/index.md
+    - software/modules/index.md
+    - software/install-software/index.md
+    - software/available-soft/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md
     - troubleshooting/outages/index.md

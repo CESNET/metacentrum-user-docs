@@ -83,7 +83,7 @@ First of all, load module conda-modules-py37. The second command will create a n
 Absolute or relative paths can be used, and folder name can be changed at will. The default python version is 3.6. If needed, a different python version can be installed by the python flag. E.g. `conda create --prefix ... my_blast_env python=3.10`. When the new environment is created, it has to be activated before the installation.
 
     conda activate /storage/city/home/user_name/my_blast_env
-   conda install -c bioconda blast
+    conda install -c bioconda blast
 
 After the installation, everything is ready, and a new tool can be immediately used. When the calculation is finished, the loaded environment should be deactivated.
 
