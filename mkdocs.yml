@@ -61,6 +61,21 @@ nav:
   - 'Software':
     - software/modules/index.md
     - software/install-software/index.md
+    - 'Available software':
+      - 'Chemistry':
+        - software/available-soft/sw-list/respect.md
+      - 'Physics':
+        - software/available-soft/sw-list/vasp.md
+      - 'Compilers':
+        - software/available-soft/sw-list/molden.md
+      - 'Programming languages':
+        - software/available-soft/sw-list/r.md
+      - 'Data science':
+        - software/available-soft/sw-list/ds.md
+      - 'Machine learning':
+        - software/available-soft/sw-list/ml.md
+      - 'Singularity images':
+        - software/available-soft/sw-list/singularity.md
     - software/available-soft/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md

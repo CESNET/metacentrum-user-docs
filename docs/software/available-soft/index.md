@@ -1,14 +1,18 @@
-# Available software
+# Full software list
 
 
 !!! todo
-    This section is to be done
+    This section is to be done. Here a complete list (automatically generated) of software is to be placed.
 
-Zde bude:
+!!! note
+    This section does not need to be done right now.
 
-- seznam softwaru (nejak trideny a limitovany)
-- seznam softwaru rozdeleny dle a)abecedy, b) field of interest
-- nezapomenout zopakovat, ze kompletni sesznam ziskaji pres `module av`
+
+
+
+
+
+
 
 
 
