@@ -12,9 +12,6 @@ For full description of the service see [Metacentrum NGI pages](https://www.meta
 
 The user account **expires annually on the 2nd of February**. By the end of December/beginning of January users are noticed to ask for account prolongation.
 
-!!! question "So if I create an account on 1st of February, do I need to prolong it the next day?"
-    Yes.
-
 If the account is not prolonged till 2nd February, it expires. The data, login and username still exist, however, and can be reactivated upon request. After 4 years of grace period the expired account is deleted together with all its data.
  
 ### Acknowledgements and publications
