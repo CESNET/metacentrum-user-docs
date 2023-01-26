@@ -3,9 +3,6 @@
 !!! todo
     This section is yet to be done.
 
-Zde bude:
-
-- vysvetlit uzivatelum jak u nas funguji moduly
 
 
 <!--
