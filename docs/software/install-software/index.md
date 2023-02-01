@@ -1,8 +1,5 @@
 # Install software
 
-!!! note
-    Nebudeme uvadet navod jak instalovat do systemovych adresaru AFS a vytvaret modulefily.
-
 ## Options
 
 ### Install on your own 
