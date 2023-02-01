@@ -139,22 +139,24 @@ This is the user wrapper module using spack module python/3.8.0-gcc-rab6t.
 >>> quit()
 ```
 
-
 ## Modulefiles
 
 A modulefile is a text file that collects paths to the binary, paths to external libraries and possible dependencies on other modules.
 
-The modulefiles reside in some of the directories included in variable MODULEPATH (echo $MODULEPATH).
+The modulefiles reside in some of the directories included in variable `MODULEPATH` (`echo $MODULEPATH`).
 
 For many applications, there are several modules available. This means there are several copies of the software available, differing in version, compiler and other features. For example,
 
+```
 $ module avail tensorflow/
 tensorflow/1.3.0-cpu          tensorflow/1.3.0-gpu-python3  tensorflow/1.5.0-gpu          tensorflow/1.13.1-gpu-python3  
 tensorflow/1.3.0-cpu-python3  tensorflow/1.4.1-gpu          tensorflow/1.7.1-cpu-python3  tensorflow/2.0.0-gpu-python3   
 tensorflow/1.3.0-gpu          tensorflow/1.5.0-cpu-python3  tensorflow/1.7.1-gpu-python3  
+```
 
 says there are 11 versions of TensorFlow software differing by version, Python version (2 or 3) and whether it can be used for GPU computing (gpu) or not (cpu).
-Modulefile example
+
+**Modulefile example**
 
     #%Module1.0
     #!
@@ -178,10 +180,12 @@ Modulefile example
     prepend-path LD_LIBRARY_PATH ${basedir}/lib
     prepend-path MANPATH ${basedir}/share/man
 
-the number after the author's name you can see in some modulefiles is the number of RT ticket which requested the installation
-the only necessary path is PATH, where the executable is
-a modulefile can add other modules (module add ...) if there is a dependency
-basedir is path to the install directory - it can be pretty anywhere; in case of non-standard installation, e.g. to home directory, don't forget to set variable MODULEPATH accordingly (see How to install an application)
+Notes:
+
+- the number after the author's name you can see in some modulefiles is the number of RT ticket which requested the installation
+- the only necessary path is `PATH`, where the executable is
+- a modulefile can add other modules (`module add` ...) if there is a dependency
+- basedir is path to the install directory - it can be pretty anywhere; in case of non-standard installation, e.g. to home directory, don't forget to set variable `MODULEPATH` accordingly.
 
 
 
