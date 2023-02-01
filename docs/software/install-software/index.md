@@ -175,8 +175,7 @@ Micromamba supports a subset of all mamba or conda commands and is distributed a
     micromamba deactivate
     # leave the activated environment
 
-<!--
-Example:
+**Example of Conda install**
 
 To install Conda package "segemehl": 
     
@@ -197,18 +196,90 @@ Activation of this environment (e.g. within batch jobs) is as:
     segemehl.x ... # run the job
     conda deactivate
 
-Hezky popsane v listkach: 
+<!--
 https://rt.cesnet.cz/rt/Ticket/Display.html?id=1103181
 https://rt.cesnet.cz/rt/Ticket/Display.html?id=1120618
 -->
 
 ### Pip install
 
-How to install using pip
-https://rt.cesnet.cz/rt/Ticket/Display.html?id=1125154
-https://rt.cesnet.cz/rt/Ticket/Display.html?id=1150197
+Python packages can be installed using `pip`, which is a part of several Python modules, e.g. `py-pip/21.3.1-gcc-10.2.1-mjt74tn`.
+
+**General setup**
+
+```
+module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
+pip search <module name>
+pip install <module name> --root /some/user/specific/python/modules/folder # Install everything relative to this alternate root directory
+pip install <module name> --prefix /some/user/specific/python/modules/folder # Installation prefix where lib, bin and other top-level folders are placed
+pip install git+https://path/to/git/file
+```
+
+!!! note
+    Don't forget to properly set the `PATH` and `PYTHONPATH` environment variables if you are not using one of ours python-modules and installing modules to some new dir. 
+
+**Detailed walkthrough**
+
+A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. A convenient choice for this variable is a location visible from the NFSv4 infrastructure, which means you could use for example `export PYTHONUSERBASE=/storage/home/<user_name>/.local`.
+
+If you install such modules at this location, you will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
+
+If you wish to execute such commands at each login on a front end, you will therefore have to add the following lines to you `.profile`:
+
+```
+
+module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
+# Set pip path for --user option
+export PYTHONUSERBASE=/storage/city/home/<user_name>/.local
+# set PATH and PYTHONPATH variables
+export PATH=$PYTHONUSERBASE/bin:$PATH
+export PYTHONPATH=$PYTHONUSERBASE/lib/python2.7/site-packages:$PYTHONPATH
+```
+
+With this, you can install any module you need with the following command:
+
+    pip install <module-name> --user --process-dependency-links
+
+without any need for administrator rights, and you will be able to use it. When launching jobs from the scheduler, remember that you .profile is not executed, you will therefore need to do module add and to define the relevant environment variables before the job is actually executed. 
+
+**Example: install software "spektral"**
+
+To start, run interactive job with a scratch directory.
+
+```
+module add py-pip/py-pip-19.3-intel-19.0.4-hudzomi # this will load python 3.7.7 (python/python-3.7.7-intel-19.0.4-mgiwa7z)
+mkdir my_pip_libs_py3.7 # make a local directory to install to
+export TMPDIR=$SCRATCHDIR # store temporary files in SCRATCHDIR
+pip3 install spektral --root /storage/cityN/home/user123/my_pip_libs_py3.7/ # install spektral and its dependencies to a local dir
+```
+After the installation is done, setup system variables:
+
+```
+export PYTHONUSERBASE=/storage/cityN/home/user123/my_pip_libs_py3.7:/cvmfs/software.metacentrum.cz/spack1/software/python/linux-debian10-x86_64/3.7.7-intel-mgiwa7
+export PATH=$PYTHONUSERBASE/bin:$PATH
+export PYTHONPATH=$PYTHONUSERBASE/lib/python3.7/site-packages:$PYTHONPATH
+```
+
+To run the package:
+
+```
+module add  python/python-3.7.7-intel-19.0.4-mgiwa7z 
+export PYTHONUSERBASE=/storage/cityN/home/user123/my_pip_libs_py3.7:/cvmfs/software.metacentrum.cz/spack1/software/python/linux-debian10-x86_64/3.7.7-intel-mgiwa7
+export PATH=$PYTHONUSERBASE/bin:$PATH
+export PYTHONPATH=$PYTHONUSERBASE/lib/python3.7/site-packages:$PYTHONPATH
+...
+spektral ... # run the package
+```
 
 <!--
+https://rt.cesnet.cz/rt/Ticket/Display.html?id=1125154
+https://rt.cesnet.cz/rt/Ticket/Display.html?id=1150197
+-->
+
+<!--
+
+ZDE BY MELY NASLEDOVAT DALSI SEKCE - URCITE SINGULARITY/APPTAINERU A DOCKERU, MOZNA NECO OBECNE KE KOMPILACIM...
+
 ### Containers
 
 How to install something delivered as Docker / Singularity (Apptainer) container
