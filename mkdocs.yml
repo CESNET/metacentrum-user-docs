@@ -62,33 +62,28 @@ nav:
     - software/modules/index.md
     - software/install-software/index.md
     - 'Frequently used software':
-      - software/available-soft/sw-list/allinea-ddt.md
-      - software/available-soft/sw-list/amber.md
-      - software/available-soft/sw-list/ansys.md
-      - software/available-soft/sw-list/clcbio-genomics-wb.md
-      - software/available-soft/sw-list/gaussian.md
-      - software/available-soft/sw-list/geneious.md
-      - software/available-soft/sw-list/intel.md
-      - software/available-soft/sw-list/maple.md
-      - software/available-soft/sw-list/matlab.md
-      - software/available-soft/sw-list/molpro.md
-      - software/available-soft/sw-list/pgi-cdk.md
-      - software/available-soft/sw-list/total-view.md
-      - software/available-soft/sw-list/turbomole.md
-      - software/available-soft/sw-list/wien2k.md
-      - software/available-soft/sw-list/wolfram-math.md
       - 'Chemistry':
-        - software/available-soft/sw-list/respect.md
-      - 'Physics':
-        - software/available-soft/sw-list/vasp.md
-      - 'Compilers':
+        - software/available-soft/sw-list/amber.md
+        - software/available-soft/sw-list/gaussian.md
         - software/available-soft/sw-list/molden.md
-      - 'Programming languages':
-        - software/available-soft/sw-list/r.md
-      - 'Data science':
-        - software/available-soft/sw-list/ds.md
-      - 'Machine learning':
-        - software/available-soft/sw-list/ml.md
+        - software/available-soft/sw-list/molpro.md
+        - software/available-soft/sw-list/turbomole.md
+        - software/available-soft/sw-list/vasp.md
+        - software/available-soft/sw-list/wien2k.md
+      - 'Genomics':
+        - software/available-soft/sw-list/clcbio-genomics-wb.md
+        - software/available-soft/sw-list/geneious.md
+      - 'Compilers, debuggers':
+        - software/available-soft/sw-list/allinea-ddt.md
+        - software/available-soft/sw-list/intel.md
+        - software/available-soft/sw-list/pgi-cdk.md
+        - software/available-soft/sw-list/total-view.md
+      - 'Mechanics':
+        - software/available-soft/sw-list/ansys.md
+      - 'Mathematics':
+        - software/available-soft/sw-list/maple.md
+        - software/available-soft/sw-list/matlab.md
+        - software/available-soft/sw-list/wolfram-math.md
       - 'Singularity images':
         - software/available-soft/sw-list/singularity.md
     - software/full-list/index.md
