@@ -1,61 +1,91 @@
 # Modules
 
-In Metacentrum infrastructure all applications are packed into so-called modules, which make sure that a given application will run within a correct environment (incl. libraries, system variables setup etc.). Therefore to run a certain software, you must first load a module for this software.
+In Metacentrum infrastructure all applications are packed into **modules**, which make sure that a given application will run within a correct environment (libraries, system variables etc.). Therefore to run a certain software, you must first **load a module** for this software.
 
-A complete guide to how module and modulefile commands work can be found on https://modules.readthedocs.io/en/latest/modulefile.html. You can also browse the manpage from a command line man module.
+To work with modules, you will need to use command `module` (with options).
 
-On this page we will show only the most common usecases of the module command.
+A complete guide to `module`command can be found on [https://modules.readthedocs.io/en/latest/modulefile.html](https://modules.readthedocs.io/en/latest/modulefile.html). You can also browse the manpage (`man module`).
+
+On this page we will show only the most common usecases of the `module` command.
 
 ## Basic usecases
 
-List core names of available modules
+### Search for modules
 
-$ module avail                  # list all available modules (but not their versions)
-                                # the list is very long; move down the list by pressing Space or Enter key
-$ module avail intel            # list all available modules starting with "intel":
+**List all modules**
+
+```
+$ module avail  # list all available modules (but not their versions)
+                # the list is very long; move down the list by pressing Space
+```
+**List all modules starting by a certain string**
+
+```
+$ module avail intel    # list all available modules starting with "intel"
 intel-parallel-studio/  intel/  intelcdk/  intelmpi/
+```
 
-List available versions of a specific module
+**List versions of a specific module**
 
-$ module avail intelcdk/        # list the modules within the intelcdk/ directory (the "/" is important!)
+```
+$ module avail intelcdk/   # list the modules within the intelcdk/ directory (the "/" is important!)
+```
 
-will get list of versions with the default one underlined:
+will get list of versions:
 
+```
 intelcdk/12  intelcdk/13  intelcdk/14  intelcdk/15  intelcdk/16  intelcdk/17  intelcdk/17.1  intelcdk/17.1-cvmfs  intelcdk/19u3 
+```
+You can modify the search behaviour by e.g. options `--indepth` or `-a`. For all options, see `man module`.
 
+```
 $ module avail intelcdk --indepth # list all the modules within the intelcdk directory
 $ module avail intelcdk -a        # similar to above, plus list aliases to modules
+```
 
-Load a default version of a module
+### Load modules
 
-$ module load intelcdk           # or
-$ module load intelcdk --default # load default version of intelcdk (usually the newest); there is always one
-                                 # use this option if you have no specific reason to do otherwise
-                                 # or if you are insecure which version to choose, start by default one
-$ module add intelcdk            # equivalent to the above
+**Load a default version of a module**
 
-Load a specific version of a module
+```
+$ module load intelcdk           # load default version of intelcdk
+$ module load intelcdk --default # dtto
+$ module add intelcdk            # dtto
+```
 
-$ module load intelcdk-17.1
+!!! note
+    There is always a default version of a module (usually the newest, but can be also the most stable). If you have no specific reason to do otherwise, use the default version.
 
-List currently loaded modules
+**Load a specific version of a module**
 
+    $ module load intelcdk-17.1
+
+### Unload modules
+
+**Unload a module**
+
+```
+$ module unload matlab-9.9   # unload matlab-9.9
+$ module del matlab-9.9      # equivalent to the above
+```
+
+**Clear all currently loaded modules**
+
+    $ module purge   # get rid of everything!
+
+### Display info
+
+**List currently loaded modules**
+
+```
 $ module list
 Currently Loaded Modulefiles:
- 1) intelcdk/17.1
+ 1) metabase/1   2) intelcdk/19u3 
+```
 
-Unload a module:
+**Display information about the module**
 
-$ module unload matlab-9.9      # unload matlab-9.9, for example
-$ module del matlab-9.9         # equivalent to the above
-
-Clear all currently loaded modules:
-
-$ module purge              # get rid of everything!
-
-Display information about the module:
-
-$ module display intelcdk-17.1     # get loads of info about the module and environment
+    $ module display intelcdk-17.1  
 
 Some important variables are
 
@@ -65,45 +95,49 @@ Some important variables are
 
 ## Specific usecases
 
-## Limit the module validity to a bash subshell
+### Limit module span
+
+Applications available through the module system automatically load all necessary dependencies, i.e. other modules. Loading many modules together may thus raise a conflict of loaded dependencies and the subsequent crash of some of the programs. When the user needs to use more modules in one job, it is advisable to limit the use of individual modules to only the necessary part of the script.
 
 Within a single session you can use modules separately by enclosing them to parentheses. Parentheses, in general, create a subshell in bash, i.e. all modules loaded within a certain subshell will be unloaded automatically after the subshell exits.
 
-Example: normally the following two modules will conflict if loaded within the same session:
+**In general**
 
-(BUSTER)melounova@skirit:~$ module add python/3.8.0-gcc
-This is the user wrapper module using spack module python/3.8.0-gcc-rab6t.
-(BUSTER)melounova@skirit:~$ module add python/3.8.0-gcc-rab6t
-python/3.8.0-gcc-rab6t(49):ERROR:150: Module 'python/3.8.0-gcc-rab6t' conflicts with the currently loaded module(s) 'python/3.8.0-gcc'
-python/3.8.0-gcc-rab6t(49):ERROR:102: Tcl command execution failed: conflict python
-
-However you can load them separately in subshells:
-
-(BUSTER)melounova@skirit:~$ (module add python/3.8.0-gcc; python)
-This is the user wrapper module using spack module python/3.8.0-gcc-rab6t.
-...
->>> quit()
-(BUSTER)melounova@skirit:~$ (module add python/3.8.0-gcc-rab6t; python) 
-...
->>> quit()
-
-## Limit module span 
-
-In complex jobs it may be necessary to limit the functionality of the module to a part of the script to avoid mismatch between libraries. ... 
-
-Application programs available through the module system automatically load all necessary dependencies. Dependencies typically mean other modules. During the creation of long and complex pipelines, when it is needed to load many modules, there may raise a conflict of loaded dependencies and the subsequent crash of some programs. When the user needs to use more modules in one job, and it is not obvious that they will not be in conflict, it is advisable to limit the use of individual modules to only the necessary part of the script. Such a restriction can be done using parentheses. Basically, it is a replacement of the module add and module rm commands, but faster and safer. Limiting the module to part of the script using parentheses can be done as follows:
-
-
+```
     (module add module_1
     command_1 ... <input> <output>
     )
     
-    # Here, after the right parenthesis, module module_1 is no longer active (including its dependencies). The script can continue by the activation of module module_2
+    # Here, after the right parenthesis, module module_1 is no longer active (including its dependencies)
     
     (module add module_2
     command_2 ... <input> <output>
     )
+```
 
+**Example: conflicting python versions**
+
+Normally the following two modules will conflict if loaded within the same session:
+
+```
+(BUSTER)user123@skirit:~$ module add python/3.8.0-gcc
+This is the user wrapper module using spack module python/3.8.0-gcc-rab6t.
+(BUSTER)user123@skirit:~$ module add python/3.8.0-gcc-rab6t
+python/3.8.0-gcc-rab6t(49):ERROR:150: Module 'python/3.8.0-gcc-rab6t' conflicts with the currently loaded module(s) 'python/3.8.0-gcc'
+python/3.8.0-gcc-rab6t(49):ERROR:102: Tcl command execution failed: conflict python
+```
+
+However you can load them separately in subshells:
+
+```
+(BUSTER)user123@skirit:~$ (module add python/3.8.0-gcc; python)
+This is the user wrapper module using spack module python/3.8.0-gcc-rab6t.
+...
+>>> quit()
+(BUSTER)user123@skirit:~$ (module add python/3.8.0-gcc-rab6t; python) 
+...
+>>> quit()
+```
 
 
 ## Modulefiles
