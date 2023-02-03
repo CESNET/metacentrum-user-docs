@@ -109,28 +109,22 @@ Please note that Intel MKL ILP64 libraries use the 64-bit integer type (necessar
 
 From certain version of Intel compiler is used the library `iomp5` instead of `ompstub`. So with intelcdk-15 use `-liomp5` instead of `-lompstub`.
 
-
-
-
-
-
-
-Programs and environment variables
+**Programs and environment variables**
 
 Quick overview of the most used programs in module to ease you the searching in man pages.
-Program 	Description 	Corresponding environment variables 	Notes
-icc 	preprocessor, compiler, assembler and linker for C 	CC="icc", CPP="icc -E" 	
-icpc 	preprocessor, compiler, assembler and linker for C++ 	CXX="icpc", CXXCPP="icpc -E" 	
-ifort 	preprocessor, compiler, assembler and linker for Fortran 77 	F77="ifort -f77rtl" 	default behavior of ifort is like Fortran 90 compiler
-ifort 	preprocessor, compiler, assembler and linker for Fortran 90/95 	F90="ifort", FC="ifort" 	default
-GCC and ICC interaction
-Program parts can be compiled with different compilers and then link them together. Nice description is on Intel pages. 
 
+| Program | Description | Corresponding environment variables | Notes |
+|----|-----|----|----|
+| icc |	preprocessor, compiler, assembler and linker for C | CC="icc", CPP="icc -E" |  |
+| icpc | preprocessor, compiler, assembler and linker for C++ | CXX="icpc", CXXCPP="icpc -E" |  |
+| ifort | preprocessor, compiler, assembler and linker for Fortran 77 | F77="ifort -f77rtl" | default behavior of ifort is like Fortran 90 compiler |
+| ifort | preprocessor, compiler, assembler and linker for Fortran 90/95 | F90="ifort", FC="ifort" | default |
 
-
+**GCC and ICC interaction**
+Program parts can be compiled with different compilers and then link them together. Nice description is on [Intel pages](https://www.intel.com/content/www/us/en/developer/tools/overview.html). 
 
 ## Links
 
-[IntelCDK homepage]().
+[IntelCDK homepage](https://www.intel.com/content/www/us/en/developer/tools/overview.html#gs.oylq3b).
 
 [Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/INTEL_CDK).
