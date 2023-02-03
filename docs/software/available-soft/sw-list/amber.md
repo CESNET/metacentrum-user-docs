@@ -50,5 +50,5 @@ Program package contains cca 50 programs, which cover wide spectrum of computati
 
 [Amber homepage](http://ambermd.org/).
 
-[Old MetaCentrum wiki documentation.](https://wiki.metacentrum.cz/wiki/Amber).
+[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/Amber).
 
