@@ -1,9 +1,6 @@
 # Outages
 
-!!! todo
-    Zde asi jen odkaz na metavo. 
-
-
+[Current outages are listed on external MetaVO pages](https://metavo.metacentrum.cz/en/news/outages.jsp).
 
 
 
