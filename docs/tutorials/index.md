@@ -11,5 +11,5 @@ This section collects various presentation, user seminars, videos and other tuto
 
 ## Videos
 
--[Video on running Matlab graphically, 2021](https://www.youtube.com/watch?v=wT-9Dc9lbbg)
+- [Video on running Matlab graphically, 2021](https://www.youtube.com/watch?v=wT-9Dc9lbbg)
 
