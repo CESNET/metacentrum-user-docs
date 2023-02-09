@@ -8,7 +8,7 @@ Welcome to the basic guide on how to run calculations in Metacentrum grid servic
 - set up **resources** for a job,
 - retrieve job **output**.
 
-*Most topics mentioned here are covered to greater depth in the [Advanced](/advanced/) section.*
+*Most topics mentioned here are covered to greater depth in the [Advanced](/advanced/connect-auth) section.*
 
 !!! note "To start, you need to"
 
@@ -16,7 +16,7 @@ Welcome to the basic guide on how to run calculations in Metacentrum grid servic
     2. be able to login to a frontend node
     3. have elementary knowledge of Linux command line
  
-    *If anything is missing, see [Access](/access/) section.*
+    *If anything is missing, see [Access](/access/terms) section.*
 
 ## Lifecycle of a job
 
@@ -26,14 +26,13 @@ A typical usecase for grid computing is non-interactive batch job, when the user
 
 Batch jobs consists of the following steps:
 
-1. User prepares data to be used in the calculation and instruction what is to be done with them (input files + batch script).
-2. The batch script is submitted to the job planner (PBS server), which stages the job until required resources are available.
-3. After the PBS server has released the job to be run, the job runs on one of computational nodes.
+1. **User prepares data** to be used in the calculation **and instructions** what is to be done with them (input files + batch script).
+2. The batch script is submitted to the job planner (**PBS server**), which stages the job until required resources are available.
+3. After the PBS server has released the job to be run, **the job runs** on one of computational nodes.
 4. At this time the applications (software) are loaded.
 5. When the job is finished, results are copied back to user's directory according to instructions in the batch script.
 
-!!! todo
-    schema graficky
+![pic](batch-job-scheme.jpg)
 
 ### Interactive job
 
@@ -41,16 +40,15 @@ Interactive job works in different way. User does not need to specify in advance
 
 Interactive job consists of following steps:
 
-1. User submits request for specified resources to the PBS server
-2. PBS server stages this request until the resources are available.
-3. When the job starts running, user is redirected to a computational node's CLI.
-4. User does whatever they need on the CLI. 
-5. When the user logs out of the computational node, or when the time reserved for the job runs out, the job is done
+1. User **submits request for specified resources** to the PBS server
+2. **PBS server stages** this request until the resources are available.
+3. When the job starts running, **user is redirected** to a computational node's CLI.
+4. **User does whatever they need** on the node. 
+5. When the user logs out of the computational node, or when the time reserved for the job runs out, the job is done.
 
-!!! todo
-    schema graficky
+![pic](interact-job-scheme.jpg)
 
-### Which one?
+### Batch vs interactive
 
 A primary choice for grid computing is batch job. Batch jobs allow user to run massive sets of calculation without need to overview them, manipulate data etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
 
@@ -61,7 +59,7 @@ Interactive jobs are good for:
 - compiling your own software
 - processing, moving or archiving large amount of data
 
-Interactive jobs are **necessary** for running GUI application [here](/advanced/run-graphical/)
+Interactive jobs are **necessary** for [running GUI application](/advanced/run-graphical/).
 
 ## Batch job example
 
