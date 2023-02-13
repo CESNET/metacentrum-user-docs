@@ -1,16 +1,20 @@
 # Working with data
 
-This chapter provides basic guides on data manipulation, storage and archiving within MetaCentrum infrastructure. For general advice on scientific data management and data good practice, see **link to some einfra part on general data management**. 
+This chapter provides basic guides on data manipulation, storage and archiving within MetaCentrum infrastructure.
+
+<!--
+For general advice on scientific data management and data good practice, see **link to some einfra part on general data management**. 
 
 !!! todo
     Meli bychom mit na urovni einfra (navod spolecny pro vsechny sluzby) neco podobneho jako [CSC.fi obecne o datech](https://docs.csc.fi/data/datasets/datamanagement/#overview).
+-->
 
-When dealing with data in general, the most important criteria is the total volume/number of files that are to be moved in a single operation.
+When dealing with data, the most important criteria is the **total volume**/**number of files** that are to be moved in a single operation.
 
 As a rule of thumb,
 
-- Moderate data is up to **1 000 individual files** AND up to **100 GB** of total size.
-- Large data is more than any of that.
+- moderate data is up to **1 000 individual files** AND up to **100 GB** of total size,
+- large data is more than any of that.
 
 ## Quotas on storages
 
@@ -32,11 +36,6 @@ If you produce **large** amount of data by mistake, remove it either within a si
 or wrap the command into a batch job to avoid waiting for the command to end:
 
     (BUSTER)user123@tarkil:~$ qsub -l walltime=24:00:00 remove_junk_dir.sh
-
-If you produce **insanely large** amount of files that need to be removed, contact our User support.
-
-!!! todo
-    Existuje nejaky priklad manipulace s daty, kdy jsou tak velka, ze to nema mazat uzivatel ani v ramci batch jobu? (Nejake extremne rekurzivni vytvareni zanorenych adresaru apod...)
 
 #### Pack small files into large chunks
 
@@ -61,16 +60,18 @@ This is an intermediate solution. The storages quotas are separate, so you can t
 
 ## Root filesystem quota
 
+### What is root filesystem quota
+
 Apart of quota set on storage, there is a **separate quota for user's data outside the home directory**.
 
 This applies to situations when **one of user's processes writes to /tmp directory** and (on computational node) when **the user's job produces large standard output (.OU) or error (.ER) files in /var/spool directory**.
 
 ![Data quotas overview](/advanced/work-data/data-quotas-scheme.jpg)
 
-!!! warning
+!!! warning "Root filesystem quota is only 1 GB"
     The root filesystem quota is relatively small. If it is exceeded, an email is sent to the user with instructions what to do. Until the data are deleted, no further calculations will be run on the computational node.
 
-**How to remove the files**
+### How to clear files filling the quota
 
 1. Login onto the affected machine.
 
@@ -83,9 +84,9 @@ This applies to situations when **one of user's processes writes to /tmp directo
 3. Inspect the files; if they contain valuable data, copy them to your home directory. After that remove them.
 4. Check local quota again; there should be no files left.
 
-**How to prevent the situation**
+### How to prevent the situation
 
-*Redirect TMPDIR to SCRATCHDIR*
+**Redirect TMPDIR to SCRATCHDIR**
 
 A common variable name for a directory where temporary files shall be kept is `TMPDIR`.
 
@@ -95,7 +96,7 @@ Some software uses a `/tmp` directory as a default for temporary files. Try addi
 
 to the beginning of your batch script. This will force the application to place the temporary files into scratch directory instead.
 
-*Dump/redirect large outputs*
+**Dump/redirect large outputs**
 
 If the problem was caused by large `.OU` or `.ER` files, either redirect them to `/dev/null` directory
 
@@ -138,7 +139,7 @@ Using `wget` you can only transfer data **to** Metacentrum machines.
 
 sftp is just another protocol for data transfer. Contrary to `scp` it is **interactive** and apart from copying it also enables the user to manipulate files and directories on the remote side. We recommend to use `scp` if you need only to copy the data.
 
-!!! warning "Windows alert"
+!!! warning "Windows users alert"
     Windows users need an SFTP client, we recommend the WinSCP application. Keep in mind you have to fill in as target chosen NFS4 server instead of frontend in Step 1. Make sure you have selected SFTP file protocol, too.
 
 1.    `sftp user123@target_NFS4_server` # Login
@@ -365,9 +366,6 @@ Selected commands for data manipulation directly at the storage server can be ru
 !!! warning
     If you plan massive file moves directly accessing the storages, contact us in advance.
 
-!!! warning
-    It is not possible to run programs at storage volume. No computation should be run at the NFSv4 server.
-
 !!! tip
     When copying files with `dd` set block size (bs parameter) to at least 1 M. Operations will be faster.
 
@@ -416,32 +414,47 @@ There are three data storages types offered by MetaCentrum **with respect to bac
 | Disk arrays | Common `/storage` volumes, user homes | Storing data between computations |
 | Hierarchical storages | Storages with massive data capacity | Data archiving |
 
-
 !!! warning "Homes are not robustly backed up"
     Keep in mind that the **data in your home directory** are backed up only in a form of **daily snapshots** stored **on the same disk** array, and thus are prone to loss in case of hardware failure or accident. For data of permanent value consider keeping your own copy or using hierarchical storages (see below).
 
 ### Scratch storages
 
-Scratch storages are accessible via scratch directory on computational nodes. Use this storages during computations only. This means the batch script should clean up the scratch after the job is done or, if the data are left in scratch, it should be done manually (as is the case when the job fails or is killed). Data on scratch storages are automatically deleted after 14 days.
+- Scratch storages (scratch directories) on computational nodes serve to store the temporary files. 
+- They are **not backed-up** in any way.
+- After the job ends, data on scratch storages are automatically deleted after 14 days (if not cleared by the batch script).
 
 ### Disk arrays
 
-Disk arrays are several connected hard drives and are accessible via `/storage` directories. Files are stored on multiple drives, which guarantees higher I/O data speed and reliability. Use disk arrays for preparing data and storing data between jobs.
+- Disk arrays are meant to prepare, process and store data between jobs.
+- Disk arrays are several connected hard drives accessible via `/storage` directories.
+- Files are **stored on multiple drives**, which guarantees higher I/O data speed and reliability.
+- Disk arrays have a **backup policy of saving snapshots** (once a day, usually at night/early morning) of user's data.
+- The snapshots are **kept at least 14 days** backwards.
 
-Disk arrays have a backup policy of saving snapshots (once a day, usually at night/early morning) of user's data. The snapshots are kept at least 14 days backwards. This offers some protection in case user unintentionally deletes some of their files. Generally, data that existed the day before the accident can be recovered. The snapshots are stored, however, on the same disk arrays as the data, so in case of e.g. hardware failure of the disks these backups will be lost. Therefore we recommend strongly to backup any important data elsewhere. For archiving purposes MetaCentrum offers dedicated storage servers.
+The backup policy on storages offers some protection in case **user unintentionally deletes some of their files**; Generally, data that existed the day before the accident can be recovered. 
 
-### Disk arrays with hierarchical storage
+The snapshots are stored, however, on the same disk arrays as the data, so **in case of hardware failure these backups will be lost**. 
 
-Disk arrays with hierarchical storage have a more robust backup policy and should be used primarily for archiving purposes. To increase redundancy of data, they contain several layers of storage media. The first layer is a disk array, lower layers are made of MAIDs (Massive Array of Idle Drives) or magnetic tape libraries. Lower layers have bigger capacity but slower access times. Data are moved automatically among these layers based on their last usage. The most important consequence from the user's point of view is that the access to long-unused data may be slower than to the recently-used ones.
-
-Use hierarchical storages for storing data which you do not currently use, but which are important and not easily reproducible in the future. 
+Therefore **we do not recommend to use disk arrays to backup any important data**. For more robust archiving service [the section below](/advanced/work-data/#data-archiving), or visit directly [Cesnet data storage page](https://du.cesnet.cz/en/start).
 
 ## Data archiving
 
-!!! info "Data archiving and backup is service of MetaCentrum grid computing"
-    Central to MetaCentrum grid computing service is computing, not storage of data. Although the data on user homes are backed up to a certain level, not all risks are covered. MetaCentrum grid storages are unsuitable for archiving the data. For serious back-up and archiving of data use [Cesnet data storage service](https://du.cesnet.cz/en/start). Information in this section is a rough overview of data services provided by Cesnet data storage service. In case of problems/questions, we recommend to [contact them](https://du.cesnet.cz/en/o_nas/start ) Cesnet storage department homepage or contact support@cesnet.cz (see Cesnet storage department FAQs).
+!!! info "Data archiving and backup is not MetaCentrum service"
+    Central to MetaCentrum grid computing service is computing, not storage of data. Although the data on user homes are backed up to a certain level, not all risks are covered. MetaCentrum storages are unsuitable for archiving the data. For serious back-up and archiving of data use [Cesnet data storage service](https://du.cesnet.cz/en/start).
 
-Since the data in "normal" home directories are backed-up only in a form of snapshots, they are not protected against loss due to hardware failure. The data of permanent value which would be hard to recreate should be backed-up on dedicated servers with hierarchical storage policy.
+Information in this section is a rough overview of data services provided by Cesnet data storage service. In case of problems/questions, we recommend to [contact Cesnet storage department](https://du.cesnet.cz/en/o_nas/start).
+
+Since the data in "normal" home directories are backed-up only in a form of snapshots, they are not protected against loss due to hardware failure.
+
+Data of permanent value should be backed-up on dedicated **servers with hierarchical storage policy**.
+
+### Disk arrays with hierarchical storage
+
+Disk arrays with hierarchical storage have a more robust backup policy than user homes. To increase redundancy of data, they contain several layers of storage media: first layer is a disk array, lower layers are made of MAIDs (Massive Array of Idle Drives) or magnetic tape libraries.
+
+- Lower layers have bigger capacity but slower access times.
+- Data are moved automatically among these layers based on their last usage.
+- The most important consequence from the user's point of view is that the access to unused data may be slower than to the recently used ones.
 
 **Current archive servers**
 
@@ -458,18 +471,17 @@ The users are free to access any server in the table above directly, however we 
 !!! warning
     Never leave data directly in the home, i.e. in` /storage/du-cesnet/home/META_username/`. The home directory should serve only to keep SSH keys, making links to directories with the actual data and other configuration files. To enforce this, there is tiny quota set on home directory (see further [info on Cesnet data storage service pages](https://du.cesnet.cz/en/navody/home-migrace-plzen/start)).
 
-**`tape_tape_archive` vs `tape_tape` : differences**
+**`tape_tape`**
 
-Permanent data archives are normally limited in size (typically results of some research, not raw data) and the user wants to keep then "forever". Therefore the `VO_metacentrum-tape_tape-archive` has user quota set for volume of data and/or number of files. On the other hand the data are not removed after a time (they do not "expire"). Use this link if you want to stash away data of permanent value.
+- Use this option to backup data to protect from data loss in case the primary data are lost.
+- Typically these data need not to be kept for a very long time.
+- Therefore in `VO_metacentrum-tape_tape` the files older than 12 months are automatically removed (they are considered as "expired").
 
-Backed-up data serve to protect from data loss in case the primary data are lost. Typically these data need not to be kept for a very long time. Therefore in `VO_metacentrum-tape_tape` the files older than 12 months are automatically removed (they are considered as "expired"). Use this link if you want to protect your current data e.g. from HW failure of the server where the primary data are stored.
+**`tape_tape_archive**
 
-**A few notes:**
-
-- Actual usage of storages are on [PBSmon](http://metavo.metacentrum.cz/pbsmon2/nodes/physical), search for "Hierarchical storages"
-- The documentation of the directory structure in HSM servers can be found on [Cesnet data storage service page](https://du.cesnet.cz/wiki/doku.php/en/navody/home-migrace-plzen/start)
-- The complete [storage facility documentation](https://du.cesnet.cz/wiki/doku.php/en/navody/start)
-- On the HSM storages the user quota is not applied. Only a technical limitation of 5TB, involving an overloading of the HSM with a one-time data copy, is applied.
+- Use this option to archive data you want to keep "forever".
+- `VO_metacentrum-tape_tape-archive` has user quota set for volume of data and/or number of files.
+- The data are not removed after a time (they do not "expire").
 
 **Transfering the files to/from the archive**
 
@@ -477,9 +489,9 @@ Backed-up data serve to protect from data loss in case the primary data are lost
     In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
 
 - if most of your files are large (hundreds of MBs, GBs, ...), don't bother with packing them and make a one-to-one copy to the archive,
-- if your files are smaller and you don't plan to search individual files, pack them into tar or zip files,
+- if your files are smaller and you don't plan to search individual files, pack them into `.tar` or `.zip` files,
 - from the technical point of view, optimal "chunk" of packed data is 500 MB or bigger,
-- don't use front-end servers for anything else than moving several small files! Submit a regular job and/or take an interactive job instead to handle with the archival data
+- don't use front-end servers for anything else than moving several small files! Submit a regular job and/or take an interactive job instead to handle with the archival data.
 - keep in mind that the master HOME directory of each HSM storage is dedicated just for initialization scripts, and thus has a limited quota of just 50 MB.
 
 <!--
