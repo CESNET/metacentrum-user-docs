@@ -8,7 +8,7 @@ Welcome to the basic guide on how to run calculations in Metacentrum grid servic
 - set up **resources** for a job,
 - retrieve job **output**.
 
-*Most topics mentioned here are covered to greater depth in the [Advanced](/advanced/) section.*
+*Most topics mentioned here are covered to greater depth in the [Advanced](/advanced/connect-auth) section.*
 
 !!! note "To start, you need to"
 
