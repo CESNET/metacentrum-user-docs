@@ -45,9 +45,6 @@ IDs of GPU cards are stored in `CUDA_VISIBLE_DEVICES` variable.
 
 These IDs are mapped to CUDA tools virtual IDs. Though if `CUDA_VISIBLE_DEVICES` contains value 2, 3 then CUDA tools will report IDs 0, 1. 
 
-!!! todo
-    overit tuto informaci
-
 ## NVidia GPU cloud
 
 NVIDIA provides GPU-tuned frameworks for deep learning packed as Docker containers under [NVIDIA GPU CLOUD (NGC)](https://ngc.nvidia.com/).

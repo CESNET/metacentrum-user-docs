@@ -182,7 +182,7 @@ License: [https://raw.githubusercontent.com/singularityware/singularity/developm
 ## Docker
 
 !!! todo
-    Docker supported in MetaCentrum in the future?
+    Docker support in MetaCentrum
 
 
 
