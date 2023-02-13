@@ -106,7 +106,7 @@ There are a deal more resources than the ones shown here; for example, it is pos
 
 Examples:
 
-    qsub -l select=1=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00 myJob.sh
+    qsub -l select=1:ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00 myJob.sh
 
 where
 
@@ -168,7 +168,11 @@ For more complicated examples of module usage, see [advanced chapter on modules]
 
 ## Scratch directory
 
-Most application produce some temporary files during the calculation. Scratch directory is disk space where temporary files will are stored.
+Most application produce some large temporary files during the calculation. 
+
+To store these files, as well as all the input data, on the computational node, a disc space must be reserved for them.
+
+This is a purpose of **scratch directory** on computational node.
  
 !!! warning
     There is no default scratch directory and the user must always specify its type and volume.
@@ -182,7 +186,19 @@ Currently we offer four types of scratch storage:
 | shared | no  | `/scratch.shared/USERNAME/job_JOBID` | `scratch_shared`| can be shared by more jobs | 	
 | shm | no  | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `scratch_shm`| exists in RAM, ultra fast |
 
-As a default choice, we recommend users to use **local scratch**.
+As a default choice, we recommend users to use **local scratch**:
 
-To access the scratch directory, use the system variable `SCRATCHDIR`.
+    qsub -I -l select=1=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
 
+To access the scratch directory, use the system variable `SCRATCHDIR`:
+
+```
+(BULLSEYE)user123@skirit:~$ qsub -I -l select=1:ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
+qsub: waiting for job 14429322.meta-pbs.metacentrum.cz to start
+qsub: job 14429322.meta-pbs.metacentrum.cz ready
+
+user123@glados12:~$ echo $SCRATCHDIR
+/scratch.ssd/user123/job_14429322.meta-pbs.metacentrum.cz
+user123@glados12:~$ cd $SCRATCHDIR
+user123@glados12:/scratch.ssd/user123/job_14429322.meta-pbs.metacentrum.cz$ 
+```
