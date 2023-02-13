@@ -84,9 +84,14 @@ In the PBS terminology, a **chunk** is a subset of computational nodes on which 
 
 According to PBS internal logic, the resources are either **chunk-wide** or **job-wide**.
 
-**Job-wide** resources are defined for the job as a whole, e.g. maximal duration of the job or a license to run a commercial software. The cannot be divided in parts and distributed among computational nodes on which the jo runs. Every job-wide resource is defined in the form of `-l <resource_name>=<resource_value>`, e.g. `-l walltime=1:00:00`.
+**Job-wide** resources are defined for the job as a whole, e.g. maximal duration of the job or a license to run a commercial software. These cannot be divided in parts and distributed among computational nodes on which the job runs. Every job-wide resource is defined in the form of `-l <resource_name>=<resource_value>`, e.g. `-l walltime=1:00:00`.
 
-**Chunk-wide** resources can be ascribed to every chunk separately and differently. At this point we assume that the number of chunks is always 1, which is also a default value. Chunk-wide resources are defined as options of `select` statement in pairs `<resource_name>=<resource_value>` divided by `:`.
+**Chunk-wide** resources can be ascribed to every chunk separately and differently.
+
+!!! note
+    For the purpose of this intro, we assume that the number of chunks is always 1, which is also a default value. To see more complicated examples about per-chunk resource distribution, see [advanced chapter on PBS resources](/advanced/pbs-options/#chunk-vs-job).
+
+Chunk-wide resources are defined as options of `select` statement in pairs `<resource_name>=<resource_value>` divided by `:`.
 
 The essential resources are:
 
@@ -101,7 +106,7 @@ There are a deal more resources than the ones shown here; for example, it is pos
 
 Examples:
 
-    qsub -l select1=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00 myJob.sh
+    qsub -l select=1=ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00 myJob.sh
 
 where
 
@@ -120,8 +125,6 @@ The default queue is only **routing** one: it serves to sort jobs into another q
 
 The latter queues are **execution** ones, i.e. they serve to actually run the jobs. 
 
-![Queue sorting schema](routing-execution-queues.jpg)
-
 In PBSmon, the [list of queues for all planners can be found](https://metavo.metacentrum.cz/pbsmon2/queues/list).
 
 ![Queues list (top)](queues_top.png)
@@ -130,19 +133,38 @@ In PBSmon, the [list of queues for all planners can be found](https://metavo.met
 
 ![Queues list (bottom)](queues_bottom.png)
 
-!!! todo
-    tyto obrazky k sobe slepit a vysvetlit znacky routing, execution, soukroma.
 
-!!! warning 
-    Do not try to skip other users by sending a job to a specific queue just because it seems to have more free machines. There is always some reason why some machines are seemingly idle. Moreover, the scheduler will not allow user doing so.
+with respective meaning of icons:
 
-!!! tip
-    If you however suspect that some queue accepts jobs that should not be there or behaves in a strange way, contact User support. 
+| Icon | meaning |
+|----|----|
+| ![Queues list (top)](routing-logo.png) | routing queue<br/> (to send jobs into) |
+| ![Queues list (top)](exec-logo.png) | execution queue<br/> (not to send jobs into) |
+| ![Queues list (top)](private-logo.png) | private queue<br/> (limited for a group of users) |
 
 ## Modules
 
-!!! todo
-    To be done.
+The software istalled in Metacentrum is packed (together with dependencies, libraries and environment variables) in so-called **modules**.
+
+To be able to use a particular software, you must **load a module**.
+
+Key command to work with software is `module`, see `module --help` on any frontend.
+
+**Basic commands**
+
+```
+module avail orca/ # list versions of installed Orca
+
+module add orca # load Orca module (default version) 
+module load orca # dtto
+
+module list # list currently loaded modules
+
+module unload orca # unload module orca
+module purge # unload all currently loaded modules
+```
+
+For more complicated examples of module usage, see [advanced chapter on modules](/software/modules).
 
 ## Scratch directory
 
