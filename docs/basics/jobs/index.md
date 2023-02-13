@@ -260,7 +260,9 @@ In case of erroneous job ending, the data are left in the scratch directory. You
 
 For example:
 
-    user123@skirit:~$ ssh user123@luna13.fzu.cz # login to a hostname luna13.fzu.cz
-    user123@luna13:~$ cd /scratch/user123/job_14053410.meta-pbs.metacentrum.cz # enter the scratch directory
-    user123@luna13:/scratch/user123/job_14053410.meta-pbs.metacentrum.cz$ rm -r * # remove all files and subdirectories
+    user123@skirit:~$ ssh user123@luna13.fzu.cz # login to luna13.fzu.cz
+    user123@luna13:~$ cd /scratch/user123/job_14053410.meta-pbs.metacentrum.cz # enter scratch directory
+    user123@luna13:/scratch/user123/job_14053410.meta-pbs.metacentrum.cz$ rm -r * # remove all content
+
+The scratch directory itself will be **deleted automatically** after some time.
 
