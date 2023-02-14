@@ -62,12 +62,15 @@ Clicking on "Shell access" will open tavallinen ssh connection to a chosen front
 
 ![pic](shell-login.png)
 
-## Interactive Apps
+## Apps/Interactive Apps
 
-The Interactive Apps tab lists all the applications and environments that can be run as interactive jobs from OnDemand interface.
+The "Apps" tab lists all environments, shell access buttons as well as graphical software that can be run from the OnDemand interface.
+
+The "Interactive Apps" tab lists all the applications and environments that are run as interactive jobs.
+
+Technically, "Interactive Apps" is a subset of "Apps".
 
 ![pic](interact-apps.png)
-
 
 ## My Interactive Sessions
 
