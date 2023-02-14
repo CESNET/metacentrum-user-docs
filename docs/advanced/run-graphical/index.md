@@ -310,14 +310,14 @@ Requirements:
 Open a new terminal and type the following command:
 
     $ ssh -TN -f USERNAME@SSH_SERVER_NAME -L PORT:localhost:PORT 
-    $ ssh -TN -f melounova@elmo3-3.hw.elixir-czech.cz -L 5923:localhost:5923 # e.g.
+    $ ssh -TN -f user123@elmo3-3.hw.elixir-czech.cz -L 5923:localhost:5923 # e.g.
 
 You will be prompted for your Metacentrum password type it and hit Enter. Nothing visible happens, and the terminal prompt stays at your local PC.
 
 In the same terminal run any VNC client. In this example we use xtightvncviewer.
 
-    melounova@melounova-ThinkCentre-E93:~$ xtightvncviewer localhost:PORT
-    melounova@melounova-ThinkCentre-E93:~$ xtightvncviewer localhost:5923 # e.g.
+    user123@user123-ThinkCentre-E93:~$ xtightvncviewer localhost:PORT
+    user123@user123-ThinkCentre-E93:~$ xtightvncviewer localhost:5923 # e.g.
 
 You will be prompted for VNC password. Type it and hit Enter. You will see the splash (welcome) window.
 
