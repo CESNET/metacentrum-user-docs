@@ -17,26 +17,43 @@ Supported browsers are Google Chrome, Mozilla Firefox or Microsoft Edge.
 
 ## Files
 
-Under the "Files" tab, you can:
+- **browse** Metacentrum **storages**,
+- **upload/download files** from/to local PC,
+- **move files** between storages,
+- **edit files** on storages.
 
-- view and browse Metacentrum storages,
-- upload and download files from/to local PC,
-- copy/move files between storages,
-- edit files.
+### Access to storages
 
-### Storages
+In the rolldown menu, there are pre-defined shortcut links to 3 homes on different storages.
 
-By default, your home directory resides on brno2 storage. 
+![pic](files-rolldown.png)
 
-You can change to other storages by using the "Change directory" button. 
+By default, the **Home Directory** link points to storage **brno2**.
 
+!!! warning "Home Directory is fixed on brno2"
+    The Home Directory for OnDemand files is currently fixed to brno2 storage. Users cannot change this setting. 
+
+<!--
 ![pic](file-explorer-1.png)
+You can change to other storages by using the "Change directory" button. 
+-->
 
 ### OnDemand data directories
 
-To store it's own files, OnDemand creates automatically directory `ondemand` in your home. You will find there output files, error files and other data for batch jobs submitted from OnDemand interface. The subdirectories for jobs are sorted according to the apps used. 
+To store it's own files, OnDemand creates automatically directory `ondemand` in your **Home directory**. You will find there output files, error files and other data for batch jobs submitted from OnDemand interface. The subdirectories for jobs are sorted according to the apps used. 
 
+For example, after running the VMD Desktop, all output from the session will be in `~/ondemand/data/sys/dashboard/batch_connect/sys/bc_desktop/vmd/output/ONDEMAND_SESSION_ID` directory.
+
+!!! warning
+    The **ONDEMAND_SESSION_ID** is OnDemand's internal hash for the session, not PBS job ID! It looks like e.g. `9a8b3f2b-0c6d-4cbd-922b-c587f2c2f0fb`.
+
+You can remove the content of OnDemand data directories, or even the `~/ondemand` directory itself, any time you wish.
+
+Every time you run OnDemand, it will first look for existing directory `~/ondemand`. When it does not find any, it creates a new one.
+
+<!--
 ![pic](file-explorer-2.png)
+-->
 
 ## Jobs
 
