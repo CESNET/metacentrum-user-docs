@@ -10,6 +10,3 @@ The Perun service will be useful when you need to:
 
 To get a complete user guide for Perun service, see [Perun documentation](https://perunaai.atlassian.net/wiki/spaces/PERUN/pages/524289/User+Documentation).
 
-!!! todo
-    Vyse uvedeny je under construction.
-
