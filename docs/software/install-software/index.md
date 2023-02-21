@@ -273,13 +273,17 @@ https://rt.cesnet.cz/rt/Ticket/Display.html?id=1125154
 https://rt.cesnet.cz/rt/Ticket/Display.html?id=1150197
 -->
 
-<!--
-
-ZDE BY MELY NASLEDOVAT DALSI SEKCE - URCITE SINGULARITY/APPTAINERU A DOCKERU, MOZNA NECO OBECNE KE KOMPILACIM...
-
 ### Containers
 
-How to install something delivered as Docker / Singularity (Apptainer) container
+Apptainer (Singularity) images can be deployed and run directly on MetaCentrum machines.
+
+If your software is released as Docker container, you have more option.
+
+- **Apptainer** (former Singularity) **image** can be run in MetaCentrum directly, see [Apptainer/Singularity howto](/advanced/containers).
+- **Docker images** must be translated into an Apptainer image and run [as described in this chpater](/advanced/containers/#starting-application-docker-image).
+- Docker images can be run also via Kubernetes service. See [Kubernetes](https://docs.e-infra.cz/compute/containers/) for instruction.
+
+<!--
 
 ### Compile from source
 
