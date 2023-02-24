@@ -82,7 +82,6 @@ nav:
       - advanced/job-tracking/index.md
     - 'Data and grid':  
       - advanced/grid-infrastruct/index.md
-      - advanced/work-data/index.md
       - advanced/mount-storages/index.md
     - 'Specific types of jobs':
       - advanced/gpu-comput/index.md
