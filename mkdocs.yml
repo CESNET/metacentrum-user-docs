@@ -38,26 +38,10 @@ nav:
   - 'Basics':
     - basics/concepts/index.md
     - basics/jobs/index.md
-  - 'Advanced':
-    - 'Access and security':
-      - advanced/connect-auth/index.md
-      - advanced/kerberos/index.md
-    - 'PBS and job planning':    
-      - advanced/pbs-options/index.md
-      - advanced/queues-in-meta/index.md
-    - 'Job state and history':
-      - advanced/job-tracking/index.md
-    - 'Data and grid':  
-      - advanced/grid-infrastruct/index.md
-      - advanced/work-data/index.md
-      - advanced/mount-storages/index.md
-    - 'Specific types of jobs':
-      - advanced/gpu-comput/index.md
-      - advanced/containers/index.md
-      - advanced/parallel-comput/index.md
-    - 'Non-CLI access':
-      - advanced/run-graphical/index.md
-      - advanced/ondemand/index.md
+  - 'Data':
+    - data/data-within/index.md
+    - data/data-outside/index.md
+    - data/backup-archive/index.md
   - 'Software':
     - software/modules/index.md
     - software/install-software/index.md
@@ -87,6 +71,26 @@ nav:
 #      - 'Singularity images':
 #        - software/available-soft/sw-list/singularity.md
     - software/full-list/index.md
+  - 'Advanced':
+    - 'Access and security':
+      - advanced/connect-auth/index.md
+      - advanced/kerberos/index.md
+    - 'PBS and job planning':    
+      - advanced/pbs-options/index.md
+      - advanced/queues-in-meta/index.md
+    - 'Job state and history':
+      - advanced/job-tracking/index.md
+    - 'Data and grid':  
+      - advanced/grid-infrastruct/index.md
+      - advanced/work-data/index.md
+      - advanced/mount-storages/index.md
+    - 'Specific types of jobs':
+      - advanced/gpu-comput/index.md
+      - advanced/containers/index.md
+      - advanced/parallel-comput/index.md
+    - 'Non-CLI access':
+      - advanced/run-graphical/index.md
+      - advanced/ondemand/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md
     - troubleshooting/outages/index.md
