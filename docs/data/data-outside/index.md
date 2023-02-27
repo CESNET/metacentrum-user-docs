@@ -1,8 +1,9 @@
-# Data outside MetaCentrum
+# Outside MetaCentrum
 
-- jak sdilet data s nekym mimo Metacentrum
-- posilani velkych dat
-
+!!! todo
+    V teto casti
+    <li> jak sdilet data s nekym mimo Metacentrum
+    <li> posilani velkych dat
 
 ### Send data outside MetaCentrum
 

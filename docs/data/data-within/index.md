@@ -1,4 +1,4 @@
-# Data within MetaCentrum
+# Within MetaCentrum
 
 This chapter provides basic guides on data manipulation, storage and archiving within MetaCentrum infrastructure.
 

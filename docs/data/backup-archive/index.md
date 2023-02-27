@@ -1,11 +1,18 @@
 # Backup and archiving
 
-- odkaz na datova uloziste
-- jaky je rozdil mezi nama a DU
-- rozdil mezi adresarema DU (`VO_tape` vs `VO_tape_tape`)
+**MetaCentrum** is a service intended to provide computing capacity to its users. MetaCentrum *has* a reasonably large storage space and a backup policies of it's own, so the users' data are far from being unprotected.
 
+However, if you look for serious backup and archiving space, users should opt for **[CESNET Storage Department service](https://du.cesnet.cz/en/start)**. Like MetaCentrum, this is a service provided by CESNET.
 
-## Data backup in MetaCentrum 
+The CESNET Storage Department service is available to all user with **MetaCentrum login and password**.
+
+MetaCentrum backup policy will be described to detail in this chapter.
+
+Cesnet storage department policies will be described to a certain level, too. However for more detailed information, users should refer to [Storage department documentation pages](https://du.cesnet.cz/en/start).
+
+![pic](templ_002.png)
+
+## MetaCentrum data policy 
 
 There are three data storages types offered by MetaCentrum **with respect to backup policy**:
 
@@ -38,45 +45,32 @@ The snapshots are stored, however, on the same disk arrays as the data, so **in 
 
 Therefore **we do not recommend to use disk arrays to backup any important data**. For more robust archiving service [the section below](/advanced/work-data/#data-archiving), or visit directly [Cesnet data storage page](https://du.cesnet.cz/en/start).
 
-## Data backup and archiving in Storage Department
+## Storage Department data policy
+
+!!! info "Data archiving and backup is not MetaCentrum service"
+    From within MetaCentrum frontend, users can **ssh**/**scp** to Storage Department infrastructure. Information in this section is a rough overview of data services provided by Cesnet Storage Department. In case of problems/questions, we recommend to [contact Cesnet Storage Department](https://du.cesnet.cz/en/o_nas/start).
 
 ![pic](templ_001.png)
 
-## Backup
-
-## Archiving
-
-!!! info "Data archiving and backup is not MetaCentrum service"
-    Central to MetaCentrum grid computing service is computing, not storage of data. Although the data on user homes are backed up to a certain level, not all risks are covered. MetaCentrum storages are unsuitable for archiving the data. For serious back-up and archiving of data use [Cesnet data storage service](https://du.cesnet.cz/en/start).
-
-Information in this section is a rough overview of data services provided by Cesnet data storage service. In case of problems/questions, we recommend to [contact Cesnet storage department](https://du.cesnet.cz/en/o_nas/start).
-
-Since the data in "normal" home directories are backed-up only in a form of snapshots, they are not protected against loss due to hardware failure.
-
-Data of permanent value should be backed-up on dedicated **servers with hierarchical storage policy**.
-
-### Disk arrays with hierarchical storage
-
-Disk arrays with hierarchical storage have a more robust backup policy than user homes. To increase redundancy of data, they contain several layers of storage media: first layer is a disk array, lower layers are made of MAIDs (Massive Array of Idle Drives) or magnetic tape libraries.
+Underlying infrastructure in Storage Department are **servers with hierarchical storage policy**. To increase redundancy of data, these discs contain several layers of storage media: first layer is a disk array, lower layers are made of MAIDs (Massive Array of Idle Drives) or magnetic tape libraries.
 
 - Lower layers have bigger capacity but slower access times.
 - Data are moved automatically among these layers based on their last usage.
 - The most important consequence from the user's point of view is that the access to unused data may be slower than to the recently used ones.
 
-**Current archive servers**
+**Current Storage Department servers**
 
 | Server name | Mounted at | Note |
 |-------------|------------|-------|
-| storage-du-cesnet.metacentrum.cz | /storage/du-cesnet/ | primary for all Metacentrum users |
+| storage-du-cesnet.metacentrum.cz | /storage/du-cesnet/ | for all Metacentrum users |
 | storage-brno14.ceitec.metacentrum.cz | /storage/brno14-ceitec/ | for NCBR/CEITEC users only |
-
-The users are free to access any server in the table above directly, however we recommend to use directory:
-
-- `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape-archive/` for archiving, or
-- `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape/` for backup service.
 
 !!! warning
     Never leave data directly in the home, i.e. in` /storage/du-cesnet/home/META_username/`. The home directory should serve only to keep SSH keys, making links to directories with the actual data and other configuration files. To enforce this, there is tiny quota set on home directory (see further [info on Cesnet data storage service pages](https://du.cesnet.cz/en/navody/home-migrace-plzen/start)).
+
+## Backup
+
+- `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape/`
 
 **`tape_tape`**
 
@@ -84,11 +78,20 @@ The users are free to access any server in the table above directly, however we 
 - Typically these data need not to be kept for a very long time.
 - Therefore in `VO_metacentrum-tape_tape` the files older than 12 months are automatically removed (they are considered as "expired").
 
-**`tape_tape_archive**
+## Archiving
+
+- `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape-archive/`
+
+**`tape_tape_archive`**
 
 - Use this option to archive data you want to keep "forever".
 - `VO_metacentrum-tape_tape-archive` has user quota set for volume of data and/or number of files.
 - The data are not removed after a time (they do not "expire").
+
+
+
+
+
 
 **Transfering the files to/from the archive**
 
