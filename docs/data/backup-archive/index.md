@@ -14,16 +14,12 @@ Cesnet storage department policies will be described to a certain level, too. Ho
 
 ## MetaCentrum data policy 
 
-There are three data storages types offered by MetaCentrum **with respect to backup policy**:
+There are two data storage types offered by MetaCentrum **with respect to backup policy**:
 
 | Storage type 	 | Basic description | Typical usecase| 
 |----------------|-------------------|----------------|
-| Scratch storages | Fast storages with minimum data capacity | Storing data during computations |
-| Disk arrays | Common `/storage` volumes, user homes | Storing data between computations |
-| Hierarchical storages | Storages with massive data capacity | Data archiving |
-
-!!! warning "Homes are not robustly backed up"
-    Keep in mind that the **data in your home directory** are backed up only in a form of **daily snapshots** stored **on the same disk** array, and thus are prone to loss in case of hardware failure or accident. For data of permanent value consider keeping your own copy or using hierarchical storages (see below).
+| Scratch storages | Fast storages on computing nodes | Storing data **during** a computation |
+| Disk arrays | `/storage` volumes, user homes | Storing data **between** computations |
 
 ### Scratch storages
 
@@ -42,8 +38,6 @@ There are three data storages types offered by MetaCentrum **with respect to bac
 The backup policy on storages offers some protection in case **user unintentionally deletes some of their files**; Generally, data that existed the day before the accident can be recovered. 
 
 The snapshots are stored, however, on the same disk arrays as the data, so **in case of hardware failure these backups will be lost**. 
-
-Therefore **we do not recommend to use disk arrays to backup any important data**. For more robust archiving service [the section below](/advanced/work-data/#data-archiving), or visit directly [Cesnet data storage page](https://du.cesnet.cz/en/start).
 
 ## Storage Department data policy
 
@@ -68,48 +62,18 @@ Underlying infrastructure in Storage Department are **servers with hierarchical 
 !!! warning
     Never leave data directly in the home, i.e. in` /storage/du-cesnet/home/META_username/`. The home directory should serve only to keep SSH keys, making links to directories with the actual data and other configuration files. To enforce this, there is tiny quota set on home directory (see further [info on Cesnet data storage service pages](https://du.cesnet.cz/en/navody/home-migrace-plzen/start)).
 
-## Backup
+### Backup
 
 - `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape/`
-
-**`tape_tape`**
-
-- Use this option to backup data to protect from data loss in case the primary data are lost.
+- Use this option to backup data to protect data in case primary data are lost.
 - Typically these data need not to be kept for a very long time.
-- Therefore in `VO_metacentrum-tape_tape` the files older than 12 months are automatically removed (they are considered as "expired").
+- Files older than 12 months are automatically removed (they are considered as "expired").
 
-## Archiving
+### Archiving
 
 - `/storage/du-cesnet/home/META_username/VO_metacentrum-tape_tape-archive/`
-
-**`tape_tape_archive`**
-
 - Use this option to archive data you want to keep "forever".
-- `VO_metacentrum-tape_tape-archive` has user quota set for volume of data and/or number of files.
+- The directory has user quota set for volume of data and/or number of files.
 - The data are not removed after a time (they do not "expire").
-
-
-
-
-
-
-**Transfering the files to/from the archive**
-
-!!! note 
-    In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
-
-- if most of your files are large (hundreds of MBs, GBs, ...), don't bother with packing them and make a one-to-one copy to the archive,
-- if your files are smaller and you don't plan to search individual files, pack them into `.tar` or `.zip` files,
-- from the technical point of view, optimal "chunk" of packed data is 500 MB or bigger,
-- don't use front-end servers for anything else than moving several small files! Submit a regular job and/or take an interactive job instead to handle with the archival data.
-- keep in mind that the master HOME directory of each HSM storage is dedicated just for initialization scripts, and thus has a limited quota of just 50 MB.
-
-<!--
-!!! todo
-    Plus sem dat tez veci z [Politika zalohovani](https://wiki.metacentrum.cz/wiki/Politika_zalohovani)
--->
-
-
-
 
 

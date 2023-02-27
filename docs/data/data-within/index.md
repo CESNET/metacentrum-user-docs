@@ -347,3 +347,23 @@ For more advanced users, there is also the possibility to mount the data storage
 
 For more detail, follow the tutorial on [how to mount storages on local station](/advanced/mount-storages).
 
+
+
+!!! todo
+    todle nekam umistit
+
+**Transfering the files to/from the archive**
+
+!!! note 
+    In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
+
+- if most of your files are large (hundreds of MBs, GBs, ...), don't bother with packing them and make a one-to-one copy to the archive,
+- if your files are smaller and you don't plan to search individual files, pack them into `.tar` or `.zip` files,
+- from the technical point of view, optimal "chunk" of packed data is 500 MB or bigger,
+- don't use front-end servers for anything else than moving several small files! Submit a regular job and/or take an interactive job instead to handle with the archival data.
+- keep in mind that the master HOME directory of each HSM storage is dedicated just for initialization scripts, and thus has a limited quota of just 50 MB.
+
+
+
+
+
