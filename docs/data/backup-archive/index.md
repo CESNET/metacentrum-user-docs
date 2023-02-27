@@ -10,7 +10,7 @@ MetaCentrum backup policy will be described to detail in this chapter.
 
 Cesnet storage department policies will be described to a certain level, too. However for more detailed information, users should refer to [Storage department documentation pages](https://du.cesnet.cz/en/start).
 
-![pic](templ_002.png)
+![pic](metacentrum-du-diff.jpg)
 
 ## MetaCentrum data policy 
 
@@ -44,7 +44,7 @@ The snapshots are stored, however, on the same disk arrays as the data, so **in 
 !!! info "Data archiving and backup is not MetaCentrum service"
     From within MetaCentrum frontend, users can **ssh**/**scp** to Storage Department infrastructure. Information in this section is a rough overview of data services provided by Cesnet Storage Department. In case of problems/questions, we recommend to [contact Cesnet Storage Department](https://du.cesnet.cz/en/o_nas/start).
 
-![pic](templ_001.png)
+![pic](meta-vs-du-dirs.jpg)
 
 Underlying infrastructure in Storage Department are **servers with hierarchical storage policy**. To increase redundancy of data, these discs contain several layers of storage media: first layer is a disk array, lower layers are made of MAIDs (Massive Array of Idle Drives) or magnetic tape libraries.
 
