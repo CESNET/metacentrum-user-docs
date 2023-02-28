@@ -42,6 +42,7 @@ nav:
     - data/data-within/index.md
     - data/data-outside/index.md
     - data/backup-archive/index.md
+    - data/quotas/index.md
   - 'Software':
     - software/modules/index.md
     - software/install-software/index.md

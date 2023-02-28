@@ -1,6 +1,6 @@
 # Within MetaCentrum
 
-This chapter provides basic guides on data manipulation, storage and archiving within MetaCentrum infrastructure.
+This chapter provides basic guides on data manipulation within MetaCentrum infrastructure.
 
 <!--
 For general advice on scientific data management and data good practice, see **link to some einfra part on general data management**. 
@@ -15,104 +15,6 @@ As a rule of thumb,
 
 - moderate data is up to **1 000 individual files** AND up to **100 GB** of total size,
 - large data is more than any of that.
-
-## Quotas on storages
-
-Keeping large data volumes or too many files in user's homes is problematic, since it significantly increases the time needed to backup the home directories as well as to manipulate them for any other purpose. To keep the service operations sustainable, **a quota on number of files** as well as **a quota on total volume of data** is set on most storages.
-
-You can see the state of your quotas:
-
-- in the table that appears every time when you login on a frontend,
-- at your [quota overview in PBSmon](http://metavo.metacentrum.cz/en/myaccount/kvoty).
-
-### When you exceed a quota 
-
-#### Delete it
-
-If you produce **large** amount of data by mistake, remove it either within a single command, e.g.
-
-    (BUSTER)user123@tarkil:~$ ssh user123@storage-brno6.metacentrum.cz rm -rf ~/junk_dir
-
-or wrap the command into a batch job to avoid waiting for the command to end:
-
-    (BUSTER)user123@tarkil:~$ qsub -l walltime=24:00:00 remove_junk_dir.sh
-
-#### Pack small files into large chunks
-
-If the data is not junk, pack them them into larger chunks using the `tar` command either from a command line or from within a batch job:
-
-    (BUSTER)user123@tarkil:~$ ssh usr123@storage-brno6.metacentrum.cz tar -cf not_junk_dir.tar ~/not_junk_dir
-    (BUSTER)user123@tarkil:~$ qsub -l walltime=24:00:00 tar_my_files.sh
-
-If you have enough space on your storage directories, you can keep the packed data there. However we encourage users to [archive](#data-archiving) any finished-project data of permanent value.
-
-If you for some reason need to shift some of your quotas, [contact us](/contact).
-
-#### Archive the data
-
-Due both to operational reasons (regular backups of storages) and for safety reasons (storages have weaker backup policy than archives), users should [archive](#data-archiving) any data that are of permanent value to them and may be needed in future.
-
-Archiving data from finished projects also helps to avoid problems with storage quotas.
-
-#### Move the data to another storage
-
-This is an intermediate solution. The storages quotas are separate, so you can temporarily dump some data to different storage where you have more free space.
-
-## Root filesystem quota
-
-### What is root filesystem quota
-
-Apart of quota set on storage, there is a **separate quota for user's data outside the home directory**.
-
-This applies to situations when **one of user's processes writes to /tmp directory** and (on computational node) when **the user's job produces large standard output (.OU) or error (.ER) files in /var/spool directory**.
-
-![Data quotas overview](/advanced/work-data/data-quotas-scheme.jpg)
-
-!!! warning "Root filesystem quota is only 1 GB"
-    The root filesystem quota is relatively small. If it is exceeded, an email is sent to the user with instructions what to do. Until the data are deleted, no further calculations will be run on the computational node.
-
-### How to clear files filling the quota
-
-1. Login onto the affected machine.
-
-    `ssh user123@halmir18.metacentrum.cz`
-
-2. List the files in your filesystem quota using the `check-local-quota` tool.
-
-    `check-local-quota`
-
-3. Inspect the files; if they contain valuable data, copy them to your home directory. After that remove them.
-4. Check local quota again; there should be no files left.
-
-### How to prevent the situation
-
-**Redirect TMPDIR to SCRATCHDIR**
-
-A common variable name for a directory where temporary files shall be kept is `TMPDIR`.
-
-Some software uses a `/tmp` directory as a default for temporary files. Try adding 
-
-    export TMPDIR=$SCRATCHDIR
-
-to the beginning of your batch script. This will force the application to place the temporary files into scratch directory instead.
-
-**Dump/redirect large outputs**
-
-If the problem was caused by large `.OU` or `.ER` files, either redirect them to `/dev/null` directory
-
-    ./your_application ... > /dev/null # redirect .OU to /dev/null
-    ./your_application ... 2> /dev/null # redirect .ER to /dev/null
-    ./your_application ... > /dev/null 2>&1 # redirect both .OU and .ER to /dev/null
-
-or redirect them to a file in your scratch directory
-
-    ./your_application ... > standard_output.txt # redirect .OU to standard_output.txt
-    ./your_application ... 2> error_output.txt # redirect .ER to error_output.txt
-    ./your_application ... > std_err_output.txt 2>&1 # redirect both .OU and .ER to std_err_output.txt
-
-If you redirect to `/dev/null`, the data will be dumped and there is no way to get them back later. The second way will make possible to inspect the files after your calculation is done.
-
-The above mentioned causes are the most common ones. Your filesystem quota can be exceeded also in other ways. If you are not sure what caused the problem and how to prevent the situation to happen again, feel free to [contact us](/contact).
 
 ## Data manipulation commands
 
@@ -198,19 +100,17 @@ Unpack *part* of the archive:
     # unpack only file PATH1/file1 and directory PATH2/dir2 into the current directory
     tar xzvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz "PATH1/file1" "PATH2/dir2"
 
-There are many other options to customize the tar command. For the full description, read manual pages (man tar). 
+There are many other options to customize the tar command. For the full description, read manual pages (`man tar`). 
 
 ## Moderate data handling
 
-Moderate amount of data can be transferred to/from MetaCentrum machines in a straightforward way *via the frontend*.
+Moderate amount of data can be transferred to/from MetaCentrum machines in a straightforward way through the frontend.
 
 Example:
 
     user123@home_PC:~$ scp user123@skirit.ics.muni.cz:/storage/brno2/home/user123/foo . # copy file "foo" from brno2 storage through skirit to a local PC
 
-The overall scheme of "transferring data through frontend":
-
-![Copy data to storage through frontend](/advanced/work-data/cp-data-through-frontend.jpg)
+![Copy data to storage through frontend](cp-data-through-frontend.jpg)
 
 !!! warning
     As you can see from the picture, all the traffic has to be processes by a frontend (data are not stored on frontend, but they load its CPUs and RAM), although the frontend is neither the source nor target of the data.
@@ -228,13 +128,10 @@ Example:
 
 The overall scheme can be depicted as below:
 
-![pic](/advanced/work-data/cp-data-directly-storage.jpg)
-
-<!-- potrebujeme tuhle tabulku??? See ~/test_direct_access_storages.sh
---8<-- "storages-direct-ssh-table.md"
--->
+![pic](cp-data-directly-storage.jpg)
 
 <!-- a todle slozite vysvetlovani jeste plati?
+
 The direct-access-equivalent to the command above is
 
     melounova@home_PC:~$ scp -r melounova@storage-brno6.metacentrum.cz:~/../fsbrno2/home/melounova/dir-with-thousands-files . 
@@ -243,7 +140,8 @@ Why do I log in to brno6, if I want to access brno2?
 
 As hardware is changing, the user data are moved to new disk fields with new names. For convenience the old names, such as "brno2" are kept as symlinks, so that users don't need to revise all their scripts and aliases every time there is a change. When working from a frontend, everything remains the same no matter the changes in the background. For example, the brno2 still exists as a symlink, although the original brno2-hardware was replaced and the data now reside physically on brno6.
 
-Since the direct access avoids the frontend, you cannot use the symbolic links, but you need to use real server names and correct paths. Although they can be figured out from the directory tree, for convenience we collect in the following table a list of storages, list of server names and corresponding paths.-->
+Since the direct access avoids the frontend, you cannot use the symbolic links, but you need to use real server names and correct paths. Although they can be figured out from the directory tree, for convenience we collect in the following table a list of storages, list of server names and corresponding paths. 
+-->
 
 ### Move data between storages
 
@@ -298,6 +196,7 @@ ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
 If you then look at the output of running job you can check how the data transfer proceeds.
 
     USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
+
 
 
 ## Direct access to storages
