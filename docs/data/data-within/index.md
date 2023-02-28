@@ -130,6 +130,15 @@ The overall scheme can be depicted as below:
 
 ![pic](cp-data-directly-storage.jpg)
 
+!!! note 
+    In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
+
+- if most of your files are large (hundreds of MBs, GBs, ...), don't bother with packing them and make a one-to-one copy to the archive,
+- if your files are smaller and you don't plan to search individual files, pack them into `.tar` or `.zip` files,
+- from the technical point of view, optimal "chunk" of packed data is 500 MB or bigger,
+- don't use front-end servers for anything else than moving several small files! Submit a regular job and/or take an interactive job instead to handle with the archival data.
+- keep in mind that the master HOME directory of each HSM storage is dedicated just for initialization scripts, and thus has a limited quota of just 50 MB.
+
 <!-- a todle slozite vysvetlovani jeste plati?
 
 The direct-access-equivalent to the command above is
@@ -143,7 +152,7 @@ As hardware is changing, the user data are moved to new disk fields with new nam
 Since the direct access avoids the frontend, you cannot use the symbolic links, but you need to use real server names and correct paths. Although they can be figured out from the directory tree, for convenience we collect in the following table a list of storages, list of server names and corresponding paths. 
 -->
 
-### Move data between storages
+**Move data between storages**
 
 **Using scp**
 
@@ -197,21 +206,16 @@ If you then look at the output of running job you can check how the data transfe
 
     USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
 
-
-
 ## Direct access to storages
 
 ### ssh protocol
 
-Selected commands for data manipulation directly at the storage server can be run through `ssh`. On the other hand these operations can easily overload NFSv4 server.
-
-!!! warning
-    If you plan massive file moves directly accessing the storages, contact us in advance.
+Selected commands for data manipulation directly at the storage server can be run through `ssh`.
 
 !!! tip
     When copying files with `dd` set block size (bs parameter) to at least 1 M. Operations will be faster.
 
-Apart from the **cerit storages** (= storages with "cerit" in the name of the server), there is **no shell** available on storage servers, so `ssh user123@storage_name.metacentrum.cz` will not work. (You *will* log in, but you will be immediately logged out.) Instead, use the construction like `ssh user123@storage_name.metacentrum.cz command`.
+Apart from the **cerit storages** (those with "cerit" in the name of the server), there is **no shell** available on storage servers, so `ssh user123@storage_name.metacentrum.cz` will not work. Instead, use the construction like `ssh user123@storage_name.metacentrum.cz command`.
 
 On storage servers, only the following commands are available:
 
@@ -240,27 +244,13 @@ or
 
     ssh USERNAME@storage-brno6.metacentrum.cz ls -l /home/USERNAME
 
-### Mount storage on local station
+### Mount storages locally
 
 For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk.
 
 For more detail, follow the tutorial on [how to mount storages on local station](/advanced/mount-storages).
 
 
-
-!!! todo
-    todle nekam umistit
-
-**Transfering the files to/from the archive**
-
-!!! note 
-    In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
-
-- if most of your files are large (hundreds of MBs, GBs, ...), don't bother with packing them and make a one-to-one copy to the archive,
-- if your files are smaller and you don't plan to search individual files, pack them into `.tar` or `.zip` files,
-- from the technical point of view, optimal "chunk" of packed data is 500 MB or bigger,
-- don't use front-end servers for anything else than moving several small files! Submit a regular job and/or take an interactive job instead to handle with the archival data.
-- keep in mind that the master HOME directory of each HSM storage is dedicated just for initialization scripts, and thus has a limited quota of just 50 MB.
 
 
 
