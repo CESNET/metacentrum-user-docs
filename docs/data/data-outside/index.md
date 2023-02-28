@@ -1,17 +1,21 @@
 # Outside MetaCentrum
 
-!!! todo
-    V teto casti
-    <li> jak sdilet data s nekym mimo Metacentrum
-    <li> posilani velkych dat
+This chapter lists options how to share large amount of data with colleagues who do not have access to MetaCentrum.
 
-### Send data outside MetaCentrum
+## Filesender
 
-In case you need to pass large amount of data to someone without Metacentrum access, we recommend to use Cesnet Filesender upload. On this page we describe the CLI version, which can be used directly from Metacentrum frontends.
+FileSender is a web based application that allows authenticated users to send large files to other users. 
 
-#### Get Filesender config file
+- FileSender functions as a file storage: you upload the file and specify who should receive a link for its download. The other party will receive an **e-mail with the link**.
+- File is stored in the repository for **up to 30 days**.
+- The files can be large with **size up to 500 GB**.
+- See [Cesnet Filesender instance](https://www.cesnet.cz/services/filesender/?lang=en).
 
-If you use filesender for the first time, you have to get the configuration file first. If you already have a configuration file, skip this step and go directly to the next chapter.
+On this page we describe the CLI version, which can be used directly from Metacentrum frontends.
+
+### Get config file
+
+If you use Filesender for the first time, you have to get the configuration file first. If you already have a configuration file, skip this step.
 
 **Log on Cesnet Filesender homepage**
 
@@ -33,7 +37,7 @@ Then,
 
 The configuration file is a normal text file. Nothing needs to be modified or added to this file, just save it somewhere on your frontend.
 
-#### Upload files to Filesender
+### Upload files
 
 To make filesender run, add it as a module:
 
@@ -47,7 +51,7 @@ Then you can upload the file:
 
     filesender.py -s "Subject" -r recipient_1@example.org    file.tar.gz     # upload file.tar.gz
 
-#### Download files from Filesender
+### Download files
 
 Once you have received an email with a notification that some file has been uploaded to Filesender.Cesnet.cz and you have been granted permission to download its contents, click on the Download link.
 
