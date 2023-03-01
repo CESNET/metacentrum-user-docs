@@ -1,20 +1,20 @@
 # Containerization
 
-## Singularity
+## Apptainer (Singularity) 
 
 ![pic](/advanced/containers/singularity-logo.png)
 
-[Singularity](https://apptainer.org/docs-legacy) is a free, cross-platform and open-source computer program that performs operating-system-level virtualization also known as containerization.
+[Apptainer (former Singularity)](https://apptainer.org/docs-legacy) is a free, cross-platform and open-source computer program that performs operating-system-level virtualization also known as containerization.
 
-Singularity is able to support natively high-performance interconnects, such as InfiniBand and Intel Omni-Path Architecture. It also has native support for Open MPI library by utilizing a hybrid MPI container approach where OpenMPI exists both inside and outside the container. Singularity can import Docker images without having Docker installed or being a superuser.
+Apptainer is able to support natively high-performance interconnects, such as InfiniBand and Intel Omni-Path Architecture. It also has native support for Open MPI library by utilizing a hybrid MPI container approach where OpenMPI exists both inside and outside the container. Apptainer can import Docker images without having Docker installed or being a superuser.
 
-Unlike Docker, Singularity was designed do fit the high-performance computing (HPC) needs. HPC environments are typically multi-user systems where users should only have access to their own data. For all practical purposes, Docker gives superuser privileges. Singularity, on the other hand, runs under user identity. It blocks privilege escalation inside containers by using an immutable single-file container format that can be cryptographically signed and verified.
+Unlike Docker, Apptainer was designed do fit the high-performance computing (HPC) needs. HPC environments are typically multi-user systems where users should only have access to their own data. For all practical purposes, Docker gives superuser privileges. Apptainer, on the other hand, runs under user identity. It blocks privilege escalation inside containers by using an immutable single-file container format that can be cryptographically signed and verified.
 
-Singularity is installed on all MetaCentrum and Cerit nodes.
+Apptainer is installed on all MetaCentrum and Cerit nodes.
 
-### Freely accessible Singularity images
+### Freely accessible Apptainer images
 
-MetaCentrum offers a couple of ready-to-use Singularity images for our users. Individual images are placed in the appropriate folder and the directory structure is shown below.
+MetaCentrum offers a couple of ready-to-use Apptainer images for our users. Individual images are placed in the appropriate folder and the directory structure is shown below.
 
     /cvmfs/singularity.metacentrum.cz/
     │
@@ -36,7 +36,7 @@ MetaCentrum offers a couple of ready-to-use Singularity images for our users. In
     │
     └── TE-Tools/ # Dfam TE Tools is a container that includes RepeatMasker, RepeatModeler, and coseg
 
-Singularity images (.sif files) in each folder can be listed by `ls` command, e.g. `ls /cvmfs/singularity.metacentrum.cz/NGC/`.
+Apptainer images (.sif files) in each folder can be listed by `ls` command, e.g. `ls /cvmfs/singularity.metacentrum.cz/NGC/`.
 
 ### Basic usecases
 
@@ -87,7 +87,7 @@ The scenario for this setup is: two nodes with common scratch dir
 
 #### Preparing your own singularity image
 
-Preparing your own singularity image is intended for experienced users. Root privileges are needed or you can use system with User Namespace Remapping. Reading [Singularity documentation](https://apptainer.org/docs-legacy) is a good idea too. In general, you do not need root privileges if you can (re)use existing docker image.
+Preparing your own singularity image is intended for experienced users. Root privileges are needed or you can use system with User Namespace Remapping. Reading [Apptainer documentation](https://apptainer.org/docs-legacy) is a good idea too. In general, you do not need root privileges if you can (re)use existing docker image.
 
 Without root privileges you prepare singularity image from Docker image as:
 
@@ -135,7 +135,7 @@ The Docker download instructions of the type
 
     docker pull sangerpathogens/circlator
 
-are in Singularity replaced as
+are in Apptainer replaced as
 
     singularity pull docker://sangerpathogens/circlator
 
@@ -143,13 +143,13 @@ This command will create `circlator_latest.sif`, a singularity image of docker i
 
     docker run -v /home/ubuntu/data:/data sangerpathogens/circlator
 
-are in Singularity replaced by
+are in Apptainer replaced by
 
     mkdir circ_read; singularity run -B ./circ_read/:/data ./circlator_latest.sif
 
 where `circ_read` is folder used for getting data into image. By running the command you are in the image and using `df -h` you can check that the folder is mounted.
 
-If you need to explore the content of the Singularity image (.sif file) interactively, use the `-C` flag.
+If you need to explore the content of the Apptainer image (.sif file) interactively, use the `-C` flag.
 
     singularity shell -C ./circlator_latest.sif
 
@@ -163,12 +163,12 @@ For more details see [https://www.sylabs.io/guides/3.7/user-guide/singularity\_a
 
 #### Environment Settings (optional)
 
-Before you start Singularity you may need to set:
+Before you start Apptainer you may need to set:
 
     export SINGULARITY_CACHEDIR="/storage/..."
     export SINGULARITY_LOCALCACHEDIR="/scratch...."
     export SINGULARITY_TMPDIR=""
-    # Than you can start Singularity
+    # Then you can start Apptainer
     singularity build ...
 
 - `CACHEDIR` - downloaded layers
@@ -182,8 +182,33 @@ License: [https://raw.githubusercontent.com/singularityware/singularity/developm
 ## Docker
 
 !!! todo
-    Docker support in MetaCentrum
+    Docker support in MetaCentrum is **yet to be done**.
 
+
+Sources from old wiki mentioning Docker:
+
+- [Podman](https://wiki.metacentrum.cz/wiki/Docker_in_Podman)
+- [.iso 2 Docker format](https://wiki.metacentrum.cz/wiki/Creating_Docker_Image_from_.iso_File)
+- [Kubernetes Rancher](https://wiki.metacentrum.cz/wiki/Kubernetes_-_Rancher)
+- [NVidia DL](https://wiki.metacentrum.cz/wiki/NVidia_deep_learning_frameworks)
+- [Singularity](https://wiki.metacentrum.cz/wiki/Singularity)
+- [Adan](https://wiki.metacentrum.cz/wiki/Cluster_Adan)
+
+
+Relevantni tickety z RT:
+
+- [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1149485)
+- [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1130342)
+- [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1113656)
+- [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1084270)
+
+Celkovy pohled na vec tedy:
+
+- z bezpecnostnich duvodu neumoznujeme spoustet Docker image
+- musite si z nich vyrobit Apptainove image
+- pokud chcete poustet docker, bezte na Kubernetes
+
+... asi tak.
 
 
 
