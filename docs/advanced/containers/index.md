@@ -1,4 +1,4 @@
-# Containerization
+# Containers
 
 ## Apptainer (Singularity) 
 

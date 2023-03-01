@@ -81,13 +81,12 @@ nav:
       - advanced/queues-in-meta/index.md
     - 'Job state and history':
       - advanced/job-tracking/index.md
-    - 'Data and grid':  
+    - 'Ingrastructure':  
       - advanced/grid-infrastruct/index.md
       - advanced/mount-storages/index.md
-    - 'Specific types of jobs':
-      - advanced/gpu-comput/index.md
-      - advanced/containers/index.md
-      - advanced/parallel-comput/index.md
+    - advanced/gpu-comput/index.md
+    - advanced/parallel-comput/index.md
+    - advanced/containers/index.md
     - 'Non-CLI access':
       - advanced/run-graphical/index.md
       - advanced/ondemand/index.md
