@@ -227,9 +227,31 @@ Next, download Docker image and build
 
 After ca 5 minus the singularity image `chronusq_latest.sif` will be ready.
 
-To test the image, download water molecule `water.inp` from [here](https://urania.chem.washington.edu/chronusq/chronusq_public/-/wikis/examples/HF-Energy).
+To test the image, download water molecule `water.inp` from [here](https://urania.chem.washington.edu/chronusq/chronusq_public/-/wikis/examples/HF-Energy) or copy from here:
 
-and run the calculation as
+```
+[Molecule]
+charge = 0
+mult = 1
+geom:
+ O     0.0     -0.076    0.0
+ H     0.867    0.601    0.0
+ H    -0.867    0.601    0.0
+
+
+[QM]
+reference = Real RHF
+job = SCF
+
+[BASIS]
+basis = 6-31G(d)
+
+[MISC]
+nsmp = 1
+mem = 100 MB
+```
+
+and run the calculation of single-point ground state energy as
 
     singularity exec chronusq_latest.sif chronusq water.inp
 
