@@ -204,46 +204,34 @@ If you want to use a Docker image, either
 - run it on Apptainer as described [above](#Use Docker image), or
 - use [Kubernetes service](http://docs.cerit.io/) specialized to run Docker images.
 
-### Example 
+### Example of running Docker in MetaCentrum 
 
-Koukal jsem na ten nástroj a řekl bych, ikdyž se to možná nezdá, že nejjednodušší způsob, jak to spustit, bude pomocí toho Docker kontejneru. Docker není pro HPC centra příliš vhodný, takže máme ekvivaletní nástroj, který se jmenuje Singularity.
+Let's say you want to run [Chronusq tool](https://urania.chem.washington.edu/chronusq/chronusq_public), an quantum chemical software package.
 
-https://wiki.metacentrum.cz/wiki/Singularity
+This is a small tool and can be compiled directly on the frontend. The resulting `.sif` image will be about 166 MB large.
 
-Klidně si zkusme sestavit vlastní obraz Chronusq, bude to jeden soubor o velikosti ~166 MB s koncovkou .sif, který se dá hned používat. Obecnou výhodou těch kontejnerů je, že vše je hned funkční a nic se nemusí kompilovat atd. Je to na chvíli a uděláte to přímo na čelním uzlu. Prvně si nastavte cestu, kam se uloží dočasné soubory (je jich o něco málo více než 1 GB, takže se vám nevejdou do kvóty na zápis do /tmp)
+Alternatively you can setup and interactive job and work from within the job.
 
-export SINGULARITY_TMPDIR=/storage/mesto/home/username/
+First set path for temporary files:
+(Default is `/tmp` which has quota of only 1 GB.)
 
-Kdybyste chtěl být super vzorný, uděláte si to celé v interaktivní úloze s menším scratchem a dočasné soubory přesmerujete do $SCRATCHDIR. Ale v tomto případě těch dočasných souborů je na objem málo a není to ani časově náročené, abychom příliš zatěžovali čelní uzel
+    export SINGULARITY_TMPDIR=/storage/CITY_XY/home/user123/
 
-export SINGULARITY_TMPDIR=$SCRATCHDIR
+If you work within interactive job, then
 
-Pak už můžete stáhnout obraz toho nástroje
+    export SINGULARITY_TMPDIR=$SCRATCHDIR
 
-singularity pull docker://uwligroup/chronusq
+Next, download Docker image and build
 
-Když počkáte +- 5 minut, tak se vám připraví sif obraz (Sinfularity Image File) s náznem "chronusq_latest.sif". No a to je vše...
+    singularity pull docker://uwligroup/chronusq
 
-Použití je také přímočaré, zkusil jsem tento návod s molekulou vody
-https://urania.chem.washington.edu/chronusq/chronusq_public/-/wikis/examples/HF-Energy
+After ca 5 minus the singularity image `chronusq_latest.sif` will be ready.
 
-a příkaz pro inteaktuvní úlohu vypadá takto:
+To test the image, download water molecule `water.inp` from [here](https://urania.chem.washington.edu/chronusq/chronusq_public/-/wikis/examples/HF-Energy).
 
-singularity exec chronusq_latest.sif chronusq water.inp
+and run the calculation as
 
-Pomocí příkazu " singulatiry exec" chcete zavolat nějaký příkaz/skript, v našem případě to je ta binárka "chronusq" v obrazu "chronusq_latest.sif" a water.inp je vstup.
-
-Kdyžtak klidně zkuste, jestli bude ta Singularity použitelná, kouknětě do toho wiki odkazu, kde je návod, jak připravit dávkovou úlohu a kdyby něco nešlo, dejte vědět.
-
-S pozdravem,
-
-
-
-
-
-
-
-
+    singularity exec chronusq_latest.sif chronusq water.inp
 
 <!--
 ODSTRANIT AZ NEBUDE RELEVANTNI
