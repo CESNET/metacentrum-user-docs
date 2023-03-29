@@ -7,6 +7,10 @@ extra:
   version: !ENV [SITE_VERSION, 'undef_build_number']
   site_title: e-INFRA CZ Documentation
 
+# custom stylesheet
+extra_css:
+  - stylesheets/metacentrum_custom.css
+
 theme:
   name: material
   language: 'en'    
@@ -27,6 +31,11 @@ markdown_extensions:
   - codehilite
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
   - 'Access':
