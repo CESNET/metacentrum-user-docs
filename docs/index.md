@@ -8,7 +8,7 @@ This is the documetations for users of MetaCentrum grid computing service.
 - For a set of rules concerning **working with data**, see [How to work with data](advanced/work-data) chapter.
 - A list of **most commonly used software** available in MetaCentrum can be found in the [Software](software/modules) section.
 
-
+![pic](/logos/metacentrum_RGB.jpg)
 
 Happy computing!
 
