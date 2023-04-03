@@ -2,7 +2,7 @@
 
 ![pic](intro-page-layout.png)
 
-
+## Table formatting
 
 | title1 | title2 | title3 |
 |----|----|----|
@@ -12,6 +12,7 @@
 | foo | goo | hoo |
 | foo | goo | hoo |
 
+## Mermaid graphs
 
 ``` mermaid
 graph LR
@@ -73,4 +74,6 @@ gitGraph
    commit
 ```
 
+I need to highlight these ==very important words==.
 
+I need to highlight these <mark>very important words</mark>.
