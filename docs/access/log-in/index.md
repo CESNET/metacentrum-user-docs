@@ -70,7 +70,7 @@ After the user logs in, they automatically obtain a **Kerberos tickets**. As lon
 **Basic Kerberos commands**
 
 - `klist`  - list all current tickets
-- `kdestroy` - dump all tickets
+- `kdestroy` -  delete all tickets
 - `kinit` - create new Kerberos ticket
 
 It is also possible to install Kerberos on your PC. For more in-depth info, see [Kerberos advanced chapter](/advanced/kerberos).
