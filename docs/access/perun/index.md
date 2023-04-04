@@ -1,6 +1,6 @@
 # Perun
 
-User accounts in MetaCentrum are accessible through [CESNET instance of Perun](https://perun.aai.cesnet.cz).
+User accounts in MetaCentrum are accessible through [e-INFRA instance of Perun](https://perun.e-infra.cz).
 
 The Perun service will be useful when you need to:
 
