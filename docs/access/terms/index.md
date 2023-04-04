@@ -20,14 +20,16 @@ The user of MetaCentrum is obliged to use the following acknowledgement formula 
 
 Acknowledgement formula for MetaCentrum service:
 
-    Computational resources were supplied by the project "e-Infrastruktura CZ" (e-INFRA CZ LM2018140 ) supported by the Ministry of Education, Youth and Sports of the Czech Republic.
+    Computational resources were provided by the e-INFRA CZ project (ID:90140),
+    supported by the Ministry of Education, Youth and Sports of the Czech Republic.
 
 Acknowledgement formula for ELIXIR CZ resources:
 
-    Computational resources were provided by the ELIXIR-CZ project (LM2018131), part of the international ELIXIR infrastructure.
+    Computational resources were provided by the ELIXIR-CZ project (ID:90255),
+    part of the international ELIXIR infrastructure.
 
 !!! note
-    In addition to the acknowledgement in the publication, do not forget to add the project number (LM2018140 for e-INFRA CZ and/or LM2018131 for ELIXIR-CZ) during the export of publication to the RIV system.
+    In addition to the acknowledgement in the publication, do not forget to add the project number (ID:90140 for e-INFRA CZ and/or ID:90255 for ELIXIR-CZ) during the export of publication to the RIV system.
  
 ### Research groups annual report
 
