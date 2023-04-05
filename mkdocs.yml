@@ -53,6 +53,16 @@ nav:
     - data/backup-archive/index.md
     - data/quotas/index.md
   - 'Software':
+    - 'Graphical software':
+      - software/graphical/ondemand/index.md
+      - software/graphical/galaxy.md
+      - software/graphical/kube-rancher.md
+      - software/graphical/jupyter-ntb.md
+      - software/graphical/rstudio.md
+      - software/graphical/ansys.md
+      - software/graphical/matlab.md
+      - software/graphical/vmd.md
+      - software/graphical/alphafold.md
     - software/modules/index.md
     - software/install-software/index.md
     - 'Frequently used software':
@@ -96,9 +106,7 @@ nav:
     - advanced/gpu-comput/index.md
     - advanced/parallel-comput/index.md
     - advanced/containers/index.md
-    - 'Non-CLI access':
-      - advanced/run-graphical/index.md
-      - advanced/ondemand/index.md
+    - advanced/run-graphical/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md
     - troubleshooting/outages/index.md
