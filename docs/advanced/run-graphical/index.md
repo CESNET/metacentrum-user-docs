@@ -1,4 +1,4 @@
-# GUI access
+# Graphical access
 
 There are multiple options to run applications with graphical interface (GUI) or simply to get grahical connection to MetaCentrum machines.
 
