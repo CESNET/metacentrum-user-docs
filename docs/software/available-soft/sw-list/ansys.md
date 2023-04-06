@@ -4,7 +4,9 @@
 
 ## Description
 
-ANSYS is a general nonlinear multiphysics software offering structural and thermodynamic analysis, continuum flow analysis, analysis of electrostatic and electromagnetic fields and acoustic analysis. All of these analysis may be performed on its own, or thanks to ANSYS' multiphysics approach all in one comprehensive analysis. ANSYS allows to perform not only validating calculations, but thanks to its parametric computation models even for sensitivity and optimization analysis and reliability analysis. 
+ANSYS is a general nonlinear multiphysics software offering structural and thermodynamic analysis, continuum flow analysis, analysis of electrostatic and electromagnetic fields and acoustic analysis.
+
+All of these analysis may be performed on its own, or thanks to ANSYS' multiphysics approach all in one comprehensive analysis. ANSYS allows to perform not only validating calculations, but thanks to its parametric computation models even for sensitivity and optimization analysis and reliability analysis. 
 
 ## Usage
 
