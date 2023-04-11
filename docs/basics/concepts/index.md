@@ -51,7 +51,7 @@ Frontends should be used only for:
 
 A set of instructions performed on computational nodes is **computational job**. Jobs require a set of **resources** such as CPUs, memory or time. A **scheduling system** plans execution of the jobs so as optimize the load and usage of computational nodes.
 
-In Metacentrum the **[PBR Pro](https://www.altair.com/pbs-professional)** scheduling system is used. The servers on which the scheduling system are called **PBS servers**.
+In Metacentrum the **[PBS Pro](https://www.altair.com/pbs-professional)** scheduling system is used. The servers on which the scheduling system are called **PBS servers**.
 
 Metacentrum has three PBS servers:
 

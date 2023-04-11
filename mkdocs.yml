@@ -102,7 +102,7 @@ nav:
       - advanced/queues-in-meta/index.md
     - 'Job state and history':
       - advanced/job-tracking/index.md
-    - 'Ingrastructure':  
+    - 'Infrastructure':  
       - advanced/grid-infrastruct/index.md
       - advanced/mount-storages/index.md
     - advanced/gpu-comput/index.md
