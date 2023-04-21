@@ -46,6 +46,7 @@ nav:
     - access/log-in/index.md
     - access/perun/index.md
     - access/pbsmon/index.md
+    - access/elixir/index.md
   - 'Basics':
     - basics/concepts/index.md
     - basics/jobs/index.md
