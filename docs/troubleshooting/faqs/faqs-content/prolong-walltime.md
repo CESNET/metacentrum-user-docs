@@ -7,6 +7,6 @@ You should always aim to setting the walltime sufficiently from the beginning, s
     Additional walltime:	01:00:00
     New walltime:		02:00:00
 
-For detailed information see **Prolong walltime v teto dokumentaci**.
+For detailed information see [how to prolong walltime](/advanced/pbs-options/#qextend).
 
 If you already have run out of a quota, contact our user support.
