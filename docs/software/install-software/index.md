@@ -1,38 +1,55 @@
 # Install software
 
-## Options
+## General 0ptions
 
-### Install on your own 
+### Local installation
 
-This means you select any place in any of your homes and install the executable there. 
+**This option means that the user installs the desired software by his/her own means anywhere into his/her home directory**:
 
-    user213@any_frontend:/storage/CITY/home/user123/my_fancy_sw/executable_file
+    mkdir /storage/CITY_XY/home/user123/my_fancy_sw 
+    # then install into this directory
 
-Then you run the calculation as
+and runs the software (preferably from within a job) as
 
-    /storage/CITY/home/user123/my_fancy_sw/executable_file input.inp ...
+    /storage/CITY_XY/home/user123/my_fancy_sw/executable.exe input.inp ...
 
-We recommend this option in case:
+**Features of local installation:**
 
-- you are not sure whether this software will be useful to you and want to test it first,
-- the calculations run with this software will run hours rather than days and weeks,
+- no need to contact user support or ask for aything (unless help is needed),
+- if the `CITY_XY` storage is down, the software will not be available,
+- it is up to user to figure out how to install the software,
+- suitable for cases when the installation works out-of-the-box and the user wants to try the software ASAP. 
+
+**We recommend this option in case:**
+
+- you are not sure whether this software will be really useful and want to test it first,
+- the calculations run with this software will take hours rather than days and weeks,
 - as far as you know, there are no other users who would like to use this software,
 - the installation process seems to be manageable with your skills,
 - you do not want to interact with User support in any way.
 
 !!! warning 
-    With software installed in your home directory, the availability is limited compared to system installation. In case of disk arrays failure, the installed software may become unavailable.
+    With software installed in your home directory, the availability is limited to the availability of that particular `/storage`. That is why, in case you have tested the software and intend to use it for **long running jobs**, we encourage users to ask us for system wide installation. 
 
-### Ask us to do it
+!!! tip
+    Often users try to install a minor and easy-looking software locally and fail. **This is very common and nothing to be ashamed of.** If this happens (and you still want to keep the installation to your home directory), do not hesitate to contact User support at <meta@cesnet.cz> for help. They will reproduce the errors you get, find a solution and send it back to you in step-by-step guide. *Any installation process, no matter how straightforward it looks at the beginning, can get tricky.*
 
-This means that upon request sent to <meta@cesnet.cz> we install the software to system directories and make a modulefile available to use.
+### System-wide installation
 
-We recommend this option in case:
+**This option means that the user sends request for software installation to <meta@cesnet.cz>. The User support team will install the software into system directories and make a modulefile through which the software can be loaded and used.** 
+
+**Features of system-wide installation:**
+
+- you have to contact user support and wait for several days before the thing is done (hours if you are lucky, but most often several days),
+- no need to go into the installation process peculiarities,
+- availability of the software is independent on particular `/storage` availability.
+
+**We recommend this option in case:**
 
 - it is a new version of already installed and/or commonly used software in MetaCentrum,
 - you are confident about the new software's usability,
 - you know the software will be useful to more users,
-- you are not able to go through the installation on your own and need help. 
+- you intend to use the software in jobs running a day or longer.
 
 **How to write software install request**
 
