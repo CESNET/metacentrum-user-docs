@@ -1,6 +1,6 @@
 # Install software
 
-## General 0ptions
+## General options
 
 ### Local installation
 
@@ -63,6 +63,61 @@ There exists plethora of scientific software, sometimes with identical names. If
 6. Link to test suite or an example calculation (if there is any),
 7. Any dependencies, modules or optional parts you need to be compiled together with the main software (if there are any).
 
+## Common installation methods
+
+When you download a software, it's usually compressed in some way and need to be extracted.
+
+**.tar**
+
+    tar -x -f package.tar 		# extract .tar archive 
+
+**gz**
+
+    gunzip package.gz 			# unzip .gz file
+
+**.tgz, .tar.gz**
+
+    tar -xvf package.tgz 		# unzip tarred and gzipped file
+    tar -xvf package.tar.gz 	# dtto
+
+**.zip**
+
+    unzip package.zip 			# unzip .zip file
+
+<!--
+### Binaries
+-->
+
+### R packages
+
+To install R packages locally, first create some directory to serve as your local R library:
+
+    mkdir /storage/CITY_N/home/USERNAME/Rpackages/
+
+Then install the package as:
+
+    export R_LIBS_USER="/storage/CITY_N/home/USERNAME/Rpackages"
+    module add r/
+    R
+    >install.packages(PACKAGE_NAME,lib="/storage/CITY_N/home/USERNAME/Rpackages/")
+
+and load the package
+
+    >library(PACKAGE_NAME)
+
+<!--
+### Python packages
+
+### .deb package 
+
+### Docker container
+
+### Apptainer (Singularity) container
+
+
+### Source code with makefile
+-->
+
 ## Examples
 
 ### Binaries
@@ -75,6 +130,9 @@ Example:
     user123@skirit:~/satsuma$ wget https://github.com/bioinfologics/satsuma2/releases/download/untagged-2c08e401140c1ed03e0f/satsuma2-linux.tar.gz # download it
     user13@skirit:~/satsuma$ tar -xvf satsuma2-linux.tar.gz # unpack it
     user13@skirit:~/satsuma$ cd product/bin ; ls # see the executables 
+
+### R package
+
 
 ### Conda packages
 
