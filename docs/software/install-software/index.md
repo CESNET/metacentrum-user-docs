@@ -4,18 +4,43 @@
 
 ### Local installation
 
-**This option means that the user installs the desired software by his/her own means anywhere into his/her home directory**:
+*This option means that the user installs the desired software by his/her own means anywhere into his/her home directory.*
 
+**Variant 1: install from within interactive job (>= 5 min lasting installation)**
+
+    # first start an interactive job with scratch directory
+    qsub -I -l select=1:ncpus=1:mem=4gb:scratch_local=10gb -l walltime=2:00:00
+
+    # after the job starts, redirect temporary files into scratch
+    mkdir $SCRATCHDIR/tmp
+    export TMPDIR=$SCRATCHDIR/tmp
+
+    # make an installation directory anywhere in your home
     mkdir /storage/CITY_XY/home/user123/my_fancy_sw 
+
     # then install into this directory
+    cd /storage/CITY_XY/home/user123/my_fancy_sw 
+    install ...
 
-and runs the software (preferably from within a job) as
+**Variant 2: install without interactive job (<= 5 min lasting installations ONLY)**
 
-    /storage/CITY_XY/home/user123/my_fancy_sw/executable.exe input.inp ...
+    # first redirect temporary files into any directory in your home
+    mkdir /storage/city_XY/home/user123/tmp
+    export /storage/city_XY/home/user123/tmp
+
+    # make an installation directory anywhere in your home
+    mkdir /storage/CITY_XY/home/user123/my_fancy_sw 
+
+    # then install into this directory
+    cd /storage/CITY_XY/home/user123/my_fancy_sw 
+    install ...
+
+!!! question "why do I have to redirect to TMPDIR?"
+    By default the variable TMPDIR points to system directory `/tmp`. This directory is writable to all, but users have a small quota of only 1 GB in `/tmp`. Therefore installations with default value of TMPDIR often fail due to insufficient space.
 
 **Features of local installation:**
 
-- no need to contact user support or ask for aything (unless help is needed),
+- no need to contact user support, to wait or to ask for aything (unless help is needed),
 - if the `CITY_XY` storage is down, the software will not be available,
 - it is up to user to figure out how to install the software,
 - suitable for cases when the installation works out-of-the-box and the user wants to try the software ASAP. 
@@ -32,11 +57,11 @@ and runs the software (preferably from within a job) as
     With software installed in your home directory, the availability is limited to the availability of that particular `/storage`. That is why, in case you have tested the software and intend to use it for **long running jobs**, we encourage users to ask us for system wide installation. 
 
 !!! tip
-    Often users try to install a minor and easy-looking software locally and fail. **This is very common and nothing to be ashamed of.** If this happens (and you still want to keep the installation to your home directory), do not hesitate to contact User support at <meta@cesnet.cz> for help. They will reproduce the errors you get, find a solution and send it back to you in step-by-step guide. *Any installation process, no matter how straightforward it looks at the beginning, can get tricky.*
+    Often users try to install a minor and easy-looking software locally and fail. **This is very common.** If this happens (and you still want to keep the installation to your home directory), do not hesitate to contact User support at <meta@cesnet.cz> for help. They will reproduce the errors you get, find a solution and send it back to you in step-by-step guide. *Any installation process, no matter how straightforward it looks at the beginning, can get tricky.*
 
 ### System-wide installation
 
-**This option means that the user sends request for software installation to <meta@cesnet.cz>. The User support team will install the software into system directories and make a modulefile through which the software can be loaded and used.** 
+*This option means that the user sends request for software installation to <meta@cesnet.cz>. The User support team will install the software into system directories and make a modulefile through which the software can be loaded.* 
 
 **Features of system-wide installation:**
 
