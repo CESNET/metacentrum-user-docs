@@ -85,6 +85,8 @@ nav:
         - software/available-soft/sw-list/intel.md
         - software/available-soft/sw-list/pgi-cdk.md
         - software/available-soft/sw-list/total-view.md
+      - 'Languages':
+        - software/available-soft/sw-list/r.md
       - 'Mechanics':
         - software/available-soft/sw-list/ansys.md
       - 'Mathematics':
