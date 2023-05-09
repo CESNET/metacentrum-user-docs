@@ -109,9 +109,16 @@ When you download a software, it's usually compressed in some way and need to be
 
     unzip package.zip 			# unzip .zip file
 
-<!--
 ### Binaries
--->
+
+Some software is available as a ready-made binary file. In this case the only thing you need to do is to download and unpack the files.
+
+Example: 
+
+    user123@skirit:~$ mkdir binaries ; cd binaries # prepare directory for the software (noc necessarry)
+    user123@skirit:~/binaries$ wget https://sw_xy.tgz ; tar -xvf sw_xy.tgz # download and unpack 
+    user13@skirit:~/binaries$ chmod 755 exec_file # set the binary to be executable
+    user13@skirit:~/binaries$ ./exec_file # run the executable file
 
 ### R packages
 
@@ -130,37 +137,48 @@ and load the package
 
     >library(PACKAGE_NAME)
 
-<!--
 ### Python packages
 
-### .deb package 
+Python packages can be installed using `pip`, which is a part of several Python modules, e.g. `py-pip/21.3.1-gcc-10.2.1-mjt74tn`.
 
-### Docker container
+**General setup**
 
-### Apptainer (Singularity) container
+```
+module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
+pip search <module name>
+pip install <module name> --root /some/user/specific/python/modules/folder # Install everything relative to this alternate root directory
+pip install <module name> --prefix /some/user/specific/python/modules/folder # Installation prefix where lib, bin and other top-level folders are placed
+pip install git+https://path/to/git/file
+```
 
+!!! note
+    Don't forget to properly set the `PATH` and `PYTHONPATH` environment variables if you are not using one of ours python-modules and installing modules to some new dir. 
 
-### Source code with makefile
--->
+**Detailed walkthrough**
 
-## Examples
+A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. A convenient choice for this variable is a location visible from the NFSv4 infrastructure, which means you could use for example `export PYTHONUSERBASE=/storage/home/<user_name>/.local`.
 
-### Binaries
+If you install such modules at this location, you will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
 
-Some software is available only as ready-made binary file. In this case the only thing you need to do is to download and unpack the files.
+If you wish to execute such commands at each login on a front end, you will therefore have to add the following lines to you `.profile`:
 
-Example: 
+```
 
-    user123@skirit:~$ mkdir satsuma ; cd satsuma # prepare dir for software "satsuma"
-    user123@skirit:~/satsuma$ wget https://github.com/bioinfologics/satsuma2/releases/download/untagged-2c08e401140c1ed03e0f/satsuma2-linux.tar.gz # download it
-    user13@skirit:~/satsuma$ tar -xvf satsuma2-linux.tar.gz # unpack it
-    user13@skirit:~/satsuma$ cd product/bin ; ls # see the executables 
+module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
+# Set pip path for --user option
+export PYTHONUSERBASE=/storage/city/home/<user_name>/.local
+# set PATH and PYTHONPATH variables
+export PATH=$PYTHONUSERBASE/bin:$PATH
+export PYTHONPATH=$PYTHONUSERBASE/lib/python2.7/site-packages:$PYTHONPATH
+```
 
-### R package
+With this, you can install any module you need with the following command:
 
+    pip install <module-name> --user --process-dependency-links
+
+without any need for administrator rights, and you will be able to use it. When launching jobs from the scheduler, remember that you .profile is not executed, you will therefore need to do module add and to define the relevant environment variables before the job is actually executed. 
 
 ### Conda packages
-
 
 [Conda](https://conda.io) is an open-source, cross-platform, language-agnostic package manager and environment management system. MetaCentra users can use conda and create new environments on their own and install application tools from various channels. The most straightforward way how to install the required tool is via the general module `conda-modules-py37` in the user's home directory.
 
@@ -272,7 +290,34 @@ Micromamba supports a subset of all mamba or conda commands and is distributed a
     micromamba deactivate
     # leave the activated environment
 
-**Example of Conda install**
+<!--
+
+### Docker container
+
+### Apptainer (Singularity) container
+
+### Source code with makefile
+
+-->
+
+## Examples
+
+### Binaries
+
+*Usage of software "satsuma" distributed as binary file.*
+
+    user123@skirit:~$ mkdir satsuma ; cd satsuma # prepare dir for software "satsuma"
+    user123@skirit:~/satsuma$ wget https://github.com/bioinfologics/satsuma2/releases/download/untagged-2c08e401140c1ed03e0f/satsuma2-linux.tar.gz # download it
+    user13@skirit:~/satsuma$ tar -xvf satsuma2-linux.tar.gz # unpack it
+    user13@skirit:~/satsuma$ cd product/bin ; ls # list and run the executables 
+
+<!--
+### R package
+-->
+
+### Conda
+
+*Install package [segemehl](https://anaconda.org/bioconda/segemehl) from Conda repository.*
 
 To install Conda package "segemehl": 
     
@@ -298,48 +343,9 @@ https://rt.cesnet.cz/rt/Ticket/Display.html?id=1103181
 https://rt.cesnet.cz/rt/Ticket/Display.html?id=1120618
 -->
 
-### Pip install
+### Pip 
 
-Python packages can be installed using `pip`, which is a part of several Python modules, e.g. `py-pip/21.3.1-gcc-10.2.1-mjt74tn`.
-
-**General setup**
-
-```
-module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
-pip search <module name>
-pip install <module name> --root /some/user/specific/python/modules/folder # Install everything relative to this alternate root directory
-pip install <module name> --prefix /some/user/specific/python/modules/folder # Installation prefix where lib, bin and other top-level folders are placed
-pip install git+https://path/to/git/file
-```
-
-!!! note
-    Don't forget to properly set the `PATH` and `PYTHONPATH` environment variables if you are not using one of ours python-modules and installing modules to some new dir. 
-
-**Detailed walkthrough**
-
-A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. A convenient choice for this variable is a location visible from the NFSv4 infrastructure, which means you could use for example `export PYTHONUSERBASE=/storage/home/<user_name>/.local`.
-
-If you install such modules at this location, you will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
-
-If you wish to execute such commands at each login on a front end, you will therefore have to add the following lines to you `.profile`:
-
-```
-
-module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
-# Set pip path for --user option
-export PYTHONUSERBASE=/storage/city/home/<user_name>/.local
-# set PATH and PYTHONPATH variables
-export PATH=$PYTHONUSERBASE/bin:$PATH
-export PYTHONPATH=$PYTHONUSERBASE/lib/python2.7/site-packages:$PYTHONPATH
-```
-
-With this, you can install any module you need with the following command:
-
-    pip install <module-name> --user --process-dependency-links
-
-without any need for administrator rights, and you will be able to use it. When launching jobs from the scheduler, remember that you .profile is not executed, you will therefore need to do module add and to define the relevant environment variables before the job is actually executed. 
-
-**Example: install software "spektral"**
+*Install software package "spektral".*
 
 To start, run interactive job with a scratch directory.
 
