@@ -139,9 +139,17 @@ and load the package
 
 ### Python packages
 
-Python packages can be installed using `pip`, which is a part of several Python modules, e.g. `py-pip/21.3.1-gcc-10.2.1-mjt74tn`.
+Python packages can be installed using `pip`, which is a part of several Python modules.<br/>
+
+We recommend to use a module `py-pip/21.3.1-gcc-10.2.1-mjt74tn`.
 
 **General setup**
+
+First, **start an interactive job with scratch directory** and redirect temporary files to scratch dir:
+
+    export TMPDIR=$SCRATCHDIR
+
+Then start the installation with `pip`.
 
 ```
 module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
@@ -347,12 +355,16 @@ https://rt.cesnet.cz/rt/Ticket/Display.html?id=1120618
 
 *Install software package "spektral".*
 
-To start, run interactive job with a scratch directory.
+First redirect `TMPDIR` variable to `SCRATCHDIR`.
+
+```
+qsub -I -l select=1:ncpus=1:mem=4gb:scratch_local=10gb -l walltime=2:00:0
+export TMPDIR=$SCRATCHDIR # store temporary files in SCRATCHDIR
+```
 
 ```
 module add py-pip/py-pip-19.3-intel-19.0.4-hudzomi # this will load python 3.7.7 (python/python-3.7.7-intel-19.0.4-mgiwa7z)
 mkdir my_pip_libs_py3.7 # make a local directory to install to
-export TMPDIR=$SCRATCHDIR # store temporary files in SCRATCHDIR
 pip3 install spektral --root /storage/cityN/home/user123/my_pip_libs_py3.7/ # install spektral and its dependencies to a local dir
 ```
 After the installation is done, setup system variables:
