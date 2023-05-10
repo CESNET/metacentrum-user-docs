@@ -54,7 +54,7 @@
 - you do not want to interact with User support in any way.
 
 !!! warning 
-    With software installed in your home directory, the availability is limited to the availability of that particular `/storage`. That is why, in case you have tested the software and intend to use it for **long running jobs**, we encourage users to ask us for system wide installation. 
+    With software installed in your home directory, the availability is limited to the availability of that particular `/storage/city_XY`. That is why, in case you have tested the software and intend to use it for **long running jobs**, we encourage users to ask us for system wide installation. 
 
 !!! tip
     Often users try to install a minor and easy-looking software locally and fail. **This is very common.** If this happens (and you still want to keep the installation to your home directory), do not hesitate to contact User support at <meta@cesnet.cz> for help. They will reproduce the errors you get, find a solution and send it back to you in step-by-step guide. *Any installation process, no matter how straightforward it looks at the beginning, can get tricky.*
