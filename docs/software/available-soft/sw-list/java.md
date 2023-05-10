@@ -1,6 +1,13 @@
 # Java
 
-MetaCentrum offers a free version of Java Development Kit (JDK), OpenJDK. 
-
     module avail openjdk/    # versions of OpenJDK
+
+## Description
+
+OpenJDK is open-source implementation of the Java Platform, Standard Edition, and related projects.
+
+## Links
+
+[OpenJDK homepage](https://openjdk.org/)
+
 
