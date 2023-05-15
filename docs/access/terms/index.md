@@ -20,7 +20,7 @@ The user of MetaCentrum is obliged to use the following acknowledgement formula 
 
 Acknowledgement formula for MetaCentrum service:
 
-    Computational resources were provided by the e-INFRA CZ project (ID:90140),
+    Computational resources were provided by the e-INFRA CZ project (ID:90254),
     supported by the Ministry of Education, Youth and Sports of the Czech Republic.
 
 Acknowledgement formula for ELIXIR CZ resources:
