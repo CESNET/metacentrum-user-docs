@@ -67,6 +67,7 @@ nav:
       - software/graphical/vmd.md
       - software/graphical/alphafold.md
     - software/modules/index.md
+    - software/containers/index.md
     - software/install-software/index.md
     - 'Frequently used software':
       - 'Chemistry':
@@ -111,7 +112,6 @@ nav:
       - advanced/mount-storages/index.md
     - advanced/gpu-comput/index.md
     - advanced/parallel-comput/index.md
-    - advanced/containers/index.md
     - advanced/run-graphical/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md
