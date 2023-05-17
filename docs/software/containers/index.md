@@ -14,7 +14,8 @@ Basic usecases of Apptainer images are covered below. Please note that mentionin
 
 **Interactive session**
 
-    [dexter@ungu1 ~]$ singularity shell my_image.img
+    qsub -I -l select=1 -l walltime=24:00:00 -- /usr/bin/singularity shell my_image.img
+    [dexter@ungu1 ~]$ singularity shell my_image.sif
     Singularity: Invoking an interactive shell within container...
     (SINGULARITY_JESSIE)dexter@ungu1:~$
 
@@ -24,10 +25,6 @@ Basic usecases of Apptainer images are covered below. Please note that mentionin
     java version "1.8.0_60"
     Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
     Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
-
-**PBS Pro: interactive session**
-
-    qsub -I -l select=1 -l walltime=24:00:00 -- /usr/bin/singularity shell my_image.img
 
 **PBS Pro: run script inside a container**
 
@@ -52,6 +49,7 @@ cat $PBS_NODEFILE |uniq >nodes.txt
 # run job over ethernet or infiniband (mpirun autoselects better)
 mpirun -n 2 --hostfile nodes.txt singularity exec my_image.img /path/to/program
 ```
+
 ### Environment settings
 
 Before you start Apptainer you **may** need to set:
@@ -238,7 +236,6 @@ and run the calculation of single-point ground state energy as
 ODSTRANIT AZ NEBUDE RELEVANTNI
 Relevantni tickety z RT:
 
-- [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1149485)
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1130342)
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1113656)
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1084270)
