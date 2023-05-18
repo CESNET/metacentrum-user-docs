@@ -17,30 +17,19 @@ Apptainer images (= containers) are commonly suffixed by `.sif`.
 
 Apptainer employs a few *paths* to store various temporary files:
 
-- `CACHEDIR`:
-- `LOCALCACHEDIR`:
-- `TMPDIR`: 
+- `CACHEDIR`:- downloaded layers
+- `LOCALCACHEDIR`: - run shell exec
+- `TMPDIR`: - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
 
+!!! todo
+    This section is to be done.
 
-bla bla
-
-    export SINGULARITY_CACHEDIR="/storage/..."
-    export SINGULARITY_LOCALCACHEDIR="/scratch...."
-    export SINGULARITY_TMPDIR=""
-    # Then you can start Apptainer
-    singularity build ...
-
-- `CACHEDIR` - downloaded layers
-- `LOCALCACHEDIR` - run shell exec
-- `TMPDIR` - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
-
-Documentation: [https://sylabs.io/docs/](https://sylabs.io/docs/).
 
 ## Apptainer usage
 
 In the basic usecases of Apptainer images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
 
-**List options**
+### List options
 
 To list all commands, run
 
@@ -52,7 +41,7 @@ or
 
 on command line.
 
-**Run a command in container**
+### Run a command in container
 
 Passing a command to an Apptainer image is done by `singularity exec "command"`.
 
@@ -61,7 +50,7 @@ For example,
     (BULLSEYE)user123@skirit:~$ singularity exec my_image.sif bash -c "java -version"
     java version "1.8.0_60"
 
-**Open shell in container**
+### Open shell in container
 
 You can also open a shell within a container to work interactively. This is done by `singularity shell` command.
 
@@ -76,7 +65,7 @@ For example,
 !!! warning "Do not use frontends for serious containers' usage"
     Apart from light testing and learning, running containers right on frontends is equivalent to **computing on frontend**. This is strongly discouraged. **For a serious work with containers, use interactive or batch job.**
 
-**Use container in interactive job**
+### Use container in interactive job
 
 First run interative job *with scratch directory*:
 
@@ -88,7 +77,7 @@ First run interative job *with scratch directory*:
 Redirect `CACHEDIR` and `LOCALCACHEDIR` to `SCRATCHDIR`:
 
     user123@node123:~$ export CACHEDIR=$SCRATCHDIR
-    user123@node123:~$ export localCACHEDIR=$SCRATCHDIR
+    user123@node123:~$ export LOCALCACHEDIR=$SCRATCHDIR
 
 Then run the container and open a shell within the container for interactive work:
 
@@ -98,28 +87,83 @@ Then run the container and open a shell within the container for interactive wor
     ...
     Singularity> command_N
 
-**Use container in bash job**
+### Use container in bash job
 
-    qsub -l select=1 -l walltime=24:00:00 -- /usr/bin/singularity exec -B /path/to/script:/home/username/script.sh my_image.img bash -c "/home/username/script.sh"
+As with any other software, it is possible to pass a batch script to a container, too.
 
-The `-B /path/to/script:/home/username/script.sh` option will bind the host directory (`/path/to/script`) to container directory (in this example `/home/username`). Without this option, the container will automatically bind to itself host directories on computational node where the job is run and the script may not be found.
+Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 
-**PBS Pro: run parallel job**
+!!! question "Is the batch script for Apptainer application any different from the script for "normal" application?"
+    In general, no, though for a very simple script this may be the case. Most often you will at least need to redirect Apptainer environment variables to `SCRATCHDIR`. The `--bind` and `bash -c` commands shown below may be hidden in the script, too.
 
-The scenario for this setup is: two nodes with common scratch dir
+**Variant A: put Apptainer-specific option on command line**
+
+    qsub -l select=1:scratch_local=10GB -l walltime=24:00:00 -- \
+    export CACHEDIR=$SCRATCHDIR \
+    export LOCALCACHEDIR=$SCRATCHDIR \
+    singularity exec -B /storage/city_N/home/user123/script.sh:/home/user123/script.sh \
+    my_image.sif bash -c "/home/user123/script.sh"
+
+*Are you familiar with how the `-B` (or `--bind`) option in Apptainer works?*
+
+=== "Yes."
+
+    The `-B` option binds the location of your script in the grid directory onto `/home/user123/` container directory.
+
+=== "No."
+
+    The `-B` option binds the location of your script in the grid directory onto `/home/user123/` container directory.
+
+    The container sees itself as a small enclosed operating system with libraries and traditional Linux directories like `/home`, `/tmp` or `/mnt`. However this causes problem if the "real" filesystem is more complex and contains custom folders, like `/storage/city_N/home/user123`. In this case you have to specifically tell Apptainer to bind these un-traditional directories.
+
+    The `-B` option works like `location within container`:`"real" directory location`.
+
+<!--
+    Even better, `-B /home/user123:/storage/city_N/home/user123` does this:
+    ![pic](pic_001.png)
+-->
+
+Without the `-B` option, the container will automatically bind to itself host directories on computational node where the job is run and the script may not be found.
+
+**Variant B: hide Apptainer-specific option into the script**
+
+Assume the batch script resides in `/storage/city_N/home/user123/script.sh` AND that you want to have the CLI command as simple as possible.
+
+In this case, run batch job as 
+
+    qsub /storage/city_N/home/user123/script.sh
+
+
+The script `/storage/city_N/home/user123/script.sh` will then look somehow like the following:
 
 ```
 #!/bin/bash
-#PBS -l select=2:ncpus=2:mem=1gb:scratch_shared=4gb
-#PBS -l walltime=04:00:00
-#PBS -l place=scatter
-# modify/delete the above given guidelines according to your job's needs
+#PBS -N Apptainer_Job
+#PBS -l select=1:scratch_local=10gb
+#PBS -l walltime=24:00:00
 
-module add openmpi-2.0.1-gcc
-cat $PBS_NODEFILE |uniq >nodes.txt
+# define variables
+SING_IMAGE="/path/to/my_image.sif/"
+HOMEDIR=/storage/city_N/home/$USER # substitute username and path to to your real username and path
 
-# run job over ethernet or infiniband (mpirun autoselects better)
-mpirun -n 2 --hostfile nodes.txt singularity exec my_image.img /path/to/program
+...
+
+# test if scratch directory is set
+# if scratch directory is not set, issue error message and exit
+test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
+
+#set SINGULARITY variables for runtime data
+export SINGULARITY_CACHEDIR=$HOMEDIR
+export SINGULARITY_LOCALCACHEDIR=$SCRATCHDIR
+export SINGULARITY_TMPDIR=$SCRATCHDIR
+
+...
+
+singularity exec --bind /storage/ \
+$SING_IMAGE/my_image.sif [commands]"
+
+...
+
 ```
 
 ## Pre-built Apptainer images
@@ -291,8 +335,27 @@ and run the calculation of single-point ground state energy as
 <!--
 ODSTRANIT AZ NEBUDE RELEVANTNI
 Relevantni tickety z RT:
--->
 
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1130342)
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1113656)
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1084270)
+-->
+
+## Run parallelized batch job
+
+The scenario for this setup is: two nodes with common scratch dir
+
+```
+#!/bin/bash
+#PBS -l select=2:ncpus=2:mem=1gb:scratch_shared=4gb
+#PBS -l walltime=04:00:00
+#PBS -l place=scatter
+# modify/delete the above given guidelines according to your job's needs
+
+module add openmpi-2.0.1-gcc
+cat $PBS_NODEFILE |uniq >nodes.txt
+
+# run job over ethernet or infiniband (mpirun autoselects better)
+mpirun -n 2 --hostfile nodes.txt singularity exec my_image.img /path/to/program
+```
+
