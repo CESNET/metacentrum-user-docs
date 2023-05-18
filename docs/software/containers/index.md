@@ -13,6 +13,29 @@ Apptainer images (= containers) are commonly suffixed by `.sif`.
 
 **Apptainer can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#use-docker-image).
 
+## Apptainer environment variables
+
+Apptainer employs a few *paths* to store various temporary files:
+
+- `CACHEDIR`:
+- `LOCALCACHEDIR`:
+- `TMPDIR`: 
+
+
+bla bla
+
+    export SINGULARITY_CACHEDIR="/storage/..."
+    export SINGULARITY_LOCALCACHEDIR="/scratch...."
+    export SINGULARITY_TMPDIR=""
+    # Then you can start Apptainer
+    singularity build ...
+
+- `CACHEDIR` - downloaded layers
+- `LOCALCACHEDIR` - run shell exec
+- `TMPDIR` - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
+
+Documentation: [https://sylabs.io/docs/](https://sylabs.io/docs/).
+
 ## Apptainer usage
 
 In the basic usecases of Apptainer images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
@@ -55,11 +78,25 @@ For example,
 
 **Use container in interactive job**
 
+First run interative job *with scratch directory*:
 
+    qsub -l select=1:scratch_local=10gb -l walltime=24:00:00
 
+!!! question "What is the scratch directory good for?"
+    You may need to redirect some Apptainer environment variables to store temporary files. To point them to `SCRATCHDIR` is one option. Alternatively you may redirect the Apptainer variables to some folder in your home.
 
+Redirect `CACHEDIR` and `LOCALCACHEDIR` to `SCRATCHDIR`:
 
+    user123@node123:~$ export CACHEDIR=$SCRATCHDIR
+    user123@node123:~$ export localCACHEDIR=$SCRATCHDIR
 
+Then run the container and open a shell within the container for interactive work:
+
+    user123@node123:~$ singularity shell my_image.sif
+    Singularity> command_1
+    Singularity> command_2
+    ...
+    Singularity> command_N
 
 **Use container in bash job**
 
@@ -84,22 +121,6 @@ cat $PBS_NODEFILE |uniq >nodes.txt
 # run job over ethernet or infiniband (mpirun autoselects better)
 mpirun -n 2 --hostfile nodes.txt singularity exec my_image.img /path/to/program
 ```
-
-### Environment settings
-
-Before you start Apptainer you **may** need to set:
-
-    export SINGULARITY_CACHEDIR="/storage/..."
-    export SINGULARITY_LOCALCACHEDIR="/scratch...."
-    export SINGULARITY_TMPDIR=""
-    # Then you can start Apptainer
-    singularity build ...
-
-- `CACHEDIR` - downloaded layers
-- `LOCALCACHEDIR` - run shell exec
-- `TMPDIR` - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
-
-Documentation: [https://sylabs.io/docs/](https://sylabs.io/docs/).
 
 ## Pre-built Apptainer images
 
