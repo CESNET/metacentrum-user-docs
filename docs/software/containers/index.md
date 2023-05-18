@@ -2,31 +2,66 @@
 
 ![pic](/software/containers/singularity-logo.png)
 
-[Apptainer (former Singularity)](https://apptainer.org/docs-legacy) is an open-source program for containerization.
+!!! abstract "What are containers"
+    *Containerization* is a software deployment process that bundles an application's code with all the files and libraries it needs to run on any infrastructure. It makes the application less dependent on the OS and system-wide installed libraries. A particular application packed together with its libraries and other files is a *container*. 
 
-Apptainer is installed on all MetaCentrum nodes.
+[Apptainer (former Singularity)](https://apptainer.org/docs-legacy) is an open-source program for containerization used in MetaCentrum.
+
+Apptainer is invoked by command `singularity`.
+
+Apptainer images (= containers) are commonly suffixed by `.sif`.
 
 **Apptainer can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#use-docker-image).
 
 ## Apptainer usage
 
-Basic usecases of Apptainer images are covered below. Please note that mentioning all nuances (especially usage of various versions of MPI or running parallel job on different infiniband HW) is beyond scope of this section.
+In the basic usecases of Apptainer images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
 
-**Interactive session**
+**List options**
 
-    qsub -I -l select=1 -l walltime=24:00:00 -- /usr/bin/singularity shell my_image.img
-    [dexter@ungu1 ~]$ singularity shell my_image.sif
-    Singularity: Invoking an interactive shell within container...
-    (SINGULARITY_JESSIE)dexter@ungu1:~$
+To list all commands, run
 
-**Run a command**
+    singularity
 
-    [dexter@ungu1 ~]$ singularity exec my_image.img bash -c "java -version"
+or
+
+    singularity --help
+
+on command line.
+
+**Run a command in container**
+
+Passing a command to an Apptainer image is done by `singularity exec "command"`.
+
+For example,
+
+    (BULLSEYE)user123@skirit:~$ singularity exec my_image.sif bash -c "java -version"
     java version "1.8.0_60"
-    Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
-    Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 
-**PBS Pro: run script inside a container**
+**Open shell in container**
+
+You can also open a shell within a container to work interactively. This is done by `singularity shell` command.
+
+For example,
+
+    (BULLSEYE)user123@skirit:~$ singularity shell my_image.sif
+    Singularity> command_1
+    Singularity> command_2
+    ...
+    Singularity> command_N
+
+!!! warning "Do not use frontends for serious containers' usage"
+    Apart from light testing and learning, running containers right on frontends is equivalent to **computing on frontend**. This is strongly discouraged. **For a serious work with containers, use interactive or batch job.**
+
+**Use container in interactive job**
+
+
+
+
+
+
+
+**Use container in bash job**
 
     qsub -l select=1 -l walltime=24:00:00 -- /usr/bin/singularity exec -B /path/to/script:/home/username/script.sh my_image.img bash -c "/home/username/script.sh"
 
@@ -235,8 +270,8 @@ and run the calculation of single-point ground state energy as
 <!--
 ODSTRANIT AZ NEBUDE RELEVANTNI
 Relevantni tickety z RT:
+-->
 
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1130342)
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1113656)
 - [ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1084270)
--->
