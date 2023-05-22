@@ -116,12 +116,10 @@ Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 
     The container sees itself as a small enclosed operating system with libraries and traditional Linux directories like `/home`, `/tmp` or `/mnt`. However this causes problem if the "real" filesystem is more complex and contains custom folders, like `/storage/city_N/home/user123`. In this case you have to specifically tell Apptainer to bind these un-traditional directories.
 
-    The `-B` option works like `location within container`:`"real" directory location`.
+    The `-B` option works like `"real" directory location`:`location within container`.
 
-<!--
     Even better, `-B /home/user123:/storage/city_N/home/user123` does this:
-    ![pic](pic_001.png)
--->
+    ![pic](singularity-bind-scheme.jpg)
 
 Without the `-B` option, the container will automatically bind to itself host directories on computational node where the job is run and the script may not be found.
 
