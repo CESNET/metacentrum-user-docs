@@ -164,6 +164,9 @@ $SING_IMAGE/my_image.sif [commands]"
 
 ```
 
+!!! todo
+    Sections below this mark are under construction.
+
 ## Pre-built Apptainer images
 
 MetaCentrum offers a couple of ready-to-use Apptainer images for our users. Individual images are placed in the appropriate folder and the directory structure is shown below.
