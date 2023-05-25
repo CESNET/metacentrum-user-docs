@@ -14,9 +14,9 @@ Another option is to use [Kubernetes service](https://docs.cerit.io/), which off
 
 ## Module 
 
-Using [Remote desktop](/advanced/run-graphical), ANSYS can be also run from a module.
+Although this application can be used in text-only mode, in most use cases you will need graphical interface. We recommend to use [remote desktop](/advanced/run-graphical). 
 
-This option is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service are down.
+Running ANSYS from a module is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service cannot fulfill the user's requirements.
 
 **Module**
 
@@ -24,147 +24,94 @@ This option is recommended to advanced users or as a fallback option in case OnD
 
 For a detailed description of module ANSYS usage see [this page](/software/available-soft/sw-list/ansys).
 
-
-!!! todo
-    Below is rough text from old wiki - to be edited
-
-### Description
-
-ANSYS is a general nonlinear multiphysics software offering structural and thermodynamic analysis, continuum flow analysis, analysis of electrostatic and electromagnetic fields and acoustic analysis. All of these analysis may be performed on its own, or thanks to ANSYS' multiphysics approach all in one comprehensive analysis. ANSYS allows to perform not only validating calculations, but thanks to its parametric computation models even for sensitivity and optimization analysis and reliability analysis.
-
-
-Notice: Although this application can be used in text-only mode, in most use cases you will need graphical interface. We recommend to use Remote desktop.
-
-
-Notice: Alternatively, you can use a Kubernetes graphical version (VNC needed) https://docs.cerit.io/docs/ansys.html . Available for testing, please report any problem with Kubernetes directly to k8s@ics.muni.cz
-
 ### License
 
-Warning.gif WARNING: All licenses are restricted to academical use only
+Ask scheduler for licence depending on purpose:
 
-Ask scheduler (qsub parameter on command line or #PBS pragma in submit script) for licence depending on purpose:
-
-    add -l ansys-cfd=1 for 1 available license of Ansys CFD
-    add -l ansys-me=1 for 1 available license of Ansys Mechanical
-    add -l ansys-hpc=Z for Z available licenses of Ansys HPC
+    add -l ansys-cfd=1     # 1 license of Ansys CFD
+    add -l ansys-me=1      # 1 license of Ansys Mechanical
+    add -l ansys-hpc=Z     # Z licenses of Ansys HPC
 
 Check the number of currently available licenses
 
     module add ansys-2021-R1
-    lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a
+    lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a    # list all licences for all software
+
     # filter specific license feature "cfd_base"
     lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a | grep cfd_base
 
 or you can use Ansys specific license tool
 
     /software/ansys-2021/R1/v211/licensingclient/linx64/ansysli_util -statli 2325@lm-brno.ics.muni.cz -printavail
-    # or with filter to specific license feature "cfd_preppost"
+
+    # with filter to specific license feature "cfd_preppost":
     /software/ansys-2021/R1/v211/licensingclient/linx64/ansysli_util -statli 2325@lm-brno.ics.muni.cz -printavail | grep -B 3 -A 6 "FEATURENAME: cfd_preppost"
 
 ### Available ANSYS products
 
 The following Ansys products are available within the MetaCentrum infrastructure:
 
-    Ansys CFD -- product combining two primary general-purpose fluids simulation products offered by ANSYS – Ansys Fluent and Ansys CFX.
+- **Ansys CFD** - product combining two primary general-purpose fluids simulation products offered by ANSYS - **Ansys Fluent** and **Ansys CFX**.
+    - **Ansys Fluent** contains the broad physical modeling capabilities needed to model flow, turbulence, heat transfer, and reactions for industrial applications.
+    - **Ansys CFX** is a general purpose fluid dynamics program for simulating all types of models concerning fluid flow, including effects of temperature(conductance, radiance).
+- **Ansys Mechanical** - product for simulating of structural and thermodynamic tasks. The engineering simulation product provides a complete set of elements behavior, material models and equation solvers for a wide range of mechanical design problems.
 
-        Ansys Fluent contains the broad physical modeling capabilities needed to model flow, turbulence, heat transfer, and reactions for industrial applications ranging from air flow over an aircraft wing to combustion in a furnace, from bubble columns to oil platforms, from blood flow to semiconductor manufacturing, and from clean room design to wastewater treatment plants.
-        Ansys CFX is a general purpose fluid dynamics program for simulating all types of models concerning fluid flow, including effects of temperature(conductance, radiance).
+!!! note
+    All ANSYS tools can utilize at **most 4 local CPUs** for task computation. For more demanding tasks in grid environment it's necessary to use additional tool – **Ansys HPC**. Every ANSYS HPC license allows for distribution of computation to another available (local or remote) processor.
 
-    Ansys Mechanical -- product for simulating of structural and thermodynamic tasks. The engineering simulation product provides a complete set of elements behavior, material models and equation solvers for a wide range of mechanical design problems. In addition, it offers thermal analysis and coupled-physics capabilities involving acoustic, piezoelectric, thermal–structural and thermo-electric analysis.
+### Versions
 
-All ANSYS tools can utilize at most 4 local processors for task computation; for more demanding tasks in multiprocess/multinode environment (e.g. grids) it's necessary to use additional tool – Ansys HPC – every of its licenses allows for distribution of computation to another available (local or remote) processor.
-Versions
+- Ansys version 2023 R1 (module add ansys/2023-R1)
+    - Users need their own licence
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 2022 R1 (module add ansys/2022-R1)
+    - Users need their own licence
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 2021 R1 (module add ansys-2021-R1)
+    - Users need their own licence
+    - Only CFD tool is available for all registered users
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 2020 R1 (module add ansys-2020-R1)
+    - Users need their own licence
+    - Only CFD tool is available for all registered users
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 2019 R3 (module add ansys-2019-R3)
+    - Users need their own licence
+    - Only CFD tool is available for all registered users
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 19.2 (module add ansys-19.2)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - increased number of HPC licences to 512 computing cores!
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 18.2 (module add ansys-18.2)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - increased number of HPC licences to 512 computing cores!
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 18.0 (module add ansys-18.0)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - increased number of HPC licences to 512 computing cores!
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 17.2 (module add ansys-17.2)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 17.1 (module add ansys-17.1)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 16.2 (module add ansys-16.2)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 16.1 (module add ansys-16.1)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 15.0 (module add ansys-15)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - without location restriction (usable in the whole area of the Czech Republic)
+- Ansys version 14.0 (module add ansys-14)
+    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - without location restriction (usable in the whole area of the Czech Republic)
 
-Ansys version 2023 R1 (module add ansys/2023-R1)
-
-    Users need their own licence
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 2022 R1 (module add ansys/2022-R1)
-
-    Users need their own licence
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 2021 R1 (module add ansys-2021-R1)
-
-    Users need their own licence
-    Only CFD tool is available for all registered users
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 2020 R1 (module add ansys-2020-R1)
-
-    Users need their own licence
-    Only CFD tool is available for all registered users
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 2019 R3 (module add ansys-2019-R3)
-
-    Users need their own licence
-    Only CFD tool is available for all registered users
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 19.2 (module add ansys-19.2)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        increased number of HPC licences to 512 computing cores!
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 18.2 (module add ansys-18.2)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        increased number of HPC licences to 512 computing cores!
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 18.0 (module add ansys-18.0)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        increased number of HPC licences to 512 computing cores!
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 17.2 (module add ansys-17.2)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 17.1 (module add ansys-17.1)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 16.2 (module add ansys-16.2)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 16.1 (module add ansys-16.1)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 15.0 (module add ansys-15)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
-Ansys version 14.0 (module add ansys-14)
-
-    product is licensed for all registered users of national grid infrastructure of MetaCentrum
-
-        without location restriction (usable in the whole area of the Czech Republic)
-
+!!! todo
+    The section below is under construction.
 
 Number of available licenses (applies to all above mentioned versions):
 
@@ -183,7 +130,6 @@ Number of available licenses (applies to all above mentioned versions):
 
 module avail ansys/ # list available modules
 module load ansys   # load (default) module
-
 
 ### Ansys Fluent
 
