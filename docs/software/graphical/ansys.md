@@ -61,60 +61,45 @@ The following Ansys products are available within the MetaCentrum infrastructure
 
 ### Versions
 
+!!! note
+    Listed are only reasonably new version. Some older version are available, too, however we recommend their usage only in the case users need to reproduce some older computations.
+
 - Ansys version 2023 R1 (module add ansys/2023-R1)
-    - Users need their own licence
+    - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 2022 R1 (module add ansys/2022-R1)
-    - Users need their own licence
+    - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 2021 R1 (module add ansys-2021-R1)
-    - Users need their own licence
+    - product is licensed for all MetaCentrum users
     - Only CFD tool is available for all registered users
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 2020 R1 (module add ansys-2020-R1)
-    - Users need their own licence
+    - product is licensed for all MetaCentrum users
     - Only CFD tool is available for all registered users
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 2019 R3 (module add ansys-2019-R3)
-    - Users need their own licence
+    - product is licensed for all MetaCentrum users
     - Only CFD tool is available for all registered users
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 19.2 (module add ansys-19.2)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - product is licensed for all MetaCentrum users
     - increased number of HPC licences to 512 computing cores!
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 18.2 (module add ansys-18.2)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - product is licensed for all MetaCentrum users
     - increased number of HPC licences to 512 computing cores!
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 18.0 (module add ansys-18.0)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - product is licensed for all MetaCentrum users
     - increased number of HPC licences to 512 computing cores!
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 17.2 (module add ansys-17.2)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
 - Ansys version 17.1 (module add ansys-17.1)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
+    - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
-
-**Deprecated modules**
-
-- Ansys version 16.2 (module add ansys-16.2)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
-    - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 16.1 (module add ansys-16.1)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
-    - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 15.0 (module add ansys-15)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
-    - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 14.0 (module add ansys-14)
-    - product is licensed for all registered users of national grid infrastructure of MetaCentrum
-    - without location restriction (usable in the whole area of the Czech Republic)
-
-!!! todo
-    The section below is under construction.
 
 Number of available licenses (applies to all above mentioned versions):
 
