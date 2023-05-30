@@ -97,6 +97,9 @@ The following Ansys products are available within the MetaCentrum infrastructure
 - Ansys version 17.1 (module add ansys-17.1)
     - product is licensed for all registered users of national grid infrastructure of MetaCentrum
     - without location restriction (usable in the whole area of the Czech Republic)
+
+**Deprecated modules**
+
 - Ansys version 16.2 (module add ansys-16.2)
     - product is licensed for all registered users of national grid infrastructure of MetaCentrum
     - without location restriction (usable in the whole area of the Czech Republic)
