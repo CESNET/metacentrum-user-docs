@@ -64,40 +64,40 @@ The following Ansys products are available within the MetaCentrum infrastructure
 !!! note
     Listed are only reasonably new version. Some older version are available, too, however we recommend their usage only in the case users need to reproduce some older computations.
 
-- Ansys version 2023 R1 (module add ansys/2023-R1)
+- **2023 R1** (`ansys/2023-R1`)
     - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 2022 R1 (module add ansys/2022-R1)
+- **2022 R1** (`ansys/2022-R1`)
     - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 2021 R1 (module add ansys-2021-R1)
+- **2021 R1** (`ansys/2021-R1`)
     - product is licensed for all MetaCentrum users
-    - Only CFD tool is available for all registered users
+    - only CFD tool is available for all registered users
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 2020 R1 (module add ansys-2020-R1)
+- **2020 R1** (`ansys/2020-R1`)
     - product is licensed for all MetaCentrum users
-    - Only CFD tool is available for all registered users
+    - only CFD tool is available for all registered users
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 2019 R3 (module add ansys-2019-R3)
+- **2019 R3** (`ansys/2019-R3`)
     - product is licensed for all MetaCentrum users
-    - Only CFD tool is available for all registered users
+    - only CFD tool is available for all registered users
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 19.2 (module add ansys-19.2)
-    - product is licensed for all MetaCentrum users
-    - increased number of HPC licences to 512 computing cores!
-    - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 18.2 (module add ansys-18.2)
+- **19.2** (`ansys/19.2`)
     - product is licensed for all MetaCentrum users
     - increased number of HPC licences to 512 computing cores!
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 18.0 (module add ansys-18.0)
+- **18.2** (`ansys/18.2`)
     - product is licensed for all MetaCentrum users
     - increased number of HPC licences to 512 computing cores!
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 17.2 (module add ansys-17.2)
+- **18.0** (`ansys/18.0`)
+    - product is licensed for all MetaCentrum users
+    - increased number of HPC licences to 512 computing cores!
+    - without location restriction (usable in the whole area of the Czech Republic)
+- **17.2** (`ansys/17.2`)
     - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
-- Ansys version 17.1 (module add ansys-17.1)
+- **17.1** (`ansys/17.1`)
     - product is licensed for all MetaCentrum users
     - without location restriction (usable in the whole area of the Czech Republic)
 
@@ -114,51 +114,45 @@ Number of available licenses (applies to all above mentioned versions):
         ICEM-CFD : command icemcfd
         Workbench : command runwb2
 
-### Usage
-
-module avail ansys/ # list available modules
-module load ansys   # load (default) module
-
 ### Ansys Fluent
 
-Ansys Fluent supports both interactive and batch use:
-Interactive usage
+Ansys Fluent supports both interactive and batch use.
 
-    For graphic environment, open the GUI interface according to Remote desktop
-    For text-only regime login to a frontend and ask for interactive job in the standard way
+**Interactive usage**
 
-ssh skirit.ics.muni.cz
-qsub -I -l select=X:ncpus=Y:mem=Zgb  # text-only regime
+For graphic environment, open the GUI interface according to Remote desktop.
+For text-only regime login to a frontend and ask for interactive job in the standard way.
 
-    Start Fluent and proceed according to onscreen instructions
+    ssh skirit.ics.muni.cz
+    qsub -I -l select=X:ncpus=Y:mem=Zgb  # text-only regime
 
-module add ansys-18.2
-fluent # graphic regime
-fluent -g # text-only regime
+Start Fluent and proceed according to onscreen instructions
 
-Batch usage
+    module add ansys-18.2
+    fluent # graphic regime
+    fluent -g # text-only regime
 
-    Login to a frontend
+**Batch usage**
 
-    Prepare input data and batch script -- in the script, use following commands:
-        for serial computation:
+Prepare input data and batch script -- in the script, use following commands:
+For serial computation:
 
     module add ansys-18.2
     fluent <version> -g -i input_file  # serial initialization of Fluent
 
-            for paralel/distributed computation:
+For paralel/distributed computation:
 
     module add ansys-18.2
     cpus=`cat $PBS_NODEFILE | wc -l`
     fluent <version> -t${cpus} -p -cnf=$PBS_NODEFILE -g < flow.input  # parallel/distributed initialization of Fluent
 
-Note: you can get list of available versions by running $ fluent -v
+Note: you can get list of available versions by running `fluent -`v
 
-    Submit the batch script:
+Submit the batch script:
 
     skirit$ qsub -l select=X:ncpus=Y:mem=Zgb batch_script.sh
 
-Parallel bath usage (based on RT #880363)
+Parallel bath usage:
 
 It seems that best usage of parallel fluent differs from HW where fluent runs (infiniband vs. omnipath), as a rule of thumb you can use:
 
@@ -171,40 +165,40 @@ To utilize homogeneous cluster (fluent cannot optimally use nodes with different
 
     qsub -l select=N:...:infiniband=^none -l place=group=cluster ...
 
-TIP: To minimalize time needed for communication vith cortex component and increase performace, one can try to increase /solve/set/reporting-interval.
+!!! tip
+    To minimalize time needed for communication vith cortex component and increase performace, one can try to increase /solve/set/reporting-interval.
 
-TIP: Check the scalability of parallel run before spawning at dozens of processors, maybe the 16cpu run is faster then 32cpu one due to big communication overhead.
+!!! tip
+    Check the scalability of parallel run before spawning at dozens of processors, maybe the 16cpu run is faster then 32cpu one due to big communication overhead.
 
 ### Ansys CFX
 
-Interactive usage
+**Interactive usage**
 
-    For graphic environment, open the GUI interface according to Remote desktop
-    For text-only regime login to a frontend and ask for interactive job in the standard way
+For graphic environment, open the GUI interface according to Remote desktop.
+For text-only regime login to a frontend and ask for interactive job in the standard way.
 
-ssh skirit.ics.muni.cz
-qsub -I -l select=X:ncpus=Y:mem=Zgb  # text-only regime
+    ssh skirit.ics.muni.cz
+    qsub -I -l select=X:ncpus=Y:mem=Zgb  # text-only regime
 
-    Start CFX and proceed according to onscreen instructions
+Start CFX and proceed according to onscreen instructions
 
-cfx5 # graphical mode
-cfx5launch # text-only mode
+    cfx5 # graphical mode
+    cfx5launch # text-only mode
 
-Batch usage
+**Batch usage**
 
-    Login to a frontend
+Prepare input data and batch script -- in the script, use following commands:
+For serial computation:
 
-    Prepare input data and batch script -- in the script, use following commands:
-        for serial computation:
+    module add ansys-18.2
+    cfx5pre -batch inputfile.pre [...]
+    cfx5solve -def inputfile [...]
+    cfdpost -batch inputfile.cse [...]
 
- add ansys-18.2
-cfx5pre -batch inputfile.pre [...]
-cfx5solve -def inputfile [...]
-cfdpost -batch inputfile.cse [...]
+for paralel/distributed computation:
 
-            for paralel/distributed computation:
-
-module add ansys-18.2
+    module add ansys-18.2
 
     #### Create host list
     hl=`sort $PBS_NODEFILE | uniq -c | awk '{print $2"*"$1}' | tr '\n' ',' | sed 's/,$//'`
@@ -212,33 +206,14 @@ module add ansys-18.2
     #### Run the computation, e.g.
     cfx5solve -def 0.def -ccl 0.ccl -part-large -start-method "Platform MPI Distributed Parallel" -par-dist $hl
 
-            please contact us(email rebok (at) ics.muni.cz) if you need parallel/distributed computation with Ansys CFX.
-
-    Submit the batch script:
+Submit the batch script:
 
     skirit$ qsub -l select=X:ncpus=Y:mem=Zgb batch_script.sh
 
 ### Ansys Workbench
 
-Interactive usage
+For graphic environment, open the GUI interface according to Remote desktop.
+Start Workbench in the graphical mode:
 
-    For graphic environment, open the GUI interface according to Remote desktop
-
-    Start Workbench in the graphical mode
-
-runwb2 # graphical mode
-
-Documentation
-
-    software documentation is available locally in program's directory:
-        version Ansys 18.2: /software/ansys-18.2/doc/readme.html
-        version Ansys 18.0: /software/ansys-18.0/doc/readme.html
-        version Ansys 17.2: /software/ansys-17.2/doc/readme.html
-        version Ansys 17.1: /software/ansys-17.1/doc/readme.html
-        version Ansys 16.2: /software/ansys-16.2/doc/readme.html
-        version Ansys 16.1: /software/ansys-16.1/doc/readme.html
-        version Ansys 15: /software/ansys-15/doc/readme.html
-        version Ansys 14: /software/ansys-14/doc/readme.html
-    online documentation on producer's website is available just for registered users
-
+    runwb2 # graphical mode
 
