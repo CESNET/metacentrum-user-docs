@@ -29,7 +29,7 @@ Acknowledgement formula for ELIXIR CZ resources:
     part of the international ELIXIR infrastructure.
 
 !!! note
-    In addition to the acknowledgement in the publication, do not forget to add the project number (ID:90140 for e-INFRA CZ and/or ID:90255 for ELIXIR-CZ) during the export of publication to the RIV system.
+    In addition to the acknowledgement in the publication, do not forget to add the project number (ID:90254 for e-INFRA CZ and/or ID:90255 for ELIXIR-CZ) during the export of publication to the RIV system.
  
 ### Research groups annual report
 
