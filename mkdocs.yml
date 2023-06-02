@@ -115,7 +115,6 @@ nav:
       - advanced/mount-storages/index.md
     - advanced/gpu-comput/index.md
     - advanced/parallel-comput/index.md
-    - advanced/run-graphical/index.md
   - 'Troubleshooting':
     - troubleshooting/faqs/index.md
     - troubleshooting/outages/index.md
