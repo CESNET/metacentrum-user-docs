@@ -1,4 +1,4 @@
-# Wolfram Mathematica suite
+# Wolfram Mathematica
 
     module avail mathematica/
     module avail gridmathematica/

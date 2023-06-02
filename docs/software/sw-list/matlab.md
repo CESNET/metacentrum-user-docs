@@ -4,37 +4,29 @@
 
 ## Description
 
-MATLAB is an integrated system covering tools for symbolic and numeric computations, analyses and data visualizations, modeling and simulations of real processes etc. Next to MATLAB and Simulink there are other supplementary toolboxes available (see also section below). 
+[Matlab](http://www.matlab.com) is an integrated system covering tools for symbolic and numeric computations, analyses and data visualizations, modeling and simulations of real processes.
 
-MATLAB is an integrated system covering tools for symbolic and numeric computations, analyses and data visualizations, modeling and simulations of real processes.
+## Usage
 
-## OnDemand
+### OnDemand
 
 Matlab can be run in a browser as [OnDemand service](https://ondemand.metacentrum.cz). This is the most straighforward and simplest way.
 
-## Jupyter notebook
+### Jupyter notebook
 
 Matlab is available to run from [cloud Jupyter Notebook service](https://hub.cloud.e-infra.cz/hub/) as described in [Jupyter notebook documentation](http://docs.cerit.io/docs/jupyterhub.html).
 
-## Kubernetes
+### Kubernetes
 
 Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [Matlab](https://docs.cerit.io/docs/matlab.html) as a [Rancher application](https://docs.cerit.io/docs/rancher.html).
 
-## Remote desktop 
+### Remote desktop 
 
 Using [Remote desktop](/advanced/run-graphical), Matlab can be also run from a module.
 
 This option is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service are down.
 
-**Module:**
-
-    module avail matlab/
-
-For a detailed description of Matlab usage see [this page](/software/available-soft/sw-list/matlab).
-
-## Usage
-
-### Licences
+## Licences
 
 There exists a permanent licence type "College" (for operating systems UNIX and MS Windows) that is available to all the national grid infrastructure MetaCentrum users as well as to all students and employees of
 
@@ -120,7 +112,7 @@ You need to tell the PBS scheduler that the job will require a licence. Each Mat
 
 Names of toolboxes with prefix matlab_ are required by PBS scheduling system for the purpose of license reservation. During MATLAB usage, don't use these prefixes and use only base name of selected toolbox. 
 
-### Documentation
+## Documentation
 
 From the MATLAB command window one can use the command help to get help with a a particular command, e.g.
 
@@ -132,8 +124,7 @@ in the desktop environment one can use also the command doc
 
 Online documentation is available at [MATLAB Product Documentation](https://www.mathworks.com/help/).
 
-
-### Tips and detailed HOWTO
+## Tips and detailed HOWTO
 
 **Matlab as interactive job**
 
@@ -271,8 +262,3 @@ If you need some level of parallelizations, but don't want to use `exclhost`, yo
 Finding the optimal number (N) of CPUs can be tricky and sometimes reduced to trial-and-error approach, especially if your code calls external libraries. You can use top command to watch the CPU load. 
 
 
-## Links
-
-[Matlab homepage](http://www.matlab.com).
-
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/Matlab).
