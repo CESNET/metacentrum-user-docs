@@ -56,48 +56,51 @@ nav:
     - data/backup-archive/index.md
     - data/quotas/index.md
   - 'Software':
-    - 'Graphical software':
-      - software/graphical/ondemand/index.md
-      - software/graphical/galaxy.md
-      - software/graphical/kube-rancher.md
-      - software/graphical/jupyter-ntb.md
-      - software/graphical/rstudio.md
-      - software/graphical/ansys.md
-      - software/graphical/matlab.md
-      - software/graphical/vmd.md
-      - software/graphical/alphafold.md
+    - 'What we offer':
+      - 'Chemistry':
+         - software/sw-list/amber.md
+         - software/sw-list/gaussian.md
+         - software/sw-list/molden.md
+         - software/sw-list/molpro.md
+         - software/sw-list/turbomole.md
+         - software/sw-list/vasp.md
+         - software/sw-list/vmd.md
+         - software/sw-list/wien2k.md
+      - 'Genomics, proteomics':
+         - software/sw-list/alphafold.md
+         - software/sw-list/clcbio-genomics-wb.md
+         - software/sw-list/geneious.md
+      - 'Compilers, debuggers':
+         - software/sw-list/allinea-ddt.md
+         - software/sw-list/intel.md
+         - software/sw-list/pgi-cdk.md
+         - software/sw-list/rstudio.md
+         - software/sw-list/total-view.md
+      - 'Languages':
+         - software/sw-list/r.md
+         - software/sw-list/java.md
+      - 'Mechanics':
+         - software/sw-list/ansys.md
+      - 'Mathematics':
+         - software/sw-list/maple.md
+         - software/sw-list/matlab.md
+         - software/sw-list/wolfram-math.md   
+    - software/search-soft/index.md
+    - software/graphical-access/index.md
     - software/modules/index.md
     - software/containers/index.md
+    - 'Managed services':
+        - software/services/ondemand/index.md
+        - software/services/kubernetes/index.md
+        - software/services/galaxy/index.md
+        - software/services/jupyter/index.md
     - software/install-software/index.md
-    - 'Frequently used software':
-      - 'Chemistry':
-        - software/available-soft/sw-list/amber.md
-        - software/available-soft/sw-list/gaussian.md
-        - software/available-soft/sw-list/molden.md
-        - software/available-soft/sw-list/molpro.md
-        - software/available-soft/sw-list/turbomole.md
-        - software/available-soft/sw-list/vasp.md
-        - software/available-soft/sw-list/wien2k.md
-      - 'Genomics':
-        - software/available-soft/sw-list/clcbio-genomics-wb.md
-        - software/available-soft/sw-list/geneious.md
-      - 'Compilers, debuggers':
-        - software/available-soft/sw-list/allinea-ddt.md
-        - software/available-soft/sw-list/intel.md
-        - software/available-soft/sw-list/pgi-cdk.md
-        - software/available-soft/sw-list/total-view.md
-      - 'Languages':
-        - software/available-soft/sw-list/r.md
-        - software/available-soft/sw-list/java.md
-      - 'Mechanics':
-        - software/available-soft/sw-list/ansys.md
-      - 'Mathematics':
-        - software/available-soft/sw-list/maple.md
-        - software/available-soft/sw-list/matlab.md
-        - software/available-soft/sw-list/wolfram-math.md   
-#      - 'Singularity images':
-#        - software/available-soft/sw-list/singularity.md
-    - software/full-list/index.md
+    - 'Graphical software':
+      - software/sw-list/rstudio.md
+      - software/sw-list/ansys.md
+      - software/sw-list/matlab.md
+      - software/sw-list/vmd.md
+      - software/sw-list/alphafold.md
   - 'Advanced':
     - 'Access and security':
       - advanced/connect-auth/index.md

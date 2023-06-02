@@ -1,4 +1,4 @@
-# Full list
+# How to search for software
 
 There are thousands of packages installed at MetaCetrum. The list of selected software above is by far not complete.
 
