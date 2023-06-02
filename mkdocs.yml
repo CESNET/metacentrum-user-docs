@@ -95,12 +95,12 @@ nav:
         - software/services/galaxy/index.md
         - software/services/jupyter/index.md
     - software/install-software/index.md
-      #- 'Graphical software':
-      #  - software/sw-list/rstudio.md
-      #  - software/sw-list/ansys.md
-      #  - software/sw-list/matlab.md
-      #  - software/sw-list/vmd.md
-      #  - software/sw-list/alphafold.md
+    - 'Graphical software':
+      - software/sw-list/rstudio.md
+      - software/sw-list/ansys.md
+      - software/sw-list/matlab.md
+      - software/sw-list/vmd.md
+      - software/sw-list/alphafold.md
   - 'Advanced':
     - 'Access and security':
       - advanced/connect-auth/index.md
