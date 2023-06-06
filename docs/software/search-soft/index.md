@@ -1,6 +1,18 @@
 # How to search for software
 
-There are thousands of packages installed at MetaCetrum. The list of selected software above is by far not complete.
+There are thousands of packages installed at MetaCetrum. The list of selected software is by far not complete.
+
+In general, when searching for an application, you should checklist the following:
+
+1. Look at the list of selected software.
+2. Use `module avail` command as described [on this page](#modules).
+3. Go through software prepared as [containers](#containers).
+4. Check whether your software is included in any of [managed services](#services).
+
+!!! tip 
+    No luck? The consult [how to install new (version of) software](http://localhost:8080/software/install-software/#general-options) either locally or system-wide.
+
+## Modules
 
 To search for any package, use command `module avail PACKAGE_NAME`.
 
@@ -10,7 +22,7 @@ To search for any package, use command `module avail PACKAGE_NAME`.
 !!! tip "You can use stars"
     The `module avail` command accepts bash special characters. The most useful is the `*` which replaces any string.
 
-**Example: search for some Orca installation** 
+### Example 1: Orca versions
 
 ```
 (BULLSEYE)user123@skirit:~$ module avail or
@@ -42,8 +54,7 @@ modulepath
 ```
 With "/" at the end, the search will output all versions available for the specified module.
 
-
-**Example: search for some R package** 
+### Example 2: R package
 
 Modulefiles of system-wide installed R package are of the form `r-PACKAGE`.
 
@@ -64,7 +75,21 @@ On the other hand,
 
 will show up the package.
 
+## Containers
 
+A minor part of software is prepared as Singularity containers.
 
+You can list them at
 
+    ls /cvmfs/singularity.metacentrum.cz/
 
+For instructions on container usage, see [the containers chapter](/software/containers).
+
+## Services
+
+MetaCentrum runs several managed services. It is good idea to go through what these services offer.
+
+- [OnDemand](/software/services/ondemand): easy browser-based access to graphical software,
+- [Kubernetes](/software/services/kubernetes): service designed for Docker image usage,
+- [Galaxy](/software/services/galaxy): platform for biomedical research,
+- [Jupyter notebooks](/software/services/jupyter): interactive computing across multiple programming languages.
