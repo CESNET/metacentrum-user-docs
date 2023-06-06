@@ -2,10 +2,13 @@
 
 There are thousands of packages installed at MetaCetrum. The list of selected software above is by far not complete.
 
-To search for any package, use command `module avail`.
+To search for any package, use command `module avail PACKAGE_NAME`.
 
 !!! info "Search is case-insensitive"
     For example, `module avail r/` and `module avail R/` are the same for the purpose of searching. Other commands, however (such as `module add` or `module load`) are case-sensitive.
+
+!!! tip "You can use stars"
+    The `module avail` command accepts bash special characters. The most useful is the `*` which replaces any string.
 
 **Example: search for some Orca installation** 
 
@@ -40,25 +43,26 @@ modulepath
 With "/" at the end, the search will output all versions available for the specified module.
 
 
-<!--
+**Example: search for some R package** 
 
-Do teto sekce by casem mel pribyt kompletni seznam modulu
-generovany automaticky.
+Modulefiles of system-wide installed R package are of the form `r-PACKAGE`.
 
-U modulu kde mame nejakou informaci k jeho spusteni (known issue...)
-by mel byt odkaz na modul/sw klikatelny a vest na stranku s prislusnou
-specifikaci.
+To list all R packages, run
 
-Protoze tohle je ale komplexnejsi programatorsky ukol,
-pro ucely releasu teto dokumentace kompletni matrix modulu vynechame.
+    module avail r-*
 
-Bude dodelana pozdeji jako samostatny branch.
+Let's say you want to use package `bsgenome`. Commands
 
-Zatim na teto strance jen navod na to jak si kompletni seznam
-modulu zobrazit.
+    module avail bsgenome
+    module avail bsgenome*
 
--->
+will yield nothing.
 
+On the other hand,
+
+    module avail *bsgenome*
+
+will show up the package.
 
 
 
