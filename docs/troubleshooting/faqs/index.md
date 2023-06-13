@@ -1,5 +1,7 @@
 # FAQs
 
+[viz dotaznik zde](https://wiki.metacentrum.cz/metaw/images/4/43/2023-interni-dotazn%C3%ADk-prezentace-IvK.pdf)
+
 ## General
 
 - jak citovat, komu dekovat
@@ -77,7 +79,15 @@
 - I get "permission denied" when cleaning a scratchdir
     - explain the common error
     - difference between `rm -rf SCRATCHDIR` and `rm -rf SCRATCHDIR/*`
-    
+
+- How can I check whether I use resources effectively?
+    - some howto on used mem, CPUs
+    - duration is obvious
+    - if CPU usage is low, usually the calculation is not so paralle as it should be 
+
+- Is there any tool to help me setup syntactivcally correct qsub command?
+    - yes, link to online qsub assembler 
+
 ## Managed computing services
 
 - OnDemand application XY does not work
@@ -88,14 +98,14 @@
     - do this
     - then this
 
-## Data management 
+## Data
 
 - I accidentally deleted a file/directory on storage, is it possible to retrieve it?
     - sometimes
     - howto for what to fo
 
 - I deleted the SCRATCHDIR content, is it possible to retrieve it?
-    - no, not i any way
+    - no, not in any way
 
 - How reliable/strong is the is backup policy on storages
 
