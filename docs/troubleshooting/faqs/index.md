@@ -174,6 +174,12 @@
     - some howto for this usecase
     - `nohup` (+ others?) in Linux, ??? other OSs 
 
+<!--
+-[]()
+-->
+- How can I sort through various GPU and select among them?
+    - some point to GPU card selection
+    - also how to set memory for GPU card
 
 ## Managed computing services
 
@@ -190,6 +196,22 @@
 - Kubernetes application XY does not work
     - do this
     - then this
+
+## Grid infrastructure
+
+<!--
+-[]()
+-->
+- What is the difference between frontend, storage and computing node?
+    - frontend is just a named server for login and light processing of jobs
+    - storage(s) are just a disc space with user data, installed software etc.
+    - computing nodes are machines where the actual computations runs
+
+<!--
+-[]()
+-->
+- Why are there more than one storage and more homes? It's confusing.
+    - explain somehow to users why this is so
 
 ## Data
 
@@ -224,6 +246,13 @@
 - I need to receive large volume of data from outside MetaCentrum
     - how to do this effectively
 
+<!--
+-[]()
+-->
+- I need more space on (one of the) storage(s), can I get it?
+    - In principle, yes
+    - contact us and write why you need more storage space
+
 ## Software
 
 <!--
@@ -253,7 +282,7 @@
 -[]()
 -->
 - Can I install my own software
-    - yes, to your hoem
+    - yes, to your home
     - link to howto
 
 <!--
@@ -263,5 +292,10 @@
     - some installs may be tricky
     - anyway, if you don't rceive any response for longer than X days, update on your request
 
-
+<!--
+-[]()
+-->
+- I need to install .deb package, but I cannot use `apt-get install` without root priviledges. Is there some workaround?
+    - some howto what to do
+    - do they have always write to support?
 
