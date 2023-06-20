@@ -68,7 +68,7 @@
 -[]()
 - I live and work abroad, collaborate with Czech colleagues, can I get an account?
     - howto how to get account
-    - does need to be sponsored account?
+    - does need to be spo nsored account?
 
 -->
 <!--
@@ -140,10 +140,6 @@
     - setup TMPDIR (TMP), SINGULARITY CACHEDIR to SCRATCHDIR
 -->
 
-<!--
-    - explain the common error
-    - difference between `rm -rf SCRATCHDIR` and `rm -rf SCRATCHDIR/*`
--->
 - [I get "permission denied" when I try to clean up scratch directory](/troubleshooting/faqs/faqs-content/clean-scratch-perm-denied)
 
 <!--
@@ -154,11 +150,8 @@
     - if CPU usage is low, usually the calculation is not so paralle as it should be 
 
 -->
-<!--
--[]()
-- Is there any tool to help me setup syntactically correct qsub command?
-    - yes, link to online qsub assembler 
--->
+
+- [Is there any tool to help me setup syntactically correct `qsub` command?](/troubleshooting/faqs/faqs-content/qsub-assembler)
 
 - [I get an error "^M: command not found" or "$'\r': command not found" after submitting a script](/troubleshooting/faqs/faqs-content/os-dependent-endlines)
 
