@@ -207,31 +207,17 @@
 
 - [I want to use NVIDIA DGX H100 hardware, what do I need to do?](/troubleshooting/faqs/faqs-content/dgx-usage)
 
-<!--
 ## Data
--->
+
+- [I accidentally deleted a file/directory on storage, can I retrieve it?](/troubleshooting/faqs/faqs-content/accident-deleted-file)
+
+- [Are SCRATCHDIR directories backed up somewhere?](/troubleshooting/faqs/faqs-content/scratchdir-backup)
+
+- [How reliable/strong is the is backup policy on storages?](/troubleshooting/faqs/faqs-content/storage-backup-policy)
 
 <!--
 -[]()
-- I accidentally deleted a file/directory on storage, is it possible to retrieve it?
-    - sometimes
-    - howto for what to fo
-
--->
-<!--
--[]()
-- I deleted the SCRATCHDIR content, is it possible to retrieve it?
-    - no, not in any way
-
--->
-<!--
--[]()
-- How reliable/strong is the is backup policy on storages
-
--->
-<!--
--[]()
-- where should I keep my data?
+- So where should I keep my data to have them safe?
     - storages - job preparation and postediting
     - permanent - DU
 
