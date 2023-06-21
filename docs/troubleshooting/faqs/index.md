@@ -215,13 +215,8 @@
 
 - [How reliable/strong is the is backup policy on storages?](/troubleshooting/faqs/faqs-content/storage-backup-policy)
 
-<!--
--[]()
-- So where should I keep my data to have them safe?
-    - storages - job preparation and postediting
-    - permanent - DU
+- [Where should I keep my longterm data?](/troubleshooting/faqs/faqs-content/where-keep-data.md)
 
--->
 <!--
 -[]()
 - I need to receive large volume of data from outside MetaCentrum
