@@ -249,26 +249,12 @@
     - contact us and write why you need more storage space
 -->
 
-<!--
 ## Software
--->
 
-<!--
--[]()
-- Where can I find list of all installed software?
-    - curently there is no such list
-    - use "module avail" to search for software
-    - some software may be hidden in services and containers, too
-    - see How to search for software
+- [Where can I find list of all installed software?](/troubleshooting/faqs/faqs-content/list-all-sw)
 
--->
-<!--
--[]()
-- There are several version of one software, which one shall I use?
-    - there is default version (show how to use it)
-    - start with the default, if it does not work, ask us
+- [There are several version of one software, which one shall I use?](/troubleshooting/faqs/faqs-content/sw-which-version)
 
--->
 <!--
 -[]()
 - Do you automatically install new versions of currently installed software?
@@ -281,13 +267,6 @@
 - Can I install my own software
     - yes, to your home
     - link to howto
-
--->
-<!--
--[]()
-- Why is my request for software install taking so long to process?
-    - some installs may be tricky
-    - anyway, if you don't rceive any response for longer than X days, update on your request
 
 -->
 <!--
