@@ -221,14 +221,9 @@
 -[]()
 - I need to receive large volume of data from outside MetaCentrum
     - how to do this effectively
+-->
 
--->
-<!--
--[]()
-- I need more space on (one of the) storage(s), can I get it?
-    - In principle, yes
-    - contact us and write why you need more storage space
--->
+- [I need more space on storage(s), can I get it?](/troubleshooting/faqs/faqs-content/more-space-storage)
 
 ## Software
 
