@@ -234,6 +234,9 @@ On storage servers, only the following commands are available:
     /usr/bin/gzip,
     /usr/bin/gunzip
 
+!!! warning "No ssh by login and password to storage-du-cesnet.metacentrum.cz"
+    Since April 2023, CESNET Storage department service does not allow to log in to their servers by login and password. To `ssh` to `storage-du-cesnet.metacentrum.cz`, users have to use either Kerberos ticket or ssh keys. See more on [Cesnet Storage Department service pages](https://du.cesnet.cz/en/novinky/start).
+
 **Example**
 
 List the content of home directory on remote machine:
