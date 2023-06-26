@@ -175,9 +175,11 @@
     - also how to set memory for GPU card
 -->
 
-<!--
 ## Managed computing services
 
+- [What are Managed computing services, do I need a special login?](/troubleshooting/faqs/faqs-content/managed-services-access)
+
+<!--
 -[]()
 - OnDemand application XY does not work
     - do this
