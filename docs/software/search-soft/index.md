@@ -19,8 +19,11 @@ To search for any package, use command `module avail PACKAGE_NAME`.
 !!! info "Search is case-insensitive"
     For example, `module avail r/` and `module avail R/` are the same for the purpose of searching. Other commands, however (such as `module add` or `module load`) are case-sensitive.
 
-!!! tip "You can use stars"
-    The `module avail` command accepts bash special characters. The most useful is the `*` which replaces any string.
+!!! tip "You can use stars (with backslash or quotes)"
+    The `module avail` command accepts bash special characters. The most useful is the `*` which replaces any string; for example `module avail g\*`, `module avail 'g*'`, `module avail "g*"` lists all modules beginning with "g".
+
+!!! question "Why backslash or quotes?"
+    To make it to `module avail`, the `*` must be protected by backslash or quotes not to be expanded by shell. To experiment with this behaviour, try `touch g001; module avail g*` (returns nothing) versus `touch g001; module avail g\*` (returns list of modules).
 
 ### Example 1: Orca versions
 
