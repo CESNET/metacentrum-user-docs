@@ -4,7 +4,7 @@
 
 ## Description
 
-**TURBOMOLE** is a powerful general purpose Quantum Chemistry (QC) program package for ab initio Electronic Structure Calculations. Presently, the TURBOMOLE is one of the fastest and most stable codes available for standard quantum chemical applications (Hartree-Fock, DFT, MP2, Coupled Cluster, TDDFT, ...). Unlike many other programs, the main focus in the development of TURBOMOLE has not been to implement all new methods and functionals, but to provide a fast and stable code which is able to treat molecules of industrial relevance at reasonable time and memory requirements.
+**TURBOMOLE** is a general purpose quantum chemistry package for ab initio electronic structure calculations (Hartree-Fock, DFT, MP2, Coupled Cluster, TDDFT, ...).
 
 ## Usage
 
@@ -23,8 +23,20 @@ Versions 5.6, 6.0, 6.4, 6.5, 7.1, 7.4, 7.5 and 7.6. The TURBOMOLE is available i
 - versions 6.0 and 6.4 (modules `turbomole-6.0` and `turbomole-6.4`) -- licensed for a JCU group
 - versions 5.6 (module `turbomole-5.6`) -- licensed for NCBR research group
 
+**Single processor version**
+
+    module add turbomole-6.0
+    jobex -ri >jobex.out
+
+**Parallel version** (setting of variables lead to appending of parallel binaries)
+
+    export PARA_ARCH=MPI
+    export PARNODES=PROCS
+    module add turbomole-6.0
+    jobex -ri >jobex.out
+
+where instead of `PROCS` specify number of processors ( e.g. `$PBS_RESC_TOTAL_PROCS` inside PBS job script).
+
 ## Links
 
 [Turbomole homepage](https://www.turbomole.org/).
-
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/Turbomole).
