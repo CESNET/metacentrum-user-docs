@@ -1,6 +1,6 @@
 # VASP
 
-    module avail vasp/
+    module avail vasp\*
 
 ## Description
 
@@ -13,7 +13,7 @@ MetaCentrum does not own a licence for all users. According to the VASP licence 
 To run paralell program:
 
 ```
-#environment initialisation 
+#environment initialization 
 lamboot
 cd ...
 mpirun C vasp
@@ -39,4 +39,3 @@ module display vasp # search for PATH variable
 
 [VASP homepage](https://www.vasp.at/).
 
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/VASP).
