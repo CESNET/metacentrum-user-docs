@@ -9,6 +9,6 @@
 | minos.zcu.cz 	          | minos.metacentrum.cz        | /storage/plzen1       	|
 | perian.grid.cesnet.cz   | perian.metacentrum.cz   	| /storage/brno2       	        |
 | onyx.metacentrum.cz 	  | onyx.metacentrum.cz   	| /storage/brno2       	        |
-| zuphux.cerit-sc.cz 	  | zuphux.metacentrum.cz  	| /storage/brno3-cerit       	|
+| zuphux.cerit-sc.cz 	  | zuphux.metacentrum.cz  	| /storage/brno12-cerit       	|
 | elmo.elixir-czech.cz 	  | elmo.metacentrum.cz    	| /storage/praha5-elixir       	|
 

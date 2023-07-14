@@ -2,7 +2,6 @@
 |--------------------------------------------|-----------------------------|----------------------|
 | storage-brno1-cerit.metacentrum.cz         | /storage/brno1-cerit/       |          |
 | storage-brno2.metacentrum.cz               | /storage/brno2/             |          |
-| storage-brno3-cerit.metacentrum.cz         | /storage/brno3-cerit/       |          |
 | storage-brno11-elixir.metacentrum.cz       | /storage/brno11-elixir/     |  dedicated to ELIXIR-CZ    |
 | storage-brno12-cerit.metacentrum.cz        | /storage/brno12-cerit/      |                                      |
 | storage-budejovice1.metacentrum.cz         | /storage/budejovice1/       |             |

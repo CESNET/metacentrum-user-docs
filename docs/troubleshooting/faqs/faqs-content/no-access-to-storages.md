@@ -4,8 +4,8 @@ If you get the error of the type
 
     (BUSTER)user123@skirit:~$ pwd
     /storage/brno2/home/user123
-    (BUSTER)user123@skirit:~$ cd /storage/brno3-cerit
-    -bash: cd: /storage/brno3-cerit: Permission denied
+    (BUSTER)user123@skirit:~$ cd /storage/brno12-cerit
+    -bash: cd: /storage/brno12-cerit: Permission denied
 
 check by `klist` command whether you have a valid **Kerberos ticket (link na sekci s kerberos a pristupem)**
 

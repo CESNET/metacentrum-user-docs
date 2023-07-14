@@ -73,7 +73,7 @@ The batch script in the following example is called myJob.sh.
     # The 4 lines above are options for scheduling system: job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested
     
     # define a DATADIR variable: directory where the input files are taken from and where output will be copied to
-    DATADIR=/storage/brno3-cerit/home/user123/test_directory # substitute username and path to to your real username and path
+    DATADIR=/storage/brno12-cerit/home/user123/test_directory # substitute username and path to to your real username and path
     
     # append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of node it is run on and the path to a scratch directory
     # this information helps to find a scratch directory in case the job fails and you need to remove the scratch directory manually 
