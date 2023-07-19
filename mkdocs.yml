@@ -21,6 +21,12 @@ theme:
     text: 'Ubuntu'
     code: 'Source Code Pro'
 
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)'
+      lang:
+        - en
+
 markdown_extensions:
   - attr_list
   - md_in_html
