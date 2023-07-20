@@ -240,16 +240,72 @@ In case of moved (PBS code **M**) jobs, append to job ID the name of the PBS ser
     (BULLSEYE)user123@tarkil:~$ qstat -x -f 13031539.meta-pbs.metacentrum.cz@cerit-pbs.cerit-sc.cz | grep Exit_status
         Exit_status = 0
 
-## Exit codes
+## Exit status
 
-Most often you will meet one of the following three signals:
+When the job is finished (no matter how), it exits with a certain **exit status** (a number).
 
-| Type of job ending | Exist status (name) | Exit status (number) |
-|--------------------|---------------------|----------------------|
-| number of CPUs     | `JOB_EXEC_KILL_NCPUS_SUM` | -25 |
-| memory             | `JOB_EXEC_KILL_MEM` 	 | -27 |
-| walltime           | `JOB_EXEC_KILL_WALLTIME`  | -29 |
-| normal termination |                           | 0   |
+!!! note "Exit status is meaningful only for batch jobs"
+    Interactive jobs have always exit status equal to 0.
+
+A normal termination is denominated by 0.
+
+Any non-zero exit status means the job failed for some reason.
+
+You can get the exit status by typing
+
+    (BULLSEYE)user123@skirit:~$ qstat -xf job_ID | grep Exit_status
+    Exit_status = 271
+
+!!! warning "For older jobs, use pbs-get-job-history"
+    The `qstat -x -f` works only for recently finished jobs (last 24 hours). For For older jobs, use the `pbs-get-job-history` utility - see [Advanced chapter on getting info about older jobs](http://localhost:8080/advanced/job-tracking/#older).
+
+Alternatively, you can navigate to [your list of jobs in PBSmon](https://metavo.metacentrum.cz/pbsmon2/jobs/detail), go to tab "Jobs" and choose a particular finished job from the list.
+
+A gray table at the bottom of the page contains many variables connected to the job. Search for "Exit status" like shown in the picture below:
+
+![pic](exit_status.png)
+
+### Exit status ranges
+
+Exit status can fall into one of three categories, or ranges of numbers.
+
+| Exit status range  | Meaning |
+|--------------------|---------------------|
+| X < 0              | job killed by PBS; either some resource was exceeded <br/>or another problem occured |
+| 0 <= X < 256       | exit value of shell or top process of the job |
+| X >= 256           | job was killed with an OS signal |
+
+### Exit status to `SIG*` type
+
+If the exit status exceeds 256, it means an signal from operation system has terminated the job.
+
+Usually this means the used has deleted the job by `qdel`, upon which a `SIGKILL` and/or `SIGTERM` signal is sent.
+
+The OS signal have an OS code of their own.
+
+Type `kill -l` on any frontend to get list of OS signals together with their values.
+
+To translate PBS exit code >= 256 to OS signal type, just subtract 256 from exit code.
+
+For example, exit status of 271 means the OS signal no. 15 (a `SIGTERM`).
+
+![pic](sigterm.png)
+
+!!! tip
+    `PBS exit status` - `256` = `OS signal code`.
+
+### Common exit statuses
+
+Most often you will meet some of the following signals:
+
+| Type of job ending |  Exit status  |
+|--------------------|---------------|
+| missing Kerberos credenials | -23 |
+| job exceeded number of CPUs     | -25 |
+| job exceeded memory             | -27 |
+| job exceeded walltime           | -29 |
+| **normal termination**      | **0** |
+| Job killed by `SIGTERM`<br/> (result of `qdel`) | 271  |
 
 ## Manual scratch clean
 
