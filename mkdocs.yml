@@ -54,10 +54,12 @@ nav:
     - access/perun/index.md
     - access/pbsmon/index.md
     - access/elixir/index.md
-  - 'Basics':
+  - Basics:
+    - basics/index.md
     - basics/concepts/index.md
     - basics/jobs/index.md
-  - 'Data':
+  - Data:
+    - data/index.md
     - data/data-within/index.md
     - data/data-outside/index.md
     - data/backup-archive/index.md
