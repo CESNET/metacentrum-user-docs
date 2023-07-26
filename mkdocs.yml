@@ -112,6 +112,7 @@ nav:
       #      - software/sw-list/vmd.md
       #      - software/sw-list/alphafold.md
   - 'Advanced':
+    - advanced/index.md
     - 'Access and security':
       - advanced/connect-auth/index.md
       - advanced/kerberos/index.md
@@ -126,6 +127,7 @@ nav:
     - advanced/gpu-comput/index.md
     - advanced/parallel-comput/index.md
   - 'Troubleshooting':
+    - troubleshooting/index.md
     - troubleshooting/faqs/index.md
     - troubleshooting/outages/index.md
     - troubleshooting/known-issues/index.md
