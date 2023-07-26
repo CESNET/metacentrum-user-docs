@@ -61,7 +61,8 @@ nav:
     - data/data-outside/index.md
     - data/backup-archive/index.md
     - data/quotas/index.md
-  - 'Software':
+  - Software:
+    - software/index.md
     - 'What we offer':
       - 'Chemistry':
          - software/sw-list/amber.md
@@ -128,5 +129,4 @@ nav:
   - 'User support':
     - contact/index.md
     - contact/write-request/index.md
-  - Tutorials:
-    - tutorials/index.md
+  - Tutorials: tutorials/index.md
