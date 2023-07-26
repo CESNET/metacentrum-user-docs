@@ -46,7 +46,8 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
-  - 'Access':
+  - Access:
+    - access/index.md
     - access/terms/index.md
     - access/account/index.md
     - access/log-in/index.md
