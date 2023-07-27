@@ -5,7 +5,7 @@
 
 ## Description
 
-PGI Cluster Development Kit is a collection of tools for development parallel ( supports parallel models OpenMP a MPI) and also serial programs in laguanges C, C++, FORTRAN 77, Fortran 95 and High Performance Fortran (HPF). Program exept to compilers and supported libraries contains debugger and profiler with support for parallel programs, optimalized mathematic libraries BLAS and LAPACK and parallel library ScaLAPACK. 
+[PGI Cluster Development Kit](https://www.pgroup.com/index.htm) is a collection of tools for development parallel ( supports parallel models OpenMP a MPI) and also serial programs in laguanges C, C++, FORTRAN 77, Fortran 95 and High Performance Fortran (HPF). Program exept to compilers and supported libraries contains debugger and profiler with support for parallel programs, optimalized mathematic libraries BLAS and LAPACK and parallel library ScaLAPACK. 
 
 ## Usage
 
@@ -34,10 +34,3 @@ Quick overview of the most used programs in module to ease you the searching in 
 | pgc++ | preprocessor, compiler, assembler and linker for C++, compatible with GNU C++ compilers | CXX="pgc++", CXXCPP="pgc++ -E" | | 	
 | pgf77 | preprocessor, compiler, assembler and linker for Fortran 77 | F77="pgf70" | |
 | pgf90, pgf95, pgfortran | preprocessor, compiler, assembler and linker for Fortran 90/95 | F90="pgf90", FC="pgf90" | pgf90, pgf95 = aliases for pgfortran |
-
-
-## Links
-
-[PGI homepage](https://www.pgroup.com/index.htm).
-
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/PGI_CDK).
