@@ -240,12 +240,7 @@ Start Workbench in the graphical mode
 
     runwb2 # graphical mode
 
-
-## Links
-
-[Ansys homepage](https://customercenter.ansys.com/) - documentation available only for registered users.
-
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/ANSYS).
+## Documentation
 
 Software documentation is available locally in program's directory:
 
