@@ -5,7 +5,7 @@
 
 ## Description
 
-Mathematica is next CAS (Computer Algebra System) like Matlab and Maple. It is able to analyze data sets, solve complex differential equations, and develop an entire solution for fast, high-precision numeric and symbolic computation. Mathematica also provides 2D and 3D data visualization and programming capabilities.
+[Mathematica](https://www.wolfram.com/mathematica/) is a CAS (Computer Algebra System) like Matlab and Maple. It is able to analyze data sets, solve complex differential equations, and develop an entire solution for fast, high-precision numeric and symbolic computation. Mathematica also provides 2D and 3D data visualization and programming capabilities.
 
 ## Usage
 
@@ -62,9 +62,3 @@ In[2]:= 1 + 2
 
 Out[2]= 3
 ```
-
-## Links
-
-[Wolfram Mathematica homepage](https://www.wolfram.com/mathematica/).
-
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/Mathematica).
