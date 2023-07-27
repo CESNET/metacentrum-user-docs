@@ -4,7 +4,7 @@
 
 ## Description
 
-The Intel development kit is a set of tools for development of parallel (supports OpenMP and MPI parallel models) as well as serial programs programmed in C, C++, FORTRAN 77, Fortran 95 and High Performance Fortran (HPF). In addition to compilers and support libraries, the kit includes a debugger and a profiler with support for parallel programs, optimized mathematical libraries BLAS and LAPACK and ScaLAPACK parallel library. 
+The [Intel development kit](https://www.intel.com/content/www/us/en/developer/tools/overview.html) is a set of tools for development of parallel (supports OpenMP and MPI parallel models) as well as serial programs programmed in C, C++, FORTRAN 77, Fortran 95 and High Performance Fortran (HPF). In addition to compilers and support libraries, the kit includes a debugger and a profiler with support for parallel programs, optimized mathematical libraries BLAS and LAPACK and ScaLAPACK parallel library. 
 
 ## Usage
 
@@ -123,8 +123,3 @@ Quick overview of the most used programs in module to ease you the searching in 
 **GCC and ICC interaction**
 Program parts can be compiled with different compilers and then link them together. Nice description is on [Intel pages](https://www.intel.com/content/www/us/en/developer/tools/overview.html). 
 
-## Links
-
-[IntelCDK homepage](https://www.intel.com/content/www/us/en/developer/tools/overview.html#gs.oylq3b).
-
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/INTEL_CDK).
