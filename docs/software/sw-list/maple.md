@@ -4,7 +4,7 @@
 
 ## Description
 
-Maple is a general-purpose computer algebra system - an enviroment for sympolic computations, solving scientific and engeneering problems, mathematic research, and/or data visualization, thus allowing a creation of technical publications. 
+[Maple homepage](https://www.maplesoft.com/products/maple/index.aspx) is a general-purpose computer algebra system - an enviroment for sympolic computations, solving scientific and engeneering problems, mathematic research, and/or data visualization, thus allowing a creation of technical publications. 
 
 ## Usage
 
@@ -89,8 +89,3 @@ setmaple('h',ans)        % allows the result to be accessible from the Maple
 
 an access to the resulting formula (h variable) from the Maple environment can be checked by typing the h into the Maple worksheet and pressing Enter -- the Matlab formula should be shown.
 
-## Links
-
-[Maple homepage](https://www.maplesoft.com/products/maple/index.aspx).
-
-[Old MetaCentrum wiki documentation](https://wiki.metacentrum.cz/wiki/Maple).
