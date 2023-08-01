@@ -4,7 +4,7 @@
 
 ## Descripion
 
-Amber is a set of molecular mechanical force fields for the simulation of biomolecules.
+[Amber](http://ambermd.org/) is a set of molecular mechanical force fields for the simulation of biomolecules.
 
 Program package contains cca 50 programs, which cover wide spectrum of computational chemistry. Main programs are following Amber modules: 
 
@@ -66,8 +66,4 @@ This is a script to automate post-processing of MD trajectories, to analyze ener
 - **12.x modules**
     - *available just for users from Masaryk University*
 
-
-## Links
-
-[Amber homepage](http://ambermd.org/).
 

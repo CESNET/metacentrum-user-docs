@@ -4,7 +4,7 @@
 
 ## Description
 
-VAMP/VASP is a package for performing ab-initio quantum-mechanical molecular dynamics (MD) using pseudopotentials and a plane wave basis set. These techniques avoid all problems occurring in the original Car-Parrinello method. 
+[VAMP/VASP](https://www.vasp.at/) is a package for performing ab-initio quantum-mechanical molecular dynamics (MD) using pseudopotentials and a plane wave basis set. These techniques avoid all problems occurring in the original Car-Parrinello method. 
 
 ## Usage
 
@@ -34,8 +34,4 @@ module display vasp # search for PATH variable
                     # then go to the PATH directory and search for "src" (usu one level up)
                     # ls *bindat* - should list vdw_kernel.bindat file
 ```
-
-## Links
-
-[VASP homepage](https://www.vasp.at/).
 

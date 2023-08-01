@@ -6,7 +6,7 @@
 
 ## Description
 
-Gaussian is package of quantum mechanics programs. Program serves to predict the energies, molecular structures, and vibrational frequencies of molecular systems, along with numerous molecular properties derived from these basic computation types.
+[Gaussian](https://www.gaussian.com) is package of quantum mechanics programs. Program serves to predict the energies, molecular structures, and vibrational frequencies of molecular systems, along with numerous molecular properties derived from these basic computation types.
 
 ## License
 
@@ -156,9 +156,4 @@ Note: Alternatively, the amount of scratch space may be limited using the `MaxDi
     %LindaWorkers=doom29,gram7
 
 where the first defines how many cores you need per machine, and the second parameter is the list of machines. `g09-prepare` sets both parameters by default. 
-
-## Links
-
-- [Gaussian homepage](https://www.gaussian.com)
-
 

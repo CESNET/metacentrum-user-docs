@@ -4,7 +4,7 @@
 
 ## Description
 
-**TURBOMOLE** is a general purpose quantum chemistry package for ab initio electronic structure calculations (Hartree-Fock, DFT, MP2, Coupled Cluster, TDDFT, ...).
+[Turbomole](https://www.turbomole.org/) is a general purpose quantum chemistry package for ab initio electronic structure calculations (Hartree-Fock, DFT, MP2, Coupled Cluster, TDDFT, ...).
 
 ## Usage
 
@@ -37,6 +37,3 @@ Versions 5.6, 6.0, 6.4, 6.5, 7.1, 7.4, 7.5 and 7.6. The TURBOMOLE is available i
 
 where instead of `PROCS` specify number of processors ( e.g. `$PBS_RESC_TOTAL_PROCS` inside PBS job script).
 
-## Links
-
-[Turbomole homepage](https://www.turbomole.org/).
