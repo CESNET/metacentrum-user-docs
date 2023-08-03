@@ -1,23 +1,5 @@
 # Grid concepts
 
-Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn how to
-
-- navigate between **frontends**, **home directories** and **storages**,
-- make use of **batch** and **interactive** job,
-- **submit a job** to a **PBS server**,
-- set up **resources** for a job,
-- retrieve job **output**.
-
-*Most topics mentioned here are covered to greater depth in the [Advanced](/advanced) section.*
-
-!!! note "To start, you need to"
-
-    1. have Metacentrum account
-    2. be able to login to a frontend node
-    3. have elementary knowledge of Linux command line
- 
-    *If anything is missing, see [Access](/access/) section.*
-
 ## Frontends, storages, homes
 
 There are several **frontends** (login nodes) to access the grid. Each frontend has a native **home directory** on one of the **storages**. 
