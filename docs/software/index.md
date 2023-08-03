@@ -1,6 +1,16 @@
 # Overview
 
-This is an overview page concerning software in MetaCentrum.
+*Welcome to an overview page concerning software in MetaCentrum.*
 
-!!! toto
-    This page is yet to be done.
+In this part you will find:
+
+- [What we offer](/software/sw-list/amber/): list of selected software sorted by field of interest,
+- [How to search for software](/software/search-soft/): systematic guide to how to search through modules,
+- [Graphical access](/software/graphical-access/): various ways how to work with software with GUI,
+- [Modules](/software/modules/): how to load and use modules in MetaCentrum,
+- [Containers](/software/containers/): how to use Docker and Apptainer containers in MetaCentrum,
+- [Managed Services](/software/containers/): an overview of specialized managed services,
+- [Install software](software/install-software/): a guide to user-side software installation.
+
+
+
