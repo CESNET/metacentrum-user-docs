@@ -58,6 +58,7 @@ nav:
     - basics/index.md
     - basics/concepts/index.md
     - basics/jobs/index.md
+    - basics/frontends/index.md
   - Data:
     - data/index.md
     - data/data-within/index.md
