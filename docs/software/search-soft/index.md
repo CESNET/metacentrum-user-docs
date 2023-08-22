@@ -1,10 +1,10 @@
 # How to search for software
 
-There are thousands of packages installed at MetaCetrum. The list of selected software is by far not complete.
+There are thousands of packages installed at MetaCentrum. The list of selected software is by far not complete.
 
 In general, when searching for an application, you should checklist the following:
 
-1. Look at the list of selected software.
+1. Look at the list of selected software either [sorted alphabetically](/software/alphabet/) or [by field of interest](/software/sw-list/amber).
 2. Use `module avail` command as described [on this page](#modules).
 3. Go through software prepared as [containers](#containers).
 4. Check whether your software is included in any of [managed services](#services).
