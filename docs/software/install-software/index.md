@@ -73,8 +73,7 @@
 
 - it is a new version of already installed and/or commonly used software in MetaCentrum,
 - you are confident about the new software's usability,
-- you know the software will be useful to more users,
-- you intend to use the software in jobs running a day or longer.
+- you know the software will be useful to more users.
 
 **How to write software install request**
 
