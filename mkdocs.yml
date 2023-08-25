@@ -69,7 +69,7 @@ nav:
   - Software:
     - software/index.md
     - software/alphabet/index.md
-    - 'Sorted by field':
+    - 'Software sorted by field':
       - 'Chemistry':
          - software/sw-list/amber.md
          - software/sw-list/gaussian.md
