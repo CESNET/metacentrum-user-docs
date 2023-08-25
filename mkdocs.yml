@@ -68,7 +68,8 @@ nav:
     - data/quotas/index.md
   - Software:
     - software/index.md
-    - 'What we offer':
+    - software/alphabet/index.md
+    - 'Software sorted by field':
       - 'Chemistry':
          - software/sw-list/amber.md
          - software/sw-list/gaussian.md
