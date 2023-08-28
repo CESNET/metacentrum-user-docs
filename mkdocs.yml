@@ -122,6 +122,7 @@ nav:
     - 'PBS and job planning':    
       - advanced/pbs-options/index.md
       - advanced/queues-in-meta/index.md
+      - advanced/fairshare/index.md
     - 'Job state and history':
       - advanced/job-tracking/index.md
     - 'Infrastructure':  
