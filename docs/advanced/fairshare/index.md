@@ -23,6 +23,17 @@ Fairshare_usage += Usage_CPU + Usage_RAM + Usage_Scratch + Usage_GPU
 - The time-scope of the data stored with respect to the past usage of the system is limited. Simply put, the importance of data decreases with time: yesterday is more important than the day before yesterday and so on. The memory lasts typically 30 days. The more the user has used in recent days, the lower his or her priority is.
 - Importantly, **the user is prioritized for publications with acknowledgement to MetaCentrum/CERIT-SC**. User with a higher number of publications (reported in our system) is prioritized over users with smaller numbers of publications.
 
+### Tips for scheduling large jobs
+
+*Any newly started job will instantly lower the user's fairshare.>*
+
+Thus, if you need to run a large job, it is not a good idea to submit simultaneously a batch of small jobs; due to internal workings of PBS, these small jobs will be prioritized over the large job (they are easier to "fill in" space), thus continuously lowering the user's fairshare. As a result, a large job may wait in the queue for a very long time.
+
+!!! tip "Submit the small jobs after the large one, not together"
+    Long story short: if you have a large job and a number of small ones, then it is better strategy to wait until the large job starts running and only then submit the small jobs. If you submit everything together, the large job may take a long time to start running.
+
+
+
 
 
 
