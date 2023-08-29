@@ -28,7 +28,7 @@ You will need to do several things to make NFSv4 accessible on your Linux deskto
 
 You need to create empty directory where the Metacentrum storage NFS volumes will be mounted. We recommend directory `/storage` because in this way it is set on MetaCentrum machines. E.g.:
 
-    mkdir -p /storage/brno1 # -p option means directory /storage will be created, too, if it does not already exist
+    mkdir -p /storage/brno1-cerit # -p option means directory /storage will be created, too, if it does not already exist
     mkdir /storage/brno2
     mkdir /storage/brno12-cerit
     mkdir /storage/plzen1
@@ -46,9 +46,13 @@ If your PC does not have Kerberos system support, you need to install it first. 
     krb5-config/bionic,bionic,now 2.6 all [installed,automatic]
     Configuration files for Kerberos Version 5
 
+Also search and install `krb5-user` package:
+
+    user_123@user_123-ThinkCentre-E93:~$ sudo apt search krb5-user
+
 Once Kerberos support is installed, you must create file `/etc/krb5.conf`. The easiest way is to copy it simply from some MetaCentrum machine, e.g skirit.ics.muni.cz.
 
-    $ scp skirit.ics.muni.cz:/etc/krb5.conf /etc/
+    $ scp user_123@skirit.ics.muni.cz:/etc/krb5.conf /etc/
 
 If you are using MIT Kerberos >1.4 or Heimdal >1.3 add following line to the [libdefaults] section in the krb5.conf: `allow_weak_crypto = true`. Otherwise, do not change anything.
 
@@ -98,7 +102,7 @@ We will add ticket like `nfs/your_machine@ICS.MUNI.CZ` to your `/etc/krb5.keytab
 
 **Your machine does not have MetaCentrum /etc/krb5.keytab file and you will use your user ticket**
 
-Create kerberos ticket (`kinit`) before mounting the volume. You must create the ticket as a root because system volume will be connected as a root too. In this way, it is necessary to set `rpc.gssd` to search your ticket, not the system one, see bellow. Ticket must be renewed every day.
+Create kerberos ticket (`kinit username@META`) before mounting the volume. You must create the ticket as a root because system volume will be connected as a root too. In this way, it is necessary to set `rpc.gssd` to search your ticket, not the system one, see below. Ticket must be renewed every day.
 
 **Your machine does not have MetaCentrum /etc/krb5.keytab file and you will create one-purpose file /etc/krb5.keytab**
 
