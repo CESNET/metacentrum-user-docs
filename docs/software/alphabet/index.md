@@ -4,11 +4,25 @@
     **Only software where there are some caveats and/or howtos for users is included.** The ultimate tool for searching is `module avail` command. See [How to search for software](/software/search-soft/) page.
 
 !!! todo "This page is under construction"
-    This page is currently under construction. 
+    
 
 **A**
 
+- [Abinit](/software/sw-list/abinit)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [AllineaDDT](/software/sw-list/allinea-ddt)
+- [Alphafold](/software/sw-list/alphafold)
 - [Amber](/software/sw-list/amber)
+- [Ansys](/software/sw-list/ansys)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
 
 **K**
 
