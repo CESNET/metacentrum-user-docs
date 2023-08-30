@@ -20,6 +20,9 @@
 **B**
 
 - [BEAST](/software/sw-list/beast)
+<!-- - [Blast](/software/sw-list/blast) -->
+- [Busco](/software/sw-list/busco)
+<!-- - [BWA](/software/sw-list/bwa) -->
 
 
 **K**
