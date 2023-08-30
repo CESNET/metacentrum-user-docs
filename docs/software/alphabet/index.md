@@ -16,8 +16,6 @@
 - [Ansys](/software/sw-list/ansys)
 - [Augustus](/software/sw-list/augustus)
 - [Autodock Vina](/software/sw-list/autodock-vina)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
 
 **K**
 
