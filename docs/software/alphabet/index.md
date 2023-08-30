@@ -17,6 +17,11 @@
 - [Augustus](/software/sw-list/augustus)
 - [Autodock Vina](/software/sw-list/autodock-vina)
 
+**B**
+
+- [BEAST](/software/sw-list/beast)
+
+
 **K**
 
 - [Kraken](/software/sw-list/kraken)
