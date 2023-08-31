@@ -24,6 +24,16 @@
 - [Busco](/software/sw-list/busco)
 - [BWA](/software/sw-list/bwa)
 
+**C**
+
+- [Canu](/software/sw-list/canu)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [CLCgenomicsWB](/software/sw-list/clcbio-genomics-wb)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
 
 **K**
 
