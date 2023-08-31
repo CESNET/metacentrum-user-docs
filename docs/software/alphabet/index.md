@@ -27,8 +27,7 @@
 **C**
 
 - [Canu](/software/sw-list/canu)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
+<!-- - [Chipster](/software/sw-list/chipster) -->
 - [CLCgenomicsWB](/software/sw-list/clcbio-genomics-wb)
 - [](/software/sw-list/)
 - [](/software/sw-list/)
