@@ -31,7 +31,7 @@
 - [Conda modules](/software/sw-list/conda-modules)
 - [CLCgenomicsWB](/software/sw-list/clcbio-genomics-wb)
 - [CP2K](/software/sw-list/cp2k)
-- [](/software/sw-list/)
+- [Cplex](/software/sw-list/cplex)
 - [](/software/sw-list/)
 
 **K**
