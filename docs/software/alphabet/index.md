@@ -30,7 +30,7 @@
 <!-- - [Chipster](/software/sw-list/chipster) -->
 - [Conda modules](/software/sw-list/conda-modules)
 - [CLCgenomicsWB](/software/sw-list/clcbio-genomics-wb)
-- [](/software/sw-list/)
+- [CP2K](/software/sw-list/cp2k)
 - [](/software/sw-list/)
 - [](/software/sw-list/)
 
