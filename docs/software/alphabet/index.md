@@ -28,8 +28,8 @@
 
 - [Canu](/software/sw-list/canu)
 <!-- - [Chipster](/software/sw-list/chipster) -->
+- [Conda modules](/software/sw-list/conda-modules)
 - [CLCgenomicsWB](/software/sw-list/clcbio-genomics-wb)
-- [](/software/sw-list/)
 - [](/software/sw-list/)
 - [](/software/sw-list/)
 - [](/software/sw-list/)
