@@ -11,7 +11,7 @@ OnDemand enables users to
 Among the pre-installed applications available are Matlab, ANSYS, Jupyter notebook and RStudio server.
 
 !!! note "Authorization"
-    Login and password to Open OnDemand web interface is your **e-INFRA CZ / Metacentrum login** and **Metacentrum password**.
+    Login is done by personal certificate from [IGTF certification authorities](https://pki.cesnet.cz/en/st-user-new4.html), i.e. incl. [CESNET CA4 certificate](https://pki.cesnet.cz/en/st-user-new4.html).
 
 Supported browsers are Google Chrome, Mozilla Firefox or Microsoft Edge. 
 
