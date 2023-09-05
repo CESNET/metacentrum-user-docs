@@ -35,6 +35,18 @@
 <!-- - [Cuda](/software/sw-list/cuda) -->
 - [Cufflinks](/software/sw-list/cufflinks)
 
+**D**
+
+- [Debian-X](/software/sw-list/debian-x)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+
+
 **K**
 
 - [Kraken](/software/sw-list/kraken)
