@@ -38,13 +38,7 @@
 **D**
 
 - [Debian-X](/software/sw-list/debian-x)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
+- [Dirac](/software/sw-list/dirac)
 
 
 **K**
