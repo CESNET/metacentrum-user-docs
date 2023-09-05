@@ -80,14 +80,13 @@ Clicking on "Shell access" will open ssh connection in your browser:
 
 ![pic](shell-login.png)
 
-## Apps/Interactive Apps
+## Interactive apps
 
-The "Apps" tab lists all **environments**, **shell access** buttons as well as **graphical software** that can be run from the OnDemand interface.
+The "Interactive apps" tab lists all **environments**, **shell access** buttons as well as **graphical software** that can be run from the OnDemand interface.
 
 The "Interactive Apps" tab lists **all graphical software** that is run as interactive jobs.
 
-![pic](all-apps.png)
-![pic](interact-apps.png)
+![pic](apps.png)
 
 *Technically, `Interactive Apps` is a subset of `Apps`.*
 
