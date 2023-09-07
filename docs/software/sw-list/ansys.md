@@ -2,8 +2,6 @@
 
     module avail ansys/
 
-## Description
-
 [ANSYS](https://customercenter.ansys.com/) is a general nonlinear multiphysics software offering structural and thermodynamic analysis, continuum flow analysis, analysis of electrostatic and electromagnetic fields and acoustic analysis.
 
 ANSYS can be run either from module or from a service.

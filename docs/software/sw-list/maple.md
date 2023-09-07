@@ -2,8 +2,6 @@
 
     module avail maple/
 
-## Description
-
 [Maple homepage](https://www.maplesoft.com/products/maple/index.aspx) is a general-purpose computer algebra system - an enviroment for sympolic computations, solving scientific and engeneering problems, mathematic research, and/or data visualization, thus allowing a creation of technical publications. 
 
 ## Usage

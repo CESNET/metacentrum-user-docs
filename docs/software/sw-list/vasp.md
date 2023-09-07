@@ -2,8 +2,6 @@
 
     module avail vasp\*
 
-## Description
-
 [VAMP/VASP](https://www.vasp.at/) is a package for performing ab-initio quantum-mechanical molecular dynamics (MD) using pseudopotentials and a plane wave basis set. These techniques avoid all problems occurring in the original Car-Parrinello method. 
 
 ## Usage

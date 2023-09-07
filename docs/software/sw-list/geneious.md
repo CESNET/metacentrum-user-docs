@@ -2,8 +2,6 @@
 
     module avail geneious/
 
-## Description
-
 [Geneious](https://www.geneious.com/) is an integrated, cross-platform bioinformatics software suite for manipulating, finding, sharing, and exploring biological data such as DNA sequences or proteins, phylogenies, 3D structure information and publications. It features sequence alignment and phylogenetic analysis, contig assembly, primer design and restriction analysis, access to the NCBI and UniProt databases, BLAST, protein structure viewing, automated PubMed searching and more.
 
 ## Usage

@@ -2,8 +2,6 @@
 
     module avail molden/
 
-## Description
-
 [Molden](https://www.theochem.ru.nl/molden/) is a package for displaying Molecular Density from the Ab Initio packages GAMESS-UK, GAMESS-US and GAUSSIAN and the Semi-Empirical packages Mopac/Ampac. Molden is capable of displaying Molecular Orbitals and electron density.
 
 ## Usage

@@ -4,8 +4,6 @@
     module avail g09/
     module avail g16/
 
-## Description
-
 [Gaussian](https://www.gaussian.com) is package of quantum mechanics programs. Program serves to predict the energies, molecular structures, and vibrational frequencies of molecular systems, along with numerous molecular properties derived from these basic computation types.
 
 ## License

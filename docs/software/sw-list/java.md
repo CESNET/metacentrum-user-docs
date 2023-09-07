@@ -2,8 +2,6 @@
 
     module avail openjdk/    # versions of OpenJDK
 
-## Description
-
 [OpenJDK](https://openjdk.org/) is open-source implementation of the Java Platform, Standard Edition, and related projects.
 
 ## Usage

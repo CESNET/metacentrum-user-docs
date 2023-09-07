@@ -2,8 +2,6 @@
 
     module avail wien2k/
 
-## Description
-
 [WIEN2k](http://www.wien2k.at/) computes the electronic structure of solids. It is based on the Density Functional Theory (DFT). It comprises full crystal potential and uses the Linearized Augmented Plane Wave method, LAPW. 
 
 ## License

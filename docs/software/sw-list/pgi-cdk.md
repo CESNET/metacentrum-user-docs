@@ -3,8 +3,6 @@
     module add pgicdk/ # PGI CDK
     module add pgiwks/ # PGI Workspation
 
-## Description
-
 [PGI Cluster Development Kit](https://www.pgroup.com/index.htm) is a collection of tools for development parallel ( supports parallel models OpenMP a MPI) and also serial programs in laguanges C, C++, FORTRAN 77, Fortran 95 and High Performance Fortran (HPF). Program exept to compilers and supported libraries contains debugger and profiler with support for parallel programs, optimalized mathematic libraries BLAS and LAPACK and parallel library ScaLAPACK. 
 
 ## Usage

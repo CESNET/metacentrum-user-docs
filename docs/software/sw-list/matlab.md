@@ -2,8 +2,6 @@
 
     module avail matlab/
 
-## Description
-
 [Matlab](http://www.matlab.com) is an integrated system covering tools for symbolic and numeric computations, analyses and data visualizations, modeling and simulations of real processes.
 
 ## Usage

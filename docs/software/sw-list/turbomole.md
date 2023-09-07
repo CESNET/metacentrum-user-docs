@@ -2,8 +2,6 @@
 
     module avail turbomole/
 
-## Description
-
 [Turbomole](https://www.turbomole.org/) is a general purpose quantum chemistry package for ab initio electronic structure calculations (Hartree-Fock, DFT, MP2, Coupled Cluster, TDDFT, ...).
 
 ## Usage

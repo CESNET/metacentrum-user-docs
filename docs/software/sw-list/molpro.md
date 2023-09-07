@@ -2,8 +2,6 @@
 
     module avail molpro/
 
-## Description
-
 [Molpro](https://www.molpro.net/) is a complete system of ab initio programs for molecular electronic structure calculations. The emphasis is on highly accurate computations with extensive treatment of the electron correlation problem through the multiconfiguration-reference CI, coupled cluster and associated methods.
 
 ## Usage

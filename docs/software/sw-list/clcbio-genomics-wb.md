@@ -2,8 +2,6 @@
 
     module avail clcgenomicswb/
 
-## Description
-
 [CLC Genomics Workbench](https://resources.qiagenbioinformatics.com/manuals/clcgenomicsworkbench/current/index.php?manual=Introduction_CLC_Genomics_Workbench.html) is a powerful solution developed by scientists for scientists to analyze and visualize next generation sequencing (NGS) data.
 
 ## Usage
