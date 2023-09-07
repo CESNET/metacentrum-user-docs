@@ -40,6 +40,17 @@
 - [Debian-X](/software/sw-list/debian-x)
 - [Dirac](/software/sw-list/dirac)
 
+**E**
+
+- [Espresso](/software/sw-list/espresso)
+- [Exonerate](/software/sw-list/exonerate)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
 
 **K**
 
