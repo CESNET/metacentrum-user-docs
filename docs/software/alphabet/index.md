@@ -42,8 +42,6 @@
 
 **E**
 
-<!-- - [Espresso](/software/sw-list/espresso) --> 
-
 - [Exonerate](/software/sw-list/exonerate)
 
 **F**
@@ -58,7 +56,9 @@
 
 - [Molden](/software/sw-list/molden)
 
+**Q**
 
+- [Espresso](/software/sw-list/quantum-espresso)
 
 
 
