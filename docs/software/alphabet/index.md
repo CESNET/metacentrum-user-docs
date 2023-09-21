@@ -48,6 +48,13 @@
 
 - [Freesurfer](/software/sw-list/freesurfer)
 
+**G**
+
+- [Gaussian](/software/sw-list/gaussian)
+- [Genome Analysis Toolkit](/software/sw-list/gatk)
+- [GIbPSs](/software/sw-list/gibpss)
+- [GridMathematica](/software/sw-list/gridmathematica)
+
 **K**
 
 - [Kraken](/software/sw-list/kraken)
