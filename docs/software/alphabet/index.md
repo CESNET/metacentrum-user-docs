@@ -54,6 +54,7 @@
 - [Genome Analysis Toolkit](/software/sw-list/gatk)
 - [GIbPSs](/software/sw-list/gibpss)
 - [GridMathematica](/software/sw-list/gridmathematica)
+- [Gamess](/software/sw-list/gamess)
 
 **K**
 
