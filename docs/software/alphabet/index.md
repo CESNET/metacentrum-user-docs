@@ -56,6 +56,11 @@
 - [GridMathematica](/software/sw-list/gridmathematica)
 - [Gamess](/software/sw-list/gamess)
 
+**I**
+
+- [Intel CDK](/software/sw-list/intel)
+- [InterPro Scan](/software/sw-list/interproscan)
+
 **K**
 
 - [Kraken](/software/sw-list/kraken)
