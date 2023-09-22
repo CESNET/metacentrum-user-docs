@@ -13,3 +13,10 @@ Lammps does not work on the oldest clusters. Please specify an option `cpu_flag=
 **Tip no. 2**
 
 There is a significant difference in computing speed of the program between Intel and AMD machine architecture. It runs better on Intel.
+
+**Tip no. 3**
+
+The lammps binary includes many compiled parts. You can get their list by issuing command
+
+    lmp -h
+
