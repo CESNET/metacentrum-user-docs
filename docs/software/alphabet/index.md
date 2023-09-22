@@ -50,6 +50,7 @@
 
 **G**
 
+- [Galaxy](/software/services/galaxy)
 - [Gaussian](/software/sw-list/gaussian)
 - [Genome Analysis Toolkit](/software/sw-list/gatk)
 - [GIbPSs](/software/sw-list/gibpss)
@@ -65,10 +66,20 @@
 
 - [Java](/software/sw-list/java)
 - [Julia](/software/sw-list/julia)
+- [Jupyter notebooks](/software/services/jupyter)
+
 
 **K**
 
 - [Kraken](/software/sw-list/kraken)
+- [Kubernetes](/software/services/kubernetes)
+
+**L**
+
+- [LAMMPS](/software/sw-list/lammps)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
+- [](/software/sw-list/)
 
 **M**
 
