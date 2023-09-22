@@ -104,6 +104,4 @@ Its documentation is [preserved here](https://wiki.metacentrum.cz/wiki/Galaxy) f
 # Contact
 
 
-If you need any help or experience tool errors or any unexpected issues contact us at regalaxy@rt.cesnet.cz
-
-
+If you need any help or experience tool errors or any unexpected issues contact us at <regalaxy@rt.cesnet.cz>.
