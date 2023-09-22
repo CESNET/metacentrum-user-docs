@@ -1,12 +1,13 @@
 # Quantum Espresso
 
 !!! warning
-    Due to historical reasons, there are three different directories in which Quantum Espresso modules can be found.
+    Due to historical reasons, there are three different modulenames under which Quantum Espresso versions can be found.
 
-
+```
     module avail espresso/     # older versions
     module avail qe/           # older versions
     module avail qe_rism/      # latest version
+```
 
 [Quantum espresso](https://www.quantum-espresso.org/) is an integrated suite of spensource computer codes for electronic-structure calculations and materials modeling at the nanoscale. It is based on density-functional theory, plane waves, and pseudopotentials.
 

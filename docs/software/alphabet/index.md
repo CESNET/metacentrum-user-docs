@@ -65,7 +65,7 @@
 
 **Q**
 
-- [Espresso](/software/sw-list/quantum-espresso)
+- [Quantum Espresso](/software/sw-list/quantum-espresso)
 
 
 
