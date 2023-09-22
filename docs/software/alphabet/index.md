@@ -61,6 +61,11 @@
 - [Intel CDK](/software/sw-list/intel)
 - [InterPro Scan](/software/sw-list/interproscan)
 
+**J**
+
+- [Java](/software/sw-list/java)
+- [Julia](/software/sw-list/julia)
+
 **K**
 
 - [Kraken](/software/sw-list/kraken)
