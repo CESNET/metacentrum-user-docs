@@ -6,6 +6,8 @@
 
 ## Usage
 
+### License
+
 The program is available just for non-commercial use:
 
 - [Turbomole End User License Agreement](https://wiki.metacentrum.cz/w/images/b/be/Turbomole-END_USER_LICENSE_AGREEMENT.pdf)  
@@ -21,6 +23,8 @@ Versions 5.6, 6.0, 6.4, 6.5, 7.1, 7.4, 7.5 and 7.6. The TURBOMOLE is available i
 - versions 6.0 and 6.4 (modules `turbomole-6.0` and `turbomole-6.4`) -- licensed for a JCU group
 - versions 5.6 (module `turbomole-5.6`) -- licensed for NCBR research group
 
+### Paralellization
+
 **Single processor version**
 
     module add turbomole-6.0
@@ -34,4 +38,8 @@ Versions 5.6, 6.0, 6.4, 6.5, 7.1, 7.4, 7.5 and 7.6. The TURBOMOLE is available i
     jobex -ri >jobex.out
 
 where instead of `PROCS` specify number of processors ( e.g. `$PBS_RESC_TOTAL_PROCS` inside PBS job script).
+
+### Graphical interface (TmoleX)
+
+There is also a graphical interface to Turbomole installed in MetaCentrum - see [TmoleX](/software/sw-list/tmolex).
 

@@ -88,8 +88,6 @@ The "Interactive Apps" tab lists **all graphical software** that is run as inter
 
 ![pic](apps.png)
 
-*Technically, `Interactive Apps` is a subset of `Apps`.*
-
 ## My Interactive Sessions
 
 Under this tab, you will see list of your sessions running in OnDemand.
