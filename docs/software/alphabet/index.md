@@ -77,13 +77,34 @@
 **L**
 
 - [LAMMPS](/software/sw-list/lammps)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
 
 **M**
 
+- [Maple](/software/sw-list/maple)
+- [Mathematica](/software/sw-list/wolfram-math)
+- [Matlab](/software/sw-list/matlab)
 - [Molden](/software/sw-list/molden)
+- [Molpro](/software/sw-list/molpro)
+
+<!--
+Potencialni stranky od M k pridani:
+- Masurca [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Masurca)
+- Maker [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Maker)
+- Medaka [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Medaka)
+- MEME [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MEME_Suite)
+- Merqury [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Merqury)
+- Metabase [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Metabase)
+- Migrate [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Migrate)
+- Mitobim [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mitobim)
+- Modeller [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MODELLER)
+- Mono [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mono)
+- Mopac [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MOPAC)
+- Mosaic [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mosaik)
+- Moses [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Moses)
+- Mothur [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mothur)
+- MrBayes [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MrBayes)
+- Mugsy [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mugsy)
+-->
 
 **Q**
 
@@ -93,6 +114,3 @@
 
 - [TmoleX](/software/sw-list/tmolex)
 - [Turbomole](/software/sw-list/turbomole)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
-- [](/software/sw-list/)
