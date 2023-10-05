@@ -1,0 +1,34 @@
+# MEME suite 
+
+    module avail meme/
+
+[MEME suite](https://meme-suite.org/meme/index.html) allows the biologist to discover novel motifs in collections of unaligned nucleotide or protein sequences, and to perform a variety of other motif-based analyses. The MEME Suite supports motif-based analysis of DNA, RNA and protein sequences. It provides motif discovery algorithms using both probabilistic (MEME) and discrete models (MEME), which have complementary strengths. It also allows discovery of motifs with arbitrary insertions and deletions (GLAM2).
+
+## Usage
+
+Available binaries are:
+
+```
+ame
+centrimo
+dreme
+dreme-py3
+dust
+fimo
+glam2
+glam2scan
+gomo
+mast
+mcast
+meme
+meme-chip
+momo
+purge
+spamo
+tomtom
+```
+
+**Note**: Sequence databases (`gomo_batabases` and `motif_databases`) are localized in the path `/software/meme-suite/5.0.1-mpi/db`.
+
+Instead of `meme ... -p 2` you can use command `mpirun meme` without `-p` parametr. Number of cpus will be taken from PBS system in this case. 
+

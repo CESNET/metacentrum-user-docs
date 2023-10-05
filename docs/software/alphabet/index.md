@@ -85,13 +85,13 @@
 - [Mathematica](/software/sw-list/wolfram-math)
 - [Matlab](/software/sw-list/matlab)
 - [Medaka](/software/sw-list/medaka)
+- [MEME](/software/sw-list/meme)
 - [Metabase](/software/sw-list/metabase)
 - [Molden](/software/sw-list/molden)
 - [Molpro](/software/sw-list/molpro)
 
 <!--
 Potencialni stranky od M k pridani:
-- MEME [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MEME_Suite)
 - Merqury [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Merqury)
 - Migrate [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Migrate)
 - Mitobim [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mitobim)
