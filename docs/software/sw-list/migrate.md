@@ -1,0 +1,23 @@
+# Migrate 
+
+    module avail migrate/
+
+[Migrate](https://peterbeerli.com/migrate-html5/index.html) estimates effective population sizes and past migration rates between N populations assuming a migration matrix model with asymmetric migration rates and different subpopulation sizes.
+
+## Usage
+
+You can run Migrate as a single core, thread or MPI version of migrate by commands
+
+```
+migrate-n-single
+migrate-n
+mpirun migrate-n-mpi
+```
+
+`mpirun` needs to set the complete path to the programme (`$PATH` is not enough):
+
+```
+mpirun $(which migrate-n-mpi) -nomenu
+or
+mpirun /software/migrate-4.4.3/migrate-4.4.3/src/bin/migrate-n-mpi -nomenu
+```
