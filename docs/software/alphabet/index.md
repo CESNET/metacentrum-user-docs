@@ -81,19 +81,19 @@
 **M**
 
 - [Maple](/software/sw-list/maple)
+- [Masurca](/software/sw-list/masurca)
 - [Mathematica](/software/sw-list/wolfram-math)
 - [Matlab](/software/sw-list/matlab)
+- [Metabase](/software/sw-list/metabase)
 - [Molden](/software/sw-list/molden)
 - [Molpro](/software/sw-list/molpro)
 
 <!--
 Potencialni stranky od M k pridani:
-- Masurca [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Masurca)
 - Maker [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Maker)
 - Medaka [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Medaka)
 - MEME [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MEME_Suite)
 - Merqury [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Merqury)
-- Metabase [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Metabase)
 - Migrate [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Migrate)
 - Mitobim [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mitobim)
 - Modeller [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MODELLER)
