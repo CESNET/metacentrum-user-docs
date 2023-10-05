@@ -152,7 +152,6 @@ Then start the installation with `pip`.
 
 ```
 module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
-pip search <module name>
 pip install <module name> --root /some/user/specific/python/modules/folder # Install everything relative to this alternate root directory
 pip install <module name> --prefix /some/user/specific/python/modules/folder # Installation prefix where lib, bin and other top-level folders are placed
 pip install git+https://path/to/git/file
@@ -174,9 +173,6 @@ If you wish to execute such commands at each login on a front end, you will ther
 module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
 # Set pip path for --user option
 export PYTHONUSERBASE=/storage/city/home/<user_name>/.local
-# set PATH and PYTHONPATH variables
-export PATH=$PYTHONUSERBASE/bin:$PATH
-export PYTHONPATH=$PYTHONUSERBASE/lib/python2.7/site-packages:$PYTHONPATH
 ```
 
 With this, you can install any module you need with the following command:
