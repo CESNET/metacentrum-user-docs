@@ -91,11 +91,10 @@
 - [Modeller](/software/sw-list/modeller)
 - [Molden](/software/sw-list/molden)
 - [Molpro](/software/sw-list/molpro)
+- [Mopac](/software/sw-list/mopac)
 
 <!--
 Potencialni stranky od M k pridani:
-- Mono [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mono)
-- Mopac [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MOPAC)
 - Mosaic [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mosaik)
 - Moses [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Moses)
 - Mothur [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mothur)
