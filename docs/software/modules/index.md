@@ -4,7 +4,7 @@ In Metacentrum infrastructure all applications are packed into **modules**, whic
 
 To work with modules, you will need to use command `module` (with options).
 
-A complete guide to `module`command can be found on [https://modules.readthedocs.io/en/latest/modulefile.html](https://modules.readthedocs.io/en/latest/modulefile.html). You can also browse the manpage (`man module`).
+A complete guide to `module` command can be found on [https://modules.readthedocs.io/en/latest/modulefile.html](https://modules.readthedocs.io/en/latest/modulefile.html). You can also browse the manpage (`man module`).
 
 On this page we will show only the most common usecases of the `module` command.
 
@@ -66,12 +66,18 @@ $ module add intelcdk            # dtto
 
 ```
 $ module unload matlab-9.9   # unload matlab-9.9
-$ module del matlab-9.9      # equivalent to the above
+$ module del matlab-9.9      # dtto
+$ module rm  matlab-9.9      # dtto
 ```
 
 **Clear all currently loaded modules**
 
     $ module purge   # get rid of everything!
+    $ module purge && module add metabase/1 # see below
+
+!!! warning 
+    The `module purge` command will remove also an automatically loaded module `metabase/1`. This module makes accessible utils in `/software/meta-utils/public`, like `qextend`, `clean_scratch`, `walltime_prolong_user_info`, `check-local-quota` and other commands. For this reason, we recommend to add module `metabase/1` after using `module purge` command. 
+
 
 ### Display info
 
