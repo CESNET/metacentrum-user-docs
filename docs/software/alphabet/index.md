@@ -88,13 +88,12 @@
 - [MEME](/software/sw-list/meme)
 - [Migrate](/software/sw-list/migrate)
 - [Metabase](/software/sw-list/metabase)
+- [Modeller](/software/sw-list/modeller)
 - [Molden](/software/sw-list/molden)
 - [Molpro](/software/sw-list/molpro)
 
 <!--
 Potencialni stranky od M k pridani:
-- Mitobim [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mitobim)
-- Modeller [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MODELLER)
 - Mono [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mono)
 - Mopac [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MOPAC)
 - Mosaic [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mosaik)
