@@ -1,0 +1,7 @@
+# GNU Parallel 
+
+    module avail parallel/
+
+[GNU parallel](https://www.gnu.org/software/parallel/man.html) is a shell tool for executing jobs in parallel using one or more computers. 
+
+

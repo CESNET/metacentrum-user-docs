@@ -93,12 +93,11 @@
 - [Molpro](/software/sw-list/molpro)
 - [Mopac](/software/sw-list/mopac)
 - [Mothur](/software/sw-list/mothur)
+- [MrBayes](/software/sw-list/mrbayes)
 
-<!--
-Potencialni stranky od M k pridani:
-- MrBayes [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MrBayes)
-- Mugsy [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mugsy)
--->
+**P**
+
+- [Parallel](/software/sw-list/parallel)
 
 **Q**
 
