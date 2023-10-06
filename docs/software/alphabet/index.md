@@ -92,12 +92,10 @@
 - [Molden](/software/sw-list/molden)
 - [Molpro](/software/sw-list/molpro)
 - [Mopac](/software/sw-list/mopac)
+- [Mothur](/software/sw-list/mothur)
 
 <!--
 Potencialni stranky od M k pridani:
-- Mosaic [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mosaik)
-- Moses [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Moses)
-- Mothur [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mothur)
 - MrBayes [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/MrBayes)
 - Mugsy [](/software/sw-list/) at [wiki](https://wiki.metacentrum.cz/wiki/Mugsy)
 -->

@@ -1,0 +1,11 @@
+# Mothur 
+
+    module avail mothur/
+
+[Mothur](https://mothur.org/) is a project that seeks to develop a single piece of open-source, expandable software to fill the bioinformatics needs of the microbial ecology community. It has incorporated the functionality of dotur, sons, treeclimber, s-libshuff, unifrac, and much more.
+
+## Usage
+
+**Databases**
+
+Databases are localized in the path `/software/mothur/1.42.1/data` based on the [following licence conditions](https://www.arb-silva.de/silva-license-information). 
