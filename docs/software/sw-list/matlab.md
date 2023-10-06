@@ -110,7 +110,7 @@ You need to tell the PBS scheduler that the job will require a licence. Each Mat
 
 Names of toolboxes with prefix matlab_ are required by PBS scheduling system for the purpose of license reservation. During MATLAB usage, don't use these prefixes and use only base name of selected toolbox. 
 
-## Documentation
+## Built-in documentation
 
 From the MATLAB command window one can use the command help to get help with a a particular command, e.g.
 
@@ -122,9 +122,9 @@ in the desktop environment one can use also the command doc
 
 Online documentation is available at [MATLAB Product Documentation](https://www.mathworks.com/help/).
 
-## Tips and detailed HOWTO
+## Tips and notes
 
-**Matlab as interactive job**
+### Matlab as interactive job
 
 Interactive regime brings no significant speed-up comparing to running MATLAB locally on your machine unless parallelism is used. Interactive regime is recommended for development of your code and its testing.
 
@@ -147,10 +147,10 @@ It is possible to run MATLAB in the text regime only, when the graphical mode is
 
     $ matlab -nosplash -nodisplay -nodesktop
 
-**Matlab as batch job**
+### Matlab as batch job
 
 If you do not need the graphical environment, it is is possible to run MATLAB in batch regime. Create batch script myjob.sh with the following contents:
-
+eď Jurečka slibuje, že do tří měsíců už budou lidé dostávat výměr důchodů v zákonné lhůtě. V rozhovoru mluví také o tom, jak se snaží brzdit ultrakonzervativní lidovce, kteří přirovnávají lidi k masu, odmítá termín „lidovecký Tálibán“ a tvrdí, že velkým lidoveckým tématem má být životní prostředí. Zároveň však vysvětluje, proč odmítá manželství pro všechny či legální prodej měkkých drog.
 ```
 #!/bin/bash
 
@@ -173,11 +173,11 @@ Put all your MATLAB files (your \*.mat and \*.m files) to the directory `$HOME/m
 
 Batch jobs are useful especially if you want to run more jobs in parallel or if you do not want to block your local machine with running jobs.
 
-**Turn off Java Virtual Machine (JVM)**
+### Turn off Java Virtual Machine (JVM)
 
 MATLAB uses its own java virtual machine for the desktop environment. Many jobs can be sped-up by turning the JVM off (option `matlab -nojvm`). Keep in mind, however, that some internal functions and toolboxes (e.g. Distributed Computing Toolbox) need Java.
 
-**Start Matlab with Maple symbolic environment**
+### Matlab with Maple symbolic environment
 
 Since the Maple's symbolic environment is not fully compatible with the Matlab's symbolic environment, the Matlab symbolic environment is used by default when starting the Matlab within MetaCentrum environment.
 
@@ -189,36 +189,7 @@ $ matlab-sym-maple       # the options of this command are the same as for the o
                          # an alternative -- the 'matlab-sym-matlab' command -- explicitly requires the Matlab symbolic environment
 ```
 
-**Distributed and parallel jobs in MATLAB**
-
-MATLAB now supports distributed and parallel jobs on multiprocessor machines using the [Parallel Computing Toolbox](https://www.mathworks.com/products/parallel-computing.html) (the name of the licence is Distrib\_Computing\_Toolbox) and on clusters using the [MATLAB Distributed Computing Server](https://www.mathworks.com/products/matlab-parallel-server.html) (name of the licence is MATLAB\_Distrib\_Comp\_Engine).
-
-**Parallel Matlab computations in MetaCentrum**
-
-To prepare an environment for parallel computations, it is necessary to initialize a parallel pool of so-called workers using the function `parpool` (called `matlabpool` in previous versions). This standard initialization requires to specify an amount of workers to initialize; moreover, thanks to shared filesystems, it may also result in a collision when trying to initialize several pools simultaneously.
-
-To make the initialization of parallel pool easier as well as to cope with the collision problems, we have prepared a function MetaParPool:
-
-```
-MetaParPool('open');        % initializes parallel pool (returns the number of initialized workers)
-...
-x = MetaParPool('size');    % allows to discover the size of parallel pool (returns the number of workers)
-                            % may be called as MetaParPool('info'); as well
-...
-% a computation using parfor, spmd and other Matlab functions
-...
-MetaParPool('close');       % closing the parallel pool
-```
-
-**Notes**
-
-- the function **automatically detects the number of cores assigned to a job** - the size of parallel pool is always automatically set based on resources assigned to a job
-- it is necessary to ask for N computing cores on a single node (`qsub -l select=1:ncpus=N ...`)
-- to make parallel computations using this function, there are **1 Matlab license and 1 Distributed Computing Toolbox license** and **N-1 MATLAB Distributed Computing Engine licenses** necessary (N denotes the number of requested cores)
-- a reservation can be thus performed via `-l matlab=1,matlab_Distrib_Computing_Toolbox=1` 
-- **an example** of parallel computation using the MetaParPool function can be found in the `/software/matlab-meta_ext/examples` directory (file `example-parallel.m` shows the Matlab input file itself while the file `run_parallel.sh` shows an example startup script).
-
-**CPU usage**
+### CPU usage
 
 Depending on the structure of script and functions being called, Matlab may use more CPUs than granted by the scheduler. This may result in your job being killed by the scheduler.
 
@@ -258,5 +229,77 @@ If you need some level of parallelizations, but don't want to use `exclhost`, yo
     qsub -l select=1:ncpus=N:cgroups=cpuset ... # N is the the optimal number of CPUs
 
 Finding the optimal number (N) of CPUs can be tricky and sometimes reduced to trial-and-error approach, especially if your code calls external libraries. You can use top command to watch the CPU load. 
+
+### Distributed and parallel jobs
+
+MATLAB now supports distributed and parallel jobs on multiprocessor machines using the [Parallel Computing Toolbox](https://www.mathworks.com/products/parallel-computing.html) (the name of the licence is Distrib\_Computing\_Toolbox) and on clusters using the [MATLAB Distributed Computing Server](https://www.mathworks.com/products/matlab-parallel-server.html) (name of the licence is MATLAB\_Distrib\_Comp\_Engine).
+
+**Parallel Matlab computations in MetaCentrum**
+
+To prepare an environment for parallel computations, it is necessary to initialize a parallel pool of so-called workers using the function `parpool` (called `matlabpool` in previous versions). This standard initialization requires to specify an amount of workers to initialize; moreover, thanks to shared filesystems, it may also result in a collision when trying to initialize several pools simultaneously.
+
+To make the initialization of parallel pool easier as well as to cope with the collision problems, we have prepared a function MetaParPool:
+
+```
+MetaParPool('open');        % initializes parallel pool (returns the number of initialized workers)
+...
+x = MetaParPool('size');    % allows to discover the size of parallel pool (returns the number of workers)
+                            % may be called as MetaParPool('info'); as well
+...
+% a computation using parfor, spmd and other Matlab functions
+...
+MetaParPool('close');       % closing the parallel pool
+```
+
+**Notes**
+
+- the function **automatically detects the number of cores assigned to a job** - the size of parallel pool is always automatically set based on resources assigned to a job
+- it is necessary to ask for N computing cores on a single node (`qsub -l select=1:ncpus=N ...`)
+- to make parallel computations using this function, there are **1 Matlab license and 1 Distributed Computing Toolbox license** and **N-1 MATLAB Distributed Computing Engine licenses** necessary (N denotes the number of requested cores)
+- a reservation can be thus performed via `-l matlab=1,matlab_Distrib_Computing_Toolbox=1` 
+- **an example** of parallel computation using the MetaParPool function can be found in the `/software/matlab-meta_ext/examples` directory (file `example-parallel.m` shows the Matlab input file itself while the file `run_parallel.sh` shows an example startup script).
+
+**Running multiple MATLAB jobs simultaneously**
+
+If there is a need to run multiple instances of Matlab simultaneously, users are strongly encouraged to run them on as few nodes as possible. Matlab takes one licence per user per node, regardless of number of Matlab instances running there. For example, you can run 64 instances of Matlab on one node while using only 1 licence.
+
+An easy way to group Matlab instances offers `parallel` command.
+
+The `parallel` command is particularly useful for distributing Matlab tasks across available CPUs effectively. 
+
+First, make sure you have loaded the Matlab and Parallel Computing Toolbox modules as shown in the `myjob.sh` script:
+
+```
+#!/bin/bash 
+
+# set PATH to find Matlab and Parallel
+module add matlab
+module add -s parallel 
+
+# go to my working directory
+cd $HOME/matlab/ 
+
+# run multiple MATLAB instances in parallel
+cat <<EOF | parallel -j${PBS_NCPUS}
+matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-0.txt
+matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-1.txt
+matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-2.txt
+
+# # (You can use also a more succint one-line variant:)
+# parallel -j${PBS_NCPUS} matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-{%}.txt ::: 0 1 2 
+
+```
+
+Submit your job with a command like:
+
+```
+qsub -l select=1:ncpus=10:mem=5gb place=pack -l matlab=1 myjob.sh
+```
+
+By adding `place=pack`, you are instructing the job scheduler to try to allocate all the requested resources on a single server if possible.This will run multiple MATLAB instances concurrently, each executing `myFunction()` and saving their output to separate files.
+
+
+
+
 
 
