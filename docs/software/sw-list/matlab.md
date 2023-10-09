@@ -284,6 +284,7 @@ cat <<EOF | parallel -j${PBS_NCPUS}
 matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-0.txt
 matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-1.txt
 matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-2.txt
+EOF
 
 # # (You can use also a more succint one-line variant:)
 # parallel -j${PBS_NCPUS} matlab -nosplash -nodesktop -nodisplay -r "myFunction()" > output-{%}.txt ::: 0 1 2 
