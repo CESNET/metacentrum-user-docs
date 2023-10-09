@@ -95,6 +95,29 @@
 - [Mothur](/software/sw-list/mothur)
 - [MrBayes](/software/sw-list/mrbayes)
 
+**N**
+
+<!-- Pre-select from wiki
+- [NAMD](https://wiki.metacentrum.cz/wiki/NAMD)
+- [NCL](https://wiki.metacentrum.cz/wiki/NCL_(NCARG))
+- [Nextflow](https://wiki.metacentrum.cz/wiki/Nextflow)
+- [NWchem](https://wiki.metacentrum.cz/wiki/NWChem)
+-->
+
+**O**
+
+<!-- Pre-select from wiki
+- [OpenMPI](https://wiki.metacentrum.cz/wiki/Open_MPI)
+- [OpenCV](https://wiki.metacentrum.cz/wiki/OpenCV)
+- [OpenFoam](https://wiki.metacentrum.cz/wiki/OpenFOAM)
+- [OpenFst](https://wiki.metacentrum.cz/wiki/OpenFst)
+- [OpenMolcas](https://wiki.metacentrum.cz/wiki/OpenMolcas)
+- [OpenMS](https://wiki.metacentrum.cz/wiki/OpenMS)
+- [OpenNebula](https://wiki.metacentrum.cz/wiki/OpenNebula_tools)
+- [Orca](https://wiki.metacentrum.cz/wiki/Orca)
+- [Owncloud](https://wiki.metacentrum.cz/wiki/Owncloud)
+-->
+
 **P**
 
 - [Parallel](/software/sw-list/parallel)
