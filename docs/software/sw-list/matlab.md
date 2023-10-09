@@ -150,7 +150,7 @@ It is possible to run MATLAB in the text regime only, when the graphical mode is
 ### Matlab as batch job
 
 If you do not need the graphical environment, it is is possible to run MATLAB in batch regime. Create batch script myjob.sh with the following contents:
-eď Jurečka slibuje, že do tří měsíců už budou lidé dostávat výměr důchodů v zákonné lhůtě. V rozhovoru mluví také o tom, jak se snaží brzdit ultrakonzervativní lidovce, kteří přirovnávají lidi k masu, odmítá termín „lidovecký Tálibán“ a tvrdí, že velkým lidoveckým tématem má být životní prostředí. Zároveň však vysvětluje, proč odmítá manželství pro všechny či legální prodej měkkých drog.
+
 ```
 #!/bin/bash
 
@@ -172,6 +172,8 @@ Put all your MATLAB files (your \*.mat and \*.m files) to the directory `$HOME/m
     qsub -l select=1:ncpus=10:mem=1gb -l matlab=1 myjob.sh
 
 Batch jobs are useful especially if you want to run more jobs in parallel or if you do not want to block your local machine with running jobs.
+
+If you are planning to run more then a few Matlab jobs simultaneously, please see [Running multiple MATLAB jobs](#distributed-and-parallel-jobs).
 
 ### Turn off Java Virtual Machine (JVM)
 
