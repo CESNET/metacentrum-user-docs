@@ -99,15 +99,12 @@
 
 - [NAMD](/software/sw-list/namd)
 - [Nextflow](/software/sw-list/nextflow)
-<!-- Pre-select from wiki
-- [NWchem](https://wiki.metacentrum.cz/wiki/NWChem)
--->
 
 **O**
 
+- [OpenCV](/software/sw-list/opencv)
 <!-- Pre-select from wiki
 - [OpenMPI](https://wiki.metacentrum.cz/wiki/Open_MPI)
-- [OpenCV](https://wiki.metacentrum.cz/wiki/OpenCV)
 - [OpenFoam](https://wiki.metacentrum.cz/wiki/OpenFOAM)
 - [OpenFst](https://wiki.metacentrum.cz/wiki/OpenFst)
 - [OpenMolcas](https://wiki.metacentrum.cz/wiki/OpenMolcas)
