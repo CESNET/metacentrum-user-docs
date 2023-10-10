@@ -97,8 +97,8 @@
 
 **N**
 
+- [NAMD](/software/sw-list/namd)
 <!-- Pre-select from wiki
-- [NAMD](https://wiki.metacentrum.cz/wiki/NAMD)
 - [NCL](https://wiki.metacentrum.cz/wiki/NCL_(NCARG))
 - [Nextflow](https://wiki.metacentrum.cz/wiki/Nextflow)
 - [NWchem](https://wiki.metacentrum.cz/wiki/NWChem)
