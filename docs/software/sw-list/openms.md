@@ -1,0 +1,21 @@
+# OpenMS 
+
+    module avail openms/
+
+[OpenMS](https://openms.de/documentation/html/index.html) is a versatile open-source library for mass spectrometry data analysis. Based on this library, it offers a collection of command-line tools ready to be used by end users. 
+
+**OpenMS**
+The name of the library, which contains the algorithms. Users cannot use this directly.
+
+**TOPPView**
+Utils to view and explore LC-MS data, alignments, groups, peptide identifications and more!
+
+**TOPPAS**
+A graphical workflow design tool, which allows to create pipelines from all TOPP tools (and UTILS).
+
+**TOPP tools**
+A set of command line tools, each of which is a building block of an analysis pipeline. These tools chained together in a way that fits the requirements of the user. Accessible from a command prompt/shell or via TOPPAS. 
+
+**UTILS**
+Similar to TOPP tools, but with more supporting character, which you'd rarely use in a productive pipeline - but rather during pipeline construction or parameter optimization.
+

@@ -104,10 +104,8 @@
 
 - [OpenCV](/software/sw-list/opencv)
 - [OpenFoam](/software/sw-list/openfoam)
+- [OpenMS](/software/sw-list/openms)
 <!-- Pre-select from wiki
-- [OpenFst](https://wiki.metacentrum.cz/wiki/OpenFst)
-- [OpenMolcas](https://wiki.metacentrum.cz/wiki/OpenMolcas)
-- [OpenMS](https://wiki.metacentrum.cz/wiki/OpenMS)
 - [OpenNebula](https://wiki.metacentrum.cz/wiki/OpenNebula_tools)
 - [Orca](https://wiki.metacentrum.cz/wiki/Orca)
 - [Owncloud](https://wiki.metacentrum.cz/wiki/Owncloud)
