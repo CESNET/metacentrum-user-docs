@@ -103,9 +103,8 @@
 **O**
 
 - [OpenCV](/software/sw-list/opencv)
+- [OpenFoam](/software/sw-list/openfoam)
 <!-- Pre-select from wiki
-- [OpenMPI](https://wiki.metacentrum.cz/wiki/Open_MPI)
-- [OpenFoam](https://wiki.metacentrum.cz/wiki/OpenFOAM)
 - [OpenFst](https://wiki.metacentrum.cz/wiki/OpenFst)
 - [OpenMolcas](https://wiki.metacentrum.cz/wiki/OpenMolcas)
 - [OpenMS](https://wiki.metacentrum.cz/wiki/OpenMS)
