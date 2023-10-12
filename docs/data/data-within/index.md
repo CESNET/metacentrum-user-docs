@@ -1,4 +1,4 @@
-# Within MetaCentrum
+# Data handling in general
 
 This chapter provides basic guides on data manipulation within MetaCentrum infrastructure.
 

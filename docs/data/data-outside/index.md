@@ -1,4 +1,4 @@
-# Outside MetaCentrum
+# Send data outside of MetaCentrum
 
 This chapter lists options how to share large amount of data with colleagues who do not have access to MetaCentrum.
 

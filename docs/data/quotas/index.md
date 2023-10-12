@@ -8,11 +8,22 @@ You can see the state of your quotas:
 - in the table that appears every time when you login on a frontend,
 - at your [quota overview in PBSmon](http://metavo.metacentrum.cz/en/myaccount/kvoty).
 
+## Find yout large data
 
+### `ncdu2` tool
 
-### When you exceed a quota 
+`ncdu2` command is a tool especially suitable to locate which files occupy most of your quota.
 
-#### Delete it
+`ncdu2` goes through directory structure, collects the data and soerts them according to size / or number of files. It is therefore suitable to check **both for large files** as well as for **directories with huge number of (possibly small) files**.
+
+`ncdu2` is installed on all MetaCentrum nodes.
+
+!!! todo
+    This howto is yet to be done.
+
+## When you exceed a quota 
+
+### Delete it
 
 If you produce **large** amount of data by mistake, remove it either within a single command, e.g.
 
@@ -22,7 +33,7 @@ or wrap the command into a batch job to avoid waiting for the command to end:
 
     (BUSTER)user123@tarkil:~$ qsub -l walltime=24:00:00 remove_junk_dir.sh
 
-#### Pack small files into large chunks
+### Pack small files into large chunks
 
 If the data is not junk, pack them them into larger chunks using the `tar` command either from a command line or from within a batch job:
 
@@ -33,13 +44,13 @@ If you have enough space on your storage directories, you can keep the packed da
 
 If you for some reason need to shift some of your quotas, [contact us](/contact).
 
-#### Archive the data
+### Archive the data
 
 Due both to operational reasons (regular backups of storages) and for safety reasons (storages have weaker backup policy than archives), users should [archive](#data-archiving) any data that are of permanent value to them and may be needed in future.
 
 Archiving data from finished projects also helps to avoid problems with storage quotas.
 
-#### Move the data to another storage
+### Move the data to another storage
 
 This is an intermediate solution. The storages quotas are separate, so you can temporarily dump some data to different storage where you have more free space.
 

@@ -1,4 +1,4 @@
-# Data sharing
+# Sharing among users
 
 This chapter provides a guide on how to share data between user with MetaCentrum account.
 
