@@ -8,7 +8,7 @@ You can see the state of your quotas:
 - in the table that appears every time when you login on a frontend,
 - at your [quota overview in PBSmon](http://metavo.metacentrum.cz/en/myaccount/kvoty).
 
-## Find yout large data
+## Find your large data
 
 ### `ncdu2` tool
 
@@ -18,8 +18,54 @@ You can see the state of your quotas:
 
 `ncdu2` is installed on all MetaCentrum nodes.
 
+#### Get the database 
+
+**Basic usage**
+
+The `ncdu2` tool collects the info in a `.json` file. For example, command
+
+    ncdu2 -x -o output.json /storage/cityXY/home/user_123/
+
+will create an `output.json` file with information about the content of home directory at sstorage `cityXY` for user `user_123`.
+
+**Probe from storage, not from a frontend**
+
+Since probing the directory structure of `/storage` is uneffective when done from a frontend, it is faster to run `ncdu2` directly on `/storage` where the directory of interest is located:
+
+    ssh storage-cityXY.metacentrum.cz 'ncdu2 -x -o output.json /storage/cityXY/home/user_123/'
+
+**If the `.json` file is large, gzip it up**
+
+If youo suspect the resulting `.json` file will be a large one (typical for number-of-files quota overflow), you can consider compressing it by `gzip`:
+
+     ssh storage-cityXY.metacentrum.cz 'ncdu2 -x -o output.json /storage/cityXY/home/user_123/' | gzip > output.json.gz
+
+**Wrap it in a job**
+
+If it seems that the process will take longer, you should wrapt the command to a batch job, e.g.:
+
+```
+#!/bin/bash
+#PBS -N ncdu_test
+#PBS -l select=1:ncpus=1:mem=4gb:scratch_local=10gb
+#PBS -l walltime=2:00:00 
+
+RESDIR="/storage/brno2/home/user123/ncdu2_result"
+
+cd $SCRATCHDIR
+
+ssh storage-brno2.metacentrum.cz 'ncdu2 -x -o files_brno2.json ~/' | gzip > files_brno2.json.gz
+
+cp files_brno2.json.gz $RESDIR/
+
+clean_scratch
+
+``` 
+
+#### Display the database
+
 !!! todo
-    This howto is yet to be done.
+    This part is yet to be done
 
 ## When you exceed a quota 
 
