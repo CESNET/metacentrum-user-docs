@@ -2,13 +2,6 @@
 
 This chapter provides basic guides on data manipulation within MetaCentrum infrastructure.
 
-<!--
-For general advice on scientific data management and data good practice, see **link to some einfra part on general data management**. 
-
-!!! todo
-    Meli bychom mit na urovni einfra (navod spolecny pro vsechny sluzby) neco podobneho jako [CSC.fi obecne o datech](https://docs.csc.fi/data/datasets/datamanagement/#overview).
--->
-
 When dealing with data, the most important criteria is the **total volume**/**number of files** that are to be moved in a single operation.
 
 As a rule of thumb,
