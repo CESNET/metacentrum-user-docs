@@ -115,8 +115,8 @@
 - [Perl](/software/sw-list/perl-modules)
 - [PGI CDK](/software/sw-list/pgi-cdk)
 - [Picard](/software/sw-list/picard)
+- [Platanus](/software/sw-list/platanus)
 <!-- Pre-selected from wiki 
-- [Platanus](https://wiki.metacentrum.cz/wiki/Platanus)
 - [Python](https://wiki.metacentrum.cz/wiki/Python)
 - [Python modules](https://wiki.metacentrum.cz/wiki/Python_-_modules)
 - [Py Torch](https://wiki.metacentrum.cz/wiki/PyTorch)
