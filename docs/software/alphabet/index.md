@@ -112,9 +112,9 @@
 - [Parallel](/software/sw-list/parallel)
 - [PartitionFinder](/software/sw-list/partition-finder)
 - [PAUP](/software/sw-list/paup)
+- [Perl](/software/sw-list/perl-modules)
 - [PGI CDK](/software/sw-list/pgi-cdk)
 <!-- Pre-selected from wiki 
-- [Perl](https://wiki.metacentrum.cz/wiki/Perl_-_modules)
 - [Phenix](https://wiki.metacentrum.cz/wiki/Phenix)
 - [Phyml](https://wiki.metacentrum.cz/wiki/PhyML)
 - [Picard](https://wiki.metacentrum.cz/wiki/Picard)
