@@ -114,10 +114,8 @@
 - [PAUP](/software/sw-list/paup)
 - [Perl](/software/sw-list/perl-modules)
 - [PGI CDK](/software/sw-list/pgi-cdk)
+- [Picard](/software/sw-list/picard)
 <!-- Pre-selected from wiki 
-- [Phenix](https://wiki.metacentrum.cz/wiki/Phenix)
-- [Phyml](https://wiki.metacentrum.cz/wiki/PhyML)
-- [Picard](https://wiki.metacentrum.cz/wiki/Picard)
 - [Platanus](https://wiki.metacentrum.cz/wiki/Platanus)
 - [Python](https://wiki.metacentrum.cz/wiki/Python)
 - [Python modules](https://wiki.metacentrum.cz/wiki/Python_-_modules)
