@@ -124,9 +124,9 @@
 
 **Q**
 
+- [QIIME](/software/sw-list/qiime)
 - [Quantum Espresso](/software/sw-list/quantum-espresso)
 <!-- Pre-selected from wiki 
-- [QIIME](https://wiki.metacentrum.cz/wiki/QIIME)
 - [QUAST](https://wiki.metacentrum.cz/wiki/QUAST)
 -->
 
