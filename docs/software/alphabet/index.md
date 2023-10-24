@@ -111,8 +111,8 @@
 
 - [Parallel](/software/sw-list/parallel)
 - [PGI CDK](/software/sw-list/pgi-cdk)
+- [PartitionFinder](/software/sw-list/partition-finder)
 <!-- Pre-selected from wiki 
-- [PartitionFinder](https://wiki.metacentrum.cz/wiki/PartitionFinder)
 - [PAUP](https://wiki.metacentrum.cz/wiki/PAUP*)
 - [Perl](https://wiki.metacentrum.cz/wiki/Perl_-_modules)
 - [Phenix](https://wiki.metacentrum.cz/wiki/Phenix)
