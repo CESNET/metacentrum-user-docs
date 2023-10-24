@@ -110,10 +110,10 @@
 **P**
 
 - [Parallel](/software/sw-list/parallel)
-- [PGI CDK](/software/sw-list/pgi-cdk)
 - [PartitionFinder](/software/sw-list/partition-finder)
+- [PAUP](/software/sw-list/paup)
+- [PGI CDK](/software/sw-list/pgi-cdk)
 <!-- Pre-selected from wiki 
-- [PAUP](https://wiki.metacentrum.cz/wiki/PAUP*)
 - [Perl](https://wiki.metacentrum.cz/wiki/Perl_-_modules)
 - [Phenix](https://wiki.metacentrum.cz/wiki/Phenix)
 - [Phyml](https://wiki.metacentrum.cz/wiki/PhyML)
