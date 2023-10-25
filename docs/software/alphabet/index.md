@@ -134,10 +134,10 @@
 - [Repeat Explorer](/software/sw-list/repeat-explorer)
 - [Repeat Masker](/software/sw-list/repeat-masker)
 - [Repeat Modeler](/software/sw-list/repeat-modeler)
+- [RevBayes](/software/sw-list/revbayes)
 - [RStudio](/software/sw-list/rstudio)
 <!-- Pre-selected from wiki 
 - [ReSpect](https://wiki.metacentrum.cz/wiki/ReSpect)
-- [RevBayes](https://wiki.metacentrum.cz/wiki/RevBayes)
 -->
 
 **S**
@@ -167,9 +167,6 @@
 - [Trinity](https://wiki.metacentrum.cz/wiki/Trinity)
 -->
 
-
-**U**
-
 **V**
 
 - [VASP](/software/sw-list/vasp)
@@ -180,10 +177,4 @@
 
 - [Wien2k](/software/sw-list/wien2k)
 - [Wolfram Mathematica](/software/sw-list/wolfram-matk)
-
-**X**
-
-<!-- Pre-selected from wiki 
-- [Xmipp](https://wiki.metacentrum.cz/wiki/Xmipp)
--->
 
