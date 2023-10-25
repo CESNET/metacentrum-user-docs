@@ -131,10 +131,9 @@
 **R**
 
 - [R](/software/sw-list/r)
+- [Repeat Explorer](/software/sw-list/repeat-explorer)
 - [RStudio](/software/sw-list/rstudio)
 <!-- Pre-selected from wiki 
-- [Raxml](https://wiki.metacentrum.cz/wiki/RAxML)
-- [Repeat Explorer](https://wiki.metacentrum.cz/wiki/RepeatExplorer)
 - [Repeat masker](https://wiki.metacentrum.cz/wiki/RepeatMasker)
 - [Repeat Modeler](https://wiki.metacentrum.cz/wiki/RepeatModeler)
 - [ReSpect](https://wiki.metacentrum.cz/wiki/ReSpect)
