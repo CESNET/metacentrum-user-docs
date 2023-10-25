@@ -170,17 +170,11 @@
 
 **U**
 
-<!-- Pre-selected from wiki 
-- [UEA workbench](https://wiki.metacentrum.cz/wiki/UEA_sRNA_Workbench)
--->
-
 **V**
 
 - [VASP](/software/sw-list/vasp)
+- [Velvet](/software/sw-list/velvet)
 - [VMD](/software/sw-list/vmd)
-<!-- Pre-selected from wiki 
-- [Velvet](https://wiki.metacentrum.cz/wiki/Velvet)
--->
 
 **W**
 
