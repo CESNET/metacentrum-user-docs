@@ -143,15 +143,13 @@
 **S**
 
 - [Singularity](/software/sw-list/singularity)
+- [STAR](/software/sw-list/star)
 <!-- Pre-selected from wiki 
-- [SAS](https://wiki.metacentrum.cz/wiki/SAS)
 - [Scipy](https://wiki.metacentrum.cz/wiki/Scipy)
 - [SNAPP](https://wiki.metacentrum.cz/wiki/SNAPP)
 - [SOAPdenovo](https://wiki.metacentrum.cz/wiki/SOAPdenovo)
 - [SPAdes](https://wiki.metacentrum.cz/wiki/SPAdes)
 - [SRA toolkit](https://wiki.metacentrum.cz/wiki/SRA_Toolkit)
-- [STAR](https://wiki.metacentrum.cz/wiki/STAR)
-- [STAR](https://wiki.metacentrum.cz/wiki/Star)
 -->
 
 **T**
