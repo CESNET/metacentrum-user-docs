@@ -133,9 +133,9 @@
 - [R](/software/sw-list/r)
 - [Repeat Explorer](/software/sw-list/repeat-explorer)
 - [Repeat Masker](/software/sw-list/repeat-masker)
+- [Repeat Modeler](/software/sw-list/repeat-modeler)
 - [RStudio](/software/sw-list/rstudio)
 <!-- Pre-selected from wiki 
-- [Repeat Modeler](https://wiki.metacentrum.cz/wiki/RepeatModeler)
 - [ReSpect](https://wiki.metacentrum.cz/wiki/ReSpect)
 - [RevBayes](https://wiki.metacentrum.cz/wiki/RevBayes)
 -->
