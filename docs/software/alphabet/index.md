@@ -158,10 +158,9 @@
 - [TEtools](/software/sw-list/tetools)
 - [TmoleX](/software/sw-list/tmolex)
 - [TotalView](/software/sw-list/total-view)
+- [Trimmomatic](/software/sw-list/trimmomatic)
 - [Turbomole](/software/sw-list/turbomole)
 <!-- Pre-selected from wiki 
-- [Theano](https://wiki.metacentrum.cz/wiki/Theano)
-- [Trimmomatic](https://wiki.metacentrum.cz/wiki/Trimmomatic)
 - [Trinity](https://wiki.metacentrum.cz/wiki/Trinity)
 -->
 
