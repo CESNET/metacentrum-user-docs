@@ -164,7 +164,7 @@ pip install git+https://path/to/git/file
 
 A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. A convenient choice for this variable is a location visible from the NFSv4 infrastructure, which means you could use for example `export PYTHONUSERBASE=/storage/home/<user_name>/.local`.
 
-If you install such modules at this location, you will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
+If you install such modules at this location, you will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/lib/pythonX.Y/site-packages:$PYTHONPATH` will do the job.
 
 If you wish to execute such commands at each login on a front end, you will therefore have to add the following lines to you `.profile`:
 
