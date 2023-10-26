@@ -144,12 +144,12 @@
 
 - [Singularity](/software/sw-list/singularity)
 - [SPAdes](/software/sw-list/spades)
+- [SRA toolkit](/software/sw-list/sra-toolkit)
 - [STAR](/software/sw-list/star)
 <!-- Pre-selected from wiki 
 - [Scipy](https://wiki.metacentrum.cz/wiki/Scipy)
 - [SNAPP](https://wiki.metacentrum.cz/wiki/SNAPP)
 - [SOAPdenovo](https://wiki.metacentrum.cz/wiki/SOAPdenovo)
-- [SRA toolkit](https://wiki.metacentrum.cz/wiki/SRA_Toolkit)
 -->
 
 **T**
@@ -160,9 +160,6 @@
 - [TotalView](/software/sw-list/total-view)
 - [Trimmomatic](/software/sw-list/trimmomatic)
 - [Turbomole](/software/sw-list/turbomole)
-<!-- Pre-selected from wiki 
-- [Trinity](https://wiki.metacentrum.cz/wiki/Trinity)
--->
 
 **V**
 
