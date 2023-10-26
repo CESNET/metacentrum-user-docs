@@ -154,12 +154,12 @@
 
 **T**
 
+- [Tensorflow](/software/sw-list/tensor-flow)
 - [TEtools](/software/sw-list/tetools)
 - [TmoleX](/software/sw-list/tmolex)
 - [TotalView](/software/sw-list/total-view)
 - [Turbomole](/software/sw-list/turbomole)
 <!-- Pre-selected from wiki 
-- [Tensorflow](https://wiki.metacentrum.cz/wiki/TensorFlow)
 - [Theano](https://wiki.metacentrum.cz/wiki/Theano)
 - [Trimmomatic](https://wiki.metacentrum.cz/wiki/Trimmomatic)
 - [Trinity](https://wiki.metacentrum.cz/wiki/Trinity)
