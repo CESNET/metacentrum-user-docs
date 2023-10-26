@@ -116,11 +116,9 @@
 - [PGI CDK](/software/sw-list/pgi-cdk)
 - [Picard](/software/sw-list/picard)
 - [Platanus](/software/sw-list/platanus)
-<!-- Pre-selected from wiki 
-- [Python](https://wiki.metacentrum.cz/wiki/Python)
-- [Python modules](https://wiki.metacentrum.cz/wiki/Python_-_modules)
-- [Py Torch](https://wiki.metacentrum.cz/wiki/PyTorch)
--->
+- [Python](/software/sw-list/python)
+- [Python modules](/software/sw-list/python-modules)
+- [PyTorch](/software/sw-list/pytorch)
 
 **Q**
 
@@ -146,11 +144,6 @@
 - [SPAdes](/software/sw-list/spades)
 - [SRA toolkit](/software/sw-list/sra-toolkit)
 - [STAR](/software/sw-list/star)
-<!-- Pre-selected from wiki 
-- [Scipy](https://wiki.metacentrum.cz/wiki/Scipy)
-- [SNAPP](https://wiki.metacentrum.cz/wiki/SNAPP)
-- [SOAPdenovo](https://wiki.metacentrum.cz/wiki/SOAPdenovo)
--->
 
 **T**
 
