@@ -38,7 +38,7 @@
 **D**
 
 - [Debian-X](/software/sw-list/debian-x)
-<!--- [Desmond](/software/sw-list/desmond)-->
+- [Desmond](/software/sw-list/desmond)
 - [Dirac](/software/sw-list/dirac)
 
 **E**
