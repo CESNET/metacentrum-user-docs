@@ -6,6 +6,9 @@
 
 ## Usage
 
+!!! warning
+    Some of the information in this section is outdated. We are working on an update. Meanwhile please contact <meta@cesnet.cz> if you run into trouble.
+
 Under the `conda-modules` module, there are multiple environments installed.
 
 The basic commands are:

@@ -183,6 +183,10 @@ without any need for administrator rights, and you will be able to use it. When 
 
 ### Conda packages
 
+!!! warning
+    Some of the information in this section is outdated. We are working on an update. Meanwhile please contact <meta@cesnet.cz> if you run into trouble.
+
+
 [Conda](https://conda.io) is an open-source, cross-platform, language-agnostic package manager and environment management system. MetaCentra users can use conda and create new environments on their own and install application tools from various channels. The most straightforward way how to install the required tool is via the general module `conda-modules-py37` in the user's home directory.
 
     module add conda-modules-py37
