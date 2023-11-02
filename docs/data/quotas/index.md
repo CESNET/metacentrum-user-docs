@@ -77,7 +77,7 @@ By pressing `?` the help will be displayed.
 
 ![pic](ncdu2-help.png)
 
-### List by by size
+### List by size
 
 If you need to locate where most of the volume resides, press `s`.
 
