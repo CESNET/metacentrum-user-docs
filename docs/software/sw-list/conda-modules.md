@@ -2,12 +2,18 @@
 
     module avail conda-modules/
 
-[Conda](https://docs.conda.io/en/latest/) is an open-source package management system and environment management system that runs on Windows, macOS and Linux (available in Metacentrum). Conda quickly installs, runs and updates packages and their dependencies. Conda easily creates, saves, loads and switches between environments on the computer. In Metacentrum Conda is used for managing of python tools. 
+[Conda](https://docs.conda.io/en/latest/) is an open-source package management and environment management system that is commonly used in the Python programming ecosystem. 
+
+Conda allows you to easily install, update, and manage software packages and libraries, including Python packages, data science libraries, and various dependencies. It handles package dependencies and ensures that software is compatible with your environment.
+
+Conda enables you to create isolated environments (aka Conda environments), where you can work on different projects with different sets of packages and dependencies without conflicts. This helps in maintaining a clean and organized development environment.
+
+Conda is platform-agnostic and can be used on various operating systems, including Windows, macOS, and Linux. This makes it easy to share and reproduce environments across different platforms.
 
 ## Usage
 
-!!! warning
-    Some of the information in this section is outdated. We are working on an update. Meanwhile please contact <meta@cesnet.cz> if you run into trouble.
+!!! warning "Use `conda-modules/*` primarily to invoke some of the already installed environments."
+    As the `conda` included in the `conda-module` module is not recent version and not a very fast one, we recommend to use `conda-modules/*` solely in cases you need to invoke some if the already installed environments. <br/>If you need `conda` in order to install a *new Conda environment*, we recommend to use `mamba` installer from module `mambaforge` - see [How to install Conda packages](/software/install-software/#conda-packages).
 
 Under the `conda-modules` module, there are multiple environments installed.
 
@@ -19,7 +25,7 @@ The basic commands are:
     busco --help                  # use selected application
     conda deactivate              # quit
 
-### Environmnent-specific notes
+### Environment-specific notes
 
 **fast-bonito_v0.2.2_py3.7**
 
