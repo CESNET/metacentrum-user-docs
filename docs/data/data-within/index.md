@@ -110,10 +110,11 @@ Example:
 
 ## Large data handling
 
-When transferring large amount of data we ask users to avoid frontends. Large data should be transferred directly to/from  storages (NFS4 servers).
-
 !!! warning 
     Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
+
+!!! tip
+    See **[table of storages](/advanced/grid-infrastruct/#table-of-storages)** for storage servers addresses and mount points.
 
 Example:
 

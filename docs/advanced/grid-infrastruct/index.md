@@ -41,6 +41,8 @@ For example, assume that `skirit.metacentrum.cz` frontend is down and you want t
     (BULLSEYE)user123@tarkil:/storage/brno2/home/user123$ pwd 
     /storage/brno2/home/user123 # I am now on "brno2" storage 
 
+### Table of storages
+
 A complete list of storages can be found in table below:
 
 --8<-- "storages-table-1.md"
