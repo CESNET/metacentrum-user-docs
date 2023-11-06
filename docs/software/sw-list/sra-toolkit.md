@@ -4,7 +4,7 @@
     conda activate sra-tools-3.0.3   # as conda environment
     module avail sratoolkit/         # as a module                             
 
-[SRA Toolkit](https://wiki.metacentrum.cz/wiki/) is  a collection of tools and libraries for using data in the INSDC Sequence Read Archives. Much of the data submitted these days contain alignment information, for example in BAM, Illumina export.txt, and Complete Genomics formats. 
+[SRA Toolkit](https://github.com/ncbi/sra-tools/wiki/) is  a collection of tools and libraries for using data in the INSDC Sequence Read Archives. Much of the data submitted these days contain alignment information, for example in BAM, Illumina export.txt, and Complete Genomics formats. 
 
 With aligned data, NCBI uses Compression by Reference, which only stores the differences in base pairs between sequence data and the segment it aligns to.
 
