@@ -98,6 +98,3 @@ Next to the 'Launch button is the grey *View only* (sharable link) button which 
 
 ![pic](interact-sessions.png)
 
-<!--
-[Current OnDemand documentation on user wiki](https://wiki.metacentrum.cz/wiki/OnDemand_v2).
--->
