@@ -164,5 +164,5 @@
 **W**
 
 - [Wien2k](/software/sw-list/wien2k)
-- [Wolfram Mathematica](/software/sw-list/wolfram-matk)
+- [Wolfram Mathematica](/software/sw-list/wolfram-math)
 
