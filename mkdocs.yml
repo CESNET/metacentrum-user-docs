@@ -26,6 +26,9 @@ plugins:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)'
       lang:
         - en
+  - mkdocs-jupyter:
+      ignore_h1_titles: True
+      include_source: True
 
 markdown_extensions:
   - attr_list
@@ -113,6 +116,8 @@ nav:
       #      - software/sw-list/ansys.md
       #      - software/sw-list/matlab.md
       #      - software/sw-list/vmd.md
+
+
       #      - software/sw-list/alphafold.md
   - 'Advanced':
     - advanced/index.md
@@ -139,3 +144,5 @@ nav:
     - contact/index.md
     - contact/write-request/index.md
   - Tutorials: tutorials/index.md
+  - 'Jupyter notebooks': 
+    - 'Notebook no. 1': jupyter-notebooks/c-scale-data-discovery.ipynb
