@@ -51,7 +51,7 @@
 
 **G**
 
-- [Galaxy](/software/services/galaxy)
+- [Galaxy](/services/galaxy)
 - [Gaussian](/software/sw-list/gaussian)
 - [Genome Analysis Toolkit](/software/sw-list/gatk)
 - [GIbPSs](/software/sw-list/gibpss)

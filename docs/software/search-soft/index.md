@@ -90,9 +90,5 @@ For instructions on container usage, see [the containers chapter](/software/cont
 
 ## Services
 
-MetaCentrum runs several managed services. It is good idea to go through what these services offer.
+There are a number of [services closely connected to MetaCentrum](/services) which may offer the software you need, too.
 
-- [OnDemand](/software/services/ondemand): easy browser-based access to graphical software,
-- [Kubernetes](/software/services/kubernetes): service designed for Docker image usage,
-- [Galaxy](/software/services/galaxy): platform for biomedical research,
-- [Jupyter notebooks](/software/services/jupyter): interactive computing across multiple programming languages.

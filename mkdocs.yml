@@ -103,22 +103,10 @@ nav:
          - software/sw-list/wolfram-math.md   
     - software/search-soft/index.md
     - software/graphical-access/index.md
+    - software/ondemand/index.md
     - software/modules/index.md
     - software/containers/index.md
-    - 'Managed services':
-        - software/services/ondemand/index.md
-        - software/services/kubernetes/index.md
-        - software/services/galaxy/index.md
-        - software/services/jupyter/index.md
     - software/install-software/index.md
-      #    - 'Graphical software':
-      #      - software/sw-list/rstudio.md
-      #      - software/sw-list/ansys.md
-      #      - software/sw-list/matlab.md
-      #      - software/sw-list/vmd.md
-
-
-      #      - software/sw-list/alphafold.md
   - 'Advanced':
     - advanced/index.md
     - 'Access and security':
@@ -144,5 +132,12 @@ nav:
     - contact/index.md
     - contact/write-request/index.md
   - Tutorials: tutorials/index.md
-  - 'Jupyter notebooks': 
-    - 'Notebook no. 1': jupyter-notebooks/c-scale-data-discovery.ipynb
+  - 'Related services': 
+    - services/index.md
+    - services/kubernetes/index.md
+    - services/galaxy/index.md
+    - services/jupyter/index.md
+    - 'EOSC': 
+      - services/EOSC/index.md
+      - 'Notebook no. 1': services/EOSC/jupyter-notebooks/c-scale-data-discovery.ipynb
+      - 'Sentinel': services/EOSC/sentinel/index.md
