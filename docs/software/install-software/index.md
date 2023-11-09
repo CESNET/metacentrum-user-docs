@@ -171,17 +171,27 @@ pip3 install spektral --user
 exit
 ```
 
-To run the package:
+To run the package, first find out which python version was used to install the package with:
 
 ```
-module add python
+(BULLSEYE)user123@skirit:~$ ls /storage/cityN/home/user123/my_pip_libs/lib/
+python3.7
+```
+
+Then choose any `python` module version `3.7.x`:
+
+```
+module add python/3.7.7-intel-19.0.4-mgiwa7z
 
 # setup system variables 
 export PYTHONUSERBASE=/storage/cityN/home/user123/my_pip_libs
 export PATH=$PYTHONUSERBASE/bin:$PATH
 export PYTHONPATH=$PYTHONUSERBASE/lib/python3.7/site-packages:$PYTHONPATH
+```
 
-# use the package
+And use the package:
+
+```
 python
 >>> import spektral
 ...
