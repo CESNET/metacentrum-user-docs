@@ -112,12 +112,17 @@ When you download a software, it's usually compressed in some way and need to be
 
 Some software is available as a ready-made binary file. In this case the only thing you need to do is to download and unpack the files.
 
-Example: 
-
     user123@skirit:~$ mkdir binaries ; cd binaries # prepare directory for the software (noc necessarry)
     user123@skirit:~/binaries$ wget https://sw_xy.tgz ; tar -xvf sw_xy.tgz # download and unpack 
     user13@skirit:~/binaries$ chmod 755 exec_file # set the binary to be executable
     user13@skirit:~/binaries$ ./exec_file # run the executable file
+
+*Example: Usage of software "satsuma" distributed as binary file.*
+
+    user123@skirit:~$ mkdir satsuma ; cd satsuma # prepare dir for software "satsuma"
+    user123@skirit:~/satsuma$ wget https://github.com/bioinfologics/satsuma2/releases/download/untagged-2c08e401140c1ed03e0f/satsuma2-linux.tar.gz # download it
+    user13@skirit:~/satsuma$ tar -xvf satsuma2-linux.tar.gz # unpack it
+    user13@skirit:~/satsuma$ cd product/bin ; ls # list and run the executables 
 
 ### R packages
 
@@ -138,112 +143,7 @@ and load the package
 
 ### Python packages
 
-Python packages can be installed using `pip`, which is accessible via `py-pip` module.
-
-**General setup**
-
-First, **start an interactive job with scratch directory** and redirect temporary files to scratch dir:
-
-    export TMPDIR=$SCRATCHDIR
-
-Then start the installation with `pip`.
-
-```
-module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
-pip install <module name> --root /some/user/specific/python/modules/folder # Install everything relative to this alternate root directory
-pip install <module name> --prefix /some/user/specific/python/modules/folder # Installation prefix where lib, bin and other top-level folders are placed
-pip install git+https://path/to/git/file
-```
-
-!!! note
-    Don't forget to properly set the `PATH` and `PYTHONPATH` environment variables if you are not using one of ours python-modules and installing modules to some new dir. 
-
-**Detailed walkthrough**
-
-A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. A convenient choice for this variable is a location visible from the NFSv4 infrastructure, which means you could use for example `export PYTHONUSERBASE=/storage/home/<user_name>/.local`.
-
-If you install such modules at this location, you will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/lib/pythonX.Y/site-packages:$PYTHONPATH` will do the job.
-
-If you wish to execute such commands at each login on a front end, you will therefore have to add the following lines to you `.profile`:
-
-```
-
-module add py-pip/21.3.1-gcc-10.2.1-mjt74tn
-# Set pip path for --user option
-export PYTHONUSERBASE=/storage/city/home/<user_name>/.local
-```
-
-With this, you can install any module you need with the following command:
-
-    pip install <module-name> --user --process-dependency-links
-
-without any need for administrator rights, and you will be able to use it. When launching jobs from the scheduler, remember that you .profile is not executed, you will therefore need to do module add and to define the relevant environment variables before the job is actually executed. 
-
-### Conda packages
-
-!!! tip
-    Some of the most popular Conda packages may be already installed system-wide - see [`conda-modules` page](/software/sw-list/conda-modules).
-
-**Conda package installers: Conda, Mamba, Micromamba**
-
-[Conda](https://conda.io), avalable through [`conda-modules/` module](/software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
-
-[Mamba](https://anaconda.org/conda-forge/mamba), available through `mambaforge` module, is a package manager and environment manager that is designed to be a faster and more efficient drop-in replacement for Conda. Both Conda and Mamba are closely related, as Mamba was developed as an open-source project to address some of the performance limitations of Conda.
-
-[Micromamba](https://anaconda.org/conda-forge/micromamba), available through `micromamba` module, is a lightweight and resource-efficient alternative to Mamba. Mamba, while faster than Conda, is still a relatively large application. In contrast, Micromamba is built to be more minimalistic and efficient, making it a suitable choice for resource-constrained environments, such as embedded systems or containers.
-
-!!! tip
-    We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments - see [example of Conda packages install by Mamba](/software/install-software/#conda-packages_1). 
-
-<!--
-
-### Docker container
-
-### Apptainer (Singularity) container
-
-### Source code with makefile
-
--->
-
-## Examples
-
-### Binaries
-
-*Usage of software "satsuma" distributed as binary file.*
-
-    user123@skirit:~$ mkdir satsuma ; cd satsuma # prepare dir for software "satsuma"
-    user123@skirit:~/satsuma$ wget https://github.com/bioinfologics/satsuma2/releases/download/untagged-2c08e401140c1ed03e0f/satsuma2-linux.tar.gz # download it
-    user13@skirit:~/satsuma$ tar -xvf satsuma2-linux.tar.gz # unpack it
-    user13@skirit:~/satsuma$ cd product/bin ; ls # list and run the executables 
-
-<!--
-### R package
--->
-
-### Conda packages
-
-*Install package [segemehl](https://anaconda.org/bioconda/segemehl) from Conda repository.*
-    
-    module add mambaforge
-    # create new Conda environment called segemehl-0.3.4 (with python 3.8)
-    mamba create --prefix /storage/city/home/user_name/segemehl-0.3.4 python=3.8 -y
-    # activate the environment
-    mamba activate /storage/city/home/user_name/segemehl-0.3.4
-    # install the package
-    mamba install -c bioconda segemehl -y
-    # leave the environment
-    mamba deactivate
-
-Activate this environment (e.g. within batch jobs) as:
-
-    module add mambaforge
-    mamba activate /storage/city/home/user_name/segemehl-0.3.4
-    segemehl.x ... # run the job
-    mamba deactivate
-
-### Pip 
-
-*Install software package "spektral".*
+*Example: install software package "spektral".*
 
 First run an interactive job:
 
@@ -287,6 +187,42 @@ python
 ...
 ```
 
+
+### Conda packages
+
+!!! tip
+    Some of the most popular Conda packages may be already installed system-wide - see [`conda-modules` page](/software/sw-list/conda-modules).
+
+**Conda package installers: Conda, Mamba, Micromamba**
+
+[Conda](https://conda.io), avalable through [`conda-modules/` module](/software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
+
+[Mamba](https://anaconda.org/conda-forge/mamba), available through `mambaforge` module, is a package manager and environment manager that is designed to be a faster and more efficient drop-in replacement for Conda. Both Conda and Mamba are closely related, as Mamba was developed as an open-source project to address some of the performance limitations of Conda.
+
+[Micromamba](https://anaconda.org/conda-forge/micromamba), available through `micromamba` module, is a lightweight and resource-efficient alternative to Mamba. Mamba, while faster than Conda, is still a relatively large application. In contrast, Micromamba is built to be more minimalistic and efficient, making it a suitable choice for resource-constrained environments, such as embedded systems or containers.
+
+!!! tip
+    We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments - see [example of Conda packages install by Mamba](/software/install-software/#conda-packages_1). 
+
+*Example: Install package [segemehl](https://anaconda.org/bioconda/segemehl) from Conda repository.*
+    
+    module add mambaforge
+    # create new Conda environment called segemehl-0.3.4 (with python 3.8)
+    mamba create --prefix /storage/city/home/user_name/segemehl-0.3.4 python=3.8 -y
+    # activate the environment
+    mamba activate /storage/city/home/user_name/segemehl-0.3.4
+    # install the package
+    mamba install -c bioconda segemehl -y
+    # leave the environment
+    mamba deactivate
+
+Activate this environment (e.g. within batch jobs) as:
+
+    module add mambaforge
+    mamba activate /storage/city/home/user_name/segemehl-0.3.4
+    segemehl.x ... # run the job
+    mamba deactivate
+
 ### Containers
 
 Apptainer (Singularity) images can be deployed and run directly on MetaCentrum machines.
@@ -296,13 +232,4 @@ If your software is released as Docker container, you have more option.
 - **Apptainer** (former Singularity) **image** can be run in MetaCentrum directly, see [Apptainer/Singularity howto](/advanced/containers).
 - **Docker images** must be translated into an Apptainer image and run [as described in this chapter](/advanced/containers/#starting-application-docker-image).
 - Docker images can be run also via Kubernetes service. See [Kubernetes](https://docs.e-infra.cz/compute/containers/) for instruction.
-
-<!--
-
-### Compile from source
-
-The hardest way...
-
--->
-
 
