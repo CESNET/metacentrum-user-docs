@@ -138,9 +138,7 @@ and load the package
 
 ### Python packages
 
-Python packages can be installed using `pip`, which is a part of several Python modules.<br/>
-
-We recommend to use a module `py-pip/21.3.1-gcc-10.2.1-mjt74tn`.
+Python packages can be installed using `pip`, which is accessible via `py-pip` module.
 
 **General setup**
 
@@ -247,41 +245,47 @@ Activate this environment (e.g. within batch jobs) as:
 
 *Install software package "spektral".*
 
-First redirect `TMPDIR` variable to `SCRATCHDIR`.
+First run an interactive job:
 
 ```
 qsub -I -l select=1:ncpus=1:mem=4gb:scratch_local=10gb -l walltime=2:00:0
-export TMPDIR=$SCRATCHDIR # store temporary files in SCRATCHDIR
 ```
 
+Then install the package:
 ```
-module add py-pip/py-pip-19.3-intel-19.0.4-hudzomi # this will load python 3.7.7 (python/python-3.7.7-intel-19.0.4-mgiwa7z)
-mkdir my_pip_libs_py3.7 # make a local directory to install to
-pip3 install spektral --root /storage/cityN/home/user123/my_pip_libs_py3.7/ # install spektral and its dependencies to a local dir
-```
-After the installation is done, setup system variables:
+# store temporary files in SCRATCHDIR
+export TMPDIR=$SCRATCHDIR
 
-```
-export PYTHONUSERBASE=/storage/cityN/home/user123/my_pip_libs_py3.7:/cvmfs/software.metacentrum.cz/spack1/software/python/linux-debian10-x86_64/3.7.7-intel-mgiwa7
-export PATH=$PYTHONUSERBASE/bin:$PATH
-export PYTHONPATH=$PYTHONUSERBASE/lib/python3.7/site-packages:$PYTHONPATH
+# load pip module
+module add py-pip
+
+# make a local directory to install to
+mkdir /storage/cityN/home/user123/my_pip_libs
+
+# ... and tell pip about it
+export PYTHONUSERBASE=/storage/cityN/home/user123/my_pip_libs/     
+
+# install spektral and its dependencies
+pip3 install spektral --user        
+
+exit
 ```
 
 To run the package:
 
 ```
-module add  python/python-3.7.7-intel-19.0.4-mgiwa7z 
-export PYTHONUSERBASE=/storage/cityN/home/user123/my_pip_libs_py3.7:/cvmfs/software.metacentrum.cz/spack1/software/python/linux-debian10-x86_64/3.7.7-intel-mgiwa7
+module add python
+
+# setup system variables 
+export PYTHONUSERBASE=/storage/cityN/home/user123/my_pip_libs
 export PATH=$PYTHONUSERBASE/bin:$PATH
 export PYTHONPATH=$PYTHONUSERBASE/lib/python3.7/site-packages:$PYTHONPATH
-...
-spektral ... # run the package
-```
 
-<!--
-https://rt.cesnet.cz/rt/Ticket/Display.html?id=1125154
-https://rt.cesnet.cz/rt/Ticket/Display.html?id=1150197
--->
+# use the package
+python
+>>> import spektral
+...
+```
 
 ### Containers
 
