@@ -26,9 +26,6 @@ plugins:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)'
       lang:
         - en
-  - mkdocs-jupyter:
-      ignore_h1_titles: True
-      include_source: True
 
 markdown_extensions:
   - attr_list
@@ -132,12 +129,10 @@ nav:
     - contact/index.md
     - contact/write-request/index.md
   - Tutorials: tutorials/index.md
-  - 'Related services': 
-    - services/index.md
-    - services/kubernetes/index.md
-    - services/galaxy/index.md
-    - services/jupyter/index.md
+  - 'Related projects': 
+    - related/index.md
+    - related/kubernetes/index.md
+    - related/galaxy/index.md
     - 'EOSC': 
-      - services/EOSC/index.md
-      - 'Notebook no. 1': services/EOSC/jupyter-notebooks/c-scale-data-discovery.ipynb
-      - 'Sentinel': services/EOSC/sentinel/index.md
+      - related/EOSC/index.md
+      - 'Sentinel': related/EOSC/sentinel/index.md
