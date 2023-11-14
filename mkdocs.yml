@@ -133,6 +133,7 @@ nav:
     - related/index.md
     - related/kubernetes/index.md
     - related/galaxy/index.md
-    - 'EOSC': 
-      - related/EOSC/index.md
-      - 'Sentinel': related/EOSC/sentinel/index.md
+    - 'CollGS': 
+      - related/collgs/index.md
+      - related/collgs/era5.md
+      - related/collgs/pristup-k-datum.md

@@ -1,0 +1,1 @@
+# Přístup k datům
