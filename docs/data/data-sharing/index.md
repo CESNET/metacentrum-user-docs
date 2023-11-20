@@ -9,7 +9,11 @@ To make sharing of data possible and at the time safe, we offer two options vary
 1. sharing based on a **group**,
 2. sharing based on **project directory**.
 
+!!! todo
+    This page is under construction.
 
+
+<!--
 TODO:
 
 - jaky je mezi tim rozdil? Vlastne jen kvoty?
@@ -137,3 +141,5 @@ where
     group_name = name of the group the project directory belongs to
     source_dir = the working directory
     target_dir = shared project directory
+
+-->
