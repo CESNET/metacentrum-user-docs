@@ -1,4 +1,4 @@
-# ElIXIR
+# ELIXIR
 
 !!! note
     This page contains information specific for users connected with [the ELIXIR project: Czech national infrastructure for life science data](https://www.elixir-czech.cz/), which is part of [ELIXIR Europe](https://elixir-europe.org/). Users with research in the filed of proteomics, genomics etc. can apply for membersip in the Elixir group, thus getting an access to resources sponsored by the ELIXIR project.
