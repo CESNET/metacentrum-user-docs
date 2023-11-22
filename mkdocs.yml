@@ -130,8 +130,8 @@ nav:
     - contact/write-request/index.md
   - Tutorials: tutorials/index.md
   - 'Related projects': 
-    - related/kubernetes/index.md
     - related/galaxy/index.md
+    - related/kubernetes/index.md
     - 'CollGS': 
       - related/collgs/index.md
       - related/collgs/era5.md
