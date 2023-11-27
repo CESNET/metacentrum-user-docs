@@ -54,7 +54,7 @@ nav:
     - access/perun/index.md
     - access/pbsmon/index.md
     - access/elixir/index.md
-    - 'Access and security':
+    - 'Security':
       - access/connect-auth/index.md
       - access/kerberos/index.md
   - Computing:
@@ -66,23 +66,28 @@ nav:
       - computing/extend-walltime/index.md
       - computing/trap-command/index.md
       - computing/finished-jobs/index.md
+      - computing/email-notif/index.md
     - 'Infrastructure':
       - computing/frontends/index.md
       - computing/storages/index.md
       - computing/frontend-storage/index.md
+      - computing/scratch-storages/index.md
       - computing/mount-storages/index.md
+      - computing/node-properties/index.md
       - computing/decommissioned-storages/index.md
     - 'Resources and queues':
       - computing/pbs-resources/index.md
-      - computing/email-notif/index.md
       - computing/pbs-commands/index.md
       - computing/qsub-compiler/index.md
       - computing/queues-in-meta/index.md
       - computing/fairshare/index.md
-      - computing/node-properties/index.md
-    - computing/parallel-comput/index.md
     - 'GPU computing':
       - computing/gpu-comput/index.md
+      - computing/nvidia-gpu/index.md
+      - computing/gpu-clusters/index.md
+    - computing/parallel-comput/index.md
+#    - computing/pbs-options/index.md
+#    - computing/grid-infrastruct/index.md
   - Data:
     - data/index.md
     - data/data-within/index.md
