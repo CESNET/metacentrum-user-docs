@@ -60,7 +60,7 @@ nav:
   - Computing:
     - computing/index.md
     - computing/concepts/index.md
-    - computing/jobs/index.md
+    - computing/run-basic-job/index.md
     - computing/frontends/index.md
     - 'PBS and job planning':    
       - computing/pbs-options/index.md
@@ -73,6 +73,7 @@ nav:
       - computing/mount-storages/index.md
     - computing/gpu-comput/index.md
     - computing/parallel-comput/index.md
+    - computing/email-aggreg/index.md
   - Data:
     - data/index.md
     - data/data-within/index.md

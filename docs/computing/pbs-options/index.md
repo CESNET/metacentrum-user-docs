@@ -345,8 +345,7 @@ Cputime fund is the amount of cpu-time you can use to prolong a job.
 Earliest rec. timeout indicates when the oldest one of your prolongations made during last 30 days will be forgotten.
 
 !!! note "What to do if you run out of quota"
-
-If you reach the monthly limit and still need to prolong a job, it can be done upon request to user support at <meta@cesnet.cz>.
+    If you reach the monthly limit and still need to prolong a job, it can be done upon request to user support at <meta@cesnet.cz>.
 
 ### qstat
 
@@ -356,29 +355,44 @@ For detailed options list, see `man qstat`.
 
 ## Job arrays
 
-    The job array is submitted as:
+The job array is submitted as:
 
- # general command
- $ qsub -J X-Y[:Z] script.sh
- # example
- $ qsub -J 2-7:2 script.sh
+```
+# general command
+$ qsub -J X-Y[:Z] script.sh
+# example
+$ qsub -J 2-7:2 script.sh
+```
 
-    X is first index of a job, Y is upper border of an index and Z in optional parameter of an index step, therefore the example command will generate subjobs with indexes 2,4,6.
-    The job array is represented by a single job whose job number is followed by "[]", this main job provides an overview of unfinished sub jobs.
+`X` is first index of a job, `Y` is upper border of an index and `Z` in optional parameter of an index step, therefore the example command will generate subjobs with indexes 2,4,6.
 
+The job array is represented by a single job whose job number is followed by "[]", this main job provides an overview of unfinished sub jobs.
+
+```
 $ qstat -f 969390'[]' -x | grep array\_state\_count
-    array_state_count = Queued:0 Running:0 Exiting:0 Expired:0 
+array_state_count = Queued:0 Running:0 Exiting:0 Expired:0 
+```
 
-    An example of sub job ID is 969390[1].meta-pbs.metacentrum.cz.
-    The sub job can be queried by a qstat command (qstat -t).
-    PBS Pro uses PBS_ARRAY_INDEX instead of Torque's PBS_ARRAYID inside of a sub job. The varibale PBS_ARRAY_ID contains job ID of the main job.
+An example of sub job ID is `969390[1].meta-pbs.metacentrum.cz`.
+
+The sub job can be queried by a qstat command (`qstat -t`).
+
+PBS uses `PBS_ARRAY_INDEX` variable inside of a sub job. The varibale `PBS_ARRAY_ID` contains job ID of the main job.
 
 
 ## Node properties
 
 `pbsnodes` comand usage
 
+!!! todo
+    This page is yet to be done.
+
+
 ## Useful links
 
 - link to **qsub refiner**
 - link to **machine properties**
+
+!!! todo
+    This page is yet to be done.
+
