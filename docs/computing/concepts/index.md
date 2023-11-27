@@ -1,4 +1,4 @@
-# Grid concepts
+# Basic terms
 
 ## Frontends, storages, homes
 

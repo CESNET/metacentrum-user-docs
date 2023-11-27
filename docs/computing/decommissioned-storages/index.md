@@ -1,0 +1,1 @@
+# Decommissioned storages

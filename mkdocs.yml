@@ -55,25 +55,34 @@ nav:
     - access/pbsmon/index.md
     - access/elixir/index.md
     - 'Access and security':
-      - computing/connect-auth/index.md
-      - computing/kerberos/index.md
+      - access/connect-auth/index.md
+      - access/kerberos/index.md
   - Computing:
     - computing/index.md
     - computing/concepts/index.md
     - computing/run-basic-job/index.md
-    - computing/frontends/index.md
-    - 'PBS and job planning':    
-      - computing/pbs-options/index.md
+    - 'Jobs':
+      - computing/job-tracking/index.md
+      - computing/extend-walltime/index.md
+      - computing/trap-command/index.md
+      - computing/finished-jobs/index.md
+    - 'Infrastructure':
+      - computing/frontends/index.md
+      - computing/storages/index.md
+      - computing/frontend-storage/index.md
+      - computing/mount-storages/index.md
+      - computing/decommissioned-storages/index.md
+    - 'Resources and queues':
+      - computing/pbs-resources/index.md
+      - computing/email-notif/index.md
+      - computing/pbs-commands/index.md
+      - computing/qsub-compiler/index.md
       - computing/queues-in-meta/index.md
       - computing/fairshare/index.md
-    - 'Job state and history':
-      - computing/job-tracking/index.md
-    - 'Infrastructure':  
-      - computing/grid-infrastruct/index.md
-      - computing/mount-storages/index.md
-    - computing/gpu-comput/index.md
+      - computing/node-properties/index.md
     - computing/parallel-comput/index.md
-    - computing/email-aggreg/index.md
+    - 'GPU computing':
+      - computing/gpu-comput/index.md
   - Data:
     - data/index.md
     - data/data-within/index.md

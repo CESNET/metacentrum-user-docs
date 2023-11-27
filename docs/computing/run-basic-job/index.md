@@ -1,4 +1,4 @@
-# Run basic job
+# Run simple job
 
 Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn how to
 
