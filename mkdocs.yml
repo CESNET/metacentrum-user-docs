@@ -54,11 +54,25 @@ nav:
     - access/perun/index.md
     - access/pbsmon/index.md
     - access/elixir/index.md
-  - Basics:
-    - basics/index.md
-    - basics/concepts/index.md
-    - basics/jobs/index.md
-    - basics/frontends/index.md
+    - 'Access and security':
+      - computing/connect-auth/index.md
+      - computing/kerberos/index.md
+  - Computing:
+    - computing/index.md
+    - computing/concepts/index.md
+    - computing/jobs/index.md
+    - computing/frontends/index.md
+    - 'PBS and job planning':    
+      - computing/pbs-options/index.md
+      - computing/queues-in-meta/index.md
+      - computing/fairshare/index.md
+    - 'Job state and history':
+      - computing/job-tracking/index.md
+    - 'Infrastructure':  
+      - computing/grid-infrastruct/index.md
+      - computing/mount-storages/index.md
+    - computing/gpu-comput/index.md
+    - computing/parallel-comput/index.md
   - Data:
     - data/index.md
     - data/data-within/index.md
@@ -104,22 +118,6 @@ nav:
     - software/modules/index.md
     - software/containers/index.md
     - software/install-software/index.md
-  - 'Advanced':
-    - advanced/index.md
-    - 'Access and security':
-      - advanced/connect-auth/index.md
-      - advanced/kerberos/index.md
-    - 'PBS and job planning':    
-      - advanced/pbs-options/index.md
-      - advanced/queues-in-meta/index.md
-      - advanced/fairshare/index.md
-    - 'Job state and history':
-      - advanced/job-tracking/index.md
-    - 'Infrastructure':  
-      - advanced/grid-infrastruct/index.md
-      - advanced/mount-storages/index.md
-    - advanced/gpu-comput/index.md
-    - advanced/parallel-comput/index.md
   - 'Troubleshooting':
     - troubleshooting/index.md
     - troubleshooting/faqs/index.md
