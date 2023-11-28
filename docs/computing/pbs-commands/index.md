@@ -35,7 +35,7 @@ Example:
 
 ## qstat
 
-`qstat` command probes the state of jobs and queues mainly. See sections [Queues in Meta](/advanced/queues-in-meta/#qstat-command-usage)
+`qstat` command probes the state of jobs and queues mainly. See sections [Queues in Meta](/computing/queues-in-meta)
 
 For detailed options list, see `man qstat`.
 

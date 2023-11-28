@@ -15,7 +15,8 @@ The email can be sent to any email address using the -M option:
 
     -M user123@pbspro.com
 
+<!--
 !!! todo
     Add content from [A page about email aggregation](https://wiki.metacentrum.cz/wiki/Email_notifications).
-
+-->
 

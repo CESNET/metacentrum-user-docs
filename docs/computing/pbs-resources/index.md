@@ -216,7 +216,7 @@ Example:
 
     -l walltime=1:00:00 # one hour job
 
-Users can to a certain extent prolong walltime in running jobs - see [`qextend` command](#qextend)
+Users can to a certain extent prolong walltime in running jobs - see [`qextend` command](/computing/extend-walltime)
 
 ### **Queue and/or PBS server**
 

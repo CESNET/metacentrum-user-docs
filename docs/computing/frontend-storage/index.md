@@ -1,6 +1,6 @@
 # Frontend-storage relationship
 
-A **[frontend](/basics/frontends)** is a single machine intended for user logins and ligh pre- and post-processing of data.
+A **frontend** is a single machine intended for user logins and ligh pre- and post-processing of data.
 
 A **storage** is a large disc array where user data (user home directories) are kept.
 
