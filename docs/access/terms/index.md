@@ -6,7 +6,7 @@ Access to MetaCentrum grid computing is granted **free of charge** only to membe
 
 MetaCentrum services are available on a "best effort" basis. The operator strives to maintain the availability and security of the service, with essential services run in high-availability mode and automatically monitored. Support is available during normal working hours.
 
-For full description of the service see [Metacentrum NGI pages](https://www.metacentrum.cz/en/about/rules/).
+For full description of the service see [Metacentrum NGI pages](https://www.metacentrum.cz), where you can find [full text of the terms of use](https://www.metacentrum.cz/en/about/rules/).
 
 ### Account prolongation
 
