@@ -239,7 +239,7 @@ Apptainer (Singularity) images can be deployed and run directly on MetaCentrum m
 
 If your software is released as Docker container, you have more option.
 
-- **Apptainer** (former Singularity) **image** can be run in MetaCentrum directly, see [Apptainer/Singularity howto](/advanced/containers).
-- **Docker images** must be translated into an Apptainer image and run [as described in this chapter](/advanced/containers/#starting-application-docker-image).
+- **Apptainer** (former Singularity) **image** can be run in MetaCentrum directly, see [Singularity howto](/software/containers).
+- **Docker images** must be translated into an Apptainer image and run [as described in this chapter](/software/containers/#docker-usage).
 - Docker images can be run also via Kubernetes service. See [Kubernetes](https://docs.e-infra.cz/compute/containers/) for instruction.
 

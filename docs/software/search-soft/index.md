@@ -7,10 +7,9 @@ In general, when searching for an application, you should checklist the followin
 1. Look at the list of selected software either [sorted alphabetically](/software/alphabet/) or [by field of interest](/software/sw-list/amber).
 2. Use `module avail` command as described [on this page](#modules).
 3. Go through software prepared as [containers](#containers).
-4. Check whether your software is included in any of [managed services](#services).
 
 !!! tip 
-    No luck? The consult [how to install new (version of) software](http://localhost:8080/software/install-software/#general-options) either locally or system-wide.
+    No luck? The consult [how to install new (version of) software](/software/install-software) either locally or system-wide.
 
 ## Modules
 
@@ -90,5 +89,5 @@ For instructions on container usage, see [the containers chapter](/software/cont
 
 ## Services
 
-There are a number of [services closely connected to MetaCentrum](/services) which may offer the software you need, too.
+There are a number of [services closely connected to MetaCentrum](/related/galaxy) which may offer the software you need, too.
 

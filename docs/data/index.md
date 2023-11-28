@@ -2,7 +2,7 @@
 
 *Welcome to section covering data management.*
 
-**In the [Data within](/data/data-within/) section, you will find**
+**In the [General data handling](/data/data-within/) section, you will find**
 
 - overview of various [data manipulation commands](/data/data-within/#data-manipulation-commands),
 - [move data into and between storages](/data/data-within/#moderate-data-handling), and

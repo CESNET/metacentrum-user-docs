@@ -14,7 +14,7 @@ Apptainer is invoked by command `singularity`.
 
 Apptainer images (= containers) are commonly suffixed by `.sif`.
 
-**Apptainer can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#use-docker-image).
+**Apptainer can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#docker-usage).
 
 ## Apptainer environment variables
 
