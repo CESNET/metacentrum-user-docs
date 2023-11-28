@@ -21,8 +21,8 @@ K dnešnímu dni (7. listopadu 2023) jsou stažena data od října 2023 do srpna
 
 Seznamy proměnných, jež jsou v datasetech zahrnuty, jsou dostupné na stránkách:
 
-- [ERA5 reanalysis-single-levels variables](https://wiki.metacentrum.cz/wiki/ERA5_reanalysis-era5-single-levels_variables)
-- [ERA5 reanalysis-pressure-levels variables](https://wiki.metacentrum.cz/wiki/ERA5_reanalysis-era5-pressure-levels_variables)
+- [ERA5 reanalysis-single-levels variables](/related/collgs/ERA5_reanalysis-era5-single-levels_variables)
+- [ERA5 reanalysis-pressure-levels variables](/related/collgs/ERA5_reanalysis-era5-pressure-levels_variables)
 
 Veřejnosti jsou data zpřístupněna bez potřeby registrace prostřednictvím STAC katalogu na adresách [https://stac.cesnet.cz/collections/reanalysis-era5-single-levels](https://stac.cesnet.cz/collections/reanalysis-era5-single-levels) a [https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels](https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels).
 
