@@ -2,7 +2,7 @@
 
 ## Usage rules
 
-Access to MetaCentrum grid computing is granted **free of charge** only to members of **academic/non-commercial institutions** of the Czech republic **with research and/or education objectives**. If you are interested in using our infrastructure for commercial research, please contact us to discuss whether that particular research project can be conducted in MetaCentrum.
+Access to MetaCentrum grid computing is granted **free of charge** only to members of **academic/non-commercial institutions** of the Czech Republic **with research and/or education objectives**. If you are interested in using our infrastructure for commercial research, please contact us to discuss whether that particular research project can be conducted in MetaCentrum.
 
 MetaCentrum services are available on a "best effort" basis. The operator strives to maintain the availability and security of the service, with essential services run in high-availability mode and automatically monitored. Support is available during normal working hours.
 
