@@ -71,7 +71,7 @@ According to PBS internal logic, the resources are either **chunk-wide** or **jo
 **Chunk-wide** resources can be ascribed to every chunk separately and differently.
 
 !!! note
-    For the purpose of this intro, we assume that the number of chunks is always 1, which is also a default value. To see more complicated examples about per-chunk resource distribution, see [advanced chapter on PBS resources](/advanced/pbs-options/#chunk-vs-job).
+    For the purpose of this intro, we assume that the number of chunks is always 1, which is also a default value. To see more complicated examples about per-chunk resource distribution, see [advanced chapter on PBS resources](/computing/pbs-resources).
 
 Chunk-wide resources are defined as options of `select` statement in pairs `<resource_name>=<resource_value>` divided by `:`.
 
@@ -84,7 +84,7 @@ The essential resources are:
 | Maximal duration of the job | walltime | job |
 | Type and volume of space for temporary data | scratch\_local | chunk |
 
-There are a deal more resources than the ones shown here; for example, it is possible to specify a type of computational nodes' OS or their physical placement, software licences, speed of CPU, number pf GPU cards and more. For detailed information see [PBS options detailed page](/advanced/pbs-options/).
+There are a deal more resources than the ones shown here; for example, it is possible to specify a type of computational nodes' OS or their physical placement, software licences, speed of CPU, number pf GPU cards and more. For detailed information see [PBS options detailed page](/computing/pbs-resources).
 
 Examples:
 
@@ -101,7 +101,7 @@ where
 
 When the job is submitted, it is added to one of the **queues** managed by the scheduler. Queues can be defined arbitrarily by the admins based on various criteria - usually on walltime, but also on number of GPU cards, size of memory etc. Some queues are reserved for defined groups of users ("private" queues).
 
-Unless you [have a reason to send job to a specific queue](/advanced/queues-in-meta/), do not specify any. The job will be submitted into a default queue and from there routed to one of execution queues.
+Unless you [have a reason to send job to a specific queue](/computing/queues-in-meta/), do not specify any. The job will be submitted into a default queue and from there routed to one of execution queues.
 
 The default queue is only **routing** one: it serves to sort jobs into another queues according to the job's walltime - e.g. `q_1h` (1-hour jobs), `q_1d` (1-day jobs), etc.
 
