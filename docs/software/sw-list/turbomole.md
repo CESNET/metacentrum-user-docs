@@ -10,7 +10,7 @@
 
 The program is available just for non-commercial use:
 
-- [Turbomole End User License Agreement](https://wiki.metacentrum.cz/w/images/b/be/Turbomole-END_USER_LICENSE_AGREEMENT.pdf)  
+- [Turbomole End User License Agreement](/snippets/turbomole-enduser-license.pdf)  
 - before using the program, you first need to [accept its licence](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_turbomole)
 
 Versions 5.6, 6.0, 6.4, 6.5, 7.1, 7.4, 7.5 and 7.6. The TURBOMOLE is available in the following versions:
