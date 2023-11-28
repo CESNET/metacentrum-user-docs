@@ -119,26 +119,18 @@ Download/copy the `/etc/krb5.conf` from any frontend and save it to `C:\ProgramD
 
 **Open MIT Kerberos**
 
-![pic](/advanced/kerberos/win-kerb-2.png)
+![pic](/access/kerberos/win-kerb-2.png)
 
 **Get a new ticket**
 
-![pic](/advanced/kerberos/win-kerb-3.png)
+![pic](/access/kerberos/win-kerb-3.png)
 
 **Fill in MetaCentrum username and password**
 
-![pic](/advanced/kerberos/win-kerb-4.png)
+![pic](/access/kerberos/win-kerb-4.png)
 
 and click OK
 
 You should see a valid Kerberos ticket now and if you did everything right, you should not need to type in your password during login phase (e.g. when using PuTTY):
 
-![pic](/advanced/kerberos/win-kerb-5.png)
-
-
-
-
-
-
-
-
+![pic](/access/kerberos/win-kerb-5.png)
