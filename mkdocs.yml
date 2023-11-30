@@ -87,9 +87,6 @@ nav:
       - computing/nvidia-gpu/index.md
       - computing/gpu-clusters/index.md
     - computing/parallel-comput/index.md
-      #
-    - computing/pbs-options/index.md
-    - computing/grid-infrastruct/index.md
   - Data:
     - data/index.md
     - data/data-within/index.md
