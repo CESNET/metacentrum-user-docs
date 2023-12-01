@@ -1,4 +1,4 @@
-# Create account
+# Account
 
 ## How to apply for the first time
 
