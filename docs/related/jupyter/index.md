@@ -10,7 +10,7 @@ For other approaches to Jupyter, see [Jupyter page (software)](/software/sw-list
 
 Metacentrum users have access to a local Jupyterhub webserver where they can run either preset or their own Jupyter notebook servers. The Jupyter Notebook server is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more. The notebook servers can be spawn either on computational nodes of Metacentrum clusters or on OpenStack virtual nodes and the source code written by the user is saved in Jupyter notebook source files with the .ipynb suffix. These source files can contain not only the source code, but also descriptions, comments, images, plots and other elements to make it a complete scientific and educational tool for its users. 
 
-![pic]()
+![pic](title-notebook.png)
 
 ## Login
 
@@ -24,7 +24,7 @@ Log in using your Metacentrum Kerberos credentials. Your Kerberos ticket (which 
 
 After a successful login set the job profile for the PBS node your Jupyter notebook server will run on. 
 
-![pic]()
+![pic](jupyterhub-spawning-options-extended.png)
 
 You can use the default set of options and click Start, or you can individually set each option so that it is compatible with the qsub command and its parameter syntax. If you want to work on gpus, you need to select the gpu_jupyter queue and set the number of gpus to 1 or 2. This queue starts jobs only on the Adan cluster that has 2x Nvidia Tesla T4 cards, which offer the tensor cores for accelerated AIs. The last two parameters (prologue and epilogue commands) are optional, prologue works the same way as .jupyter_bashrc, entered commands are executed before the jupyter notebook server is started, and epilogue commands are executed if the notebook server ends unexpectedly (right now there is no limit to how long the notebook server runs, so every job is being killed by the PBS walltime watchdog, so don't be alarmed that all your jupyterhub PBS jobs end with a non-zero exit code). Very rarely the spawning process can fail for some unknown reason (disappearing from the queue, being stuck on the loading page during the "Cluster job running... waiting to connect" state for more than roughly 5 minutes, etc.), in which case just repeat the process and create a new notebook. If you encounter persistent problem, contact the admins using the information on the bottom of this wiki page. 
 
@@ -44,38 +44,38 @@ After clicking on the Start button, the spawning process begins. The OpenStack c
 
 After the job gets successfully queued, which usually takes about 5-10 seconds, the Jupyterhub screen changes into a progress bar with the Pending in queue status. Now the job is waiting for free computational resources, which can take a few seconds or minutes, sometimes longer (the threshold is set to 1 hour, after that you need to submit a new job). The status can be checked using the qstat -u $USER (add the -x argument if the job seems to disappear due to switching to a moved (M) state) command on any PBS Metacentrum server.
 
-![pic]()
+![pic](jupyterhub-pending.png)
 
 Once the job starts, it takes about 30-60 seconds for the notebook server to initiate and establish connection with the hub. 
 
-![pic]()
+![pic](jupyterhub-waitingtoconnect.png)
 
 !!! warning
     There is a one hour (3600s) waiting threshold, after which jupyterhub deletes pbs job from the queue if it is still waiting for resources and the user has to start a new jupyter notebook again. The reasoning behind this is that most users are not willing to wait for more than a few tens of minutes to start their interactive session and the PBS job with the running jupyter notebook server would consume resources in the background. This 1h limit can be changed in the future, but if your job is waiting in a queue for more than an hour, it will get deleted and you need to start a new jupyter notebook. 
 
 Once the notebook server establishes connection with the hub, the screen switches into your Jupyter notebook server running in the NOTEBOOK_DIR as a root location, which is predefined to /storage/brno2/home/$USER. You can redefine it by using the .jupyter_bashrc environment file. 
 
-![pic]()
+![pic](jupyterhub-home-ntb.png)
 
 To start programming, open your Jupyter notebook source file (notebooks/mandelbrot.ipynb in this example) or create a new one by clicking on New and choosing a kernel. Right now the default notebook server has Python 3 and C++ kernels with CUDA support. It is also possible for the users to add additional kernels or bring their own notebook servers in the form of a docker image and admins will add the option for the users to choose their own notebook servers. In the near future users will be able to use their own notebook servers automatically. 
 
-![pic]()
+![pic](jupyterhub-mandelbrot.png)
 
 If you wish to stop or restart current notebook server, go to Home (or Control Panel if you already run an active notebook server), click on Stop My Server and Start My Server. 
 
 !!! note
     It is possible to spawn multiple Jupyter notebook servers per user. Click on Home (or Control Panel if you are in an active notebook server) and create a new named server. The first notebook server can have no name and it is considered a feature by the Jupyterhub developers. 
 
-![pic]()
+![pic](jupyterhub-named-servers.png)
 
 !!! warning
     On OpenStack cloud notebook servers run indefinitely. But once the job finishes on PBS, you will see a connection fail message. This is because the current PBS spawner does not have the option to close the notebook server properly before the walltime is reached and inform the hub. It will be fixed in the near future, we also plan to add a walltime countdown for each notebook server. 
 
-![pic]()
+![pic](jupyterhub-walltime-fail.png)
 
 Besides the error message, you can also notice that the kernel becomes unavailable. This also signals that the connection between the hub and your notebook server has been lost. 
 
-![pic]()
+![pic](jupyterhub-not-connected.png)
 
 ## Examples
 
@@ -133,8 +133,8 @@ import numpy as np
  show()
 ```
 
-![pic]()
-![pic]()
+![pic](mandelbrot-example-1.png)
+![pic](mandelbrot-example-2.png)
 
 ### Python CUDA plugin
 
@@ -419,11 +419,14 @@ export PATH+=":$GOBIN"
 ```
 
 Your new kernel is now available in the New menu.
-Adding R kernel
+
+### Adding R kernel
+
 R running in Jupyter Notebook
 
+![pic](R-jupyter-notebook.png)
 
-### Adding support for R requires installation of IRkernel package.
+Adding support for R requires installation of IRkernel package.
 
 1. Login to skirit, perian or onyx Frontend.
 
@@ -650,7 +653,7 @@ The Kerberos ticket of each user is renewed every time you login to our Jupyterh
 
 Solution: Relogin to Jupyterhub so that the kerberos ticket gets refresh back to 10 hours and notebook spawning should work again. 
 
-![pic]()
+![pic](kerberos-ticket-expired.png)
 
 2. Notebook server fails to start
 
@@ -658,7 +661,7 @@ Even if you have just freshly logged in and you have a fresh kerberos ticket, th
 
 Solution: Just try to spawn another notebook server (maybe also relog just to make sure). If the previous notebook spawn does not let you ask for a new spawn and is stuck in pending or connecting state, it will take 10 hours before it gives up (timeout fot queue pending + connecting of the notebook server to Jupyterhub). You can however start as many notebook servers as you want, so go to Home and create a new notebook server in the Named Servers section (fill up any name and click Add New Server). 
 
-![pic]()
+![pic](notebook-start-problem.png)
 
 3. Stuck in "Cluster job running... waiting to connect" state
 
@@ -666,7 +669,7 @@ Normally in this state the jupyter notebook server should get displayed any mome
 
 Solution: Basically you as a user cannot do anything about it for the next 10 hours until the timer runs out. But this does not prevent you from spawning new notebooks! You can go to the Named servers after clicking the Home button, fill in the Server name of the next notebook server and press Add New Server and you can continue spawning the next notebook server. 
 
-![pic]()
+![pic](stuck-waiting-to-connect.png)
 
 ## Interesting Links
 
