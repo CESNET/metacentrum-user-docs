@@ -8,13 +8,17 @@ For other approaches to Jupyter, see [Jupyter page (software)](/software/sw-list
 
 ## Overview
 
-Metacentrum users have access to a local Jupyterhub webserver where they can run either preset or their own Jupyter notebook servers. The Jupyter Notebook server is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more. The notebook servers can be spawn either on computational nodes of Metacentrum clusters or on OpenStack virtual nodes and the source code written by the user is saved in Jupyter notebook source files with the .ipynb suffix. These source files can contain not only the source code, but also descriptions, comments, images, plots and other elements to make it a complete scientific and educational tool for its users. 
+Metacentrum users have access to a local Jupyterhub webserver where they can run either preset or their own Jupyter notebook servers.
+
+The Jupyter Notebook server is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+
+The notebook servers can be spawn either on computational nodes of Metacentrum clusters or on OpenStack virtual nodes and the source code written by the user is saved in Jupyter notebook source files with the `.ipynb` suffix. These source files can contain not only the source code, but also descriptions, comments, images, plots and other elements to make it a complete scientific and educational tool for its users. 
 
 ![pic](title-notebook.png)
 
 ## Login
 
-Log in using your Metacentrum Kerberos credentials. Your Kerberos ticket (which grants you access to Metacentrum resources) is usually valid for only 10 hours.
+Log in using your Metacentrum Kerberos credentials. Your **Kerberos ticket** (which grants you access to Metacentrum resources) **is usually valid for only 10 hours**.
 
 
 !!! warning
@@ -26,13 +30,17 @@ After a successful login set the job profile for the PBS node your Jupyter noteb
 
 ![pic](jupyterhub-spawning-options-extended.png)
 
-You can use the default set of options and click Start, or you can individually set each option so that it is compatible with the qsub command and its parameter syntax. If you want to work on gpus, you need to select the gpu_jupyter queue and set the number of gpus to 1 or 2. This queue starts jobs only on the Adan cluster that has 2x Nvidia Tesla T4 cards, which offer the tensor cores for accelerated AIs. The last two parameters (prologue and epilogue commands) are optional, prologue works the same way as .jupyter_bashrc, entered commands are executed before the jupyter notebook server is started, and epilogue commands are executed if the notebook server ends unexpectedly (right now there is no limit to how long the notebook server runs, so every job is being killed by the PBS walltime watchdog, so don't be alarmed that all your jupyterhub PBS jobs end with a non-zero exit code). Very rarely the spawning process can fail for some unknown reason (disappearing from the queue, being stuck on the loading page during the "Cluster job running... waiting to connect" state for more than roughly 5 minutes, etc.), in which case just repeat the process and create a new notebook. If you encounter persistent problem, contact the admins using the information on the bottom of this wiki page. 
+You can use the default set of options and click Start, or you can individually set each option so that it is compatible with the qsub command and its parameter syntax. If you want to work on gpus, you need to select the `gpu_jupyter` queue and set the number of gpus to 1 or 2. 
+
+This queue starts jobs only on the Adan cluster that has 2x Nvidia Tesla T4 cards, which offer the tensor cores for accelerated AIs. The last two parameters (prologue and epilogue commands) are optional, prologue works the same way as `.jupyter_bashrc`, entered commands are executed before the jupyter notebook server is started, and epilogue commands are executed if the notebook server ends unexpectedly (right now there is no limit to how long the notebook server runs, so every job is being killed by the PBS walltime watchdog, so don't be alarmed that all your jupyterhub PBS jobs end with a non-zero exit code).
+
+Very rarely the spawning process can fail for some unknown reason (disappearing from the queue, being stuck on the loading page during the `Cluster job running... waiting to connect` state for more than roughly 5 minutes, etc.), in which case just repeat the process and create a new notebook. If you encounter persistent problem, contact the admins using the information on the bottom of this wiki page. 
 
 ## Spawning process
 
-To setup your own personal environment on the target PBS node, define your own .jupyter_bashrc in your home directory /storage/brno2/home/$USER (in the near future you will be able to change this path, for now it is hard coded), which will be sourced at the start of each PBS job. Use this file to load modules, define environment variables, etc.
+To setup your own personal environment on the target PBS node, define your own `.jupyter_bashrc` in your home directory `/storage/brno2/home/$USER` (in the near future you will be able to change this path, for now it is hard coded), which will be sourced at the start of each PBS job. Use this file to load modules, define environment variables, etc.
 
-Example of .jupyter_bashrc:
+Example of `.jupyter_bashrc`:
 
 ```
 module load cuda-10.1 cudnn-7.6.4-cuda10.1
@@ -40,9 +48,13 @@ export MY_DIR="/storage/praha1/home/$USER/myapp"
 export PATH+=":$MY_DIR/bin"
 ```
 
-After clicking on the Start button, the spawning process begins. The OpenStack cloud job profile spawns and opens the notebook server within seconds on the local virtual OpenStack cloud. The PBS job profiles submit a predefined job script under your username (as sudo -E -u $USER qsub...) and the stdout and stderr outputs of the job are also saved in your home directory /storage/brno2/home/$USER (in the near future you will be able to also set your preferred home directory) after the job finishes. You can check the PBS script below.
+After clicking on the Start button, the spawning process begins. The OpenStack cloud job profile spawns and opens the notebook server within seconds on the local virtual OpenStack cloud. 
 
-After the job gets successfully queued, which usually takes about 5-10 seconds, the Jupyterhub screen changes into a progress bar with the Pending in queue status. Now the job is waiting for free computational resources, which can take a few seconds or minutes, sometimes longer (the threshold is set to 1 hour, after that you need to submit a new job). The status can be checked using the qstat -u $USER (add the -x argument if the job seems to disappear due to switching to a moved (M) state) command on any PBS Metacentrum server.
+The PBS job profiles submit a predefined job script under your username (as `sudo -E -u $USER qsub...`) and the stdout and stderr outputs of the job are also saved in your home directory `/storage/brno2/home/$USER` (in the near future you will be able to also set your preferred home directory) after the job finishes. You can check the PBS script below.
+
+After the job gets successfully queued, which usually takes about 5-10 seconds, the Jupyterhub screen changes into a progress bar with the Pending in queue status. 
+
+Now the job is waiting for free computational resources, which can take a few seconds or minutes, sometimes longer (the threshold is set to 1 hour, after that you need to submit a new job). The status can be checked using the `qstat -u $USER` (add the `-x` argument if the job seems to disappear due to switching to a moved (`M`) state) command on any PBS Metacentrum server.
 
 ![pic](jupyterhub-pending.png)
 
@@ -53,18 +65,20 @@ Once the job starts, it takes about 30-60 seconds for the notebook server to ini
 !!! warning
     There is a one hour (3600s) waiting threshold, after which jupyterhub deletes pbs job from the queue if it is still waiting for resources and the user has to start a new jupyter notebook again. The reasoning behind this is that most users are not willing to wait for more than a few tens of minutes to start their interactive session and the PBS job with the running jupyter notebook server would consume resources in the background. This 1h limit can be changed in the future, but if your job is waiting in a queue for more than an hour, it will get deleted and you need to start a new jupyter notebook. 
 
-Once the notebook server establishes connection with the hub, the screen switches into your Jupyter notebook server running in the NOTEBOOK_DIR as a root location, which is predefined to /storage/brno2/home/$USER. You can redefine it by using the .jupyter_bashrc environment file. 
+Once the notebook server establishes connection with the hub, the screen switches into your Jupyter notebook server running in the `NOTEBOOK_DIR` as a root location, which is predefined to `/storage/brno2/home/$USER`. You can redefine it by using the `.jupyter_bashrc` environment file. 
 
 ![pic](jupyterhub-home-ntb.png)
 
-To start programming, open your Jupyter notebook source file (notebooks/mandelbrot.ipynb in this example) or create a new one by clicking on New and choosing a kernel. Right now the default notebook server has Python 3 and C++ kernels with CUDA support. It is also possible for the users to add additional kernels or bring their own notebook servers in the form of a docker image and admins will add the option for the users to choose their own notebook servers. In the near future users will be able to use their own notebook servers automatically. 
+To start programming, open your Jupyter notebook source file (`notebooks/mandelbrot.ipynb` in this example) or create a new one by clicking on *New* and choosing a kernel. Right now the default notebook server has Python 3 and C++ kernels with CUDA support. 
+
+It is also possible for the users to add additional kernels or bring their own notebook servers in the form of a docker image and admins will add the option for the users to choose their own notebook servers. In the near future users will be able to use their own notebook servers automatically. 
 
 ![pic](jupyterhub-mandelbrot.png)
 
-If you wish to stop or restart current notebook server, go to Home (or Control Panel if you already run an active notebook server), click on Stop My Server and Start My Server. 
+If you wish to stop or restart current notebook server, go to *Home* (or *Control Panel* if you already run an active notebook server), click on *Stop My Server* and *Start My Server*. 
 
 !!! note
-    It is possible to spawn multiple Jupyter notebook servers per user. Click on Home (or Control Panel if you are in an active notebook server) and create a new named server. The first notebook server can have no name and it is considered a feature by the Jupyterhub developers. 
+    It is possible to spawn multiple Jupyter notebook servers per user. Click on *Home* (or *Control Panel* if you are in an active notebook server) and create a new named server. The first notebook server can have no name and it is considered a feature by the Jupyterhub developers. 
 
 ![pic](jupyterhub-named-servers.png)
 
@@ -83,7 +97,7 @@ We provide a few examples to show you how to use and test the Jupyter notebook e
 
 ### Python
 
-Mandelbrot set running on CPU (complete notebook source file available at github - numba examples) 
+Mandelbrot set running on CPU (complete notebook source file available at [github - numba examples](https://github.com/harrism/numba_examples) 
 
 ```
 import numpy as np
@@ -138,28 +152,29 @@ import numpy as np
 
 ### Python CUDA plugin
 
-Jupyterhub automatically submits to the gpu_jupyter high priority PBS queue whenever you ask for a gpu when selecting the spawning options. Currently this queue contains all 61 adan nodes, each with 2x Nvidia Tesla T4s, which are specifically targeted for AI and neural network computations thanks to its Tensor Cores providing up to 65 FP16 TFlops or up to 260 INT4 TFlops per gpu.
+Jupyterhub automatically submits to the `gpu_jupyter` high priority PBS queue whenever you ask for a gpu when selecting the spawning options. Currently this queue contains all 61 adan nodes, each with 2x Nvidia Tesla T4s, which are specifically targeted for AI and neural network computations thanks to its Tensor Cores providing up to 65 FP16 TFlops or up to 260 INT4 TFlops per gpu.
 
-To run Python 3 code on a GPU, you need to load the proper modules, such as TensorFlow, Caffe, PyTorch etc. using the .jupyter_bashrc file. The list of available modules can be displayed on any PBS server for example by using
+To run Python 3 code on a GPU, you need to load the proper modules, such as TensorFlow, Caffe, PyTorch etc. using the `.jupyter_bashrc` file. The list of available modules can be displayed on any PBS server for example by using
 
-$ module avail 2>&1 | tr " " "\n" | egrep -i "(cuda|gpu)".
+    $ module avail 2>&1 | tr " " "\n" | egrep -i "(cuda|gpu)".
 
-C++ CUDA code can be run via the python CUDA nvcc plugin which is already installed in the Python 3 kernel. After activating it using the %load_ext nvcc_plugin magic command in a Python 3 notebook, you can start inputing your CUDA code after the %%cu magic identifier, which forwards the code to the nvcc CUDA compiler and displays the resulting output (see example below).
+C++ CUDA code can be run via the [python CUDA nvcc plugin](https://github.com/andreinechaev/nvcc4jupyter) which is already installed in the Python 3 kernel.
 
-The original article and source codes of the plugin are available here. Don't forget to also load a proper CUDA module.
+After activating it using the `%load_ext nvcc_plugin` *magic* command in a Python 3 notebook, you can start inputing your CUDA code after the `%%cu` *magic* identifier, which forwards the code to the nvcc CUDA compiler and displays the resulting output (see example below).
 
+The original article and source codes of the plugin are available [here](https://medium.com/@iphoenix179/running-cuda-c-c-in-jupyter-or-how-to-run-nvcc-in-google-colab-663d33f53772). Don't forget to also load a proper CUDA module.
 
-.jupyter_bashrc content (edit before you spawn a new notebook server on PBS): 
+**`.jupyter_bashrc` content** (edit before you spawn a new notebook server on PBS): 
 
     module load cuda-10.1
 
-Jupyter notebook content:
+**Jupyter notebook content**:
 
-Check if a CUDA compiler is available (if not, you probably forgot to add 'module load cuda-10.1' or similar into .jupyter_bashrc). Commands starting with an exclamation mark ! are run in shell. You could also open a terminal by clicking on New->Terminal. 
+Check if a CUDA compiler is available (if not, you probably forgot to add `module load cuda-10.1` or similar into `.jupyter_bashrc`). Commands starting with an exclamation mark `!` are run in shell. You could also open a terminal by clicking on *New->Terminal*. 
 
     !nvcc --version
 
-Output
+*Output*:
 
 ```
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -172,14 +187,14 @@ Activate the plugin
 
     %load_ext nvcc_plugin
 
-Output
+*Output*:
 
 ```
 directory /auto/brno6/home/fsbrno2/nikl/notebooks/src already exists
 Out bin /auto/brno6/home/fsbrno2/nikl/notebooks/result.out
 ```
 
-Try Hello world with CUDA
+Try *Hello world* with CUDA
 
 ```
  %%cu
@@ -190,7 +205,7 @@ Try Hello world with CUDA
  }
 ```
 
-Output
+*Output*:
 
     Hello world
 
@@ -279,16 +294,20 @@ int main()
 }
 ```
 
-Output
+*Output*:
 
     Success!
 
-## Setting Python virtual environment using virtualenv
+## Setting Python virtual environment using `virtualenv`
 
 !!! note
     If you don't need to manage and switch between multiple python environments, but you only want to install additional python libraries and make them available in your Jupyter notebook, you dont have to use virtualenv and you should follow the next section with manual installation of python packages. 
 
-It is often useful to have one or more Python environments where you can experiment with different combinations of packages without affecting your main installation. Python supports this through virtual environments. The virtual environment is a copy of an existing version of Python with the option to inherit existing packages. A virtual environment is also useful when you need to work on a shared system and do not have permission to install packages as you will be able to install them in the virtual environment.
+It is often useful to have one or more Python environments where you can experiment with different combinations of packages without affecting your main installation. Python supports this through virtual environments.
+
+The virtual environment is a copy of an existing version of Python with the option to inherit existing packages.
+
+A virtual environment is also useful when you need to work on a shared system and do not have permission to install packages as you will be able to install them in the virtual environment.
 
 Open terminal (or Putty on Windows) and connect to one of the MetaCentrum frontends 
 
@@ -307,7 +326,7 @@ export PATH+=:$TARGET_DIR/bin
 export PYTHONPATH=$TARGET_DIR/lib/python3.6/site-packages:$PYTHONPATH
 ```
 
-To create a virtual environment, you must specify a path. For example create one in the local directory called ‘mypython’
+To create a virtual environment, you must specify a path. For example create one in the local directory called `mypython`
 
     virtualenv $TARGET_DIR/mypython
 
@@ -315,7 +334,7 @@ You can activate the python environment
 
     source $TARGET_DIR/mypython/bin/activate
 
-You should see the name of your virtual environment in brackets on your terminal line e.g. (mypython). Any python commands you use will now work with your virtual environment.
+You should see the name of your virtual environment in brackets on your terminal line e.g. `mypython`. Any python commands you use will now work with your virtual environment.
 
 To install a package into your python environment you can simply type
 
@@ -325,7 +344,7 @@ Deactivate the virtual environment
 
     deactivate
 
-Once you have your environment prepared, add following lines to your .jupyter_bashrc to load it inside your Jupyter notebook.
+Once you have your environment prepared, add following lines to your `.jupyter_bashrc` to load it inside your Jupyter notebook.
 
 ```
 export TARGET_DIR=/storage/brno2/home/$USER/my-python-packages
@@ -337,7 +356,7 @@ source $TARGET_DIR/mypython/bin/activate
 ## Adding Python packages manually
 
 !!! warning
-    If you want to install python packages inside a running Jupyter notebook with !pip install... , you have to use the --user argument to install locally, so pip install --user package. But always prefer to prepare your python environment before starting a jupyter notebook PBS job by logging onto Metacentrum frontend and following these following steps. 
+    If you want to install python packages inside a running Jupyter notebook with `!pip install...` , you have to use the `--user` argument to install locally, so `pip install --user package`. But always prefer to prepare your python environment before starting a jupyter notebook PBS job by logging onto Metacentrum frontend and following these following steps. 
 
 If you want to avoid using virtual environments and use python packages directly in the Python kernel, follow these steps:
 
@@ -345,7 +364,7 @@ Connect to one of the MetaCentrum frontends, for example
 
     ssh my_metacentrum_login@skirit.ics.muni.cz
 
-We recommend to use pip from the python-3.6.2-gcc module (you can of course install and use your own pip if you need a newer version)
+We recommend to use `pip` from the `python-3.6.2-gcc module` (you can of course install and use your own pip if you need a newer version)
 
     module load python-3.6.2-gcc
 
@@ -356,7 +375,7 @@ export TARGET_DIR=/storage/brno2/home/$USER/my-python-packages
 pip install --prefix=$TARGET_DIR package
 ```
 
-Update paths in your .jupyter_bashrc
+Update paths in your `.jupyter_bashrc`
 
 ```
 export TARGET_DIR=/storage/brno2/home/$USER/my-python-packages
@@ -370,11 +389,11 @@ Now you should be able to import the package in your jupyter notebook in the Pyt
 
 ## Adding kernels into your Jupyter notebook servers
 
-It is possible to add new programming languages to your Jupyter notebook servers by defining new kernels and loading them using the .jupyter_bashrc file described above. Each kernel is installed slightly differently but generally follows the same steps as in the following example. 
+It is possible to add new programming languages to your Jupyter notebook servers by defining new kernels and loading them using the `.jupyter_bashrc` file described above. Each kernel is installed slightly differently but generally follows the same steps as in the following example. 
 
 ### Adding Go kernel
 
-1. Load the module with the target language if available and move to step 2. If not, download and install the package locally. The list of all available kernels is available on github. 
+Load the module with the target language if available and move to step 2. If not, download and install the package locally. The list of all available kernels is available on [github](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels). 
 
 ```
 # you can choose different ROOTDIR, but you need to stay consistent
@@ -389,11 +408,13 @@ export GOBIN="$GOROOT/bin"
 export PATH+=":$GOBIN"
 ```
 
-2. Besides the language itself, it is usually necessary to install a plugin for Jupyter notebook server. In the case of Golang it is gophernotes.
+Besides the language itself, it is usually necessary to install a plugin for Jupyter notebook server. In the case of Golang it is [gophernotes](https://github.com/gopherdata/gophernotes).
 
-    go get github.com/gopherdata/gophernotes
+```
+go get github.com/gopherdata/gophernotes
+```
 
-3. Define kernel specification, for example in $ROOTDIR/kernels/go1.15.1/kernel.json. 
+Define kernel specification, for example in `$ROOTDIR/kernels/go1.15.1/kernel.json`. 
 
 ```
 {
@@ -407,7 +428,7 @@ export PATH+=":$GOBIN"
 }
 ```
 
-4. Update your .jupyter_bashrc to include the necessary paths.
+Update your `.jupyter_bashrc` to include the necessary paths.
 
 ```
 export ROOTDIR=/storage/brno2/home/$USER
@@ -418,19 +439,15 @@ export GOBIN="$GOROOT/bin"
 export PATH+=":$GOBIN"
 ```
 
-Your new kernel is now available in the New menu.
+Your new kernel is now available in the *New* menu.
 
 ### Adding R kernel
 
-R running in Jupyter Notebook
+Adding support for R requires installation of [IRkernel package](https://cran.r-project.org/web/packages/IRkernel/index.html).
 
-![pic](R-jupyter-notebook.png)
+Login to `skirit`, `perian` or `onyx` [frontend](/computing/frontends).
 
-Adding support for R requires installation of IRkernel package.
-
-1. Login to skirit, perian or onyx Frontend.
-
-2. Load needed modules and start R: 
+Load needed modules and start R: 
 
 ```
 module add jupyter-modules-4.6.1-python36
@@ -438,9 +455,9 @@ module add R-4.0.0-gcc
 R
 ```
 
-3. Within R install IRkernel and get support for R in the Jupyter Notebook:
+Within R [install IRkernel](https://irkernel.github.io/installation/) and get support for R in the Jupyter Notebook:
 
-3.1 Install IRkernel 
+Install IRkernel 
 
 ```
 > install.packages(pkgs='IRkernel')
@@ -456,7 +473,7 @@ Secure CRAN mirrors
  ...
 ```
 
-3.2 Select number and confirm, for example 1, and wait for the installation process to complete 
+Select number and confirm, for example 1, and wait for the installation process to complete 
 
 ```
 Selection: 1
@@ -487,21 +504,23 @@ The downloaded source packages are in
 	‘/tmp/RtmpoNC9FI/downloaded_packages’
 ```
 
-3.3 Activate R support for Jupyter Notebook
+Activate R support for Jupyter Notebook
 
     IRkernel::installspec()
 
-Kernelspec ir is installed in /auto/brno6/home/fsbrno2/$USER/.local/share/jupyter/kernels/ir
+Kernelspec ir is installed in `/auto/brno6/home/fsbrno2/$USER/.local/share/jupyter/kernels/ir`.
 
-4. Add module add R-4.0.0-gcc into your /storage/brno2/"$USER"/.jupyter_bashrc (create it if it doesn't exist).
+Add `module add R-4.0.0-gcc` into your `/storage/brno2/"$USER"/.jupyter_bashrc` (create it if it doesn't exist).
 
-5. Login into https://jupyter.cloud.metacentrum.cz/ (ensure it loads /storage/brno2/"$USER"/.jupyter_bashrc) and in menu New in top-right should be new option R. Select and enjoy. :-)
+Login into [https://jupyter.cloud.metacentrum.cz](https://jupyter.cloud.metacentrum.cz) (ensure it loads `/storage/brno2/"$USER"/.jupyter_bashrc`) and in menu **New** in top-right should be new option **R**. Select and enjoy. :-)
 
-This should be everything needed to get R into Jupyter Notebook. It is possible to pass various settings to R when it starts, e.g. something like edit of /storage/brno2/"$USER"/.jupyter_bashrc: 
+This should be everything needed to get R into Jupyter Notebook.
+
+It is possible to pass various settings to R when it starts, e.g. something like edit of `/storage/brno2/"$USER"/.jupyter_bashrc`: 
 
     alias R=R_PROFILE_USER="/storage/pruhonice1-ibot/home/"$USER"/.Rprofile"
 
-And then add into /storage/pruhonice1-ibot/home/$USER/.Rprofile something like:
+And then add into `/storage/pruhonice1-ibot/home/$USER/.Rprofile` something like:
 
 ```
 .First <- function(){
@@ -510,7 +529,11 @@ And then add into /storage/pruhonice1-ibot/home/$USER/.Rprofile something like:
 .libPaths( c( .libPaths(), "/storage/brno2/home/USER/R/x86_64-pc-linux-gnu-library/4.0") )
 ```
 
-Or whatever else needed. The .Rprofile file can, similarly as .jupyter_bashrc or .bashrc, contain various settings for R[1], [2], [3]. 
+Or whatever else needed. The .Rprofile file can, similarly as `.jupyter_bashrc` or `.bashrc`, contain various settings for R. 
+
+R running in Jupyter Notebook
+
+![pic](R-jupyter-notebook.png)
 
 ## Singularity
 
@@ -523,7 +546,7 @@ pip3 install git+git://github.com/jupyterhub/jupyterhub.git
 pip3 install git+git://github.com/jupyterhub/batchspawner.git
 ```
 
-To check if the installation went properly, check where batchspawner-singleuser and jupyterhub-singleuser are installed inside your running image container. The absolute path itself is not important, it just has to be in the PATH environment variable. 
+To check if the installation went properly, check where batchspawner-singleuser and `jupyterhub-singleuser` are installed inside your running image container. The absolute path itself is not important, it just has to be in the `PATH` environment variable. 
 
 ```
 $ whereis batchspawner-singleuser
@@ -533,11 +556,11 @@ $ whereis jupyterhub-singleuser
 jupyterhub-singleuser: /usr/local/bin/jupyterhub-singleuser
 ```
 
-Then define the singularity command prefix in your .jupyter_bashrc where you also specify path to your image.
+Then define the singularity command prefix in your `.jupyter_bashrc` where you also specify path to your image.
 
     export SINGULARITY_JUPYTER_PREFIX="singularity exec /path/to/image.img"
 
-The main command in the submitting PBS script will spawn your notebook server from provided singularity image if SINGULARITY_JUPYTER_PREFIX is properly defined, otherwise it will spawn the default notebook server.
+The main command in the submitting PBS script will spawn your notebook server from provided singularity image if `SINGULARITY_JUPYTER_PREFIX` is properly defined, otherwise it will spawn the default notebook server.
 
     $SINGULARITY_JUPYTER_PREFIX batchspawner-singleuser jupyterhub-singleuser --ip="0.0.0.0" --notebook-dir=$NOTEBOOK_DIR
 
@@ -558,7 +581,7 @@ and start the notebook as
 
     jupyter notebook
 
-The notebook will start on the pbs node and its address is httop://ip_or_dns_of_node:8888
+The notebook will start on the pbs node and its address is `http://ip_or_dns_of_node:8888`
 
 Jan Hoidekr has added advanced scripts for launching notebooks here
 
@@ -568,9 +591,9 @@ Jan Hoidekr has added advanced scripts for launching notebooks here
 
 ### repo2docker
 
-repo2docker is internally used by binderhub to convert a jupyter notebook repository into an executable docker image. It is also possible to use repo2docker separately and create your images manually in case you need to use more advanced building options.
+`repo2docker` is internally used by binderhub to convert a jupyter notebook repository into an executable docker image. It is also possible to use repo2docker separately and create your images manually in case you need to use more advanced building options.
 
-Installation using PyPI (use --prefix to specify the installation path if prefered)
+Installation using PyPI (use `--prefix` to specify the installation path if prefered)
 
     pip install --user  jupyter-repo2docker
 
@@ -582,9 +605,9 @@ cd repo2docker
 pip install --user -e .
 ```
 
-The core feature of repo2docker is to fetch a git repository (from GitHub or locally), build a container image based on the specifications found in the repository & optionally launch the container that you can use to explore the repository.
+The core feature of `repo2docker` is to fetch a git repository (from GitHub or locally), build a container image based on the specifications found in the repository & optionally launch the container that you can use to explore the repository.
 
-Example
+**Example**
 
     jupyter-repo2docker --no-build https://github.com/norvig/pytudes
 
@@ -596,9 +619,12 @@ This will generate a dockerfile, from which you can create a docker image and us
 
 This part is for advanced users who want to better understand Jupyter backend and wish to know how things actually run. Although it is not necessary to fully understand or study all the background processes and settings, it may help you understand the functionality and barriers of our Jupyter environment.
 
-### PBS script submitted every time you launch a new Jupyter notebook server request via PBS
+### PBS script submitted every time you launch a new Jupyter notebook
 
-The generic job script is run with the following series of commands: (explanation: for security reasons JUPYTERHUB_API_TOKEN cannot be sent as a variable because anybody could read the content and potentially replace the notebook server with their own, it has to be sent in a file called JUPYTERHUB_API_TOKEN_FILE through scp to user's home directory at storage-brno3.metacentrum.cz:/gpfs/home/{username} before we call the qsub itself) 
+The generic job script is run with the following series of commands:
+
+!!! note
+    For security reasons `JUPYTERHUB_API_TOKEN` cannot be sent as a variable because anybody could read the content and potentially replace the notebook server with their own, it has to be sent in a file called `JUPYTERHUB_API_TOKEN_FILE` through `scp` to user's home directory at `storage-brno3.metacentrum.cz:/gpfs/home/{username}` before we call the qsub itself) 
 
 ```
 export JUPYTERHUB_API_TOKEN_FILE=.jupyterhub_api_token_$(date +%s | md5sum | head -c 32) && \
@@ -610,7 +636,7 @@ JUPYTERHUB_OAUTH_CALLBACK_URL,JUPYTERHUB_USER,JUPYTERHUB_SERVER_NAME,JUPYTERHUB_
 JUPYTERHUB_ACTIVITY_URL,JUPYTERHUB_BASE_URL,JUPYTERHUB_SERVICE_PREFIX -o {homedir} -e {homedir} script.sh
 ```
 
-and the template of script.sh is predefined as 
+and the template of `script.sh` is predefined as 
 
 ```
 #!/bin/sh
@@ -647,45 +673,45 @@ $SINGULARITY_JUPYTER_PREFIX {cmd} --notebook-dir=$NOTEBOOK_DIR
 
 ## FAQ - Possible problems you might encounter
 
-1. Expired kerberos ticket
+### Expired kerberos ticket
 
-The Kerberos ticket of each user is renewed every time you login to our Jupyterhub webserver and its lifespan is 10 hours, after which you need to log out and log in again to "recharge" it back to 10 hours. Kerberos ticket is basically your virtual ID badge card which is used to access most resources within Metacentrum. For example if you leave Jupyterhub opened in one of your web browser's tabs over night for more than 10h since last login, and then try to start a new notebook server, you might get an error similar to this one:
+The Kerberos ticket of each user is renewed every time you login to our Jupyterhub webserver and its lifespan is 10 hours, after which you need to log out and log in again to "recharge" it back to 10 hours.
 
-Solution: Relogin to Jupyterhub so that the kerberos ticket gets refresh back to 10 hours and notebook spawning should work again. 
+Kerberos ticket is basically your virtual ID badge card which is used to access most resources within Metacentrum. For example if you leave Jupyterhub opened in one of your web browser's tabs over night for more than 10h since last login, and then try to start a new notebook server, you might get an error similar to this one:
+
+**Solution:** Relogin to Jupyterhub so that the kerberos ticket gets refresh back to 10 hours and notebook spawning should work again. 
 
 ![pic](kerberos-ticket-expired.png)
 
-2. Notebook server fails to start
+### Notebook server fails to start
 
-Even if you have just freshly logged in and you have a fresh kerberos ticket, the first notebook server you try to spawn fails for any reason (the error message may say "The Jupyter batch job has disappeared while pending in the queue or died immediately after starting." or "Error: HTTP 500: Internal Server Error (Error in Authenticator.pre_spawn_start: HTTPError HTTP 500: Internal Server Error (Spawner failed to start)". We have recently observed that if admins restart Jupyterhub, either due to a new update or just for a regular maintanence, the first notebook server spawn is very likely to fail for every user and the reason is not known for us yet...
+Even if you have just freshly logged in and you have a fresh kerberos ticket, the first notebook server you try to spawn fails for any reason (the error message may say `The Jupyter batch job has disappeared while pending in the queue or died immediately after starting.` or `Error: HTTP 500: Internal Server Error (Error in Authenticator.pre_spawn_start: HTTPError HTTP 500: Internal Server Error (Spawner failed to start)`.
 
-Solution: Just try to spawn another notebook server (maybe also relog just to make sure). If the previous notebook spawn does not let you ask for a new spawn and is stuck in pending or connecting state, it will take 10 hours before it gives up (timeout fot queue pending + connecting of the notebook server to Jupyterhub). You can however start as many notebook servers as you want, so go to Home and create a new notebook server in the Named Servers section (fill up any name and click Add New Server). 
+We have recently observed that if admins restart Jupyterhub, either due to a new update or just for a regular maintanence, the first notebook server spawn is very likely to fail for every user and the reason is not known for us yet...
+
+**Solution**: Just try to spawn another notebook server (maybe also relog just to make sure). If the previous notebook spawn does not let you ask for a new spawn and is stuck in pending or connecting state, it will take 10 hours before it gives up (timeout fot queue pending + connecting of the notebook server to Jupyterhub). You can however start as many notebook servers as you want, so go to *Home* and create a new notebook server in the *Named Servers* section (fill up any name and click *Add New Server*). 
 
 ![pic](notebook-start-problem.png)
 
-3. Stuck in "Cluster job running... waiting to connect" state
+### Stuck in "Cluster job running... waiting to connect" state
 
 Normally in this state the jupyter notebook server should get displayed any moment, at most within 5 minutes. Basically Jupyterhub sees the PBS job running and is waiting for the Jupyter notebook server to initiate and establish connection with Jupyterhub. But for a million different reasons this process might very rarely fail and Jupyterhub will be stuck in this state waiting for the notebook until the 10 hour timer ends.
 
-Solution: Basically you as a user cannot do anything about it for the next 10 hours until the timer runs out. But this does not prevent you from spawning new notebooks! You can go to the Named servers after clicking the Home button, fill in the Server name of the next notebook server and press Add New Server and you can continue spawning the next notebook server. 
+**Solution**: Basically you as a user cannot do anything about it for the next 10 hours until the timer runs out. **But this does not prevent you from spawning new notebooks!** You can go to the Named servers after clicking the Home button, fill in the Server name of the next notebook server and press Add New Server and you can continue spawning the next notebook server. 
 
 ![pic](stuck-waiting-to-connect.png)
 
 ## Interesting Links
 
-- Jupyterhub github
-- Jupyter Notebook github
-- Creating docker image from .iso file
-- Converting Jupyter notebook .ipynb source files to pdf
+- [Jupyterhub github](https://github.com/jupyterhub/jupyterhub)
+- [Jupyter Notebook github](https://github.com/jupyter/notebook)
+- [Creating docker image from .iso file](/related/jupyter/docker-from-iso)
+- [Converting Jupyter notebook .ipynb source files to pdf](/related/jupyter/notebook-to-pdf)
+- [https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Customizing-the-environment](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Customizing-the-environment)
+- [https://sodocumentation.net/r/topic/4166/-rprofile](https://sodocumentation.net/r/topic/4166/-rprofile)
+- [https://rstats.wtf/r-startup.html#rprofile](https://rstats.wtf/r-startup.html#rprofile)
 
 ## Contacts
 
-Vojtěch Nikl (nikl@cesnet.cz, Brno Gotex, Šumavská 15, CZ)
-
-http://rt.cesnet.cz (Request tracker addressing users' requirements and questions - use the meta queue for now please)
-
-https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Customizing-the-environment
-https://sodocumentation.net/r/topic/4166/-rprofile
-https://rstats.wtf/r-startup.html#rprofile
-
+Vojtěch Nikl (<nikl@cesnet.cz>, Brno Gotex, Šumavská 15, CZ)
 
