@@ -114,7 +114,7 @@ Example:
     Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
 
 !!! tip
-    See **[table of storages](/advanced/grid-infrastruct/#table-of-storages)** for storage servers addresses and mount points.
+    See **[table of storages](/computing/storages)** for storage servers addresses and mount points.
 
 Example:
 

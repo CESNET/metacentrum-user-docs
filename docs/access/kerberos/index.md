@@ -106,7 +106,7 @@ Download the latest Kerberos release from the [MIT Kerberos distribution page](h
 
 You have to enable hidden items in order to see the ProgramData folder needed in the next step. 
 
-![pic](/advanced/kerberos/win-kerb-1.png)
+![pic](/access/kerberos/win-kerb-1.png)
 
 **Edit kr5.ini file**
 

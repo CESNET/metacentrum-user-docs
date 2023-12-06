@@ -13,7 +13,7 @@ Another option is to use [Kubernetes service](https://docs.cerit.io/), which off
 
 ## Remote desktop 
 
-Using [Remote desktop](/advanced/run-graphical), RStudio can be also run from a module or as a [Singularity](/advanced/containers) image.
+Using [Remote desktop](/software/graphical-access), RStudio can be also run from a module or as a [Singularity](/software/containers) image.
 
 This option is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service are down.
 
