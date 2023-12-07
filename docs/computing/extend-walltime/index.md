@@ -49,4 +49,6 @@ Earliest rec. timeout indicates when the oldest one of your prolongations made d
 !!! note "What to do if you run out of quota"
     If you reach the monthly limit and still need to prolong a job, it can be done upon request to user support at <meta@cesnet.cz>.
 
+!!! question "How do I extend array job?"
+    The `qextend` command can be used to extend simple jobs only. If you need to extend array job, let us know at <meta@cesnet.cz> user support.
 
