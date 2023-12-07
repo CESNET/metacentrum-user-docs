@@ -130,8 +130,6 @@ Apart of quota set on storage, there is a **separate quota for user's data outsi
 
 This applies to situations when **one of user's processes writes to /tmp directory** and (on computational node) when **the user's job produces large standard output (.OU) or error (.ER) files in /var/spool directory**.
 
-![Data quotas overview](/advanced/work-data/data-quotas-scheme.jpg)
-
 !!! warning "Root filesystem quota is only 1 GB"
     The root filesystem quota is relatively small. If it is exceeded, an email is sent to the user with instructions what to do. Until the data are deleted, no further calculations will be run on the computational node.
 
