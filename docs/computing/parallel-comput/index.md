@@ -37,6 +37,10 @@ For most applications, it is preferable to use large chunks (many nodes with 32 
 
 PBS may or may not place multiple chunks on single node (depending on available resources and other jobs).
 
+To ensure that the nodes are on the same cluster, we recommend to use the option `-l place=group=cluster`:
+  
+    qsub -l select=2:ncpus=2:mem=1gb:scratch_local=2gb -l place=group=cluster -l walltime=1:00:00 skript.sh
+
 In special cases when each chunk must be placed on a different node, use `-l place = scatter` parameter.
 
     qsub -l select=2:ncpus=2:mem=1gb:scratch_local=2gb -l place=scatter -l walltime=1:00:00 skript.sh
