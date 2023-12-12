@@ -8,17 +8,17 @@
 !!! abstract "Container vs image"
     An **image** is a file sitting somewhere on the disk. A **container** is a runtime instance of an image. 
 
-[Apptainer (former Singularity)](https://apptainer.org/docs-legacy) is an open-source program for containerization used in MetaCentrum.
+[Apptainer (former Singularity)](https://docs.sylabs.io/guides/latest/user-guide) is an open-source program for containerization used in MetaCentrum.
 
-Apptainer is invoked by command `singularity`.
+Singularity is invoked by command `singularity`.
 
-Apptainer images (= containers) are commonly suffixed by `.sif`.
+Singularity images (= containers) are commonly suffixed by `.sif`.
 
-**Apptainer can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#docker-usage).
+**Singularity can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#docker-usage).
 
-## Apptainer environment variables
+## Singularity environment variables
 
-Apptainer employs a few *paths* to store various temporary files:
+Singularity employs a few *paths* to store various temporary files:
 
 - `CACHEDIR`:- downloaded layers
 - `LOCALCACHEDIR`: - run shell exec
@@ -27,10 +27,9 @@ Apptainer employs a few *paths* to store various temporary files:
 !!! todo
     This section is to be done.
 
+## Singularity usage
 
-## Apptainer usage
-
-In the basic usecases of Apptainer images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
+In the basic usecases of Singularity images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
 
 ### List options
 
@@ -46,7 +45,7 @@ on command line.
 
 ### Run a command in container
 
-Passing a command to an Apptainer image is done by `singularity exec "command"`.
+Passing a command to an Singularity image is done by `singularity exec "command"`.
 
 For example,
 
@@ -75,7 +74,7 @@ First run interative job *with scratch directory*:
     qsub -l select=1:scratch_local=10gb -l walltime=24:00:00
 
 !!! question "What is the scratch directory good for?"
-    You may need to redirect some Apptainer environment variables to store temporary files. To point them to `SCRATCHDIR` is one option. Alternatively you may redirect the Apptainer variables to some folder in your home.
+    You may need to redirect some Singularity environment variables to store temporary files. To point them to `SCRATCHDIR` is one option. Alternatively you may redirect the Singularity variables to some folder in your home.
 
 Redirect `CACHEDIR` and `LOCALCACHEDIR` to `SCRATCHDIR`:
 
@@ -96,10 +95,10 @@ As with any other software, it is possible to pass a batch script to a container
 
 Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 
-!!! question "Is the batch script for Apptainer application any different from the script for "normal" application?"
-    In general, no, though for a very simple script this may be the case. Most often you will at least need to redirect Apptainer environment variables to `SCRATCHDIR`. The `--bind` and `bash -c` commands shown below may be hidden in the script, too.
+!!! question "Is the batch script for Singularity application any different from the script for "normal" application?"
+    In general, no, though for a very simple script this may be the case. Most often you will at least need to redirect Singularity environment variables to `SCRATCHDIR`. The `--bind` and `bash -c` commands shown below may be hidden in the script, too.
 
-**Variant A: put Apptainer-specific option on command line**
+**Variant A: put Singularity-specific option on command line**
 
     qsub -l select=1:scratch_local=10GB -l walltime=24:00:00 -- \
     export CACHEDIR=$SCRATCHDIR \
@@ -107,7 +106,7 @@ Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
     singularity exec -B /storage/city_N/home/user123/script.sh:/home/user123/script.sh \
     my_image.sif bash -c "/home/user123/script.sh"
 
-*Are you familiar with how the `-B` (or `--bind`) option in Apptainer works?*
+*Are you familiar with how the `-B` (or `--bind`) option in Singularity works?*
 
 === "Yes."
 
@@ -117,7 +116,7 @@ Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 
     The `-B` option binds the location of your script in the grid directory onto `/home/user123/` container directory.
 
-    The container sees itself as a small enclosed operating system with libraries and traditional Linux directories like `/home`, `/tmp` or `/mnt`. However this causes problem if the "real" filesystem is more complex and contains custom folders, like `/storage/city_N/home/user123`. In this case you have to specifically tell Apptainer to bind these un-traditional directories.
+    The container sees itself as a small enclosed operating system with libraries and traditional Linux directories like `/home`, `/tmp` or `/mnt`. However this causes problem if the "real" filesystem is more complex and contains custom folders, like `/storage/city_N/home/user123`. In this case you have to specifically tell Singularity to bind these un-traditional directories.
 
     The `-B` option works like `"real" directory location`:`location within container`.
 
@@ -126,7 +125,7 @@ Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 
 Without the `-B` option, the container will automatically bind to itself host directories on computational node where the job is run and the script may not be found.
 
-**Variant B: hide Apptainer-specific option into the script**
+**Variant B: hide Singularity-specific option into the script**
 
 Assume the batch script resides in `/storage/city_N/home/user123/script.sh` AND that you want to have the CLI command as simple as possible.
 
@@ -139,7 +138,7 @@ The script `/storage/city_N/home/user123/script.sh` will then look somehow like 
 
 ```
 #!/bin/bash
-#PBS -N Apptainer_Job
+#PBS -N Singularity_Job
 #PBS -l select=1:scratch_local=10gb
 #PBS -l walltime=24:00:00
 
@@ -167,9 +166,9 @@ $SING_IMAGE/my_image.sif [commands]"
 
 ```
 
-## Pre-built Apptainer images
+## Pre-built Singularity images
 
-MetaCentrum offers a couple of ready-to-use Apptainer images (`.sif` files) together with batch scripts to run them.
+MetaCentrum offers a couple of ready-to-use Singularity images (`.sif` files) together with batch scripts to run them.
 
 These images are placed `/cvmfs/singularity.metacentrum.cz/`.
 
@@ -217,7 +216,7 @@ For safety reasons, **running Docker images directly is not possible on Metacent
 
 If you need to use a Docker image in MetaCentrum, either
 
-- run it in Apptainer as described below, or
+- run it in Singularity as described below, or
 - use [Kubernetes service](http://docs.cerit.io/).
 
 ### Kubernetes service
@@ -226,13 +225,13 @@ If you need to use a Docker image in MetaCentrum, either
 
 In general, the platform can be used for almost anything, starting with a simple web application, to running a full remote desktop or a complex workflow pipeline.
 
-### Run in Apptainer
+### Run in Singularity
 
-If you have an existing Docker image, you can run it without root privileges in Apptainer.
+If you have an existing Docker image, you can run it without root privileges in Singularity.
 
 If you want to change something or make your own image from scratch, you'll need root privileges; go to [Kubernetes](http://docs.cerit.io/).
 
-**Prepare Apptainer image from Docker image** as:
+**Prepare Singularity image from Docker image** as:
 
     singularity build image.img docker://tensorflow/tensorflow:latest
 
@@ -244,7 +243,7 @@ If you want to change something or make your own image from scratch, you'll need
 
     docker pull sangerpathogens/circlator
 
-are in Apptainer replaced as
+are in Singularity replaced as
 
     singularity pull docker://sangerpathogens/circlator
 
@@ -254,7 +253,7 @@ This command will create `circlator_latest.sif`, a singularity image of docker i
 
     docker run -v /home/ubuntu/data:/data sangerpathogens/circlator
 
-are in Apptainer replaced by
+are in Singularity replaced by
 
     mkdir circ_read; singularity run -B ./circ_read/:/data ./circlator_latest.sif
 
@@ -323,14 +322,14 @@ Relevantni tickety z RT:
 
 ## Advanced options
 
-### Custom Apptainer build
+### Custom Singularity build
 
-Preparing your own Apptainer image is intended for experienced users. Reading [Apptainer documentation](https://apptainer.org/docs-legacy) is a good idea too. 
+Preparing your own Singularity image is intended for experienced users. Reading [Singularity documentation](https://docs.sylabs.io/guides/latest/user-guide) is a good idea too. 
 
 To build custom image, root privileges are needed, but this can be replaced by User Namespace Remapping. For this purpose MetaCentrum offers a server `builder.metacentrum.cz` with User Namespace Remapping.
 
 !!! warning 
-    Access to `builder.metacentrum.cz` is not granted automatically. Users intending to build Apptainer images have to apply for membership in group `builders` by writing a request to <meta@cesnet.cz>.
+    Access to `builder.metacentrum.cz` is not granted automatically. Users intending to build Singularity images have to apply for membership in group `builders` by writing a request to <meta@cesnet.cz>.
 
 Image file is read-only and to modify it you have to use sandbox directory. In this example we use Debian Buster docker image.
 
@@ -359,7 +358,7 @@ Build image from recipe file:
 
 For more details see [https://sylabs.io/guides/3.7/user-guide/definition\_files.html](https://sylabs.io/guides/3.7/user-guide/definition_files.html).
 
-### Apptainer parallelized job
+### Singularity parallelized job
 
 The scenario for this setup is: two nodes with common scratch dir
 
