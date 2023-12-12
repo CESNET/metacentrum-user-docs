@@ -27,6 +27,16 @@ In Linux, macOS, Windows PowerShell and MobaXterm the `ssh` command can be given
     ```
     ssh your_username@frontend
     ```
+If you log in for the first time, you will be prompted by a query similar to the following:
+
+    The authenticity of host 'skirit.ics.muni.cz (2001:718:ff01:1:216:3eff:fe20:382)' can't be
+    established. ECDSA key fingerprint is SHA256:Splg9bGTNCeVSLE0E4tB30pcLS80sWuv0ezHrH1p0xE.
+    Are you sure you want to continue connecting (yes/no)?
+
+Type "yes". The public key of the frontend will be saved to your `~/.ssh/known_hosts` file.
+
+!!!tip 
+    Strictly speaking the user should always verify a new key before adding it to a list of known hosts. For a howto on SSH key verification, see [more detailed page on SSH key verification](/access/connect-auth/).
 
 Once the terminal connection to a frontend is open you can start using it with the Linux command line tools (bash shell).
 
@@ -41,22 +51,7 @@ A complete list of frontends is given below. You can use any of them. We encoura
 
     The frontend nodes can be used for light pre- and postprocessing and manipulation of data. All other tasks must be submitted as jobs to the batch job system. If you need to run something interactively, submit an interactive job.
 
-## Security
-
-### SSH keys
-
-If you log in for the first time, you will be prompted by a query similar to the following:
-
-    The authenticity of host 'skirit.ics.muni.cz (2001:718:ff01:1:216:3eff:fe20:382)' can't be
-    established. ECDSA key fingerprint is SHA256:Splg9bGTNCeVSLE0E4tB30pcLS80sWuv0ezHrH1p0xE.
-    Are you sure you want to continue connecting (yes/no)?
-
-Type "yes". The public key of the frontend will be saved to your `~/.ssh/known_hosts` file.
-
-!!! warning
-    Strictly speaking the user should always verify a new key before adding it to a list of known hosts. For a howto on SSH key verification, see [more detailed page on SSH key verification](/access/connect-auth/).
-
-### Kerberos 
+## Kerberos 
 
 After the user enters MetaCentrum infrastructure by logging in, they will need also to be able to move between computational nodes, reach storage spaces residing on different machines etc. It would be very inconvenient to authenticate by password every time. Therefore the authentication of user **within** the MetaCentrum infrastructure is done by [Kerberos protocol](https://en.wikipedia.org/wiki/Kerberos_(protocol)).
 
