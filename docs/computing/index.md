@@ -9,7 +9,7 @@
 - how user jobs are collected, sorted into [queues](/computing/concepts/#queues) and prioritized,
 - how software is installed and used in form of [modules](/computing/concepts/#modules).
 
-**In the [Run simple job](/basics/jobs) guide, you will find introduction to**
+**In the [Run simple job](/computing/run-basic-job) guide, you will find introduction to**
 
 - how to run jobs both in [interactive and non-interactive](/computing/run-basic-job/#batch-vs-interactive) way,
 - how to retrieve an [unique ID](/computing/run-basic-job/#job-id) of a job,
