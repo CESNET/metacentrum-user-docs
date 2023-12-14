@@ -2,7 +2,7 @@
 
     module avail gatk/
 
-[Genome Analysis Toolkit](https://gatk.broadinstitute.org/hc/en-ushttps://www.ebi.ac.uk/about/vertebrate-genomics/software/exonerate) is a generic tool for pairwise sequence comparison. It allows you to align sequences using a many alignment models, either exhaustive dynamic programming or a variety of heuristics.  
+[Genome Analysis Toolkit](https://gatk.broadinstitute.org/hc/en-us) is a generic tool for pairwise sequence comparison. It allows you to align sequences using a many alignment models, either exhaustive dynamic programming or a variety of heuristics.  
 
 ## Usage
 

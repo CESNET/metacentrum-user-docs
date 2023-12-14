@@ -59,7 +59,7 @@ You can find more information on [this page](https://www.intel.com/content/www/u
 
 **Linking MKL libraries**
 
-![Math libraries dependencies](/software/available-soft/sw-list/intel_math_libs.png)
+![Math libraries dependencies](/software/sw-list/intel-math-libs.png)
 
 Simple way how to get needed linking parameters provides [Intel MKL link advisor](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-link-line-advisor.html).
 

@@ -31,7 +31,7 @@ To list all version of a selected software, use `module avail MODULE_NAME/`, e.g
 !!! note
     You **have to** add the `/` at the end to see all versions.
 
-Some selected software is provided via [managed services](/software/services/ondemand) and [containers](/software/containers), too.
+Some selected software is provided via [Ondemand](/software/ondemand), [related managed services](/related/galaxy) and [containers](/software/containers), too.
 
 To read more on this issue read [How to search for software page](/software/search-soft).
 

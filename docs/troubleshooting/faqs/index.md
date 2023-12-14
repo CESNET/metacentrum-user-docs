@@ -217,7 +217,7 @@
 
 - [How reliable/strong is the is backup policy on storages?](/troubleshooting/faqs/faqs-content/storage-backup-policy)
 
-- [Where should I keep my longterm data?](/troubleshooting/faqs/faqs-content/where-keep-data.md)
+- [Where should I keep my longterm data?](/troubleshooting/faqs/faqs-content/where-keep-data)
 
 <!--
 -[]()

@@ -15,7 +15,7 @@
 - what are the [levels of protection within Metacentrum infrestructure](/data/backup-archive/#metacentrum-data-policy), and
 - how to [backup and archive data at Storage Department facilities](/data/backup-archive/#storage-department-data-policy).
 
-**In the [Quotas](/data/data-quotas/) section, you will find detailed info on data quotas and what to do when you exceed any of them.**
+**In the [Quotas](/data/quotas/) section, you will find detailed info on data quotas and what to do when you exceed any of them.**
 
 
 

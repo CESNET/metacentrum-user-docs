@@ -6,7 +6,7 @@
 
 ## Usage
 
-Apart from the module, the Repeat Explorer is accessible from the [Galaxy service](/services/galaxy).
+Apart from the module, the Repeat Explorer is accessible from the [Galaxy service](/related/galaxy).
 
 
 

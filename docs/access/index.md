@@ -12,7 +12,7 @@
 
 **[Elixir](/access/elixir)** is a page with information specific for Elixir group users. 
 
-**[Security](/access/security)** section contains a somewhat more detailed information about SSH keys and the Kerberos sign-on system used in MetaCentrum.
+**[Security](/access/connect-auth)** section contains a somewhat more detailed information about SSH keys and the Kerberos sign-on system used in MetaCentrum.
 
 
 
