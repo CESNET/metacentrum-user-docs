@@ -18,7 +18,7 @@ V závislosti na povaze zpracování a následného využití dat může CESNET 
 
 Po vyplnění formuláře Vám systém zašle e-mailovou zprávu, na jejímž základě svou registraci potvrdíte.
 
-Po úspěšné registraci můžete okamžitě přistupovat k datům národního uzlu. Možné způsoby přístupu k datům popisuje stránka [Přístup k datům v národním uzlu CollGS](/related/collgs/pristup-k-datum).
+Po úspěšné registraci můžete okamžitě přistupovat k datům národního uzlu. Možné způsoby přístupu k datům popisuje stránka [Přístup k datům v národním uzlu CollGS](../../related/collgs/pristup-k-datum).
 
 Velmi kvalitní dokumentace nejen k práci s uživatelským rozhraním ale také k datové struktuře produktů je k dispozici na [stránkách Czech Space Portal](https://collgs.czechspaceportal.cz/uzivatelska-prirucka/manual-ke-collgs/).
 

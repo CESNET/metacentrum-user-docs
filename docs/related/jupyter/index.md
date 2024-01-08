@@ -4,7 +4,7 @@
 
 This is tutorial for **[Metacentrum instance of Jupyter notebook](https://jupyter.cloud.metacentrum.cz)** servers on cloud.
 
-For other approaches to Jupyter, see [Jupyter page (software)](/software/sw-list/jupyter).
+For other approaches to Jupyter, see [Jupyter page (software)](../../software/sw-list/jupyter).
 
 ## Overview
 
@@ -445,7 +445,7 @@ Your new kernel is now available in the *New* menu.
 
 Adding support for R requires installation of [IRkernel package](https://cran.r-project.org/web/packages/IRkernel/index.html).
 
-Login to `skirit`, `perian` or `onyx` [frontend](/computing/frontends).
+Login to `skirit`, `perian` or `onyx` [frontend](../../computing/frontends).
 
 Load needed modules and start R: 
 
@@ -705,8 +705,8 @@ Normally in this state the jupyter notebook server should get displayed any mome
 
 - [Jupyterhub github](https://github.com/jupyterhub/jupyterhub)
 - [Jupyter Notebook github](https://github.com/jupyter/notebook)
-- [Creating docker image from .iso file](/related/jupyter/docker-from-iso)
-- [Converting Jupyter notebook .ipynb source files to pdf](/related/jupyter/notebook-to-pdf)
+- [Creating docker image from .iso file](../../related/jupyter/docker-from-iso)
+- [Converting Jupyter notebook .ipynb source files to pdf](../../related/jupyter/notebook-to-pdf)
 - [https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Customizing-the-environment](https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Customizing-the-environment)
 - [https://sodocumentation.net/r/topic/4166/-rprofile](https://sodocumentation.net/r/topic/4166/-rprofile)
 - [https://rstats.wtf/r-startup.html#rprofile](https://rstats.wtf/r-startup.html#rprofile)
