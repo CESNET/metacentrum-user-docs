@@ -36,7 +36,7 @@ If you log in for the first time, you will be prompted by a query similar to the
 Type "yes". The public key of the frontend will be saved to your `~/.ssh/known_hosts` file.
 
 !!!tip 
-    Strictly speaking the user should always verify a new key before adding it to a list of known hosts. For a howto on SSH key verification, see [more detailed page on SSH key verification](/access/connect-auth/).
+    Strictly speaking the user should always verify a new key before adding it to a list of known hosts. For a howto on SSH key verification, see [more detailed page on SSH key verification](../../access/connect-auth/).
 
 Once the terminal connection to a frontend is open you can start using it with the Linux command line tools (bash shell).
 
@@ -68,4 +68,4 @@ After the user logs in, they automatically obtain a **Kerberos tickets**. As lon
 - `kdestroy` -  delete all tickets
 - `kinit` - create new Kerberos ticket
 
-It is also possible to install Kerberos on your PC. For more in-depth info, see [Kerberos advanced page](/access/kerberos).
+It is also possible to install Kerberos on your PC. For more in-depth info, see [Kerberos advanced page](../../access/kerberos).
