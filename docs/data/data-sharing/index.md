@@ -17,7 +17,7 @@ To make sharing of data possible and at the time safe, we offer two options vary
 1. Choose a name for your group and ask us at <meta@cesnet.cz> to create it
 2. Include list of members of the group and choose at least one group manager
 
-The group manager can later add/remove members of this group through the [Perun interface](/access/perun).
+The group manager can later add/remove members of this group through the [Perun interface](../../access/perun).
 
 After the group is created, you will be notified.
 
@@ -28,7 +28,7 @@ Finally, create a directory dedicated for shared data, e.g. `/storage/CITY/home/
 1. Choose a name for your group and ask us at <meta@cesnet.cz> to create it together with a project directory
 2. Include list of members of the group and choose at least one group manager
 
-The group manager can later add/remove members of this group through the [Perun interface](/access/perun).
+The group manager can later add/remove members of this group through the [Perun interface](../../access/perun).
 
 After the group is created, you will be notified.
 

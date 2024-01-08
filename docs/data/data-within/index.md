@@ -47,7 +47,7 @@ sftp is just another protocol for data transfer. Contrary to `scp` it is **inter
 !!! bug
     There is a bug affecting Ubuntu 14.04+ concerning the recursive copy command. If `put -r` fails, create the target directory on the server first to work around this issue.
 
-![SFTP screenshot bug](/data/data-within/sftp-bug.png)
+![SFTP screenshot bug](../../data/data-within/sftp-bug.png)
 
 ### `rsync`
 
@@ -114,7 +114,7 @@ Example:
     Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
 
 !!! tip
-    See **[table of storages](/computing/storages)** for storage servers addresses and mount points.
+    See **[table of storages](../../computing/storages)** for storage servers addresses and mount points.
 
 Example:
 
@@ -245,5 +245,5 @@ or
 
 For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk.
 
-For more detail, follow the tutorial on [how to mount storages on local station](/computing/mount-storages).
+For more detail, follow the tutorial on [how to mount storages on local station](../../computing/mount-storages).
 

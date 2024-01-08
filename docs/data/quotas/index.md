@@ -110,7 +110,7 @@ If the data is not junk, pack them them into larger chunks using the `tar` comma
 
 If you have enough space on your storage directories, you can keep the packed data there. However we encourage users to [archive](#data-archiving) any finished-project data of permanent value.
 
-If you for some reason need to shift some of your quotas, [contact us](/contact).
+If you for some reason need to shift some of your quotas, [contact us](../../contact).
 
 ### Archive the data
 
@@ -174,7 +174,7 @@ or redirect them to a file in your scratch directory
 
 If you redirect to `/dev/null`, the data will be dumped and there is no way to get them back later. The second way will make possible to inspect the files after your calculation is done.
 
-The above mentioned causes are the most common ones. Your filesystem quota can be exceeded also in other ways. If you are not sure what caused the problem and how to prevent the situation to happen again, feel free to [contact us](/contact).
+The above mentioned causes are the most common ones. Your filesystem quota can be exceeded also in other ways. If you are not sure what caused the problem and how to prevent the situation to happen again, feel free to [contact us](../../contact).
 
 
 
