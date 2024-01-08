@@ -57,7 +57,7 @@ Interactive jobs are good for:
 - compiling your own software
 - processing, moving or archiving large amount of data
 
-Interactive jobs are **necessary** for [running GUI application](/software/graphical-access/).
+Interactive jobs are **necessary** for [running GUI application](../../software/graphical-access/).
 
 ## Batch job example
 
@@ -201,7 +201,7 @@ The letter under the header 'S' (status) gives the status of the job. The most c
 - F – finished
 - M – moved to another PBS server
 
-To learn more about how to track running job and how to retrieve job history, see [Job tracking page](/computing/job-tracking).
+To learn more about how to track running job and how to retrieve job history, see [Job tracking page](../../computing/job-tracking).
 
 ## Output files
 
@@ -255,7 +255,7 @@ You can get the exit status by typing
     Exit_status = 271
 
 !!! warning "For older jobs, use pbs-get-job-history"
-    The `qstat -x -f` works only for recently finished jobs (last 24 hours). For For older jobs, use the `pbs-get-job-history` utility - see [advanced chapter on getting info about older jobs](/computing/finished-jobs/#older).
+    The `qstat -x -f` works only for recently finished jobs (last 24 hours). For For older jobs, use the `pbs-get-job-history` utility - see [advanced chapter on getting info about older jobs](../../computing/finished-jobs/#older).
 
 Alternatively, you can navigate to [your list of jobs in PBSmon](https://metavo.metacentrum.cz/pbsmon2/jobs/detail), go to tab "Jobs" and choose a particular finished job from the list.
 
