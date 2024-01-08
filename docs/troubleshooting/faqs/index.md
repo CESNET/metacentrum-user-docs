@@ -37,7 +37,7 @@
     - also check for IP ban
 -->
 
-- [The frontend I am trying to log on does not respond](/troubleshooting/faqs/faqs-content/frontend-does-not-respond)
+- [The frontend I am trying to log on does not respond](../../troubleshooting/faqs/faqs-content/frontend-does-not-respond)
 
 <!--
 -[]()
@@ -77,9 +77,9 @@
     - howto where to reapply
 -->
 
-- [I get "No Kerberos credentials found" error after submitting the script](/troubleshooting/faqs/faqs-content/no-kerb-credenials)
+- [I get "No Kerberos credentials found" error after submitting the script](../../troubleshooting/faqs/faqs-content/no-kerb-credenials)
 
-- [I cannot access storage directories despite being logged in on a frontend](/troubleshooting/faqs/faqs-content/no-access-to-storages)
+- [I cannot access storage directories despite being logged in on a frontend](../../troubleshooting/faqs/faqs-content/no-access-to-storages)
 
 ## Computing
 
@@ -101,7 +101,7 @@
     - how to list all jobs
     - is there some short command to do this without needing to list all PBS servers
 -->
-- [Running job mysteriously disappeared from qstat -u command](/troubleshooting/faqs/faqs-content/qstat-moved-jobs)
+- [Running job mysteriously disappeared from qstat -u command](../../troubleshooting/faqs/faqs-content/qstat-moved-jobs)
 
 <!--
 -[]()
@@ -130,7 +130,7 @@
     - how can users prolong their jobs 
     - what to edo if they run out of their quota
 -->
-- [My running job is coming close to walltime, can I prolong it?](/troubleshooting/faqs/faqs-content/prolong-walltime)
+- [My running job is coming close to walltime, can I prolong it?](../../troubleshooting/faqs/faqs-content/prolong-walltime)
 
 <!--
 -[]()
@@ -140,7 +140,7 @@
     - setup TMPDIR (TMP), SINGULARITY CACHEDIR to SCRATCHDIR
 -->
 
-- [I get "permission denied" when I try to clean up scratch directory](/troubleshooting/faqs/faqs-content/clean-scratch-perm-denied)
+- [I get "permission denied" when I try to clean up scratch directory](../../troubleshooting/faqs/faqs-content/clean-scratch-perm-denied)
 
 <!--
 -[]()
@@ -151,15 +151,15 @@
 
 -->
 
-- [Is there any tool to help me setup syntactically correct `qsub` command?](/troubleshooting/faqs/faqs-content/qsub-assembler)
+- [Is there any tool to help me setup syntactically correct `qsub` command?](../../troubleshooting/faqs/faqs-content/qsub-assembler)
 
-- [I get an error "^M: command not found" or "$'\r': command not found" after submitting a script](/troubleshooting/faqs/faqs-content/os-dependent-endlines)
+- [I get an error "^M: command not found" or "$'\r': command not found" after submitting a script](../../troubleshooting/faqs/faqs-content/os-dependent-endlines)
 
-- [qdel command does not delete a job](/troubleshooting/faqs/faqs-content/force-qdel)
+- [qdel command does not delete a job](../../troubleshooting/faqs/faqs-content/force-qdel)
 
-- [What are the default parameters in qsub command?](/troubleshooting/faqs/faqs-content/qsub-default-parameters)
+- [What are the default parameters in qsub command?](../../troubleshooting/faqs/faqs-content/qsub-default-parameters)
 
-- [My jobs are in the "M" state. What does it mean?](/troubleshooting/faqs/faqs-content/moved-state-jobs)
+- [My jobs are in the "M" state. What does it mean?](../../troubleshooting/faqs/faqs-content/moved-state-jobs)
 
 <!--
 -[]()
@@ -177,7 +177,7 @@
 
 ## Managed computing services
 
-- [What are Managed computing services, do I need a special login?](/troubleshooting/faqs/faqs-content/managed-services-access)
+- [What are Managed computing services, do I need a special login?](../../troubleshooting/faqs/faqs-content/managed-services-access)
 
 <!--
 -[]()
@@ -207,17 +207,17 @@
     - explain somehow to users why this is so
 -->
 
-- [I want to use NVIDIA DGX H100 hardware, what do I need to do?](/troubleshooting/faqs/faqs-content/dgx-usage)
+- [I want to use NVIDIA DGX H100 hardware, what do I need to do?](../../troubleshooting/faqs/faqs-content/dgx-usage)
 
 ## Data
 
-- [I accidentally deleted a file/directory on storage, can I retrieve it?](/troubleshooting/faqs/faqs-content/accident-deleted-file)
+- [I accidentally deleted a file/directory on storage, can I retrieve it?](../../troubleshooting/faqs/faqs-content/accident-deleted-file)
 
-- [Are SCRATCHDIR directories backed up somewhere?](/troubleshooting/faqs/faqs-content/scratchdir-backup)
+- [Are SCRATCHDIR directories backed up somewhere?](../../troubleshooting/faqs/faqs-content/scratchdir-backup)
 
-- [How reliable/strong is the is backup policy on storages?](/troubleshooting/faqs/faqs-content/storage-backup-policy)
+- [How reliable/strong is the is backup policy on storages?](../../troubleshooting/faqs/faqs-content/storage-backup-policy)
 
-- [Where should I keep my longterm data?](/troubleshooting/faqs/faqs-content/where-keep-data)
+- [Where should I keep my longterm data?](../../troubleshooting/faqs/faqs-content/where-keep-data)
 
 <!--
 -[]()
@@ -225,13 +225,13 @@
     - how to do this effectively
 -->
 
-- [I need more space on storage(s), can I get it?](/troubleshooting/faqs/faqs-content/more-space-storage)
+- [I need more space on storage(s), can I get it?](../../troubleshooting/faqs/faqs-content/more-space-storage)
 
 ## Software
 
-- [Where can I find list of all installed software?](/troubleshooting/faqs/faqs-content/list-all-sw)
+- [Where can I find list of all installed software?](../../troubleshooting/faqs/faqs-content/list-all-sw)
 
-- [There are several version of one software, which one shall I use?](/troubleshooting/faqs/faqs-content/sw-which-version)
+- [There are several version of one software, which one shall I use?](../../troubleshooting/faqs/faqs-content/sw-which-version)
 
 <!--
 -[]()
