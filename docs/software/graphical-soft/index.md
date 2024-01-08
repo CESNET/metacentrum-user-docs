@@ -6,7 +6,7 @@ Currently these options are:
 
 - **X-window** - low-level solution using only system tools (described here),
 - **`gui` module** - usage of specific module designed to run graphical jobs (described here), 
-- **OnDemand** - more complex browser-based service (described on [separate page about OnDemand](/advanced/ondemand)).
+- **OnDemand** - more complex browser-based service (described on [separate page about OnDemand](../../advanced/ondemand)).
 
 ## gui module - quick start
 

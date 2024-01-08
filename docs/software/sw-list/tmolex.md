@@ -2,7 +2,7 @@
 
     module avail tmolex/
 
-[TmoleX](https://www.turbomole.org/wp-content/uploads/2019/10/Tutorial-tmolex-4-4.pdf) is a graphical user interface to quickly handle [Turbomole](/software/sw-list/turbomole) calculations.
+[TmoleX](https://www.turbomole.org/wp-content/uploads/2019/10/Tutorial-tmolex-4-4.pdf) is a graphical user interface to quickly handle [Turbomole](../../software/sw-list/turbomole) calculations.
 
 While quantum chemistry suites have traditionally been developed for a command line or script based use, TmoleX allows you to do quantum chemistry after a few minutes of introduction. It is the perfect tool for occasional Turbomole use.
 
@@ -10,11 +10,11 @@ While quantum chemistry suites have traditionally been developed for a command l
 
 ### Open graphical interface
 
-To get GUI connection, we recommend to open [OnDemand](/software/ondemand/) --> Interactive Apps --> MetaCentrum Desktop.
+To get GUI connection, we recommend to open [OnDemand](../../software/ondemand/) --> Interactive Apps --> MetaCentrum Desktop.
 
 On the desktop, click on the Xterm icon and load a chosen TmoleX module. According to version, type the name of the binary file (see below) to launch TmoleX.
 
-To get a broader overview of GUI possibilities, view the [Graphical access](/software/graphical-access/) page.
+To get a broader overview of GUI possibilities, view the [Graphical access](../../software/graphical-access/) page.
 
 ### TmoleX binaries
 

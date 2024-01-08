@@ -8,6 +8,6 @@
 
 You may utilize additional Python libraries and modules, see:
 
-- [Python modules](/software/sw-list/python-modules)
-- [PyTorch](/software/sw-list/pytorch)
+- [Python modules](../../software/sw-list/python-modules)
+- [PyTorch](../../software/sw-list/pytorch)
 

@@ -12,13 +12,13 @@ Another option is to use [Kubernetes service](https://docs.cerit.io/), which off
 
 ## Remote desktop 
 
-Using [Remote desktop](/advanced/run-graphical), AlphaFold can be also run from a [Singularity](/advanced/containers) image.
+Using [Remote desktop](../../advanced/run-graphical), AlphaFold can be also run from a [Singularity](../../advanced/containers) image.
 
 This option is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service are down.
 
 This package provides an implementation of the inference pipeline of AlphaFold v2.1.1 This is a completely new model that was entered in CASP14 and published in Nature. For simplicity, we refer to this model as AlphaFold throughout the rest of this document. 
 
-Application is prepared as [Singularity](/advanced/containers) image. The image, together with databases and example scripts are available at
+Application is prepared as [Singularity](../../advanced/containers) image. The image, together with databases and example scripts are available at
 
     /storage/brno11-elixir/projects/alphafold 
 

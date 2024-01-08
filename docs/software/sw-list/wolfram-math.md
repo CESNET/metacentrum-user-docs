@@ -8,7 +8,7 @@
 ## Usage
 
 !!! note
-    To enable computational-intensive computations within Mathematica, one can make use of its parallel/distributed extension called GridMathematica -- see details at [GridMathematica](/software/sw-list/gridmathematica) documentation.
+    To enable computational-intensive computations within Mathematica, one can make use of its parallel/distributed extension called GridMathematica -- see details at [GridMathematica](../../software/sw-list/gridmathematica) documentation.
 
 ### Licences
 
@@ -43,7 +43,7 @@ $ Mathematica   # GUI version
 $ math          # command-line version
 ```
 
-Note: To enable computational-intensive computations within Mathematica, one can make use of its parallel/distributed extension called GridMathematica -- see details at [GridMathematica page](/software/sw-list/gridmathematica/).
+Note: To enable computational-intensive computations within Mathematica, one can make use of its parallel/distributed extension called GridMathematica -- see details at [GridMathematica page](../../software/sw-list/gridmathematica/).
 
 Example of interactive use:
 

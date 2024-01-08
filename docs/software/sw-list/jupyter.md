@@ -8,7 +8,7 @@ Jupyter notebook can be run in a browser as [OnDemand service](https://ondemand.
 
 ## Jupyter notebook instance on cloud
 
-Metacentrum run its own instance of Jupyter notebook servers on cloud. To use this option, proceed as described [in this tutorial](/related/jupyter).
+Metacentrum run its own instance of Jupyter notebook servers on cloud. To use this option, proceed as described [in this tutorial](../../related/jupyter).
 
 ## Kubernetes
 

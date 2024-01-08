@@ -4,12 +4,12 @@ There are thousands of packages installed at MetaCentrum. The list of selected s
 
 In general, when searching for an application, you should checklist the following:
 
-1. Look at the list of selected software either [sorted alphabetically](/software/alphabet/) or [by field of interest](/software/sw-list/amber).
+1. Look at the list of selected software either [sorted alphabetically](../../software/alphabet/) or [by field of interest](../../software/sw-list/amber).
 2. Use `module avail` command as described [on this page](#modules).
 3. Go through software prepared as [containers](#containers).
 
 !!! tip 
-    No luck? The consult [how to install new (version of) software](/software/install-software) either locally or system-wide.
+    No luck? The consult [how to install new (version of) software](../../software/install-software) either locally or system-wide.
 
 ## Modules
 
@@ -85,9 +85,9 @@ You can list them at
 
     ls /cvmfs/singularity.metacentrum.cz/
 
-For instructions on container usage, see [the containers chapter](/software/containers).
+For instructions on container usage, see [the containers chapter](../../software/containers).
 
 ## Services
 
-There are a number of [services closely connected to MetaCentrum](/related/galaxy) which may offer the software you need, too.
+There are a number of [services closely connected to MetaCentrum](../../related/galaxy) which may offer the software you need, too.
 

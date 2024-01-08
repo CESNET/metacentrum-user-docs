@@ -10,5 +10,5 @@ You can run the application by typing `PartitionFinder.py` instead of python `Pa
 
 To see other parameters of PartitionFinder type `PartitionFinder.py --help`. In the same manner you can run `choooseK.py`. 
 
-If you would like to run `distruct.py` you have to [use graphical environment](/software/graphical-access).
+If you would like to run `distruct.py` you have to [use graphical environment](../../software/graphical-access).
 

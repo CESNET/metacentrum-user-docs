@@ -10,7 +10,7 @@
 
 The program is available just for non-commercial use:
 
-- [Turbomole End User License Agreement](/img/turbomole-enduser-license.pdf)  
+- [Turbomole End User License Agreement](../../img/turbomole-enduser-license.pdf)  
 - before using the program, you first need to [accept its licence](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_turbomole)
 
 Versions 5.6, 6.0, 6.4, 6.5, 7.1, 7.4, 7.5 and 7.6. The TURBOMOLE is available in the following versions:
@@ -41,5 +41,5 @@ where instead of `PROCS` specify number of processors ( e.g. `$PBS_RESC_TOTAL_PR
 
 ### Graphical interface (TmoleX)
 
-There is also a graphical interface to Turbomole installed in MetaCentrum - see [TmoleX](/software/sw-list/tmolex).
+There is also a graphical interface to Turbomole installed in MetaCentrum - see [TmoleX](../../software/sw-list/tmolex).
 

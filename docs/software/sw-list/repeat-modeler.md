@@ -12,4 +12,4 @@ To be able to use Repeat Modeler, you have to [accept Repeat Masker licence](htt
 
 ### Newer versions
 
-RepeatModeler version 2.0.2 (and newer) is available via [TE Tools package](/software/sw-list/tetools).
+RepeatModeler version 2.0.2 (and newer) is available via [TE Tools package](../../software/sw-list/tetools).

@@ -14,7 +14,7 @@ Another option is to use [Kubernetes service](https://docs.cerit.io/), which off
 
 ## Module 
 
-Although this application can be used in text-only mode, in most use cases you will need graphical interface. We recommend to use [remote desktop](/advanced/run-graphical). 
+Although this application can be used in text-only mode, in most use cases you will need graphical interface. We recommend to use [remote desktop](../../advanced/run-graphical). 
 
 Running ANSYS from a module is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service cannot fulfill the user's requirements.
 
@@ -22,7 +22,7 @@ Running ANSYS from a module is recommended to advanced users or as a fallback op
 
     module avail ansys/
 
-For a detailed description of module ANSYS usage see [this page](/software/available-soft/sw-list/ansys).
+For a detailed description of module ANSYS usage see [this page](../../software/available-soft/sw-list/ansys).
 
 ### License
 

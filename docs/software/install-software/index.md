@@ -201,18 +201,18 @@ python
 ### Conda packages
 
 !!! tip
-    Some of the most popular Conda packages may be already installed system-wide - see [`conda-modules` page](/software/sw-list/conda-modules).
+    Some of the most popular Conda packages may be already installed system-wide - see [`conda-modules` page](../../software/sw-list/conda-modules).
 
 **Conda package installers: Conda, Mamba, Micromamba**
 
-[Conda](https://conda.io), avalable through [`conda-modules/` module](/software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
+[Conda](https://conda.io), avalable through [`conda-modules/` module](../../software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
 
 [Mamba](https://anaconda.org/conda-forge/mamba), available through `mambaforge` module, is a package manager and environment manager that is designed to be a faster and more efficient drop-in replacement for Conda. Both Conda and Mamba are closely related, as Mamba was developed as an open-source project to address some of the performance limitations of Conda.
 
 [Micromamba](https://anaconda.org/conda-forge/micromamba), available through `micromamba` module, is a lightweight and resource-efficient alternative to Mamba. Mamba, while faster than Conda, is still a relatively large application. In contrast, Micromamba is built to be more minimalistic and efficient, making it a suitable choice for resource-constrained environments, such as embedded systems or containers.
 
 !!! tip
-    We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments - see [example of Conda packages install by Mamba](/software/install-software/#conda-packages_1). 
+    We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments - see [example of Conda packages install by Mamba](../../software/install-software/#conda-packages_1). 
 
 *Example: Install package [segemehl](https://anaconda.org/bioconda/segemehl) from Conda repository.*
     
@@ -239,7 +239,7 @@ Apptainer (Singularity) images can be deployed and run directly on MetaCentrum m
 
 If your software is released as Docker container, you have more option.
 
-- **Apptainer** (former Singularity) **image** can be run in MetaCentrum directly, see [Singularity howto](/software/containers).
-- **Docker images** must be translated into an Apptainer image and run [as described in this chapter](/software/containers/#docker-usage).
+- **Apptainer** (former Singularity) **image** can be run in MetaCentrum directly, see [Singularity howto](../../software/containers).
+- **Docker images** must be translated into an Apptainer image and run [as described in this chapter](../../software/containers/#docker-usage).
 - Docker images can be run also via Kubernetes service. See [Kubernetes](https://docs.e-infra.cz/compute/containers/) for instruction.
 

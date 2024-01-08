@@ -18,7 +18,7 @@ Another option is to use [Kubernetes service](https://docs.cerit.io/), which off
 
 ### Module 
 
-Although this application can be used in text-only mode, in most use cases you will need graphical interface. We recommend to use [remote desktop](/software/graphical-access). 
+Although this application can be used in text-only mode, in most use cases you will need graphical interface. We recommend to use [remote desktop](../../software/graphical-access). 
 
 Running ANSYS from a module is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service cannot fulfill the user's requirements.
 

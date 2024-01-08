@@ -2,7 +2,7 @@
 
     module avail gridmathematica/
 
-[GridMathematica](https://www.wolfram.com/gridmathematica/) is an integrated extension system for increasing the power of your [Mathematica](/software/sw-list/wolfram-math) licenses. Each gridMathematica Server gives Mathematica users a shared pool of 16 additional network-enabled Mathematica computation kernels for running distributed parallel computations over multiple CPUs.
+[GridMathematica](https://www.wolfram.com/gridmathematica/) is an integrated extension system for increasing the power of your [Mathematica](../../software/sw-list/wolfram-math) licenses. Each gridMathematica Server gives Mathematica users a shared pool of 16 additional network-enabled Mathematica computation kernels for running distributed parallel computations over multiple CPUs.
 
 There is no need to change your existing parallel code—just make gridMathematica Server available, and parallel programs can automatically use the additional CPU power. 
 
