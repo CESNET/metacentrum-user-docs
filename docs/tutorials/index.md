@@ -13,3 +13,7 @@ This section collects various presentation, user seminars, videos and other tuto
 
 - [Video on running Matlab graphically, 2021](https://www.youtube.com/watch?v=wT-9Dc9lbbg)
 
+## Hands-on
+
+- [MetaCentrum hand-on repository on Github](https://github.com/anezka-melounova/metacentrum-hands-on/tree/main)
+
