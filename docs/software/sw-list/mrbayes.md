@@ -81,7 +81,7 @@ Lines at the and (`sump` and `sumt`) are mostly necessary for 3.2 version, becau
 
 ### Usage with Parallel
 
-If you need to run more MrBayes runs in parallel (for example for more genes separately), one of possibilities is use of [Parallel](../../software/sw-list/parallel), which is library allowing user to launch more parallel processes on more CPU cores or computers. Basic use can look like this:
+If you need to run more MrBayes runs in parallel (for example for more genes separately), one of possibilities is use of [Parallel](../../software/sw-list/parallel.md), which is library allowing user to launch more parallel processes on more CPU cores or computers. Basic use can look like this:
 
 ```
 module add parallel

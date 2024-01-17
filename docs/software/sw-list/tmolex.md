@@ -2,7 +2,7 @@
 
     module avail tmolex/
 
-[TmoleX](https://www.turbomole.org/wp-content/uploads/2019/10/Tutorial-tmolex-4-4.pdf) is a graphical user interface to quickly handle [Turbomole](../../software/sw-list/turbomole) calculations.
+[TmoleX](https://www.turbomole.org/wp-content/uploads/2019/10/Tutorial-tmolex-4-4.pdf) is a graphical user interface to quickly handle [Turbomole](../../software/sw-list/turbomole.md) calculations.
 
 While quantum chemistry suites have traditionally been developed for a command line or script based use, TmoleX allows you to do quantum chemistry after a few minutes of introduction. It is the perfect tool for occasional Turbomole use.
 

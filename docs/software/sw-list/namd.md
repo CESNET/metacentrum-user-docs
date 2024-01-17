@@ -23,6 +23,6 @@ It's good to use less nodes with many cores for a good performance.
 
 ### NAMD + Orca
 
-For use NAMD with the support of Orca just directly add the path to orca binary to the configuration file and avoid using 'modoule add orca-4.2.1' as this is done automatically via the wrapper script. For details see the [Orca page](../../software/sw-list/orca).
+For use NAMD with the support of Orca just directly add the path to orca binary to the configuration file and avoid using 'modoule add orca-4.2.1' as this is done automatically via the wrapper script. For details see the [Orca page](../../software/sw-list/orca.md).
 
 For effective run of NAMD + Orca QMMM combination it is necessary to run `namd2` a bit differently: namd2 releases only one processor while running the QM program so the job should have `(namdproc+qmgroups*(orcaprocs-1))` processors in common. Where `orcaprocs` is set by `qmConfigLine "%%pal nprocs XY end"` and `namd2` should be run without `+setcpuaffinity`. 

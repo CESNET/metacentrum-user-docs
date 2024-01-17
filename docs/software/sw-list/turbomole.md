@@ -41,5 +41,5 @@ where instead of `PROCS` specify number of processors ( e.g. `$PBS_RESC_TOTAL_PR
 
 ### Graphical interface (TmoleX)
 
-There is also a graphical interface to Turbomole installed in MetaCentrum - see [TmoleX](../../software/sw-list/tmolex).
+There is also a graphical interface to Turbomole installed in MetaCentrum - see [TmoleX](../../software/sw-list/tmolex.md).
 

@@ -265,7 +265,7 @@ MetaParPool('close');       % closing the parallel pool
 
 If there is a need to run multiple instances of Matlab simultaneously, users are strongly encouraged to run them on as few nodes as possible. Matlab takes one licence per user per node, regardless of number of Matlab instances running there. For example, you can run 64 instances of Matlab on one node while using only 1 licence.
 
-An easy way to group Matlab instances offers [`parallel` command](../../software/sw-list/parallel).
+An easy way to group Matlab instances offers [`parallel` command](../../software/sw-list/parallel.md).
 
 The `parallel` command is particularly useful for distributing Matlab tasks across available CPUs effectively. 
 
