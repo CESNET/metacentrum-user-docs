@@ -39,7 +39,7 @@ The backup policy on storages offers some protection in case **user unintentiona
 
 The snapshots are stored, however, on the same disk arrays as the data, so **in case of hardware failure these backups will be lost**. 
 
-## Storage Department data policy
+## Storage Department data policy 
 
 !!! info "Data archiving and backup is not MetaCentrum service"
     From within MetaCentrum frontend, users can **ssh**/**scp** to Storage Department infrastructure. Information in this section is a rough overview of data services provided by Cesnet Storage Department. In case of problems/questions, we recommend to [contact Cesnet Storage Department](https://du.cesnet.cz/en/o_nas/start).
@@ -75,5 +75,45 @@ Underlying infrastructure in Storage Department are **servers with hierarchical 
 - Use this option to archive data you want to keep "forever".
 - The directory has user quota set for volume of data and/or number of files.
 - The data are not removed after a time (they do not "expire").
+
+## Storage Department object storage
+
+!!! warning 
+    This section is under construction.
+
+
+What is object storage:
+
+https://du.cesnet.cz/en/navody/object_storage/start
+
+### Access
+
+- describe the process together with screenshots
+
+### Clients
+
+- there are more clients - link to https://du.cesnet.cz/en/navody/object_storage/cesnet_s3/start
+- since we consider working from a (Linux) frontend, here we give 2 examples
+
+#### s3cmd 
+
+`/storage/brno2/home/melounova/.s3cfg` 
+
+#### aws 
+
+
+`/storage/brno2/home/melounova/.aws/credentials`
+
+
+
+
+
+
+
+
+
+
+
+
 
 
