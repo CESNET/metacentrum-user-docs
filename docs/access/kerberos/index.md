@@ -29,7 +29,7 @@ Copy up-to-date Kerberos's config file from any frontend. For example:
     sudo scp user123@skirit.ics.muni.cz:/etc/krb5.conf /etc/
 
 !!! note
-    MacOS version < 10.3 users: The location of the configuration file is different than the traditional Linux location. Instead of `/etc/krb5.conf`, the Kerberos configuration file is located in `/Library/Preferences/edu.mit.kerberos`, which follows more closely the naming conventions in Mac OS X.
+    MacOS users: The location of the configuration file is different than the traditional Linux location. Instead of `/etc/krb5.conf`, the Kerberos configuration file is located in `/Library/Preferences/edu.mit.kerberos`, which follows more closely the naming conventions in Mac OS X.
 
 ### Configure SSH
 
