@@ -4,7 +4,7 @@
 
 ## Usage
 
-Available through [https://chipster.metacentrum.cz/](https://chipster.metacentrum.cz/) (login by MetaCentrum account click on Login via Cesnet OIDC) 
+Available through [https://chipster.metacentrum.cz/](https://chipster.metacentrum.cz/).
 
 !!! todo
     Chipster is currently being transferred to Kubernetes.
