@@ -142,6 +142,7 @@ nav:
   - Tutorials: tutorials/index.md
   - 'Related projects': 
     - related/galaxy/index.md
+    - related/chipster/index.md
     - related/kubernetes/index.md
     - 'CollGS': 
       - related/collgs/index.md
