@@ -19,11 +19,35 @@
 
 
 
-
-
-
 <!--
-/data/data-sharing/
+Nove rozdeleni casti Data
+=========================
+
+Commands for data handling
+  -- nejdriv obecne jak to jde pres frontend
+  -- potom seznam prikazu s priklady
+
+
+Direct access to storages
+  -- co tam muzou delat
+  -- link na mount storrages locally
+
+Large data handling
+
+Data sharing
+
+Quotas
+
+Filesender
+
+Data backup on MetaCentrum
+  -- backup policies on out storages
+  -- for serious backup use Storage Department
+
+Storage Department services
+  -- tape storage
+  -- object storage
+
 -->
 
 
