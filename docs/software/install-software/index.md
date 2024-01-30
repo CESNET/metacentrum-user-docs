@@ -141,6 +141,37 @@ and load the package
 
     >library(PACKAGE_NAME)
 
+### Debian packages
+
+Users can install **debian packages (.deb)** locally (in the user's home directory) without the root privileges. 
+
+Sometimes it is fastest solution to get one particular library required by a particular application.
+
+!!! warnings
+    Users cannot use `apt-get install`, `apt install` directly. They can, however, use `apt search`, `apt-get download` and then install the package locally by `dpkg` command. 
+
+Obtain the package:
+
+    # some packages can be found by apt search directly
+    apt search libargtable2-0       
+    apt-get download libargtable2-0
+  
+    # not all .deb packages may be available in repo
+    apt search libicu63      # returns nothing
+
+    # however the package is available in http://ftp.cz.debian.org/debian/pool/main/i/icu/
+    wget http://ftp.cz.debian.org/debian/pool/main/i/icu/libicu63_63.1-6+deb10u3_amd64.deb
+
+Install the .deb package:
+
+    mkdir extract_dir
+    dpkg -x libargtable2-0_12-1.1_amd64.deb extract_dir
+    
+Add path to new bin/library to `PATH`/`LD_LIBRARY_PATH`: 
+
+    export LD_LIBRARY_PATH=storage/cityN/home/user123/extract_dir/lib/:$LD_LIBRARY_PATH
+    export PATH=/storage/cityN/home/user123/extract_dir/bin/:$PATH
+
 ### Python packages
 
 *Example: install software package "spektral".*
