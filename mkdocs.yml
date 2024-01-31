@@ -88,11 +88,14 @@ nav:
     - computing/parallel-comput/index.md
   - Data:
     - data/index.md
-    - data/data-within/index.md
+    - data/useful-commands/index.md
+    - data/large-data/index.md      
+    - data/direct-access-storages/index.md
     - data/data-sharing/index.md
-    - data/data-outside/index.md
-    - data/backup-archive/index.md
     - data/quotas/index.md
+    - data/filesender/index.md
+    - data/metacentrum-backup/index.md
+    - data/storage-department/index.md
   - Software:
     - software/index.md
     - software/alphabet/index.md
