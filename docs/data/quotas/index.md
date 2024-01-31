@@ -71,23 +71,23 @@ Onde you have the result file, you can open the `ncdu2` pseudo-graphical interfa
 
 You will see something like the following. 
 
-![pic](ncdu2-default-view.png)
+![pic](../../data/quotas/ncdu2-default-view.png)
 
 By pressing `?` the help will be displayed.
 
-![pic](ncdu2-help.png)
+![pic](../../data/quotas/ncdu2-help.png)
 
 ### List by size
 
 If you need to locate where most of the volume resides, press `s`.
 
-![pic](ncdu2-list-by-size.png)
+![pic](../../data/quotas/ncdu2-list-by-size.png)
 
 ### List by number of files
 
 If you need to locate directories with large number of files, press `c`, then `C`.
 
-![pic](ncdu2-list-by-nfiles.png)
+![pic](../../data/quotas/ncdu2-list-by-nfiles.png)
 
 ## When you exceed a quota 
 
