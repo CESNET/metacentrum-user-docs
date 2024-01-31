@@ -43,7 +43,7 @@ The  following lines have to be added to the configuration file:
 # Kerberos access (Metacentrum)
 GSSAPIAuthentication yes
 GSSAPIDelegateCredentials yes
-GSSAPIKeyExchange yes
+GSSAPIKeyExchange yes         # MacOS users: leave out this line!
 ```
 
 You can also make the change of SSH client configuration in a file `/etc/ssh/ssh_config`, it affects settings of all users on your system.
