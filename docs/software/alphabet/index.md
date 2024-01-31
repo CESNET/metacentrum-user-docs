@@ -140,7 +140,6 @@
 
 **S**
 
-- [Singularity](../../software/sw-list/singularity)
 - [SPAdes](../../software/sw-list/spades)
 - [SRA toolkit](../../software/sw-list/sra-toolkit)
 - [STAR](../../software/sw-list/star)
