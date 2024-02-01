@@ -1,4 +1,4 @@
-# Data sharing among users
+# Data sharing
 
 Sometimes two or more MetaCentrum users need to work on the same files and directories.
 
