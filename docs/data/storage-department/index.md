@@ -1,6 +1,10 @@
-# Storage department services
+# Storage Department services
 
-## Storage Department data policy 
+The CESNET Storage Department provides a backup and archiving service. It is available to all users with **MetaCentrum login and password**.
+
+Storage Department data policies will be described to a certain level at this page. For more detailed information, users should however navigate the [Storage Department documentation pages](https://du.cesnet.cz/en/start).
+
+## Tape storage
 
 !!! info "Data archiving and backup is not MetaCentrum service"
     From within MetaCentrum frontend, users can **ssh**/**scp** to Storage Department infrastructure. Information in this section is a rough overview of data services provided by Cesnet Storage Department. In case of problems/questions, we recommend to [contact Cesnet Storage Department](https://du.cesnet.cz/en/o_nas/start).
@@ -37,7 +41,7 @@ Underlying infrastructure in Storage Department are **servers with hierarchical 
 - The directory has user quota set for volume of data and/or number of files.
 - The data are not removed after a time (they do not "expire").
 
-## Storage Department object storage
+## Object storage
 
 !!! warning 
     This section is under construction.

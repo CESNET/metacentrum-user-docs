@@ -1,6 +1,10 @@
 # Direct access to storages
 
-### ssh protocol
+Accessing the storages directly is not as straightforward as accessing the frontends. Due to operational reasons only a selection of commands is allowed.
+
+This chapter will give you some insight into direct data manipulation on storages.
+
+## ssh protocol
 
 Selected commands for data manipulation directly at the storage server can be run through `ssh`.
 
@@ -39,7 +43,7 @@ or
 
     ssh USERNAME@storage-brno6.metacentrum.cz ls -l /home/USERNAME
 
-### Mount storages locally
+## Mount storages locally
 
 For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk.
 
