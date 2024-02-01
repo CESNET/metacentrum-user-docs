@@ -11,7 +11,7 @@ As a rule of thumb,
 
 ## Moderate data handling
 
-Moderate amount of data can be transferred to/from MetaCentrum machines in a straightforward way through the frontend.
+A default way to manipulate moderate data is to work through the frontend.
 
 Example:
 
@@ -24,11 +24,9 @@ Example:
 
 ## Large data handling
 
-!!! warning 
-    Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
+In the case of large data, the frontend should be left out of the process.
 
-!!! tip
-    See **[table of storages](../../computing/storages)** for storage servers addresses and mount points.
+### Move data to/from a storage
 
 Example:
 
@@ -37,6 +35,12 @@ Example:
 The overall scheme can be depicted as below:
 
 ![pic](../../data/large-data/cp-data-directly-storage.jpg)
+
+!!! warning 
+    Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
+
+!!! tip
+    See **[table of storages](../../computing/storages)** for storage servers addresses and mount points.
 
 !!! note 
     In general: the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.
@@ -48,9 +52,9 @@ The overall scheme can be depicted as below:
 - keep in mind that the master HOME directory of each HSM storage is dedicated just for initialization scripts, and thus has a limited quota of just 50 MB.
 
 
-**Move data between storages**
+### Move data between storages
 
-**Using scp**
+#### scp
 
 If you want to move large amount of data between storages, the setup is similar as in the case when you copy data between your PC and a storage. The only difference is the you cannot access storages interactively and therefore the scp command has to be passed as an argument to `ssh` command.
 
@@ -75,7 +79,7 @@ ssh storage-plzen1 "scp foo storage-brno6:~/../fsbrno2/home/USERNAME/"
 
 and submit it as `qsub copy_files.sh`.
 
-**Using rsync**
+#### rsync
 
 Another option how to pass data between storages is to use `rsync` command.
 

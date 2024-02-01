@@ -1,15 +1,13 @@
 # Useful commands 
 
-## Data manipulation commands
-
-### `scp`
+## `scp`
 
 scp works in pretty much the same way as normal `cp`, only it allows you to copy files between different machines.
 
     user123@home_PC:~$ scp -r my_dir user123@skirit.metacentrum.cz: # copy directory "my_dir" from user's PC to a home directory on skirit
     user123@home_PC:~$ scp -r user123@skirit.metacentrum.cz:~/results . # from user123's home on skirit, copy to user123's PC folder "results" 
 
-### `wget`
+## `wget`
 
 Alternative way to download data is a `wget` command. `wget` will work only if the **file is available via ftp or http(s) protocols**, typically when it is a downloadable file on some server. `wget` is faster and less safe than `scp`, so it may be a method of choice if you need to download larger amount of data from a server where privacy is not an issue.
 
@@ -21,7 +19,7 @@ Using `wget` you can only transfer data **to** Metacentrum machines.
 
 `wget` is of no use if you want to transfer **from** Metacentrum.
 
-### `sftp`
+## `sftp`
 
 sftp is just another protocol for data transfer. Contrary to `scp` it is **interactive** and apart from copying it also enables the user to manipulate files and directories on the remote side. We recommend to use `scp` if you need only to copy the data.
 
@@ -40,7 +38,7 @@ sftp is just another protocol for data transfer. Contrary to `scp` it is **inter
 
 ![SFTP screenshot bug](../../data/useful-commands/sftp-bug.png)
 
-### `rsync`
+## `rsync`
 
 The `rsync` command is a more advanced and versatile copying tool. It enables the user to synchronize the content of two directories in a more efficient way than scp, because `rsync` copies only the differences between the directories. Therefore it is often used as a tool for regular backups.
 
@@ -54,7 +52,7 @@ Copy only the content of directory data to archive:
 
     $ rsync -zvh /storage/brno2/home/user123/data/ /storage/du-cesnet/home/user123/VO_metacentrum-tape_tape
 
-### `tar`
+## `tar`
 
 `tar` (tape archiver) command enables to pack files and directories into one archive file. `tar` by itself does not compress the size of the files, and the resulting volume of the packed archive is roughly the same as the sum of the volumes of individual files.
 
@@ -85,5 +83,4 @@ Unpack *part* of the archive:
     tar xzvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz "PATH1/file1" "PATH2/dir2"
 
 There are many other options to customize the tar command. For the full description, read manual pages (`man tar`). 
-
 
