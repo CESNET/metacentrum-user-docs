@@ -6,6 +6,10 @@
 
 These libraries provide optimized functions and algorithms that leverage the parallel processing power of GPUs for various computational tasks. 
 
+## License
+
+To use Cuda, you will also need to [accept license for cuDNN library](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_cudnn). 
+
 ## Usage
 
 ### GPU clusters
@@ -52,7 +56,7 @@ Interactive job requests 1 machine, 1 CPU and 1 GPU card for 24 hours.
 
 A: IDs of GPU cards are stored in `CUDA_VISIBLE_DEVICES` variable. These IDs are mapped to CUDA tools virtual IDs. Though if `CUDA_VISIBLE_DEVICES` contains value 2, 3 then CUDA tools will report IDs 0, 1.
 
-**Q: I want to use the NVIDIA CuDNN library, which GPU clusters do support it?**
+**Q: I want to use the [NVIDIA CuDNN library](../../../software/sw-list/cudnn), which GPU clusters do support it?**
 
 A: Those which have GPU with compute capability > 3.0, which means all clusters (see the table above) 
 
