@@ -62,3 +62,4 @@ Secure and effective utilization of MetaCentrum resources is possible only if th
 
 6. Strange behaviour of your account, appearance or disapparance of files, unknown processes running under your identity and so on has to be necessarily reported to the administrators of MetaCentrum.
 
+7. Users are solely responsible for setting the required access rules to control the access to their data. N.B., users' home directories are by default readable to all Metacentrum users. If you want to ensure other users cannot enter your home directory, you must change its access rights.
