@@ -1,13 +1,103 @@
-# BLAST 
+# BLAST+, BLAST 
 
-    module avail blast/
     module avail blast+/
+    module avail blast/
 
-[BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) 
+[BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) (Basic Local Alignment Search Tool) library is a collection of software tools and algorithms developed by the National Center for Biotechnology Information (NCBI).
 
-- [BLAST](https://wiki.metacentrum.cz/wiki/Blast)
-- [BLAST+](https://wiki.metacentrum.cz/wiki/Blast%2B)
+BLAST is widely used in bioinformatics for comparing primary biological sequence information, such as the amino-acid sequences of proteins or the nucleotides of DNA sequences.
 
-!!! todo
-    This page is yes to be done.
+BLAST+  refers to an enhanced version of the original BLAST.
 
+## Usage
+
+### Programs
+
+    blastp - compares an amino acid query sequence against a protein sequence database
+    blastn - compares a nucleotide query sequence against a nucleotide sequence database
+    blastx - compares a nucleotide query sequence translated in all reading frames against a protein sequence database
+    tblastn - compares a protein query sequence against a nucleotide sequence database dynamically translated in all reading frames
+    tblastx - compares the six-frame translations of a nucleotide query sequence against the six-frame translations of a nucleotide sequence database
+
+### [Command line](https://www.ncbi.nlm.nih.gov/books/NBK279675/) examples
+    
+    blast database: makeblastdb -input_type fasta -in FASTA_FILE -dbtype nucl -title NAME -out NAME
+    blastn: blastn -db DATABASE_NAME -query INPUT_FASTA -out OUTPUT_NAME -max_target_seqs 1 -evalue 1e-5 -num_threads 8
+    blastp: blastp -db DATABASE_NAME -query INPUT_FASTA -out OUTPUT_NAME -max_target_seqs 1 -evalue 1e-5 -num_threads 8
+    tblastx: tblastx -db DATABASE_NAME -query INPUT_FASTA -out OUTPUT_NAME -max_target_seqs 1 -evalue 1e-5 -num_threads 8
+    blastx: blastx -db DATABASE_NAME -query INPUT_FASTA -out OUTPUT_NAME -max_target_seqs 1 -evalue 1e-5 -num_threads 8
+    tblastn: tblastn -db DATABASE_NAME -query INPUT_FASTA -out OUTPUT_NAME -max_target_seqs 1 -evalue 1e-5 -num_threads 8
+
+### Databases
+
+We maintain a **local copy of Blast databases** in `/storage/projects/BlastDB` directory. Databases are ready to use.
+
+- For short/single query jobs, you can **use the databases directly in storage** and refer to them from the batch script by their full path, i.e. `/storage/projects/BlastDB/DB_NAME_PREFIX`.
+- If you run a longer job, multiple queries or multiple jobs with a particular DB, it is more efficient to **copy the database to the scratch directory**.
+
+In both cases, refer to the database (`-db` option) within your `blastn`/`blastp`/`tblastx` job by its basename only ( e.g. `nt`, `nr`, `wgs`, `refseq_genomic`). For example `-db /storage/projects/BlastDB/nt`.
+
+All available databases are described on the NCBI web. We mirror all of them. If you need to update DBs or add some new ones, please contact the user support <meta@cesnet.cz>.
+
+!!! warning
+    A new DB release contains very large GI numbers (GenInfo Identifier) which are incompatible with older versions of blast modules. Use the latest version of the blast module to prevent potential incompatibilities. 
+
+### Network load optimization
+
+If you need to run **several BLAST jobs with the same database**, we ask user to optimize the network load by **copying the database only once and using it for all the jobs running on the same node**. 
+
+!!! note
+    This requires that you don't clean the content of your scratch directory after the first job is finished!
+
+This can be done by inserting following construction into the batch script: 
+
+```
+DB="nt" # name of the database you need to use
+TIMEOUT=120
+TIMEWAIT=0
+LINKDB=false
+
+...
+
+# Enter the scratch dir
+cd "$SCRATCHDIR" || exit 4
+
+...
+
+# search the content of all your other scratch directories on that node
+# and look for a file called ${DB}.db_here 
+LOCAL_DB=$(find .. -name ${DB}.db_here -print -quit) # LOCAL_DB contains a path as well, contrary to DB
+
+# if the file exists, do...
+if [ -n "$LOCAL_DB" ]; then
+  LINKDB=true 
+  LOCAL_DB="${LOCAL_DB%%.db_here}" # cut off the ".db_here" suffix
+
+  # if in that scratchdir where LOCAL_DB resides does NOT exist a file "${LOCAL_DB}.db_is_ready", wait for it
+  while ! test -f "${LOCAL_DB}.db_is_ready"; do
+    sleep 5
+    TIMEWAIT=$((TIMEWAIT+5))
+    if [ $TIMEWAIT -gt $TIMEOUT ]; then
+      echo "timed out"
+      break
+      LINKDB=false
+    fi
+  done
+fi
+
+# the DB exists somewhere on this machine and is complete, so we can link it
+if $LINKDB; then
+  ln "${LOCAL_DB}"* . || exit 5 # link everything into current scratch directory
+# the DB either does not exist on this machine or is not complete, so copy it from /storage/projects
+else
+  touch ${DB}.db_here
+  cp -p /storage/projects/BlastDB/${DB}* . && touch ${DB}.db_is_ready || exit 6 
+  # ${DB}.db_is_ready is empty file just telling your other future jobs on this machine that the cp operation has finished                                 
+  export CLEAN_SCRATCH=false # do not remove content of this scratch
+fi
+
+....
+
+# then run the calculation
+blastp -db "./${DB}" -query INPUT_FASTA -out OUTPUT_NAME ...
+```
