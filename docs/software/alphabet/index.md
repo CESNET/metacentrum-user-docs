@@ -31,7 +31,8 @@
 - [CLCgenomicsWB](../../software/sw-list/clcbio-genomics-wb)
 - [CP2K](../../software/sw-list/cp2k)
 - [Cplex](../../software/sw-list/cplex)
-<!-- - [Cuda](../../software/sw-list/cuda) -->
+- [Cuda](../../software/sw-list/cuda) 
+- [CuDNN](../../software/sw-list/cudnn) 
 - [Cufflinks](../../software/sw-list/cufflinks)
 
 **D**
