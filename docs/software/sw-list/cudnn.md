@@ -1,5 +1,7 @@
 # CuDNN
 
+    module avail cudnn/
+
 [CuDNN](https://developer.nvidia.com/cudnn) (CUDA Deep Neural Network library) is a GPU-accelerated library developed by NVIDIA specifically for deep learning frameworks and applications.
 
 ## License
