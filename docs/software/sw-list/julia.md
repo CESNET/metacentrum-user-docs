@@ -6,14 +6,38 @@
 
 ## Usage
 
-**Aditional modules**
-
-Ideal way how to use needed modules is to install them into your home directory. Something like this should be sufficient:
+Ideal way how to use needed Julia modules is to install them into your home directory.
 
 ```
-$ module add julia-0.5.2-gcc
-$ export JULIA_PKGDIR=$HOME/.julia
-$ module add  cmake-3.6.1 openmpi-2.1.1-gcc
+$ module add julia
+$ export JULIA_PKGDIR=$HOME/.julia   # suppose we are on brno2 storage
 $ julia
-julia> Pkg.add("MPI")
+julia> import Pkg
+julia> Pkg.status()
+julia> Pkg.add("MPI")       # install e.g. MPI package
 ```
+
+**Julia usage on frontend**
+
+```
+$ export JULIA_PKGDIR=$HOME/.julia   
+$ export JULIA_DEPOT_PATH=$HOME/.julia
+$ export JULIA_PROJECT=$HOME/.julia 
+$ export JULIA_CPU_THREADS=$PBS_NCPUS
+$ export JULIA_CPU_THREADS=1          # we recommend to limit CPU to 1 or 2
+$ julia
+julia> Pkg.status()         # lists MPI package
+```
+
+**Julia usage in a job**
+
+```
+$ export JULIA_PKGDIR=/storage/brno2/home/username123/.julia   
+$ export JULIA_DEPOT_PATH=/storage/brno2/home/username123/.julia
+$ export JULIA_PROJECT=/storage/brno2/home/username123/.julia 
+$ export JULIA_CPU_THREADS=$PBS_NCPUS   # PBS_NCPUS is number of reserved CPUs
+$ julia
+julia> Pkg.status()       # lists MPI package
+
+```
+
