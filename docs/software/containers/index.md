@@ -16,7 +16,11 @@ Singularity images (= containers) are commonly suffixed by `.sif`.
 
 **Singularity can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#docker-usage).
 
-## Singularity environment variables
+## Singularity usage
+
+In the basic usecases of Singularity images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
+
+### Singularity environment variables
 
 Singularity employs a few *paths* to store various temporary files:
 
@@ -24,12 +28,8 @@ Singularity employs a few *paths* to store various temporary files:
 - `LOCALCACHEDIR`: - run shell exec
 - `TMPDIR`: - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
 
-!!! todo
-    This section is to be done.
-
-## Singularity usage
-
-In the basic usecases of Singularity images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
+!!! tip
+    If `SCRATCHDIR` exists, Singularity **automatically** exports there variables ` SINGULARITY_TMPDIR` and `SINGULARITY_CACHEDIR`. That is why in the rest of this section the explicit export of these variables is not done.
 
 ### List options
 
@@ -76,12 +76,7 @@ First run interative job *with scratch directory*:
 !!! question "What is the scratch directory good for?"
     You may need to redirect some Singularity environment variables to store temporary files. To point them to `SCRATCHDIR` is one option. Alternatively you may redirect the Singularity variables to some folder in your home.
 
-Redirect `CACHEDIR` and `LOCALCACHEDIR` to `SCRATCHDIR`:
-
-    user123@node123:~$ export CACHEDIR=$SCRATCHDIR
-    user123@node123:~$ export LOCALCACHEDIR=$SCRATCHDIR
-
-Then run the container and open a shell within the container for interactive work:
+Run the container and open a shell within the container for interactive work:
 
     user123@node123:~$ singularity shell my_image.sif
     Singularity> command_1
@@ -101,7 +96,6 @@ Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 **Variant A: put Singularity-specific option on command line**
 
     qsub -l select=1:scratch_local=10GB -l walltime=24:00:00 -- \
-    export CACHEDIR=$SCRATCHDIR \
     export LOCALCACHEDIR=$SCRATCHDIR \
     singularity exec -B /storage/city_N/home/user123/script.sh:/home/user123/script.sh \
     my_image.sif bash -c "/home/user123/script.sh"
@@ -155,7 +149,6 @@ test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
 #set SINGULARITY variables for runtime data
 export SINGULARITY_CACHEDIR=$HOMEDIR
 export SINGULARITY_LOCALCACHEDIR=$SCRATCHDIR
-export SINGULARITY_TMPDIR=$SCRATCHDIR
 
 ...
 
@@ -274,9 +267,7 @@ First set path for temporary files:
 
     export SINGULARITY_TMPDIR=/storage/CITY_XY/home/user123/
 
-If you work within interactive job, then
-
-    export SINGULARITY_TMPDIR=$SCRATCHDIR
+If you work within interactive job with scratch directory, then `export SINGULARITY_TMPDIR=$SCRATCHDIR` is done automatically.
 
 Next, download Docker image and build
 
