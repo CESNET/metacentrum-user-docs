@@ -337,6 +337,12 @@ Image file is read-only and to modify it you have to use sandbox directory. In t
 
 After running container from sandbox, you can make changes via package system, compile the source codes, install pip/conda modules etc. In this example we install ffmpeg package in Debian Buster environment.
 
+Generally, we recommend to **work in the scratch directory**, using fakeroot mode (`-f` options) is not possible on storages (`/storage/cityXY/...`).
+
+    singularity build -f -s test1.sbox docker://debian:buster
+
+After running container from sandbox, you can make changes via package system, compile the source codes, install pip/conda modules etc. In this example we install ffmpeg package in Debian Buster environment.
+
     singularity shell -f -w test1.sbox
     Singularity> apt update && apt install ffmpeg
     Singularity> exit
