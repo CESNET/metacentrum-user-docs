@@ -150,9 +150,9 @@ nav:
     - related/galaxy/index.md
     - related/chipster/index.md
     - related/kubernetes/index.md
+    - related/jupyter/index.md
     - 'CollGS': 
       - related/collgs/index.md
       - related/collgs/era5.md
       - related/collgs/pristup-k-datum.md
-    - related/jupyter/index.md
     - related/notebooks/c-scale-data-discovery.ipynb
