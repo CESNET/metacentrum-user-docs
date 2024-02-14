@@ -2,6 +2,8 @@
 
 This section collects various presentation, user seminars, videos and other tutorial material.
 
+[Debian 12](../tutorials/debian-12.md)
+
 ## Presentations
 
 - [Basic MetaCentrum userguide, 2021](../tutorials/How_to_bring_down_MC_in_10_steps.pdf)
