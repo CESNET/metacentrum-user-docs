@@ -16,6 +16,7 @@ In the future the PBS Pro servers `meta-pbs.metacentrum.cz` and `cerit-pbs.cerit
 - new frontend `zenith.cerit-sc.cz` (alias `zenith.metacentrum.cz`) with Debian 12
 - see which are [computing nodes with Debian 12](https://metavo.metacentrum.cz/pbsmon2/props?property=os%3Ddebian12)
 - new PBS server `pbs-m1.metacentrum.cz` default for `zenith` frontend
+- default user homes for `zenith` are on `/storage/brno12-cerit/`
 
 ## Use new PBS from any frontend
 
