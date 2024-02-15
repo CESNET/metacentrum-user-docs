@@ -42,5 +42,9 @@ user@skirit:~$ qstat -u user123  @pbs-m1.metacentrum.cz
 - typing "python"  on `zenith` will get you 3.x.x version of Python
 - if you need some 2.x.x version of Python, you have to add it through a module (`module avail python/`)
 
+## Missing libraries
 
+Try `module add debian11/compat` if you run into "library XY: no such file or directory" type of problem.
+
+If this does not help, contact us at <meta@cesnet.cz>
 
