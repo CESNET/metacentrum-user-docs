@@ -2,7 +2,9 @@
 
 This section collects various presentation, user seminars, videos and other tutorial material.
 
-[Debian 12](../tutorials/debian-12.md)
+## Howtos
+
+- [Debian 12 & new PBS server](../tutorials/debian-12.md)
 
 ## Presentations
 
