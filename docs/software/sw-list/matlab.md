@@ -26,89 +26,35 @@ This option is recommended to advanced users or as a fallback option in case OnD
 
 ## Licences
 
-There exists a permanent licence type "College" (for operating systems UNIX and MS Windows) that is available to all the national grid infrastructure MetaCentrum users as well as to all students and employees of
+MetaCentrum offers a TAH (Total Academic Headcount) License valid for 200 instances of MATLAB and a wide set of its toolboxes.
 
-- Masaryk university in Brno
-- University of West Bohemia in Pilsen
-- Czech Technical University in Prague
+!!! warning
+    The purchased licenses permit **just an academic use** of the program!
 
-MATLAB can be installed freely on every computer at these universities and once running it takes licences from a pool of available licences. These licences are currently maintained by three licence servers: at ZČU in Plzeň, at ÚVT UK in Praha and at ÚVT MU in Brno.
+List all licenses for Matlab and its toolboxes:
 
-The purchased licenses permit **just an academic use** of the program!
+    cat /software/matlab-latest/etc/license_tah.dat | grep INCREMENT      # currently there are 200 licenses for each
 
-Names and number of licences:
-
-- MATLAB 450
-- Aerospace\_Toolbox 1
-- Antenna\_Toolbox 1
-- Bioinformatics\_Toolbox 15
-- Communication\_Toolbox 25
-- Compiler 7
-- Control\_Toolbox 50
-- Curve\_Fitting\_Toolbox 52
-- Data\_Acq\_Toolbox 2
-- Database\_Toolbox 12
-- Datafeed\_Toolbox 1
-- Distrib\_Computing\_Toolbox 53
-- Econometrics\_Toolbox 6
-- Embedded\_IDE\_Link 1
-- Excel\_Link 1
-- Financial\_Toolbox 2
-- Fin\_Instruments\_Toolbox 2
-- Fixed\_Point\_Toolbox 3
-- Fuzzy\_Toolbox 51
-- GADS\_Toolbox 4
-- Identification\_Toolbox 51
-- Image\_Acquisition\_Toolbox 5
-- Image\_Toolbox 94
-- Instr\_Control\_Toolbox 1
-- MAP\_Toolbox 4
-- MATLAB\_Builder\_for\_Java 7
-- MATLAB\_Coder 8
-- MATLAB\_Distrib\_Comp\_Engine 384
-- MPC\_Toolbox 1
-- Neural\_Network\_Toolbox 153
-- Optimization\_Toolbox 153
-- PDE\_Toolbox 50
-- Power\_System\_Blocks 2
-- Real-Time\_Win\_Target 51
-- Real-Time\_Workshop 3
-- Robotics\_System\_Toolbox 7
-- Robust\_Toolbox 1
-- RTW\_Embedded\_Coder 2
-- Signal\_Blocks 50
-- Signal\_Toolbox 87
-- SimBiology 5
-- SimDriveline 1
-- SimHydraulics 3
-- SimMechanics 5
-- Simscape 7
-- Simulink\_Control\_Design 50
-- Simulink\_HDL\_Coder 3
-- Simulink\_PLC\_Coder 1
-- SIMULINK 150
-- Stateflow 25
-- Statistics\_Toolbox 87
-- Symbolic\_Toolbox 153
-- Target\_Support\_Package 1
-- Vehicle\_Network\_Toolbox 1
-- Video\_and\_Image\_Blockset 12
-- Virtual\_Reality\_Toolbox 6
-- Wavelet\_Toolbox 8
-
-Together with the permanent licence a complete maintenance (including new version updates of all mentioned products) is also available and it is annually renewed.
-
-A list of licenses and its usage can be obtained by
+A list of currently issued (reserved) licenses can be obtained by:
 
     $ /software/matlab-9.8/etc/lmstat -a | grep "in use"
 
-**Licences and scheduler**
+## Scheduling licensed job
 
-You need to tell the PBS scheduler that the job will require a licence. Each Matlab package has its own licence. For exasmple, if you need to use Statistics\_Toolbox, submit your job like this:
+You need to tell the PBS scheduler that the job will require a licence. *In principle* a license reservation is needed both for Matlab core and each one of the toolboxes you will need to use.
+
+For example, if you need to use `Statistics_Toolbox`, this would mean submitting a job like this:
 
     qsub ... -l matlab=1 -l matlab_Statistics_Toolbox=1 ...
 
-Names of toolboxes with prefix matlab_ are required by PBS scheduling system for the purpose of license reservation. During MATLAB usage, don't use these prefixes and use only base name of selected toolbox. 
+!!! note
+    Names of toolboxes with prefix `matlab_` are required by PBS scheduling system for the purpose of license reservation. During MATLAB usage, don't use these prefixes and use only base name of selected toolbox. 
+
+**However, since the number of toolbox licenses is quite large, it is improbable that they will "run out"**.
+
+For most cases, you should be safe with the following simplified version which reserves only the core Matlab license: 
+
+    qsub ... -l matlab=1 ...
 
 ## Built-in documentation
 
