@@ -26,35 +26,123 @@ This option is recommended to advanced users or as a fallback option in case OnD
 
 ## Licences
 
-MetaCentrum offers a TAH (Total Academic Headcount) License valid for 200 instances of MATLAB and a wide set of its toolboxes.
-
 !!! warning
-    The purchased licenses permit **just an academic use** of the program!
+    Any of the purchased licenses permit **just an academic use** of the program!
 
-List all licenses for Matlab and its toolboxes:
 
-    cat /software/matlab-latest/etc/license_tah.dat | grep INCREMENT      # currently there are 200 licenses for each
+### Matlab 9.14 and newer
 
-A list of currently issued (reserved) licenses can be obtained by:
-
-    $ /software/matlab-9.8/etc/lmstat -a | grep "in use"
-
-## Scheduling licensed job
-
-You need to tell the PBS scheduler that the job will require a licence. *In principle* a license reservation is needed both for Matlab core and each one of the toolboxes you will need to use.
-
-For example, if you need to use `Statistics_Toolbox`, this would mean submitting a job like this:
-
-    qsub ... -l matlab=1 -l matlab_Statistics_Toolbox=1 ...
+For versions 9.14 and newer, MetaCentrum offers a TAH (Total Academic Headcount) License valid for 200 instances of MATLAB and a wide set of its toolboxes.
 
 !!! note
-    Names of toolboxes with prefix `matlab_` are required by PBS scheduling system for the purpose of license reservation. During MATLAB usage, don't use these prefixes and use only base name of selected toolbox. 
+    A default version of Matlab (`module add matlab`) runs also on this 200-pieces-TAH license.
 
-**However, since the number of toolbox licenses is quite large, it is improbable that they will "run out"**.
-
-For most cases, you should be safe with the following simplified version which reserves only the core Matlab license: 
+PBS tracks these licenses as a `"matlab"` resource, therefore unless you use older Matlab version, always submit the job as
 
     qsub ... -l matlab=1 ...
+    
+!!! tip
+    In principle a license reservation is needed both for Matlab core and each one of the toolboxes you will need to use. **However, since the number of respective toolbox licenses is large, it is improbable that they will "run out"**. For most cases, you will be safe with the following simplified version which reserves only the core Matlab license `qsub ... -l matlab=1 ...` .
+
+**Troubleshooting tools**
+
+*List all licenses for Matlab and its available toolboxes:*
+
+```
+$ cat /software/matlab-latest/etc/license_tah.dat | grep INCREMENT   # currently 200 for each
+
+$ module add matlab/9.14
+$ matlab
+>> ver                                 # alternative way from inside Matlab
+```
+
+*List currently issued and available licences of Matlab core:*
+
+    $ /software/matlab-9.14/etc/lmstat -a | grep "Users of MATLAB:"
+
+*List currently issued (reserved) licenses of Matlab core as well as toolboxes:*
+
+    $ /software/matlab-9.14/etc/lmstat -a | grep "in use"
+
+*Get type of license used in current instance of Matlab:*
+
+    $ module add matlab/9.14 
+    $ matlab
+    $ >> license                # should return '41204682'
+
+### Matlab 9.13 and older
+
+For versions 9.13 and older, MetaCentrum offers a variable amount of licenses for Matlab core and its respective toolboxes.
+
+| Matlab licenses              | Matlab licenses                   | Matlab licenses                |
+|------------------------------|-----------------------------------|--------------------------------|
+| MATLAB 450                   | Fuzzy_Toolbox 51                  |  Robust_Toolbox 1              |        
+| Aerospace_Toolbox 1          | GADS_Toolbox 4                    |  RTW_Embedded_Coder 2          |       
+| Antenna_Toolbox 1            | Identification_Toolbox 51         |  Signal_Blocks 50              |       
+| Bioinformatics_Toolbox 15    | Image_Acquisition_Toolbox 5       |  Signal_Toolbox 87             |       
+| Communication_Toolbox 25     | Image_Toolbox 94                  |  SimBiology 5                  |       
+| Compiler 7                   | Instr_Control_Toolbox 1           |  SimDriveline 1                |       
+| Control_Toolbox 50           | MAP_Toolbox 4                     |  SimHydraulics 3               |       
+| Curve_Fitting_Toolbox 52     | MATLAB_Builder_for_Java 7         |  SimMechanics 5                |       
+| Data_Acq_Toolbox 2           | MATLAB_Coder 8                    |  Simscape 7                    |       
+| Database_Toolbox 12          | MATLAB_Distrib_Comp_Engine 384    |  Simulink_Control_Design 50    |       
+| Datafeed_Toolbox 1           | MPC_Toolbox 1                     |  Simulink_HDL_Coder 3          |       
+| Distrib_Computing_Toolbox 53 | Neural_Network_Toolbox 153        |  Simulink_PLC_Coder 1          |       
+| Econometrics_Toolbox 6       | Optimization_Toolbox 153          |  SIMULINK 150                  |       
+| Embedded_IDE_Link 1          | PDE_Toolbox 50                    |  Stateflow 25                  |       
+| Excel_Link 1                 | Power_System_Blocks 2             |  Statistics_Toolbox 87         |       
+| Financial_Toolbox 2          | Real-Time_Win_Target 51           |  Symbolic_Toolbox 153          |       
+| Fin_Instruments_Toolbox 2    | Real-Time_Workshop 3              |  Target_Support_Package 1      |       
+| Fixed_Point_Toolbox 3        | Robotics_System_Toolbox 7         |  Vehicle_Network_Toolbox 1     |       
+| Video_and_Image_Blockset 12  | Virtual_Reality_Toolbox 6         |  Wavelet_Toolbox 8             |
+
+!!! note
+    Unless they have a specific reason, **we urge users to use version 9.14 and newer**.
+
+!!! warning
+    PBS does not anymore track the licenses for older Matlab versions, therefore **when you submit the job, do not use the `-l matlab=XX` option**.
+
+**Troubleshooting tools**
+
+*List all licenses for Matlab and its available toolboxes:*
+
+```
+$ cat /software/matlab-latest/etc/licese_old.dat | grep INCREMENT   
+
+$ module add matlab/9.13
+$ matlab
+>> ver                                 # alternative way from inside Matlab
+```
+
+*List currently issued and available licences of Matlab core:*
+
+    $ /software/matlab-9.13/etc/lmstat -a | grep "Users of MATLAB:"
+
+*List currently issued (reserved) licenses of Matlab core as well as toolboxes:*
+
+    $ /software/matlab-9.13/etc/lmstat -a | grep "in use"
+
+*Get type of license used in current instance of Matlab:*
+
+    $ module add matlab/9.13 
+    $ matlab
+    $ >> license                # should return '84911'
+
+### ZCU users
+
+Users of ZČU (West Bohemian University, Plzeň) have their own license for 10k MATLAB instances. Therefore they should not apply for MetaCentrum PBS resource.
+
+!!! question "How do I find out who are ZCU users?"
+     In Perun, search for group `users-zcu` and see if you are a member.   
+
+**Troubleshooting tools**
+
+*Get type of license used in current instance of Matlab:*
+
+    $ module add matlab/9.14 
+    $ matlab
+    $ >> license                # should return '41198919'
+
 
 ## Built-in documentation
 
