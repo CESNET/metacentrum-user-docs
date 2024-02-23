@@ -39,7 +39,7 @@ For versions 9.14 and newer, MetaCentrum offers a TAH (Total Academic Headcount)
 
 PBS tracks these licenses as a `"matlab"` resource, therefore unless you use older Matlab version, always submit the job as
 
-    qsub ... -l matlab=1 ...
+    qsub ... -l matlab=1 ...   # ask for 1 Matlab license
     
 !!! tip
     In principle a license reservation is needed both for Matlab core and each one of the toolboxes you will need to use. **However, since the number of respective toolbox licenses is large, it is improbable that they will "run out"**. For most cases, you will be safe with the following simplified version which reserves only the core Matlab license `qsub ... -l matlab=1 ...` .
@@ -133,7 +133,7 @@ $ matlab
 Users of ZČU (West Bohemian University, Plzeň) have their own license for 10k MATLAB instances. Therefore they should not apply for MetaCentrum PBS resource.
 
 !!! question "How do I find out who are ZCU users?"
-     In Perun, search for group `users-zcu` and see if you are a member.   
+     In [Perun](https://perun.cesnet.cz/), search for group `users-zcu` and see if you are a member.   
 
 **Troubleshooting tools**
 
