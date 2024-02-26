@@ -32,10 +32,10 @@ This option is recommended to advanced users or as a fallback option in case OnD
 
 ### Matlab 9.14 and newer
 
-For versions 9.14 and newer, MetaCentrum offers a TAH (Total Academic Headcount) License valid for 200 instances of MATLAB and a wide set of its toolboxes.
+For versions 9.14 and newer, MetaCentrum offers a license valid for 200 instances of MATLAB and a wide set of its toolboxes.
 
 !!! note
-    A default version of Matlab (`module add matlab`) runs also on this 200-pieces-TAH license.
+    A default version of Matlab (`module add matlab`) runs also on this 200-pieces license.
 
 PBS tracks these licenses as a `"matlab"` resource, therefore unless you use older Matlab version, always submit the job as
 
@@ -49,7 +49,7 @@ PBS tracks these licenses as a `"matlab"` resource, therefore unless you use old
 *List all licenses for Matlab and its available toolboxes:*
 
 ```
-$ cat /software/matlab-latest/etc/license_tah.dat | grep INCREMENT   # currently 200 for each
+$ cat /software/matlab-latest/etc/license_tah.dat | grep INCREMENT   
 
 $ module add matlab/9.14
 $ matlab
