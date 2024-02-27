@@ -74,6 +74,11 @@ $ matlab
 
 For versions 9.13 and older, MetaCentrum offers a variable amount of licenses for Matlab core and its respective toolboxes.
 
+To find number of licenses:
+
+    /software/matlab-X.XX/etc/lmstat -a | grep "Users of"   # X.XX = version
+
+<!-- stara tabulka z wiki
 | Matlab licenses              | Matlab licenses                   | Matlab licenses                |
 |------------------------------|-----------------------------------|--------------------------------|
 | MATLAB 450                   | Fuzzy_Toolbox 51                  |  Robust_Toolbox 1              |        
@@ -95,6 +100,7 @@ For versions 9.13 and older, MetaCentrum offers a variable amount of licenses fo
 | Fin_Instruments_Toolbox 2    | Real-Time_Workshop 3              |  Target_Support_Package 1      |       
 | Fixed_Point_Toolbox 3        | Robotics_System_Toolbox 7         |  Vehicle_Network_Toolbox 1     |       
 | Video_and_Image_Blockset 12  | Virtual_Reality_Toolbox 6         |  Wavelet_Toolbox 8             |
+-->
 
 !!! note
     Unless they have a specific reason, **we urge users to use version 9.14 and newer**.
