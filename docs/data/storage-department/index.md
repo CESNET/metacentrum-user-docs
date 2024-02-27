@@ -44,42 +44,96 @@ Underlying infrastructure in Storage Department are **servers with hierarchical 
 ## Object storage
 
 !!! warning 
-    This section is under construction.
+    This section is under construction. A complete guide can be found in the [Storage Department documentation](https://du.cesnet.cz/en/navody/object_storage/start).
 
-
-What is [object storage](https://du.cesnet.cz/en/navody/object_storage/start)
-
-<!--
 
 ### Access
 
-- describe the [process](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1245495):
+First you need to contact data storage support <du-support@cesnet.cz> and request them to obtain s# credenials.
 
-The prerequisite for this guide is to have S3 storage itself. You need to contact data storage support <du-support@cesnet.cz>.
-Once you obtained S3 credentials `aws_access_key_id` and `aws_secret_access_key` from S3 data storage administrators you can continue with the following steps.
+To work with S3 storage, you need to obtain S3 credentials `aws_access_key_id` (aka "access key") and `aws_secret_access_key` (aka "secret key") from Storage Department admins.
 
-**1.**
+### Clients
 
-To stage data to/from Metacentrum storage facility you can use rclone or s5cmd tool.
+There are more clients to work with s3 storages - see [guide on Storage Department pages](https://du.cesnet.cz/en/navody/object_storage/cesnet_s3/start).
 
-**1a.**
+#### s3cmd 
 
-To use s5cmd tool (preferred) you need to create a credentials file (copy the content below) in your home dir, ie. `/storage/brno2/home/<your-login-name>/.aws/credentials`.
+Create a configuration file `/storage/brno2/home/user123/.s3cfg`:
+
+```
+[default]
+host_base = https://s3.cl4.du.cesnet.cz
+use_https = True
+access_key = XXXXXXXXXXXXXXXXXXXX  
+secret_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+host_bucket = s3.cl4.du.cesnet.cz
+```
+
+
+| Basic S3 commands||
+|-----|-----|
+| **Bucket operations** ||
+| s3cmd ls | List all s3 buckets |
+| s3cmd mb s3://newbucket | Create of new s3 bucket |
+| s3cmd rb s3://newbucket | Remove s3 bucket |
+| s3cmd du s3://newbucket/ | List s3 bucket size |
+| **Files and directories operations** ||
+| s3cmd ls s3://newbucket/ | List content of s3 bucket |
+| s3cmd put file.txt s3://newbucket/ | Upload a file |
+| s3cmd put -r directory s3://newbucket/ | Upload directory |
+| s3cmd get s3://newbucket/file.txt | Download file from s3 bucket |
+| s3cmd del s3://newbucket/file.txt<br/> $ s3cmd del s3://newbucket/directory | Delete data from s3 bucket |
+| s3cmd sync /local/path/ s3://newbucket/backup/ | Data sync into s3 bucket |
+| s3cmd sync s3://newbucket/backup/ ~/restore/ | Data sync from s3 bucket |
+
+
+<!--
+Examples:
+
+```
+#define CREDDIR, where you stored your S3 credentials for, default is your home directory
+#S3CRED=/storage/brno2/home/<your-login-name>/.s3cfg
+
+#stage in command for s5cmd
+s5cmd --credentials-file "${S3CRED}" --profile profile-name --endpoint-url=https://s3.clX.du.cesnet.cz cp s3://my-bucket/h2o.com ${DATADIR}/
+
+#stage out command for s5cmd
+s5cmd --credentials-file "${S3CRED}" --profile profile-name --endpoint-url=https://s3.clX.du.cesnet.cz cp ${DATADIR}/h2o.out s3://my-bucket/
+```
+-->
+
+<!--
+#### aws 
+
+
+Create a configuration file `/storage/brno2/home/melounova/.aws/credentials`:
 
 ```
 ###
 [profile-name]
-aws_access_key_id = XXXXXXXXXXXXXXXXXXXXX
-aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXX
+aws_access_key_id = XXXXXXXXXXXXXXXXXXXX
+aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 max_concurrent_requests = 200
 max_queue_size = 20000
 multipart_threshold = 128MB
 multipart_chunksize = 32MB
 ###
 ```
+-->
 
-**1b.**
- 
+<!--
+Examples:
+
+
+```
+S3CRED=/storage/brno2/home/melounova/.aws/credentials
+```
+-->
+
+<!--
+#### rclone
+
 Alternatively, you can use rclone tool, which is less handy for large data sets. In case of large data sets (tens of terabytes) please use s5cmd.
 For rclone you need to create a credentials file (copy the content below) in your home dir, ie. `/storage/brno2/home/<your-login-name>/.config/rclone/rclone.conf`.
 
@@ -95,29 +149,11 @@ acl = private
 ###
 ```
 
-**2.**
-
-For the convenience you can add into your Job script the variable, where did you store your credentials.
 
 ```
 #define CREDDIR, where you stored your S3 credentials for, default is your home directory
-#s5cmd example
-#S3CRED=/storage/brno2/home/<your-login-name>/.aws/credentials
 #rclone example
 #S3CRED=/storage/brno2/home/<your-login-name>/.config/rclone/rclone.conf
-```
-
-**3.**
-
-Then you can easily add the stage in/out commands into your Job script in the appropriate position.
-
-**3a.**
-
-Stage-in
-
-```
-#stage in command for s5cmd
-s5cmd --credentials-file "${S3CRED}" --profile profile-name --endpoint-url=https://s3.clX.du.cesnet.cz cp s3://my-bucket/h2o.com ${DATADIR}/
 ```
 
 ```
@@ -125,77 +161,12 @@ s5cmd --credentials-file "${S3CRED}" --profile profile-name --endpoint-url=https
 rclone sync --progress --fast-list --config ${S3CRED} profile-name:my-bucket/h2o.com  ${DATADIR}
 ```
 
-**3b.**
-
-Stage-out
-
-```
-#stage out command for s5cmd
-s5cmd --credentials-file "${S3CRED}" --profile profile-name --endpoint-url=https://s3.clX.du.cesnet.cz cp ${DATADIR}/h2o.out s3://my-bucket/
-```
-
 ```
 #stage in command for rclone
 rclone sync --progress --fast-list --config ${S3CRED} ${DATADIR}/h2o.out profile-name:my-bucket/  
 ```
-
-### Clients
-
-- there are more clients - link to [https://du.cesnet.cz/en/navody/object_storage/cesnet_s3/start](https://du.cesnet.cz/en/navody/object_storage/cesnet_s3/start)
-- since we consider working from a (Linux) frontend, here we give 2 examples
-
-#### s3cmd 
-
-`/storage/brno2/home/melounova/.s3cfg` content:
-
-```
-[default]
-host_base = https://s3.cl4.du.cesnet.cz
-use_https = True
-access_key = 3WVWLY30M6PB85UZRP4H
-secret_key = UxiNQbwWQNLl8sp8l4SQ18mD40BGq3XyqtVvMdel
-host_bucket = s3.cl4.du.cesnet.cz
-```
-
-Examples:
-
-```
-s3cmd mb s3://my-bucket
-s3cmd du s3://my-bucket/
-s3cmd put file001 s3://my-bucket/
-s3cmd du s3://my-bucket/
-s3cmd get s3://my-bucket/file001
-```
-
-
-#### aws 
-
-`/storage/brno2/home/melounova/.aws/credentials`
-
-```
-###
-[profile-name]
-aws_access_key_id = 3WVWLY30M6PB85UZRP4H
-aws_secret_access_key = UxiNQbwWQNLl8sp8l4SQ18mD40BGq3XyqtVvMdel
-max_concurrent_requests = 200
-max_queue_size = 20000
-multipart_threshold = 128MB
-multipart_chunksize = 32MB
-###
-```
-
-```
-S3CRED=/storage/brno2/home/melounova/.aws/credentials
-```
-
-
 -->
 
-
-
-
-
-
-
-
-
+<!--
+- describe the process [in RT ticket](https://rt.cesnet.cz/rt/Ticket/Display.html?id=1245495)
+-->
