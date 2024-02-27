@@ -70,8 +70,7 @@ secret_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 host_bucket = s3.cl4.du.cesnet.cz
 ```
 
-
-| Basic S3 commands||
+| Basic s3cmd commands||
 |-----|-----|
 | **Bucket operations** ||
 | s3cmd ls | List all s3 buckets |
@@ -103,15 +102,14 @@ s5cmd --credentials-file "${S3CRED}" --profile profile-name --endpoint-url=https
 ```
 -->
 
-<!--
 #### aws 
 
 
-Create a configuration file `/storage/brno2/home/melounova/.aws/credentials`:
+Create a configuration file `/storage/brno2/home/user123/.aws/credentials`:
 
 ```
 ###
-[profile-name]
+[my-profile]
 aws_access_key_id = XXXXXXXXXXXXXXXXXXXX
 aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 max_concurrent_requests = 200
@@ -120,7 +118,18 @@ multipart_threshold = 128MB
 multipart_chunksize = 32MB
 ###
 ```
--->
+
+| Basic aws commands||
+|-----|-----|
+| **Bucket operations** ||
+| aws s3 --profile my-profile --endpoint-url https://s3.cl4.du.cesnet.cz ls | List all s3 buckets |
+| aws s3 --profile my-profile --endpoint-url https://s3.cl4.du.cesnet.cz mb s3://test1 | Create of new s3 bucket |
+| aws s3  --profile my-profile --endpoint-url https://s3.cl2.du.cesnet.cz rb s3://test1 | Remove s3 bucket |
+| **Files and directories operations** ||
+| aws s3 --profile my-profile --endpoint-url https://s3.cl2.du.cesnet.cz cp C:/Users/User/Desktop/test-file.zip s3://test1 | Upload a file |
+| $ aws s3 --profile my-profile --endpoint-url https://s3.cl2.du.cesnet.cz cp s3://test1/test-file.zip C:\Users\User\Downloads\ | Download file from s3 bucket |
+| $ aws s3 --profile my-profile --endpoint-url https://s3.cl2.du.cesnet.cz rm s3://test1/test-file.zip  | Delete data from s3 bucket |
+
 
 <!--
 Examples:
