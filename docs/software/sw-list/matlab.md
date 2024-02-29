@@ -44,6 +44,9 @@ PBS tracks these licenses as a `"matlab"` resource, therefore unless you use old
 !!! tip
     In principle a license reservation is needed both for Matlab core and each one of the toolboxes you will need to use. **However, since the number of respective toolbox licenses is large, it is improbable that they will "run out"**. For most cases, you will be safe with the following simplified version which reserves only the core Matlab license `qsub ... -l matlab=1 ...` .
 
+!!! warning "New license cannot be used outside of MetaCentrum"
+    This new license comes with stricter conditions than the previous one: it can be used only from MetaCentum IP adresses, i.e. you cannot use it for Matlab running on your desktop/university lecture rooms.
+
 **Troubleshooting tools**
 
 *List all licenses for Matlab and its available toolboxes:*
@@ -106,7 +109,7 @@ To find number of licenses:
     Unless they have a specific reason, **we urge users to use version 9.14 and newer**.
 
 !!! warning
-    PBS does not anymore track the licenses for older Matlab versions, therefore **when you submit the job, do not use the `-l matlab=XX` option**.
+    PBS dorces not anymore track the licenses for older Matlab versions, therefore **when you submit the job, do not use the `-l matlab=XX` option**.
 
 **Troubleshooting tools**
 
@@ -140,6 +143,12 @@ Users of ZČU (West Bohemian University, Plzeň) have their own license for 10k 
 
 !!! question "How do I find out who are ZCU users?"
      In [Perun](https://perun.cesnet.cz/), search for group `users-zcu` and see if you are a member.   
+
+### Bring your own license
+
+If your home institution has its own Matlab license, we can incorporate it so that you can use them while running Matlab on MetaCentrum machines.
+
+To consult this possibility, contact us at <meta@cesnet.cz>.
 
 **Troubleshooting tools**
 
