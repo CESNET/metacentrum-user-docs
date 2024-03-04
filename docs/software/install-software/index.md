@@ -257,6 +257,13 @@ python
     # leave the environment
     mamba deactivate
 
+If you need to install multiple programs at the same time, use the following syntax:
+
+```
+# with this syntax, mamba will resolve all environment dependencies only once
+mamba create --prefix /storage/city/home/user_name/my_new_env -c channel_1 -c channel_2 <other channels> software_1 software_2 <other softwares>
+```
+
 Activate this environment (e.g. within batch jobs) as:
 
     module add mambaforge
