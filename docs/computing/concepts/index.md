@@ -33,21 +33,27 @@ Frontends should be used only for:
 
 A set of instructions performed on computational nodes is **computational job**. Jobs require a set of **resources** such as CPUs, memory or time. A **scheduling system** plans execution of the jobs so as optimize the load and usage of computational nodes.
 
-In Metacentrum the **[PBS Pro](https://www.altair.com/pbs-professional)** scheduling system is used. The servers on which the scheduling system are called **PBS servers**.
+The servers on which the scheduling system runs are called **PBS servers** or **PBS schedulers**.
 
-Metacentrum has three PBS servers:
+On 3 older schedulers, the **[PBS Pro](https://www.altair.com/pbs-professional)** scheduling system is used.
 
-- `meta-pbs.metacentrum.cz`, shorthand *meta* (accessible to all Metacentrum users)
-- `cerit-pbs.cerit-sc.cz`, shorthand *cerit*  (accessible to all Metacentrum users)
-- `elixir-pbs.elixir-czech.cz`, shorthand *elixir* (directly accessible only to Elixir group members)
+On the newest scheduler, the **[OpenPBS](https://www.openpbs.org/)** is used.
+
+| Server name                  | shorthand | PBS used | Note                                                                        |
+|------------------------------|-----------|----------|-----------------------------------------------------------------------------|
+| pbs-m1.metacentrum.cz        | *new meta*| OpenPBS  | accessible to all Metacentrum users |
+| meta-pbs.metacentrum.cz      | *meta*    | PBS Pro  | accessible to all Metacentrum users<br/>*will be decommissioned by Q3 2024<br/>in favour of pbs-m1.metacentrum.cz* |
+| cerit-pbs.cerit-sc.cz        | *cerit*   | PBS Pro  | accessible to all Metacentrum users<br/>*will be decommissioned by Q3 2024<br/>in favour of pbs-m1.metacentrum.cz* |
+| elixir-pbs.elixir-czech.cz   | *elixir*  | PBS Pro  | directly accessible only to Elixir group members |
 
 Which PBS server will take care of particular job depends on from which frontend the job was submitted. Every frontend has some default (primary) PBS server (see table below). To optimize resource usage, jobs can be moved however from a certain PBS server less busy one.  Typically jobs from *meta* and *cerit* servers are moved to *elixir*.
 
 | PBS server | Frontends |
 |------------|-----------|
-| meta-pbs.metacentrum.cz | skirit.ics.muni.cz, alfrid.meta.zcu.cz, tarkil.grid.cesnet.cz, nympha.zcu.cz, charon.nti.tul.cz, minos.zcu.cz, perian.grid.cesnet.cz, onyx.metacentrum.cz |
-| cerit-pbs.cerit-sc.cz | zuphux.cerit-sc.cz |
-| elixir-pbs.elixir-czech.cz | elmo.elixir-czech.cz | 	
+| *new meta* | zenith.cerit-sc.cz |
+| *meta* | skirit.ics.muni.cz, alfrid.meta.zcu.cz, tarkil.grid.cesnet.cz, nympha.zcu.cz, charon.nti.tul.cz, minos.zcu.cz, perian.grid.cesnet.cz, onyx.metacentrum.cz |
+| *cerit* | zuphux.cerit-sc.cz |
+| *elixir* | elmo.elixir-czech.cz | 	
 
 The most important PBS Pro commands are:
 
