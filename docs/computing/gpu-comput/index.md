@@ -23,23 +23,55 @@ GPU jobs on the **konos** cluster can be also run via the priority queue `iti@me
     qsub -I -q gpu -l select=1:ncpus=1:ngpus=1:scratch_local=10gb -l walltime=24:0:0
 
 
-### Specific PBS resources
+## PBS resources
 
-#### gpu mem
+### gpu mem
 
 PBS parameter `gpu_mem` specifies minimum amount of memory that the GPU card will have. 
 
     qsub -q gpu -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb ...
 
-#### gpu\_cap
+### gpu\_cap
 
 PBS parameter `gpu_cap` is [Cuda compute capability as defined on this page](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities).
 
-#### cuda\_version
+!!! warning
+    With the introduction of [new PBS server running on OpenPBS](../../computing/concepts/#pbs-servers), the specification of `gpu_cap` parameter is done in two distinct ways depending whether you submit to *PBS Pro* or *OpenPBS* scheduler.
+
+#### OpenPBS (new scheduler)
+
+The user can specify a *minimal required architecture* (`compute_XY`), or a *minimal required version within a given architecture* (`sm_XY`).
+
+Minimal architecture:
+
+    gpu_cap=compute_70   # will give you 7.0, 7.1, ... 7.5, but also 8.0, 9.0 ...
+
+Minimal version of a chosen architecture, e.g. 7 ("Volta"):
+
+    gpu_cap=sm_72        # will give you 7.2 till 7.5, but not 8.0 and higher
+
+The requirements can be combined in a comma-separated string.
+
+!!! note
+    The commas are evaluated as an OR operand.
+
+Example:
+
+    qsub -l select=1:ngpus=1:gpu_cap=\"sm_65,compute_70\":mem=4gb   # 6.5 or 7.0 and higher
+    qsub -l 'select=1:ngpus=1:gpu_cap="sm_65,compute_70":mem=4gb'   # dtto
+
+!!! note
+    Note that the quotes enclosing the `gpu_cap` options must be protected against shell expansion either by escaping them or by enclosing the whole `qsub` command into single quotes.
+
+#### PBS Pro (old schedulers)
+
+    qsub -q gpu -l select=1:ncpus=1:ngpus=1:gpu_cap=cuda70 ...
+
+### cuda\_version
 
 PBS parameter `cuda_version` is version of CUDA installed.
 
-### Specific system variables
+## System variables
 
 IDs of GPU cards are stored in `CUDA_VISIBLE_DEVICES` variable.
 
