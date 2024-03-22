@@ -55,7 +55,7 @@ Example:
 
 ### **CPU type**
 
-Resource name: `cpu_vendor`. Default value: `???`.
+Resource name: `cpu_vendor`. 
 
 In the Metacentrum grid there are both machines with AMD as well as Intel processors. Some software may be sensitive to the processor used (although most applications run seamlessly on both). Therefore you can request a specific CPU vendor:
 
@@ -64,7 +64,7 @@ In the Metacentrum grid there are both machines with AMD as well as Intel proces
 
 ### **CPU speed**
 
-Resource name: `spec`. Default value: `???`.
+Resource name: `spec`. 
 
 CPUs across Metacentrum grid differ in their how fast they are. Therefore they are classed by parameter `spec` according to methodology of [SPEC CPU2017](https://www.spec.org/cpu2017/).  To see the `spec` values, go to [qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) and see the drop-down menu in the `spec` parameter.
 
@@ -142,7 +142,7 @@ Resource name: `ngpus`. Default value: `0`.
 
 ### **OS**
 
-Resource name: `os`, `osfamily`. Default value: `???`.
+Resource name: `os`, `osfamily`. 
 
 To submit a job to a machine with specific operation system, use `os=OS_name`:
 
@@ -196,7 +196,7 @@ As the physical machines are distributed over multiple locations in Czech republ
 
 ### **MPI processes**
 
-Resource name: `mpiprocs`, `ompthreads`. Default value: `???`.
+Resource name: `mpiprocs`, `ompthreads`. 
 
 How many MPI processes would run on one chunk is specified by `mpiprocs=[number]`:
 
