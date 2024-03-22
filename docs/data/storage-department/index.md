@@ -49,7 +49,7 @@ Underlying infrastructure in Storage Department are **servers with hierarchical 
 
 ### Access
 
-First you need to contact data storage support <du-support@cesnet.cz> and request them to obtain s# credenials.
+First you need to contact data storage support <du-support@cesnet.cz> and request them to obtain s3 credenials.
 
 To work with S3 storage, you need to obtain S3 credentials `aws_access_key_id` (aka "access key") and `aws_secret_access_key` (aka "secret key") from Storage Department admins.
 
