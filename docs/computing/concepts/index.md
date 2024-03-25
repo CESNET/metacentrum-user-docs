@@ -51,7 +51,7 @@ Which PBS server will take care of particular job depends on from which frontend
 | PBS server | Frontends |
 |------------|-----------|
 | *new meta* | zenith.cerit-sc.cz |
-| *meta* | skirit.ics.muni.cz, alfrid.meta.zcu.cz, tarkil.grid.cesnet.cz, nympha.zcu.cz, charon.nti.tul.cz, minos.zcu.cz, perian.grid.cesnet.cz, onyx.metacentrum.cz |
+| *meta* | skirit.ics.muni.cz, alfrid.meta.zcu.cz, tarkil.grid.cesnet.cz, nympha.meta.zcu.cz, charon.nti.tul.cz, minos.zcu.cz, perian.grid.cesnet.cz, onyx.metacentrum.cz |
 | *cerit* | zuphux.cerit-sc.cz |
 | *elixir* | elmo.elixir-czech.cz | 	
 
