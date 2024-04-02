@@ -155,4 +155,4 @@ nav:
       - related/collgs/index.md
       - related/collgs/era5.md
       - related/collgs/pristup-k-datum.md
-    - related/notebooks/c-scale-data-discovery.ipynb
+      - 'C-scale data discovery': related/notebooks/c-scale-notebooks/1-C-SCALE_Data_Discovery.ipynb
