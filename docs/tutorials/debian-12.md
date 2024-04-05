@@ -26,7 +26,7 @@ Example: Send a job from `skirit` to  `pbs-m1.metacentrum.cz` scheduler
 user@skirit:~$ module add openpbs        # this is necessarry!
 user@skirit:~$ qsub -q @pbs-m1.metacentrum.cz -I -l select=1:ncpus=1 -l walltime=1:00:00
 user@zenon1:~$ ...        ; exit         # do your job and exit               
-user@skirit:~$ module purge              # if you want to get back PBSPro ("old" planners)
+user@skirit:~$ module rm openpbs         # if you want to get back PBSPro ("old" planners)
 ```
 
 The module `openpbs` is needed also for other operations, e.g. probing for the job's state:
