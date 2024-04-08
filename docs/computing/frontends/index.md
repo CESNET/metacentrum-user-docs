@@ -6,3 +6,6 @@
 --8<-- "frontend-table-1.md"
 
 
+!!! note "oven frontend"
+    The `oven` frontend is meant to access [`oven` node](../../computing/node-properties/#oven-node) only.
+

@@ -11,5 +11,6 @@
 | tilia.ibot.cas.cz       | tilia.metacentrum.cz   | /storage/pruhonice1-ibot | Debian 12 | Pruhonice |
 | zuphux.cerit-sc.cz 	  | zuphux.metacentrum.cz  | /storage/brno12-cerit  | CentOS 7.9 | Brno	     | 
 | elmo.elixir-czech.cz 	  | elmo.metacentrum.cz    | /storage/praha5-elixir | Debian 11  | Praha     | 
+| oven.ics.muni.cz     	  | oven.metacentrum.cz    | /storage/brno2         | Debian 11  | Brno      | 
 
 
