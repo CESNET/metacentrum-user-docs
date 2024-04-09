@@ -13,7 +13,7 @@
 | storage-budejovice1.metacentrum.cz         | /storage/budejovice1/      | 3                |             |
 | storage-liberec3-tul.metacentrum.cz        | /storage/liberec3-tul/     | 0                |             |
 | storage-pruhonice1-ibot.metacentrum.cz     | /storage/pruhonice1-ibot/  | 3                |               |
-| storage-vestec1-elixir.metacentrum.cz      | /storage/vestec1-elixir/, <br /> /storage/praha1/    |  2             |             |
+| storage-vestec1-elixir.metacentrum.cz      | /storage/vestec1-elixir/   |    2             |  also /storage/praha1/           |
 
 | Backup class | Description |
 |--------------|-------------|
