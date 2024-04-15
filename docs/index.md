@@ -1,6 +1,6 @@
 # Welcome
 
-This is the documetations for users of MetaCentrum grid computing service.
+This is the documentation for users of MetaCentrum grid computing service.
 
 - To **get access** to this service, see [How to get account](/access/account).
 - For overview of the grid's **infrastructure**, go to the [Basic concepts](/computing/concepts) page.
