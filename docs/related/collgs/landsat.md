@@ -40,4 +40,11 @@ Veřejnosti jsou data zpřístupněna bez potřeby registrace prostřednictvím 
 5) [Landsat 4-5 TM C2 L1](https://stac.vm.cesnet.cz/collections/landsat_tm_c2_l1)
 6) [Landsat 4-5 TM C2 L2](https://stac.vm.cesnet.cz/collections/landsat_tm_c2_l2)
 7) [Landsat 1-5 MSS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_mss_c2_l1)
+
+## Stažení dat
+
+Data jsou distribuována ve formátu `.tar`, pričem jednomu snímku odpovída právě jeden `.tar` soubor. Uvažujme item **[LC09_L2SP_191025_20240412_02_T1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l2/items/8bb8514b-7e73-5a73-8c20-5835018825f3)**, v node `assets` jsou pak dostupné ke stažení metadata ve formátu `xml` - **assets/mtl.xml** a samotný datový soubor **assets/data**. Odkaz pro stažení je v klíči `href`.
                 
+## Licence
+
+Data jsou volně k použití. Viz: [NASA Landsat Science](https://landsat.gsfc.nasa.gov/data/) a [USGS FAQ](https://www.usgs.gov/faqs/are-there-any-restrictions-use-or-redistribution-landsat-data).
