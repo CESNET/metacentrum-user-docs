@@ -26,4 +26,18 @@ The Landsat Program’s continuous archive (1972-present) provides essential lan
 
 [Landsat 1-5 MSS C2 L1](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-landsat-archives-landsat-1-5-multispectral-scanner-mss-level)
 
+## Získávání a redistribuce dat
 
+Data jsou získávána pro celé území České republiky, které je definováno bounding boxem [`48.55, 12.09, 51.06, 18.87`](http://bboxfinder.com/#48.550000,12.090000,51.060000,18.870000). 
+
+Data jsou stahována inkrementálně, kontrola přítůstku dat probíhá každý den v 9:00 UTC, data se na přírustky kontrolují 30 dní zpětně.
+
+Veřejnosti jsou data zpřístupněna bez potřeby registrace prostřednictvím STAC katalogu:
+1) [Landsat 8-9 OLI/TIRS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1)
+2) [Landsat 8-9 OLI/TIRS C2 L2](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l2)
+3) [Landsat 7 ETM+ C2 L1](https://stac.vm.cesnet.cz/collections/landsat_etm_c2_l1)
+4) [Landsat 7 ETM+ C2 L2](https://stac.vm.cesnet.cz/collections/landsat_etm_c2_l2)
+5) [Landsat 4-5 TM C2 L1](https://stac.vm.cesnet.cz/collections/landsat_tm_c2_l1)
+6) [Landsat 4-5 TM C2 L2](https://stac.vm.cesnet.cz/collections/landsat_tm_c2_l2)
+7) [Landsat 1-5 MSS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_mss_c2_l1)
+                
