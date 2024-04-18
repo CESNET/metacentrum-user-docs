@@ -1,7 +1,7 @@
 #  TensorFlow
 
-    ls ls /cvmfs/singularity.metacentrum.cz/NGC/    # Singularity image
-    module avail tensorflow/                        # as a module
+    ls /cvmfs/singularity.metacentrum.cz/NGC/    # Singularity image
+    module avail tensorflow/                     # as a module
 
 [TensorFlow](https://www.tensorflow.org/) is an open source software library for numerical computation using data flow graphs.
 
