@@ -9,9 +9,7 @@ Expanded, the error typically looks like this:
 
     ERROR: Could not install packages due to an OSError: [Errno 122] Disk quota exceeded
 
-Type  `echo $TMPDIR`.
-
-If you get `/tmp` in return, the temporary files of various packages (installed via *pip*, *conda*, *mamba*, etc.) are saved into `/tmp` directory (= outside of user's home).
+Temporary files of various packages (installed via *pip*, *conda*, *mamba*, etc.) are often saved into `/tmp` directory (= outside of user's home).
 
 The quota for writing outside of the scratch directory or user's home is very low (977 MB only) which causes the installation to fail.
 
