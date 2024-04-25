@@ -25,7 +25,7 @@ Fairshare_usage += Usage_CPU + Usage_RAM + Usage_Scratch + Usage_GPU
 
 ### Tips for scheduling large jobs
 
-*Any newly started job will instantly lower the user's fairshare.>*
+*Any newly started job will instantly lower the user's fairshare.*
 
 Thus, if you need to run a large job, it is not a good idea to submit simultaneously a batch of small jobs; due to internal workings of PBS, these small jobs will be prioritized over the large job (they are easier to "fill in" space), thus continuously lowering the user's fairshare. As a result, a large job may wait in the queue for a very long time.
 
