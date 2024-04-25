@@ -26,6 +26,8 @@
 
 - [My jobs are in the "M" state. What does it mean?](../../troubleshooting/faqs/faqs-content/moved-state-jobs)
 
+- [My job failed with something like "No space left on device / Input-output error".](../../troubleshooting/faqs/faqs-content/no-space-left)
+
 ## Managed computing services
 
 - [What are Managed computing services, do I need a special login?](../../troubleshooting/faqs/faqs-content/managed-services-access)
@@ -71,12 +73,6 @@
     - some howto on used mem, CPUs
     - duration is obvious
     - if CPU usage is low, usually the calculation is not so paralle as it should be 
-
--[]()
-- My job failed with something like "No space left on device / Input-output error"
-    - probably the root filesystem quota or /var/... files
-    - how to clear the quota / send the unnecessary output to /dev/null
-    - setup TMPDIR (TMP), SINGULARITY CACHEDIR to SCRATCHDIR
 
 - how can users prolong their jobs 
 - what to edo if they run out of their quota
