@@ -1,12 +1,6 @@
-# My running job is coming close to walltime, can I prolong it?
+# My job is approaching walltime, can I prolong it?
 
-You should always aim to setting the walltime sufficiently from the beginning, since prolonging running jobs spoils the performance of scheduling system. Users are, however, allowed to prolong their running jobs (to a certain extent). To prolong a job e.g. by 1 hour this, use:
+Yes, in a limited way.
 
-    (BUSTER)user123@skirit:~$ qextend my_job_ID 01:00:00
-    The walltime of the job my_job_ID has been extended.
-    Additional walltime:	01:00:00
-    New walltime:		02:00:00
+Use command `qextend` as described [on this page](../../../../computing/extend-walltime/).
 
-For detailed information see [how to prolong walltime](/computing/extend-walltime).
-
-If you already have run out of a quota, contact our user support.

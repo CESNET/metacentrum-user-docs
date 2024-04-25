@@ -28,6 +28,8 @@
 
 - [My job failed with something like "No space left on device / Input-output error".](../../troubleshooting/faqs/faqs-content/no-space-left)
 
+- [My job is approaching walltime, can I prolong it?](../../troubleshooting/faqs/faqs-content/prolong-walltime)
+
 ## Managed computing services
 
 - [What are Managed computing services, do I need a special login?](../../troubleshooting/faqs/faqs-content/managed-services-access)
@@ -73,9 +75,6 @@
     - some howto on used mem, CPUs
     - duration is obvious
     - if CPU usage is low, usually the calculation is not so paralle as it should be 
-
-- how can users prolong their jobs 
-- what to edo if they run out of their quota
 
 -[]()
 - How to speed up a job apart from running it in parallel?
