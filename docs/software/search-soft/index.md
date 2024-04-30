@@ -79,11 +79,9 @@ will show up the package.
 
 ## Containers
 
-A minor part of software is prepared as Singularity containers.
+A part of software is prepared as Singularity containers.
 
-You can list them at
-
-    ls /cvmfs/singularity.metacentrum.cz/
+You can list them from any frontend at `/cvmfs/singularity.metacentrum.cz/` directory - for respective subdirectories, see [description on this page](../../software/containers/#pre-built-singularity-images).
 
 For instructions on container usage, see [the containers chapter](../../software/containers).
 

@@ -119,7 +119,6 @@
 - [Platanus](../../software/sw-list/platanus)
 - [Python](../../software/sw-list/python)
 - [Python modules](../../software/sw-list/python-modules)
-- [PyTorch](../../software/sw-list/pytorch)
 
 **Q**
 

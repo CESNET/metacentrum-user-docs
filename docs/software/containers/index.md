@@ -167,13 +167,30 @@ These images are placed `/cvmfs/singularity.metacentrum.cz/`.
 
     /cvmfs/singularity.metacentrum.cz/
     │
+    ├── BioBakery    
+    │
+    ├── Bioconductor 
+    │
+    ├── BioNano 
+    │
+    ├── Biomex  
+    │
+    ├── Braker 
+    │
     ├── FEFLOW/
     |    # FEFLOW is a computer program for simulating groundwater flow,
     |    # mass transfer and heat transfer in porous and fractured media
     │
+    ├── GATE	
+    │
+    ├── HybPiper 
+    │
     ├── KKY/ 
     |    # KKY directory contains tools prepared specifically for
     |    # Department of Cybernetics (KKY) at University of West Bohemia in Pilsen
+    │
+    ├── Metacentrum 
+    |    # OSs
     │
     ├── NGC/ 
     |    # NGC are GPU-tuned NVIDIA frameworks for deep learning
@@ -191,15 +208,19 @@ These images are placed `/cvmfs/singularity.metacentrum.cz/`.
     ├── Peregrine/ 
     |    # Peregrine is a fast genome assembler for accurate long reads
     │
+    ├── RepeatExplorer 
+    │
     ├── RNApeg/ 
     |    # RNApeg is an RNA junction calling, correction, and quality-control package
     │
     ├── RStudio/ 
     |    # Integrated development environment (IDE) for R
     │
-    └── TE-Tools/ 
+    ├── TE-Tools/ 
     |    # Dfam TE Tools is a container
     |    # that includes RepeatMasker, RepeatModeler, and coseg
+    │
+    ├── Trinity
 
 ## Docker usage
 
@@ -264,6 +285,7 @@ Alternatively you can setup and interactive job and work from within the job.
 
 First set path for temporary files:
 (Default is `/tmp` which has quota of only 1 GB.)
+
 
     export SINGULARITY_TMPDIR=/storage/CITY_XY/home/user123/
 
