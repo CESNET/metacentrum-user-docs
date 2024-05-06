@@ -9,7 +9,7 @@ Example:
     qstat job_ID # display status of selected job (short format)
     qstat -f job_ID # display status of job (long format)
     qstat -u user123 # list all user123's running or waiting jobs on current PBS server 
-    qstat -u user123 @cerit-pbs.cerit-sc.cz @meta-pbs.metacentrum.cz @elixir-pbs.elixir-czech.cz # dtto, on all PBS servers
+    qstat -u user123 @cerit-pbs.cerit-sc.cz @pbs-m1.metacentrum.cz @elixir-pbs.elixir-czech.cz # dtto, on all PBS servers
 
 ## Job states
 
@@ -36,16 +36,16 @@ To see current state of these files in a running job, proceed in these steps:
 1. find on which host the job runs by `qstat -f job_ID | grep exec_host2`
 2. `ssh` to this host
 3. on the host, navigate to `/var/spool/pbs/spool/` directory and examine the files
-    - `$PBS_JOBID.OU` for STDOUT, e.g. `13031539.meta-pbs.metacentrum.cz.OU`
-    - `$PBS_JOBID.ER` for STDERR, e.g. `13031539.meta-pbs.metacentrum.cz.ER`
+    - `$PBS_JOBID.OU` for STDOUT, e.g. `13031539.pbs-m1.metacentrum.cz.OU`
+    - `$PBS_JOBID.ER` for STDERR, e.g. `13031539.pbs-m1.metacentrum.cz.ER`
 4. To watch a file continuously, you can also use a command `tail -f`
 
 For example:
 
-    (BULLSEYE)user123@tarkil:~$ qstat -f 13031539.meta-pbs.metacentrum.cz | grep exec_host2
+    (BULLSEYE)user123@tarkil:~$ qstat -f 13031539.pbs-m1.metacentrum.cz | grep exec_host2
     exec_host2 = zenon41.cerit-sc.cz:15002/12
     (BULLSEYE)user123@tarkil:~$ ssh zenon41.cerit-sc.cz
-    user123@zenon41.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 13031539.meta-pbs.metacentrum.cz.OU 
+    user123@zenon41.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 13031539.pbs-m1.metacentrum.cz.OU 
  
 <!--
 ## Job exit codes

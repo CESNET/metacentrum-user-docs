@@ -79,11 +79,11 @@ these options further ensure an availability of the `$SCRATCHDIR` directory to t
 
 ```
 $ qsub -I -W group_list=einfra -W umask=002
-qsub: waiting for job 4025666.meta-pbs.metacentrum.cz to start
-qsub: job 4025666.meta-pbs.metacentrum.cz ready
+qsub: waiting for job 4025666.pbs-m1.metacentrum.cz to start
+qsub: job 4025666.pbs-m1.metacentrum.cz ready
 
 konos6$ ls -ld $SCRATCHDIR
-drwxrwxr-x 2 makub einfra 6 Feb 13 10:50 /scratch/makub/job_4025666.meta-pbs.metacentrum.cz
+drwxrwxr-x 2 makub einfra 6 Feb 13 10:50 /scratch/makub/job_4025666.pbs-m1.metacentrum.cz
 
 konos6$ id
 uid=13153(makub) gid=10002(einfra) groups=10000(meta),10002(einfra),10100(storage)

@@ -50,8 +50,8 @@ Which PBS server will take care of particular job depends on from which frontend
 
 | PBS server | Frontends |
 |------------|-----------|
-| *new meta* | zenith.cerit-sc.cz, tilia.ibot.cas.cz, nympha.meta.zcu.cz, perian.grid.cesnet.cz, alfrid.meta.zcu.cz, minos.zcu.cz, onyx.metacentrum.cz, tarkil.grid.cesnet.cz |
-| *meta* | skirit.ics.muni.cz, charon.nti.tul.cz |
+| *new meta* | zenith.cerit-sc.cz, tilia.ibot.cas.cz, nympha.meta.zcu.cz, perian.grid.cesnet.cz, alfrid.meta.zcu.cz, minos.zcu.cz, onyx.metacentrum.cz, tarkil.grid.cesnet.cz, skirit.ics.muni.cz, charon.nti.tul.cz |
+| *meta* | *no frontend anymore* |
 | *cerit* | zuphux.cerit-sc.cz |
 | *elixir* | elmo.elixir-czech.cz | 	
 
@@ -182,11 +182,11 @@ To access the scratch directory, use the system variable `SCRATCHDIR`:
 
 ```
 (BULLSEYE)user123@skirit:~$ qsub -I -l select=1:ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
-qsub: waiting for job 14429322.meta-pbs.metacentrum.cz to start
-qsub: job 14429322.meta-pbs.metacentrum.cz ready
+qsub: waiting for job 14429322.pbs-m1.metacentrum.cz to start
+qsub: job 14429322.pbs-m1.metacentrum.cz ready
 
 user123@glados12:~$ echo $SCRATCHDIR
-/scratch.ssd/user123/job_14429322.meta-pbs.metacentrum.cz
+/scratch.ssd/user123/job_14429322.pbs-m1.metacentrum.cz
 user123@glados12:~$ cd $SCRATCHDIR
-user123@glados12:/scratch.ssd/user123/job_14429322.meta-pbs.metacentrum.cz$ 
+user123@glados12:/scratch.ssd/user123/job_14429322.pbs-m1.metacentrum.cz$ 
 ```

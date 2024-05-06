@@ -71,7 +71,7 @@ Job composer is a GUI wizard to setup a batch job.
 The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum frontends. Currently there are links to:
 
 - **zuphux** (connected with *cerit-pbs.cerit-sc.cz* PBS server),
-- **skirit** (connected with *meta-pbs.metacentrum.cz* PBS server), and
+- **skirit** (connected with *pbs-m1.metacentrum.cz* PBS server), and
 - **elmo** (connected with *elixir-pbs.elixir-czech.cz* PBS server).
    
 ![pic](clusters-rolldown.png)

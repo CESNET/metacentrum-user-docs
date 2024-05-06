@@ -18,7 +18,7 @@ $ qstat -f 969390'[]' -x | grep array\_state\_count
 array_state_count = Queued:0 Running:0 Exiting:0 Expired:0 
 ```
 
-An example of sub job ID is `969390[1].meta-pbs.metacentrum.cz`.
+An example of sub job ID is `969390[1].pbs-m1.metacentrum.cz`.
 
 The sub job can be queried by a qstat command (`qstat -t`).
 

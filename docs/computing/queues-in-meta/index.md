@@ -4,7 +4,7 @@
 
 Queues are a basic concept of PBS. When submitting a job, the user normally does not have to specify any queue. For every PBS server, there exists a default queue, namely
 
-- `default@meta-pbs.metacentrum.cz`
+- `default@pbs-m1.metacentrum.cz`
 - `default@cerit-pbs.cerit-sc.cz`
 - `elixircz@elixir-pbs.elixir-czech.cz`
 
@@ -16,9 +16,9 @@ In some cases, it is possible or even recommended that the user choses a particu
 
 | Queue name | Description |
 |------------|-------------|
-| gpu@meta-pbs.metacentrum.cz  | Jobs requiring at least 1 GPU, up to 24 hours walltime |
-| gpu\_long@meta-pbs.metacentrum.cz | Jobs requiring at least 1 GPU, up to 2 weeks walltime |
-| large\_mem@meta-pbs.metacentrum.cz | Jobs requiring 500 GB or more, up to 1 week walltime |
+| gpu@pbs-m1.metacentrum.cz  | Jobs requiring at least 1 GPU, up to 24 hours walltime |
+| gpu\_long@pbs-m1.metacentrum.cz | Jobs requiring at least 1 GPU, up to 2 weeks walltime |
+| large\_mem@pbs-m1.metacentrum.cz | Jobs requiring 500 GB or more, up to 1 week walltime |
 | gpu@cerit-pbs.cerit-sc.cz | Jobs requiring at least 1 GPU, up to 24 hours walltime |
 | phi@cerit-pbs.cerit-sc.cz | Jobs optimized to run on Intel Phi architecture |
 | uv@cerit-pbs.cerit-sc.cz | Jobs requiring >100 CPUs OR >%)) GB of memory |
@@ -32,15 +32,15 @@ Example:
     qstat -q  # get list of queues and their properties on current PBS server
     qstat -Q  # dtto, different format
     qstat -q @cerit-pbs.cerit-sc.cz # list queues on cerit-pbs.cerit-sc.cz PBS server
-    qstat -q @cerit-pbs.cerit-sc.cz @meta-pbs.metacentrum.cz @elixir-pbs.elixir-czech.cz # list queues on all servers
+    qstat -q @cerit-pbs.cerit-sc.cz @pbs-m1.metacentrum.cz @elixir-pbs.elixir-czech.cz # list queues on all servers
 
 To see details for a selected queue, use:
 
     qstat -Q -f queue_name@server_name
 
-Example of output of `qstat -Q -f gpu_long@meta-pbs.metacentrum.cz`:
+Example of output of `qstat -Q -f gpu_long@pbs-m1.metacentrum.cz`:
 
-    (BUSTER)user123@skirit:~$ qstat -Q -f gpu_long@meta-pbs.metacentrum.cz
+    (BUSTER)user123@skirit:~$ qstat -Q -f gpu_long@pbs-m1.metacentrum.cz
     Queue: gpu_long
         queue_type = Execution
         Priority = 66

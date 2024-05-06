@@ -11,8 +11,8 @@ Time can be set as:
 
 Example:
 
-    (BUSTER)user123@skirit:~$ qextend 8152779.meta-pbs.metacentrum.cz 01:00:00
-    The walltime of the job 8152779.meta-pbs.metacentrum.cz has been extended.
+    (BUSTER)user123@skirit:~$ qextend 8152779.pbs-m1.metacentrum.cz 01:00:00
+    The walltime of the job 8152779.pbs-m1.metacentrum.cz has been extended.
     Additional walltime:	01:00:00
     New walltime:		02:00:00
 

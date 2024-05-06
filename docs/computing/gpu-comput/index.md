@@ -12,11 +12,11 @@ To run GPU calculation, the user needs to:
 
 | GPU queue name | Walltime range | 
 |------------|----------------|
-| gpu@meta-pbs.metacentrum.cz | 00:00:00 - 24:00:00 |
-| gpu\_long@meta-pbs.metacentrum.cz | 00:00:00 - 336:00:00 |
+| gpu@pbs-m1.metacentrum.cz | 00:00:00 - 24:00:00 |
+| gpu\_long@pbs-m1.metacentrum.cz | 00:00:00 - 336:00:00 |
 | gpu@cerit-pbs.cerit-sc.cz | 00:00:00 - 24:00:00 |
 
-GPU jobs on the **konos** cluster can be also run via the priority queue `iti@meta-pbs.metacentrum.cz` (queue for users from ITI - Institute of Theoretical Informatics, Univ. of West Bohemia).
+GPU jobs on the **konos** cluster can be also run via the priority queue `iti@pbs-m1.metacentrum.cz` (queue for users from ITI - Institute of Theoretical Informatics, Univ. of West Bohemia).
 
 **Example**
 

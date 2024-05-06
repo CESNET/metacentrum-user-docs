@@ -5,7 +5,7 @@
 
 ## Oven node
 
-Oven (`oven.ics.muni.cz`, aliased as `oven.metacentrum.cz`) is a new special frontend which is available through [oven queue](https://metavo.metacentrum.cz/pbsmon2/queue/oven@meta-pbs.metacentrum.cz). It is dedicated for non-demanding jobs (control/re-submitting of jobs).
+Oven (`oven.ics.muni.cz`, aliased as `oven.metacentrum.cz`) is a new special frontend which is available through [oven queue](https://metavo.metacentrum.cz/pbsmon2/queue/oven@pbs-m1.metacentrum.cz). It is dedicated for non-demanding jobs (control/re-submitting of jobs).
 
 **Parameters:**
 

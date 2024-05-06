@@ -28,20 +28,20 @@ When the job history is found, individual files are stored in one folder named b
 
 Example of the output:
 
-    user123@elmo:~$ pbs-get-job-history 11808203.meta-pbs.metacentrum.cz
+    user123@elmo:~$ pbs-get-job-history 11808203.pbs-m1.metacentrum.cz
     
-    11808203.meta-pbs.metacentrum.cz  Job found
+    11808203.pbs-m1.metacentrum.cz  Job found
     
-    Storing job data in ./11808203.meta-pbs.metacentrum.cz
+    Storing job data in ./11808203.pbs-m1.metacentrum.cz
     
-    11808203.meta-pbs.metacentrum.cz_afslog_00000001.pid  # Process identification number (PID)
-    11808203.meta-pbs.metacentrum.cz.ER                   # Standard error
-    11808203.meta-pbs.metacentrum.cz.JB                   # PBS parameters in binary format, not human readable
-    11808203.meta-pbs.metacentrum.cz.JB.TXT               # PBS parameters in text format, readable
-    11808203.meta-pbs.metacentrum.cz.MOM_LOGS             # PBS logs
-    11808203.meta-pbs.metacentrum.cz.OU                   # Standard output
-    11808203.meta-pbs.metacentrum.cz.SC                   # Original user's shell script
-    11808203.meta-pbs.metacentrum.cz.SYSLOG               # System logs from the computing node
+    11808203.pbs-m1.metacentrum.cz_afslog_00000001.pid  # Process identification number (PID)
+    11808203.pbs-m1.metacentrum.cz.ER                   # Standard error
+    11808203.pbs-m1.metacentrum.cz.JB                   # PBS parameters in binary format, not human readable
+    11808203.pbs-m1.metacentrum.cz.JB.TXT               # PBS parameters in text format, readable
+    11808203.pbs-m1.metacentrum.cz.MOM_LOGS             # PBS logs
+    11808203.pbs-m1.metacentrum.cz.OU                   # Standard output
+    11808203.pbs-m1.metacentrum.cz.SC                   # Original user's shell script
+    11808203.pbs-m1.metacentrum.cz.SYSLOG               # System logs from the computing node
 
 !!! note
     The `pbs-get-job-history` utility does not retrieve input data and job results (they are not stored anywhere).

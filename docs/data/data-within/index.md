@@ -198,7 +198,7 @@ ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
 
 If you then look at the output of running job you can check how the data transfer proceeds.
 
-    USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.meta-pbs.metacentrum.cz.OU
+    USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.pbs-m1.metacentrum.cz.OU
 
 ## Direct access to storages
 
