@@ -81,6 +81,7 @@
 
 **M**
 
+- [Mamba](../../software/sw-list/mamba)
 - [Maple](../../software/sw-list/maple)
 - [Masurca](../../software/sw-list/masurca)
 - [Mathematica](../../software/sw-list/wolfram-math)

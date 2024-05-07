@@ -229,14 +229,14 @@ python
 ```
 
 
-### Conda packages
+### Conda/Mamba packages
 
 !!! tip
-    Some of the most popular Conda packages may be already installed system-wide - see [`conda-modules` page](../../software/sw-list/conda-modules).
+    Some of the most popular Python packages may be already installed system-wide - see [`conda-modules` page](../../software/sw-list/conda-modules).
 
-**Conda package installers: Conda, Mamba, Micromamba**
+**Python package installers: Conda, Mamba, Micromamba**
 
-[Conda](https://conda.io), avalable through [`conda-modules/` module](../../software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
+[Conda](https://conda.io), available through [`conda-modules/` module](../../software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
 
 [Mamba](https://anaconda.org/conda-forge/mamba), available through `mambaforge` module, is a package manager and environment manager that is designed to be a faster and more efficient drop-in replacement for Conda. Both Conda and Mamba are closely related, as Mamba was developed as an open-source project to address some of the performance limitations of Conda.
 

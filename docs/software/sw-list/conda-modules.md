@@ -12,8 +12,8 @@ Conda is platform-agnostic and can be used on various operating systems, includi
 
 ## Usage
 
-!!! warning "Use `conda-modules/*` primarily to invoke some of the already installed environments."
-    As the `conda` included in the `conda-module` module is not recent version and not a very fast one, we recommend to use `conda-modules/*` solely in cases you need to invoke some if the already installed environments. <br/>If you need `conda` in order to install a *new Conda environment*, we recommend to use `mamba` installer from module `mambaforge` - see [How to install Conda packages](../../software/install-software/#conda-packages).
+!!! warning "We encourage users to use `mambaforge` in preference to `conda-modules`."
+    As the `conda` included in the `conda-modules` module is not recent version and not a very fast one, we recommend users to use `mambaforge` module instead.<br/>[Mamba](../../../software/sw-list/mamba) can access all the environments installed in a `conda-modules` module, plus some of the newer ones installed solely to `mambaforge`. <br/>If you consider using `conda` in order to install a new environment, we recommend to use [Mamba installer](../../../software/sw-list/mamba), too; see also [How to install Conda packages](../../../software/install-software/#condamamba-packages).
 
 Under the `conda-modules` module, there are multiple environments installed.
 
