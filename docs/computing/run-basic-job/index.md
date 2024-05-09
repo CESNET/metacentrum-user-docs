@@ -121,19 +121,19 @@ An interactive job is requested via `qsub -I` command (uppercase "i").
     qsub: waiting for job 13010171.pbs-m1.metacentrum.cz to start
     qsub: job 13010171.pbs-m1.metacentrum.cz ready # 13010171.pbs-m1.metacentrum.cz is the job ID
     (BULLSEYE)user123@elmo3-1:~$ # elmo3-1 is computational node
-    (BULLSEYE)user123@elmo3-1:~$ conda # start conda
-    (BULLSEYE)user123@elmo3-1:~$ conda list | grep scipy # make sure there is no scipy package already installed
-    (BULLSEYE)user123@elmo3-1:~$ conda search scipy 
-    ... # conda returns list of scipy packages available in repositories
-    (BULLSEYE)user123@elmo3-1:~$ conda --create my_scipy # create my environment to install scipy into
+    (BULLSEYE)user123@elmo3-1:~$ module add mambaforge   # make available mamba 
+    (BULLSEYE)user123@elmo3-1:~$ mamba list | grep scipy # make sure there is no scipy package already installed
+    (BULLSEYE)user123@elmo3-1:~$ mamba search scipy 
+    ... # mamba returns list of scipy packages available in repositories
+    (BULLSEYE)user123@elmo3-1:~$ mamba create -n my_scipy # create my environment to install scipy into
     ... 
-    environment location: /storage/praha1/home/melounova/.conda/envs/my_scipy 
+    environment location: /storage/praha1/home/user123/.conda/envs/my_scipy 
     ...
     Proceed ([y]/n)? y
     ...
-    (BULLSEYE)user123@elmo3-1:~$ conda activate my_scipy # enter the environment
+    (BULLSEYE)user123@elmo3-1:~$ mamba activate my_scipy # enter the environment
     (my_scipy) (BULLSEYE)user123@elmo3-1:~$ 
-    (my_scipy) (BULLSEYE)user123@elmo3-1:~$ conda install scipy
+    (my_scipy) (BULLSEYE)user123@elmo3-1:~$ mamba install scipy
     ...
     Proceed ([y]/n)? y
     ...
