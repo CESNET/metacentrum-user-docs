@@ -1,7 +1,7 @@
 # SRA Toolkit 
 
     module add mambaforge;
-    mamba activate sra-tools-3.0.3   # as mamba environment
+    mamba activate sra-tools-3.0.3   # as an environment
 
     module avail sratoolkit/         # as a module                             
 
