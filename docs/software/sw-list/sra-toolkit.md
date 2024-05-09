@@ -1,7 +1,8 @@
 # SRA Toolkit 
 
-    module add conda-modules;
-    conda activate sra-tools-3.0.3   # as conda environment
+    module add mambaforge;
+    mamba activate sra-tools-3.0.3   # as mamba environment
+
     module avail sratoolkit/         # as a module                             
 
 [SRA Toolkit](https://github.com/ncbi/sra-tools/wiki/) is  a collection of tools and libraries for using data in the INSDC Sequence Read Archives. Much of the data submitted these days contain alignment information, for example in BAM, Illumina export.txt, and Complete Genomics formats. 
