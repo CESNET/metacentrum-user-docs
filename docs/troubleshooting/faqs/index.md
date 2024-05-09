@@ -30,10 +30,6 @@
 
 - [My job is approaching walltime, can I prolong it?](../../troubleshooting/faqs/faqs-content/prolong-walltime)
 
-## Managed computing services
-
-- [What are Managed computing services, do I need a special login?](../../troubleshooting/faqs/faqs-content/managed-services-access)
-
 ## Grid infrastructure
 
 - [I want to use NVIDIA DGX H100 hardware, what do I need to do?](../../troubleshooting/faqs/faqs-content/dgx-usage)
