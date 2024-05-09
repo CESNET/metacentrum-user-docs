@@ -6,7 +6,7 @@ Nextflow is available as a part of [Kubernetes](https://docs.cerit.io/docs/nextf
     
 **In a grid:**
 
-    module add conda-modules-py37 ; conda activate nextflow ; nextflow -v # as conda environment
+    module add mambaforge ; mamba activate nextflow ; nextflow -v # as an environment
     module avail nextflow/ # as a module
 
 [Nextflow](https://www.nextflow.io/) enables scalable and reproducible scientific workflows using software containers. It allows the adaptation of pipelines written in the most common scripting languages. 
