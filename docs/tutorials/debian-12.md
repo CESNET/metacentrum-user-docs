@@ -1,48 +1,29 @@
 # Debian 12 & new PBS server 
 
-By Jan 2024 we set up a new frontend `zenith` running on Debian 12. Currently there is only a few new computing nodes with Debian 12.
-
-The rest of currently used computing nodes will be upgraded to Debian 12 in the near future.
+Recently we set up a new frontend `zenith` running on Debian 12 - see [Complete list of frontends, their homes and OSs](../../computing/frontends).
 
 At the same time, we are preparing to transfer from [PBS Pro](https://altair.com/pbs-professional) to [Open PBS](https://www.openpbs.org/).
 
 A new Open PBS server `pbs-m1.metacentrum.cz` is up and running.
 
-In the future the PBS Pro servers `meta-pbs.metacentrum.cz` and `cerit-pbs.cerit-sc.cz` will be decommissioned and their workload will be transferred to `pbs-m1.metacentrum.cz` only.
+Currently the PBS Pro servers `meta-pbs.metacentrum.cz`, `cerit-pbs.cerit-sc.cz` and `elixir-pbs.elixir-czech.cz` are being decommissioned and their workload will be transferred to `pbs-m1.metacentrum.cz` only.
 
+## Elixir users
 
-**Changes:**
+Users of the `elixir` group shall submit their jobs to reserved queue `elixircz@pbs-m1.metacentrum.cz`, e.g.
 
-- new frontend `zenith.cerit-sc.cz` (alias `zenith.metacentrum.cz`) with Debian 12
-- see which are [computing nodes with Debian 12](https://metavo.metacentrum.cz/pbsmon2/props?property=os%3Ddebian12)
-- new PBS server `pbs-m1.metacentrum.cz` default for `zenith` frontend
-- default user homes for `zenith` are on `/storage/brno12-cerit/`
+    qsub -l walltime=1:0:0 -q default@elixircz@pbs-m1.metacentrum.cz -l select=1:ncpus=1:mem=400mb:scratch_local=400mb
 
-## Use new PBS from any frontend
+`elixir` users still have their reserved pool of nodes with separate planning.
 
-Example: Send a job from `skirit` to  `pbs-m1.metacentrum.cz` scheduler
+## Known issues
 
-```
-user@skirit:~$ module add openpbs        # this is necessarry!
-user@skirit:~$ qsub -q @pbs-m1.metacentrum.cz -I -l select=1:ncpus=1 -l walltime=1:00:00
-user@zenon1:~$ ...        ; exit         # do your job and exit               
-user@skirit:~$ module rm openpbs         # if you want to get back PBSPro ("old" planners)
-```
-
-The module `openpbs` is needed also for other operations, e.g. probing for the job's state:
-
-```
-user@skirit:~$ module add openpbs 
-user@skirit:~$ qstat -u user123  @pbs-m1.metacentrum.cz      
- 
-```
-
-## Python on Debian 12
+### Python on Debian 12
 
 - typing "python"  on `zenith` will get you 3.x.x version of Python
 - if you need some 2.x.x version of Python, you have to add it through a module (`module avail python/`)
 
-## Missing libraries
+### Missing libraries
 
 Try `module add debian11/compat` if you run into "library XY: no such file or directory" type of problem.
 
