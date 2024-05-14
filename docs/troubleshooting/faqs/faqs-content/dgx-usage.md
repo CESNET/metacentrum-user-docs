@@ -15,6 +15,6 @@ After you have received the access, submit the job into `gpu_dgx` queue as
 
 If you need 8 GPU cards, you should ask for the whole node by adding the following parameters to your qsub
 
-    qsub -q gpu_dgx -l select=1:ngpus=8:ncpus=112:mem=2000g:scratch.ssd=1tb
+    qsub -q gpu_dgx -l select=1:ngpus=8:ncpus=112:mem=2000g:scratch.ssd=1tb -l place=exclhost
 
 
