@@ -10,11 +10,33 @@ Currently the PBS Pro servers `meta-pbs.metacentrum.cz`, `cerit-pbs.cerit-sc.cz`
 
 ## Elixir users
 
+### New queue 
+
 Users of the `elixir` group shall submit their jobs to reserved queue `elixircz@pbs-m1.metacentrum.cz`, e.g.
 
-    qsub -l walltime=1:0:0 -q default@elixircz@pbs-m1.metacentrum.cz -l select=1:ncpus=1:mem=400mb:scratch_local=400mb
+    qsub -l walltime=1:0:0 -q elixircz@pbs-m1.metacentrum.cz -l select=1:ncpus=1:mem=400mb:scratch_local=400mb
 
 `elixir` users still have their reserved pool of nodes with separate planning.
+
+### Submit from elmo frontend
+
+Currently the `elmo` frontend still submits to old "elixir" PBS server.
+
+**Workaround: Submit a job from `elmo` to  `pbs-m1.metacentrum.cz` scheduler**
+
+```
+user@elmo:~$ module add openpbs        # this is necessarry!
+user@elmo:~$ qsub -q @pbs-m1.metacentrum.cz -I -l select=1:ncpus=1 -l walltime=1:00:00
+user@zenon1:~$ ...        ; exit         # do your job and exit               
+user@elmo:~$ module rm openpbs         # if you want to get back PBSPro ("old" planners)
+```
+
+The module `openpbs` is needed also for other operations, e.g. probing for the job's state:
+
+```
+user@elmo:~$ module add openpbs 
+user@elmo:~$ qstat -u user123  @pbs-m1.metacentrum.cz  
+```
 
 ## Known issues
 
