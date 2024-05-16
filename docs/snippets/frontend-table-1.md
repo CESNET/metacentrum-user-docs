@@ -9,7 +9,7 @@
 | charon.nti.tul.cz 	  | charon.metacentrum.cz  | /storage/liberec3-tul  | Debian 12  | Liberec   |  |
 | tilia.ibot.cas.cz       | tilia.metacentrum.cz   | /storage/pruhonice1-ibot | Debian 12 | Pruhonice | |
 | zuphux.cerit-sc.cz 	  | zuphux.metacentrum.cz  | /storage/brno12-cerit  | CentOS 7.9 | Brno	     |  |
-| elmo.elixir-czech.cz 	  | elmo.metacentrum.cz    | /storage/praha5-elixir | Debian 11  | Praha     |  |
+| elmo.elixir-czech.cz 	  | elmo.metacentrum.cz    | /storage/praha5-elixir | Debian 11  | Praha     | Dedicated to [Elixir users](../../access/elixir) |
 | oven.metacentrum.cz  	  |                        | /storage/brno2         | Debian 12  | Brno      | Reserved to access [oven node](../../computing/node-properties/#oven-node) only |
 | luna.fzu.cz          	  | luna.metacentrum.cz    | /storage/praha1        | Debian 12  | Praha     | Reserved for [FZU](https://www.fzu.cz/en) users |
 

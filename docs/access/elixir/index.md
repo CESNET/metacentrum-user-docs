@@ -15,11 +15,9 @@ Members of the computation group are required to, in addition to [MetaCentrum ge
 
 ## Dedicated machines and queues
 
-There are several machines with prioritised and/or dedicated access for ELIXIR CZ members in MetaCentrum.
-
-- PBSPro server (batch system): elixir-pbs.elixir-czech.cz, search for "Server elixir-pbs.elixir-czech.cz" [on this page](https://metavo.metacentrum.cz/pbsmon2/queues/list)
-- dedicated Elixir frontend: elmo.elixir-czech.cz 
-- mailto: <support@elixir-czech.cz>
+- [list of nodes with dedicated access for ELIXIR CZ members](https://metavo.metacentrum.cz/pbsmon2/queue/elixircz@pbs-m1.metacentrum.cz) (see table in respective elixir queues)
+- dedicated [Elixir frontend `elmo.elixir-czech.cz`](../../computing/frontends) 
+- user support: <support@elixir-czech.cz>
 
 
 ![pic](elixir_logo.png)
