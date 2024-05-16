@@ -227,8 +227,6 @@ If you need to send the job to a specific queue and/or specific PBS server, use 
     qsub -q queue # specific queue on the current (default) server
     qsub -q @server # default queue on specific server
 
-For example, `qsub -q @cerit-pbs.cerit-sc.cz` will send the job to default queue managed by cerit pbs server, no matter which frontend the job is sent from. 
-
 ### **Licence**
 
 Some software requires licence to run. Licence is set by parameter `-l`
