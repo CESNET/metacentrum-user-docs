@@ -6,7 +6,7 @@ Use `qstat -x` command.
 
 To include in `qstat` also finished (`F`) and moved (`M`) jobs, use `-x` option:
 
-    qstat -x -u user123 @elixir-pbs.elixir-czech.cz # list all jobs for user user123 running on elixir-pbs.elixir-czech.cz PBS server including the finished ones
+    qstat -x -u user123 # list all jobs for user user123 including the finished ones
 
 The finished jobs are displayed only if they are max. 24 hours old.
 
