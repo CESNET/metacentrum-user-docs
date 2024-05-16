@@ -10,8 +10,6 @@
 
 ## Computing
 
-- [Running job mysteriously disappeared from qstat -u command](../../troubleshooting/faqs/faqs-content/qstat-moved-jobs)
-
 - [My running job is coming close to walltime, can I prolong it?](../../troubleshooting/faqs/faqs-content/prolong-walltime)
 
 - [I get "permission denied" when I try to clean up scratch directory](../../troubleshooting/faqs/faqs-content/clean-scratch-perm-denied)
@@ -23,8 +21,6 @@
 - [qdel command does not delete a job](../../troubleshooting/faqs/faqs-content/force-qdel)
 
 - [What are the default parameters in qsub command?](../../troubleshooting/faqs/faqs-content/qsub-default-parameters)
-
-- [My jobs are in the "M" state. What does it mean?](../../troubleshooting/faqs/faqs-content/moved-state-jobs)
 
 - [My job failed with something like "No space left on device / Input-output error".](../../troubleshooting/faqs/faqs-content/no-space-left)
 
