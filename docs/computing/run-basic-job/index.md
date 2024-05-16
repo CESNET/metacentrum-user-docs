@@ -160,7 +160,7 @@ You can get the job ID:
 
 - after running `qsub` command
 - by `echo $PBS_JOBID` in interactive job  or in the batch script
-- by `qstat -u your_username @pbs-m1.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz`
+- by `qstat -u your_username @pbs-m1.metacentrum.cz 
 
 Within interactive job:
 
@@ -169,20 +169,17 @@ Within interactive job:
 
 By `qstat` command:
 
-    (BULLSEYE)user123@elmo3-1s :~$ qstat -u user123 @pbs-m1.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz 
-    
-    elixir-pbs.elixir-czech.cz: 
-                                                                 Req'd  Req'd   Elap
-    Job ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
-    -------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
-    13010171.meta-pbs.m* user123  global   STDIN      366884   1   8    4gb 02:00 R 00:17
+    (BULLSEYE)user123@perian :~$ qstat -u user123 @pbs-m1.metacentrum.cz
+
+    Job id                 Name             User              Time Use S Queue
+    ---------------------  ---------------- ----------------  -------- - -----
+    1578105.pbs-m1         Boom-fr-bulk_12* fiserp                   0 Q q_1w   
 
 ## Job status
 
 Basic command for getting status about your jobs is `qstat` command.
 
-    qstat -u user123 # list all jobs of user "user123" running or queuing on the current PBS server
-    qstat -u user123 @pbs-m1.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz # list all running or queuing jobs of user "user123" on all PBS servers
+    qstat -u user123 # list all jobs of user "user123" running or queuing on the PBS server
     qstat -xu user123 # list finished jobs for user "user123" 
     qstat -f <jobID> # list details of the running or queueing job with a given jobID
     qstat -xf <jobID> # list details of the finished job with a given jobID
@@ -218,11 +215,11 @@ STDERR file contains all the error messages which occurred during the calculatio
 
 Sometimes you need to delete submitted/running job. This can be done by `qdel` command:
 
-    (BULLSEYE)user123@skirit~: qdel 21732596.elixir-pbs.elixir-czech.cz
+    (BULLSEYE)user123@skirit~: qdel 21732596.pbs-m1.metacentrum.cz
 
 If plain `qdel` does not work, add `-W` (force del) option:
 
-    (BULLSEYE)user123@skirit~: qdel -W force 21732596.elixir-pbs.elixir-czech.cz
+    (BULLSEYE)user123@skirit~: qdel -W force 21732596.pbs-m1.metacentrum.cz
 
 ### Done by PBS server
 
