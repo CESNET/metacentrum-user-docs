@@ -31,7 +31,7 @@ Jobs can only be moved from one server to another if they are in the `Q` (queued
 
 Example:
 
-    qmove uv@cerit-pbs.cerit-sc.cz 475337.cerit-pbs.cerit-sc.cz # move job 475337.cerit-pbs.cerit-sc.cz to a queue uv@cerit-pbs.cerit-sc.cz
+    qmove uv@pbs-m1.metacentrum.cz 475337.pbs-m1.metacentrum.cz # move job 475337.pbs-m1.metacentrum.cz to a queue uv@pbs-m1.metacentrum.cz
 
 ## qstat
 
