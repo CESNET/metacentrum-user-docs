@@ -13,7 +13,7 @@ There is NT Kraken2 database available in shared location. In order to use it, r
 
 and request at least `mem=500gb` (unless only short query is processed with `--memory-mapping` option). 
 
-For optimal performance of access to this database, we recommend adding `qsub` requirement either `pbs_server=cerit-pbs.cerit-sc.cz`, or `cluster=halmir`. These select (two different sets of) machines with fastest network connection to the database storage.
+For optimal performance of access to this database, we recommend adding `qsub` requirement `cluster=halmir`. This selects machines with fastest network connection to the database storage.
 
 
 
