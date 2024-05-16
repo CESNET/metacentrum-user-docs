@@ -2,13 +2,7 @@
 
 ## Default queues
 
-Queues are a basic concept of PBS. When submitting a job, the user normally does not have to specify any queue. For every PBS server, there exists a default queue, namely
-
-- `default@pbs-m1.metacentrum.cz`
-- `default@cerit-pbs.cerit-sc.cz`
-- `elixircz@elixir-pbs.elixir-czech.cz`
-
-where the job goes if not specified otherwise. 
+Queues are a basic concept of PBS. When submitting a job, the user normally does not have to specify any queue. There exists a default queue, namely `default@pbs-m1.metacentrum.cz` where the job goes if not specified otherwise. Then it is automatically sorted to respective queues based on duration of the job (walltime).
 
 ## Specific queues
 
@@ -29,10 +23,8 @@ The `qstat` command provides info about queues and jobs.
 
 Example:
 
-    qstat -q  # get list of queues and their properties on current PBS server
+    qstat -q  # get list of queues and their properties 
     qstat -Q  # dtto, different format
-    qstat -q @cerit-pbs.cerit-sc.cz # list queues on cerit-pbs.cerit-sc.cz PBS server
-    qstat -q @cerit-pbs.cerit-sc.cz @pbs-m1.metacentrum.cz @elixir-pbs.elixir-czech.cz # list queues on all servers
 
 To see details for a selected queue, use:
 
