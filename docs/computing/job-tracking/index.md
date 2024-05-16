@@ -8,8 +8,7 @@ Example:
 
     qstat job_ID # display status of selected job (short format)
     qstat -f job_ID # display status of job (long format)
-    qstat -u user123 # list all user123's running or waiting jobs on current PBS server 
-    qstat -u user123 @cerit-pbs.cerit-sc.cz @pbs-m1.metacentrum.cz @elixir-pbs.elixir-czech.cz # dtto, on all PBS servers
+    qstat -u user123 # list all user123's running or waiting jobs on PBS server 
 
 ## Job states
 
