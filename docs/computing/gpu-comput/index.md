@@ -2,26 +2,18 @@
 
 ## GPU job
 
-To run GPU calculation, the user needs to:
+To run GPU calculation, the user needs to specify **number of GPU cards** only. The PBS scheduler will rout the job automatically into one of the **`gpu*`** queues.
+ 
+!!! Note "name of GPU queue does not need to be specified anymore"
+    Until the [upgrade to Open PBS server pbs-m1.metacentrum.cz](https://metavo.metacentrum.cz/en/news/novinka_2024_0010.html) the name of the queue had to be explicitly specified to run GPU job. **This is not required anymore.** Any job with non-zero `ngpus` parameter will be routed into gpu queue by the scheduler.
 
-1. specify **number of GPU cards** (parameter `ngpus`), and
-2. choose one of the **gpu queues explicitly**.
-
-!!! Warning "name of GPU queue must be specified"
-    Contrary to normal job, the GPU jobs will not be routed into appropriate queue according to parameter `ngpus` only. The name of the queue (parameter `-q`) has to be specified, too.
-
-| GPU queue name | Walltime range | 
+| available GPU queues | Walltime range | 
 |------------|----------------|
 | gpu@pbs-m1.metacentrum.cz | 00:00:00 - 24:00:00 |
-| gpu\_long@pbs-m1.metacentrum.cz | 00:00:00 - 336:00:00 |
-| gpu@cerit-pbs.cerit-sc.cz | 00:00:00 - 24:00:00 |
+| gpu\_long@pbs-m1.metacentrum.cz | 24:00:01 - 336:00:00 |
 
-GPU jobs on the **konos** cluster can be also run via the priority queue `iti@pbs-m1.metacentrum.cz` (queue for users from ITI - Institute of Theoretical Informatics, Univ. of West Bohemia).
-
-**Example**
-
-    qsub -I -q gpu -l select=1:ncpus=1:ngpus=1:scratch_local=10gb -l walltime=24:0:0
-
+!!! tip "User group `iti` has a reserved GPU queue"
+    Members of the [`iti` group](https://metavo.metacentrum.cz/pbsmon2/group/pbs-m1.metacentrum.cz/iti) (Institute of Theoretical Informatics, University of West Bohemia) have their own GPU cluster `konos` with priority access through direct submit to `iti@pbs-m1.metacentrum.cz` queue.
 
 ## PBS resources
 
@@ -38,7 +30,7 @@ PBS parameter `gpu_cap` is [Cuda compute capability as defined on this page](htt
 !!! warning
     With the introduction of [new PBS server running on OpenPBS](../../computing/concepts/#pbs-servers), the specification of `gpu_cap` parameter is done in two distinct ways depending whether you submit to *PBS Pro* or *OpenPBS* scheduler.
 
-#### OpenPBS (new scheduler)
+### Architecture
 
 The user can specify a *minimal required architecture* (`compute_XY`), or a *minimal required version within a given architecture* (`sm_XY`).
 
@@ -63,10 +55,6 @@ Example:
 !!! note
     Note that the quotes enclosing the `gpu_cap` options must be protected against shell expansion either by escaping them or by enclosing the whole `qsub` command into single quotes.
 
-#### PBS Pro (old schedulers)
-
-    qsub -q gpu -l select=1:ncpus=1:ngpus=1:gpu_cap=cuda70 ...
-
 ### cuda\_version
 
 PBS parameter `cuda_version` is version of CUDA installed.
@@ -76,6 +64,4 @@ PBS parameter `cuda_version` is version of CUDA installed.
 IDs of GPU cards are stored in `CUDA_VISIBLE_DEVICES` variable.
 
 These IDs are mapped to CUDA tools virtual IDs. Though if `CUDA_VISIBLE_DEVICES` contains value 2, 3 then CUDA tools will report IDs 0, 1. 
-
-
 
