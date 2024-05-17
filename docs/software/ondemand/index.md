@@ -73,8 +73,36 @@ The "Interactive Apps" tab lists **all graphical software** that can be run as a
 
 ![pic](apps.png)
 
-### Home directory
+After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/frontend-storage/).
 
+In consequence, the location of home directory (location=`city_XY` in `/storage/city_XY/home/user_123`) can be different for every new run of an application.
+
+In case you need e.g. to upload some data to work on, it may be necessarry to change directory to the right storage.
+
+### Data directory
+
+To store it's own files, OnDemand creates automatically directory `ondemand` in the current **home directory**. You will find there output files, error files and other data for batch jobs submitted from OnDemand interface.
+
+For example, after running the VMD Desktop, all output from the session will be in `~/ondemand/data/sys/dashboard/batch_connect/sys/bc_desktop/vmd/output/ONDEMAND_SESSION_ID` directory.
+
+!!! warning
+    The **ONDEMAND_SESSION_ID** is OnDemand's internal hash for the session, not PBS job ID! It looks like e.g. `9a8b3f2b-0c6d-4cbd-922b-c587f2c2f0fb`.
+
+You can remove the content of OnDemand data directories, or even the `~/ondemand` directory itself, any time you wish.
+
+Every time you run OnDemand, it will first look for existing directory `~/ondemand`. When it does not find any, it creates a new one.
+
+### RStudio issues
+
+As the *home-on-any-storage* feature of OnDemand was causing problems to RStudio users, we applied a workaround for this.
+
+The default location *for RStudio interactive app* is set to `brno2`.
+
+Moreover, users can overwrite this setting by choosin a different location from the drop-down menu:
+
+![pic](rstudio-dir-fix.png)
+
+<!--
 After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/frontend-storage/).
 
 In consequence, the location of home directory (location=`city_XY` in `/storage/city_XY/home/user_123`) can be different for every new run of an application.
@@ -100,20 +128,7 @@ In case you need e.g. to upload some data to work on, it may be necessarry to ch
 *... finally descend into your home directory.*
 
 ![pic](app-dir-05.png)
-
-
-### Data directory
-
-To store it's own files, OnDemand creates automatically directory `ondemand` in the current **home directory**. You will find there output files, error files and other data for batch jobs submitted from OnDemand interface.
-
-For example, after running the VMD Desktop, all output from the session will be in `~/ondemand/data/sys/dashboard/batch_connect/sys/bc_desktop/vmd/output/ONDEMAND_SESSION_ID` directory.
-
-!!! warning
-    The **ONDEMAND_SESSION_ID** is OnDemand's internal hash for the session, not PBS job ID! It looks like e.g. `9a8b3f2b-0c6d-4cbd-922b-c587f2c2f0fb`.
-
-You can remove the content of OnDemand data directories, or even the `~/ondemand` directory itself, any time you wish.
-
-Every time you run OnDemand, it will first look for existing directory `~/ondemand`. When it does not find any, it creates a new one.
+-->
 
 ## My Interactive Sessions
 
