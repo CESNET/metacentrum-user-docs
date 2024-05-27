@@ -1,6 +1,6 @@
 | Server                                     | Directory                  | Backup<br/>class |  Note                |
 |--------------------------------------------|----------------------------| -----------------|----------------------|
-| storage-du-cesnet.metacentrum.cz           | /storage/du-cesnet/        | 3                | **Recommended backup and archiving site for MetaCentrum users**  |
+| storage-du-cesnet.metacentrum.cz           | /storage/du-cesnet/        | 3                | **Currently inaccessible;we recommend to use [Object storages](../../data/storage-department/#object-storage) as a backup and archiving site**  |
 | storage-brno1-cerit.metacentrum.cz         | /storage/brno1-cerit/      | 2                | Will be decommisioned by winter/spring 2024; data will be moved to /storage/brno12-cerit/         |
 | storage-brno2.metacentrum.cz               | /storage/brno2/            | 2                |          |
 | storage-brno11-elixir.metacentrum.cz       | /storage/brno11-elixir/    | 2                |  dedicated to ELIXIR-CZ    |
@@ -13,7 +13,7 @@
 | storage-budejovice1.metacentrum.cz         | /storage/budejovice1/      | 3                |             |
 | storage-liberec3-tul.metacentrum.cz        | /storage/liberec3-tul/     | 0                |             |
 | storage-pruhonice1-ibot.metacentrum.cz     | /storage/pruhonice1-ibot/  | 3                |               |
-| storage-vestec1-elixir.metacentrum.cz      | /storage/vestec1-elixir/   |    2             |  also /storage/praha1/           |
+| storage-vestec1-elixir.metacentrum.cz      | /storage/vestec1-elixir/   | 2                |  also /storage/praha1/           |
 
 | Backup class | Description |
 |--------------|-------------|
