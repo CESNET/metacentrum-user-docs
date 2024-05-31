@@ -1,6 +1,5 @@
 | Server                                     | Directory                  | Backup<br/>class |  Note                |
 |--------------------------------------------|----------------------------| -----------------|----------------------|
-| storage-brno1-cerit.metacentrum.cz         | /storage/brno1-cerit/      | 2                | Will be decommisioned by winter/spring 2024; data will be moved to /storage/brno12-cerit/         |
 | storage-brno2.metacentrum.cz               | /storage/brno2/            | 2                |          |
 | storage-brno11-elixir.metacentrum.cz       | /storage/brno11-elixir/    | 2                |  dedicated to ELIXIR-CZ    |
 | storage-brno12-cerit.metacentrum.cz        | /storage/brno12-cerit/     | 2                |                                      |
