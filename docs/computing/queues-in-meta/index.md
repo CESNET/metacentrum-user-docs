@@ -13,9 +13,8 @@ In some cases, it is possible or even recommended that the user choses a particu
 | gpu@pbs-m1.metacentrum.cz  | Jobs requiring at least 1 GPU, up to 24 hours walltime |
 | gpu\_long@pbs-m1.metacentrum.cz | Jobs requiring at least 1 GPU, up to 2 weeks walltime |
 | large\_mem@pbs-m1.metacentrum.cz | Jobs requiring 500 GB or more, up to 1 week walltime |
-| gpu@cerit-pbs.cerit-sc.cz | Jobs requiring at least 1 GPU, up to 24 hours walltime |
 | phi@cerit-pbs.cerit-sc.cz | Jobs optimized to run on Intel Phi architecture |
-| uv@cerit-pbs.cerit-sc.cz | Jobs requiring >100 CPUs OR >%)) GB of memory |
+| [uv@cerit-pbs.cerit-sc.cz](https://metavo.metacentrum.cz/pbsmon2/queue/uv@cerit-pbs.cerit-sc.cz) | Jobs requiring >100 CPUs OR >500 GB of memory, accessible only from [zuphux frontend](../../computing/frontends) |
 
 ## Queue info by qstat
 
