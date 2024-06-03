@@ -82,8 +82,8 @@ Number of available licenses (applies to all above mentioned versions):
 Ask scheduler for licence depending on purpose:
 
     add -l ansys-cfd=1     # 1 license of Ansys CFD
-    add -l ansys-me=1      # 1 license of Ansys Mechanical
-    add -l ansys-hpc=Z     # Z licenses of Ansys HPC
+    add -l ansys-mechwb=1  # 1 license of Ansys Mechanical Workbench
+    add -l ansys-anshpc=Z  # Z licenses of Ansys HPC
 
 Check the number of currently available licenses
 
