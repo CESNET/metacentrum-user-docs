@@ -172,6 +172,30 @@ Add path to new bin/library to `PATH`/`LD_LIBRARY_PATH`:
     export LD_LIBRARY_PATH=storage/cityN/home/user123/extract_dir/lib/:$LD_LIBRARY_PATH
     export PATH=/storage/cityN/home/user123/extract_dir/bin/:$PATH
 
+### Perl modules
+
+First check if there is an already installed perl package in one of our modules:
+
+```
+module add bioperl
+
+(BOOKWORM)user_123@skirit:~$ perldoc perllocal
+# or
+(BOOKWORM)user_123@skirit:~$ instmodsh
+```
+
+**Install a new Perl package**
+
+`cpanm` (`CPANMINUS` tool) is the specialized tool for installing and uninstalling of Perl packages from CPAN. It is available via modules. Use it like this:
+
+```
+load module bioperl-1.6.9-gcc or bioperl-1.6.1
+
+cpanm -L /specified/local/directory/ GD::Graph::bars – to install Perl library and all of it's dependencies including the libraries already present in system to specified directory
+```
+
+After that don't forget to set `PATH` and `PERL5LIB` to the specified directory bin and lib folders to be able to use the installed binaries and libraries. 
+
 ### Python packages
 
 !!! tip "Use `--user` option rather that `--root` during pip install"
