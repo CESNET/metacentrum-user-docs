@@ -174,6 +174,9 @@ Add path to new bin/library to `PATH`/`LD_LIBRARY_PATH`:
 
 ### Python packages
 
+!!! tip "Use `--user` option rather that `--root` during pip install"
+    A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. You will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
+
 *Example: install software package "spektral".*
 
 First run an interactive job:
