@@ -16,7 +16,6 @@ Members of the computation group are required to, in addition to [MetaCentrum ge
 ## Dedicated machines and queues
 
 - [list of nodes with dedicated access for ELIXIR CZ members](https://metavo.metacentrum.cz/pbsmon2/queue/elixircz@pbs-m1.metacentrum.cz) (see table in respective elixir queues)
-- dedicated [Elixir frontend `elmo.elixir-czech.cz`](../../computing/frontends) 
 - user support: <support@elixir-czech.cz>
 
 
