@@ -298,6 +298,11 @@ Activate this environment (e.g. within batch jobs) as:
     segemehl.x ... # run the job
     mamba deactivate
 
+
+!!! tip
+     If you want (esp. for long-running jobs) to make your calculations more robust, e.g. against failure of the network connection to the storage, you can clone your mamba environment directly to the scratch directory: `cd $SCRATCHDIR`<br/> `module add mambaforge`<br/> `mamba create -p $SCRATCHDIR/my_env --clone /storage/city/home/user/ny_env`<br/> `mamba activate $SCRATCHDIR/my_env`
+
+
 ### Containers
 
 Apptainer (Singularity) images can be deployed and run directly on MetaCentrum machines.
