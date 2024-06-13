@@ -2,7 +2,7 @@
 
 ## GPU job
 
-To run GPU calculation, the user needs to specify **number of GPU cards** only. The PBS scheduler will rout the job automatically into one of the **`gpu*`** queues.
+To run GPU calculation, the user needs to specify **number of GPU cards** only. The PBS scheduler will route the job automatically into one of the **`gpu*`** queues.
  
 !!! Note "name of GPU queue does not need to be specified anymore"
     Until the [upgrade to Open PBS server pbs-m1.metacentrum.cz](https://metavo.metacentrum.cz/en/news/novinka_2024_0010.html) the name of the queue had to be explicitly specified to run GPU job. **This is not required anymore.** Any job with non-zero `ngpus` parameter will be routed into gpu queue by the scheduler.
