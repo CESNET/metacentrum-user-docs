@@ -39,7 +39,7 @@ The batch script receives `SIGTERM` signal. **There is no way how to distinguish
 - What action is taken upon receiving a `SIGTERM` can be defined via `trap` command. 
 - `SIGKILL` cannot be trapped, ignored nor reacted to.
 
-This construction is useful to clean up after failed jobs and in most cases it is sufficient (see [section below](#caveats) for potential pitfalls.)
+This construction is useful to clean up after failed jobs **where the user is not interested in any data produced by the job** and in such cases we encourage users to apply it (see [section below](#caveats) for potential pitfalls.)
 
 ## Trap both EXIT and TERM 
 
