@@ -6,6 +6,10 @@
 
 ## Usage
 
+In the `qsub` command is necessary to specify parameter `ompthreads` to allow run on multiple threads, e.g. (for 8 threads run):
+
+    qsub -l select=1:ncpus=8:ompthreads=8:mem=...
+
 Initialization makes available also java 7 (or java 8 for version 3.7 and 3.8) and system variable `$GATK` pointing into GATK install dir. Usage of one of the tools with sample data (not for version 3.8-0):
 
     java -Xmx2g -jar "$GATK"/GenomeAnalysisTK.jar -T CountReads -R "$GATK"/resources/exampleFASTA.fasta -I "$GATK"/resources/exampleBAM.bam
