@@ -15,23 +15,6 @@ Gaussian 03 and 09 can be used on the clusters installed in Brno location:
 !!! warning
     The purchased licenses permit just an academic use of the program!
 
-## Versions
-
-Program is actually available in many versions: 
-
-- g09-A.02 including GaussView (only [JCU](https://jcu.cz) users),
-- g09-A02 and Gaussian 09 (g09, G09-C.01, G09-D.01 and g09-E.01),
-- g16-A.03 and the newest g16-C.01.
-
-Module `g09/D.01linda` contains Linda version allowing to use more machines.
-
-If you do not use Linda version, other versions permit computing only on one machine, thus it is nonsense to plan computation on more machines. Although job submission in form
-
-    select=Y:ncpus=X
-
-with Y > 1 will not end with an error, it will compute only on one machine like you submit it with `select=1:ncpus=X` parameter. This results in overcomming the requested resources on memory or scratch size and the job would be killed.
-
-
 ## Usage
 
 ### Batch computation
@@ -90,6 +73,14 @@ Pass the startup script to the scheduler together with resource requirements:
 
 
 ### Linda computations (using more machines)
+
+Module `g09/D.01linda` contains Linda version allowing to use more machines.
+
+If you do not use Linda version, other versions permit computing only on one machine, thus it is nonsense to plan computation on more machines. Although job submission in form
+
+    select=Y:ncpus=X
+
+with Y > 1 will not end with an error, it will compute only on one machine like you submit it with `select=1:ncpus=X` parameter. This results in overcomming the requested resources on memory or scratch size and the job would be killed.
 
 The script remains the same, we only change `module add g09` for `module add g09/D.01linda` and submit the job with given number of machines N
 
