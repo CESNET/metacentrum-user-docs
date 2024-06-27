@@ -68,13 +68,11 @@ trap 'cp all_checkpoint_files somewhere_safe/ ; clean_scratch' TERM
 trap 'echo "$PBS_JOBID job failed. Retrieve the files from $SCRATCHDIR on `hostname -f` node, then clean the scratch manually" /storage/..../' TERM  
 ```
 
+**Example 2**
 
+*Idea:* Using `trap` to clean scratches upon job exit poses no dangers.
 
-<!--
-
-### EXIT 
-
-The use of trap upon EXIT can backfire, too. Suppose the user adds the trap with the purpose to clean up after the script has run to an end, then adds some petty sanity check after the core calculation is done.
+*Potential hazard:* Suppose the user adds the trap with the purpose to clean up after the script has run to an end, then adds some small sanity check, e.g.:
 
 ```
 #!/bin/bash
@@ -87,10 +85,8 @@ cp result_files somewhere/
 ...
 ```
 
-This, too, can lead to unintentional loss of results, as the `clean_scratch` is executed before the result files are copied away. 
+In this case, the scratch directory would be cleaned before the output files would be copied away.
+
+*Solution:* When adding any sanity check, keep this risk in mind.
 
 
-### TERM
-
-
- -->
