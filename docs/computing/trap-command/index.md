@@ -50,7 +50,25 @@ This construction combines both purposes mentioned above.
 ## Caveats
 
 !!! tip
-    Currently the delay between `SIGTERM` and `SIGKILL` is 10 seconds.<br/>Depending on the amount of data in scratch, some code constructions withinh the `trap` command may run to and end, while other may not. This can lead to unexpected bahaviour.
+    Currently the delay between `SIGTERM` and `SIGKILL` is **10 seconds**.<br/>Depending on the amount of data in scratch, some code constructions within the `trap` command may run to and end, while other may not. This can lead to unexpected behaviour.
+
+**Example 1**
+
+*Idea:* if the job crashes, copy away potentially valuable files, then clean the scratch.
+
+```
+trap 'cp all_checkpoint_files somewhere_safe/ ; clean_scratch' TERM  
+```
+
+*Potential hazard:* if the checkpoint files are large and/or numerous, the copy operation may not finish in time before being interrupted by `SIGKILL` signal. Some of the files may be missing and/or incomplete. Moreover the scratch directory will not be cleaned.
+
+*Solution:* If you already know that your job produces many and/or large files which you will need to retrieve in case the job crashes, it is safer to just let yourself know about it by adding a line to output:
+
+```
+trap 'echo "$PBS_JOBID job failed. Retrieve the files from $SCRATCHDIR on `hostname -f` node, then clean the scratch manually" /storage/..../' TERM  
+```
+
+
 
 <!--
 
@@ -74,14 +92,5 @@ This, too, can lead to unintentional loss of results, as the `clean_scratch` is 
 
 ### TERM
 
-Adding
-
-```
-#!/bin/bash
-# on SIGTERM, attempt to copy away potentially valuable files
-trap 'cp all_checkpoint_files somewhere_safe/ ; clean_scratch' TERM  
-```
-
-can improve things, but will clutter user's home directory by unwanted files in other cases. Moreover, if the files are large and/or numerous, the copying may not finish in time before being interrupted by `SIGKILL` signal and the data need to be retrieved from scratch manually anyway.
 
  -->
