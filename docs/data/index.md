@@ -4,7 +4,7 @@
 
 In this part you will find:
 
-- [Useful commands](../data/useful-commands/):, common Linux dtaa manipulation commands,
+- [Useful commands](../data/useful-commands/):, common Linux data manipulation commands,
 - [Large data](../data/large-data/): how to manipulate large data in MetaCentrum,
 - [Direct access to storages](../data/direct-access-storages/): how to connect to storages without using a frontend,
 - [Data sharing](../data/data-sharing/): how to share data among users,
