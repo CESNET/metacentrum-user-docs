@@ -8,9 +8,13 @@
 
 ## License
 
-Gaussian 03 and 09 can be used on the clusters installed in Brno location:
+**Gaussian 03** and **Gaussian 09** can be used on the clusters installed in Brno location:
 
     -l select=1:ncpus=N: ... :brno=True
+
+The license for **Gaussian 16** is limited only to some node specified in license agreement. To implement this limitation, there is a PBS resource `host_licenses`:
+
+    -l select=1:ncpus=N: ... :host_licenses=g16
 
 !!! warning
     The purchased licenses permit just an academic use of the program!
