@@ -15,9 +15,9 @@ You have to be registered in NVIDIA Accelerated Computing Developer Program and 
 
 CuDNN only works on GPUs with high enough computing capabilities. 
 
-In this table, you can see information about individual GPU clusters and if their GPUs support CuDNN library: 
+In this table, you can see information about individual GPU clusters and of their GPUs support CuDNN library: 
 
---8<-- "GPU-clusters-table-2.md"
+--8<-- "GPU-clusters-table.md"
 
 
 
