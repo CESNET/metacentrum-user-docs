@@ -1,7 +1,6 @@
 | Cluster | Node(s) | GPU card specification | gpu\_mem | CUDA<br/> computing<br/> capability | 
 |-------|------|----------|-----|---------------|
 | adan     | adan[1-61].grid.cesnet.cz    | 2x Tesla T4            | 15 109 | 7.5  | 
-| black    | black1.cerit-sc.cz           | 4x Tesla P100          | 16 280 | 6.0  |
 | galdor   | galdor[1-20].metacentrum.cz  | 4x A40                 | 45 634 | 8.6  | 
 | glados   | glados1.cerit-sc.cz          | 1x TITAN V GPU         | 12 066 | 7.0  | 
 | glados   | glados[2-7].cerit-sc.cz      | 2x GeForce RTX 2080    |  7 982 | 7.5  | 
