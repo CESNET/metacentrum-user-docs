@@ -25,47 +25,48 @@ The license for **Gaussian 16** is limited only to some node specified in licens
 
 - prepare the job description script, where you should specify the computation, which should be performed over the input file
 
-Recommendation: we highly recommend to use the g09-prepare (or g16-prepare for the G16 version) utility from within the script -- within the file, the utility automatically sets the parameters %nproc (number of processors), %mem (amount of usable memory) and %rwf (amount of scratch space -- for large computations, the scratch space may also be separated into multiple files, which may be automatically erased by Gaussian during the computation) based on the real resources dedicated for the job. See g09-prepare -h.
+!!! tip
+    We highly recommend to use the `g09-prepare` utility to automatically set the input file's parameters `%nproc` (number of processors), `%mem` (amount of usable memory) and `%rwf` (amount of scratch space - for large computations, the scratch space may also be separated into multiple files, which may be automatically erased by Gaussian during the computation) based on the real resources dedicated for the job. See `g09-prepare -h`.
         
 For example, such a script may look like this one:
 
 ````
-    #!/bin/bash
-    
-    #ensure removing the temporary data if the job ends or fails
-    trap "clean_scratch" TERM EXIT
-     
-    DATADIR="/storage/brno2/home/$LOGNAME"
-    JOBNAME="myjob"             # myjob.com -> myjob.log
-    
-    # sanity checks
-    if [[ -z "$SCRATCHDIR" ]]; then
-       echo "use scratch_local, scratch_ssd, or scratch_shared in qsub (resource specification)"
-       exit 1
-    fi
-    
-    if [[ ! (-f "$DATADIR/${JOBNAME}.com") ]]; then
-       echo "the input file '$DATADIR/${JOBNAME}.com' does not exist"
-       exit 1
-    fi
-    
-    # copy input file from shared network disk to local disk
-    cp $DATADIR/${JOBNAME}.com $SCRATCHDIR/ || exit 1
-    cd $SCRATCHDIR/ || exit 2
-    
-    # let's load the Gaussian module
-    module add g09
-    
-    #  myjob.com is the input file
-    # setup the resource requirements within the input file so that they correspond to the resources reserved
-    g09-prepare ${JOBNAME}.com
-    
-    # start the computation (use g16 instead of g09 for the g16 version) , myjob.log will be the output file
-    g09 ${JOBNAME}.com
-    # alternatively: g09 < ${JOBNAME}.com > ${JOBNAME}.log
-    
-    # copy the output from local scratch to shared network disk
-    cp ${JOBNAME}.log $DATADIR/ || export CLEAN_SCRATCH=false
+#!/bin/bash
+
+#ensure removing the temporary data if the job ends or fails
+trap "clean_scratch" TERM EXIT
+ 
+DATADIR="/storage/brno2/home/$LOGNAME"
+JOBNAME="myjob"             # myjob.com -> myjob.log
+
+# sanity checks
+if [[ -z "$SCRATCHDIR" ]]; then
+   echo "use scratch_local, scratch_ssd, or scratch_shared in qsub (resource specification)"
+   exit 1
+fi
+
+if [[ ! (-f "$DATADIR/${JOBNAME}.com") ]]; then
+   echo "the input file '$DATADIR/${JOBNAME}.com' does not exist"
+   exit 1
+fi
+
+# copy input file from shared network disk to local disk
+cp $DATADIR/${JOBNAME}.com $SCRATCHDIR/ || exit 1
+cd $SCRATCHDIR/ || exit 2
+
+# let's load the Gaussian module
+module add g09
+
+#  myjob.com is the input file
+# setup the resource requirements within the input file so that they correspond to the resources reserved
+g09-prepare ${JOBNAME}.com
+
+# start the computation (use g16 instead of g09 for the g16 version) , myjob.log will be the output file
+g09 ${JOBNAME}.com
+# alternatively: g09 < ${JOBNAME}.com > ${JOBNAME}.log
+
+# copy the output from local scratch to shared network disk
+cp ${JOBNAME}.log $DATADIR/ || export CLEAN_SCRATCH=false
 ````
 
 Pass the startup script to the scheduler together with resource requirements:
@@ -101,9 +102,6 @@ Load the Gaussian module into the environment:
     module add g09
 
 Prepare the Gaussian input file (named e.g. myinput.com).
-
-!!! tip
-    We highly recommend to use the g09-prepare utility to automatically set the input file's parameters %nproc (number of processors), %mem (amount of usable memory) and %rwf (amount of scratch space -- for large computations, the scratch space may also be separated into multiple files, which may be automatically erased by Gaussian during the computation) based on the real resources dedicated for the job. See `g09-prepare -h`.
 
     g09-prepare myjob.com
 
