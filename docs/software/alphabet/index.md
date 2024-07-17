@@ -149,6 +149,7 @@
 
 - [Tensorflow](../../software/sw-list/tensor-flow)
 - [TEtools](../../software/sw-list/tetools)
+- [Tinker](../../software/sw-list/tinker)
 - [TmoleX](../../software/sw-list/tmolex)
 - [TotalView](../../software/sw-list/total-view)
 - [Trimmomatic](../../software/sw-list/trimmomatic)
