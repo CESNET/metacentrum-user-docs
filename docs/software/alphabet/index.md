@@ -134,6 +134,7 @@
 - [Repeat Masker](../../software/sw-list/repeat-masker)
 - [Repeat Modeler](../../software/sw-list/repeat-modeler)
 - [RevBayes](../../software/sw-list/revbayes)
+- [Rosetta](../../software/sw-list/rosetta)
 - [RStudio](../../software/sw-list/rstudio)
 <!-- Pre-selected from wiki 
 - [ReSpect](https://wiki.metacentrum.cz/wiki/ReSpect)
