@@ -11,15 +11,12 @@ Members of the computation group are required to, in addition to [MetaCentrum ge
 
 ## Registration form
 
-- To access Elixir-limited resources in MetaCentrum, follow the instructions on [registration form](https://metavo.metacentrum.cz/osobniv3/wayf/elixircz.jsp?target=https%3A%2F%2Fperun.cesnet.cz%2Felixircz%2Fregistrar%2F%3Fvo%3Delixir-cz%26group%3Dcz-users).
+- To access Elixir-limited resources in MetaCentrum, follow the instructions on [registration form](https://perun.cesnet.cz/elixircz/registrar/?vo=elixir-cz&group=cz-users).
 
 ## Dedicated machines and queues
 
-There are several machines with prioritised and/or dedicated access for ELIXIR CZ members in MetaCentrum.
-
-- PBSPro server (batch system): elixir-pbs.elixir-czech.cz, search for "Server elixir-pbs.elixir-czech.cz" [on this page](https://metavo.metacentrum.cz/pbsmon2/queues/list)
-- dedicated Elixir frontend: elmo.elixir-czech.cz 
-- mailto: <support@elixir-czech.cz>
+- [list of nodes with dedicated access for ELIXIR CZ members](https://metavo.metacentrum.cz/pbsmon2/queue/elixircz@pbs-m1.metacentrum.cz) (see table in respective elixir queues)
+- user support: <support@elixir-czech.cz>
 
 
 ![pic](elixir_logo.png)

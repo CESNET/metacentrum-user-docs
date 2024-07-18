@@ -33,27 +33,9 @@ Frontends should be used only for:
 
 A set of instructions performed on computational nodes is **computational job**. Jobs require a set of **resources** such as CPUs, memory or time. A **scheduling system** plans execution of the jobs so as optimize the load and usage of computational nodes.
 
-The servers on which the scheduling system runs are called **PBS servers** or **PBS schedulers**.
+The server on which the scheduling system is called **PBS server** or **PBS scheduler**.
 
-On 3 older schedulers, the **[PBS Pro](https://www.altair.com/pbs-professional)** scheduling system is used.
-
-On the newest scheduler, the **[OpenPBS](https://www.openpbs.org/)** is used.
-
-| Server name                  | shorthand | PBS used | Note                                                                        |
-|------------------------------|-----------|----------|-----------------------------------------------------------------------------|
-| pbs-m1.metacentrum.cz        | *new meta*| OpenPBS  | accessible to all Metacentrum users |
-| meta-pbs.metacentrum.cz      | *meta*    | PBS Pro  | accessible to all Metacentrum users<br/>*will be decommissioned by Q3 2024<br/>in favour of pbs-m1.metacentrum.cz* |
-| cerit-pbs.cerit-sc.cz        | *cerit*   | PBS Pro  | accessible to all Metacentrum users<br/>*will be decommissioned by Q3 2024<br/>in favour of pbs-m1.metacentrum.cz* |
-| elixir-pbs.elixir-czech.cz   | *elixir*  | PBS Pro  | directly accessible only to Elixir group members |
-
-Which PBS server will take care of particular job depends on from which frontend the job was submitted. Every frontend has some default (primary) PBS server (see table below). To optimize resource usage, jobs can be moved however from a certain PBS server less busy one.  Typically jobs from *meta* and *cerit* servers are moved to *elixir*.
-
-| PBS server | Frontends |
-|------------|-----------|
-| *new meta* | zenith.cerit-sc.cz, tilia.ibot.cas.cz, nympha.meta.zcu.cz, perian.grid.cesnet.cz, alfrid.meta.zcu.cz, minos.zcu.cz, onyx.metacentrum.cz, tarkil.grid.cesnet.cz |
-| *meta* | skirit.ics.muni.cz, charon.nti.tul.cz |
-| *cerit* | zuphux.cerit-sc.cz |
-| *elixir* | elmo.elixir-czech.cz | 	
+On the current scheduler `pbs-m1.metacentrum.cz` the **[OpenPBS](https://www.openpbs.org/)** is used.
 
 The most important PBS Pro commands are:
 
@@ -182,11 +164,11 @@ To access the scratch directory, use the system variable `SCRATCHDIR`:
 
 ```
 (BULLSEYE)user123@skirit:~$ qsub -I -l select=1:ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
-qsub: waiting for job 14429322.meta-pbs.metacentrum.cz to start
-qsub: job 14429322.meta-pbs.metacentrum.cz ready
+qsub: waiting for job 14429322.pbs-m1.metacentrum.cz to start
+qsub: job 14429322.pbs-m1.metacentrum.cz ready
 
 user123@glados12:~$ echo $SCRATCHDIR
-/scratch.ssd/user123/job_14429322.meta-pbs.metacentrum.cz
+/scratch.ssd/user123/job_14429322.pbs-m1.metacentrum.cz
 user123@glados12:~$ cd $SCRATCHDIR
-user123@glados12:/scratch.ssd/user123/job_14429322.meta-pbs.metacentrum.cz$ 
+user123@glados12:/scratch.ssd/user123/job_14429322.pbs-m1.metacentrum.cz$ 
 ```

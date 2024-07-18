@@ -172,7 +172,34 @@ Add path to new bin/library to `PATH`/`LD_LIBRARY_PATH`:
     export LD_LIBRARY_PATH=storage/cityN/home/user123/extract_dir/lib/:$LD_LIBRARY_PATH
     export PATH=/storage/cityN/home/user123/extract_dir/bin/:$PATH
 
+### Perl modules
+
+First check if there is an already installed perl package in one of our modules:
+
+```
+module add bioperl
+
+(BOOKWORM)user_123@skirit:~$ perldoc perllocal
+# or
+(BOOKWORM)user_123@skirit:~$ instmodsh
+```
+
+**Install a new Perl package**
+
+`cpanm` (`CPANMINUS` tool) is the specialized tool for installing and uninstalling of Perl packages from CPAN. It is available via modules. Use it like this:
+
+```
+load module bioperl-1.6.9-gcc or bioperl-1.6.1
+
+cpanm -L /specified/local/directory/ GD::Graph::bars – to install Perl library and all of it's dependencies including the libraries already present in system to specified directory
+```
+
+After that don't forget to set `PATH` and `PERL5LIB` to the specified directory bin and lib folders to be able to use the installed binaries and libraries. 
+
 ### Python packages
+
+!!! tip "Use `--user` option rather that `--root` during pip install"
+    A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. You will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
 
 *Example: install software package "spektral".*
 
@@ -229,14 +256,14 @@ python
 ```
 
 
-### Conda packages
+### Conda/Mamba packages
 
 !!! tip
-    Some of the most popular Conda packages may be already installed system-wide - see [`conda-modules` page](../../software/sw-list/conda-modules).
+    Some of the most popular Python packages may be already installed system-wide - see [`conda-modules` page](../../software/sw-list/conda-modules).
 
-**Conda package installers: Conda, Mamba, Micromamba**
+**Python package installers: Conda, Mamba, Micromamba**
 
-[Conda](https://conda.io), avalable through [`conda-modules/` module](../../software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
+[Conda](https://conda.io), available through [`conda-modules/` module](../../software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
 
 [Mamba](https://anaconda.org/conda-forge/mamba), available through `mambaforge` module, is a package manager and environment manager that is designed to be a faster and more efficient drop-in replacement for Conda. Both Conda and Mamba are closely related, as Mamba was developed as an open-source project to address some of the performance limitations of Conda.
 
@@ -270,6 +297,11 @@ Activate this environment (e.g. within batch jobs) as:
     mamba activate /storage/city/home/user_name/segemehl-0.3.4
     segemehl.x ... # run the job
     mamba deactivate
+
+
+!!! tip
+     If you want (esp. for long-running jobs) to make your calculations more robust, e.g. against failure of the network connection to the storage, you can clone your mamba environment directly to the scratch directory: `cd $SCRATCHDIR`<br/> `module add mambaforge`<br/> `mamba create -p $SCRATCHDIR/my_env --clone /storage/city/home/user/ny_env`<br/> `mamba activate $SCRATCHDIR/my_env`
+
 
 ### Containers
 

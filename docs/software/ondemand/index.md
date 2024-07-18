@@ -22,8 +22,6 @@ Supported browsers are Google Chrome, Mozilla Firefox or Microsoft Edge.
 - **move files** between storages,
 - **edit files** on storages.
 
-### Access to storages
-
 In the rolldown menu, there are pre-defined shortcut links to 3 homes on different storages.
 
 ![pic](files-rolldown.png)
@@ -32,19 +30,6 @@ By default, the **Home Directory** link points to storage **brno2**.
 
 !!! warning "Home Directory is fixed on brno2"
     The Home Directory for OnDemand files is currently fixed to brno2 storage. Users cannot change this setting. 
-
-### OnDemand data directories
-
-To store it's own files, OnDemand creates automatically directory `ondemand` in your **Home directory**. You will find there output files, error files and other data for batch jobs submitted from OnDemand interface. The subdirectories for jobs are sorted according to the apps used. 
-
-For example, after running the VMD Desktop, all output from the session will be in `~/ondemand/data/sys/dashboard/batch_connect/sys/bc_desktop/vmd/output/ONDEMAND_SESSION_ID` directory.
-
-!!! warning
-    The **ONDEMAND_SESSION_ID** is OnDemand's internal hash for the session, not PBS job ID! It looks like e.g. `9a8b3f2b-0c6d-4cbd-922b-c587f2c2f0fb`.
-
-You can remove the content of OnDemand data directories, or even the `~/ondemand` directory itself, any time you wish.
-
-Every time you run OnDemand, it will first look for existing directory `~/ondemand`. When it does not find any, it creates a new one.
 
 ## Jobs
 
@@ -68,11 +53,11 @@ Job composer is a GUI wizard to setup a batch job.
 
 ## Clusters
 
-The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum frontends. Currently there are links to:
+The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum [frontends](../../../computing/frontends). Currently there are links to:
 
-- **zuphux** (connected with *cerit-pbs.cerit-sc.cz* PBS server),
-- **skirit** (connected with *meta-pbs.metacentrum.cz* PBS server), and
-- **elmo** (connected with *elixir-pbs.elixir-czech.cz* PBS server).
+- **zuphux.metacentrum.cz**
+- **perian.metacentrum.cz**
+- **elmo.metacentrum.cz**  
    
 ![pic](clusters-rolldown.png)
 
@@ -84,9 +69,66 @@ Clicking on "Shell access" will open ssh connection in your browser:
 
 The "Interactive apps" tab lists all **environments**, **shell access** buttons as well as **graphical software** that can be run from the OnDemand interface.
 
-The "Interactive Apps" tab lists **all graphical software** that is run as interactive jobs.
+The "Interactive Apps" tab lists **all graphical software** that can be run as an interactive job.
 
 ![pic](apps.png)
+
+After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/frontend-storage/).
+
+In consequence, the location of home directory (location=`city_XY` in `/storage/city_XY/home/user_123`) can be different for every new run of an application.
+
+In case you need e.g. to upload some data to work on, it may be necessarry to change directory to the right storage.
+
+### Data directory
+
+To store it's own files, OnDemand creates automatically directory `ondemand` in the current **home directory**. You will find there output files, error files and other data for batch jobs submitted from OnDemand interface.
+
+For example, after running the VMD Desktop, all output from the session will be in `~/ondemand/data/sys/dashboard/batch_connect/sys/bc_desktop/vmd/output/ONDEMAND_SESSION_ID` directory.
+
+!!! warning
+    The **ONDEMAND_SESSION_ID** is OnDemand's internal hash for the session, not PBS job ID! It looks like e.g. `9a8b3f2b-0c6d-4cbd-922b-c587f2c2f0fb`.
+
+You can remove the content of OnDemand data directories, or even the `~/ondemand` directory itself, any time you wish.
+
+Every time you run OnDemand, it will first look for existing directory `~/ondemand`. When it does not find any, it creates a new one.
+
+### RStudio issues
+
+As the *home-on-any-storage* feature of OnDemand was causing problems to RStudio users, we applied a workaround for this.
+
+The default location *for RStudio interactive app* is set to `brno2`.
+
+Moreover, users can overwrite this setting by choosin a different location from the drop-down menu:
+
+![pic](rstudio-dir-fix.png)
+
+<!--
+After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/frontend-storage/).
+
+In consequence, the location of home directory (location=`city_XY` in `/storage/city_XY/home/user_123`) can be different for every new run of an application.
+
+In case you need e.g. to upload some data to work on, it may be necessarry to change directory to the right storage.
+
+**Example: My RStudio run on a node with "plzen1" home, but I want to open a file located in "brno2" storage**
+
+*Username in this example is "melounova"*
+
+![pic](app-dir-01.png)
+
+![pic](app-dir-02.png)
+
+*"auto" is an equivalent of "storage" in `/storage/city_XY/home/user_123` path*
+
+![pic](app-dir-03.png)
+
+*Choose desired location, in this case "brno2"*
+
+![pic](app-dir-04.png)
+
+*... finally descend into your home directory.*
+
+![pic](app-dir-05.png)
+-->
 
 ## My Interactive Sessions
 

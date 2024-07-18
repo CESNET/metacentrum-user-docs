@@ -6,7 +6,7 @@ Nextflow is available as a part of [Kubernetes](https://docs.cerit.io/docs/nextf
     
 **In a grid:**
 
-    module add conda-modules-py37 ; conda activate nextflow ; nextflow -v # as conda environment
+    module add mambaforge ; mamba activate nextflow ; nextflow -v # as an environment
     module avail nextflow/ # as a module
 
 [Nextflow](https://www.nextflow.io/) enables scalable and reproducible scientific workflows using software containers. It allows the adaptation of pipelines written in the most common scripting languages. 
@@ -30,7 +30,7 @@ params.in = "$baseDir/sample.fa"
 */
 process splitSequences {
    executor = 'pbspro'
-   queue 'default@meta-pbs.metacentrum.cz'
+   queue 'default@pbs-m1.metacentrum.cz'
    cpus 1
    memory '1 GB'
    input:
@@ -46,7 +46,7 @@ process splitSequences {
 */
 process reverse {
    executor = 'pbspro'
-   queue 'default@meta-pbs.metacentrum.cz'
+   queue 'default@pbs-m1.metacentrum.cz'
    cpus 1
    memory '2 GB'
    input:
@@ -67,7 +67,7 @@ Run script for PBS, filename **basic.qsub**:
 
 ```
 #!/bin/bash
-#PBS -q default@meta-pbs.metacentrum.cz
+#PBS -q default@pbs-m1.metacentrum.cz
 #PBS -l walltime=1:0:0
 #PBS -l select=1:ncpus=1:mem=3gb
 #PBS -N NF-test

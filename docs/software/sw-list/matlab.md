@@ -52,7 +52,7 @@ PBS tracks these licenses as a `"matlab"` resource, therefore unless you use old
 *List all licenses for Matlab and its available toolboxes:*
 
 ```
-$ cat /software/matlab-latest/etc/license_tah.dat | grep INCREMENT   
+$ cat /software/matlab-latest/etc/license.dat | grep INCREMENT   
 
 $ module add matlab/9.14
 $ matlab
@@ -61,11 +61,11 @@ $ matlab
 
 *List currently issued and available licences of Matlab core:*
 
-    $ /software/matlab-9.14/etc/lmstat -a | grep "Users of MATLAB:"
+    $ /software/matlab-latest/etc/lmstat -a | grep "Users of MATLAB:"
 
 *List currently issued (reserved) licenses of Matlab core as well as toolboxes:*
 
-    $ /software/matlab-9.14/etc/lmstat -a | grep "in use"
+    $ /software/matlab-latest/etc/lmstat -a | grep "in use"
 
 *Get type of license used in current instance of Matlab:*
 
@@ -116,7 +116,7 @@ To find number of licenses:
 *List all licenses for Matlab and its available toolboxes:*
 
 ```
-$ cat /software/matlab-latest/etc/licese_old.dat | grep INCREMENT   
+$ cat /software/matlab-latest/etc/license.dat | grep INCREMENT   
 
 $ module add matlab/9.13
 $ matlab
@@ -125,11 +125,11 @@ $ matlab
 
 *List currently issued and available licences of Matlab core:*
 
-    $ /software/matlab-9.13/etc/lmstat -a | grep "Users of MATLAB:"
+    $ /software/matlab-latest/etc/lmstat -a | grep "Users of MATLAB:"
 
 *List currently issued (reserved) licenses of Matlab core as well as toolboxes:*
 
-    $ /software/matlab-9.13/etc/lmstat -a | grep "in use"
+    $ /software/matlab-latest/etc/lmstat -a | grep "in use"
 
 *Get type of license used in current instance of Matlab:*
 

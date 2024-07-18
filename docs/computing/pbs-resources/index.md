@@ -122,10 +122,10 @@ The most important system variables related to scratch are these:
 Example:
 
     (BUSTER)user123@skirit:~$ qsub -I -l select=scratch_local=20gb -l walltime=1:00:00
-    qsub: waiting for job 12910867.meta-pbs.metacentrum.cz to start
-    qsub: job 12910867.meta-pbs.metacentrum.cz ready
+    qsub: waiting for job 12910867.pbs-m1.metacentrum.cz to start
+    qsub: job 12910867.pbs-m1.metacentrum.cz ready
     (BULLSEYE)user123@elmo3-3:~$ echo $SCRATCHDIR
-    /scratch/user123/job_12910867.meta-pbs.metacentrum.cz
+    /scratch/user123/job_12910867.pbs-m1.metacentrum.cz
     (BULLSEYE)user123@elmo3-3:~$ echo $SCRATCH_TYPE
     local
     (BULLSEYE)user123@elmo3-3:~$ echo $SCRATCH_VOLUME
@@ -226,8 +226,6 @@ If you need to send the job to a specific queue and/or specific PBS server, use 
     qsub -q queue@server # specific queue on specific server
     qsub -q queue # specific queue on the current (default) server
     qsub -q @server # default queue on specific server
-
-For example, `qsub -q @cerit-pbs.cerit-sc.cz` will send the job to default queue managed by cerit pbs server, no matter which frontend the job is sent from. 
 
 ### **Licence**
 

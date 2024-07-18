@@ -4,6 +4,7 @@ The CESNET Storage Department provides a backup and archiving service. It is ava
 
 Storage Department data policies will be described to a certain level at this page. For more detailed information, users should however navigate the [Storage Department documentation pages](https://du.cesnet.cz/en/start).
 
+<!--
 ## Tape storage
 
 !!! info "Data archiving and backup is not MetaCentrum service"
@@ -40,12 +41,17 @@ Underlying infrastructure in Storage Department are **servers with hierarchical 
 - Use this option to archive data you want to keep "forever".
 - The directory has user quota set for volume of data and/or number of files.
 - The data are not removed after a time (they do not "expire").
+-->
+
+!!! warning "Data storage technology in Storage department has changed by May 2024" 
+    For a long time the data were stored on hierarchical storage machine ("hsm" for short) with a directory structure accessible from `/storage/du-cesnet`.<br/> Due to [end-of-life state and multiple hardware failures](https://du.cesnet.cz/en/novinky/start#termination_of_access_to_the_du4_repository_in_ostrava_-_2352024) the HSM storages were disconnected. User data have been transferred to [machines with Object storage technology](https://du.cesnet.cz/en/navody/object_storage/start).<br/> Object storage is successor of HSM with slightly different set of commands, i.e. it **does not** work in the precisely same way (sadly).
+
+!!! tip "Ask <du-support@cesnet.cz> for help, they are prepared for many questions from users"
+    Object storage is a different paradigm than good old Linux filesystem, so yes, this is a big change for most of our users and not a very easy one to grasp. The people in Storage department know this and they are prepared to answer your questions.<br/> Please be aware that MetaCentrum user support (<meta@cesnet.cz>) can provide only limited advice as the data storage is out of the scope of MetaCentrum services.
+
+Below you will find short description of main object storage (S3) command and usage.
 
 ## Object storage
-
-!!! warning 
-    This section is under construction. A complete guide can be found in the [Storage Department documentation](https://du.cesnet.cz/en/navody/object_storage/start).
-
 
 ### Access
 

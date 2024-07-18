@@ -8,7 +8,7 @@
 
 ### License
 
-Licence is free, but every research group has to register at [http://www.msg.chem.iastate.edu/gamess/License_Agreement.html](http://www.msg.chem.iastate.edu/gamess/License_Agreement.html).
+Licence is free, but every research group has to register at [http://www.msg.chem.iastate.edu/gamess/License_Agreement.html](http://www.msg.chem.iastate.edu/gamess/License_Agreement.html). Then contact MetaCentrum user support (via email meta@cesnet.cz) and confirm your registration.
 
 ### Example
 

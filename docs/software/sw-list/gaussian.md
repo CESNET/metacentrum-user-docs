@@ -8,29 +8,16 @@
 
 ## License
 
-Gaussian 03 and 09 can be used on the clusters installed in Brno location:
+**Gaussian 03** and **Gaussian 09** can be used on the clusters installed in Brno location:
 
     -l select=1:ncpus=N: ... :brno=True
 
+The license for **Gaussian 16** is limited only to some node specified in license agreement. To implement this limitation, there is a PBS resource `host_licenses`:
+
+    -l select=1:ncpus=N: ... :host_licenses=g16
+
 !!! warning
     The purchased licenses permit just an academic use of the program!
-
-## Versions
-
-Program is actually available in many versions: 
-
-- g09-A.02 including GaussView (only [JCU](https://jcu.cz) users),
-- g09-A02 and Gaussian 09 (g09, G09-C.01, G09-D.01 and g09-E.01),
-- g16-A.03 and the newest g16-C.01.
-
-Module `g09/D.01linda` contains Linda version allowing to use more machines.
-
-If you do not use Linda version, other versions permit computing only on one machine, thus it is nonsense to plan computation on more machines. Although job submission in form
-
-    select=Y:ncpus=X
-
-with Y > 1 will not end with an error, it will compute only on one machine like you submit it with `select=1:ncpus=X` parameter. This results in overcomming the requested resources on memory or scratch size and the job would be killed.
-
 
 ## Usage
 
@@ -38,47 +25,48 @@ with Y > 1 will not end with an error, it will compute only on one machine like 
 
 - prepare the job description script, where you should specify the computation, which should be performed over the input file
 
-Recommendation: we highly recommend to use the g09-prepare (or g16-prepare for the G16 version) utility from within the script -- within the file, the utility automatically sets the parameters %nproc (number of processors), %mem (amount of usable memory) and %rwf (amount of scratch space -- for large computations, the scratch space may also be separated into multiple files, which may be automatically erased by Gaussian during the computation) based on the real resources dedicated for the job. See g09-prepare -h.
+!!! tip
+    We highly recommend to use the `g09-prepare` utility to automatically set the input file's parameters `%nproc` (number of processors), `%mem` (amount of usable memory) and `%rwf` (amount of scratch space - for large computations, the scratch space may also be separated into multiple files, which may be automatically erased by Gaussian during the computation) based on the real resources dedicated for the job. See `g09-prepare -h`.
         
 For example, such a script may look like this one:
 
 ````
-    #!/bin/bash
-    
-    #ensure removing the temporary data if the job ends or fails
-    trap "clean_scratch" TERM EXIT
-     
-    DATADIR="/storage/brno2/home/$LOGNAME"
-    JOBNAME="myjob"             # myjob.com -> myjob.log
-    
-    # sanity checks
-    if [[ -z "$SCRATCHDIR" ]]; then
-       echo "use scratch_local, scratch_ssd, or scratch_shared in qsub (resource specification)"
-       exit 1
-    fi
-    
-    if [[ ! (-f "$DATADIR/${JOBNAME}.com") ]]; then
-       echo "the input file '$DATADIR/${JOBNAME}.com' does not exist"
-       exit 1
-    fi
-    
-    # copy input file from shared network disk to local disk
-    cp $DATADIR/${JOBNAME}.com $SCRATCHDIR/ || exit 1
-    cd $SCRATCHDIR/ || exit 2
-    
-    # let's load the Gaussian module
-    module add g09
-    
-    #  myjob.com is the input file
-    # setup the resource requirements within the input file so that they correspond to the resources reserved
-    g09-prepare ${JOBNAME}.com
-    
-    # start the computation (use g16 instead of g09 for the g16 version) , myjob.log will be the output file
-    g09 ${JOBNAME}.com
-    # alternatively: g09 < ${JOBNAME}.com > ${JOBNAME}.log
-    
-    # copy the output from local scratch to shared network disk
-    cp ${JOBNAME}.log $DATADIR/ || export CLEAN_SCRATCH=false
+#!/bin/bash
+
+#ensure removing the temporary data if the job ends or fails
+trap "clean_scratch" TERM EXIT
+ 
+DATADIR="/storage/brno2/home/$LOGNAME"
+JOBNAME="myjob"             # myjob.com -> myjob.log
+
+# sanity checks
+if [[ -z "$SCRATCHDIR" ]]; then
+   echo "use scratch_local, scratch_ssd, or scratch_shared in qsub (resource specification)"
+   exit 1
+fi
+
+if [[ ! (-f "$DATADIR/${JOBNAME}.com") ]]; then
+   echo "the input file '$DATADIR/${JOBNAME}.com' does not exist"
+   exit 1
+fi
+
+# copy input file from shared network disk to local disk
+cp $DATADIR/${JOBNAME}.com $SCRATCHDIR/ || exit 1
+cd $SCRATCHDIR/ || exit 2
+
+# let's load the Gaussian module
+module add g09
+
+#  myjob.com is the input file
+# setup the resource requirements within the input file so that they correspond to the resources reserved
+g09-prepare ${JOBNAME}.com
+
+# start the computation (use g16 instead of g09 for the g16 version) , myjob.log will be the output file
+g09 ${JOBNAME}.com
+# alternatively: g09 < ${JOBNAME}.com > ${JOBNAME}.log
+
+# copy the output from local scratch to shared network disk
+cp ${JOBNAME}.log $DATADIR/ || export CLEAN_SCRATCH=false
 ````
 
 Pass the startup script to the scheduler together with resource requirements:
@@ -90,6 +78,14 @@ Pass the startup script to the scheduler together with resource requirements:
 
 
 ### Linda computations (using more machines)
+
+Module `g09/D.01linda` contains Linda version allowing to use more machines.
+
+If you do not use Linda version, other versions permit computing only on one machine, thus it is nonsense to plan computation on more machines. Although job submission in form
+
+    select=Y:ncpus=X
+
+with Y > 1 will not end with an error, it will compute only on one machine like you submit it with `select=1:ncpus=X` parameter. This results in overcomming the requested resources on memory or scratch size and the job would be killed.
 
 The script remains the same, we only change `module add g09` for `module add g09/D.01linda` and submit the job with given number of machines N
 
@@ -106,9 +102,6 @@ Load the Gaussian module into the environment:
     module add g09
 
 Prepare the Gaussian input file (named e.g. myinput.com).
-
-!!! tip
-    We highly recommend to use the g09-prepare utility to automatically set the input file's parameters %nproc (number of processors), %mem (amount of usable memory) and %rwf (amount of scratch space -- for large computations, the scratch space may also be separated into multiple files, which may be automatically erased by Gaussian during the computation) based on the real resources dedicated for the job. See `g09-prepare -h`.
 
     g09-prepare myjob.com
 

@@ -23,9 +23,17 @@ Fairshare_usage += Usage_CPU + Usage_RAM + Usage_Scratch + Usage_GPU
 - The time-scope of the data stored with respect to the past usage of the system is limited. Simply put, the importance of data decreases with time: yesterday is more important than the day before yesterday and so on. The memory lasts typically 30 days. The more the user has used in recent days, the lower his or her priority is.
 - Importantly, **the user is prioritized for publications with acknowledgement to MetaCentrum/CERIT-SC**. User with a higher number of publications (reported in our system) is prioritized over users with smaller numbers of publications.
 
+### Fairshare value
+
+Fairshare value cannot be displayed directly. Any user with queing and/or running jobs can, however, display their order as compared with other users on the [MetaVO page "Users"](https://metavo.metacentrum.cz/pbsmon2/users/):
+
+![pic](metavo-fairshare.png)
+
+Users with lower numbers in the table have lower fairshare than users with higher values.
+
 ### Tips for scheduling large jobs
 
-*Any newly started job will instantly lower the user's fairshare.>*
+*Any newly started job will instantly lower the user's fairshare.*
 
 Thus, if you need to run a large job, it is not a good idea to submit simultaneously a batch of small jobs; due to internal workings of PBS, these small jobs will be prioritized over the large job (they are easier to "fill in" space), thus continuously lowering the user's fairshare. As a result, a large job may wait in the queue for a very long time.
 

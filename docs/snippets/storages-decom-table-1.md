@@ -1,6 +1,8 @@
 
 | Decomissioned servers                      | Root directory              | Due date       |  Note                | 
 |--------------------------------------------|-----------------------------|----------------| ---------------------|
+| storage-du-cesnet.metacentrum.cz           | /storage/du-cesnet/         | May 2024       | Decommissioned by [23rd May 24](https://du.cesnet.cz/en/novinky/start#termination_of_access_to_the_du4_repository_in_ostrava_-_2352024); we recommend to use [Object storages](https://du.cesnet.cz/en/navody/object_storage/cesnet_s3/start) as a backup and archiving site instead  |
+| storage-brno1-cerit.metacentrum.cz         | /storage/brno1-cerit/       | Q1 2024        | Exists as symlink only; data were moved to /storage/brno12-cerit/, see `ls -la /storage/brno1-cerit/home/user_123`         |
 | storage-brno3-cerit.metacentrum.cz         | /storage/brno3-cerit/       | Jan 2024       |  data moved to /storage/brno12-cerit/home/USERNAME/brno3/;<br/> symlink `/storage/brno3-cerit/home/LOGIN/` is only temporary! |
 | storage-jihlava1-cerit.metacentrum.cz      | /storage/jihlava1-cerit/    | ---            | data archived to /storage/brno4-cerit-hsm/fineus, <br /> storage-brno4-cerit-hsm.metacentrum.cz,<br /> symlink `/storage/jihlava1-cerit/` |
 | storage-plzen2-archive.metacentrum.cz      | /storage/plzen2-archive/    | ---            | |

@@ -81,6 +81,7 @@
 
 **M**
 
+- [Mamba](../../software/sw-list/mamba)
 - [Maple](../../software/sw-list/maple)
 - [Masurca](../../software/sw-list/masurca)
 - [Mathematica](../../software/sw-list/wolfram-math)
@@ -119,7 +120,6 @@
 - [Platanus](../../software/sw-list/platanus)
 - [Python](../../software/sw-list/python)
 - [Python modules](../../software/sw-list/python-modules)
-- [PyTorch](../../software/sw-list/pytorch)
 
 **Q**
 
@@ -134,6 +134,7 @@
 - [Repeat Masker](../../software/sw-list/repeat-masker)
 - [Repeat Modeler](../../software/sw-list/repeat-modeler)
 - [RevBayes](../../software/sw-list/revbayes)
+- [Rosetta](../../software/sw-list/rosetta)
 - [RStudio](../../software/sw-list/rstudio)
 <!-- Pre-selected from wiki 
 - [ReSpect](https://wiki.metacentrum.cz/wiki/ReSpect)
@@ -149,6 +150,7 @@
 
 - [Tensorflow](../../software/sw-list/tensor-flow)
 - [TEtools](../../software/sw-list/tetools)
+- [Tinker](../../software/sw-list/tinker)
 - [TmoleX](../../software/sw-list/tmolex)
 - [TotalView](../../software/sw-list/total-view)
 - [Trimmomatic](../../software/sw-list/trimmomatic)

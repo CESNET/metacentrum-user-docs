@@ -104,7 +104,7 @@ The batch script in the following example is called myJob.sh.
 The job is then submitted as
 
     (BUSTER)user123@skirit:~$ qsub myJob.sh 
-    11733571.meta-pbs.metacentrum.cz # job ID is 11733571.meta-pbs.metacentrum.cz
+    11733571.pbs-m1.metacentrum.cz # job ID is 11733571.pbs-m1.metacentrum.cz
 
 Alternatively, you can specify resources on the command line. In this case the lines starting by `#PBS` need not to be in the batch script.
 
@@ -118,22 +118,22 @@ Alternatively, you can specify resources on the command line. In this case the l
 An interactive job is requested via `qsub -I` command (uppercase "i").
 
     (BUSTER)user123@skirit:~$ qsub -I -l select=1:ncpus=4 -l walltime=2:00:00 # submit interactive job 
-    qsub: waiting for job 13010171.meta-pbs.metacentrum.cz to start
-    qsub: job 13010171.meta-pbs.metacentrum.cz ready # 13010171.meta-pbs.metacentrum.cz is the job ID
+    qsub: waiting for job 13010171.pbs-m1.metacentrum.cz to start
+    qsub: job 13010171.pbs-m1.metacentrum.cz ready # 13010171.pbs-m1.metacentrum.cz is the job ID
     (BULLSEYE)user123@elmo3-1:~$ # elmo3-1 is computational node
-    (BULLSEYE)user123@elmo3-1:~$ conda # start conda
-    (BULLSEYE)user123@elmo3-1:~$ conda list | grep scipy # make sure there is no scipy package already installed
-    (BULLSEYE)user123@elmo3-1:~$ conda search scipy 
-    ... # conda returns list of scipy packages available in repositories
-    (BULLSEYE)user123@elmo3-1:~$ conda --create my_scipy # create my environment to install scipy into
+    (BULLSEYE)user123@elmo3-1:~$ module add mambaforge   # make available mamba 
+    (BULLSEYE)user123@elmo3-1:~$ mamba list | grep scipy # make sure there is no scipy package already installed
+    (BULLSEYE)user123@elmo3-1:~$ mamba search scipy 
+    ... # mamba returns list of scipy packages available in repositories
+    (BULLSEYE)user123@elmo3-1:~$ mamba create -n my_scipy # create my environment to install scipy into
     ... 
-    environment location: /storage/praha1/home/melounova/.conda/envs/my_scipy 
+    environment location: /storage/praha1/home/user123/.conda/envs/my_scipy 
     ...
     Proceed ([y]/n)? y
     ...
-    (BULLSEYE)user123@elmo3-1:~$ conda activate my_scipy # enter the environment
+    (BULLSEYE)user123@elmo3-1:~$ mamba activate my_scipy # enter the environment
     (my_scipy) (BULLSEYE)user123@elmo3-1:~$ 
-    (my_scipy) (BULLSEYE)user123@elmo3-1:~$ conda install scipy
+    (my_scipy) (BULLSEYE)user123@elmo3-1:~$ mamba install scipy
     ...
     Proceed ([y]/n)? y
     ...
@@ -148,7 +148,7 @@ Unless you log out, after 1 hour you will get following message:
 
     user123@elmo3-1:~$ =>> PBS: job killed: walltime 7230 exceeded limit 7200
     logout
-    qsub: job 13010171.meta-pbs.metacentrum.cz completed
+    qsub: job 13010171.pbs-m1.metacentrum.cz completed
 
 ## job ID
 
@@ -160,29 +160,26 @@ You can get the job ID:
 
 - after running `qsub` command
 - by `echo $PBS_JOBID` in interactive job  or in the batch script
-- by `qstat -u your_username @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz`
+- by `qstat -u your_username @pbs-m1.metacentrum.cz 
 
 Within interactive job:
 
     (BULLSEYE)user123@elmo3-1:~$ echo $PBS_JOBID
-    13010171.meta-pbs.metacentrum.cz
+    13010171.pbs-m1.metacentrum.cz
 
 By `qstat` command:
 
-    (BULLSEYE)user123@elmo3-1s :~$ qstat -u user123 @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz 
-    
-    elixir-pbs.elixir-czech.cz: 
-                                                                 Req'd  Req'd   Elap
-    Job ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
-    -------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
-    13010171.meta-pbs.m* user123  global   STDIN      366884   1   8    4gb 02:00 R 00:17
+    (BULLSEYE)user123@perian :~$ qstat -u user123 @pbs-m1.metacentrum.cz
+
+    Job id                 Name             User              Time Use S Queue
+    ---------------------  ---------------- ----------------  -------- - -----
+    1578105.pbs-m1         Boom-fr-bulk_12* fiserp                   0 Q q_1w   
 
 ## Job status
 
 Basic command for getting status about your jobs is `qstat` command.
 
-    qstat -u user123 # list all jobs of user "user123" running or queuing on the current PBS server
-    qstat -u user123 @meta-pbs.metacentrum.cz @cerit-pbs.cerit-sc.cz @elixir-pbs.elixir-czech.cz # list all running or queuing jobs of user "user123" on all PBS servers
+    qstat -u user123 # list all jobs of user "user123" running or queuing on the PBS server
     qstat -xu user123 # list finished jobs for user "user123" 
     qstat -f <jobID> # list details of the running or queueing job with a given jobID
     qstat -xf <jobID> # list details of the finished job with a given jobID
@@ -218,11 +215,11 @@ STDERR file contains all the error messages which occurred during the calculatio
 
 Sometimes you need to delete submitted/running job. This can be done by `qdel` command:
 
-    (BULLSEYE)user123@skirit~: qdel 21732596.elixir-pbs.elixir-czech.cz
+    (BULLSEYE)user123@skirit~: qdel 21732596.pbs-m1.metacentrum.cz
 
 If plain `qdel` does not work, add `-W` (force del) option:
 
-    (BULLSEYE)user123@skirit~: qdel -W force 21732596.elixir-pbs.elixir-czech.cz
+    (BULLSEYE)user123@skirit~: qdel -W force 21732596.pbs-m1.metacentrum.cz
 
 ### Done by PBS server
 
@@ -230,12 +227,12 @@ The PBS server keeps track of resources used by the job. In case the job uses mo
 
 You can see the signal as `Exit_status` on CLI:
 
-    (BULLSEYE)user123@tarkil:~$ qstat -x -f 13030457.meta-pbs.metacentrum.cz | grep Exit_status
+    (BULLSEYE)user123@tarkil:~$ qstat -x -f 13030457.pbs-m1.metacentrum.cz | grep Exit_status
         Exit_status = -29
 
 In case of moved (PBS code **M**) jobs, append to job ID the name of the PBS server the job was moved to: 
 
-    (BULLSEYE)user123@tarkil:~$ qstat -x -f 13031539.meta-pbs.metacentrum.cz@cerit-pbs.cerit-sc.cz | grep Exit_status
+    (BULLSEYE)user123@tarkil:~$ qstat -x -f 13031539.pbs-m1.metacentrum.cz@cerit-pbs.cerit-sc.cz | grep Exit_status
         Exit_status = 0
 
 ## Exit status
@@ -315,8 +312,8 @@ In case of erroneous job ending, the data are left in the scratch directory. You
 For example:
 
     user123@skirit:~$ ssh user123@luna13.fzu.cz # login to luna13.fzu.cz
-    user123@luna13:~$ cd /scratch/user123/job_14053410.meta-pbs.metacentrum.cz # enter scratch directory
-    user123@luna13:/scratch/user123/job_14053410.meta-pbs.metacentrum.cz$ rm -r * # remove all content
+    user123@luna13:~$ cd /scratch/user123/job_14053410.pbs-m1.metacentrum.cz # enter scratch directory
+    user123@luna13:/scratch/user123/job_14053410.pbs-m1.metacentrum.cz$ rm -r * # remove all content
 
 The scratch directory itself will be **deleted automatically** after some time.
 

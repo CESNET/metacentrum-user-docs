@@ -77,3 +77,19 @@ gitGraph
 I need to highlight these ==very important words==.
 
 I need to highlight these <mark>very important words</mark>.
+
+
+
+``` mermaid
+graph LR
+  A[MetaCentrum] --> B[Prihlaseni a autorizace];
+  A --> C[Moduly a softwary];
+  A --> D[Jak uloha putuje frontami a planovacem];
+  A --> E[Data a zachazeni s nimi];
+  A --> F[OnDemand];
+  A --> G[Infrastruktura];
+  A --> H[Paralelni vypocty];
+  A --> I[GPU vypocty];
+```
+
+

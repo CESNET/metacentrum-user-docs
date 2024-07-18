@@ -38,7 +38,7 @@ Since probing the directory structure of `/storage` is uneffective when done fro
 
 If youo suspect the resulting `.json` file will be a large one (typical for number-of-files quota overflow), you can consider compressing it by `gzip`:
 
-     ssh storage-cityXY.metacentrum.cz 'ncdu2 -x -o output.json /storage/cityXY/home/user_123/' | gzip > output.json.gz
+     ssh storage-XY.metacentrum.cz 'ncdu2 -x -o - .' | gzip /storage/cityXY/home/login/output.json.gz
 
 **Wrap it in a job**
 
