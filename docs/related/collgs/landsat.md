@@ -58,6 +58,8 @@ Itemy dostupné v jednotlivých kolekcích jsou dostupné přes endpoint [`/item
 
 Data jsou distribuována ve formátu `.tar`, pričemž jednomu snímku odpovída právě jeden `.tar` soubor. Odkaz na stažení tohoto archivu je pro každý item uložený v JSON klíčí `assets`. Tedy například pro item **[LC09_L2SP_191025_20240412_02_T1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l2/items/8bb8514b-7e73-5a73-8c20-5835018825f3)**, v node `assets` jsou pak dostupné ke stažení metadata ve formátu `xml` - **assets/mtl.xml** a samotný datový soubor **assets/data**. Odkaz pro stažení je v podklíči `href`.
 
+Data je doporučeno stahovat pomocí `wget`, stahování přes prohlížeč může být nestabilní.
+
 STAC katalog je zároveň možné procházet promocí webového prohlížeče, pro například uvažovaný dataset **[Landsat 8-9 OLI/TIRS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1)** je prohlížeč dostupný [zde](https://eo-mqs.c-scale.eu/browser/#/v1/collections/CollGS_CZ|landsat_ot_c2_l1).
                 
 ## Licence
