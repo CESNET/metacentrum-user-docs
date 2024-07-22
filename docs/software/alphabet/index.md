@@ -47,6 +47,7 @@
 
 **F**
 
+- [FMRIB library](../../software/sw-list/fsl)
 - [Freesurfer](../../software/sw-list/freesurfer)
 
 **G**
