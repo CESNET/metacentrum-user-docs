@@ -8,7 +8,7 @@ These libraries provide optimized functions and algorithms that leverage the par
 
 ## License
 
-To use Cuda, you will also need to [accept license for cuDNN library](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_cudnn). 
+To use Cuda, you will also need to [accept the license for cuDNN library](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_cudnn). 
 
 ## Usage
 
