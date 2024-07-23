@@ -1,4 +1,4 @@
-# Install software
+# How to install software
 
 ## General options
 
@@ -286,10 +286,8 @@ python
 
 If you need to install multiple programs at the same time, use the following syntax:
 
-```
-# with this syntax, mamba will resolve all environment dependencies only once
-mamba create --prefix /storage/city/home/user_name/my_new_env -c channel_1 -c channel_2 <other channels> software_1 software_2 <other softwares>
-```
+    # with this syntax, mamba will resolve all environment dependencies only once
+    mamba create --prefix /storage/city/home/user_name/my_new_env -c channel_1 -c channel_2 <other channels> software_1 software_2 <other softwares>
 
 Activate this environment (e.g. within batch jobs) as:
 
@@ -302,7 +300,6 @@ Activate this environment (e.g. within batch jobs) as:
 !!! tip
      If you want (esp. for long-running jobs) to make your calculations more robust, e.g. against failure of the network connection to the storage, you can clone your mamba environment directly to the scratch directory: `cd $SCRATCHDIR`<br/> `module add mambaforge`<br/> `mamba create -p $SCRATCHDIR/my_env --clone /storage/city/home/user/ny_env`<br/> `mamba activate $SCRATCHDIR/my_env`
 
-
 ### Containers
 
 Apptainer (Singularity) images can be deployed and run directly on MetaCentrum machines.
@@ -312,4 +309,93 @@ If your software is released as Docker container, you have more option.
 - **Apptainer** (former Singularity) **image** can be run in MetaCentrum directly, see [Singularity howto](../../software/containers).
 - **Docker images** must be translated into an Apptainer image and run [as described in this chapter](../../software/containers/#docker-usage).
 - Docker images can be run also via Kubernetes service. See [Kubernetes](https://docs.e-infra.cz/compute/containers/) for instruction.
+
+### Compile from source (C, C++, Fortran)
+
+**Choosing the compiler**
+
+You should choose what compiler you use for building an application. There are three main compilers:
+
+- [GCC compiler](../../software/sw-list/gcc) - free compiler which is usually most compatible with the software being built. Better is to use the system version then some from module if that is possible.
+- [Intel compiler](../../software/sw-list/intel) - commercial compiler with excellent math libraries and optimization abilities.
+- [PGI compiler](../../software/sw-list/pgi-cdk) - another commercial compiler with optimized math libraries for [AMD clusters](https://metavo.metacentrum.cz/pbsmon2/props?property=cpu_vendor=amd).
+
+We suggest to first try the default Intel compiler and in case it fails, proceed to GCC.
+
+**Configuration tuning**
+
+Usually you need to configure the software prior to building. And there are usually three different "configurers". Some advices for each are here:
+
+- Libraries:
+    - use MKL (math libraries from Intel CDK) when possible
+    - use MPI when possible, preferably OpenMPI but MVAPICH is also available (MVAPICH is MPICH with support of InfiniBand)
+    - use Thread (OpenMP) when possible
+    - use CUDA in separate compilations
+    - avoid all optimizations for machine (-xHost and -fast flags) where you are building your application
+- configure - use `./configure --help` to get the available options. If no `./configure` script is present, try first `./autogen.sh` (for newer than system version use module `autotools-2.26`). Then look above to general advices.
+- cmake - first add one of the `cmake` modules. Then make a build directory (`mkdir build && cd build`) and run `ccmake ../` to get and adjust configuration options. All options are available after pressing "t" key. Then look above to general advices. You can look in ccmake for options and then use them in command line with `-D` prefix. Like: `cmake -DCMAKE_INSTALL_PREFIX=/software/prg/version`.
+- Makefile - sometimes all configuration is done only in pre-generated Makefile. Edit it using your favourite editor. Don't forget to look above to general advices.
+
+**Environment variables and Flags**
+
+There are some usual environment variables in which you can put some "flags" that influence the compilation or linking. The standard make rule for compiling a C (or C++ or Fortran) program is:
+
+    %.o:%.file_type
+       $(Compiler) $(PreprocessorFLAGS) $(CompilerFLAGS) -c -o $@ $<
+
+The corresponding compilers and variables that influence it's behavior are described in following table.
+
+| Compiler | Preprocessor flags | Compiler flags |
+|-------|------------|--------|
+| C | CPPFLAGS | CFLAGS |
+| C++ | CPPFLAGS | CXXFLAGS |
+| Fortran 77 | FPPFLAGS | F77FLAGS, FFLAGS |
+| Fortran 90 | FPPFLAGS | F90FLAGS, FFLAGS |
+
+For example, if you use C compiler (`gcc`, `icc`, `pgcc`) and want to influence the compilation phase, you should set some flags in variable `$CFLAGS`. If you use C++ compiler, use `$CXXFLAGS` variable. If you use both and want to have some common flags, use `$CPPFLAGS` variable. So for C/C++ projects you will normally need to use only the `CPPFLAGS` for compilation.
+
+Linker flags are always `$LDFLAGS`. You should always set capital "L" paths prior to linked libraries.
+
+| Type of flags | Purpose | Example |
+|--------|-------|---------|
+| Preprocessor flags | Compiler inspecific optimization and include paths. | CPPFLAGS="-I/software/prg1/include -I/software/prg2/include -O2 -msse -fPIC" |
+| Compiler flags | Compiler specific optimization and include paths. | CXXFLAGS="-I/software/prg1/include -I/software/prg2/include -O2 -msse -fPIC" |
+| Linker flags (LDFLAGS) | Linker directives and library paths. | LDFLAGS="-L/software/prg1/version/lib -L/software/prg2/version/lib -lcrypt -lmkl_blas95_lp64 -lpthread /software/prg1/lib/libprg.a" |
+
+If the programs you are dealing with support pkgconfig mechanism, it is a good idea to set the `$PKG_CONFIG_PATH`, usually `/software/prg/version/lib/pkgconfig`.
+
+In module `meta/0-utils` are available scripts `set-*` (`ls /software/meta-utils/internal/set-*`) for setting of certain compilation environments. Use it at least for inspiration.
+
+**Math libraries introduction**
+
+Let's describe some relationships among the linear algebra libraries BLAS, LAPACK, BLACS and ScaLAPACK. For the quick overview see picture in [Intel compiler](../../software/sw-list/intel).
+
+For example,
+
+- BLAS is a dependency of LAPACK and you can not link LAPACK without BLAS,
+- LAPACK, BLAS and BLACS (pBLAS) are dependencies of ScaLAPACK and you should link it all if you are using ScaLapack
+- BLACS (pBLAS) are dependent also on MPI implementation. You should choose the right library depending on MPI you are using (OpenMPI or M(VA)PICH). Math libraries linking examples are described on [INTEL CDK page](../../software/sw-list/intel). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

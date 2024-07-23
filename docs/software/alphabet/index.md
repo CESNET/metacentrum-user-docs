@@ -55,6 +55,7 @@
 - [Galaxy](../../related/galaxy)
 - [Gamess](../../software/sw-list/gamess)
 - [Gaussian](../../software/sw-list/gaussian)
+- [GCC](../../software/sw-list/gcc)
 - [Genome Analysis Toolkit](../../software/sw-list/gatk)
 - [GIbPSs](../../software/sw-list/gibpss)
 - [GridMathematica](../../software/sw-list/gridmathematica)

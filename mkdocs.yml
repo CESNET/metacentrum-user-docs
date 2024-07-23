@@ -132,11 +132,11 @@ nav:
          - software/sw-list/matlab.md
          - software/sw-list/wolfram-math.md   
     - software/search-soft/index.md
+    - software/install-software/index.md
     - software/graphical-access/index.md
     - software/ondemand/index.md
     - software/modules/index.md
     - software/containers/index.md
-    - software/install-software/index.md
   - 'Troubleshooting':
     - troubleshooting/index.md
     - troubleshooting/faqs/index.md
