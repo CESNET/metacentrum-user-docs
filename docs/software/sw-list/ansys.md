@@ -95,10 +95,10 @@ Check the number of currently available licenses
 
 or you can use Ansys specific license tool
 
-    /software/ansys-2021/R1/v211/licensingclient/linx64/ansysli_util -statli 2325@lm-brno.ics.muni.cz -printavail
+    `which ansysli_util` -statli 2325@lm-brno.ics.muni.cz -printavail
 
     # with filter to specific license feature "cfd_preppost":
-    /software/ansys-2021/R1/v211/licensingclient/linx64/ansysli_util -statli 2325@lm-brno.ics.muni.cz -printavail | grep -B 3 -A 6 "FEATURENAME: cfd_preppost"
+    `which ansysli_util` -statli 2325@lm-brno.ics.muni.cz -printavail | grep -B 3 -A 6 "FEATURENAME: cfd_preppost"
 
 ## Available ANSYS products
 
