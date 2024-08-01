@@ -23,7 +23,8 @@ After the group is created, you will be notified.
 
 Finally, create a directory dedicated for shared data, e.g. `mkdir /storage/CITY/home/USER/shared`.
 
-!!! note This directory for shared data needs to be created by the user, and also the name of it can be different.
+!!! note
+    This directory for shared data needs to be created by the user, and also the name of it can be different.
 
 ## Project directory setup 
 
