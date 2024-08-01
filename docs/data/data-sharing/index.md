@@ -4,7 +4,7 @@ Sometimes two or more MetaCentrum users need to work on the same files and direc
 
 Since setting whole `home` directory as accessible to anyone is considered a security vulnerability (due to the possibility to manipulate sensitive files like .k5login, .bashrc by a third party) such settings are discouraged and are automatically reset.
 
-To make sharing of data possible and at the time safe, we offer two options varying slightly with respect to expected volume of shared data, namely:
+To make sharing of data possible and at the time safe, we offer two options varying slightly with respect to the expected volume of shared data, namely:
 
 1. sharing based on a **group** (moderate amount of data)
 2. sharing based on **project directory** (large amount of data)
@@ -15,13 +15,15 @@ To make sharing of data possible and at the time safe, we offer two options vary
 ## Group setup
 
 1. Choose a name for your group and ask us at <meta@cesnet.cz> to create it
-2. Include list of members of the group and choose at least one group manager
+2. Include a list of members of the group and choose at least one group manager
 
 The group manager can later add/remove members of this group through the [Perun interface](../../access/perun).
 
 After the group is created, you will be notified.
 
-Finally, create a directory dedicated for shared data, e.g. `/storage/CITY/home/USER/shared`.
+Finally, create a directory dedicated for shared data, e.g. `mkdir /storage/CITY/home/USER/shared`.
+
+!!! note This directory for shared data needs to be created by the user, and also the name of it can be different.
 
 ## Project directory setup 
 
@@ -65,7 +67,7 @@ Alternatively, you can ask us to change your primary group within the whole Meta
 
 ### Identity in running jobs
 
-When creatingfiles within running jobs, it is necessary to have the following lines within your batch script:
+When creating files within running jobs, it is necessary to have the following lines within your batch script:
 
 ```
 #!/bin/bash
@@ -90,7 +92,7 @@ uid=13153(makub) gid=10002(einfra) groups=10000(meta),10002(einfra),10100(storag
 ```
 
 !!!warning
-    Because of a bug in the Network File System (NFS) we use, it is necessary to explicitely change the group ownership of the newly created files/directories (at the end of an interactive session or job) by calling the command
+    Because of a bug in the Network File System (NFS) we use, it is necessary to explicitly change the group ownership of the newly created files/directories (at the end of an interactive session or job) by calling the command
 
     chgrp -R MYGROUP DIRECTORY
 
@@ -100,9 +102,9 @@ uid=13153(makub) gid=10002(einfra) groups=10000(meta),10002(einfra),10100(storag
 
 Some users find changing `umask` inconvenient. For these users we recommend another approach.
 
-1. Copy the files you need to work with from shard directory elsewhere.
+1. Copy the files you need to work with from the shared directory elsewhere.
 2. Process the data, create new files etc.
-3. When ready to share the data, send them back into shared directory by a command
+3. When ready to share the data, send them back into the shared directory by a command
 
     sync_with_group group_name source_dir target_dir
 
