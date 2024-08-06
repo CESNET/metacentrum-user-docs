@@ -13,7 +13,12 @@ For parallel running are required additional parameters
 
     -instances N -threads N
 
-where N is one less value than number of processors requested in PBS task. 
+where N is one less value than number of processors requested in PBS task. And also add
+
+    useThreads="true" 
+
+attribute in the input file.
+
 
 **With BEAGLE**
 
