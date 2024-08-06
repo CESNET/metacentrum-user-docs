@@ -2,7 +2,7 @@
 
     module avail busco/
 
-[Busco](https://busco.ezlab.org/) is 
+[Busco](https://busco.ezlab.org/) is a tool for assessment of genome assembly, gene set, and transcriptome completeness, based on evolutionarily-informed expectations of gene content from near-universal single-copy orthologs selected from OrthoDB v9. 
 
 ## Usage
 
