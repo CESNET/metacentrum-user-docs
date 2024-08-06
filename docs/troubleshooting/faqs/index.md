@@ -26,6 +26,8 @@
 
 - [My job is approaching walltime, can I prolong it?](../../troubleshooting/faqs/faqs-content/prolong-walltime)
 
+- [I get "Cgroup memsw limit exceeded" error, how to fix it?](../../troubleshooting/faqs/faqs-content/cgroup-memsw-limit-exceeded)
+
 ## Grid infrastructure
 
 - [I want to use NVIDIA DGX H100 hardware, what do I need to do?](../../troubleshooting/faqs/faqs-content/dgx-usage)
