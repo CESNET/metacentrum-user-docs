@@ -13,7 +13,7 @@ For parallel running are required additional parameters
 
     -instances N -threads N
 
-where N is one less value than number of processors requested in PBS task. And also add
+where N is the number of processors requested in the PBS task. And also add
 
     useThreads="true" 
 
