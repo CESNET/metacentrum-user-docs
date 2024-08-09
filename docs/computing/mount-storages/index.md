@@ -28,9 +28,8 @@ You will need to do several things to make NFSv4 accessible on your Linux deskto
 
 You need to create empty directory where the Metacentrum storage NFS volumes will be mounted. We recommend directory `/storage` because in this way it is set on MetaCentrum machines. E.g.:
 
-    mkdir -p /storage/brno1-cerit # -p option means directory /storage will be created, too, if it does not already exist
+    mkdir -p /storage/brno12-cerit # -p option means the directory will be created, too, if it does not already exist
     mkdir /storage/brno2
-    mkdir /storage/brno12-cerit
     mkdir /storage/plzen1
     ...
 
@@ -169,10 +168,8 @@ The target in `/etc/fstab` must be a real directory, not a symlink. By using `ls
 
 Sample of `/etc/fstab`:
 
-    storage-brno1-cerit.metacentrum.cz:/ /storage/brno1-cerit  nfs4 sec=krb5        0 0
     storage-brno6.metacentrum.cz:/home/fsbrno2 /storage/brno2  nfs4 sec=krb5        0 0
     storage-brno12-cerit.metacentrum.cz:/ /storage/brno12-cerit  nfs4 sec=krb5        0 0
-    storage-brno1-cerit.metacentrum.cz:/hsmcerit /storage/brno4-cerit-hsm  nfs4 sec=krb5        0 0
     storage-brno6.metacentrum.cz:/ /storage/brno6  nfs4 sec=krb5        0 0
     storage-du-cesnet.metacentrum.cz:/ /storage/du-cesnet  nfs4 sec=krb5        0 0
     ...
