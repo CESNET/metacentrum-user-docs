@@ -22,49 +22,26 @@ Although this application can be used in text-only mode, in most use cases you w
 
 Running ANSYS from a module is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service cannot fulfill the user's requirements.
 
-## Versions
+## License
 
-!!! note
-    Listed are only reasonably new version. Some older version are available, too, however we recommend their usage only in the case users need to reproduce some older computations.
+All installed ANSYS versions are available to all MetaCentrum users without location restriction.
 
-- **2023 R1** (`ansys/2023-R1`)
-    - product is licensed for all MetaCentrum users
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **2022 R1** (`ansys/2022-R1`)
-    - product is licensed for all MetaCentrum users
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **2021 R1** (`ansys/2021-R1`)
-    - product is licensed for all MetaCentrum users
-    - only CFD tool is available for all registered users
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **2020 R1** (`ansys/2020-R1`)
-    - product is licensed for all MetaCentrum users
-    - only CFD tool is available for all registered users
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **2019 R3** (`ansys/2019-R3`)
-    - product is licensed for all MetaCentrum users
-    - only CFD tool is available for all registered users
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **19.2** (`ansys/19.2`)
-    - product is licensed for all MetaCentrum users
-    - increased number of HPC licences to 512 computing cores!
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **18.2** (`ansys/18.2`)
-    - product is licensed for all MetaCentrum users
-    - increased number of HPC licences to 512 computing cores!
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **18.0** (`ansys/18.0`)
-    - product is licensed for all MetaCentrum users
-    - increased number of HPC licences to 512 computing cores!
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **17.2** (`ansys/17.2`)
-    - product is licensed for all MetaCentrum users
-    - without location restriction (usable in the whole area of the Czech Republic)
-- **17.1** (`ansys/17.1`)
-    - product is licensed for all MetaCentrum users
-    - without location restriction (usable in the whole area of the Czech Republic)
+Check the number of currently available licenses:
 
-Number of available licenses (applies to all above mentioned versions):
+    module add ansys/2021-R1
+    lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a    # list all licences for all software
+
+    # filter specific license feature "cfd_base"
+    lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a | grep cfd_base
+
+or you can use Ansys specific license tool
+
+    `which ansysli_util` -statli 2325@lm-brno.ics.muni.cz -printavail
+
+    # with filter to specific license feature "cfd_preppost":
+    `which ansysli_util` -statli 2325@lm-brno.ics.muni.cz -printavail | grep -B 3 -A 6 "FEATURENAME: cfd_preppost"
+
+Number of available licenses:
 
     Ansys Academic Research CFD (Ansys Fluent + Ansys CFX) in quantity of 25 parallel runs
     Ansys Academic Research Mechanical in quantity of 5 parallel runs
@@ -77,28 +54,12 @@ Number of available licenses (applies to all above mentioned versions):
         ICEM-CFD : command icemcfd
         Workbench : command runwb2
 
-## License
 
 Ask scheduler for licence by adding one of the following options:
 
     -l ansys-cfd=1     # 1 license of Ansys CFD
     -l ansys-mechwb=1  # 1 license of Ansys Mechanical Workbench
     -l ansys-anshpc=Z  # Z licenses of Ansys HPC
-
-Check the number of currently available licenses
-
-    module add ansys-2021-R1
-    lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a    # list all licences for all software
-
-    # filter specific license feature "cfd_base"
-    lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a | grep cfd_base
-
-or you can use Ansys specific license tool
-
-    `which ansysli_util` -statli 2325@lm-brno.ics.muni.cz -printavail
-
-    # with filter to specific license feature "cfd_preppost":
-    `which ansysli_util` -statli 2325@lm-brno.ics.muni.cz -printavail | grep -B 3 -A 6 "FEATURENAME: cfd_preppost"
 
 ## Available ANSYS products
 
@@ -129,7 +90,7 @@ qsub -I -l select=X:ncpus=Y:mem=Zgb  # text-only regime
 Start Fluent and proceed according to onscreen instructions
 
 ```
-module add ansys-18.2
+module add ansys/18.2
 fluent # graphic regime
 fluent -g # text-only regime
 ```
@@ -143,14 +104,14 @@ Prepare input data and batch script -- in the script, use following commands:
 a) for serial computation:
 
 ```
-module add ansys-18.2
+module add ansys/18.2
 fluent <version> -g -i input_file  # serial initialization of Fluent
 ```
 
 b) for paralel/distributed computation:
 
 ```
-module add ansys-18.2
+module add ansys/18.2
 cpus=`cat $PBS_NODEFILE | wc -l`
 fluent <version> -t${cpus} -p -cnf=$PBS_NODEFILE -g < flow.input  # parallel/distributed initialization of Fluent
 ```
@@ -210,7 +171,7 @@ Prepare input data and batch script -- in the script, use following commands:
 a) for serial computation:
 
 ```
-module add ansys-18.2
+module add ansys/18.2
 cfx5pre -batch inputfile.pre [...]
 cfx5solve -def inputfile [...]
 cfdpost -batch inputfile.cse [...]
@@ -218,7 +179,7 @@ cfdpost -batch inputfile.cse [...]
 b) for paralel/distributed computation:
 
 ```
-module add ansys-18.2
+module add ansys/18.2
 
 #### Create host list
 hl=`sort $PBS_NODEFILE | uniq -c | awk '{print $2"*"$1}' | tr '\n' ',' | sed 's/,$//'`
