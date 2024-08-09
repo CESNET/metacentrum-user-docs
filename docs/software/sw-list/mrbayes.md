@@ -85,7 +85,7 @@ If you need to run more MrBayes runs in parallel (for example for more genes sep
 
 ```
 module add parallel
-module add mrbayes-3.2.2
+module add mrbayes/3.2.2
 
 ls *.nexus | parallel -j 10 'echo Start > {}.log && date >> {}.log && mb {} | tee -a {}.log && echo End: >> {}.log && date >> {}.log'
 ```

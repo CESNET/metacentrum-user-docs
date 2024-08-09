@@ -24,10 +24,10 @@ Only some OpenCV modules are compiled with GPU support (Cuda).
 OpenCV can be used as a Python library. This module is compiled with Python 2.7 and Numpy support. To initialize your environment, use:
 
 ```
-# for opencv-2.4 module
-module add python-2.7.5 numpy-1.7.1-py2.7 ffmpeg opencv-2.4
-# for older opencv-2.3.2 module
-module add python-2.6.2 numpy-py2.6 ffmpeg opencv-2.3.2
+# for opencv/2.4 module
+module add python/2.7.5 numpy/1.7.1-py2.7 ffmpeg opencv/2.4
+# for older opencv/2.3.2 module
+module add python/2.6.2 numpy/py2.6 ffmpeg opencv/2.3.2
 ```
 
 Then, in Python, library `cv2` is available, you can import it and use it:
@@ -44,7 +44,7 @@ Here is a short demonstration, how to compile a C++ project with OpenCV. OpenCV 
 
 Initialize your environment:
 
-    module add cmake-2.8 ffmpeg opencv-2.4
+    module add cmake/2.8 ffmpeg opencv/2.4
 
 Module cmake is used for c++ project compilation. Our sample project is available here: [metacentrum_opencv_demo.zip](http://www.kky.zcu.cz/public/metacentrum_opencv_demo.zip). Decompress this ZIP file in your home directory, at any metacentrum frontend machine.
 

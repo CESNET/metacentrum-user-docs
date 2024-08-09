@@ -329,7 +329,7 @@ At the bottom panel of the splash screen on the left, there is an icon for the t
 
 To run chosen GUI application, proceed as in a standard interactive job. If you wish, for example, to run ANSYS Workbench, type
 
-    module add ansys-18.2
+    module add ansys/18.2
     runwb2 # run new Ansys Workbench project
 
 Then the application's GUI interface will appear on your screen.

@@ -43,7 +43,7 @@ To setup your own personal environment on the target PBS node, define your own `
 Example of `.jupyter_bashrc`:
 
 ```
-module load cuda-10.1 cudnn-7.6.4-cuda10.1
+module load cuda/10.1 cudnn/7.6.4-cuda10.1
 export MY_DIR="/storage/praha1/home/$USER/myapp"
 export PATH+=":$MY_DIR/bin"
 ```
@@ -166,11 +166,11 @@ The original article and source codes of the plugin are available [here](https:/
 
 **`.jupyter_bashrc` content** (edit before you spawn a new notebook server on PBS): 
 
-    module load cuda-10.1
+    module load cuda/10.1
 
 **Jupyter notebook content**:
 
-Check if a CUDA compiler is available (if not, you probably forgot to add `module load cuda-10.1` or similar into `.jupyter_bashrc`). Commands starting with an exclamation mark `!` are run in shell. You could also open a terminal by clicking on *New->Terminal*. 
+Check if a CUDA compiler is available (if not, you probably forgot to add `module load cuda/10.1` or similar into `.jupyter_bashrc`). Commands starting with an exclamation mark `!` are run in shell. You could also open a terminal by clicking on *New->Terminal*. 
 
     !nvcc --version
 
@@ -315,7 +315,7 @@ Open terminal (or Putty on Windows) and connect to one of the MetaCentrum fronte
 
 and load the newest available python
 
-    module load python-3.6.2-gcc
+    module load python/3.6.2-gcc
 
 Install virtualenv locally 
 
@@ -364,9 +364,9 @@ Connect to one of the MetaCentrum frontends, for example
 
     ssh my_metacentrum_login@skirit.ics.muni.cz
 
-We recommend to use `pip` from the `python-3.6.2-gcc module` (you can of course install and use your own pip if you need a newer version)
+We recommend to use `pip` from the `python/3.6.2-gcc module` (you can of course install and use your own pip if you need a newer version)
 
-    module load python-3.6.2-gcc
+    module load python/3.6.2-gcc
 
 Choose a path where to install the package locally
 
@@ -450,8 +450,8 @@ Login to `skirit`, `perian` or `onyx` [frontend](../../computing/frontends).
 Load needed modules and start R: 
 
 ```
-module add jupyter-modules-4.6.1-python36
-module add R-4.0.0-gcc
+module add jupyter-modules/4.6.1-python36
+module add R/4.0.0-gcc
 R
 ```
 
@@ -646,7 +646,7 @@ and the template of `script.sh` is predefined as
 #PBS -N jupyter-ntb-singleuser
 
 export MODULEPATH+=:/software/jupyterhub-1.2/modules:/software/jupyterhub-1.1/modules
-module load jupyterhub-1.1 clang-10.0.1 cling-0.7 #note: python-3.6.2-gcc module is also loaded
+module load jupyterhub-1.1 clang-10.0.1 cling-0.7 #note: python/3.6.2-gcc module is also loaded
  
 # root folder where your notebook server initiates
 export NOTEBOOK_DIR="/storage/brno2/home/$PBS_O_LOGNAME"

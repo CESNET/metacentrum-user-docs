@@ -47,9 +47,9 @@ Using a MetaCentrum frontend, ask for an interactive job specifying the number o
 Subsequently, prepare all the information necessary to connect to the remote computational kernels:
 
 ```
-module add gridmathematica-9
+module add gridmathematica/9
 ## OR use
-# module add mathematica-9-XXX      ## JUST in cases the module for your institution (XXX) exists
+# module add mathematica/9-XXX      ## JUST in cases the module for your institution (XXX) exists
 
 # start the computational kernels
 math-grid start    # for more details, see: math-grid --help
@@ -59,7 +59,7 @@ copy the output of the `math-grid` command into a clipboard.
 
 Start your local Mathematica (Mathematica command for GUI frontend, or math command for a command-line frontend) and open a new worksheet (notebook).
         
-If your home institution does allow to start the Mathematica on the MetaCentrum nodes (i.e., there is a module dedicated for your institution -- e.g., the "mathematica-9-jcu" module for the University of South Bohemia -- see Mathematica), or you have performed an explicit configuration of the license server of your home institution (see below), you can start the controlling Mathematica process (i.e., Mathematica frontend) directly from the established interactive job (and subsequently instruct the controlling process to connect to the started gridMathematica computational kernels).
+If your home institution does allow to start the Mathematica on the MetaCentrum nodes (i.e., there is a module dedicated for your institution -- e.g., the "mathematica/9-jcu" module for the University of South Bohemia -- see Mathematica), or you have performed an explicit configuration of the license server of your home institution (see below), you can start the controlling Mathematica process (i.e., Mathematica frontend) directly from the established interactive job (and subsequently instruct the controlling process to connect to the started gridMathematica computational kernels).
 
 Copy the output of the math-grid command (mentioned above) into the notebook and press SHIFT+ENTER
         
@@ -79,7 +79,7 @@ Once finished, do not forget to stop the running kernels (command CloseKernels[]
 
 ### Batch use
 
-As mentioned above, to allow the batch computations using the provided Wolfram gridMathematica, there is a necessity to obtain a licence for the Wolfram Mathematica controlling process (i.e., the frontend). If your home institution does allow to start the Mathematica on the MetaCentrum nodes (i.e., there is a module dedicated for your institution -- e.g., the `mathematica-9-jcu` module for the University of South Bohemia), this license is available automatically for you. OTHERWISE, you have to perform an explicit configuration to make the Mathematica controlling process asking for a license the license server that is legally available for you.
+As mentioned above, to allow the batch computations using the provided Wolfram gridMathematica, there is a necessity to obtain a licence for the Wolfram Mathematica controlling process (i.e., the frontend). If your home institution does allow to start the Mathematica on the MetaCentrum nodes (i.e., there is a module dedicated for your institution -- e.g., the `mathematica/9-jcu` module for the University of South Bohemia), this license is available automatically for you. OTHERWISE, you have to perform an explicit configuration to make the Mathematica controlling process asking for a license the license server that is legally available for you.
 
 **How to configure Mathematica controlling kernels to use a specific license server:**
 
@@ -107,9 +107,9 @@ Subseqently, prepare a startup script for your job (named, e.g., `startup_script
 ```
 #!/bin/bash
 
-# module add mathematica-9         ## use JUST in cases you have explicitely configured a license server in your $HOME
-# module add mathematica-9-XXX     ## use JUST in cases the module for your institution (XXX) exists
-module add gridmathematica-9
+# module add mathematica/9         ## use JUST in cases you have explicitely configured a license server in your $HOME
+# module add mathematica/9-XXX     ## use JUST in cases the module for your institution (XXX) exists
+module add gridmathematica/9
 
 math -run <path_to_your_Mathematica_file
 # ALTERNATIVELY (without implicit outputs): math -script path_to_your_Mathematica_file

@@ -36,7 +36,7 @@ or directly
 
 Newer versions of Orca (> `5.0`) are prepared using the Spack package manager and the directory structure is different
 
-    #example for module orca/orca-5.0.1-intel-19.0.4-bnofsgq
+    # example for module orca/5.0.1-intel-19.0.4-bnofsgq
     /cvmfs/software.metacentrum.cz/spack1/software/orca/linux-debian10-x86_64/5.0.1-intel-bnofsg/bin/orca in.inp
 
 **OpenMPI computing**
@@ -47,12 +47,12 @@ Don't try to run `mpirun -np $NCPUs orca`. ORCA will take care of it if you have
 
 [NAMD](../../software/sw-list/namd.md) uses Orca application for some computation. However due to different installation methods usually both programs use different OpenMPI to run. 
 
-In Orca-4.2.1 module is created a wrapper for `orca` binary to avoid OpenMPI mismatch problems. Now should be sufficient to put the path to this orca wrapper to NAMD configuration file and avoid of running `module add orca-4.2.1` in your PBS script. For documentation purposes, the wrapper is this:
+In Orca-4.2.1 module is created a wrapper for `orca` binary to avoid OpenMPI mismatch problems. Now should be sufficient to put the path to this orca wrapper to NAMD configuration file and avoid of running `module add orca/4.2.1` in your PBS script. For documentation purposes, the wrapper is this:
 
 ```
 #!/bin/bash
 eval $(env |sed -n '/^OMPI/s/^\([^=]*\).*/unset \1;/p')
-module add orca-4.2.0
+module add orca/4.2.0
 exec /software/orca/4.2.1/orca "$@"
 ```
 

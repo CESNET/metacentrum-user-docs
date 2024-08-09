@@ -31,7 +31,7 @@ Example of interactive use:
 
 ```
 $ qsub -I -l select=1:ncpus=1:mem=1gb:scratch_local=1gb:brno=true -l walltime=1:00:00
-$ module add mathematica-11.3
+$ module add mathematica/11.3
 $ math
 
 In[1]:= 1 + 1

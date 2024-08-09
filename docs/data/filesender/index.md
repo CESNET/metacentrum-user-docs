@@ -37,7 +37,7 @@ The configuration file is a normal text file. Nothing needs to be modified or ad
 
 To make filesender run, add it as a module:
 
-    module add filesender-cli
+    module add filesender/0-cli
 
 and export a path to the configuration file:
 

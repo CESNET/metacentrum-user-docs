@@ -58,16 +58,16 @@ $ module add intelcdk            # dtto
 
 **Load a specific version of a module**
 
-    $ module load intelcdk-17.1
+    $ module load intelcdk/17.1
 
 ### Unload modules
 
 **Unload a module**
 
 ```
-$ module unload matlab-9.9   # unload matlab-9.9
-$ module del matlab-9.9      # dtto
-$ module rm  matlab-9.9      # dtto
+$ module unload matlab/9.9   # unload matlab-9.9
+$ module del matlab/9.9      # dtto
+$ module rm  matlab/9.9      # dtto
 ```
 
 **Clear all currently loaded modules**
@@ -91,7 +91,7 @@ Currently Loaded Modulefiles:
 
 **Display information about the module**
 
-    $ module display intelcdk-17.1  
+    $ module display intelcdk/17.1  
 
 Some important variables are
 

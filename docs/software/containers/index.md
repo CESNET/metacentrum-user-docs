@@ -388,7 +388,7 @@ The scenario for this setup is: two nodes with common scratch dir
 #PBS -l place=scatter
 # modify/delete the above given guidelines according to your job's needs
 
-module add openmpi-2.0.1-gcc
+module add openmpi/2.0.1-gcc
 cat $PBS_NODEFILE |uniq >nodes.txt
 
 # run job over ethernet or infiniband (mpirun autoselects better)

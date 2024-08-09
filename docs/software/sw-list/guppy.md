@@ -18,7 +18,7 @@ To be able to run Guppy, the user must [accept the licence](https://perun.metace
 The example below will use one GPU card and consume ~38 GB of GPU physical memory.
 
 ```
-module add guppy-6.0.6-gpu
+module add guppy/6.0.6-gpu
 
 guppy_basecaller -i input_fast5 -r -s out_fastq_reads --flowcell FLO-MIN106 --kit SQK-LSK109 -x auto --gpu_runners_per_device 16 --num_callers 16 --chunks_per_runner 2000 --trim_strategy none --disable_qscore_filtering
 ```

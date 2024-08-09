@@ -48,7 +48,7 @@ You won't be able to use this program without a license agreement.
 Load SW module repeatmasker, then run RepeatMasker (e.g. with sample input file `my_repeatmasker_sample.fasta`):
 
 ```
-$ module add repeatmasker-4.0.7
+$ module add repeatmasker/4.0.7
 $ RepeatMasker my_repeatmasker_sample.fasta
 ```
 
@@ -64,7 +64,7 @@ Interactive job can be run as follows:
 You are then redirected to a concrete machine where you can run RepeatMasker with `my_repeatmasker_sample.fasta` input file as follows (and then exit from the machine):
 
 ```
-$ module add repeatmasker-4.0.7
+$ module add repeatmasker/4.0.7
 $ cp my_repeatmasker_sample.fasta $SCRATCHDIR
 $ cd $SCRATCHDIR
 $ RepeatMasker my_repeatmasker_sample.fasta
@@ -82,7 +82,7 @@ This is the preferred way of running jobs. Create the shell script `my_repeatmas
 #!/bin/bash
 
 # add RepeatMasker module
-module add repeatmasker-4.0.7
+module add repeatmasker/4.0.7
 
 # copy your input data (e.g. my_repeatmasker_sample.fasta) to the scratch directory
 cp my_repeatmasker_sample.fasta $SCRATCHDIR

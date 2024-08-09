@@ -11,12 +11,12 @@
 Platanus-allee for some tasks require Minimap and/or LongRanger (see below and help).
 
 ```
-module add platanus-1.2.4
+module add platanus/1.2.4
 platanus # See basic help
 
 # Platanus-allee (Platanus 2)
-module add minimap-2.17 # Only required to use PacBio/Oxford-Nanopore long reads
-module add longranger-2.2.2 # Only required to prepare 10X linked-reads input (barcoded.fastq)
-module add platanus-2.2.2 # Platanus-allee (Platanus 2) itself
+module add minimap/2.17 # Only required to use PacBio/Oxford-Nanopore long reads
+module add longranger/2.2.2 # Only required to prepare 10X linked-reads input (barcoded.fastq)
+module add platanus/2.2.2 # Platanus-allee (Platanus 2) itself
 platanus_allee # See basic help
 ```

@@ -26,7 +26,7 @@ Different modules (versions) of Python (and python-modules) are usually impossib
  (module add python34-modules-gcc;
       cython ...;
  )
- (module add qiime-1.9.1;
+ (module add qiime/1.9.1;
         alpha_rarefaction.py ...;
         beta_diversity_through_plots.py ...;
  )

@@ -15,9 +15,9 @@
 
 **Parallel version**
 
-In the case of using mpi version, add explicitly mpi modul after adding of espresso, e.g. for `espresso-5.0-mpi`
+In the case of using mpi version, add explicitly mpi modul after adding of espresso, e.g. for `espresso/5.0-mpi`
 
-    module add espresso-5.0-mpi
+    module add espresso/5.0-mpi
 
 and run (MPI version)
 

@@ -71,7 +71,7 @@ Run script for PBS, filename **basic.qsub**:
 #PBS -l walltime=1:0:0
 #PBS -l select=1:ncpus=1:mem=3gb
 #PBS -N NF-test
-module add nextflow-21.04.3
+module add nextflow/21.04.3
 cd /storage/plzen1/home/hoidekr/nextflow/  #cd to work directory
 ./basic.nextflow
 ```
