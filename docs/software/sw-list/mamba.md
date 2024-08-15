@@ -10,7 +10,7 @@ Mamba is closely related to [Conda](../../../software/sw-list/conda-modules). Th
     We urge users to use Mamba as a primary tool to invoke and install environments. Module `mambaforge` can even access environments installed in `conda-modules`, and thus can act as a full replacement of `conda-modules` module.
 
 !!! warning
-    Avoid combining Mamba environments with traditional modules in one session. Often it can lead to various conflicts and application malfunctions.
+    Avoid combining Mamba environments with traditional modules in a single session. Doing so can often lead to conflicts and application malfunctions.
 
 ## Usage
 
