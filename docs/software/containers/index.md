@@ -3,12 +3,9 @@
 ![pic](../../software/containers/singularity-logo.png)
 
 !!! abstract "What are containers"
-    *Containerization* is a software deployment process that bundles an application's code with all the files and libraries it needs to run on any infrastructure. It makes the application less dependent on the OS and system-wide installed libraries. A particular application packed together with its libraries and other files is a *container*. 
+    *Containerization* is a software deployment process that bundles an application's code with all the files and libraries it needs to run on any infrastructure. It makes the application less dependent on the OS and system-wide installed libraries. A particular application packed together with its libraries and other files is a *container*. An **image** is a file sitting somewhere on the disk. A **container** is a runtime instance of an image. 
 
-!!! abstract "Container vs image"
-    An **image** is a file sitting somewhere on the disk. A **container** is a runtime instance of an image. 
-
-[Apptainer (former Singularity)](https://docs.sylabs.io/guides/latest/user-guide) is an open-source program for containerization used in MetaCentrum.
+[Singularity](https://docs.sylabs.io/guides/latest/user-guide) is an open-source program for containerization used in MetaCentrum.
 
 Singularity is invoked by command `singularity`.
 
@@ -16,7 +13,48 @@ Singularity images (= containers) are commonly suffixed by `.sif`.
 
 **Singularity can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#docker-usage).
 
-## Singularity usage
+## Direct Singularity usage (new feature)
+
+!!! tip "Singularity image can be added as PBS parameter"
+    Singularity image can now be specified directly upon job submission as a PBS parameter and the container will be automatically launched when the job starts. This is a new feature (Aug 2024). Keep in mind that this new feature is still in testing mode and probably some expansion and modifications (e.g. towards parallelized computing) will be still under way. 
+
+Key features:
+
+- run the job as `qsub -v PBS_SINGULARITY_IMAGE=<singularity_image>`, `<singularity_image>` is the location of image, e.g.
+  - `/cvmfs/singularity.metacentrum.cz/Metacentrum/debian11-openpbs.sif`
+  - `docker://ubuntu:latest`
+- you can also pass the argument inside batch script as  `#PBS -v PBS_SINGULARITY_IMAGE=<singularity_image>`
+- `/var/spool/pbs` and `/etc/pbs.conf` are binded into the container automatically
+
+### Example
+
+```
+# I want to run Deb 11 OS froma container
+
+# Currently, the MetaCentrum OS is Deb 12
+(BOOKWORM)user_123@tarkil:~$ lsb_release -a
+
+No LSB modules are available.
+Distributor ID:	Debian
+Description:	Debian GNU/Linux 12 (bookworm)
+Release:	12
+Codename:	bookworm
+
+# run the job 
+(BOOKWORM)user_123@tarkil:~$ qsub  -I -l select=1:ncpus=1 -l walltime=1:00:00 -v PBS_SINGULARITY_IMAGE=/cvmfs/singularity.metacentrum.cz/Metacentrum/debian11-openpbs.sif
+qsub: waiting for job 3696027.pbs-m1.metacentrum.cz to start
+qsub: job 3696027.pbs-m1.metacentrum.cz ready
+
+Singularity> lsb_release -a
+No LSB modules are available.
+Distributor ID:	Debian
+Description:	Debian GNU/Linux 11 (bullseye)
+Release:	11
+Codename:	bullseye
+Singularity> 
+```
+
+## Singularity usage (old way)
 
 In the basic usecases of Singularity images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
 
