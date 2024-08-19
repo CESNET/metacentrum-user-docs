@@ -4,7 +4,7 @@
 
 [Amber](http://ambermd.org/) is a set of molecular mechanical force fields for the simulation of biomolecules.
 
-Program package contains cca 50 programs, which cover wide spectrum of computational chemistry. Main programs are following Amber modules: 
+The program package contains cca 50 programs, which cover a wide spectrum of computational chemistry. The main programs are the following Amber modules: 
 
 **sander**
 
@@ -16,11 +16,11 @@ This is an extensively-modified version of the sander program, optimized for per
 
 **nmode**
 
-Normal mode analysis program using first and second derivative information, used to find search for local minima, perform vibrational analysis, and search for transition states.
+Normal mode analysis program using first and second derivative information, used to search for local minima, perform vibrational analysis, and search for transition states.
 
 **LEaP**
 
-LEaP is an X-windows-based program that provides for basic model building and Amber coordinate and parameter/topology input file creation. It includes a molecular editor which allows for building residues and manipulating molecules.
+LEaP is an X-windows-based program that provides for basic model building and Amber coordinate and parameter/topology input file creation. It includes a molecular editor that allows the building of residues and the manipulation of molecules.
 
 **antechamber**
 
@@ -28,7 +28,7 @@ This program suite automates the process of developing force field descriptors f
 
 **ptraj**
 
-Tool to analyze MD trajectories, computing a variety of things, like RMS deviation from a reference structure, hydrogen bonding analysis, time-correlation functions, diffusional behavior, and so on.
+Tool to analyze MD trajectories, computing a variety of things, like RMS deviation from a reference structure, hydrogen bonding analysis, time-correlation functions, diffusional behaviour, and so on.
 
 **mm_pbsa**
 
@@ -36,11 +36,14 @@ This is a script to automate post-processing of MD trajectories, to analyze ener
 
 ## Usage and license
 
+- **24.x modules**
+    - *available to all users who will provide source code to us as evidence that developers register them for non-commercial use*
+    - the module contains the following binaries - sequential, .MPI and .cuda (GPU)
 
 - **22.x modules**
     - *available to all users of MetaCentrum*
     - users need to [accept the Amber license](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_amber) to be able to run the job
-    - The module contains all types of binaries - sequential, .MPI, .OMP and .cuda (GPU)
+    - the module contains all types of binaries - sequential, .MPI, .OMP and .cuda (GPU)
 
 - **18.x modules**
     - *available only for students and employees of Charles University*
@@ -52,7 +55,7 @@ This is a script to automate post-processing of MD trajectories, to analyze ener
 - **16.x modules**
     - *available to all MetaCentrum users*
     - `amber-16-gpu` activates all binaries, not only GPU version (even parallel and nonparallel versions, distinguished by suffixes .MPI, .cuda, .cuda.MPI)
-    - usage of amber-16-gpu is preferred due to better optimization.
+    - the usage of amber-16-gpu is preferred due to better optimization.
 
 - **14.x modules**
     - *available to all the MetaCentrum users*
