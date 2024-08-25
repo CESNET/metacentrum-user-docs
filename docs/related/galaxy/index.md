@@ -93,7 +93,7 @@ risk of ending up with irrecoverable filesystem corruption.
 
 # RepeatExplorer
 
-TODO
+RepeatExplorer Galaxy is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/)
 
 # Old documentation
 
