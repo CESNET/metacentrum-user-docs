@@ -91,9 +91,9 @@ Specifically, RBD is configured as 12+4 Ceph erasure code, hence it is able to r
 Further, regular [RBD snapshots](https://du.cesnet.cz/en/navody/object_storage/cesnet_rbd/snapshots/start) are created to mitigate the
 risk of ending up with irrecoverable filesystem corruption. 
 
-# RepeatExplorer
+# RepeatExplorer Galaxy
 
-RepeatExplorer Galaxy is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/)
+RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/)
 
 # Old documentation
 
