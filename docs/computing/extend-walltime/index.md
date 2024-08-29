@@ -19,7 +19,7 @@ Example:
 To prevent abuse of the tool, there is a quota limiting the `qextend` usage to:
 
 - max. 20 times within the last 30 days, `AND`
-- prolong the job(s) by up to 2880 CPU-hours within the last 30 days.
+- prolong the job(s) by up to 1440 CPU-hours within the last 30 days.
 
 Job prolongations older than 30 days are "forgotten" and no longer occupy user's quota.
 
