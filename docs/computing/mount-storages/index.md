@@ -1,7 +1,7 @@
 # Mount storages locally
 
-!!! warning "This is Linux-only howto"
-    This page contains Linux tutorial how to mount storages locally. There is no free client for MS-Windows, just comercial NFS Maestro.
+!!! warning "This is for Linux and macOS"
+    This page contains tutorial how to mount storages locally on Linux and macOS machines. There is no free client for MS-Windows, just comercial NFS Maestro.
 
 **List of current storage servers**
  
@@ -11,53 +11,39 @@
 
 You will need to do several things to make NFSv4 accessible on your Linux desktop:
 
-- create empty directory as a mount point
-- set up Kerberos support
-- set up/check NFSv4 support in kernel
-- get Kerberos ticket enabling connection
-- install NFSv4 client tools
-- modify the /etc/fstab file
-- start nfs client and remount all volumes
-- get Kerberos ticket to access to data
-- set the system time properly
-
-!!! note "Superuser is a must" 
+!!! note "Administrator access is required"
     You must have root privileges on your local PC.
 
 ### Create mount points
 
-You need to create empty directory where the Metacentrum storage NFS volumes will be mounted. We recommend directory `/storage` because in this way it is set on MetaCentrum machines. E.g.:
+You need to create an empty directory where the Metacentrum NFS volumes will be mounted. We recommend directory `/storage` because this is what is set on MetaCentrum machines. E.g.:
 
-    mkdir -p /storage/brno12-cerit # -p option means the directory will be created, too, if it does not already exist
+    mkdir /storage
+    mkdir /storage/brno12-cerit
     mkdir /storage/brno2
     mkdir /storage/plzen1
     ...
 
-You can, of course, choose arbitrary name and placing for the mounting points - just remember to modify the `/etc/fstab` file accordingly.
+You can choose an arbitrary name and location for the mounting points - just remember to modify accordingly the steps described below.
 
 ### Install Kerberos support
 
-If your PC does not have Kerberos system support, you need to install it first. On Ubuntu use e.g. `apt search` command to check the package.
+If your PC does not have Kerberos system support enabled, you need to install it first.
 
-    user_123@user_123-ThinkCentre-E93:~$ sudo apt search krb5-config
-    Sorting... Done
-    Full Text Search... Done
-    krb5-config/bionic,bionic,now 2.6 all [installed,automatic]
-    Configuration files for Kerberos Version 5
+    apt install krb5-user
 
-Also search and install `krb5-user` package:
+Once Kerberos support is installed, you must create file `/etc/krb5.conf`. The easiest way is to copy it simply from a MetaCentrum machine, e.g skirit.ics.muni.cz.
 
-    user_123@user_123-ThinkCentre-E93:~$ sudo apt search krb5-user
+    scp user_123@skirit.ics.muni.cz:/etc/krb5.conf /etc/
 
-Once Kerberos support is installed, you must create file `/etc/krb5.conf`. The easiest way is to copy it simply from some MetaCentrum machine, e.g skirit.ics.muni.cz.
+Make sure Kerberos is correctly enabled
 
-    $ scp user_123@skirit.ics.muni.cz:/etc/krb5.conf /etc/
-
-If you are using MIT Kerberos >1.4 or Heimdal >1.3 add following line to the [libdefaults] section in the krb5.conf: `allow_weak_crypto = true`. Otherwise, do not change anything.
+    kinit user@META
+    klist
 
 ### Set up/check NFSv4 support in kernel
 
-Ubuntu and OpenSuse kernels support NFSv4 as a stanard and you can skip this step. Otherwise assure the support in the following way:
+Ubuntu and OpenSuse kernels support NFSv4 by default and you can skip this step. Otherwise assure the support in the following way:
 
 **Test of support NFS file system**
 
@@ -87,38 +73,16 @@ and repeat the test. In case of negative answer it is necessary to compile `CONF
 
 If it is obvious that system supports NFSv4 including RPCSEC it is not necessary to insert modules manually - client tools insert NFS on their own.
 
-### Get Kerberos ticket enabling volume connection
+### Get Kerberos credentials for your NFS
 
-We offer 3 possibilities according to type of tickets:
+    $ ssh <user>@<metacentrum machine>.metacentrum.cz '/software/remctl-2.12/bin/remctl -d kdccesnet.ics.muni.cz accounts nfskeytab' > /etc/krb5.keytab
 
-1. Your machine has MetaCentrum (or ÚVT) `/etc/krb5.keytab` file
-2. Your machine does not have MetaCentrum `/etc/krb5.keytab` file and you will use your user ticket
-3. Your machine does not have MetaCentrum `/etc/krb5.keytab` file and you will create one-purpose file `/etc/krb5.keytab`
-
-**Your machine has MetaCentrum /etc/krb5.keytab file**
-
-We will add ticket like `nfs/your_machine@ICS.MUNI.CZ` to your `/etc/krb5.keytab` on your request which enables you to connect NFS volume. Original `krb5.keytab` must be changed to the new one, which will be released to you on your request.
-
-**Your machine does not have MetaCentrum /etc/krb5.keytab file and you will use your user ticket**
-
-Create kerberos ticket (`kinit username@META`) before mounting the volume. You must create the ticket as a root because system volume will be connected as a root too. In this way, it is necessary to set `rpc.gssd` to search your ticket, not the system one, see below. Ticket must be renewed every day.
-
-**Your machine does not have MetaCentrum /etc/krb5.keytab file and you will create one-purpose file /etc/krb5.keytab**
-
-Login to some MetaCentrum machine. Be sure that you have valid Kerberos ticket in META realm (print it by `klist`). After it use the command:
-
-    /software/remctl-2.12/bin/remctl -d kdccesnet.ics.muni.cz accounts nfskeytab >krb5.keytab
-
-File `krb5.keytab` will be created in current directory which contains one-purpose ticket. Next copy the file `krb5.keytab` on your machine to `/etc/krb5.keytab`, set its ownership to root.root and rights to 600 as follows:
+Set its ownership to root.root and rights to 600 as follows:
 
     chown root.root /etc/krb5.keytab
     chmod 600 /etc/krb5.keytab
 
-Delete the file from MetaCentrum machine after copying it. It is important that META is your implicit realm in file `/etc/krb5.conf`.
-
 ### Install client NFSv4 tools
-
-We recommend to install nfs-utils version 1.1.0 or higher.
 
 - package nfs-common (apt-get install nfs-common) on Debian/Ubuntu.
 - package nfs-client (yast -i nfs-client) on OpenSuse.
@@ -141,7 +105,7 @@ Setting of nfs-utils in the file `/etc/sysconfig/nfs`. Set at least the followin
     NFS_SECURITY_GSS="yes"
     NFS4_SUPPORT="yes"
 
-### Modify /etc/fstab file
+### Enable automatic mount on boot
 
 For storages you wish to mount locally, add the following lines to the `/etc/fstab` file:
 
@@ -228,33 +192,17 @@ Particular record for user user\_123@META exists in `/etc/passwd` and record for
 
 ### Accessing user data on NFS4 storage
 
-If you use the tutorial you should have the volume mounted now. To be able to access your user data you must have valid kerberos ticket. You can obtain one by `kinit` command:
+To be able to access your user data you must have valid kerberos ticket. You can obtain one by `kinit` command:
 
-    $ kinit
-    login@META's Password:
-    $ cd /storage/brno2/home/login
-
-Please keep in mind that such kerberos ticket has limited validity (usually 12h). If you need to access storage without entering password and/or for longer periods (i.e. running some service), you can create ticket from one-purpose `nfs/login@META` keytab (see above how to obtain it):
-
-    kinit -t /etc/krb5.keytab nfs/login@META
-
-With such a ticket you should be able to access login's data, however, it has limited (12h) validity too. You can prolong the ticket as follows:
-
-     echo "* */6 * * * /usr/bin/kinit -t /etc/krb5.keytab  nfs/login@META" | crontab
+Please keep in mind that kerberos tickets have limited validity (usually 12h). If you need to access storage without entering password and/or for longer periods (i.e. running some service), you can create ticket from one-purpose `nfs/login@META` keytab (see above how to obtain it):
 
 ### Kerberos identity
 
-Users using one identity should be satisfied with standart NFS tools in their Linux distribution. If you want to use more identities at one time like user\_123@META, user\_123@ADMIN.META and user\_123@ICS.MUNI.CZ it's necessary to use patched rpc.gssd program. Patched program is in NFS utils version 1.1.3. Patching older version is not easy, best way is to contact us and we make patched package for you.
-
-### Kerberos tickets
-
-Ticket in `/etc/krb5.keytab` is implicitly used just to mount the volume. But we can make a deal that the ticket can be also used to access the storage – but explicit arrangement is necessary. This ticket is valid until kerberos server administrator deletes it. So the access via ticket can be used almost forever.
-
-User ticket (ussually in `/tmp/krb5cc_number`) can be used for mounting (if we run `rpc.gssd -n`) and also for access. This ticket often has limited validity.
+Users using one identity should be satisfied with the standard NFS tools in their Linux distribution.
 
 ### Proper displaying of users and groups names
 
-Above-mentioned settings of idmapd.conf will display properly only users and groups stored in `/etc/passwd` and `/etc/group`. Moreover the user or group must be from META domain. Cross realm user mapping is possible through advanced settings. It is necessary to set mapping of NFSv4 identities to numeral representation and it is necessary to set mapping of numerical representation to the individual names.
+Above-mentioned settings of idmapd.conf will display properly only users and groups stored in `/etc/passwd` and `/etc/group`. Moreover, the user or group must be from the META domain. Cross realm user mapping is possible through advanced settings. It is necessary to set mapping of NFSv4 identities to numeral representation and it is necessary to set mapping of numerical representation to the individual names.
 
 ### Cross realm mapping NFSv4 identities to numerical representation
 
@@ -322,7 +270,7 @@ and run service `/etc/init.d/nfsmount`. Volume should mount now.
 
 ### MacOS users
 
-As was mentioned, users must be able to obtain the Kerberos ticket on their local machine. Follow this tutorial how to get a krb5 ticket.
+Users must be able to obtain the Kerberos ticket on their local machine. Follow this tutorial how to get a krb5 ticket.
 
 Once `kinit` command successfully generates valid krb5 tickets, add line `nfs.client.default_nfs4domain = META` to the end of the file `/etc/nfs.conf` as superuser.
 
@@ -332,6 +280,6 @@ You have to create an empty directory where the Metacentrum storage NFS volume w
 
 Finally, you can mount the selected NFS volume (as superuser).
 
-    sudo mount_nfs -o vers=4,sec=krb5 storage-praha5-elixir.metacentrum.cz:home/your_username /path/on/my/local/computer/storage-praha5-elixir
+    mount_nfs -o vers=4,sec=krb5 storage-praha5-elixir.metacentrum.cz:home/your_username /path/on/my/local/computer/storage-praha5-elixir
 
-The example above will mount your home directory on the storage praha5-elixir. On your local machine, data will be accessible through folder storage-praha5-elixir. 
+The example above will mount your home directory on the storage praha5-elixir to the specified directory on the local computer.
