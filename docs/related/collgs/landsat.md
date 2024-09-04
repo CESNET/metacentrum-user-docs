@@ -60,7 +60,7 @@ Data jsou distribuována ve formátu `.tar`, pričemž jednomu snímku odpovída
 
 Data je doporučeno stahovat pomocí `wget`, stahování přes prohlížeč může být nestabilní.
 
-STAC katalog je zároveň možné procházet promocí webového prohlížeče [STAC Browser](https://stac.cesnet.cz/browser/), pro například uvažovaný dataset **[Landsat 8-9 OLI/TIRS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1)** je prohlížeč dostupný [zde]([https://eo-mqs.c-scale.eu/browser/#/v1/collections/CollGS_CZ|landsat_ot_c2_l1](https://stac.cesnet.cz/browser/external/stac.vm.cesnet.cz/collections/landsat_ot_c2_l1).
+STAC katalog je zároveň možné procházet promocí webového prohlížeče [STAC Browser](https://stac.cesnet.cz/browser/), pro například uvažovaný dataset **[Landsat 8-9 OLI/TIRS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1)** je prohlížeč dostupný [zde](https://stac.cesnet.cz/browser/external/stac.vm.cesnet.cz/collections/landsat_ot_c2_l1).
                 
 ## Licence
 
