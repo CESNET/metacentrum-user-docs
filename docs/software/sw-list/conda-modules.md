@@ -1,29 +1,35 @@
-# Conda modules 
+# Conda/Mamba modules
 
-    module avail conda-modules/
+    module avail mambaforge/       # preferred option
+    module avail conda-modules/    # obsolete
 
-[Conda](https://docs.conda.io/en/latest/) is an open-source package management and environment management system that is commonly used in the Python programming ecosystem. 
+[Conda](https://docs.conda.io/en/latest/)/[Mamba](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html) are open-source package management and environment management systems that is commonly used in the Python programming ecosystem. 
 
-Conda allows you to easily install, update, and manage software packages and libraries, including Python packages, data science libraries, and various dependencies. It handles package dependencies and ensures that software is compatible with your environment.
+Conda/Mamba allows you to easily install, update, and manage software packages and libraries, including Python packages, data science libraries, and various dependencies. It handles package dependencies and ensures that software is compatible with your environment. Their syntax is basically the same.
 
-Conda enables you to create isolated environments (aka Conda environments), where you can work on different projects with different sets of packages and dependencies without conflicts. This helps in maintaining a clean and organized development environment.
+Conda/Mamba enables you to create isolated environments, where you can work on different projects with different sets of packages and dependencies without conflicts. This helps in maintaining a clean and organized development environment.
 
-Conda is platform-agnostic and can be used on various operating systems, including Windows, macOS, and Linux. This makes it easy to share and reproduce environments across different platforms.
+!!! tip "We encourage users to use `mambaforge` in preference to `conda-modules`."
+    As the `conda` included in the `conda-modules` module is obsolete and slow, we recommend to use `mambaforge` module instead to new environments. The `mambaforge` module contains `mqamba` package manager as well as newer version of `conda` package installer.<br/>[Mamba](../../../software/sw-list/mamba) can access all the environments installed in a `conda-modules` module, plus some of the newer ones installed solely to `mambaforge`. <br/>
+
+!!! warning
+    Avoid combining Conda/Mamba environments with traditional modules in a single session. Doing so can often lead to conflicts and application malfunctions.
 
 ## Usage
 
-!!! warning "We encourage users to use `mambaforge` in preference to `conda-modules`."
-    As the `conda` included in the `conda-modules` module is not recent version and not a very fast one, we recommend users to use `mambaforge` module instead.<br/>[Mamba](../../../software/sw-list/mamba) can access all the environments installed in a `conda-modules` module, plus some of the newer ones installed solely to `mambaforge`. <br/>If you consider using `conda` in order to install a new environment, we recommend to use [Mamba installer](../../../software/sw-list/mamba), too; see also [How to install Conda packages](../../../software/install-software/#condamamba-packages).
-
-Under the `conda-modules` module, there are multiple environments installed.
+### Use existing environment
 
 The basic commands are:
 
-    module add conda-modules-py37 # load initial Conda module
-    conda env list                # list installed environments
-    conda activate busco          # activate an environment (e.g. busco)
-    busco --help                  # use selected application
-    conda deactivate              # quit
+    module add mambaforge     # load the module
+    mamba env list            # list installed environments
+    mamba activate busco      # activate an environment (e.g. busco)
+    mamba --help              # use selected application
+    mamba deactivate          # quit
+
+### Install new environment
+
+See [How to install Conda/Mamba packages](../../../software/install-software/#condamamba-packages).
 
 ### Environment-specific notes
 

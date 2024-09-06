@@ -265,17 +265,17 @@ python
 
 [Conda](https://conda.io), available through [`conda-modules/` module](../../software/sw-list/conda-modules), is an open-source package management and environment management system that is commonly used in the Python programming ecosystem.
 
-[Mamba](https://anaconda.org/conda-forge/mamba), available through `mambaforge` module, is a package manager and environment manager that is designed to be a faster and more efficient drop-in replacement for Conda. Both Conda and Mamba are closely related, as Mamba was developed as an open-source project to address some of the performance limitations of Conda.
+[Mamba](https://anaconda.org/conda-forge/mamba), available through [`mambaforge` module](../../software/sw-list/conda-modules), is a package manager and environment manager that is designed to be a faster and more efficient drop-in replacement for Conda. Both Conda and Mamba are closely related, as Mamba was developed as an open-source project to address some of the performance limitations of Conda.
 
 [Micromamba](https://anaconda.org/conda-forge/micromamba), available through `micromamba` module, is a lightweight and resource-efficient alternative to Mamba. Mamba, while faster than Conda, is still a relatively large application. In contrast, Micromamba is built to be more minimalistic and efficient, making it a suitable choice for resource-constrained environments, such as embedded systems or containers.
 
 !!! tip
-    We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments - see [example of Conda packages install by Mamba](../../software/install-software/#conda-packages_1). 
+    We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments - see [example of Conda packages install by Mamba](../../software/install-software/#conda-packages_1).
 
 *Example: Install package [segemehl](https://anaconda.org/bioconda/segemehl) from Conda repository.*
     
     module add mambaforge
-    # create new Conda environment called segemehl-0.3.4 (with python 3.8)
+    # create new environment called segemehl-0.3.4 (with python 3.8)
     mamba create --prefix /storage/city/home/user_name/segemehl-0.3.4 python=3.8 -y
     # activate the environment
     mamba activate /storage/city/home/user_name/segemehl-0.3.4

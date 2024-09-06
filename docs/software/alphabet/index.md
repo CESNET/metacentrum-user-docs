@@ -27,7 +27,7 @@
 **C**
 
 - [Canu](../../software/sw-list/canu)
-- [Conda modules](../../software/sw-list/conda-modules)
+- [Conda/Mamba modules](../../software/sw-list/conda-modules)
 - [CLCgenomicsWB](../../software/sw-list/clcbio-genomics-wb)
 - [CP2K](../../software/sw-list/cp2k)
 - [Cplex](../../software/sw-list/cplex)
@@ -84,7 +84,6 @@
 
 **M**
 
-- [Mamba](../../software/sw-list/mamba)
 - [Maple](../../software/sw-list/maple)
 - [Masurca](../../software/sw-list/masurca)
 - [Mathematica](../../software/sw-list/wolfram-math)
