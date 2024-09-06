@@ -28,66 +28,37 @@ You can choose an arbitrary name and location for the mounting points - just rem
 
 ### Install Kerberos support
 
-If your PC does not have Kerberos system support enabled, you need to install it first.
+If your PC does not have Kerberos system support enabled, you need to install it first. On Debian-based systems you can do:
 
     apt install krb5-user
 
-Once Kerberos support is installed, you must create file `/etc/krb5.conf`. The easiest way is to copy it simply from a MetaCentrum machine, e.g skirit.ics.muni.cz.
+Once Kerberos support is installed, you must provide proper configuration in `/etc/krb5.conf`. The easiest way is to copy it simply from a MetaCentrum machine, e.g skirit.ics.muni.cz, e.g. :
 
-    scp user_123@skirit.ics.muni.cz:/etc/krb5.conf /etc/
+    scp user@skirit.ics.muni.cz:/etc/krb5.conf /etc/
 
-Make sure Kerberos is correctly enabled
+Verify that Kerberos is correctly enabled
 
     kinit user@META
     klist
 
-### Set up/check NFSv4 support in kernel
-
-Ubuntu and OpenSuse kernels support NFSv4 by default and you can skip this step. Otherwise assure the support in the following way:
-
-**Test of support NFS file system**
-
-    grep nfs4 /proc/filesystems
-
-You should get: `nodev nfs4`.
-
-In case of empty answer do as a root
-
-    $ modprobe nfs
-
-and repeat the test. In case of negative answer it is necessary to compile NFS (with NFSv4 support) into kernel.
-
-**Test RPCSECsupport**
-
-    ls -d /proc/net/rpc/auth.rpcsec*
-
-You should get: `proc/net/rpc/auth.rpcsec.context /proc/net/rpc/auth.rpcsec.init`
-
-In case of answer: `ls: cannot access /proc/net/rpc/auth.rpcsec*: No such file or directory`, do as root
-
-    modprobe auth_rpcgss
-
-and repeat the test. In case of negative answer it is necessary to compile `CONFIG_SUNRPC_GSS` to Linux kernel.
-
-**Automatic inserting of modules**
-
-If it is obvious that system supports NFSv4 including RPCSEC it is not necessary to insert modules manually - client tools insert NFS on their own.
-
 ### Get Kerberos credentials for your NFS
 
-    $ ssh <user>@<metacentrum machine>.metacentrum.cz '/software/remctl-2.12/bin/remctl -d kdccesnet.ics.muni.cz accounts nfskeytab' > /etc/krb5.keytab
+The following command replaces an existing krb5.keytab! If you already have one, you need to update its content using 'ktutil' command.
+
+    $ ssh user@skirit.metacentrum.cz '/software/remctl-2.12/bin/remctl -d kdccesnet.ics.muni.cz accounts nfskeytab' > /etc/krb5.keytab
 
 Set its ownership to root.root and rights to 600 as follows:
 
     chown root.root /etc/krb5.keytab
     chmod 600 /etc/krb5.keytab
 
-### Install client NFSv4 tools
+### Install client NFSv4 tools 
 
-- package nfs-common (apt-get install nfs-common) on Debian/Ubuntu.
-- package nfs-client (yast -i nfs-client) on OpenSuse.
+On Debian-base system:
 
-You will also need running portmap. It should be installed with nfs-utils dependencies. Otherwise install the package portmap separately.
+    apt-get install nfs-common
+
+You will also need a running portmap. It should be installed with nfs-utils dependencies. Otherwise install the package portmap separately.
 
 **nfs-utils setting on Debian/Ubuntu**
 
@@ -148,26 +119,18 @@ this is very likely the case. Simply delete the line from `/etc/fstab` if you ca
 
 You don't need to mount a volume in OpenSuse 11.1, because running nfs service connect it automatically according records in `/etc/fstab`, in other OS, explicit mounting (`mount -a`) is needed.
 
-**OpenSuse**
-
-    /etc/init.d/nfs start 
-    insserv /etc/init.d/nfs
-
-**Debian 9**
-
-    systemctl restart nfs-client.target
-    mount -a
-
-**Ubuntu**
-
-In file `/etc/default/nfs-common` should be set the option `NEED_GSSD=yes`.
-
-    service rpcbind start
-    service nfs-common start
-    service rpc-gssd start
-    mount -a
-
 Now the Metacentrum NFSv4 volumes should be mounted to mount points specified in `/etc/fstab` file.
+
+### Accessing user data on NFS4 storage
+
+To be able to access your user data you must have valid kerberos ticket. You can obtain one by `kinit` command:
+
+    kinit user@META
+
+Veirfy you can access your home directly:
+
+    ls /storage/brno2/home/user123
+
 
 ## Concluding notes
 
@@ -189,16 +152,6 @@ Example:
     drwxr-xr-x 5 user_123 soft-nfs4 40 2008-06-11 13:12 nsswitch
 
 Particular record for user user\_123@META exists in `/etc/passwd` and record for group soft-nfs4@META also exists in `/etc/group`, so mapping runs properly and it is also properly shown. There is no record for users who own directory etics that is why it's shown as `nobody:nogroup`.
-
-### Accessing user data on NFS4 storage
-
-To be able to access your user data you must have valid kerberos ticket. You can obtain one by `kinit` command:
-
-Please keep in mind that kerberos tickets have limited validity (usually 12h). If you need to access storage without entering password and/or for longer periods (i.e. running some service), you can create ticket from one-purpose `nfs/login@META` keytab (see above how to obtain it):
-
-### Kerberos identity
-
-Users using one identity should be satisfied with the standard NFS tools in their Linux distribution.
 
 ### Proper displaying of users and groups names
 
@@ -250,7 +203,39 @@ Names with domains are written implicitly. If we don't want to write some domain
 
 then names from domain META will be shown without this domain in the list.
 
-### Installation way for a Gentoo
+### Set up/check NFSv4 support in kernel
+
+Ubuntu and OpenSuse kernels support NFSv4 by default and you can skip this step. Otherwise assure the support in the following way:
+
+**Test of support NFS file system**
+
+    grep nfs4 /proc/filesystems
+
+You should get: `nodev nfs4`.
+
+In case of empty answer do as a root
+
+    $ modprobe nfs
+
+and repeat the test. In case of negative answer it is necessary to compile NFS (with NFSv4 support) into kernel.
+
+**Test RPCSECsupport**
+
+    ls -d /proc/net/rpc/auth.rpcsec*
+
+You should get: `proc/net/rpc/auth.rpcsec.context /proc/net/rpc/auth.rpcsec.init`
+
+In case of answer: `ls: cannot access /proc/net/rpc/auth.rpcsec*: No such file or directory`, do as root
+
+    modprobe auth_rpcgss
+
+and repeat the test. In case of negative answer it is necessary to compile `CONFIG_SUNRPC_GSS` to Linux kernel.
+
+**Automatic inserting of modules**
+
+If it is obvious that system supports NFSv4 including RPCSEC it is not necessary to insert modules manually - client tools insert NFS on their own.
+
+### Installation for Gentoo
 
 You need to install packages `net-nds/portmap` and `net-fs/nfs-utils`. Check whether nfs-utils are compilled with kerberos.
 
@@ -268,7 +253,7 @@ Add into `/etc/fstab` line
 
 and run service `/etc/init.d/nfsmount`. Volume should mount now.
 
-### MacOS users
+### Installation for macOS
 
 Users must be able to obtain the Kerberos ticket on their local machine. Follow this tutorial how to get a krb5 ticket.
 
