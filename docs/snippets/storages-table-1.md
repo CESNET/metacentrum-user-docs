@@ -16,7 +16,7 @@
 | Backup class | Description |
 |--------------|-------------|
 | 0            | No backup.  |
-| 2            | Snapshot backups once a day. Stored on the same HW as primary data. Provides protection against unintentional data removal. Does not provide protection against hardware failure. |
-| 3            | Snapshot backups plus a backup copy. Copy resides on different hardware. Provides protection against unintentional data removal as well as hardware failure. |
+| 2            | Snapshot backups once a day. Backups are performed and stored on the same HW as primary data. This class provides protection against unintentional data removal. It does not protect against hardware failure of the storage. |
+| 3            | Snapshot backups plus a backup copy. The copy resides on a different hardware. This class provides protection against unintentional data removal as well as hardware failures. |
 
 
