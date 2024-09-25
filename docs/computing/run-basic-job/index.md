@@ -1,6 +1,6 @@
 # Run simple job
 
-Welcome to the basic guide on how to run calculations in Metacentrum grid service. You will learn how to
+Welcome to the basic guide on how to run calculations in the Metacentrum grid service. You will learn how to
 
 - navigate between **frontends**, **home directories** and **storages**,
 - make use of **batch** and **interactive** job,
@@ -10,9 +10,9 @@ Welcome to the basic guide on how to run calculations in Metacentrum grid servic
 
 !!! note "To start, you need to"
 
-    1. have Metacentrum account
+    1. have a Metacentrum account
     2. be able to login to a frontend node
-    3. have elementary knowledge of Linux command line
+    3. have elementary knowledge of the Linux command line
  
     *If anything is missing, see [Access](../../access) section.*
 
@@ -20,42 +20,42 @@ Welcome to the basic guide on how to run calculations in Metacentrum grid servic
 
 ### Batch job
 
-A typical usecase for grid computing is non-interactive batch job, when the user only prepares input and set of instructions at the beginning. The calculation itself then runs independently on user.
+A typical use case for grid computing is a non-interactive batch job, when the user only prepares input and set of instructions at the beginning. The calculation itself then runs independently on the user.
 
-Batch jobs consists of the following steps:
+Batch jobs consist of the following steps:
 
 1. **User prepares data** to be used in the calculation **and instructions** what is to be done with them (input files + batch script).
-2. The batch script is submitted to the job planner (**PBS server**), which stages the job until required resources are available.
-3. After the PBS server has released the job to be run, **the job runs** on one of computational nodes.
-4. At this time the applications (software) are loaded.
-5. When the job is finished, results are copied back to user's directory according to instructions in the batch script.
+2. The batch script is submitted to the job planner (**PBS server**), which stages the job until the required resources are available.
+3. After the PBS server has released the job to be run, **the job runs** on one of the computational nodes.
+4. At this time, the applications (software) are loaded.
+5. When the job is finished, results are copied back to the user's directory according to instructions in the batch script.
 
 ![pic](batch-job-scheme.jpg)
 
 ### Interactive job
 
-Interactive job works in different way. User does not need to specify in advance what will be done, neither does not need to prepare any input data. Instead they first reserve computational resources and after the job start to run, works interactively on CLI.
+Interactive job works in different way. The user does not need to specify in advance what will be done, neither does not need to prepare any input data. Instead, they first reserve computational resources and, after the job starts to run, work interactively on the CLI.
 
-Interactive job consists of following steps:
+The interactive job consists of the following steps:
 
 1. User **submits request for specified resources** to the PBS server
 2. **PBS server stages** this request until the resources are available.
 3. When the job starts running, **user is redirected** to a computational node's CLI.
 4. **User does whatever they need** on the node. 
-5. When the user logs out of the computational node, or when the time reserved for the job runs out, the job is done.
+5. When the user logs out of the computational node or when the time reserved for the job runs out, the job is done.
 
 ![pic](interact-job-scheme.jpg)
 
 ### Batch vs interactive
 
-A primary choice for grid computing is batch job. Batch jobs allow user to run massive sets of calculation without need to overview them, manipulate data etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
+A primary choice for grid computing is the batch job. Batch jobs allow users to run massive sets of calculations without the need to overview them, manipulate data, etc. They also optimize the usage of computational resources better, as there is no need to wait for user's input. 
 
 Interactive jobs are good for:
 
-- testing what works and what does not (software versions, input data format, bash constructions to be used in batch script later etc)
+- testing what works and what does not (software versions, input data format, bash constructions to be used in batch script later, etc)
 - getting first guess about resources
 - compiling your own software
-- processing, moving or archiving large amount of data
+- processing, moving or archiving large amounts of data
 
 Interactive jobs are **necessary** for [running GUI application](../../software/graphical-access/).
 
@@ -68,24 +68,24 @@ The batch script in the following example is called myJob.sh.
     #PBS -N batch_job_example
     #PBS -l select=1:ncpus=4:mem=4gb:scratch_local=10gb
     #PBS -l walltime=1:00:00 
-    # The 4 lines above are options for scheduling system: job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested
+    # The 4 lines above are options for the scheduling system: the job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested
     
-    # define a DATADIR variable: directory where the input files are taken from and where output will be copied to
-    DATADIR=/storage/brno12-cerit/home/user123/test_directory # substitute username and path to to your real username and path
+    # define a DATADIR variable: directory where the input files are taken from and where the output will be copied to
+    DATADIR=/storage/brno12-cerit/home/user123/test_directory # substitute username and path to your real username and path
     
-    # append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of node it is run on and the path to a scratch directory
-    # this information helps to find a scratch directory in case the job fails and you need to remove the scratch directory manually 
+    # append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of the node it is run on, and the path to a scratch directory
+    # this information helps to find a scratch directory in case the job fails, and you need to remove the scratch directory manually 
     echo "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR" >> $DATADIR/jobs_info.txt
     
     #loads the Gaussian's application modules, version 03
     module add g03
     
-    # test if scratch directory is set
+    # test if the scratch directory is set
     # if scratch directory is not set, issue error message and exit
     test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
     
     # copy input file "h2o.com" to scratch directory
-    # if the copy operation fails, issue error message and exit
+    # if the copy operation fails, issue an error message and exit
     cp $DATADIR/h2o.com  $SCRATCHDIR || { echo >&2 "Error while copying input file(s)!"; exit 2; }
     
     # move into scratch directory
@@ -101,12 +101,19 @@ The batch script in the following example is called myJob.sh.
     # clean the SCRATCH directory
     clean_scratch
 
+The last two lines can be piped together.
+
+    cp h2o.out $DATADIR/ || export CLEAN_SCRATCH=false
+
+SCRATCH will be automatically cleaned (by the `clean_scratch` utility) only if the copy command finishes without error.
+
+
 The job is then submitted as
 
     (BUSTER)user123@skirit:~$ qsub myJob.sh 
     11733571.pbs-m1.metacentrum.cz # job ID is 11733571.pbs-m1.metacentrum.cz
 
-Alternatively, you can specify resources on the command line. In this case the lines starting by `#PBS` need not to be in the batch script.
+Alternatively, you can specify resources on the command line. In this case, the lines starting by `#PBS` need not to be in the batch script.
 
     (BUSTER)user123@skirit:~$qsub -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.sh 
 
@@ -144,7 +151,7 @@ An interactive job is requested via `qsub -I` command (uppercase "i").
     >>> import scipy as sp
     >>> 
 
-Unless you log out, after 1 hour you will get following message:
+Unless you log out after 1 hour, you will get the following message:
 
     user123@elmo3-1:~$ =>> PBS: job killed: walltime 7230 exceeded limit 7200
     logout
@@ -152,14 +159,14 @@ Unless you log out, after 1 hour you will get following message:
 
 ## job ID
 
-Job ID is unique identifier in a job. Job ID is crucial to track, manipulate or delete job, as well as to identify your problem to user support.
+Job ID is a unique identifier in a job. Job ID is crucial to track, manipulate or delete job, as well as to identify your problem to user support.
 
-Under some circumstances the job can be identified by the number only (e.g. `13010171.`). In general, however, the PBS server suffix is needed, too, to fully identify the job (e.g. `13010171.meta-pbs.metqcentrum.cz`).  
+Under some circumstances, the job can be identified by the number only (e.g. `13010171.`). In general, however, the PBS server suffix is needed, too, to fully identify the job (e.g. `13010171.meta-pbs.metacentrum.cz`).  
 
 You can get the job ID:
 
-- after running `qsub` command
-- by `echo $PBS_JOBID` in interactive job  or in the batch script
+- after running the `qsub` command
+- by `echo $PBS_JOBID` in the interactive job  or in the batch script
 - by `qstat -u your_username @pbs-m1.metacentrum.cz 
 
 Within interactive job:
@@ -177,14 +184,14 @@ By `qstat` command:
 
 ## Job status
 
-Basic command for getting status about your jobs is `qstat` command.
+The basic command for getting the status of your jobs is the `qstat` command.
 
     qstat -u user123 # list all jobs of user "user123" running or queuing on the PBS server
     qstat -xu user123 # list finished jobs for user "user123" 
     qstat -f <jobID> # list details of the running or queueing job with a given jobID
     qstat -xf <jobID> # list details of the finished job with a given jobID
 
-You will see something like following table:
+You will see something like the following table:
 
                                                                      Req'd  Req'd   Elap
     Job ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
@@ -213,7 +220,7 @@ STDERR file contains all the error messages which occurred during the calculatio
 
 ### Done by user
 
-Sometimes you need to delete submitted/running job. This can be done by `qdel` command:
+Sometimes, you need to delete the submitted/running job. This can be done by `qdel` command:
 
     (BULLSEYE)user123@skirit~: qdel 21732596.pbs-m1.metacentrum.cz
 
