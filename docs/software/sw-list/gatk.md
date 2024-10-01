@@ -10,20 +10,20 @@ In the `qsub` command, it is necessary to specify the parameter `ompthreads` to 
 
     qsub -l select=1:ncpus=8:ompthreads=8:mem=...
 
-### Versions 4*
+### Versions 4.X
 
 GATK 4 has a wrapper script, `gatk`, which significantly simplifies commands.
 
     gatk --help    # to print help
     gatk --list    # to list all available tools inside the toolkit
 
-An example of command with data:
+An example of a command with data:
 
     gatk --java-options "-Xmx20G" HaplotypeCaller -R reference.fasta -I input.bam -O output.vcf
 
 The `-Xmx` memory option represents the amount of memory used only by the java process. However, the user must request more memory from PBS to cover all other processes outside of java. For example, for `-Xmx20g`, reserve `mem=30gb` from PBS.
 
-### Versions 3\* and 2\*
+### Versions 3.X and 2.X
 
 Initialization also makes java/opendjk and system variable `$GATK` available pointing into the GATK install directory. Usage of one of the tools with sample data (not for version 3.8-0):
 
