@@ -2,23 +2,38 @@
 
     module avail gatk/
 
-[Genome Analysis Toolkit](https://gatk.broadinstitute.org/hc/en-us) is a generic tool for pairwise sequence comparison. It allows you to align sequences using a many alignment models, either exhaustive dynamic programming or a variety of heuristics.  
+[Genome Analysis Toolkit](https://gatk.broadinstitute.org/hc/en-us) is a generic tool for pairwise sequence comparison. It allows you to align sequences using many alignment models, either exhaustive dynamic programming or a variety of heuristics.  
 
 ## Usage
 
-In the `qsub` command is necessary to specify parameter `ompthreads` to allow run on multiple threads, e.g. (for 8 threads run):
+In the `qsub` command, it is necessary to specify the parameter `ompthreads` to allow a run on multiple threads, e.g. (for eight threads):
 
     qsub -l select=1:ncpus=8:ompthreads=8:mem=...
 
-Initialization makes available also java 7 (or java 8 for version 3.7 and 3.8) and system variable `$GATK` pointing into GATK install dir. Usage of one of the tools with sample data (not for version 3.8-0):
+### Versions 4*
 
-    java -Xmx2g -jar "$GATK"/GenomeAnalysisTK.jar -T CountReads -R "$GATK"/resources/exampleFASTA.fasta -I "$GATK"/resources/exampleBAM.bam
+GATK 4 has a wrapper script, `gatk`, which significantly simplifies commands.
 
-During large data processing, some problems with size of tmp directory can occurs (and can lead to the end of job or significant slowdown). In this case, add parameter -Djava.io.tmpdir="${SCRATCHDIR}"/tmp into java command.
+    gatk --help    # to print help
+    gatk --list    # to list all available tools inside the toolkit
 
-List of tools and version check:
+Command example:
+
+    gatk --java-options "-Xmx20G" HaplotypeCaller -R reference.fasta -I input.bam -O output.vcf
+
+The `-Xmx` memory option represents the amount of memory used only by the java process. However, the user must request more memory from PBS to cover all other processes outside of java. For example, for `-Xmx20g`, reserve `mem=30gb` from PBS.
+
+### Version 3.8-0 and older
+
+Initialization also makes java/opendjk and system variable `$GATK` available pointing into the GATK install directory. Usage of one of the tools with sample data (not for version 3.8-0):
+
+    java -Xmx20g -jar "$GATK"/GenomeAnalysisTK.jar -T CountReads -R "$GATK"/resources/exampleFASTA.fasta -I "$GATK"/resources/exampleBAM.bam
+
+During large data processing, some problems with the size of the `tmp` directory can occur (and can lead to the end of a job or a significant slowdown). In this case, add the parameter `-Djava.io.tmpdir="${SCRATCHDIR}"/tmp` into the java command.
+
+List of tools and version check (for version 4.4.0.0):
 
 ```
-java -Xmx2g -jar "$GATK"/GenomeAnalysisTK.jar --help
-java -Xmx2g -jar "$GATK"/GenomeAnalysisTK.jar --version
+java -jar "$GATK"/GenomeAnalysisTK.jar --help
+java -jar "$GATK"/GenomeAnalysisTK.jar --version
 ```
