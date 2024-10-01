@@ -23,7 +23,7 @@ An example of command with data:
 
 The `-Xmx` memory option represents the amount of memory used only by the java process. However, the user must request more memory from PBS to cover all other processes outside of java. For example, for `-Xmx20g`, reserve `mem=30gb` from PBS.
 
-### Versions 3* and 2*
+### Versions 3\* and 2\*
 
 Initialization also makes java/opendjk and system variable `$GATK` available pointing into the GATK install directory. Usage of one of the tools with sample data (not for version 3.8-0):
 
