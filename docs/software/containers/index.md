@@ -7,7 +7,7 @@
 
 [Singularity](https://docs.sylabs.io/guides/latest/user-guide) is an open-source program for containerization used in MetaCentrum.
 
-Singularity is invoked by command `singularity`.
+Singularity is invoked by the command `singularity`.
 
 Singularity images (= containers) are commonly suffixed by `.sif`.
 
@@ -29,7 +29,7 @@ Key features:
 ### Example
 
 ```
-# I want to run Deb 11 OS froma container
+# I want to run Deb 11 OS from a container
 
 # Currently, the MetaCentrum OS is Deb 12
 (BOOKWORM)user_123@tarkil:~$ lsb_release -a
@@ -79,11 +79,11 @@ or
 
     singularity --help
 
-on command line.
+on the command line.
 
-### Run a command in container
+### Run a command in the container
 
-Passing a command to an Singularity image is done by `singularity exec "command"`.
+Passing a command to a Singularity image is done by `singularity exec "command"`.
 
 For example,
 
@@ -102,12 +102,12 @@ For example,
     ...
     Singularity> command_N
 
-!!! warning "Do not use frontends for serious containers' usage"
-    Apart from light testing and learning, running containers right on frontends is equivalent to **computing on frontend**. This is strongly discouraged. **For a serious work with containers, use interactive or batch job.**
+!!! warning "Do not use frontends for extensive containers' usage"
+    Apart from light testing and learning, running containers right on frontends is equivalent to **computing on frontend**. This is strongly discouraged. **For an extensive work with containers, use interactive or batch job.**
 
-### Use container in interactive job
+### Use container in an interactive job
 
-First run interative job *with scratch directory*:
+First run interactive job *with scratch directory*:
 
     qsub -l select=1:scratch_local=10gb -l walltime=24:00:00
 
@@ -128,8 +128,8 @@ As with any other software, it is possible to pass a batch script to a container
 
 Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 
-!!! question "Is the batch script for Singularity application any different from the script for "normal" application?"
-    In general, no, though for a very simple script this may be the case. Most often you will at least need to redirect Singularity environment variables to `SCRATCHDIR`. The `--bind` and `bash -c` commands shown below may be hidden in the script, too.
+!!! question "Is the batch script for the Singularity application any different from the script for "normal" application?"
+    In general, no, though for a very simple script, this may be the case. Most often, you will at least need to redirect Singularity environment variables to `SCRATCHDIR`. The `--bind` and `bash -c` commands shown below may be hidden in the script, too.
 
 **Variant A: put Singularity-specific option on command line**
 
@@ -155,13 +155,13 @@ Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
     Even better, `-B /home/user123:/storage/city_N/home/user123` does this:
     ![pic](singularity-bind-scheme.jpg)
 
-Without the `-B` option, the container will automatically bind to itself host directories on computational node where the job is run and the script may not be found.
+Without the `-B` option, the container will automatically bind to itself host directories on the computational node where the job is run and the script may not be found.
 
 **Variant B: hide Singularity-specific option into the script**
 
 Assume the batch script resides in `/storage/city_N/home/user123/script.sh` AND that you want to have the CLI command as simple as possible.
 
-In this case, run batch job as 
+In this case, run the batch job as 
 
     qsub /storage/city_N/home/user123/script.sh
 
