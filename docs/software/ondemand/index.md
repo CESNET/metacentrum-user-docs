@@ -139,4 +139,3 @@ You can launch or delete running sessions. By closing the tab in the browser you
 Next to the 'Launch button is the grey *View only* (sharable link) button which is useful if you want to share live view of your desktop application with colleague.
 
 ![pic](interact-sessions.png)
-
