@@ -7,14 +7,10 @@
 
 ## Database
 
-There is NT Kraken2 database available in shared location. In order to use it, run
+There is an NT Kraken2 database available in a shared location. In order to use it, run
 
     kraken2 --db /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20230502
 
-and request at least `mem=500gb` (unless only short query is processed with `--memory-mapping` option). 
+and request at least `mem=520gb` (unless only a short query is processed with the `--memory-mapping` option). 
 
-For optimal performance of access to this database, we recommend adding `qsub` requirement `cluster=halmir`. This selects machines with fastest network connection to the database storage.
-
-
-
-
+For optimal performance of access to this database, we recommend adding `qsub` requirement `cluster=halmir`. This selects machines with the fastest network connection to the database storage.
