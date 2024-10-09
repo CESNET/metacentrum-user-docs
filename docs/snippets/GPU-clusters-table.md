@@ -1,6 +1,6 @@
 | Cluster                 | Nodes                       | GPUs per node           | Mem<br/> [MiB] | compute<br/> capability | CuDNN | `gpu_cap` |
 |-------------------------|-----------------------------|-------------------------|------------|-------------------------|-------|-----------|
-| adan.grid.cesnet.cz     | adan[1-61].grid.cesnet.cz   | 2x Tesla T4            | 15 109 | 7.5 | YES | cuda35,cuda61,<br/>cuda75 |
+| adan.grid.cesnet.cz     | adan[1-61].grid.cesnet.cz   | 2x Tesla T4            | 15 109 | 7.5 | YES | sm_75 |
 | cha.natur.cuni.cz       | cha.natur.cuni.cz           | 8x GeForce RTX 2080 Ti | 11 019 | 7.5 | YES | cuda35,cuda61,<br/>cuda75 |
 | fau.natur.cuni.cz       | fau[1-3].natur.cuni.cz      | 8x Quadro RTX 5000     | 16 125 | 7.5 | YES | cuda35,cuda61,<br/>cuda75 |
 | fer.natur.cuni.cz       | fer[1-3].natur.cuni.cz      | 8x RTX A4000           | 16 117 | 8.6 | YES | cuda35,cuda61,<br/>cuda75,cuda80,<br/>cuda86 |
