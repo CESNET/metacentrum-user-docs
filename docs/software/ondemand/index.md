@@ -2,6 +2,8 @@
 
 [Metacentrum Open OnDemand instance](https://ondemand.metacentrum.cz) is a service that enables users to access Metacentrum via web browser.
 
+![pic](ondemand_dashboard.png)
+
 OnDemand enables users to
 
 - **access files** and directories using graphical File manager,
