@@ -7,13 +7,14 @@
 
 ## Database
 
-There is an NT Kraken2 database available in a shared location. In order to use it, run
+There is an `nt` Kraken2 database available in a shared location. In order to use it, run
 
     kraken2 --db /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20240530
+    # includes the NCBI Taxonomy database
 
     # older releases:  
     # /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20230502
 
-and request at least `mem=520gb` (unless only a short query is processed with the `--memory-mapping` option). 
+and request at least `mem=890gb` for `kraken2_nt_20240530` database (unless only a short query is processed with the `--memory-mapping` option) or `mem=520gb` for `kraken2_nt_20230502` database (unless only a short query is processed with the `--memory-mapping` option). 
 
 For optimal performance of access to this database, we recommend adding `qsub` requirement `cluster=halmir`. This selects machines with the fastest network connection to the database storage.
