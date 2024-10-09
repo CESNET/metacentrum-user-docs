@@ -16,7 +16,7 @@ Singularity images (= containers) are commonly suffixed by `.sif`.
 ## Direct Singularity usage (new feature)
 
 !!! tip "Singularity image can be added as PBS parameter"
-    Singularity image can now be specified directly upon job submission as a PBS parameter and the container will be automatically launched when the job starts. This is a new feature (Aug 2024). Keep in mind that this new feature is still in testing mode and probably some expansion and modifications (e.g. towards parallelized computing) will be still under way. 
+    The Singularity image can now be specified directly upon job submission as a PBS parameter, and the container will be automatically launched when the job starts. This is a new feature (Aug 2024). Keep in mind that this new feature is still in testing mode, and probably some expansion and modifications (e.g. towards parallelized computing) will be still under way. 
 
 Key features:
 
@@ -67,7 +67,7 @@ Singularity employs a few *paths* to store various temporary files:
 - `TMPDIR`: - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
 
 !!! tip
-    If `SCRATCHDIR` exists, Singularity **automatically** exports there variables ` SINGULARITY_TMPDIR` and `SINGULARITY_CACHEDIR`. That is why in the rest of this section the explicit export of these variables is not done.
+    If `SCRATCHDIR` exists, Singularity **automatically** exports their variables ` SINGULARITY_TMPDIR` and `SINGULARITY_CACHEDIR`. That is why in the rest of this section the explicit export of these variables is not done.
 
 ### List options
 
@@ -209,9 +209,11 @@ These images are placed `/cvmfs/singularity.metacentrum.cz/`.
     │
     ├── Bioconductor 
     │
-    ├── BioNano 
+    ├── Biomex 
     │
-    ├── Biomex  
+    ├── BioNano  
+    │
+    ├── BIOP-Desktop
     │
     ├── Braker 
     │
@@ -250,6 +252,10 @@ These images are placed `/cvmfs/singularity.metacentrum.cz/`.
     │
     ├── RNApeg/ 
     |    # RNApeg is an RNA junction calling, correction, and quality-control package
+    |
+    ├── Rosetta
+    │
+    ├── RoseTTAFold2
     │
     ├── RStudio/ 
     |    # Integrated development environment (IDE) for R
@@ -309,7 +315,7 @@ are in Singularity replaced by
 
     mkdir circ_read; singularity run -B ./circ_read/:/data ./circlator_latest.sif
 
-where `circ_read` is folder used for getting data into image. By running the command you are in the image and using `df -h` you can check that the folder is mounted.
+where `circ_read` is the folder used for getting data into an image. By running the command you are in the image and using `df -h` you can check that the folder is mounted.
 
 **For more details** see [https://www.sylabs.io/guides/3.7/user-guide/singularity\_and\_docker.html](https://www.sylabs.io/guides/3.7/user-guide/singularity_and_docker.html).
 
@@ -319,7 +325,7 @@ Let's say you want to run [Chronusq tool](https://urania.chem.washington.edu/chr
 
 This is a small tool and can be compiled directly on the frontend. The resulting `.sif` image will be about 166 MB large.
 
-Alternatively you can setup and interactive job and work from within the job.
+Alternatively, you can setup and interactive job and work from within the job.
 
 First set path for temporary files:
 (Default is `/tmp` which has quota of only 1 GB.)
@@ -402,7 +408,7 @@ Build image from sandbox:
 
     singularity build -f test1.SIF test1.sbox
 
-For repeatable build of image you can use the definition file, example test1.def
+For the repeatable build of image you can use the definition file, example test1.def
 
     Bootstrap: docker
     From: debian:buster
@@ -413,7 +419,7 @@ Build image from recipe file:
 
     singularity build –f test1.SIF test1.def
 
-For more details see [https://sylabs.io/guides/3.7/user-guide/definition\_files.html](https://sylabs.io/guides/3.7/user-guide/definition_files.html).
+For more details, see [https://sylabs.io/guides/3.7/user-guide/definition\_files.html](https://sylabs.io/guides/3.7/user-guide/definition_files.html).
 
 ### Singularity parallelized job
 
