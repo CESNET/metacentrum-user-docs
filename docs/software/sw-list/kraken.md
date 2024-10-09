@@ -9,7 +9,10 @@
 
 There is an NT Kraken2 database available in a shared location. In order to use it, run
 
-    kraken2 --db /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20230502
+    kraken2 --db /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20240530
+
+    # older releases:  
+    # /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20230502
 
 and request at least `mem=520gb` (unless only a short query is processed with the `--memory-mapping` option). 
 
