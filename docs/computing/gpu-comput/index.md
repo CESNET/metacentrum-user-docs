@@ -27,9 +27,6 @@ PBS parameter `gpu_mem` specifies minimum amount of memory that the GPU card wil
 
 PBS parameter `gpu_cap` is [Cuda compute capability as defined on this page](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities).
 
-!!! warning
-    With the introduction of [new PBS server running on OpenPBS](../../computing/concepts/#pbs-servers), the specification of `gpu_cap` parameter is done in two distinct ways depending whether you submit to *PBS Pro* or *OpenPBS* scheduler.
-
 ### Architecture
 
 The user can specify a *minimal required architecture* (`compute_XY`), or a *minimal required version within a given architecture* (`sm_XY`).
