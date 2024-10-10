@@ -80,33 +80,18 @@ Setting of nfs-utils in the file `/etc/sysconfig/nfs`. Set at least the followin
 
 For storages you wish to mount locally, add the following lines to the `/etc/fstab` file:
 
-    storage-brno6.metacentrum.cz:/home/fsbrno2 /storage/brno2             nfs4       sec=krb5              0 0
-    storage-brno12-cerit.metacentrum.cz:/ /storage/brno12-cerit  nfs4       sec=krb5              0 0
-    storage-plzen1.metacentrum.cz:/ /storage/plzen1           nfs4       sec=krb5              0 0
+    storage-brno12-cerit.metacentrum.cz:/ /storage/brno12-cerit  nfs4       sec=krb5i             0 0
+    storage-plzen1.metacentrum.cz:/ /storage/plzen1           nfs4       sec=krb5i             0 0
     ...
 
 !!! note
-    Due to hardware replacement the data are moved continuously from one storage to another. For backward compatibility the old names of storages (e.g. brno2) are kept as symbolic links.
-
-The target in `/etc/fstab` must be a real directory, not a symlink. By using `ls -l` you can find where the symbolic links lead to. In case of brno2 this means brno6. For example:
-
-    (STRETCH)user_123@skirit:~$ ls -l /storage/
-    lrwxrwxrwx 1 root root 24 Oct 21  2019 brno2 -> /auto/brno6/home/fsbrno2
-    ...
-    lrwxrwxrwx 1 root root 11 Sep 17  2018 brno6 -> /auto/brno6
-    ...
-
-!!! note
-    For some combinations of operating systems or server/client, adding option `vers=4` to fstab is necessary too:
-
-    storage-brno6.metacentrum.cz:/home/fsbrno2 /storage/brno2             nfs4       sec=krb5,vers=4       0 0
+    Due to hardware replacement the data are moved continuously from one storage to another. For backward compatibility the old names of storages (e.g. brno2) are kept as symbolic links. The target in `/etc/fstab` must be a real directory, not a symlink. By using `ls -l` you can find where the symbolic links lead to. 
 
 Sample of `/etc/fstab`:
 
-    storage-brno6.metacentrum.cz:/home/fsbrno2 /storage/brno2  nfs4 sec=krb5        0 0
-    storage-brno12-cerit.metacentrum.cz:/ /storage/brno12-cerit  nfs4 sec=krb5        0 0
-    storage-brno6.metacentrum.cz:/ /storage/brno6  nfs4 sec=krb5        0 0
-    storage-du-cesnet.metacentrum.cz:/ /storage/du-cesnet  nfs4 sec=krb5        0 0
+    storage-brno12-cerit.metacentrum.cz:/ /storage/brno12-cerit  nfs4 sec=krb5i       0 0
+    storage-brno2.metacentrum.cz:/ /storage/brno2  nfs4 sec=krb5i       0 0
+    storage-du-cesnet.metacentrum.cz:/ /storage/du-cesnet  nfs4 sec=krb5i       0 0
     ...
 
 **Note:** Due to privacy reasons, some repositories can be accessed only from Metacentrum IP addresses. Storages of the form CITY+NUMBER like brno2 or praha1 should be always mountable. Usually the "private" repositories with limited access are the ones with suffix in their name (-kky, -fzu, etc.). For example, if you get an error like
@@ -249,7 +234,7 @@ You need run services rpc.gssd and rpc.idmapd, for example `/etc/init.d/rpc.gssd
 
 Add into `/etc/fstab` line
 
-    smaug1.ics.muni.cz:/ /storage nfs4 sec=krb5
+    smaug1.ics.muni.cz:/ /storage nfs4 sec=krb5i
 
 and run service `/etc/init.d/nfsmount`. Volume should mount now.
 
@@ -265,6 +250,6 @@ You have to create an empty directory where the Metacentrum storage NFS volume w
 
 Finally, you can mount the selected NFS volume (as superuser).
 
-    mount_nfs -o vers=4,sec=krb5 storage-praha5-elixir.metacentrum.cz:home/your_username /path/on/my/local/computer/storage-praha5-elixir
+    mount_nfs -o vers=4,sec=krb5i storage-praha5-elixir.metacentrum.cz:home/your_username /path/on/my/local/computer/storage-praha5-elixir
 
 The example above will mount your home directory on the storage praha5-elixir to the specified directory on the local computer.
