@@ -9,7 +9,7 @@
 
 **Parallel run**
 
-For parallel running are required additional parameters
+For parallel running, additional parameters are required
 
     -instances N -threads N
 
@@ -36,3 +36,40 @@ beast -help
 beast ... -beagle ... XXX.xml
 ```
 
+## Beast additional packages
+
+Users can install additional packages available via the `packagemager` command in their home directories. The following example demonstrates the local building of Beast 2.7.7 (distributed as a binary file; no installation is required) and the installation of the SNAPP package. 
+
+    $ wget https://github.com/CompEvol/beast2/releases/download/v2.7.7/BEAST.v2.7.7.Linux.x86.tgz
+    $ tar -xf BEAST.v2.7.7.Linux.x86.tgz
+    $ export PATH=/storage/city/home/user_name/beast/bin/:$PATH
+
+The default installation of Beast includes only Beast and Java.
+
+    $ beast -version
+    BEAST v2.7.7
+    ---
+    BEAST.app v2.7.7
+    BEAST.base v2.7.7
+    BEAST.app v2.7.7
+    BEASTLabs v2.0.2
+    ---
+    Java version 17.0.3
+
+If the SNAPP package is installed in the same directory as Beast itself, the package will be detected automatically.
+
+    $ packagemanager -add SNAPP -dir /storage/city/home/user_name/beast
+    $ beast -version
+    BEAST v2.7.7
+    ---
+    BEAST.app v2.7.7
+    BEAST.base v2.7.7
+    BEAST.app v2.7.7
+    SNAPP v1.6.1
+    BEASTLabs v2.0.2
+    ---
+    Java version 17.0.3
+
+But if the package is located in a different (non-automatically detected) path, it is necessary to specify this path via the `-packagedir` option in the `beast` command.
+
+    $ beast -packagedir /storage/city/home/username/folder_with_packages
