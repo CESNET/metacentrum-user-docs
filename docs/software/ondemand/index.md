@@ -30,9 +30,6 @@ In the rolldown menu, there are pre-defined shortcut links to 3 homes on differe
 
 By default, the **Home Directory** link points to storage **brno2**.
 
-!!! warning "Home Directory is fixed on brno2"
-    The Home Directory for OnDemand files is currently fixed to brno2 storage. Users cannot change this setting. 
-
 ## Jobs
 
 ### Active jobs
