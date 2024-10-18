@@ -348,7 +348,7 @@ Submit your job with a command like:
 qsub -l select=1:ncpus=10:mem=5gb place=pack -l matlab=1 myjob.sh
 ```
 
-By adding `place=pack`, you are instructing the job scheduler to try to allocate all the requested resources on a single server if possible.This will run multiple MATLAB instances concurrently, each executing `myFunction()` and saving their output to separate files.
+By adding `place=pack`, you are instructing the job scheduler to try to allocate all the requested resources on a single server if possible. This will run multiple MATLAB instances concurrently, each executing `myFunction()` and saving their output to separate files.
 
 
 

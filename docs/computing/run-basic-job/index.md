@@ -203,7 +203,6 @@ The letter under the header 'S' (status) gives the status of the job. The most c
 - Q – queued
 - R – running
 - F – finished
-- M – moved to another PBS server
 
 To learn more about how to track running job and how to retrieve job history, see [Job tracking page](../../computing/job-tracking).
 
@@ -236,11 +235,6 @@ You can see the signal as `Exit_status` on CLI:
 
     (BULLSEYE)user123@tarkil:~$ qstat -x -f 13030457.pbs-m1.metacentrum.cz | grep Exit_status
         Exit_status = -29
-
-In case of moved (PBS code **M**) jobs, append to job ID the name of the PBS server the job was moved to: 
-
-    (BULLSEYE)user123@tarkil:~$ qstat -x -f 13031539.pbs-m1.metacentrum.cz@cerit-pbs.cerit-sc.cz | grep Exit_status
-        Exit_status = 0
 
 ## Exit status
 

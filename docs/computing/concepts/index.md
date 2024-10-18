@@ -29,7 +29,7 @@ Frontends should be used only for:
 !!! warning
     The resource load on frontend is monitored continuously. Processes not adhering to usage rules will be terminated without warning. For large compilations, running benchmark calculations or moving massive data volumes (> 10 GB, > 10 000 files), use interative job.
 
-## PBS servers
+## PBS server
 
 A set of instructions performed on computational nodes is **computational job**. Jobs require a set of **resources** such as CPUs, memory or time. A **scheduling system** plans execution of the jobs so as optimize the load and usage of computational nodes.
 

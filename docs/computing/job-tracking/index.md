@@ -17,7 +17,6 @@ PBS Pro uses different codes to mark job state within the PBS ecosystem.
 | State | Description |
 |-------|-------------|
 | Q | Queued |
-| M | Moved to another PBS server |
 | H | Held. Job is put into a held state by the server, user or administrator. Job stays in a held state until it is released by a user or administrator.|
 | R | Running |
 | S | Suspended (substate of R) |
