@@ -8,7 +8,7 @@ AlphaFold can be run in a browser as [OnDemand service](https://ondemand.metacen
 
 ## Kubernetes
 
-Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [AlphaFold as an Jupyter notebook application](https://docs.cerit.io/docs/alphafold.html).
+Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [AlphaFold as a web application](https://docs.cerit.io/en/web-apps/alphafold).
 
 ## Remote desktop 
 
