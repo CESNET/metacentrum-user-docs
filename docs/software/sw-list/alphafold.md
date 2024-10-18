@@ -59,10 +59,3 @@ Example of run with different models and speed/quality tradeoff with example fil
 |multimer 	|full_dbs 	|119 GB 	|75 min 	|zia - A100 - 40GB |
 |multimer 	|reduced_dbs 	|40 GB 		|73 min 	|zia - A100 - 40GB |
 
-
-
-
-
-
-
-
