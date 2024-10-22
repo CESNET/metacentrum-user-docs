@@ -1,6 +1,7 @@
 | Cluster                 | Nodes                       | GPUs per node          | Compute<br/>capability | Mem<br/> [MiB] | CuDNN |
 |-------------------------|-----------------------------|------------------------|------------------------|----------------|-------|
 | adan.grid.cesnet.cz     | adan[1-61].grid.cesnet.cz   | 2x Tesla T4            | 7.5 | 15 109 |  YES |
+| bee.cerit-sc.cz         | bee[1-10].cerit-sc.cz       | 2x H100 NVL            | 9.0 | 95 830 |  YES |
 | cha.natur.cuni.cz       | cha.natur.cuni.cz           | 8x GeForce RTX 2080 Ti | 7.5 | 11 019 |  YES |
 | fau.natur.cuni.cz       | fau[1-3].natur.cuni.cz      | 8x Quadro RTX 5000     | 7.5 | 16 125 |  YES |
 | fer.natur.cuni.cz       | fer[1-3].natur.cuni.cz      | 8x RTX A4000           | 8.6 | 16 117 |  YES |
