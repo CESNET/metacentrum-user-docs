@@ -12,9 +12,6 @@
 | grimbold.metacentrum.cz | grimbold.metacentrum.cz     | 2x Tesla P100          | 6.0 | 12 198 |  YES |
 | konos.fav.zcu.cz        | konos[1-8].fav.zcu.cz       | 4x GeForce GTX 1080 Ti | 6.1 | 11 178 |  YES |
 | luna2022.fzu.cz         | luna[201-206].fzu.cz        | 1x A40                 | 8.6 | 45 634 |  YES |
-| zefron.cerit-sc.cz      | zefron6.cerit-sc.cz         | 1x A10                 | 8.6 | 22 731 |  YES |
-| zefron.cerit-sc.cz      | zefron7.cerit-sc.cz         | 1x GeForce GTX 1070    | 3.5 |  8 119 |  YES |
-| zefron.cerit-sc.cz      | zefron8.cerit-sc.cz         | 1x Tesla K40c          | 3.5 | 11 441 |  YES |
 | zia.cerit-sc.cz         | zia[1-5].cerit-sc.cz        | 4x A100                | 8.0 | 40 536 |  YES |
 
 
