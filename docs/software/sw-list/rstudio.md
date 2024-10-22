@@ -12,8 +12,5 @@ Since the OnDemand can run on any machine, there is an option to choose custom `
 
 ## Kubernetes
 
-Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [RStudio](https://docs.cerit.io/docs/rstudio.html) as
-
-- [Rancher appliction](https://docs.cerit.io/docs/rancher.html), and
-- within [Jupyter hub](https://docs.cerit.io/docs/jupyterhub.html).
+Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [RStudio](https://docs.cerit.io/en/rancher-apps/rstudio) as one of its web applications.
 
