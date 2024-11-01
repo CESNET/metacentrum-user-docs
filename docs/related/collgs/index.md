@@ -14,13 +14,13 @@ V závislosti na povaze zpracování a následného využití dat může CESNET 
 
 ## Registrace a správa účtu
 
-Účet se registruje vyplněním formuláře na [Webu národního uzlu](https://dhr1.cesnet.cz/#/self-registration).
+Registrační formulář se zobrazí při prvním přihlášení do systému GSS (Gael Store Service).
 
 Po vyplnění formuláře Vám systém zašle e-mailovou zprávu, na jejímž základě svou registraci potvrdíte.
 
-Po úspěšné registraci můžete okamžitě přistupovat k datům národního uzlu. Možné způsoby přístupu k datům popisuje stránka [Přístup k datům v národním uzlu CollGS](../../related/collgs/pristup-k-datum).
+Po úspěšné registraci můžete okamžitě přistupovat k datům národního uzlu. Možné způsoby přístupu k datům popisuje stránka o [přístupu k datům družic Sentinel](../../related/collgs/sentinel).
 
-Velmi kvalitní dokumentace nejen k práci s uživatelským rozhraním ale také k datové struktuře produktů je k dispozici na [stránkách Czech Space Portal](https://collgs.czechspaceportal.cz/uzivatelska-prirucka/manual-ke-collgs/).
+[//]: # (Velmi kvalitní dokumentace nejen k práci s uživatelským rozhraním ale také k datové struktuře produktů je k dispozici na [stránkách Czech Space Portal]&#40;https://collgs.czechspaceportal.cz/uzivatelska-prirucka/manual-ke-collgs/&#41;.)
 
 O veškerou manipulaci se svým účtem, kterou nemůžete udělat sami, požádejte na adrese <collgs@cesnet.cz>. 
 

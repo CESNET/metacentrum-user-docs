@@ -149,5 +149,7 @@ nav:
     - 'CollGS': 
       - related/collgs/index.md
       - related/collgs/era5.md
-      - related/collgs/pristup-k-datum.md
+      - related/collgs/sentinel.md
+      - related/collgs/landsat.md
+        - related/collgs/gss_login.md
       - 'C-scale data discovery': related/notebooks/c-scale-notebooks/1-C-SCALE_Data_Discovery.ipynb
