@@ -8,7 +8,7 @@
 ## Licences
 
 !!! warning
-    **MetaCentrum provides no longer MetaCentrum-wide licences for Mathematica**. Currently there are Mathematica 9 licenses limited to UK and JCU members (in [Perun](https://perun.cesnet.cz) listed in `users-uk` and `users-jcu` groups, respectively). Apart from these, the only possibility is that users bring their own (institution's) license. If you are interested in using your Mathematica license within the MetaCentrum infrastructure, contact us for more details at <meta@cesnet.cz>.
+    **MetaCentrum provides no longer MetaCentrum-wide licences for Mathematica**. Currently there are Mathematica 9 licenses limited to UK and JCU members (in [Perun](https://perun.e-infra.cz) listed in `users-uk` and `users-jcu` groups, respectively). Apart from these, the only possibility is that users bring their own (institution's) license. If you are interested in using your Mathematica license within the MetaCentrum infrastructure, contact us for more details at <meta@cesnet.cz>.
 
 !!! tip 
     To enable computational-intensive computations within Mathematica, one can make use of its parallel/distributed extension called GridMathematica -- see details at [GridMathematica](../../software/sw-list/gridmathematica.md) documentation.

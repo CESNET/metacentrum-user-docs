@@ -11,7 +11,7 @@ Members of the computation group are required to, in addition to [MetaCentrum ge
 
 ## Registration form
 
-- To access Elixir-limited resources in MetaCentrum, follow the instructions on [registration form](https://perun.cesnet.cz/elixircz/registrar/?vo=elixir-cz&group=cz-users).
+- To access Elixir-limited resources in MetaCentrum, follow the instructions on [registration form](https://signup.e-infra.cz/fed/registrar/?vo=elixir-cz&group=cz-users).
 
 ## Dedicated machines and queues
 

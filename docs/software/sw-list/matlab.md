@@ -142,7 +142,7 @@ $ matlab
 Users of ZČU (West Bohemian University, Plzeň) have their own license for 10k MATLAB instances. Therefore they should not apply for MetaCentrum PBS resource.
 
 !!! question "How do I find out who are ZCU users?"
-     In [Perun](https://perun.cesnet.cz/), search for group `users-zcu` and see if you are a member.   
+     In [Perun](https://perun.e-infra.cz/), search for group `users-zcu` and see if you are a member.   
 
 ### Bring your own license
 
