@@ -16,7 +16,7 @@ If the account is not prolonged till 2nd February, it expires. The data, login a
  
 ### Acknowledgements and publications
 
-The user of MetaCentrum is obliged to use the following acknowledgement formula in all your publications created with the support of MetaCentrum, CERIT-SC and/or Elixir CZ. Please fill in citations of your publications in our system, you will get privileged access to all resources of MetaCentrum, CERIT-SC and/or ELIXIR CZ centre as a bonus.
+The user of MetaCentrum is obliged to use the following acknowledgement formula in all your publications created with the support of MetaCentrum, CERIT-SC and/or Elixir CZ. Please fill in citations of your [publications in our system](https://publications.e-infra.cz/all-publications), you will get privileged access to all resources of MetaCentrum, CERIT-SC and/or ELIXIR CZ centre as a bonus.
 
 Acknowledgement formula for MetaCentrum service:
 
