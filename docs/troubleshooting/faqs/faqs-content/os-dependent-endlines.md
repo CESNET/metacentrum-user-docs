@@ -1,11 +1,4 @@
-# I get an error "^M: command not found" or "$'\r': command not found" after submitting a script
-
-... or even an error of this type:
-```
--bash: line 1: /var/spool/pbs/mom_priv/jobs/5534899.pbs-m1.metacentrum.cz.SC: cannot execute: required file not found
-```
-
-(The latter happens if wrong terminators are in the first `#!/bin/sh` line of the script.)
+# qsub says: "script contains cr, lf", what does this mean?
 
 Described problem is caused by the fact that your batch script was written in non-Unix operational system (Windows) which uses different characters to mark end of a line.
 
