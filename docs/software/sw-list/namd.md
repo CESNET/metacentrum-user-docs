@@ -11,7 +11,7 @@ NAMD uses the popular molecular graphics program VMD for simulation setup and tr
 
 ### License
 
-To use the application, you first need to [accept its license](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_namd). 
+To use the application, you first need to [accept its license](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_namd). 
 
 ### Paralellization
 

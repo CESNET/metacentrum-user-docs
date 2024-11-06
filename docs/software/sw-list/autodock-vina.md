@@ -8,7 +8,7 @@
 
 **License**
 
-To be able to run Vina, the user must [accept the licence](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_vina). 
+To be able to run Vina, the user must [accept the licence](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_vina). 
 
 ### FAQs concerning Vina
 

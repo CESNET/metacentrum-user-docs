@@ -10,7 +10,7 @@ MODELLER implements comparative protein structure modeling by satisfaction of sp
 
 ### License
 
-To be able to use Modeller, you have to [accept its license](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_modeller).
+To be able to use Modeller, you have to [accept its license](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_modeller).
 
 ### Python versions
 

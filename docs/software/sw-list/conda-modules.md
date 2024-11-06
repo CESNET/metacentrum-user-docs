@@ -50,7 +50,7 @@ User must specify absolute paths to the python script `basecaller.py` and to the
 
 Prepared with Guppy 5.0.15 (CPU and GPU versions) placed in `/software/conda-modules/5.3.1/envs/megalodon/bin/ont-guppy-cpu` and `/software/conda-modules/5.3.1/envs/megalodon/bin/ont-guppy-gpu`.
 
-You should accept [ONT licence](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_oxnanopore).
+You should accept [ONT licence](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_oxnanopore).
 
 GPU version requires CUDA capability 6.0 and higher (PBS parameter `gpu_cap=cuda60`).
 

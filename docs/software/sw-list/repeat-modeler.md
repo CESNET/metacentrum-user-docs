@@ -8,7 +8,7 @@
 
 ### License
 
-To be able to use Repeat Modeler, you have to [accept Repeat Masker licence](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_repeatmasker).
+To be able to use Repeat Modeler, you have to [accept Repeat Masker licence](https://signup.e-infra.cz/meta/registrar/?&vo=meta&group=lic_repeatmasker).
 
 ### Newer versions
 

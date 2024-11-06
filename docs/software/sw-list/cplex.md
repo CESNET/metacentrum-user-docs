@@ -8,7 +8,7 @@
 
 **License**
 
-You have to accept the [license](https://perun.metacentrum.cz/meta/registrar/?locale=cs&vo=meta&group=lic_IBM-academic).
+You have to accept the [license](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_IBM-academic).
 
 **Parallel run**
 

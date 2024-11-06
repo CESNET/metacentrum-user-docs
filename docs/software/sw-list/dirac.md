@@ -8,7 +8,7 @@
 
 ### License
 
-To use DIRAC, you have to [read and accept DIRAC's license agreement](https://perun.metacentrum.cz/meta/registrar/?locale=en&vo=meta&group=lic_dirac).  
+To use DIRAC, you have to [read and accept DIRAC's license agreement](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_dirac).  
 
 !!! note "Non-commercial usage only"
     Please note that academic license of DIRAC permits only non-commercial usage of the software.

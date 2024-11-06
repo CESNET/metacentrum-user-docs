@@ -6,7 +6,7 @@
 
 ## License
 
-You have to be registered in NVIDIA Accelerated Computing Developer Program and agree with their [licence](https://developer.nvidia.com/rdp/assets/cudnn-65-eula-asset). Then confirm the [licence form](https://perun.metacentrum.cz/meta/registrar/?locale=cs&vo=meta&group=lic_cudnn).
+You have to be registered in NVIDIA Accelerated Computing Developer Program and agree with their [licence](https://developer.nvidia.com/rdp/assets/cudnn-65-eula-asset). Then confirm the [licence form](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_cudnn).
 
 !!! note
     `cudnn/` are standalone modules. Usually you need to use it with some of [CUDA modules](../../../software/sw-list/cuda). 
