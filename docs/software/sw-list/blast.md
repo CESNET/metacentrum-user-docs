@@ -28,6 +28,10 @@ BLAST+  refers to an enhanced version of the original BLAST.
     blastx: blastx -db DATABASE_NAME -query INPUT_FASTA -out OUTPUT_NAME -max_target_seqs 1 -evalue 1e-5 -num_threads 8
     tblastn: tblastn -db DATABASE_NAME -query INPUT_FASTA -out OUTPUT_NAME -max_target_seqs 1 -evalue 1e-5 -num_threads 8
 
+### Effectivity
+
+Blast is not using effectively most of the reserved CPUs in jobs. Set `export BATCH_SIZE=3000000` before running any blast command (e.g. blastn, blastp). It will run much faster.
+
 ### Databases
 
 We maintain a **local copy of Blast databases** in `/storage/projects/BlastDB` directory. Databases are ready to use.
