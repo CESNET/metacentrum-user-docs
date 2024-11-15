@@ -5,6 +5,7 @@ This section collects various presentation, user seminars, videos and other tuto
 ## Howtos
 
 - [Debian 12 & new PBS server](../tutorials/debian-12.md)
+- [e-Infra services mindmap](../tutorials/e-Infra-services-mindmap.pdf)
 
 ## Presentations
 
