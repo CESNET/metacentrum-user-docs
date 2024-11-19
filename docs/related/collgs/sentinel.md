@@ -1,4 +1,4 @@
-# Sentinel
+# Přístup k datům
 
 Národní uzel umožňuje přístup k datům misí Sentinel všemi běžnými způsoby. V současnosti se na něm neuplatňují žádná rychlostní ani kapacitní omezení.
 Předchozí verzi softwaru zpřístupňujícího data z družic Sentinel, Sentinel DataHub System, který je stále dostupný na 
