@@ -10,7 +10,7 @@ do grafického rozhraní pomocí jména a hesla nebo zavedení tokenů pro komun
 
 Grafické uživatelské rozhraní je přístupné díky aplikaci COPSI (COPernicus Space Interface), která je přístupná na adrese [https://collgs.cesnet.cz/](https://collgs.cesnet.cz/). 
 Před prvním použitím je nutná registrace, a to i v případě, že jste již byli registrováni v předchozí verzi systému (Sentinel DataHub System).
-Podrobný návod k registraci a přihlášení naleznete v návodu [Autentizace uživatelů v GSS](./copsi_login).
+Podrobný návod k registraci a přihlášení naleznete v návodu [Autentizace uživatelů v GSS](./gss_login/).
 Detailní návod pro COPSI v anglickém jazyce naleznete v [příručce pro uživatele](https://collgs.esa.int/wp-content/uploads/2024/06/ALIA-COPSI-ICM-22-0001_Installation_and_Configuration_Manual_3.0.0.pdf).
 
 ![pic](gss_polygons.png)
@@ -27,13 +27,13 @@ Katalog je založen na protokolu OData, nepodporuje plnotextové vyhledávání,
 správné syntaxe OData `$filter`. Uživatelé však mohou přidat zástupný znak `*` k textovému řetězci jako zjednodušenou 
 formu dotazu podle názvu produktu:
 
-_\<Text>*_ bude v požadavku nahrazen výrazem _startswith(Name, '\<Text>')_, tedy název produktu má **začínat** řetězcem.
+`<Text>*` bude v požadavku nahrazen výrazem `startswith(Name, '<Text>')`, tedy název produktu má **začínat** řetězcem.
 
-_*\<Text>*_ bude nahrazen výrazem _contains(Name, '\<Text>')_ - produkt má **obsahovat** řetězec.
+`*<Text>*` bude nahrazen výrazem `contains(Name, '<Text>')` - produkt má **obsahovat** řetězec.
 
-_*\<Text>_ bude nahrazen výrazem _endswith(Name, '\<Text>')_ - produkt má **končit** řetězcem.
+`<Text>*` bude nahrazen výrazem `_endswith(Name, '<Text>')` - produkt má **končit** řetězcem.
 
-Tímto způsobem lze použít hvězdičku pro flexibilnější vyhledávání dle názvu produktu. Například přidání textu \*S3B_OL* do vyhledávací lišty spustí dotaz
+Tímto způsobem lze použít hvězdičku pro flexibilnější vyhledávání dle názvu produktu. Například přidání textu `*S3B_OL*` do vyhledávací lišty spustí dotaz
 `odata/v1/Products?$filter=contains(Name, 'S3B_OL')`.
 
 #### Pokročilé vyhledávání
@@ -70,11 +70,11 @@ Při najetí myší na rámeček produktu ve výsledku vyhledávání se zvýraz
 ## Strojový přístup
 
 Národní uzel CollGS podporuje strojový přístup protokolem *OData*. Strojový přístup je vhodný pro automatické nástroje i pro dávkové stažení většího množství dat.
-Dotazovací rozhraní je přístupné na adrese: https://collgs.cesnet.cz/odata/v1.
+Dotazovací rozhraní je přístupné na adrese: [https://collgs.cesnet.cz/odata/v1](https://collgs.cesnet.cz/odata/v1).
 
 Pro psaní jednoduchých skriptů se hodí především nástroje `curl` nebo `wget`. Pro autentizaci při stahování produktu již není možné využít jméno a heslo,
-ale je nutné použít OIDC tokeny, které se generují na adrese token portálu: https://keycloak.grid.cesnet.cz/token-portal.
-Podrobnější popis autentizace naleznete v návodu [Autentizace uživatelů v GSS](./copsi_login).
+ale je nutné použít OIDC tokeny, které se generují na adrese token portálu: [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
+Podrobnější popis autentizace naleznete v návodu [Autentizace uživatelů v GSS](./gss_login/).
 
 ### Vyhledání produktu
 
@@ -124,7 +124,7 @@ Pro stažení pouze části (např. manifestu) je vhodné stáhnout pouze daný 
 
 ## STAC katalog metadat
 
-Pro získání metadat produktů ve formátu STAC je k dispozici katalog na adrese https://stac.cesnet.cz.
+Pro získání metadat produktů ve formátu STAC je k dispozici katalog na adrese [https://stac.cesnet.cz](https://stac.cesnet.cz).
 
 [//]: # (todo - refaktorovat část o STACu z Landsatu, udělat separátní sekci o STACu)
 
