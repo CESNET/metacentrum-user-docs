@@ -7,7 +7,7 @@
 ## Usage
 
 !!! warning
-    Be aware that Picard needs defined `SCRATCHDIR` variable for successful running.
+    Be aware that Picard needs a defined `$SCRATCHDIR` variable for successful running.
 
 !!! warning
     To run Picard version <= 2.22.1  you need Java as well - load manually `module add jdk/`.
@@ -26,4 +26,8 @@ Since version 2.27.5, the usage is more straightforward.
     module add picard # it will load the newest version of Picard
     picard <program name> -h
 
+Java processes within Picard may exceed the quota for saving temporary files in the root directory (`/tmp`). When calculation fails with something like `Caused by: java.io.IOException: Disk quota exceeded`, call the command
 
+    export _JAVA_OPTIONS="-Djava.io.tmpdir=$SCRATCHDIR"
+
+before starting Picard. This command redirects temporary files to the scratch.
