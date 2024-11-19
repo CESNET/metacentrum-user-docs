@@ -7,7 +7,7 @@ Návod na použití tohoto software naleznete v sekci o [práci s daty družic S
 
 ![copsi_first_page.png](copsi_first_page.png)
 
-Při přístupu k aplikaci COPSI na adrese https://collgs.cesnet.cz se zobrazí okno vyžadující přihlášení.
+Při přístupu k aplikaci COPSI na adrese [https://collgs.cesnet.cz](https://collgs.cesnet.cz) se zobrazí okno vyžadující přihlášení.
 Po potvrzení tlačítkem _Sign In_ budete přesměrováni na výběr komunity, kterou se chcete přihlásit.
 
 ![copsi_community.png](copsi_community.png)
@@ -25,7 +25,7 @@ Dokončete přihlášení. Pokud se přihlašujete poprvé, budete přesměrová
 ## Strojový přístup
 
 Pro stažení produktů pomocí OData API je nutné k požadavkům přidat autentizaci formou access tokenu.
-Tokeny lze získat na adrese https://keycloak.grid.cesnet.cz/token-portal.
+Tokeny lze získat na adrese [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
 
 ![token_portal_intro.png](token_portal_intro.png)
 
@@ -102,7 +102,7 @@ Volbou _Sign out_ se odhlásí vybrané zařízení, volba _Sign out all devices
 ### Výměna tokenů
 V případě, že již pracujete s tokeny z EGI Check-inu, je možné je bez nutnosti dalšího přihlášení vyměnit
 za tokeny umožňující přístup do systému GSS. V takovém případě odešlete platný access token vydaný EGI Check-inem
-metodou POST na endpoint https://keycloak.grid.cesnet.cz/realms/dhus/protocol/openid-connect/token a do těla požadavku
+metodou POST na endpoint [https://keycloak.grid.cesnet.cz/realms/dhus/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/dhus/protocol/openid-connect/token) a do těla požadavku
 připojíte následující:
 
     {
