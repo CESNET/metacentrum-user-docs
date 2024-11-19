@@ -98,3 +98,18 @@ ve spodní části Token portálu. Odhlášení (revokace tokenu) se nachází v
 Volbou _Sign out_ se odhlásí vybrané zařízení, volba _Sign out all devices_ slouží pro hromadné odhlášení.
 
 ![token_revoke.png](token_revoke.png)
+
+### Výměna tokenů
+V případě, že již pracujete s tokeny z EGI Check-inu, je možné je bez nutnosti dalšího přihlášení vyměnit
+za tokeny umožňující přístup do systému GSS. V takovém případě odešlete platný access token vydaný EGI Check-inem
+metodou POST na endpoint https://keycloak.grid.cesnet.cz/realms/dhus/protocol/openid-connect/token a do těla požadavku
+připojíte následující:
+
+    {
+    "client_id": "token-exchange",
+    "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+    "subject_token": {EGI access token},
+    "subject_issuer": "https://aai.egi.eu/auth/realms/egi"
+    }
+
+V odpovědi získáte access token, který lze použít pro volání API GSS.
