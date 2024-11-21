@@ -1,0 +1,16 @@
+---
+hide:
+  - toc
+---
+
+# How reliable/strong is the backup policy on storages?
+
+Storage discs are backed up once a day (in the morning) by a form of snapshots to the same hardware.
+
+This consequently:
+
+- protects users to delete permanently data in their homes that are older than 24 hours
+- the data created since the latest morning backup are not protected
+- does not provide any protection from hardware failure, power outage, and natural disaster.
+
+Users' homes on `storage` directories are meand to store temporary data (the ones user actively works with). Therefore the backup policy is mostly targeted at *unintentional user-side delete*. In other respects, the backup policy is pretty weak and the `storage` directories should not be used to store data of permanent value or data that are not eary to reproduce. 

@@ -1,0 +1,10 @@
+---
+hide:
+  - toc
+---
+
+# I need more space on storage(s), can I get it?
+
+In principle, yes.
+
+Contact us at <meta@cesnet.cz> and write a request explaining why you need more volume on storage or why you need to store larger number of files.

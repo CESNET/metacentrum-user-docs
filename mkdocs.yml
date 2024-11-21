@@ -134,17 +134,15 @@ nav:
     - software/search-soft/index.md
     - software/install-software/index.md
     - software/graphical-access/index.md
-    - software/ondemand/index.md
     - software/modules/index.md
     - software/containers/index.md
-  - 'Troubleshooting':
-    - troubleshooting/index.md
-    - troubleshooting/faqs/index.md
-    - troubleshooting/outages/index.md
-    - troubleshooting/known-issues/index.md
-  - 'User support':
-    - contact/index.md
-    - contact/write-request/index.md
+  - 'OnDemand':
+    - ondemand/index.md
+  - 'Troubleshooting & support':
+    - support/index.md
+    - support/faqs/index.md
+    - support/outages/index.md
+    - support/known-issues/index.md
   - Tutorials: tutorials/index.md
   - 'Related projects': 
     - related/galaxy/index.md

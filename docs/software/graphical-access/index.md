@@ -1,12 +1,13 @@
 # Graphical access
 
-There are multiple options to run applications with graphical interface (GUI) or simply to get grahical connection to MetaCentrum machines.
+There are multiple options to run applications with graphical interface (GUI) or simply to get graphical connection to MetaCentrum machines.
 
-Currently these options are:
+We recommend to use [OnDemand](../../ondemand) as a first choice for GUI access.
 
-- **X-window** - low-level solution using only system tools (described here),
-- **`gui` module** - usage of specific module designed to run graphical jobs (described here), 
-- **OnDemand** - more complex browser-based service (described on [separate page about OnDemand](../../software/ondemand)).
+Apart from OnDemand, there are other methods:
+
+- **`gui` module** - usage of specific module designed to run graphical jobs, 
+- **X-window** - low-level solution using only system tools.
 
 ## gui module - quick start
 
