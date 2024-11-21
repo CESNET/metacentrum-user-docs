@@ -20,7 +20,7 @@ RepeatMasker uses the following submodules:
 
 ### License
 
-To use RepeatMasker and its submodules you first need to [accept its licence](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_repeatmasker) with the following license terms:
+To use RepeatMasker and its submodules you first need to [accept its licence](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_repeatmasker) with the following license terms:
 
 1. RepeatMasker is licensed under the Open Source License v2.1.
 
