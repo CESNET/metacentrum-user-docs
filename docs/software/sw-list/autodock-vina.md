@@ -8,7 +8,7 @@
 
 **License**
 
-To be able to run Vina, the user must [accept the licence](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_vina). 
+To be able to run Vina, the user must [accept the licence](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_vina). 
 
 ### FAQs concerning Vina
 
@@ -18,11 +18,11 @@ Yes, unless you are using the whole node for that particular job. Vina, if not r
 
 **What input format does Vina use for receptor and ligand files?**
 
-The input format is PDBQT format, which is also used by Autodock4. PDBQT format is an extended pdb format with atomic charge and atom type information located in separate columns behind the coordinate columns.
+The input format is PDBQT format, which is also used by Autodock4. PDBQT format is an extended PDB format with atomic charge and atom type information located in separate columns behind the coordinate columns.
 
-**What is the preferred application for preparation of PDBQT files?**
+**What is the preferred application for the preparation of PDBQT files?**
 
-AutoDockTools which is a part of MGLTools, web page: http://mgltools.scripps.edu. Search for the detailed instructions on the pdbqt conversion on this web page: http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools. The instructions on preparation of flexible receptor sidechains are also included.
+AutoDockTools which is a part of MGLTools, web page: http://mgltools.scripps.edu. Search for the detailed instructions on the pdbqt conversion on this web page: http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools. The instructions on the preparation of flexible receptor sidechains are also included.
 
 **What kind of charges should the PDBQT files contain? Gasteiger, RESP on HF/6-31G level?**
 
@@ -30,7 +30,7 @@ The charges may be zero in fact, Vina does not use any charges at all.
 
 **How do I define the search space?**
 
-Vina uses a grid which is defined by its center and number of points in each dimension. The grid spacing is always set to 1A and its purpose is just to inform Vina about the size of the search space; it has nothing to do with the accuracy of the computation.
+Vina uses a grid which is defined by its centre and number of points in each dimension. The grid spacing is always set to 1A and its purpose is just to inform Vina about the size of the search space; it has nothing to do with the accuracy of the computation.
 
 **How do I run a calculation?**
 
