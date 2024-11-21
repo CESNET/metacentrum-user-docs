@@ -8,7 +8,7 @@ These libraries provide optimized functions and algorithms that leverage the par
 
 ## License
 
-To use Rosetta, you will also need to [accept its license](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_rosetta). 
+To use Rosetta, you will also need to [accept its license](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_rosetta). 
 
 ## Tutorials
 
