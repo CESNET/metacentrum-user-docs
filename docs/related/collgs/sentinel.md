@@ -79,7 +79,7 @@ Podrobnější popis autentizace naleznete v návodu [Autentizace uživatelů v 
 ### Vyhledání produktu
 
 Následující příklady shrnují způsob skládání URL adresy pro vyhledávání produktův OData API.
-To je částečně popsáno v anglickém jazyce [zde](https://collgs.esa.int/index.php/docs/gss-suite/#18-toc-title).
+Podrobný návod je k dispozici v anglickém dokumentu [GSS Administration Manual](https://collgs.esa.int/wp-content/uploads/2024/07/GAEL-P311-GSS%20-%20Collaborative%20Data%20Hub%20Software%20GSS%20Administration%20Manual_1.6.5.pdf#page=77) - kapitola 10.
 Alternativou je použití [STAC katalogu metadat](#stac-katalog-metadat).
 
 Pro použití pomocí nástroje curl je nutné správně zakódovat speciální znaky v URL jako mezery a uvozovky.
