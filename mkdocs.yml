@@ -138,7 +138,7 @@ nav:
     - software/containers/index.md
   - 'OnDemand':
     - ondemand/index.md
-  - 'Troubleshooting & support':
+  - 'Support':
     - support/index.md
     - support/faqs/index.md
     - support/outages/index.md
