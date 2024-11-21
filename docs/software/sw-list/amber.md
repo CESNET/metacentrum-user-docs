@@ -42,7 +42,7 @@ This is a script to automate post-processing of MD trajectories, to analyze ener
 
 - **22.x modules**
     - *available to all users of MetaCentrum*
-    - users need to [accept the Amber license](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_amber) to be able to run the job
+    - users need to [accept the Amber license](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_amber) to be able to run the job
     - the module contains all types of binaries - sequential, .MPI, .OMP and .cuda (GPU)
 
 - **18.x modules**
