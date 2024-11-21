@@ -8,5 +8,5 @@
 
 This is a licensed software. 
 
-To be able to use it, you must [agree with the license](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_desmond).
+To be able to use it, you must [agree with the license](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_desmond).
 
