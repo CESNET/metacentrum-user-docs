@@ -12,8 +12,8 @@ Orca features a wide variety of standard quantum chemical methods ranging from s
 
 To use the application you first need to accept its licence:
 
-- [Orca version 3.0.1](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_orca)
-- [Orca version 4.x.x and above](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_orca40)
+- [Orca version 3.0.1](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_orca)
+- [Orca version 4.x.x and above](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_orca40)
 
 ### Notes
 
