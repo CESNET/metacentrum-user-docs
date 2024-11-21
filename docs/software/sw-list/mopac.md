@@ -6,5 +6,5 @@
 
 ## Usage
 
-To be able to use MOPAC, you have to [accept its license](https://signup.e-infra.cz/meta/registrar/?vo=meta&group=lic_mopac).
+To be able to use MOPAC, you have to [accept its license](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_mopac).
 
