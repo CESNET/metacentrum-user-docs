@@ -1,14 +1,14 @@
 # Landsat
 
-The Landsat Program is a series of Earth-observing satellite missions jointly managed by NASA and the U.S. Geological Survey. 
+Landsat je program satelitů dálkového průzkumu Země provozovaný NASA a U.S. Geological Survey.
 
-On July 23, 1972, in cooperation with NASA, the Earth Resources Technology Satellite (ERTS-1) was launched. It was later renamed Landsat 1. Additional Landsat satellites have launched to bring the world an archive of remote sensing data. Currently orbiting and active satellites are Landsat 8, and Landsat 9. 
+23. července 1972 byl na oběžnou dráhu Země vypouštěn satelit Earth Resources Technology Satellite (ERTS-1), který byl později přejmenován na Landsat 1. V následujícíh letechy byly vypuštěny další satelity Landsat, díky kterým bylo možné vytvořit archiv dat vzdáleného průzkumu Země. Aktuálně se na oběžné dráze Země nachází dva aktivní satelity - Landast 8 a Landsat 9.
+24. 
+NASA a USGS již nyní spolupracují na vývoji následných misí SLI (udržitelného snímkování Země), které budou zahrnovat Landsat Next, následníka Landsat 9.
 
-NASA and USGS are already planning the development of the follow-on SLI missions, to include Landsat Next, the successor mission to Landsat 9. 
+Satelity misí Landsat mají optimální rozilišení a spektrální pásma, které umožňuji efektivně sledovat změny na Zemi způsobené změnami klimatu, urbanizací, suchem, požáry, změnami biomasy a mnoha dalšími přírodními i lidskými aktivitami.
 
-Landsat satellites have the optimal ground resolution and spectral bands to efficiently track land use and to document land change due to climate change, urbanization, drought, wildfire, biomass changes (carbon assessments), and a host of other natural and human-caused changes. 
-
-The Landsat Program’s continuous archive (1972-present) provides essential land change data and trending information not otherwise available. Landsat represents the world’s longest continuously acquired collection of space-based moderate-resolution land remote sensing data. Landsat is an essential capability that enables the U.S. Department of the Interior to wisely manage Federal lands. People around the world are using Landsat data for research, business, education, and other activities.
+Archiv programu Landsat, který obsahuje data již od roku 1972, zpřístupňuje důležitá data o zemském povrchu a atmosféře, která nejsou z jiných zdrojů dostupná. Představuje nejdéle nepřetržitě fungující archiv dat dálkového průzkumu země s optimálním rozlišením. Jedná se nejen o jeden ze základních datových zdrojů Ministerstvá vnitra Spojených států amerických, ale představuje důležitý zdroj informací pro celosvětovou populaci, která data využívá pro výzkum, výuku, obchod a mnoho dalších aktivit.
 
 ## Dostupné datasety
 
@@ -60,7 +60,7 @@ Data jsou distribuována ve formátu `.tar`, pričemž jednomu snímku odpovída
 
 Data je doporučeno stahovat pomocí `wget`, stahování přes prohlížeč může být nestabilní.
 
-STAC katalog je zároveň možné procházet promocí webového prohlížeče [STAC Browser](https://stac.cesnet.cz/browser/), pro například uvažovaný dataset **[Landsat 8-9 OLI/TIRS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1)** je prohlížeč dostupný [zde](https://stac.cesnet.cz/browser/external/stac.vm.cesnet.cz/collections/landsat_ot_c2_l1).
+STAC katalog je zároveň možné procházet pohodlně i pomocí grafického rozhraní běžící přímo ve webovém prohlížeči [STAC Browser](https://stac.cesnet.cz/browser/). Například pro výše uvažovaný dataset **[Landsat 8-9 OLI/TIRS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1)** je prohlížeč dostupný [zde](https://stac.cesnet.cz/browser/external/stac.vm.cesnet.cz/collections/landsat_ot_c2_l1).
                 
 ## Licence
 
