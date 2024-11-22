@@ -19,8 +19,12 @@ Ve výběru vyberte Vaši přidruženou instituci, nebo sociální identitu (nap
 ![copsi_idps.png](copsi_idps.png)
 
 Dokončete přihlášení. Pokud se přihlašujete poprvé, budete přesměrováni na registrační formulář.
+V něm vyplňte požadované údaje. Odesláním vyplněné přihlášky se zakládá účet v IAM systému Perun.
+Ten je aktivní po dobu dvou let, před expirací účtu obdržíte emailem upozornění na prodloužení platnosti účtu. 
 
-[//]: # (todo)
+![perun_registration.png](perun_registration.png)
+
+Následně budete přesměrováni zpět do aplikace Copsi.
 
 ## Strojový přístup
 
