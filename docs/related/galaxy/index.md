@@ -2,12 +2,11 @@
 
 [Galaxy](https://galaxyproject.org/) is a web-based platform designed for running computational and statistical analyses with focus on openness and using FAIR data. It started in biomedical domain originally but nowadays spans numerous scientific domains including ecology, natural language processing, chemistry, climate science, and social sciences.
 
-There is worldwide network of **Galaxy** servers providing open access to virtually all academic users
-consisting of "copies" (instances) of the service in [United States](https://usegalaxy.org), [Europe](https://usegalaxy.eu) and [Australia](https://usegalaxy.org.au).
+There is worldwide network of Galaxy servers providing open access to virtually all academic users
+consisting of "copies" (instances) of the service. Some major ones are hosted in [the United States](https://usegalaxy.org), [EU](https://usegalaxy.eu) and [Australia](https://usegalaxy.org.au).
 Besides, [numerous specialized services](https://galaxyproject.org/use/) exist.
 
 Many quickstart and advanced tutorials are available on [Galaxy Training Network](https://training.galaxyproject.org/training-material/topics/introduction/).
-
 
 ## usegalaxy.cz
 
@@ -15,7 +14,6 @@ Many quickstart and advanced tutorials are available on [Galaxy Training Network
 provide the [usegalaxy.cz](https://usegalaxy.cz) service.
 It aims at replicating the functionality (set of available tools in particular) of the worldwide services ([usegalaxy.org](https://usegalaxy.org), [usegalaxy.eu](https://usegalaxy.eu))
 while offering significantly higher user quotas (both computational and storage) to the registered CZ users and their collaborators.
-
 
 ### Federated Login Options
 
@@ -31,16 +29,21 @@ are advised to link them together in Galaxy to avoid future confusion (e.g. not 
 
 The following procedure links the identities:
 
-- Go to your Galaxy user settings by clicking on **Preferences** in the **User** tab.
-- Under **Preferences**, select **Manage Third-Party Identities**.
-- Select the other identity provider and authenticate yourself.
+- Clicking on *User* in the top menu
+- Select *Preferences*.
+- Select *Manage Third-Party Identities*.
+- Choose the other identity provider and authenticate yourself.
+
+### User Quotas
+
+The Czech national usegalaxy server at usegalaxy.cz offers **200 GB** of free storage quota to users logging in through [E-infra AAI](https://aai.cesnet.cz) or **50GB** to the users with [Life Science Login](https://lifescience-ri.eu/ls-login.html). If your research requires more storage please reach us at <regalaxy@rt.cesnet.cz> with description of your needs.
+
+There is also a limit on the number of jobs a given user can have running concurrently. The usegalaxy.cz instance has this limit set at **10 jobs** at the moment. Again, please reach is if this is not sufficient for your needs.
 
 ### FTP Access
 
 Standard file upload to Galaxy via web browser (through the *Upload data* button) can be rather limiting for
 huge files or large number of files and can be addressed with FTP upload instead.
-The process is [documented here](https://galaxyproject.org/ftp-upload/) and the FTP server's address is the same: `usegalaxy.cz`.
-
 
 Due to the nature of federated login additional steps are required in order to obtain password for your FTP access:
 
@@ -49,13 +52,9 @@ Due to the nature of federated login additional steps are required in order to o
 3. Click on the `Click here to reset your password` button.
 4. You will receive an email with the reset password link. Check your spam folder if necessary.
 5. Click on the provided link and set up a new password for your FTP access.
-6. Once you have set a new password, you can use your registered email address and the new password to log in via FTP.
+6. Once you have set a new password, you can use your registered email address and the new password to log in to our ftp server at `usegalaxy.cz`. Follow the process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
-### Resource availability and user quotas
-
-
-
-### Data storage reliability
+### Data Storage Reliability
 
 In a nutshell, data storage of [usegalaxy.cz](https://usegalaxy.cz) is resilient to "normal" disk failures,
 common consistency problems following abrupt power outages etc. However, the all the data are still stored
@@ -71,17 +70,17 @@ Further, regular [RBD snapshots](https://du.cesnet.cz/en/navody/object_storage/c
 
 ## RepeatExplorer Galaxy
 
-RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/)
+RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/).
 
 ## UMSA Galaxy
 
-UMSA Galaxy environment is available at [https://umsa.cerit-sc.cz/](https://umsa.cerit-sc.cz/)
+UMSA Galaxy environment is available at [https://umsa.cerit-sc.cz/](https://umsa.cerit-sc.cz/).
 
-# Old documentation
+## Legacy documentation
 
 Metacentrum used to operate a legacy Galaxy instance till 2023.
 Its documentation is [preserved here](https://wiki.metacentrum.cz/wiki/Galaxy) for eventual reference.
 
-# Contact
+## Contact
 
-If you need any help or experience tool errors or any unexpected issues contact us at <regalaxy@rt.cesnet.cz>.
+If you need any help or experience tool errors or any unexpected issues please contact us at <regalaxy@rt.cesnet.cz>.
