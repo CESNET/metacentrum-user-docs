@@ -58,7 +58,6 @@ Due to the nature of federated login additional steps are required in order to o
 5. Click on the provided link and set up a new password for your FTP access.
 6. Once you have set a new password, you can use your registered email address and the new password to log in to our ftp server at `usegalaxy.cz`. Follow the process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
-
 ## RepeatExplorer
 
 RepeatExplorer is a domain specific Galaxy instance which includes utilities for Graph-based clustering and characterization of repetitive sequences in next-generation sequencing data and tools for the detection of transposable element protein coding domains.
@@ -72,6 +71,12 @@ The RepeatExplorer Galaxy server offers **200 GB** of free storage quota to any 
 There is also a limit on the number of jobs a given user can have running concurrently. The RepeatExplorer instance has this limit set at **5 jobs** at the moment. Again, please reach is if this is not sufficient for your needs.
 
 Maximum size of a single dataset is limited at 250 GB.
+
+### FTP Access
+
+RepeatExplorer's FTP server runs at `repeatexplorer-elixir.cerit-sc.cz` on `port 990` and uses the same Galaxy username and password as Galaxy itself.
+
+To learn how to connect to the server and import data to your history please follow the process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
 ### Citing RepeatExplorer
 
