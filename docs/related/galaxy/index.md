@@ -1,12 +1,14 @@
 # Galaxy
 
-[Galaxy](https://galaxyproject.org/) is a web-based platform designed for running computational and statistical analyses with focus on openness and using FAIR data. It started in biomedical domain originally but nowadays spans numerous scientific domains including ecology, natural language processing, chemistry, climate science, and social sciences.
+[Galaxy](https://galaxyproject.org/) is a web-based platform designed for running computational and statistical analyses with focus on openness and usage of FAIR data. It originally started in biomedical science but nowadays spans numerous scientific domains including ecology, natural language processing, chemistry, climate science, and social sciences.
 
 There is worldwide network of Galaxy servers providing open access to virtually all academic users
 consisting of "copies" (instances) of the service. Some major ones are hosted in [the United States](https://usegalaxy.org), [EU](https://usegalaxy.eu) and [Australia](https://usegalaxy.org.au).
 Besides, [numerous specialized services](https://galaxyproject.org/use/) exist.
 
 Many quickstart and advanced tutorials are available on [Galaxy Training Network](https://training.galaxyproject.org/training-material/topics/introduction/).
+
+Metacentrum currently maintains 3 independent Galaxy servers: [usegalaxy.cz](#usegalaxycz), [RepeatExplorer](#repeatexplorer), and [UMSA](#umsa).
 
 ## usegalaxy.cz
 
@@ -40,6 +42,8 @@ The Czech national usegalaxy server at usegalaxy.cz offers **200 GB** of free st
 
 There is also a limit on the number of jobs a given user can have running concurrently. The usegalaxy.cz instance has this limit set at **10 jobs** at the moment. Again, please reach is if this is not sufficient for your needs.
 
+Maximum size of a single dataset is limited at 50 GB.
+
 ### FTP Access
 
 Standard file upload to Galaxy via web browser (through the *Upload data* button) can be rather limiting for
@@ -54,33 +58,71 @@ Due to the nature of federated login additional steps are required in order to o
 5. Click on the provided link and set up a new password for your FTP access.
 6. Once you have set a new password, you can use your registered email address and the new password to log in to our ftp server at `usegalaxy.cz`. Follow the process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
-### Data Storage Reliability
 
-In a nutshell, data storage of [usegalaxy.cz](https://usegalaxy.cz) is resilient to "normal" disk failures,
-common consistency problems following abrupt power outages etc. However, the all the data are still stored
+## RepeatExplorer
+
+RepeatExplorer is a domain specific Galaxy instance which includes utilities for Graph-based clustering and characterization of repetitive sequences in next-generation sequencing data and tools for the detection of transposable element protein coding domains.
+
+RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/).
+
+### User Quotas
+
+The RepeatExplorer Galaxy server offers **200 GB** of free storage quota to any registered user. If your research requires more storage please reach us at <regalaxy@rt.cesnet.cz> with description of your needs.
+
+There is also a limit on the number of jobs a given user can have running concurrently. The RepeatExplorer instance has this limit set at **5 jobs** at the moment. Again, please reach is if this is not sufficient for your needs.
+
+Maximum size of a single dataset is limited at 250 GB.
+
+### Citing RepeatExplorer
+
+Dear users of RepeatExplorer please use the following acknowledgement in your publications using our infrastructure:
+
+> Computational resources were provided by the ELIXIR-CZ project (LM2015047), part of the international ELIXIR infrastructure.
+
+**Primary Publications**
+
+> Novak, P., Neumann, P., Macas, J. (2020) – Global analysis of repetitive DNA from unassembled sequence reads using RepeatExplorer2. Nature Protocols 15:3745–3776.
+
+> Novak, P., Neumann, P., Pech, J., Steinhaisl, J., Macas, J. (2013) - RepeatExplorer: a Galaxy-based web server for genome-wide characterization of eukaryotic repetitive elements from next-generation sequence reads. Bioinformatics 29:792-793.
+
+Classification of repetitive elements using REXdb:
+
+> Neumann, P., Novak, P., Hostakova, N., Macas, J. (2019) – Systematic survey of plant LTR-retrotransposons elucidates phylogenetic relationships of their polyprotein domains and provides a reference for element classification. Mobile DNA 10:1.
+
+The principle of repeat identification implemented in the RepeatExplorer:
+
+> Novak, P., Neumann, P., Macas, J. (2010) - Graph-based clustering and characterization of repetitive sequences in next-generation sequencing data. BMC Bioinformatics 11:378.
+
+Using TAREAN for satellite repeat detection and characterization:
+
+> Novak, P., Robledillo, L.A.,Koblizkova, A., Vrbova, I., Neumann, P., Macas, J. (2017) - TAREAN: a computational tool for identification and characterization of satellite DNA from unassembled short reads. Nucleic Acid Research 45:e111
+
+> Novak, P., Hostakova, N., Neumann, P., Macas, J. (2024) – DANTE and DANTE_LTR: computational pipelines implementing lineage-centered annotation of LTR-retrotransposons in plant genomes. bioRxiv doi: https://doi.org/10.1101/2024.04.17.589915
+
+## UMSA
+
+This Galaxy instance provides tools for Untargeted Mass Spectrometry Analysis and is maintained for our partners at [RECETOX](https://www.recetox.muni.cz/en).
+
+UMSA Galaxy environment is available at [https://umsa.cerit-sc.cz/](https://umsa.cerit-sc.cz/).
+
+## Data Storage Reliability
+
+In a nutshell, data storage of our Galaxy instances is resilient to "normal" disk failures,
+common consistency problems following abrupt power outages etc. However, all the data are still stored
 in a single server room, and they are neither replicated nor backed up elsewehere.
 Therefore, abnormal situation (fire in the server room etc.) may lead to data loss.
-Hence, users are **not advised** to use this service to store **high-value** data in a single copy,
-and to rely on the storage for long term.
+Hence, users are advised to back up their high-value data elsewhere.
 
 In more technical detail, both the user data files and the Galaxy database are stored on [remote block device](https://du.cesnet.cz/en/navody/object_storage/cesnet_rbd/start)
 (RBD) provided by [CESNET storage department](https://du.cesnet.cz/en/start).
 Specifically, RBD is configured as 12+4 Ceph erasure code, hence it is able to recover from simultaneous failure of four drives.
 Further, regular [RBD snapshots](https://du.cesnet.cz/en/navody/object_storage/cesnet_rbd/snapshots/start) are created to mitigate the risk of ending up with irrecoverable filesystem corruption.
 
-## RepeatExplorer Galaxy
-
-RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/).
-
-## UMSA Galaxy
-
-UMSA Galaxy environment is available at [https://umsa.cerit-sc.cz/](https://umsa.cerit-sc.cz/).
-
 ## Legacy documentation
 
 Metacentrum used to operate a legacy Galaxy instance till 2023.
 Its documentation is [preserved here](https://wiki.metacentrum.cz/wiki/Galaxy) for eventual reference.
 
-## Contact
+## Contact & Help
 
-If you need any help or experience tool errors or any unexpected issues please contact us at <regalaxy@rt.cesnet.cz>.
+If you need any help or experience tool errors or have unexpected issues with any of the Galaxy instance above please contact us at <regalaxy@rt.cesnet.cz>.
