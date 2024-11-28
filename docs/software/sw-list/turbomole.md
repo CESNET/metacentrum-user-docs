@@ -4,6 +4,10 @@
 
 [Turbomole](https://www.turbomole.org/) is a general purpose quantum chemistry package for ab initio electronic structure calculations (Hartree-Fock, DFT, MP2, Coupled Cluster, TDDFT, ...).
 
+!!! danger "Turbomole is out of license"
+
+    Turbomole is out of license currently. For details concerning license renewal ask us at <meta@cesnet.cz>.
+
 ## Usage
 
 ### License
