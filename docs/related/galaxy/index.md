@@ -40,7 +40,7 @@ The following procedure links the identities:
 
 The Czech national usegalaxy server at usegalaxy.cz offers **200 GB** of free storage quota to users logging in through [E-infra AAI](https://aai.cesnet.cz) or **50GB** to the users with [Life Science Login](https://lifescience-ri.eu/ls-login.html). If your research requires more storage please reach us at <regalaxy@rt.cesnet.cz> with description of your needs.
 
-There is also a limit on the number of jobs a given user can have running concurrently. The usegalaxy.cz instance has this limit set at **10 jobs** at the moment. Again, please reach is if this is not sufficient for your needs.
+There is also a limit on the number of jobs a given user can have running concurrently. The usegalaxy.cz instance has this limit set at **10 jobs** at the moment. Again, please reach out if this is not sufficient for your needs.
 
 Maximum size of a single dataset is limited at 50 GB.
 
@@ -60,9 +60,29 @@ Due to the nature of federated login additional steps are required in order to o
 
 ## RepeatExplorer
 
-RepeatExplorer is a domain specific Galaxy instance which includes utilities for Graph-based clustering and characterization of repetitive sequences in next-generation sequencing data and tools for the detection of transposable element protein coding domains.
+RepeatExplorer is a domain specific Galaxy instance which includes utilities for graph-based clustering and characterization of repetitive sequences in next-generation sequencing data and tools for the detection of transposable element protein coding domains.
+
+We maintain this Galaxy for our partners at [Institute of Plant Molecular Biology](https://www.umbr.cas.cz/en/).
 
 RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/).
+
+### Registration
+
+1. Visit [registration url](https://metavo.metacentrum.cz/osobniv3/wayf/elixir.jsp)
+2. Select account that you will use for registration
+    - If you have access to eduIDcz identity (Czech academia) prefer that.
+    - Otherwise use Elixir/LS Login or other identity provider from the list
+3. Log in to your selected account and agree when asked to share information with Perun
+4. *(optional)* if similar user already exists in Perun, you will be asked to prove your identity by
+logging into this existing account – do this only in case that you want to use this
+account and it is truly yours (you have to provide correct username and password for
+this account). If you don’t want to use your already existing account or similar user
+that Perun found is not you, you can click on the button ”It is not me”.
+5. Please fill the presented application form for Elixir CZ IT services.
+6. Next you will see form to choose username and password for RepeatExplorer Galaxy. If you have chosen to use your already existing account during previous steps these fields will be pre-filled.
+7. Congratulation, you are successfully registered! If you have changed your email address during registration,
+you will have to verify it. Please check your inbox.
+8. Please expect up to 30m propagation delay before you'll be able to log in to Galaxy.
 
 ### User Quotas
 
@@ -74,7 +94,7 @@ Maximum size of a single dataset is limited at 250 GB.
 
 ### FTP Access
 
-RepeatExplorer's FTP server runs at `repeatexplorer-elixir.cerit-sc.cz` on `port 990` and uses the same Galaxy username and password as Galaxy itself.
+RepeatExplorer's FTP server runs at `repeatexplorer-elixir.cerit-sc.cz` on `port 990` and uses the same username and password as RepeatExplorer Galaxy itself.
 
 To learn how to connect to the server and import data to your history please follow the process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
@@ -106,17 +126,16 @@ Using TAREAN for satellite repeat detection and characterization:
 
 ## UMSA
 
-This Galaxy instance provides tools for Untargeted Mass Spectrometry Analysis and is maintained for our partners at [RECETOX](https://www.recetox.muni.cz/en).
+This Galaxy instance provides tools for Untargeted Mass Spectrometry Analysis and we maintain it for our partners at [RECETOX](https://www.recetox.muni.cz/en).
 
 UMSA Galaxy environment is available at [https://umsa.cerit-sc.cz/](https://umsa.cerit-sc.cz/).
 
 ## Data Storage Reliability
 
-In a nutshell, data storage of our Galaxy instances is resilient to "normal" disk failures,
-common consistency problems following abrupt power outages etc. However, all the data are still stored
-in a single server room, and they are neither replicated nor backed up elsewehere.
-Therefore, abnormal situation (fire in the server room etc.) may lead to data loss.
-Hence, users are advised to back up their high-value data elsewhere.
+Data storage of *all our Galaxy instances* is resilient to normal disk failures and common consistency problems
+(e.g.abrupt power outages). However, all the data is still stored in a single server room, and is neither replicated
+nor backed up elsewehere. Therefore, abnormal situation (fire in the server room etc.) may lead to data loss and
+users are advised to back up their high-value data elsewhere.
 
 In more technical detail, both the user data files and the Galaxy database are stored on [remote block device](https://du.cesnet.cz/en/navody/object_storage/cesnet_rbd/start)
 (RBD) provided by [CESNET storage department](https://du.cesnet.cz/en/start).
