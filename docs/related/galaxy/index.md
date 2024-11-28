@@ -40,7 +40,7 @@ The following procedure links the identities:
 
 The Czech national usegalaxy server at usegalaxy.cz offers **200 GB** of free storage quota to users logging in through [E-infra AAI](https://aai.cesnet.cz) or **50GB** to the users with [Life Science Login](https://lifescience-ri.eu/ls-login.html). If your research requires more storage please reach us at <regalaxy@rt.cesnet.cz> with description of your needs.
 
-There is also a limit on the number of jobs a given user can have running concurrently. The usegalaxy.cz instance has this limit set at **10 jobs** at the moment. Again, please reach is if this is not sufficient for your needs.
+There is also a limit on the number of jobs a given user can have running concurrently. The usegalaxy.cz instance has this limit set at **10 jobs** at the moment. Again, please reach out if this is not sufficient for your needs.
 
 Maximum size of a single dataset is limited at 50 GB.
 
@@ -94,7 +94,7 @@ Maximum size of a single dataset is limited at 250 GB.
 
 ### FTP Access
 
-RepeatExplorer's FTP server runs at `repeatexplorer-elixir.cerit-sc.cz` on `port 990` and uses the same Galaxy username and password as Galaxy itself.
+RepeatExplorer's FTP server runs at `repeatexplorer-elixir.cerit-sc.cz` on `port 990` and uses the same username and password as RepeatExplorer Galaxy itself.
 
 To learn how to connect to the server and import data to your history please follow the process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
