@@ -85,9 +85,10 @@ nav:
       - computing/queues-in-meta/index.md
       - computing/fairshare/index.md
     - 'GPU computing':
-      - computing/gpu-comput/index.md
-      - computing/nvidia-gpu/index.md
-      - computing/gpu-clusters/index.md
+      - computing/gpu-comput/gpu-job.md
+      - computing/gpu-comput/clusters.md
+      - computing/gpu-comput/nvidia.md
+      - computing/gpu-comput/dgx.md
     - computing/parallel-comput/index.md
   - Data:
     - data/index.md

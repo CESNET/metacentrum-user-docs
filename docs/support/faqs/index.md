@@ -28,10 +28,6 @@
 
 - [I get "Cgroup memsw limit exceeded" error, how to fix it?](../../support/faqs/faqs-content/cgroup-memsw-limit-exceeded)
 
-## Grid infrastructure
-
-- [I want to use NVIDIA DGX H100 hardware, what do I need to do?](../../support/faqs/faqs-content/dgx-usage)
-
 ## Data
 
 - [I accidentally deleted a file/directory on storage, can I retrieve it?](../../support/faqs/faqs-content/accident-deleted-file)

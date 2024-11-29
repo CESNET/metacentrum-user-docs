@@ -1,6 +1,4 @@
-# GPU computing
-
-## GPU job
+# GPU job
 
 To run GPU calculation, the user needs to specify **number of GPU cards** only. The PBS scheduler will route the job automatically into one of the **`gpu*`** queues.
 

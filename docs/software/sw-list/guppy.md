@@ -11,7 +11,7 @@
 To be able to run Guppy, the user must [accept the licence](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_oxnanopore). 
 
 !!! warning
-    Please be aware that `guppy*gpu` versions require [nodes with GPUs](../../../computing/gpu-clusters). GPU versions utilise the [Cuda toolkit](../../sw-list/cuda) and you have to [accept the license for cuDNN library](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_cudnn).
+    Please be aware that `guppy*gpu` versions require [nodes with GPUs](../../../computing/gpu-comput/clusters). GPU versions utilise the [Cuda toolkit](../../sw-list/cuda) and you have to [accept the license for cuDNN library](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_cudnn).
 
 ### Example
 
