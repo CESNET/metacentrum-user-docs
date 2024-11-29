@@ -27,7 +27,7 @@ Fairshare_usage += Usage_CPU + Usage_RAM + Usage_Scratch + Usage_GPU
 
 Fairshare value cannot be displayed directly. Any user with queing and/or running jobs can, however, display their order as compared with other users on the [MetaVO page "Users"](https://metavo.metacentrum.cz/pbsmon2/users/):
 
-![pic](metavo-fairshare.png)
+![pic](fairshare-pic-01.png)
 
 Users with lower numbers in the table have lower fairshare than users with higher values.
 

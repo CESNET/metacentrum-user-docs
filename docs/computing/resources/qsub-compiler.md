@@ -8,14 +8,14 @@ Apart from obtaining the command, users can see which machines match to their se
 
 *Use the rolldown menu to select the required parameters:*
 
-![pic](pic_01.png)
+![pic](qsub-compiler-pic-01.png)
 
 *You will get qsub command parameters in both formats:*
 
-![pic](pic_02.png)
+![pic](qsub-compiler-pic-02.png)
 
 *Additionally you can see the list of machines that comply to the criteria:*
 
-![pic](pic_03.png)
+![pic](qsub-compiler-pic-03.png)
 
 

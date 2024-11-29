@@ -89,7 +89,7 @@ where
 
 When the job is submitted, it is added to one of the **queues** managed by the scheduler. Queues can be defined arbitrarily by the admins based on various criteria - usually on walltime, but also on number of GPU cards, size of memory etc. Some queues are reserved for defined groups of users ("private" queues).
 
-Unless you [have a reason to send job to a specific queue](../../computing/queues-in-meta/), do not specify any. The job will be submitted into a default queue and from there routed to one of execution queues.
+Unless you [have a reason to send job to a specific queue](../../computing/resources/queues), do not specify any. The job will be submitted into a default queue and from there routed to one of execution queues.
 
 The default queue is only **routing** one: it serves to sort jobs into another queues according to the job's walltime - e.g. `q_1h` (1-hour jobs), `q_1d` (1-day jobs), etc.
 

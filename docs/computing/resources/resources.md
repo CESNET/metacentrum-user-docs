@@ -68,10 +68,6 @@ Resource name: `spec`.
 
 CPUs across Metacentrum grid differ in their how fast they are. Therefore they are classed by parameter `spec` according to methodology of [SPEC CPU2017](https://www.spec.org/cpu2017/).  To see the `spec` values, go to [qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) and see the drop-down menu in the `spec` parameter.
 
-!!! todo
- 
-    Jak nastavit odkaz tak, aby proklik sel na EN verzi qsub assembleru?
-
 Example:
 
     qsub -l select=:spec=4.8 # 1 CPU with speed class 4.8 or higher
@@ -134,9 +130,6 @@ Example:
 ### **Number of GPUs**
 
 Resource name: `ngpus`. Default value: `0`.
-
-!!! todo
- sem dat vic ke gpu vypoctum, do jake fronty to posilat apod.
 
     -l select=ncpus=1:ngpus=2 -q gpu
 
@@ -216,7 +209,7 @@ Example:
 
     -l walltime=1:00:00 # one hour job
 
-Users can to a certain extent prolong walltime in running jobs - see [`qextend` command](../../computing/extend-walltime)
+Users can to a certain extent prolong walltime in running jobs - see [`qextend` command](../../../computing/extend-walltime)
 
 ### **Queue and/or PBS server**
 

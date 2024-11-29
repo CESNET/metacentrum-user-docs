@@ -79,11 +79,11 @@ nav:
       - computing/node-properties/index.md
       - computing/decommissioned-storages/index.md
     - 'Resources and queues':
-      - computing/pbs-resources/index.md
-      - computing/pbs-commands/index.md
-      - computing/qsub-compiler/index.md
-      - computing/queues-in-meta/index.md
-      - computing/fairshare/index.md
+      - computing/resources/resources.md
+      - computing/resources/pbs-commands.md
+      - computing/resources/qsub-compiler.md
+      - computing/resources/queues.md
+      - computing/resources/fairshare.md
     - 'GPU computing':
       - computing/gpu-comput/gpu-job.md
       - computing/gpu-comput/clusters.md
