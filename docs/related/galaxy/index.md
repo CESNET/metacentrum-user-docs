@@ -143,19 +143,11 @@ You can load files into this Galaxy using FTP. However due to the nature of fede
 ## Data Storage Reliability
 
 Data storage of *all our Galaxy instances* is resilient to normal disk failures and common consistency problems
-(e.g.abrupt power outages). However, all the data is still stored in a single server room, and is neither replicated
-nor backed up elsewehere. Therefore, abnormal situation (fire in the server room etc.) may lead to data loss and
-users are advised to back up their high-value data elsewhere.
-
-In more technical detail, both the user data files and the Galaxy database are stored on [remote block device](https://du.cesnet.cz/en/navody/object_storage/cesnet_rbd/start)
-(RBD) provided by [CESNET storage department](https://du.cesnet.cz/en/start).
-Specifically, RBD is configured as 12+4 Ceph erasure code, hence it is able to recover from simultaneous failure of four drives.
-Further, regular [RBD snapshots](https://du.cesnet.cz/en/navody/object_storage/cesnet_rbd/snapshots/start) are created to mitigate the risk of ending up with irrecoverable filesystem corruption.
+(e.g. power outages). However all users are advised to back up their high-value data elsewhere.
 
 ## Legacy documentation
 
-Metacentrum used to operate a legacy Galaxy instance till 2023.
-Its documentation is [preserved here](https://wiki.metacentrum.cz/wiki/Galaxy) for eventual reference.
+Metacentrum used to operate a legacy Galaxy instance till 2023. Its documentation is [archived](https://wiki.metacentrum.cz/wiki/Galaxy).
 
 ## Contact & Help
 
