@@ -135,11 +135,11 @@ Then install the package as:
     export R_LIBS_USER="/storage/CITY_N/home/USERNAME/Rpackages"
     module add r/
     R
-    >install.packages(PACKAGE_NAME,lib="/storage/CITY_N/home/USERNAME/Rpackages/")
+    >install.packages("PACKAGE_NAME",lib="/storage/CITY_N/home/USERNAME/Rpackages/")
 
 and load the package
 
-    >library(PACKAGE_NAME)
+    >library("PACKAGE_NAME")
 
 ### Debian packages
 
