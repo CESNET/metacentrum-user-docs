@@ -12,9 +12,8 @@ Po potvrzení tlačítkem _Sign In_ budete přesměrováni na výběr komunity, 
 
 ![copsi_community.png](copsi_community.png)
 
-Zde zvolte variantu _E-INFRA CZ_. V budoucnu bude systém rovněž podporovat variantu přihlášení přes _EGI Check-In_.
-Ve výběru vyberte Vaši přidruženou instituci, nebo sociální identitu (např. ORCID).
-
+Pokud nemáte účet ani v jedné z komunit, zvolte variantu _E-INFRA CZ_.
+Ve výběru následně zvolte Vaši přidruženou instituci, nebo zvolte sociální identitu (např. ORCID).
 
 ![copsi_idps.png](copsi_idps.png)
 
@@ -24,7 +23,10 @@ Ten je aktivní po dobu dvou let, před expirací účtu obdržíte emailem upoz
 
 ![perun_registration.png](perun_registration.png)
 
-Následně budete přesměrováni zpět do aplikace Copsi.
+Podle vybrané komunity při přihlášení budete buď následně přesměrováni zpět do aplikace Copsi,
+nebo Vaše přihláška bude čekat na schválení správcem organizace. V případě, že Vás i po schválení přihlášky aplikace
+přesměruje na stránku, která informuje o tom, že jste již registrováni, zkuste do aplikace přistoupit v anonymním okně,
+nebo smažte cookies.
 
 ## Strojový přístup
 
