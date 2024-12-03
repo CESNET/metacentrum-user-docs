@@ -25,7 +25,7 @@ A frontend has a native home directory on one, and only one, storage; however th
 
 The overall schema can be summed up as shown below:
 
-![Frontends, storages and homes connection](frontends-storages-homes.jpg)
+![Frontends, storages and homes connection](frontend-storage-home.jpg)
 
 **Transition between storages is possible** no matter which frontend an user is logged to. To get to a certain home directory, user does not need to log on a specific frontend. Users can change their home directories by `cd` command.
 

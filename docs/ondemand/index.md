@@ -52,7 +52,7 @@ Job composer is a GUI wizard to setup a batch job.
 
 ## Clusters
 
-The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum [frontends](../../../computing/frontends). Currently there are links to:
+The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum [frontends](../../../computing/infrastructure/frontends). Currently there are links to:
 
 - **zuphux.metacentrum.cz**
 - **perian.metacentrum.cz**
@@ -72,7 +72,7 @@ The "Interactive Apps" tab lists **all graphical software** that can be run as a
 
 ![pic](apps.png)
 
-After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/frontend-storage/).
+After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/infrastructure/frontend-storage).
 
 In consequence, the location of home directory (location=`city_XY` in `/storage/city_XY/home/user_123`) can be different for every new run of an application.
 
@@ -102,7 +102,7 @@ Moreover, users can overwrite this setting by choosin a different location from 
 ![pic](rstudio-dir-fix.png)
 
 <!--
-After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/frontend-storage/).
+After it starts, the application runs as an [interactive job](../../computing/run-basic-job/#interactive-job) on any node within the [MetaCentrum infrastructure](../../computing/infrastructure/frontend-storage).
 
 In consequence, the location of home directory (location=`city_XY` in `/storage/city_XY/home/user_123`) can be different for every new run of an application.
 

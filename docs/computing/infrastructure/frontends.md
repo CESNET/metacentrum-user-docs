@@ -7,5 +7,5 @@
 
 <!--
 !!! note "oven frontend"
-    The `oven` frontend is meant to access [`oven` node](../../computing/node-properties/#oven-node) only.
+    The `oven` frontend is meant to access [`oven` node](../../../computing/infrastructure/specific-nodes#oven-node) only.
 -->

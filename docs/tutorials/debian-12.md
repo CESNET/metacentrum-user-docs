@@ -1,6 +1,6 @@
 # Debian 12 & new PBS server 
 
-Recently we set up a new frontend `zenith` running on Debian 12 - see [Complete list of frontends, their homes and OSs](../../computing/frontends).
+Recently we set up a new frontend `zenith` running on Debian 12 - see [Complete list of frontends, their homes and OSs](../../computing/infrastructure/frontends).
 
 At the same time, we are preparing to transfer from [PBS Pro](https://altair.com/pbs-professional) to [Open PBS](https://www.openpbs.org/).
 

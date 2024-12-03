@@ -114,7 +114,7 @@ Example:
     Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
 
 !!! tip
-    See **[table of storages](../../computing/storages)** for storage servers addresses and mount points.
+    See **[table of storages](../../computing/infrastructure/storages)** for storage servers addresses and mount points.
 
 Example:
 
@@ -245,5 +245,5 @@ or
 
 For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk.
 
-For more detail, follow the tutorial on [how to mount storages on local station](../../computing/mount-storages).
+For more detail, follow the tutorial on [how to mount storages on local station](../../computing/infrastructure/mount-storages).
 

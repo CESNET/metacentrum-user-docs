@@ -445,7 +445,7 @@ Your new kernel is now available in the *New* menu.
 
 Adding support for R requires installation of [IRkernel package](https://cran.r-project.org/web/packages/IRkernel/index.html).
 
-Login to `skirit`, `perian` or `onyx` [frontend](../../computing/frontends).
+Login to `skirit`, `perian` or `onyx` [frontend](../../computing/infrastructure/frontends).
 
 Load needed modules and start R: 
 

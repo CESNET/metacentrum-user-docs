@@ -52,7 +52,7 @@ Job composer is a GUI wizard to setup a batch job.
 
 ## Clusters
 
-The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum [frontends](../../../computing/frontends). Currently there are links to:
+The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum [frontends](../../../computing/infrastructure/frontends). Currently there are links to:
 
 - **zuphux.metacentrum.cz**
 - **perian.metacentrum.cz**

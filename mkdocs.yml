@@ -71,13 +71,13 @@ nav:
       - computing/finished-jobs/index.md
       - computing/email-notif/index.md
     - 'Infrastructure':
-      - computing/frontends/index.md
-      - computing/storages/index.md
-      - computing/frontend-storage/index.md
-      - computing/scratch-storages/index.md
-      - computing/mount-storages/index.md
-      - computing/node-properties/index.md
-      - computing/decommissioned-storages/index.md
+      - computing/infrastructure/frontends.md
+      - computing/infrastructure/storages.md
+      - computing/infrastructure/frontend-storage.md
+      - computing/infrastructure/scratch-storages.md
+      - computing/infrastructure/mount-storages.md
+      - computing/infrastructure/specific-nodes.md
+      - computing/infrastructure/decommissioned-storages.md
     - 'Resources and queues':
       - computing/resources/resources.md
       - computing/resources/pbs-commands.md

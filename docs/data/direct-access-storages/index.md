@@ -47,5 +47,5 @@ or
 
 For more advanced users, there is also the possibility to mount the data storages locally. The NFS4 servers can then be accessed in the same way as local disk.
 
-For more detail, follow the tutorial on [how to mount storages on local station](../../computing/mount-storages).
+For more detail, follow the tutorial on [how to mount storages on local station](../../computing/infrastructure/mount-storages).
 

@@ -24,7 +24,7 @@ Example:
 
 ## Large data handling
 
-In the case of large data, the frontend should be left out of the process, and data should be downloaded/uploaded directly on the [NFS4 storage server](https://docs.metacentrum.cz/computing/storages/). 
+In the case of large data, the frontend should be left out of the process, and data should be downloaded/uploaded directly on the [NFS4 storage server](../../computing/infrastructure/storages/). 
 
 ### Move data to/from a storage
 
@@ -40,7 +40,7 @@ The overall scheme can be depicted as below:
     Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
 
 !!! tip
-    See **[table of storages](../../computing/storages)** for storage server addresses and mount points.
+    See **[table of storages](../../computing/infrastructure/storages)** for storage server addresses and mount points.
 
 !!! note 
     In general, the smaller number of files in the archive, the better (it speeds operations up and generates lower load on the storage subsystems; on the other hand, packing the files makes searching less comfortable). In case you need to archive a large number of small files, we recommend strongly to pack them before, as read/write operations are slower with many small files.

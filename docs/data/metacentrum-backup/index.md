@@ -33,7 +33,7 @@ The backup policy on storages offers some protection in case **user unintentiona
 
 The snapshots are stored, however, on the same disk arrays as the data, so **in case of hardware failure these backups will be lost**. 
 
-For more information see [table of current storages](../../computing/storages).
+For more information see [table of current storages](../../computing/infrastructure/storages).
 
 
 
