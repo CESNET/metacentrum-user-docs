@@ -2,7 +2,7 @@
 
 Users are allowed to prolong their jobs in a limited number of cases.
 
-To do this, use command `qextend job_ID additional_walltime`.
+To do this, use the command `qextend additional_walltime job_ID`.
 
 Time can be set as:
 
@@ -11,7 +11,7 @@ Time can be set as:
 
 Example:
 
-    (BUSTER)user123@skirit:~$ qextend 8152779.pbs-m1.metacentrum.cz 01:00:00
+    (BUSTER)user123@skirit:~$ qextend 01:00:00 8152779.pbs-m1.metacentrum.cz
     The walltime of the job 8152779.pbs-m1.metacentrum.cz has been extended.
     Additional walltime:	01:00:00
     New walltime:		02:00:00
@@ -24,9 +24,9 @@ To prevent abuse of the tool, there is a quota limiting the `qextend` usage to:
 Job prolongations older than 30 days are "forgotten" and no longer occupy user's quota.
 
 !!! warning "CPU-hours are not walltime hours"
-    User quota is set to hours-per-CPU. If you e.g. prolong a job running on 8 CPUs by 1 hour, 8 hours will be subtracted from your cputime fund.
+    The user quota is set to hours-per-CPU. If you e.g. prolong a job running on 8 CPUs by 1 hour, 8 hours will be subtracted from your cputime fund.
 
-To get current state of your fund, run `qextend info`:
+To get the current state of your fund, run `qextend info`:
 
     (BUSTER)user123@skirit:~$ qextend info
 
@@ -42,13 +42,13 @@ To get current state of your fund, run `qextend info`:
 
     Earliest rec. timeout:	2021-08-20 10:13:36.426429
 
-Counter limit is how many times you can prolong a job.
+The counter limit is how many times you can prolong a job.
 Cputime fund is the amount of cpu-time you can use to prolong a job.
 Earliest rec. timeout indicates when the oldest one of your prolongations made during last 30 days will be forgotten.
 
 !!! note "What to do if you run out of quota"
     If you reach the monthly limit and still need to prolong a job, it can be done upon request to user support at <meta@cesnet.cz>.
 
-!!! question "How do I extend array job?"
-    The `qextend` command can be used to extend simple jobs only. If you need to extend array job, let us know at <meta@cesnet.cz> user support.
+!!! question "How do I extend the array job?"
+    The `qextend` command can be used to extend simple jobs only. If you need to extend the array job, let us know at <meta@cesnet.cz> user support.
 
