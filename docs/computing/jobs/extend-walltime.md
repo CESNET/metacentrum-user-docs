@@ -2,7 +2,7 @@
 
 Users are allowed to prolong their jobs in a limited number of cases.
 
-To do this, use the command `qextend additional_walltime job_ID`.
+To do this, use the command `qextend job_ID additional_walltime`.
 
 Time can be set as:
 
@@ -11,7 +11,7 @@ Time can be set as:
 
 Example:
 
-    (BUSTER)user123@skirit:~$ qextend 01:00:00 8152779.pbs-m1.metacentrum.cz
+    (BUSTER)user123@skirit:~$ qextend 8152779.pbs-m1.metacentrum.cz 01:00:00
     The walltime of the job 8152779.pbs-m1.metacentrum.cz has been extended.
     Additional walltime:	01:00:00
     New walltime:		02:00:00
