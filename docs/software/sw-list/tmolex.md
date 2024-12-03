@@ -10,7 +10,7 @@ While quantum chemistry suites have traditionally been developed for a command l
 
 ### Open graphical interface
 
-To get GUI connection, we recommend to open [OnDemand](../../software/ondemand/) --> Interactive Apps --> MetaCentrum Desktop.
+To get GUI connection, we recommend to open [OnDemand](../../../ondemand/) --> Interactive Apps --> MetaCentrum Desktop.
 
 On the desktop, click on the Xterm icon and load a chosen TmoleX module. According to version, type the name of the binary file (see below) to launch TmoleX.
 
