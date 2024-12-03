@@ -64,12 +64,12 @@ nav:
     - computing/concepts/index.md
     - computing/run-basic-job/index.md
     - 'Jobs':
-      - computing/job-tracking/index.md
-      - computing/extend-walltime/index.md
-      - computing/trap-command/index.md
-      - computing/job-arrays/index.md
-      - computing/finished-jobs/index.md
-      - computing/email-notif/index.md
+      - computing/jobs/job-tracking.md
+      - computing/jobs/extend-walltime.md
+      - computing/jobs/trap-command.md
+      - computing/jobs/job-arrays.md
+      - computing/jobs/finished-jobs.md
+      - computing/jobs/email-notif.md
     - 'Infrastructure':
       - computing/infrastructure/frontends.md
       - computing/infrastructure/storages.md
