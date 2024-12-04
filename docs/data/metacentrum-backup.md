@@ -4,7 +4,7 @@
 
 However, if you look for serious backup and archiving space, users should opt for **[CESNET Storage Department service](https://du.cesnet.cz/en/start)**. Like MetaCentrum, this is a service provided by CESNET.
 
-![pic](../../data/metacentrum-backup/metacentrum-du-diff.jpg)
+![pic](metacentrum-du-diff.jpg)
 
 ## MetaCentrum scratch vs storage
 

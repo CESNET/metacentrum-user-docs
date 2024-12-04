@@ -36,7 +36,7 @@ sftp is just another protocol for data transfer. Contrary to `scp` it is **inter
 !!! bug
     There is a bug affecting Ubuntu 14.04+ concerning the recursive copy command. If `put -r` fails, create the target directory on the server first to work around this issue.
 
-![SFTP screenshot bug](../../data/useful-commands/sftp-bug.png)
+![SFTP screenshot bug](useful-commands-sftp-bug.png)
 
 ## `rsync`
 

@@ -60,9 +60,8 @@ nav:
       - access/connect-auth/index.md
       - access/kerberos/index.md
   - Computing:
-    - computing/index.md
-    - computing/concepts/index.md
-    - computing/run-basic-job/index.md
+    - computing/concepts.md
+    - computing/run-basic-job.md
     - 'Jobs':
       - computing/jobs/job-tracking.md
       - computing/jobs/extend-walltime.md
@@ -89,17 +88,16 @@ nav:
       - computing/gpu-comput/clusters.md
       - computing/gpu-comput/nvidia.md
       - computing/gpu-comput/dgx.md
-    - computing/parallel-comput/index.md
+    - computing/parallel-comput.md
   - Data:
-    - data/index.md
-    - data/useful-commands/index.md
-    - data/large-data/index.md      
-    - data/direct-access-storages/index.md
-    - data/data-sharing/index.md
-    - data/quotas/index.md
-    - data/filesender/index.md
-    - data/metacentrum-backup/index.md
-    - data/storage-department/index.md
+    - data/useful-commands.md
+    - data/large-data.md      
+    - data/direct-access-storages.md
+    - data/data-sharing.md
+    - data/quotas.md
+    - data/filesender.md
+    - data/metacentrum-backup.md
+    - data/storage-department.md
   - Software:
     - software/index.md
     - software/alphabet/index.md

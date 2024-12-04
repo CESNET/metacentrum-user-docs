@@ -5,7 +5,7 @@
 
 **List of current storage servers**
  
---8<-- "storages-table-1.md"
+--8<-- "storages-table.md"
 
 ## Connection setup
 

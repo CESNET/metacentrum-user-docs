@@ -17,7 +17,7 @@ Example:
 
     local_user@home_PC:~$ scp MetaUser123@skirit.ics.muni.cz:/storage/brno2/home/user123/foo . # copy file "foo" from brno2 storage through the skirit frontend to a local PC
 
-![Copy data to storage through frontend](../../data/large-data/cp-data-through-frontend.jpg)
+![Copy data to storage through frontend](cp-data-through-frontend.jpg)
 
 !!! warning
     As you can see from the picture, all the traffic has to be processed by a frontend (data are not stored on the frontend, but they load its CPUs and RAM), although the frontend is neither the source nor target of the data.
@@ -34,7 +34,7 @@ Example:
 
 The overall scheme can be depicted as below:
 
-![pic](../../data/large-data/cp-data-directly-storage.jpg)
+![pic](cp-data-directly-storage.jpg)
 
 !!! warning 
     Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.

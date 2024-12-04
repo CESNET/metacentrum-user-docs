@@ -14,7 +14,7 @@ There are several storages (large-capacity harddisc arrays). They are named acco
 
 **List of frontends together with their native /home directories**
 
---8<-- "frontend-table-1.md"
+--8<-- "frontend-table.md"
 
 **Frontend do's and dont's**
 
