@@ -45,7 +45,7 @@ A complete list of frontends is given below. You can use any of them. We encoura
 !!! tip
     In case your favourite frontend is down or going just too slow, do not hesitate to use another one.   
 
---8<-- "frontend-table-1.md"
+--8<-- "frontend-table.md"
 
 !!! warning
 
