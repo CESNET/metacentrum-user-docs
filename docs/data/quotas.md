@@ -108,13 +108,13 @@ If the data is not junk, pack them them into larger chunks using the `tar` comma
     (BUSTER)user123@tarkil:~$ ssh usr123@storage-brno6.metacentrum.cz tar -cf not_junk_dir.tar ~/not_junk_dir
     (BUSTER)user123@tarkil:~$ qsub -l walltime=24:00:00 tar_my_files.sh
 
-If you have enough space on your storage directories, you can keep the packed data there. However we encourage users to [archive](#data-archiving) any finished-project data of permanent value.
+If you have enough space on your storage directories, you can keep the packed data there. However we encourage users to [archive](../../data/storage-department) any finished-project data of permanent value.
 
 If you for some reason need to shift some of your quotas, [contact us](../../support).
 
 ### Archive the data
 
-Due both to operational reasons (regular backups of storages) and for safety reasons (storages have weaker backup policy than archives), users should [archive](#data-archiving) any data that are of permanent value to them and may be needed in future.
+Due both to operational reasons (regular backups of storages) and for safety reasons (storages have weaker backup policy than archives), users should [archive](../../data/storage-department) any data that are of permanent value to them and may be needed in future.
 
 Archiving data from finished projects also helps to avoid problems with storage quotas.
 
