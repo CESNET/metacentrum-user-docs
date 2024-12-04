@@ -7,7 +7,7 @@ hide:
 
 To get proper backup and/or archiving policy, you should use [CESNET storage department service](https://du.cesnet.cz/en/start).
 
-Read [this page](/data/backup-archive) to learn more about data backup policies.
+Read [this page](../../../../data/storage-department) to learn more about data backup policies.
 
 
 
