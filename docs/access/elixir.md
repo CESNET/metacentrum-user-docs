@@ -7,7 +7,7 @@
 
 Unrestricted membership in this group is available for persons from academic environment of the Czech Republic and/or their research partners from abroad with research objectives in fields of **genomics**, **proteomics** and other **life sciences**. 
 
-Members of the computation group are required to, in addition to [MetaCentrum general access conditions](../../access/terms/) comply with [Elixir usage rules](https://www.elixir-europe.org/services/compute/aai/aup).
+Members of the computation group are required to, in addition to [MetaCentrum general access conditions](../../access/terms) comply with [Elixir usage rules](https://www.elixir-europe.org/services/compute/aai/aup).
 
 ## Registration form
 

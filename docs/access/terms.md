@@ -56,7 +56,7 @@ Secure and effective utilization of MetaCentrum resources is possible only if th
 
 3. Users are not allowed to share their accounts. If it is necessary to share the account due to some reasons (e.g. software installation), it has to be done using Kerberos (i.e. through ".k5login" file) and it should be also discussed with specific administrators.
 
-4. If the password is compromised, it is necessary to change it as soon as possible - see [How to change your password](../../access/account/#password-change)     .
+4. If the password is compromised, it is necessary to change it as soon as possible - see [How to change your password](../../access/account#password-change).
 
 5. Usage of non-secured protocols telnet, ftp etc. at other machines is not recommended as well. If this authentication method is used, one has to take into account lower security level of specific accout (and disclosure of the password in open form transferred by the network). It is forbidden use such account to log in to MetaCentrum through Kerberos or SSH protocol due to danger of security breach using weakly secured account followed by usage of fake ssh or fake Kerberos with a trojan horse and consequently danger of breach of MetaCentrum accounts.
 

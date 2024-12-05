@@ -49,13 +49,12 @@ markdown_extensions:
 
 nav:
   - Access:
-    - access/index.md
-    - access/terms/index.md
-    - access/account/index.md
-    - access/log-in/index.md
-    - access/perun/index.md
-    - access/pbsmon/index.md
-    - access/elixir/index.md
+    - access/terms.md
+    - access/account.md
+    - access/log-in.md
+    - access/perun.md
+    - access/pbsmon.md
+    - access/elixir.md
     - 'Security':
       - access/connect-auth/index.md
       - access/kerberos/index.md
