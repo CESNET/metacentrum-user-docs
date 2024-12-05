@@ -56,8 +56,8 @@ nav:
     - access/pbsmon.md
     - access/elixir.md
     - 'Security':
-      - access/connect-auth/index.md
-      - access/kerberos/index.md
+      - access/connect-auth.md
+      - access/kerberos.md
   - Computing:
     - computing/concepts.md
     - computing/run-basic-job.md
