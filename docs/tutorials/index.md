@@ -2,23 +2,25 @@
 
 This section collects various presentations, user seminars, videos and other tutorial material.
 
-## Howtos
+## News and updates
 
-- [Debian 12 & new PBS server](../tutorials/debian-12.md)
-- [e-Infra services mindmap](../tutorials/e-Infra-services-mindmap.pdf)
+- [Debian 12 & new PBS server (Oct 2024)](debian-12.md)
 
-## Presentations
+## General
 
-- [MetaCentrum - introduction & best practices, April 30th 2024, Prague](../tutorials/2024_Vorel_einfra.pdf)
-- [Basic MetaCentrum user guide, 2021](../tutorials/How_to_bring_down_MC_in_10_steps.pdf)
-- [How to use graphical applications, 2021](../tutorials/Going_graphical.pdf)
-- [Containers usage, 2021](../tutorials/Containers_at_meta.pdf)
-- [NVidia frameworks, 2021](../tutorials/NVidia_GPU.pdf)
+- [MetaCentrum - introduction & best practices (2024)](2024_Vorel_einfra.pdf)
+- [e-Infra services mindmap (2024)](e-Infra-services-mindmap.pdf) 
+- [MetaCentrum basic practices hands-on (2023)](https://github.com/CESNET/metacentrum-hands-on/blob/main/2023-11_IBP.md)
+- [How to bring down MetaCentrum in 10 steps (2021)](tutorials/How_to_bring_down_MC_in_10_steps.pdf)
+- [Graphical access to MetaCentrum (2021)](Going_graphical.pdf)
 
-## Videos
+## Containers
 
-- [Video on running Matlab graphically, 2021](https://www.youtube.com/watch?v=wT-9Dc9lbbg)
+- [Containers usage (2023)](containers_at_meta_2023.pdf)
+- [Singularity usage, version A (2021)](singularity_usage_2021_a.pdf)
+- [Singularity usage, version B (2021)](singularity_usage_2021_b.pdf)
 
-## Hands-on
+## GPU computing
 
-- [MetaCentrum hand-on repository on Github](https://github.com/CESNET/metacentrum-hands-on)
+- [NVidia frameworks (2021)](NVidia_GPU_2021.pdf)
+
