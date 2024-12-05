@@ -62,7 +62,7 @@ RepeatExplorer is a domain specific Galaxy instance which includes utilities for
 
 We maintain this Galaxy for our partners at [Institute of Plant Molecular Biology](https://www.umbr.cas.cz/en/).
 
-RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/](https://repeatexplorer-elixir.cerit-sc.cz/).
+RepeatExplorer Galaxy environment is available at [https://repeatexplorer-elixir.cerit-sc.cz/galaxy/](https://repeatexplorer-elixir.cerit-sc.cz/galaxy/).
 
 ### Registration
 
