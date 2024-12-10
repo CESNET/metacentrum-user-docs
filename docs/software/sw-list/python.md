@@ -6,8 +6,5 @@
 
 ## Usage
 
-You may utilize additional Python libraries and modules, see:
-
-- [Python modules](../../software/sw-list/python-modules.md)
-- [PyTorch](../../software/sw-list/pytorch.md)
+You may utilize additional Python libraries and modules, see [Python modules](../../software/sw-list/python-modules.md).
 

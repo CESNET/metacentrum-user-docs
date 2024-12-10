@@ -10,7 +10,7 @@ VMD Desktop can be run in a browser as [OnDemand service](https://ondemand.metac
 
 ## Remote desktop 
 
-Using [Remote desktop](../../software/graphical-access), VMD can be also run from a module.
+Using [Remote desktop](../../../software/graphical-access), VMD can be also run from a module.
 
 This option is recommended to advanced users or as a fallback option in case OnDemand service is down.
 

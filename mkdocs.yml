@@ -98,8 +98,7 @@ nav:
     - data/metacentrum-backup.md
     - data/storage-department.md
   - Software:
-    - software/index.md
-    - software/alphabet/index.md
+    - software/alphabet.md
     - 'Software sorted by field':
       - 'Chemistry':
          - software/sw-list/amber.md
@@ -129,18 +128,17 @@ nav:
          - software/sw-list/maple.md
          - software/sw-list/matlab.md
          - software/sw-list/wolfram-math.md   
-    - software/search-soft/index.md
-    - software/install-software/index.md
-    - software/graphical-access/index.md
-    - software/modules/index.md
-    - software/containers/index.md
+    - software/search-soft.md
+    - software/install-software.md
+    - software/graphical-access.md
+    - software/modules.md
+    - software/containers.md
   - 'OnDemand':
     - ondemand/index.md
   - 'Support':
     - support/index.md
-    - support/faqs/index.md
-    - support/outages/index.md
-    - support/known-issues/index.md
+    - support/faqs.md
+    - support/outages.md
   - Tutorials: tutorials/index.md
   - 'Related projects': 
     - related/galaxy/index.md

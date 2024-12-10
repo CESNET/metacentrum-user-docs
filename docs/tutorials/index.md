@@ -11,7 +11,7 @@ This section collects various presentations, user seminars, videos and other tut
 - [MetaCentrum - introduction & best practices (2024)](2024_Vorel_einfra.pdf)
 - [e-Infra services mindmap (2024)](e-Infra-services-mindmap.pdf) 
 - [MetaCentrum basic practices hands-on (2023)](https://github.com/CESNET/metacentrum-hands-on/blob/main/2023-11_IBP.md)
-- [How to bring down MetaCentrum in 10 steps (2021)](tutorials/How_to_bring_down_MC_in_10_steps.pdf)
+- [How to bring down MetaCentrum in 10 steps (2021)](How_to_bring_down_MC_in_10_steps.pdf)
 - [Graphical access to MetaCentrum (2021)](Going_graphical.pdf)
 
 ## Containers

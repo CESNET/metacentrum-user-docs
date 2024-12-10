@@ -1,7 +1,5 @@
 # Sandbox
 
-![pic](intro-page-layout.png)
-
 ## Table formatting
 
 | title1 | title2 | title3 |
@@ -91,5 +89,4 @@ graph LR
   A --> H[Paralelni vypocty];
   A --> I[GPU vypocty];
 ```
-
 

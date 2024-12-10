@@ -14,7 +14,7 @@
 
 ### Apptainer image
 
-To read more about using Apptainer images, see [Containers usage in MetaCentrum](../../software/containers/).
+To read more about using Apptainer images, see [Containers usage in MetaCentrum](../../../software/containers).
 
 ### Notes
 

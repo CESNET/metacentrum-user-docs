@@ -14,7 +14,7 @@ To get GUI connection, we recommend to open [OnDemand](../../../ondemand/) --> I
 
 On the desktop, click on the Xterm icon and load a chosen TmoleX module. According to version, type the name of the binary file (see below) to launch TmoleX.
 
-To get a broader overview of GUI possibilities, view the [Graphical access](../../software/graphical-access/) page.
+To get a broader overview of GUI possibilities, view the [Graphical access](../../../software/graphical-access) page.
 
 ### TmoleX binaries
 
