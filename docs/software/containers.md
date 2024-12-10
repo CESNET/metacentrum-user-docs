@@ -1,6 +1,6 @@
 # Containers
 
-![pic](../../software/containers/singularity-logo.png)
+![pic](singularity-logo.png)
 
 !!! abstract "What are containers"
     *Containerization* is a software deployment process that bundles an application's code with all the files and libraries it needs to run on any infrastructure. It makes the application less dependent on the OS and system-wide installed libraries. A particular application packed together with its libraries and other files is a *container*. An **image** is a file sitting somewhere on the disk. A **container** is a runtime instance of an image. 

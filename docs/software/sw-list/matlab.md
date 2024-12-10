@@ -20,7 +20,7 @@ Another option is to use [Kubernetes service](https://docs.cerit.io/), which off
 
 ### Remote desktop 
 
-Using [Remote desktop](../../software/graphical-access), Matlab can be also run from a module.
+Using [Remote desktop](../../../software/graphical-access), Matlab can be also run from a module.
 
 This option is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service are down.
 

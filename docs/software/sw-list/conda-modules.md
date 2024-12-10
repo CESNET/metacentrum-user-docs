@@ -29,7 +29,7 @@ The basic commands are:
 
 ### Install new environment
 
-See [How to install Conda/Mamba packages](../../../software/install-software/#condamamba-packages).
+See [How to install Conda/Mamba packages](../../../software/install-software#condamamba-packages).
 
 ### Environment-specific notes
 

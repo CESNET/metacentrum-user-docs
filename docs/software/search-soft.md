@@ -4,7 +4,7 @@ There are thousands of packages installed at MetaCentrum. The list of selected s
 
 In general, when searching for an application, you should checklist the following:
 
-1. Look at the list of selected software either [sorted alphabetically](../../software/alphabet/) or [by field of interest](../../software/sw-list/amber).
+1. Look at the list of selected software either [sorted alphabetically](../../software/alphabet) or [by field of interest](../../software/sw-list/amber).
 2. Use `module avail` command as described [on this page](#modules).
 3. Go through software prepared as [containers](#containers).
 
@@ -81,7 +81,7 @@ will show up the package.
 
 A part of software is prepared as Singularity containers.
 
-You can list them from any frontend at `/cvmfs/singularity.metacentrum.cz/` directory - for respective subdirectories, see [description on this page](../../software/containers/#pre-built-singularity-images).
+You can list them from any frontend at `/cvmfs/singularity.metacentrum.cz/` directory - for respective subdirectories, see [description on this page](../../software/containers#pre-built-singularity-images).
 
 For instructions on container usage, see [the containers chapter](../../software/containers).
 
