@@ -2,8 +2,8 @@
 
 Landsat je program satelitů dálkového průzkumu Země provozovaný NASA a U.S. Geological Survey.
 
-23. července 1972 byl na oběžnou dráhu Země vypouštěn satelit Earth Resources Technology Satellite (ERTS-1), který byl později přejmenován na Landsat 1. V následujícíh letechy byly vypuštěny další satelity Landsat, díky kterým bylo možné vytvořit archiv dat vzdáleného průzkumu Země. Aktuálně se na oběžné dráze Země nachází dva aktivní satelity - Landast 8 a Landsat 9.
-24. 
+23\. července 1972 byl na oběžnou dráhu Země vypouštěn satelit Earth Resources Technology Satellite (ERTS-1), který byl později přejmenován na Landsat 1. V následujícíh letechy byly vypuštěny další satelity Landsat, díky kterým bylo možné vytvořit archiv dat vzdáleného průzkumu Země. Aktuálně se na oběžné dráze Země nachází dva aktivní satelity - Landast 8 a Landsat 9.
+
 NASA a USGS již nyní spolupracují na vývoji následných misí SLI (udržitelného snímkování Země), které budou zahrnovat Landsat Next, následníka Landsat 9.
 
 Satelity misí Landsat mají optimální rozilišení a spektrální pásma, které umožňuji efektivně sledovat změny na Zemi způsobené změnami klimatu, urbanizací, suchem, požáry, změnami biomasy a mnoha dalšími přírodními i lidskými aktivitami.
@@ -52,7 +52,7 @@ Veřejnosti jsou veškerá data zpřístupněna bez potřeby registrace prostře
 
 Dle specifikací formátu [STAC](https://stacspec.org/en) jsou data rozdělena do jednotlivých kolekcí, viz část [Získávání a redistribuce dat](#získávání-a-redistribuce-dat).
 
-Detailní popis API je dostupný [zde](https://stac.cesnet.cz/api.html).
+Detailní popis API v angličtině je dostupný [zde](https://stac.cesnet.cz/api.html). Shrnutí těchto informací je také dostupné v části o [STAC katalogu](./stac.md).
 
 Itemy dostupné v jednotlivých kolekcích jsou dostupné přes endpoint [`/items`](https://stac.cesnet.cz/api.html#featuresapi--getfeaturesincollection), tedy například pro kolekci [Landsat 8-9 OLI/TIRS C2 L1](https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1) jsou jednotlivé items dostupné přes endpoint `https://stac.vm.cesnet.cz/collections/landsat_ot_c2_l1/items`. Endpoint `items` defaultně vrací 20 položek, pro procházení celého katalogu je nutné stránkovat pomocí URL parametru `?page=cislo_stranky`, případně změnit počet zobrazených itemů pomocí URL parametru `?limit=pocet_polozek`.
 
