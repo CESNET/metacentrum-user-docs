@@ -2,51 +2,51 @@
 
 ## Access and authentication
 
-- [The frontend I am trying to log on does not respond](../../support/faqs/faqs-content/frontend-does-not-respond)
+- [The frontend I am trying to log on does not respond](../../support/faqs-content/frontend-does-not-respond)
 
-- [I get "No Kerberos credentials found" error after submitting the script](../../support/faqs/faqs-content/no-kerb-credenials)
+- [I get "No Kerberos credentials found" error after submitting the script](../../support/faqs-content/no-kerb-credenials)
 
-- [I cannot access storage directories despite being logged in on a frontend](../../support/faqs/faqs-content/no-access-to-storages)
+- [I cannot access storage directories despite being logged in on a frontend](../../support/faqs-content/no-access-to-storages)
 
 ## Computing
 
-- [My running job is coming close to walltime, can I prolong it?](../../support/faqs/faqs-content/prolong-walltime)
+- [My running job is coming close to walltime, can I prolong it?](../../support/faqs-content/prolong-walltime)
 
-- [I get "permission denied" when I try to clean up scratch directory](../../support/faqs/faqs-content/clean-scratch-perm-denied)
+- [I get "permission denied" when I try to clean up scratch directory](../../support/faqs-content/clean-scratch-perm-denied)
 
-- [Is there any tool to help me setup syntactically correct `qsub` command?](../../support/faqs/faqs-content/qsub-assembler)
+- [Is there any tool to help me setup syntactically correct `qsub` command?](../../support/faqs-content/qsub-assembler)
 
-- [I get an error "^M: command not found" or "$'\r': command not found" after submitting a script](../../support/faqs/faqs-content/os-dependent-endlines)
+- [I get an error "^M: command not found" or "$'\r': command not found" after submitting a script](../../support/faqs-content/os-dependent-endlines)
 
-- [qdel command does not delete a job](../../support/faqs/faqs-content/force-qdel)
+- [qdel command does not delete a job](../../support/faqs-content/force-qdel)
 
-- [What are the default parameters in qsub command?](../../support/faqs/faqs-content/qsub-default-parameters)
+- [What are the default parameters in qsub command?](../../support/faqs-content/qsub-default-parameters)
 
-- [My job failed with something like "No space left on device / Input-output error".](../../support/faqs/faqs-content/no-space-left)
+- [My job failed with something like "No space left on device / Input-output error".](../../support/faqs-content/no-space-left)
 
-- [My job is approaching walltime, can I prolong it?](../../support/faqs/faqs-content/prolong-walltime)
+- [My job is approaching walltime, can I prolong it?](../../support/faqs-content/prolong-walltime)
 
-- [I get "Cgroup memsw limit exceeded" error, how to fix it?](../../support/faqs/faqs-content/cgroup-memsw-limit-exceeded)
+- [I get "Cgroup memsw limit exceeded" error, how to fix it?](../../support/faqs-content/cgroup-memsw-limit-exceeded)
 
 ## Data
 
-- [I accidentally deleted a file/directory on storage, can I retrieve it?](../../support/faqs/faqs-content/accident-deleted-file)
+- [I accidentally deleted a file/directory on storage, can I retrieve it?](../../support/faqs-content/accident-deleted-file)
 
-- [Are SCRATCHDIR directories backed up somewhere?](../../support/faqs/faqs-content/scratchdir-backup)
+- [Are SCRATCHDIR directories backed up somewhere?](../../support/faqs-content/scratchdir-backup)
 
-- [How reliable/strong is the is backup policy on storages?](../../support/faqs/faqs-content/storage-backup-policy)
+- [How reliable/strong is the is backup policy on storages?](../../support/faqs-content/storage-backup-policy)
 
-- [Where should I keep my longterm data?](../../support/faqs/faqs-content/where-keep-data)
+- [Where should I keep my longterm data?](../../support/faqs-content/where-keep-data)
 
-- [I need more space on storage(s), can I get it?](../../support/faqs/faqs-content/more-space-storage)
+- [I need more space on storage(s), can I get it?](../../support/faqs-content/more-space-storage)
 
 ## Software
 
-- [Where can I find list of all installed software?](../../support/faqs/faqs-content/list-all-sw)
+- [Where can I find list of all installed software?](../../support/faqs-content/list-all-sw)
 
-- [There are several version of one software, which one shall I use?](../../support/faqs/faqs-content/sw-which-version)
+- [There are several version of one software, which one shall I use?](../../support/faqs-content/sw-which-version)
 
-- [I get "Disk quota exceeded" error during installation, how do I fix this?](../../support/faqs/faqs-content/disk-quota-install)
+- [I get "Disk quota exceeded" error during installation, how do I fix this?](../../support/faqs-content/disk-quota-install)
 
 <!-- FAQs "v zaloze"
 

@@ -1,6 +1,0 @@
-# My job is approaching walltime, can I prolong it?
-
-Yes, in a limited way.
-
-Use command `qextend` as described [on this page](../../../../computing/extend-walltime/).
-

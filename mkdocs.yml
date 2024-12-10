@@ -137,9 +137,8 @@ nav:
     - ondemand/index.md
   - 'Support':
     - support/index.md
-    - support/faqs/index.md
-    - support/outages/index.md
-    - support/known-issues/index.md
+    - support/faqs.md
+    - support/outages.md
   - Tutorials: tutorials/index.md
   - 'Related projects': 
     - related/galaxy/index.md
