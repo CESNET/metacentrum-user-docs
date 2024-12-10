@@ -19,7 +19,7 @@ Before executing the Singularity image (`singularity exec...`) located in `/cvmf
 
     export SINGULARITYENV_TMPDIR=$SCRATCHDIR
 
-to redirect temporary files.
+to redirect temporary files otherwise the calculation probably will fail with `sqlite3.OperationalError: disk I/O error`.
 
 
 
