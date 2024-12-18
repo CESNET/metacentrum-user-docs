@@ -6,11 +6,18 @@
 
 ## Usage
 
-The license of the MolPro version 2012.1 is:
+The license of the Molpro version 2024.3.0 is:
 
-- bought by CERIT-SC Centre for academical use by any MetaCentrum user
-- restricted just to Brno locality
-- module `molpro/2008.1` - MolPro version 2008.1; o utilize this program, you have to buy a licence, then scan this licence and send it to address <meta@cesnet.cz>
+- freely available to all MetaCentrum users for academic use
+- module `molpro/2024.3.0`
+
+The license of the Molpro version 2012.1 is:
+
+- freely available to all MetaCentrum users for academic use
+- restricted just to the Brno locality (PBS option `:brno=True`)
+- module `molpro/2012.1`
+
+Other Molpro versions require a personal user license.
 
 Then run as
 
