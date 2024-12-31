@@ -27,7 +27,7 @@ PBS Pro uses different codes to mark job state within the PBS ecosystem.
 
 ## Output of running jobs
 
-Although the input and temporary files for calculation lie in `$SCRACHDIR`, the standard output (STDOUT) and standard error output (STDERR) are elsewhere. 
+Although the input and temporary files for calculation lie in `$SCRATCHDIR`, the standard output (STDOUT) and standard error output (STDERR) are elsewhere. 
 
 To see current state of these files in a running job, proceed in these steps:
 
