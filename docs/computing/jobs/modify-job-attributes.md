@@ -15,7 +15,8 @@ will never (will wait indefinitely in the queue) start because the requirement o
 
     $ qalter -l select=1:ncpus=32:mem=10gb:scratch_local=10gb job_ID.pbs-m1.metacentrum.cz
 
-**Please note that the entire attribute needs to be written, including unchanged parts.**
+!!! note
+    Please note that the entire attribute needs to be written, including unchanged parts.
 
 It is also possible to add some new values to the attribute. For example, the `spec` value that determines the speed of the CPU.
 
