@@ -37,3 +37,7 @@ Attempts to increase the walltime behind the upper limit will fail.
 
 !!! note
     The walltime of running jobs can be extended with [qextend utility](https://docs.metacentrum.cz/computing/jobs/extend-walltime/).
+
+Additionally, it can be set that the job will start only if some (one or more) previous job (which can already be running or still queuing) is successfully completed (returns with an exit code of 0). It is called a Job Dependencies. The general usage includes `-W` attribute, followed by syntax `depend=afterok:job_ID` (the job in this argument list must be terminated without errors).
+
+    qalter -W depend=afterok:job1_ID.pbs-m1.metacentrum.cz job2_ID.pbs-m1.metacentrum.cz
