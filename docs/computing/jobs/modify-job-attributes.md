@@ -12,7 +12,7 @@ will never (will wait indefinitely in the queue) start because the requirement o
 
     $ qalter -l select=1:ncpus=32:mem=10gb:scratch_local=10gb job_ID.pbs-m1.metacentrum.cz
 
-Please note that the entire attribute needs to be written, including unchanged parts.
+**Please note that the entire attribute needs to be written, including unchanged parts.**
 
 It is also possible to add some new values to the attribute. For example, the `spec` value that determines the speed of the CPU.
 
@@ -29,4 +29,4 @@ will  be assigned to the queue `q_2h@pbs-m1.metacentrum.cz` with limits of wallt
 Attempts to increase the walltime behind the upper limit will fail.
 
     $ qalter -l walltime=10:00:00 job_ID.pbs-m1.metacentrum.cz
-    qalter: Job violates queue and/or server resource limits 7911876.pbs-m1.metacentrum.cz
+    qalter: Job violates queue and/or server resource limits job_ID.pbs-m1.metacentrum.cz
