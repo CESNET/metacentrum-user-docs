@@ -2,6 +2,9 @@
 
 Users can modify the attributes of the queueing jobs with the `qalter` command. The `qalter` command accomplishes the modifications by sending a modified job batch request to the PBS server, which owns each job. Thus, users must rewrite the entire attribute, including the unchanged parts. To see which attributes can be modified, call the `qalter` command on any frontend server.
 
+!!! note
+    Only queuing jobs (in the Q state) can be modified using `qalter`. 
+
 The most frequently corrected attribute is the `-l` (resource list) attribute. Below are a few examples of how to use the `qalter` command and modify this attribute.
 
 The job submitted as
@@ -30,3 +33,6 @@ Attempts to increase the walltime behind the upper limit will fail.
 
     $ qalter -l walltime=10:00:00 job_ID.pbs-m1.metacentrum.cz
     qalter: Job violates queue and/or server resource limits job_ID.pbs-m1.metacentrum.cz
+
+!!! note
+    The walltime of running jobs can be extended with [qextend utility](https://docs.metacentrum.cz/computing/jobs/extend-walltime/).
