@@ -5,6 +5,9 @@ Users can modify the attributes of the queueing jobs with the `qalter` command. 
 !!! note
     Only queuing jobs (in the Q state) can be modified using `qalter`. 
 
+!!! note
+    A more detailed description of each function can be found in the [official documentation](https://help.altair.com/2024.1.0/PBS%20Professional/PBSReferenceGuide2024.1.pdf#M5.9.31514.PBSHeading1.236.qalter).
+
 The most frequently corrected attribute is the `-l` (resource list) attribute. Below are a few examples of how to use the `qalter` command and modify this attribute.
 
 The job submitted as
@@ -22,11 +25,23 @@ It is also possible to add some new values to the attribute. For example, the `s
 
     $ qalter -l select=1:ncpus=150:mem=10gb:scratch_local=10gb:spec=6.9 job_ID.pbs-m1.metacentrum.cz
 
-Walltime value can be modified as well. But only in the limits of the originally dedicated queue. submitted as
+Or remove. For example, a GPU job submitted with obsolete parameter `gpu_cap=cuda75` will never start
+
+	$ qsub -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:gpu_cap=cuda75 -l walltime=1:00:00 batch_job_script.sh
+
+and should be removed
+
+	$ qalter -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb job_ID.pbs-m1.metacentrum.cz
+
+or replace with a [valid syntax](https://docs.metacentrum.cz/computing/gpu-comput/gpu-job/#gpu_cap).
+
+	$ qalter -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:gpu_cap=compute_75 job_ID.pbs-m1.metacentrum.cz
+
+Walltime value can be modified as well. But only in the limits of the originally dedicated queue. Job submitted as
 
     $ qsub -l select=1:ncpus=150:mem=10gb:scratch_local=10gb -l walltime=1:00:00 batch_job_script.sh
 
-will  be assigned to the queue `q_2h@pbs-m1.metacentrum.cz` with limits of walltime between 00:00:00 up to 02:00:00 (hh:mm:ss). Between these limits of the queue, the user can modify walltime.
+will be assigned to the queue `q_2h@pbs-m1.metacentrum.cz` with limits of walltime between 00:00:00 up to 02:00:00 (hh:mm:ss). Between these limits of the queue, the user can modify walltime.
 
     $ qalter -l walltime=01:30:00 job_ID.pbs-m1.metacentrum.cz
 
