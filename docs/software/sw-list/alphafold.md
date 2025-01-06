@@ -8,7 +8,8 @@ AlphaFold can be run in a browser as [OnDemand service](https://ondemand.metacen
 
 ## Kubernetes
 
-Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [AlphaFold as a web application](https://docs.cerit.io/en/web-apps/alphafold).
+Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [Foldify as a web application](https://docs.cerit.io/en/web-apps/foldify).
+Foldify is a web application based on Alphafold, with available tools - AlphaFold2, ColabFold, OmegaFold and ESMFold.
 
 ## Remote desktop 
 
