@@ -28,6 +28,6 @@ Since version 2.27.5, the usage is more straightforward.
 
 Java processes within Picard may exceed the quota for saving temporary files in the root directory (`/tmp`). When calculation fails with something like `Caused by: java.io.IOException: Disk quota exceeded`, call the command
 
-    export _JAVA_OPTIONS="-Djava.io.tmpdir=$SCRATCHDIR"
+    export JAVA_TOOL_OPTIONS="-Djava.io.tmpdir=$SCRATCHDIR"
 
 before starting Picard. This command redirects temporary files to the scratch.
