@@ -8,15 +8,14 @@
 
 ### OnDemand
 
-Matlab can be run in a browser as [OnDemand service](https://ondemand.metacentrum.cz). This is the most straighforward and simplest way.
+The most straightforward and simplest way to run Matlab is through the [OnDemand service](https://ondemand.metacentrum.cz), which allows users to access Matlab directly from their web browser. This option provides an intuitive and user-friendly interface, making it an excellent choice for most users.
 
-### Jupyter notebook
+Choose `Matlab` button among the `apllications`. 
 
-Matlab is available to run from [cloud Jupyter Notebook service](https://hub.cloud.e-infra.cz/hub/) as described in [Jupyter notebook documentation](http://docs.cerit.io/docs/jupyterhub.html).
+### As a Jupyter Notebook in Kubernetes
 
-### Kubernetes
+Matlab can also be run from the JupyterHub. For detailed instructions on how to use Matlab with Jupyter Notebook, please refer [Jupyter documentation](https://docs.cerit.io/en/web-apps/jupyterhub).
 
-Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [Matlab](https://docs.cerit.io/docs/matlab.html) as a [Rancher application](https://docs.cerit.io/docs/rancher.html).
 
 ### Remote desktop 
 
