@@ -20,5 +20,5 @@ JupyterHub offers a straightforward way to launch [RStudio](https://docs.cerit.i
 * AI chat support in version marked as *AI
 * Many RStudio versions are supported through this option.
 
-This is our preferred method due to its simplicity and straightforward setup. To learn more, see JupyterHub introduction where you can find other necessary information.
+
 
