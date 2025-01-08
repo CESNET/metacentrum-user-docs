@@ -12,5 +12,5 @@ Metacentrum run its own instance of Jupyter notebook servers on cloud. To use th
 
 ## Kubernetes
 
-Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers Jupyter notebook through as [Jupyter hub](https://hub.cloud.e-infra.cz/hub/) or [Binder hub](https://docs.cerit.io/docs/binderhub.html).
+Another option is to use [Kubernetes service -- see documentation](https://docs.cerit.io/en/web-apps/jupyterhub), which offers Jupyter notebook through [Jupyter hub](https://hub.cloud.e-infra.cz/hub/) or [Binder hub](https://bhub.cloud.e-infra.cz/hub/l).
 
