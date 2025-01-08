@@ -15,6 +15,7 @@ Since the OnDemand can run on any machine, there is an option to choose custom `
 Another option is to use [Kubernetes service](https://docs.cerit.io/).
 
 JupyterHub offers a straightforward way to launch [RStudio](https://docs.cerit.io/en/rancher-apps/rstudio) directly from your Jupyter Notebook environment.
+
 * Integration with MetaCentrum home, making it convenient for users already working within this ecosystem.
 * AI chat support in version marked as *AI
 * Many RStudio versions are supported through this option.
