@@ -1,17 +1,30 @@
 # AlphaFold
+[AlphaFold](https://www.deepmind.com/research/highlighted-research/alphafold) is a cutting-edge software tool designed to predict the three-dimensional (3D) structures of proteins. Developed by DeepMind, AlphaFold has revolutionized the field of structural biology by providing accurate predictions of 3D models of protein structures, which is crucial for understanding their functions and interactions.
 
-[AlphaFold](https://www.deepmind.com/research/highlighted-research/alphafold) is a software aiming to be able to predict 3D models of protein structures.
 
-## OnDemand
+## Running Alphafold in OnDemand
 
-AlphaFold can be run in a browser as [OnDemand service](https://ondemand.metacentrum.cz). This is the most straighforward and simplest way.
+For users who want to run AlphaFold without requiring extensive computational resources or expertise, the OnDemand service provides a convenient and user-friendly solution. This web-based interface allows users to submit AlphaFold jobs directly from their browser, leveraging the MetaCentrum infrastructure.
 
-## Kubernetes
+To use AlphaFold OnDemand, follow these steps:
 
-Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [Foldify as a web application](https://docs.cerit.io/en/web-apps/foldify).
-Foldify is a web application based on Alphafold, with available tools - AlphaFold2, ColabFold, OmegaFold and ESMFold.
+* Access the [OnDemand portal](https://ondemand.metacentrum.cz) and navigate to the `Job Composer`.
+* Select the `Alphafold Metacentrum job` template to configure your job.
 
-## Remote desktop 
+
+## Running Alphafold in Kubernetes
+
+AlphaFold can be run on a [Kubernetes](https://docs.cerit.io) platform for users requiring additional flexibility. This approach offers access to [Foldify](https://docs.cerit.io/en/web-apps/foldify), a web-based graphical environment built around AlphaFold. Foldify provides a suite of tools, including:
+
+ * AlphaFold2
+ * ColabFold
+ * OmegaFold
+ * ESMFold
+
+
+
+
+## Running Alphafold as Singularity image in Remote desktop 
 
 Using [Remote desktop](../../../software/graphical-access), AlphaFold can be also run from a [Singularity](../../../software/containers) image.
 
