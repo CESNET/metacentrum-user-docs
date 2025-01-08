@@ -4,7 +4,9 @@
 
 Discover the power and flexibility of our cutting-edge container platform, built on the robust Kubernetes orchestrator and utilizing Docker container images. Our platform leverages the Rancher Kubernetes distribution, providing an intuitive user interface through the Rancher dashboard.
 
-https://docs.cerit.io/
+[https://docs.cerit.io/](https://docs.cerit.io/)
+
+
 
 
 
