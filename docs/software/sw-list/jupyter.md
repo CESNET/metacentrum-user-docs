@@ -13,6 +13,6 @@ Another option is to use [Kubernetes service -- see documentation](https://docs.
 
 ## Jupyter notebook instance on cloud
 
-Metacentrum run its own instance of Jupyter notebook servers on cloud. To use this option, proceed as described [in this tutorial](../../related/jupyter).
+Metacentrum run its own instance of Jupyter notebook servers on cloud. To use this option, proceed as described [in this tutorial](../../../related/jupyter).
 
 
