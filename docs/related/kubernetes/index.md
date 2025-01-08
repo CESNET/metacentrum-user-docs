@@ -1,6 +1,12 @@
 # Kubernetes/Rancher
 
-- Docker image orchestration platform Kubernetes/Rancher [https://docs.cerit.io/docs/rancher.html](https://docs.cerit.io/en/rancher/rancher)
+#### CERIT-SC Kubernetes Container Platform
+
+Discover the power and flexibility of our cutting-edge container platform, built on the robust Kubernetes orchestrator and utilizing Docker container images. Our platform leverages the Rancher Kubernetes distribution, providing an intuitive user interface through the Rancher dashboard.
+
+https://docs.cerit.io/
+
+
 
 
 
