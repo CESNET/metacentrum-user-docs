@@ -9,12 +9,13 @@
 The license of the Molpro version 2024.3.0 is:
 
 - freely available to all MetaCentrum users for academic use
+- restricted just to the Brno locality (use PBS option `:brno=True`)
 - module `molpro/2024.3.0`
 
 The license of the Molpro version 2012.1 is:
 
 - freely available to all MetaCentrum users for academic use
-- restricted just to the Brno locality (PBS option `:brno=True`)
+- restricted just to the Brno locality (use PBS option `:brno=True`)
 - module `molpro/2012.1`
 
 Other Molpro versions require a personal user license.
