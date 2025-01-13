@@ -125,8 +125,7 @@ Pro stažení pouze části (např. manifestu) je vhodné stáhnout pouze daný 
 ## STAC katalog metadat
 
 Pro získání metadat produktů ve formátu STAC je k dispozici katalog na adrese [https://stac.cesnet.cz](https://stac.cesnet.cz).
-
-[//]: # (todo - refaktorovat část o STACu z Landsatu, udělat separátní sekci o STACu)
+Dokumentaci katalogu naleznete v sekci [STAC](./stac.md).
 
 ## Podpora specifických aplikací
 
