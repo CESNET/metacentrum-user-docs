@@ -15,14 +15,14 @@ ERA5 is available on:
 
 ## Redistribuce ERA5 dat
 
-V rámci distribuce ERA5 dat jsou uživatelům poskytovány datasety [ERA5 hourly data on single levels](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels) a [ERA5 hourly data on pressure levels](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-pressure-levels). Data v těchto redistribuovaných datasetech zahrnují celé území České republiky, jež je specifikováno bounding boxem [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
+V rámci distribuce ERA5 dat jsou uživatelům poskytovány datasety [ERA5 hourly data on single levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview) a [ERA5 hourly data on pressure levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels?tab=overview). Data v těchto redistribuovaných datasetech zahrnují celé území České republiky, jež je specifikováno bounding boxem [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
 
 K dnešnímu dni (7. listopadu 2023) jsou stažena data od října 2023 do srpna 2018, přičemž jsou stále stahovány starší data, až do prvního poskytovaného měsíce ledna 1940.
 
 Seznamy proměnných, jež jsou v datasetech zahrnuty, jsou dostupné na stránkách:
 
-- [ERA5 reanalysis-single-levels variables](../../related/collgs/ERA5_reanalysis-era5-single-levels_variables)
-- [ERA5 reanalysis-pressure-levels variables](../../related/collgs/ERA5_reanalysis-era5-pressure-levels_variables)
+- [ERA5 reanalysis-single-levels variables](../../../related/collgs/ERA5_reanalysis-era5-single-levels_variables)
+- [ERA5 reanalysis-pressure-levels variables](../../../related/collgs/ERA5_reanalysis-era5-pressure-levels_variables)
 
 Veřejnosti jsou data zpřístupněna bez potřeby registrace prostřednictvím STAC katalogu na adresách [https://stac.cesnet.cz/collections/reanalysis-era5-single-levels](https://stac.cesnet.cz/collections/reanalysis-era5-single-levels) a [https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels](https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels).
 
@@ -60,4 +60,4 @@ V každém z těchto nodů produktových typů je obsažen klíč `href` jež od
 
 ## Licence
 
-Data jsou dostupná pod licencí [License to use Copernicus Products](https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf).
+Data jsou dostupná pod licencí [License to use Copernicus Products](https://www.copernicus.eu/en/access-data/copyright-and-licences).

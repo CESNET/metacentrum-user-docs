@@ -14,7 +14,7 @@ Welcome to the basic guide on how to run calculations in the Metacentrum grid se
     2. be able to login to a frontend node
     3. have elementary knowledge of the Linux command line
  
-    *If anything is missing, see [Access](../../access) section.*
+    *If anything is missing, see [Access](../../access/terms) section.*
 
 ## Lifecycle of a job
 

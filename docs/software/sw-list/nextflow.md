@@ -2,7 +2,7 @@
 
 **As a service:**
 
-Nextflow is available as a part of [Kubernetes](https://docs.cerit.io/docs/nextflow.html).
+Nextflow is available as a part of [Kubernetes](https://docs.cerit.io/en/workflows/nextflow).
     
 **In a grid:**
 

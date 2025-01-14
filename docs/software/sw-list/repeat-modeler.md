@@ -2,7 +2,7 @@
 
     module avail repeatmodeler/
 
-[Repeat Modeler](https://www.repeatmasker.org/RepeatModeler/) is a de-novo repeat family identification and modeling package. 
+[Repeat Modeler](https://github.com/Dfam-consortium/RepeatModeler) is a de-novo repeat family identification and modeling package. 
 
 ## Usage
 

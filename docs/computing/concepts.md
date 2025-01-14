@@ -59,7 +59,7 @@ According to PBS internal logic, the resources are either **chunk-wide** or **jo
 **Chunk-wide** resources can be ascribed to every chunk separately and differently.
 
 !!! note
-    For the purpose of this intro, we assume that the number of chunks is always 1, which is also a default value. To see more complicated examples about per-chunk resource distribution, see [advanced chapter on PBS resources](../../computing/pbs-resources).
+    For the purpose of this intro, we assume that the number of chunks is always 1, which is also a default value. To see more complicated examples about per-chunk resource distribution, see [advanced chapter on PBS resources](../computing/resources/resources.md).
 
 Chunk-wide resources are defined as options of `select` statement in pairs `<resource_name>=<resource_value>` divided by `:`.
 

@@ -14,7 +14,7 @@ ANSYS can be run in a browser as [OnDemand service](https://ondemand.metacentrum
 
 ### Kubernetes
 
-Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [ANSYS application](https://docs.cerit.io/docs/ansys.html) as a Rancher application.
+Another option is to use [Kubernetes service](https://docs.cerit.io/), which offers [ANSYS application](https://docs.cerit.io/en/rancher-apps/ansys) as a Rancher application.
 
 ### Module 
 

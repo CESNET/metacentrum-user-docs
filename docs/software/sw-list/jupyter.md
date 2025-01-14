@@ -13,7 +13,7 @@ Advantages
 
 ## Jupyter Hub/Lab in Kubernetes
 
-Another option is to use Jupyter Notebook through [Jupyter hub](https://hub.cloud.e-infra.cz/hub/) or [Binder hub](https://bhub.cloud.e-infra.cz/hub/l) using Kubernetes directly in your browser. For detailed instructions, refer to the documentation [Kubernetes documentation](https://docs.cerit.io/en/web-apps/jupyterhub)
+Another option is to use Jupyter Notebook through [Jupyter hub](https://hub.cloud.e-infra.cz/hub/) or [Binder hub](https://bhub.cloud.e-infra.cz/hub/) using Kubernetes directly in your browser. For detailed instructions, refer to the documentation [Kubernetes documentation](https://docs.cerit.io/en/web-apps/jupyterhub)
 
 Advantages
 
