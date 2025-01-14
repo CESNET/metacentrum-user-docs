@@ -55,14 +55,14 @@ Below you will find short description of main object storage (S3) command and us
 ## Object storage
 For all Metacentrum users is available S3 storage. You can generate your credetials via [Gatekeeper service](https://access.du.cesnet.cz/#/). Where you will select your Metacentrum account and you should obtain your `access_key` and `secret_key`.
 
-### Dummy storage - use when you need comonly store your data
+### Simple storage - use when you need commonly store your data
 
-You can use the S3 storage as dummy storage to store your data. You can use your credentials to configure some of the supported S3 client like s3cmd, s5cmd (large datasets) and rclone. The detailed tutorial for S3 client configuration can be found in [official Data Storage department tutorials](https://docs.du.cesnet.cz/en/object-storage-s3/s3-clients)
+You can use the S3 storage as simple storage to store your data. You can use your credentials to configure some of the supported S3 clients like s3cmd, s5cmd (large datasets) and rclone. The detailed tutorial for S3 client configuration can be found in the [official Data Storage Department tutorials](https://docs.du.cesnet.cz/en/object-storage-s3/s3-clients)
 
-### Direct usage in job file
+### Direct usage in the job file
 You can add s5cmd and rclone commands directly into your job file.
 !!! warning "Bucket creation"
-    Do not forget that the bucket being used for staging MUST exist on the remote S3 data storage. If you plan to stage-out your data into a non-existing bucket the job will fail. You need to prepare the bucket for stage-out in advance. You can use [official Data Storage department tutorials](https://docs.du.cesnet.cz/en/object-storage-s3/s3-clients) for particular S3 client.
+    Do not forget that the bucket being used for staging MUST exist on the remote S3 data storage. If you plan to stage-out your data into a non-existing bucket the job will fail. You need to prepare the bucket for stage-out in advance. You can use the [official Data Storage Department tutorials](https://docs.du.cesnet.cz/en/object-storage-s3/s3-clients) for particular S3 client.
 
 #### s5cmd
 To use s5cmd tool (preferred) you need to create a credentials file (copy the content below) in your home dir, ie. `/storage/brno2/home/<your-login-name>/.aws/credentials`.
