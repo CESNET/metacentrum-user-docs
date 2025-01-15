@@ -111,8 +111,9 @@ Then you can continue to use `rclone` via commands described in [Data Storage gu
 S3CRED=/storage/brno2/home/<your-login-name>/.config/rclone/rclone.conf
 
 #stage in command for rclone
-rclone sync --progress --fast-list --config ${S3CRED} profile-name:my-bucket/h2o.com  ${DATADIR
+rclone sync --progress --fast-list --config ${S3CRED} profile-name:my-bucket/h2o.com  ${DATADIR}
 
 #stage out command for rclone
 rclone sync --progress --fast-list --config ${S3CRED} ${DATADIR}/h2o.out profile-name:my-bucket/
+```
 
