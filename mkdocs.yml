@@ -91,7 +91,6 @@ nav:
     - computing/parallel-comput.md
   - Data:
     - data/types-of-storage.md
-      #    - data/useful-commands.md
     - data/large-data.md      
     - data/direct-access-storages.md
     - data/data-sharing.md
