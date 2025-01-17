@@ -1,6 +1,6 @@
 # Pressure levels
 
-**Proměnné datasetu ERA5 hourly data on pressure levels (reanalysis-era5-pressure-levels)**
+**Variables of the ERA5 hourly data on pressure levels dataset (reanalysis-era5-pressure-levels)**
 
 | Name | Unit | Description |
 |------|------|-------------|

@@ -1,6 +1,6 @@
 # Single levels
 
-**Proměnné datasetu ERA5 hourly data on single levels (reanalysis-era5-single-levels)**
+**Variables of the ERA5 hourly data on single levels dataset (reanalysis-era5-single-levels)**
 
 | Name | Unit | Description |
 |------|------|-------------|
