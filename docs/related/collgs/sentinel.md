@@ -1,151 +1,165 @@
-# Přístup k datům
+# Access to Data
 
-Národní uzel umožňuje přístup k datům misí Sentinel všemi běžnými způsoby. V současnosti se na něm neuplatňují žádná rychlostní ani kapacitní omezení.
-Předchozí verzi softwaru zpřístupňujícího data z družic Sentinel, Sentinel DataHub System, který je stále dostupný na 
-adrese [https://dhr1.cesnet.cz](https://dhr1.cesnet.cz/), nahrazuje nový software GSS (Gael Store Service). V první polovině roku 2025 budou oba systémy přístupné současně,
-GSS jej dále plně nahradí. Jednou ze změn týkajících se přechodu na nový systém je například zrušení možnosti přihlášení
-do grafického rozhraní pomocí jména a hesla nebo zavedení tokenů pro komunikaci s API pro strojový přístup.
+The National Node allows access to Sentinel mission data by all common means. Currently, there are no speed or capacity limitations applied to it.
 
-## Grafické uživatelské rozhraní
+The previous version of the software providing access to Sentinel satellite data, Sentinel DataHub System, which is still available at [https://dhr1.cesnet.cz](https://dhr1.cesnet.cz/), is being replaced by the new GSS (Gael Store Service) software.
 
-Grafické uživatelské rozhraní je přístupné díky aplikaci COPSI (COPernicus Space Interface), která je přístupná na adrese [https://collgs.cesnet.cz/](https://collgs.cesnet.cz/). 
-Před prvním použitím je nutná registrace, a to i v případě, že jste již byli registrováni v předchozí verzi systému (Sentinel DataHub System).
-Podrobný návod k registraci a přihlášení naleznete v návodu [Autentizace uživatelů v GSS](./gss_login/).
-Detailní návod pro COPSI v anglickém jazyce naleznete v [příručce pro uživatele](https://collgs.esa.int/wp-content/uploads/2024/06/ALIA-COPSI-ICM-22-0001_Installation_and_Configuration_Manual_3.0.0.pdf).
+In the first half of 2025, both systems will be accessible simultaneously, after which GSS will fully replace it.
+
+One of the changes related to the transition to the new system is, for example, the removal of the ability to log into the graphical interface using a username and password or the introduction of tokens for API communication for machine access.
+
+## Graphical User Interface
+
+The graphical user interface is accessible through the COPSI (COPernicus Space Interface) application, available at [https://collgs.cesnet.cz/](https://collgs.cesnet.cz/).
+
+Registration is required before first use, even if you were previously registered in the earlier version of the system (Sentinel DataHub System).
+
+A detailed guide for registration and login can be found in the [User Authentication in GSS](./gss_login/) section.
+
+A detailed description of COPSI is available in the Serco's [user manual](https://collgs.esa.int/wp-content/uploads/2024/06/ALIA-COPSI-SUM-22-0001-COPSI-Software-User-Manual_3.0.0.pdf).
 
 ![pic](gss_polygons.png)
 
-Změnu projekce mapy, zobrazování geografických názvů a terénu lze změnit v nastavení v pravém horním rohu.
+You can change the map projection, display of geographic names, and terrain settings in the settings menu in the top right corner.
 
 ![copsi_map.png](copsi_map.png)
 
-### Vyhledávání a filtrování
-#### **Základní vyhledávání**
-Vyhledávací lišta, umístěná v levém horním rohu stránky, umožňuje zadávat jednoduché textové dotazy. Nabízí také možnost pokročilého vyhledávání s různými filtry, které jsou dostupné ve vyhrazené sekci.
+### Search and Filtering
 
-Katalog je založen na protokolu OData, nepodporuje plnotextové vyhledávání, takže uživatelé musí zadávat filtr pomocí 
-správné syntaxe OData `$filter`. Uživatelé však mohou přidat zástupný znak `*` k textovému řetězci jako zjednodušenou 
-formu dotazu podle názvu produktu:
+#### **Basic Search**
 
-`<Text>*` bude v požadavku nahrazen výrazem `startswith(Name, '<Text>')`, tedy název produktu má **začínat** řetězcem.
+The search bar, located in the top left corner of the page, allows you to enter simple text queries. It also offers an advanced search option with various filters available in a dedicated section.
 
-`*<Text>*` bude nahrazen výrazem `contains(Name, '<Text>')` - produkt má **obsahovat** řetězec.
+The catalog is based on the OData protocol and does not support full-text search. Therefore, users must enter a filter using the correct OData `$filter` syntax. However, users can add a wildcard `*` to the text string as a simplified form of a query by product name:
 
-`<Text>*` bude nahrazen výrazem `_endswith(Name, '<Text>')` - produkt má **končit** řetězcem.
+`<Text>*` will be replaced in the request with `startswith(Name, '<Text>')`, meaning the product name **must start** with the string.
 
-Tímto způsobem lze použít hvězdičku pro flexibilnější vyhledávání dle názvu produktu. Například přidání textu `*S3B_OL*` do vyhledávací lišty spustí dotaz
+`*<Text>*` will be replaced with `contains(Name, '<Text>')` - the product **must contain** the string.
+
+`<Text>*` will be replaced with `_endswith(Name, '<Text>')` - the product **must end** with the string.
+
+This way, the asterisk can be used for more flexible product name searches. For example, adding the text `*S3B_OL*` to the search bar will trigger the query
 `odata/v1/Products?$filter=contains(Name, 'S3B_OL')`.
 
-#### Pokročilé vyhledávání
-Sekci pokročilého vyhledávání lze zobrazit kliknutím na ikonu nalevo od vyhledávací lišty. Jakmile je seznam produktů načten, zobrazí se pod vyhledávací 
-lištou. Lze zde filtrovat produkty podle mise, data pořízení, apod. Výsledný filtr použitý pro dotaz je zobrazen pod vyhledávací lištou,
-odkud je možné jej vykopírovat pro případné strojové zpracování.
+#### Advanced Search
+
+The advanced search section can be displayed by clicking on the icon to the left of the search bar. 
+
+Once the product list is loaded, it will appear below the search bar. 
+
+Products can be filtered by mission, acquisition date, etc. 
+
+The resulting filter used for the query is displayed below the search bar, from where it can be copied for potential machine processing.
 
 ![extended_search.png](./copsi_extended_search.png)
 
-#### Geografické vyhledávání
-Panel geografického vyhledávání je umístěný na obrazovce vpravo uprostřed. S jeho pomocí lze provádět geografické vyhledávání 
-na základě polygonálních oblastí, které se kreslí přímo na mapu.
 
-Stejné funkce tohoto panelu jsou dostupné také v kontextové nabídce, kterou lze otevřít kliknutím pravým tlačítkem kamkoli na mapě.
+#### Geographical Search
+
+The geographical search panel is located on the screen in the middle right.
+
+With its help, geographical searches can be performed based on polygonal areas, which are drawn directly onto the map.
+
+The same functions of this panel are also available in the context menu, which can be opened by right-clicking anywhere on the map.
 
 ![copsi_geo.png](copsi_geo.png)
 
-### Prohlížení produktů
+### Product Viewing
 
-Výsledky vyhledávání se zobrazují pod vyhledávací lištou.
+The search results are displayed below the search bar.
 
 ![copsi_product_detail.png](copsi_product_detail.png)
 
-Každý produkt v seznamu je zobrazen v rámečku, přičemž název produktu je uveden nahoře v záhlaví.
-Vlevo v rámečku se nacházejí hlavní informace o produktu, jako je název platformy, datum snímání a velikost souboru.
-Vpravo je náhled produktového snímku, pokud je k dispozici. Pod náhledem se nachází oblast s akčními tlačítky pro kopírování URL a stažení produktu.
+Each product in the list is displayed in a frame, with the product name shown at the top in the header.
 
+On the left side of the frame, you will find the main information about the product, such as the platform name, capture date, and file size.
 
-![copsi_results.png](copsi_results.png)
+On the right side is a preview of the product image, if available. Below the preview is an area with action buttons for copying the URL and downloading the product.
 
-Při najetí myší na obrysy na mapě se zvýrazní všechny obrysy, nad kterými se nachází kurzor myši, a současně se zvýrazní i odpovídající produkty v seznamu.
-Při najetí myší na rámeček produktu ve výsledku vyhledávání se zvýrazní daný obrys na mapě.
+When hovering the mouse over the contours on the map, all contours that the mouse cursor is over are highlighted, and the corresponding products in the list are also highlighted.
 
-## Strojový přístup
+When hovering the mouse over a product frame in the search results, the corresponding contour on the map is highlighted.
 
-Národní uzel CollGS podporuje strojový přístup protokolem *OData*. Strojový přístup je vhodný pro automatické nástroje i pro dávkové stažení většího množství dat.
-Dotazovací rozhraní je přístupné na adrese: [https://collgs.cesnet.cz/odata/v1](https://collgs.cesnet.cz/odata/v1).
+## Machine Access
 
-Pro psaní jednoduchých skriptů se hodí především nástroje `curl` nebo `wget`. Pro autentizaci při stahování produktu již není možné využít jméno a heslo,
-ale je nutné použít OIDC tokeny, které se generují na adrese token portálu: [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
-Podrobnější popis autentizace naleznete v návodu [Autentizace uživatelů v GSS](./gss_login/).
+The national node CollGS supports machine access via the *OData* protocol. Machine access is suitable for automated tools and for batch downloading larger amounts of data.
 
-### Vyhledání produktu
+The query interface is accessible at: [https://collgs.cesnet.cz/odata/v1](https://collgs.cesnet.cz/odata/v1).
 
-Následující příklady shrnují způsob skládání URL adresy pro vyhledávání produktův OData API.
-Podrobný návod je k dispozici v anglickém dokumentu [GSS Administration Manual](https://collgs.esa.int/wp-content/uploads/2024/07/GAEL-P311-GSS%20-%20Collaborative%20Data%20Hub%20Software%20GSS%20Administration%20Manual_1.6.5.pdf#page=77) - kapitola 10.
-Alternativou je použití [STAC katalogu metadat](#stac-katalog-metadat).
+For writing simple scripts, tools like `curl` or `wget` are most useful. Authentication for downloading products can no longer be done using a username and password, but it is necessary to use OIDC tokens, which are generated at the token portal address: [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
 
-Pro použití pomocí nástroje curl je nutné správně zakódovat speciální znaky v URL jako mezery a uvozovky.
-Následující příkazy shrnují základní použití OData API s access tokenem uloženým v proměnné `ACCESS_TOKEN`.
+A more detailed description of authentication can be found in the guide [User Authentication in GSS](./gss_login/).
+### Product Search
 
-K vylistování všech produktů:
+The following examples summarize how to construct the URL for searching products in the OData API.
+
+A detailed guide is available in the document [GSS Administration Manual](https://collgs.esa.int/wp-content/uploads/2024/07/GAEL-P311-GSS%20-%20Collaborative%20Data%20Hub%20Software%20GSS%20Administration%20Manual_1.6.5.pdf#page=77) - Chapter 10.
+
+An alternative is using the [STAC metadata catalog](#stac-metadata-catalog).
+
+When using the curl tool, special characters in the URL, such as spaces and quotes, must be properly encoded.
+
+The following commands summarize the basic use of the OData API with the access token stored in the `ACCESS_TOKEN` variable.
+
+To list all products:
 
 ```shell
 curl "https://collgs.cesnet.cz/odata/v1/Products" \
 -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-Vyhledání produktu podle UUID (např. *4125df3d-468c-4c3f-b283-249874447a18*):
+To list products by UUID (e.g. *4125df3d-468c-4c3f-b283-249874447a18*):
 
 ```shell
 curl "https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249874447a18)" \
 -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-Příklady filtrování a kódování speciálních znaků v _curl_:
+Examples of Filtering and Encoding Special Characters in _curl_:
 
-|                                         | Filtr                                                                                                                                             | Volání CURL                                                                                                                                                                                                                                                                  |
-|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Vyhledání podle mise (např. `SENTINEL-1`) | `$filter=(Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'platformShortName' and att/OData.CSC.StringAttribute/Value eq 'SENTINEL-1'))` | `curl 'https://collgs.cesnet.cz/odata/v1/Products?$filter=(Attributes%2FOData.CSC.StringAttribute%2Fany(att%3Aatt%2FName%20eq%20%27platformShortName%27%20and%20att%2FOData.CSC.StringAttribute%2FValue%20eq%20%27SENTINEL-1%27))' -H "Authorization: Bearer $ACCESS_TOKEN"` |                                                                                                                                                                                                                                                                              |
-| Vyhledání podle data zveřejnění (např. od `15.3.2024` do `16.3.2024`) | `$filter=(PublicationDate ge 2024-03-15T00:00:00.000Z and PublicationDate le 2024-03-16T23:59:59.999Z)`                                           | `curl "https://collgs.cesnet.cz/odata/v1/Products?$filter=(PublicationDate%20ge%202024-03-15T00:00:00.000Z%20and%20PublicationDate%20le%202024-03-16T23:59:59.999Z)" -H "Authorization: Bearer $ACCESS_TOKEN"`                                                               |
-| Vyhledání podle části názvu (např. začíná na `S1` a obsahuje `SLC`) | `$filter=startswith(Name,’S1’)  and contains(Name,’SLC’)` | `curl 'https://collgs.cesnet.cz/odata/v1/Products?$filter=startswith(Name,%20%27S1%27)%20and%20contains(Name,%20%27SLC%27)' -H "Authorization: Bearer $ACCESS_TOKEN"`                                                                                                                                                                                                                                                                             |
+|                                         | Filter                                                                                                                                              | CURL Command                                                                                                                                                                                                                                                                   |
+|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Search by mission (e.g., `SENTINEL-1`)  | `$filter=(Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'platformShortName' and att/OData.CSC.StringAttribute/Value eq 'SENTINEL-1'))`  | `curl 'https://collgs.cesnet.cz/odata/v1/Products?$filter=(Attributes%2FOData.CSC.StringAttribute%2Fany(att%3Aatt%2FName%20eq%20%27platformShortName%27%20and%20att%2FOData.CSC.StringAttribute%2FValue%20eq%20%27SENTINEL-1%27))' -H "Authorization: Bearer $ACCESS_TOKEN"` |
+| Search by publication date (e.g., from `15.3.2024` to `16.3.2024`) | `$filter=(PublicationDate ge 2024-03-15T00:00:00.000Z and PublicationDate le 2024-03-16T23:59:59.999Z)` | `curl "https://collgs.cesnet.cz/odata/v1/Products?$filter=(PublicationDate%20ge%202024-03-15T00:00:00.000Z%20and%20PublicationDate%20le%202024-03-16T23:59:59.999Z)" -H "Authorization: Bearer $ACCESS_TOKEN"`                                                               |
+| Search by part of the name (e.g., starts with `S1` and contains `SLC`) | `$filter=startswith(Name,’S1’)  and contains(Name,’SLC’)`  | `curl 'https://collgs.cesnet.cz/odata/v1/Products?$filter=startswith(Name,%20%27S1%27)%20and%20contains(Name,%20%27SLC%27)' -H "Authorization: Bearer $ACCESS_TOKEN"`                                                                                                                                                                   |
 
+### Downloading a Product
 
-### Stažení produktu
-
-Pro stažení celého produktu:
+To download the entire product:
 
     curl "https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249874447a18)/\$value"  \
     -H "Authorization: Bearer $ACCESS_TOKEN"  \
-    -o produkt_odata.zip
+    -o product_odata.zip
 
-Pro stažení pouze části (např. manifestu) je vhodné stáhnout pouze daný soubor, a to například takto:
+To download only a part (e.g., the manifest), it is best to download the specific file, like this:
 
     curl -v $'https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249874447a18)/Nodes(\'S3A_OL_1_EFR____20241008T122148_20241008T122448_20241009T125258_0179_117_380_1800_PS1_O_NT_004.SEN3\')/Nodes(\'xfdumanifest.xml\')/$value'  \
     -H "Authorization: Bearer $ACCESS_TOKEN"  \
     -o xfdumanifest.xml
 
-## STAC katalog metadat
+## STAC Metadata Catalog
 
-Pro získání metadat produktů ve formátu STAC je k dispozici katalog na adrese [https://stac.cesnet.cz](https://stac.cesnet.cz).
-Dokumentaci katalogu naleznete v sekci [STAC](./stac.md).
+To obtain product metadata in STAC format, the catalog is available at [https://stac.cesnet.cz](https://stac.cesnet.cz). 
+You can find the catalog documentation in the [STAC section](./stac.md).
 
-## Podpora specifických aplikací
+## Support for Specific Applications
 
-Máte-li speciální požadavky nebo potřebujete pomoci s navržením optimální metody přístupu k datům, kontaktujte nás na <collgs@cesnet.cz>.
+If you have specific requirements or need assistance in designing the optimal method for data access, please contact us at <collgs@cesnet.cz>.
 
-Pro konkrétní účely lze dohodnout např.:
+For specific purposes, we can arrange:
 
-- pomoc při návrhu přístupového mechanizmu.
-- automatické kopírování nových dat na koncový bod uživatele podle nastavených kritérií např. protokolem SCP.
-- plnění vaší vlastní aplikace.
+- assistance with designing an access mechanism.
+- automatic copying of new data to the user's endpoint according to the set criteria, e.g., using the SCP protocol.
+- integration with your own application.
 
-## Rozhraní ArcGIS
+## ArcGIS Interface
 
-Ke snímkům z platformy Sentinel 2 lze interaktivně přistupovat též přes webové rozhraní [SW balíku ArcGIS](https://arcgis.cesnet.cz/apps/wabis/): 
+Sentinel 2 imagery can also be accessed interactively through the web interface of the [ArcGIS software package](https://arcgis.cesnet.cz/apps/wabis/): 
 
 ![pic](arcgis.png)
 
-## Kontakt
+## Contact
 
-Dotazy i hlášení případných problémů směřujte na adresu <collgs@cesnetcz>.
+For inquiries or to report any issues, please contact <collgs@cesnetcz>.
 
-Výpadky nebo plánované odstávky systému budeme oznamovat na [stránce výpadků Meta VO](https://metavo.metacentrum.cz/cs/news/outages.jsp). 
-
+System outages or planned downtimes will be announced on the [Meta VO outage page](https://metavo.metacentrum.cz/cs/news/outages.jsp).
