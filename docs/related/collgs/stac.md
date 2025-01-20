@@ -1,33 +1,37 @@
-# STAC katalog
-Tato dokumentace popisuje STAC katalog (SpatioTemporal Asset Catalog) vytvořený pro organizaci a správu metadat produktů
-dálkového průzkumu Země. Katalog zahrnuje data z programů [Sentinel](./sentinel.md), [Landsat](./landsat.md) a [ERA5](./era5.md),
-která jsou rozřazena do kolekcí.
-Relevantní popisy použití STAC katalogu naleznete také na stránkách těchto programů v této dokumentaci.
-Katalog je přístupný na adrese [https://stac.cesnet.cz/](https://stac.cesnet.cz/).
+# STAC Catalog
 
-## Struktura katalogu
-Podrobná specifikace STAC katalogu je dostupná v angličtině na [https://stacspec.org/en/about/stac-spec/](https://stacspec.org/en/about/stac-spec/). 
+This documentation describes the STAC catalog (SpatioTemporal Asset Catalog) created for the organization and management of Earth observation product metadata. The catalog includes data from the [Sentinel](./sentinel.md), [Landsat](./landsat.md), and [ERA5](./era5.md) programs, which are categorized into collections.
 
-**Katalog** - STAC katalog je způsob, jak uspořádat a propojit data, aby se dala snadno procházet a vyhledávat. 
-Funguje jako seznam, který obsahuje data a odkazy na další (pod)katalogy.
+Relevant usage descriptions of the STAC catalog can also be found on the pages of these programs in this documentation.
 
-**Kolekce** - STAC kolekce poskytuje dodatečné informace o souboru dat (např. část dat Sentinelu 1 - kolekce sentinel-1-slc).
-Rozšiřuje funkčnost katalogu přidáním dalších polí, která umožňují popis prostorového a časového rozsahu dat,
-licence, klíčových slov, poskytovatelů, apod. Seznam kolekcí je přístupný na endpointu [/collections](https://stac.vm.cesnet.cz/collections).
+The catalog is accessible at [https://stac.cesnet.cz/](https://stac.cesnet.cz/).
 
-**Item** - STAC item je ucelený záznam obsahující data a metadata, jehož specifikace může obsahovat časovou značku, náhledový obrázek,
-odkazy k datům, odkazy k relevantním itemům a asset linky.
+## STAC Catalog Structure
 
-**Asset** - soubor přidružený ke konkrétnímu itemu. Asset je možné stáhnout, např.
-náhledový obrázek, GeoTIFF nebo NetCDF soubor. Součástí metadat assetu jsou informace jako název, popis, typ a odkaz na soubor (_href_).
+A detailed specification of the STAC catalog is available at [STAC Specification](https://stacspec.org/en/about/stac-spec/).
+
+### **Catalog**
+A STAC catalog is a way of organizing and linking data so that it can be easily browsed and searched. It functions like a list containing data and links to other (sub)catalogs.
+
+### **Collection**
+A STAC collection provides additional information about a set of data (e.g., part of Sentinel 1 data - collection sentinel-1-slc). It extends the functionality of the catalog by adding fields that describe the spatial and temporal extent of the data, licenses, keywords, providers, etc. The list of collections is available at the endpoint [/collections](https://stac.vm.cesnet.cz/collections).
+
+### **Item**
+A STAC item is a self-contained record containing data and metadata. Its specification may include a timestamp, a thumbnail image, data links, links to relevant items, and asset links.
+
+### **Asset**
+An asset is a file associated with a specific item. An asset can be downloaded, e.g., a thumbnail image, GeoTIFF, or NetCDF file. The metadata of an asset includes information such as name, description, type, and the link to the file (`_href_`).
 
 ## API
-Pro volání API použijte identickou adresu [https://stac.cesnet.cz/](https://stac.cesnet.cz/).
-Podrobná dokumentace metod je k dispozici v angličtině zde: [https://stac.cesnet.cz/api.html](https://stac.cesnet.cz/api.html).
-Pro prohledávání není potřeba autentizace.
 
-K vyhledání produktů slouží endpoint [/search](https://stac.cesnet.cz/search).
-Na tento endpoint v těle requestu zasíláte JSON obsahující ohraničující body (_bbox_) a časové rozmezí.
+To call the API, use the identical address [https://stac.cesnet.cz/](https://stac.cesnet.cz/).
+
+A detailed documentation of the methods is available in the [API Documentation](https://stac.cesnet.cz/api.html).
+
+Authentication is not required for searching.
+
+To search for products, use the endpoint [/search](https://stac.cesnet.cz/search). In the body of the request, you send a JSON containing bounding box (_bbox_) and time range.
+
 
 ```
 {
@@ -36,7 +40,7 @@ Na tento endpoint v těle requestu zasíláte JSON obsahující ohraničující 
 }
 ```
 
-Odpověď získáte v následujícím formátu:
+The response will be returned in the following format:
 
 ```
 {
@@ -54,19 +58,21 @@ Odpověď získáte v následujícím formátu:
     ]
 }
 ```
-kde **features** obsahuje itemy splňující vyhledávací parametry, **numberMatched** obsahuje celkový počet itemů splňujících
-vyhledávací parametry, **numberReturned** počet aktuálně vrácených itemů a **href** zanořený v **links** je URL odkazující na další
-stránku výsledků tohoto vyhledávání.
 
+where **features** contains the items matching the search parameters, **numberMatched** contains the total number of items matching the search parameters, **numberReturned** is the number of items currently returned, and **href** nested within **links** is the URL pointing to the next page of search results.
 
-## Prohlížeč
-Rovněž je k dispozici prohlížeč produktů v grafickém rozhraní: [https://stac.cesnet.cz/browser/](https://stac.cesnet.cz/browser/).
+## Browser
+A product browser is also available through the graphical interface: [https://stac.cesnet.cz/browser/](https://stac.cesnet.cz/browser/).
+
 ![stac_browser.png](stac_browser.png)
-I zde jsou data rozřazena do kolekcí a je možné stáhnout jednotlivé assety.
 
-## PySTAC a další knihovny Pythonu pro práci s geoprostorovými daty
-Python poskytuje knihovnu [PySTAC](https://pystac.readthedocs.io/en/stable/), která umožňuje práci se STAC katalogem.
-Při jejím použití je nutné použít API adresu [https://stac.vm.cesnet.cz/](https://stac.vm.cesnet.cz/).
+Data is also organized into collections here, and individual assets can be downloaded.
+
+## Python Libraries for Geospatial Data
+
+Python provides the [PySTAC](https://pystac.readthedocs.io/en/stable/) library, which allows working with the STAC catalog.
+
+When using it, you need to use the API address [https://stac.vm.cesnet.cz/](https://stac.vm.cesnet.cz/).
 
 ```python
 from pystac_client import Client
@@ -74,39 +80,38 @@ api_url = "https://stac.vm.cesnet.cz/"
 client = Client.open(api_url)
 ```
 
-Příklad práce s kolekcí
+Below is an example of how to work with a collection using the STAC API.
+
 ```python
 collections = client.get_collections()
 s1_collection = client.get_collection("sentinel-1-grd")
 print(s1_collection.description)
 ```
 
-Knihovna [Leafmap](https://leafmap.org/) slouží v prostředí Jupyter notebooků pro geoprostorovou analýzu
-a umožňuje získání souřadnic, které dále využijeme po práci s knihovnou PySTAC. Pokud již známe souřadnice,
-využijeme filtr `intersects` (protínání bodu), nebo `bbox` (ohraničená oblast). Následující příklady jsou
-inspirovány [existujícím návodem v angličtině](https://carpentries-incubator.github.io/geospatial-python/instructor/05-access-data.html#search-a-stac-catalog).
+The [Leafmap](https://leafmap.org/) library is used in Jupyter notebooks for geospatial analysis. It allows you to retrieve coordinates, which can then be utilized when working with the PySTAC library. Another option is to use some online tool such as a [bbox finder](http://bboxfinder.com).
+
+If you already know the coordinates, you can use the `intersects` filter (for point intersection) or the `bbox` filter (for bounding box). The following examples are inspired by the [existing tutorial in English](https://carpentries-incubator.github.io/geospatial-python/instructor/05-access-data.html#search-a-stac-catalog).
 
 ```python
 from shapely.geometry import Point
-point = Point(16.6068, 49.1951)  # souřadnice Brna
+point = Point(16.6068, 49.1951)  # coordinates of Brno
 search = client.search(
     collections=[s1_collection],
     intersects=point,
-    max_items=10,  # omezení na počet výsledků
-    method="GET"  # výchozí metoda vyžaduje autentizaci, je nutné explicitně specifikovat GET
+    max_items=10,  # limit on items of response
+    method="GET"  # the default method requires authentication, so it is necessary to explicitly specify GET
 )
 print(search.matched())
 ```
 
-Výsledek zobrazí, kolik itemů odpovídá zadání - příslušnost ke kolekci sentinel-1-grd a protínání Brna.
+The result will display how many items match the query - specifically belonging to the sentinel-1-grd collection and intersecting with Brno.
 
 ```python
 for item in (search.item_collection()):
     print(item.properties)
 ```
 
-Výsledek vyhledávání můžeme dále iterovat a zjistit podrobnosti o každém z 10 vrácených itemů. Výsledná
-metadata mají podobný formát:
+The search results can be iterated further to retrieve details about each of the 10 returned items. The resulting metadata will have a similar format:
 
 ```json
 {
@@ -135,13 +140,15 @@ metadata mají podobný formát:
 }
 ```
 
-Pro přístup k odkazům ke stažení konkrétních snímků musíme přistoupit k assetům, které můžeme vylistovat.
+To access the download links for specific images, we need to access the assets, which can be listed.
+
 ```python
 assets = items[0].assets
 print(assets.keys())
 ```
 
-V nich pak můžeme vybírat odkazy na např. náhledový obrázek, který získáme z daného linku:
+In these, we can then select links to, for example, the preview image, which we can obtain from the given link:
+
 ```python
 import requests
 from matplotlib import pyplot as plt
@@ -157,3 +164,7 @@ plt.show()
 ```
 
 ![stac_thumbnail.png](stac_thumbnail.png)
+
+## Tutorial
+
+A more complex tutorial for several use cases was prepared for the CSCALE project. You can follow the tutorial at [C-SCALE Data Discovery Notebook](related/notebooks/c-scale-notebooks/1-C-SCALE_Data_Discovery.ipynb).

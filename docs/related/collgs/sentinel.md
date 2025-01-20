@@ -68,8 +68,6 @@ The same functions of this panel are also available in the context menu, which c
 
 The search results are displayed below the search bar.
 
-![copsi_product_detail.png](copsi_product_detail.png)
-
 Each product in the list is displayed in a frame, with the product name shown at the top in the header.
 
 On the left side of the frame, you will find the main information about the product, such as the platform name, capture date, and file size.
