@@ -1,81 +1,90 @@
-# Autentizace uživatelů v GSS
-Tato sekce popisuje autentizaci uživatelů v systému GSS (Gael Store Service), a to jak interaktivní
-přihlášení v grafické komponentě COPSI, tak získání a výměnu tokenů pro strojové použití. Oba způsoby vyžadují registraci.
-Návod na použití tohoto software naleznete v sekci o [práci s daty družic Sentinel](./sentinel.md).
+## User Authentication in GSS
 
-## Grafické rozhraní
+This section describes user authentication in the GSS (Gael Store Service) system, including both interactive login via the graphical COPSI component and obtaining and exchanging tokens for machine use. 
+
+Both methods require registration.
+
+Instructions on using this software can be found in the section on [working with Sentinel satellite data](./sentinel.md).
+
+## Graphical Interface
 
 ![copsi_first_page.png](copsi_first_page.png)
 
-Při přístupu k aplikaci COPSI na adrese [https://collgs.cesnet.cz](https://collgs.cesnet.cz) se zobrazí okno vyžadující přihlášení.
-Po potvrzení tlačítkem _Sign In_ budete přesměrováni na výběr komunity, kterou se chcete přihlásit.
+When accessing the COPSI application at [https://collgs.cesnet.cz](https://collgs.cesnet.cz), a login window will appear.
+
+After confirming by clicking _Sign In_, you will be redirected to select the community you want to log in with.
 
 ![copsi_community.png](copsi_community.png)
 
-Pokud nemáte účet ani v jedné z komunit, zvolte variantu _E-INFRA CZ_.
-Ve výběru následně zvolte Vaši přidruženou instituci, nebo zvolte sociální identitu (např. ORCID).
+If you do not have an account in any of the communities, choose the option _E-INFRA CZ_. Then select your affiliated institution or choose a social identity (e.g., ORCID).
 
 ![copsi_idps.png](copsi_idps.png)
 
-Dokončete přihlášení. Pokud se přihlašujete poprvé, budete přesměrováni na registrační formulář.
-V něm vyplňte požadované údaje. Odesláním vyplněné přihlášky se zakládá účet v IAM systému Perun.
-Ten je aktivní po dobu dvou let, před expirací účtu obdržíte emailem upozornění na prodloužení platnosti účtu. 
+Complete the login process. If this is your first login, you will be redirected to a registration form.
+
+Fill in the required details in the form. By submitting the completed application, an account is created in the IAM Perun system.
+
+The account remains active for two years, and you will receive an email notification before the account expires to extend its validity.
 
 ![perun_registration.png](perun_registration.png)
 
-Podle vybrané komunity při přihlášení budete buď následně přesměrováni zpět do aplikace Copsi,
-nebo Vaše přihláška bude čekat na schválení správcem organizace. V případě, že Vás i po schválení přihlášky aplikace
-přesměruje na stránku, která informuje o tom, že jste již registrováni, zkuste do aplikace přistoupit v anonymním okně,
-nebo smažte cookies.
+Based on the selected community during login, you will either be redirected back to the COPSI application, or your application will wait for approval by the organization administrator.  
 
-## Strojový přístup
+If, after approval, the application redirects you to a page informing you that you are already registered, try accessing the application in an incognito window or clearing your cookies.
 
-Pro stažení produktů pomocí OData API je nutné k požadavkům přidat autentizaci formou access tokenu.
-Tokeny lze získat na adrese [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
+## Machine Access
+
+To download products via the OData API, authentication using an access token must be added to the requests.
+
+Tokens can be obtained at [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
 
 ![token_portal_intro.png](token_portal_intro.png)
 
-Na stránce portálu pokračujte přes volbu _Authorise_. Pokud tokeny generujete poprvé, bude nutné provést registraci. V opačném
-případě se přihlaste, podobně jako v případě přístupu přes [Grafické rozhraní](#grafické-rozhraní).
+On the portal page, proceed by selecting _Authorise_. If you are generating tokens for the first time, you will need to register.
+
+Otherwise, log in similarly to the process described in [Graphical Interface](#graphical-interface).
 
 ![token_portal.png](token_portal.png)
 
-Na stránce _Generate Tokens_ jsou následující položky:
+On the _Generate Tokens_ page, the following items are available:
 
-**Access Token** - slouží k autentizaci a autorizaci při přístupu k API. Má platnost 8 hodin.
+**Access Token** - Used for authentication and authorization when accessing the API. It is valid for 8 hours.
 
-**Refresh Token** - slouží k obnovení access tokenu bez nutnosti opakovaného přihlášení. Platí 30 dnů. Při každé
-žádosti o výměnu access tokenu se vydá zároveň nový refresh token. Původní refresh token se
-tím stává nevalidním, a pro příští výměnu tokenů je nutné použít nový refresh token. Nový refresh token bude mít platnost 30 dnů.
+**Refresh Token** - Used to renew the access token without the need to log in again. It is valid for 30 days. Each time an access token is exchanged, a new refresh token is issued, and the previous one becomes invalid. For the next token exchange, the new refresh token must be used. The new refresh token will also have a validity of 30 days.
 
-**Client ID a Client Secret** - slouží pro autentizaci aplikace při výměně tokenů.
+**Client ID and Client Secret** - Used to authenticate the application during token exchange.
 
-**Příkaz pro výměnu tokenů** - tímto příkazem při expiraci access tokenu získáte nový access token a refresh token s plnou platností.
+**Token Exchange Command** - This command allows you to obtain a new access token and refresh token with full validity when the access token expires.
 
-**Odkaz na správu tokenů** - vede na aplikaci ke správě účtu a tokenů. Zde se můžete odhlásit ze zařízení a revokovat
-tak refresh token.
+**Token Management Link** - Provides access to the application for managing your account and tokens. Here, you can log out from a device and revoke the refresh token.
 
-### Jak pracovat s tokeny
-#### 1. Přístup k API s Access Tokenem
-Po získání access tokenu ho přípojíte k požadavkům na API jako autorizační hlavičku:
+### How to Work with Tokens
+
+#### 1. Accessing the API with an Access Token
+
+After obtaining an access token, include it in your API requests as an authorization header:
 
     Authorization: Bearer <access_token>
 
-Přidání této hlavičky k požadavkům umožní API ověřit vaši identitu a získat potřebná oprávnění.
-Volání GSS OData API pak může vypadat následovně:
+Adding this header to your requests allows the API to verify your identity and grant the necessary permissions.
+
+A GSS OData API call may look as follows:
+
 ```shell
 curl -X GET "https://collgs.cesnet.cz/odata/v1/Products?\$filter=startswith(Name,'S1')%20and%20contains(Name,'SLC')" \
 -H "Authorization: Bearer $ACCESS_TOKEN"  \
 -H "Accept: application/json"
 ```
 
-#### 2. Obnovení access tokenu pomocí refresh tokenu
-Jakmile access token vyprší, místo opětovného přihlášení můžete využít refresh token k získání nového access tokenu.
-Proces probíhá zasláním POST požadavku, který je předpřipravený jako _curl_ dotaz
-na stránce Token portálu. Tento požadavek využívá volání Pythonu, pokud využíváte Python verzi 3, nahraďte v příkazu
-_python_ za _python3_. Tento požadavek Vám spolu s dalšími informacemi vydá nový access token, který má platnost 8 hodin,
-a refresh token s platností 30 dní.
-Ve formátu JSON bude odpověď vypadat následovně:
+#### 2. Refreshing the Access Token Using the Refresh Token
+
+When the access token expires, you can use the refresh token to obtain a new access token without logging in again.
+
+The process involves sending a POST request, which is pre-configured as a _curl_ command on the Token Portal page.  If you are using Python version 3, you may need to replace _python_ with _python3_ in the command.  
+
+This request will return a new access token with an 8-hour validity, along with a refresh token valid for 30 days.
+
+The response in JSON format will look as follows:
 
     {
     "access_token": "eyJh....gywQ",
@@ -89,27 +98,31 @@ Ve formátu JSON bude odpověď vypadat následovně:
     "scope": "openid email profile"
     }
 
-Nový access token lze dále využívat pro dotazy v GSS, novým refresh tokenem nahraďte ten starý.
+You can use the new access token for further requests in GSS, and replace the old refresh token with the new one.
 
-#### 3. Bezpečné ukládání tokenů
-**Access token**: Ukládejte v paměti (např. v proměnné nebo cache) pouze po dobu, kdy je aktivní. Jelikož má kratší platnost,
-není potřeba jej dlouhodobě uchovávat.
+#### 3. Secure Token Storage
 
-**Refresh token**: Doporučuje se ukládat do bezpečného úložiště, např. do databáze nebo do šifrovaného úložiště.
-Refresh token má delší platnost, a proto by měl být uložen na bezpečném místě s omezeným přístupem.
+**Access Token**:  
+Store in memory (e.g., a variable or cache) only while it is active. Since it has a shorter validity period, there is no need for long-term storage.  
 
-#### 4. Revokování tokenů
-V případě potřeby lze tokeny revokovat pomocí aplikace na správu účtů, která je odkazována 
-ve spodní části Token portálu. Odhlášení (revokace tokenu) se nachází v části Account security > Device activity.
-Volbou _Sign out_ se odhlásí vybrané zařízení, volba _Sign out all devices_ slouží pro hromadné odhlášení.
+**Refresh Token**:  
+It is recommended to store in a secure location, such as a database or encrypted storage.
+
+Since the refresh token has a longer validity period, it should be stored securely with limited access.  
+
+#### 4. Token Revocation
+
+If necessary, tokens can be revoked using the account management application linked at the bottom of the Token Portal.
+
+Revocation (logging out) is located under **Account Security > Device Activity**.
+
+Use the _Sign out_ option to log out a specific device, or _Sign out all devices_ for a complete logout.  
 
 ![token_revoke.png](token_revoke.png)
 
-### Výměna tokenů
-V případě, že již pracujete s tokeny z EGI Check-inu, je možné je bez nutnosti dalšího přihlášení vyměnit
-za tokeny umožňující přístup do systému GSS. V takovém případě odešlete platný access token vydaný EGI Check-inem
-metodou POST na endpoint [https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token) a do těla požadavku
-připojíte následující:
+### Token Exchange
+
+If you are already working with tokens from EGI Check-in, it is possible to exchange them for tokens granting access to the GSS system without further login. In this case, send a valid access token issued by EGI Check-in via POST method to the endpoint [https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token) and attach the following to the request body:
 
     {
     "client_id": "token-exchange",
@@ -118,4 +131,4 @@ připojíte následující:
     "subject_issuer": "https://aai.egi.eu/auth/realms/egi"
     }
 
-V odpovědi získáte access token, který lze použít pro volání API GSS.
+In the response, you will receive an access token that can be used for GSS API calls.
