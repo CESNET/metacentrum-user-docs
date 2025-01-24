@@ -22,7 +22,7 @@ The NGC packages are placed in the directory `/cvmfs/singularity.metacentrum.cz`
 To use a selected version of TensorFlow image, run the image within interactive job as:
 
 ```
-qsub -I -l select=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60:cuda_version=11.0 -q gpu -l walltime=4:00:00
+qsub -I -l select=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60:cuda_version=11.0 -l walltime=4:00:00
 singularity shell --nv /cvmfs/singularity.metacentrum.cz/NGC/TensorFlow\:21.03-tf2-py3.SIF
 ```
 <!-- TODO

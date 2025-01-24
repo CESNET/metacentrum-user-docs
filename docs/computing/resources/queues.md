@@ -2,18 +2,20 @@
 
 ## Default queues
 
-Queues are a basic concept of PBS. When submitting a job, the user normally does not have to specify any queue. There exists a default queue, namely `default@pbs-m1.metacentrum.cz` where the job goes if not specified otherwise. Then it is automatically sorted to respective queues based on duration of the job (walltime).
+Queues are a basic concept of PBS. When submitting a job, the user normally does not have to specify any queue. There exists a default queue, namely `default@pbs-m1.metacentrum.cz` where the job goes if not specified otherwise. Then it is automatically sorted to respective queues based on duration of the job (walltime) and/or numbers of GPUs.
 
 ## Specific queues
 
-In some cases, it is possible or even recommended that the user choses a particular queue. This is the case when the job is characterized not by walltime as a major limiting factor, but by another resource - memory, GPU usage etc.
+In some cases, it is possible or even recommended that the user choses a particular queue. This is the case when the job cannot be routed only according to walltime/no. of GPUs.
 
 | Queue name | Description |
 |------------|-------------|
-| gpu@pbs-m1.metacentrum.cz  | Jobs requiring at least 1 GPU, up to 24 hours walltime |
-| gpu\_long@pbs-m1.metacentrum.cz | Jobs requiring at least 1 GPU, up to 2 weeks walltime |
 | large\_mem@pbs-m1.metacentrum.cz | Jobs requiring 500 GB or more, up to 1 week walltime |
+| gpu\_dgx@pbs-m1.metacentrum.cz   | [Jobs requiring >= 4 GPUS with NVlink](../../../computing/gpu-comput/dgx) |
+<!--
+TODO - jak s UV frontama, odkud budou routovane a musi si o ne uzivatel zadat?
 | [uv@cerit-pbs.cerit-sc.cz](https://metavo.metacentrum.cz/pbsmon2/queue/uv@cerit-pbs.cerit-sc.cz) | Jobs requiring >100 CPUs OR >500 GB of memory, accessible only from zuphux [frontend](../../../computing/infrastructure/frontends) |
+-->
 
 ## Queue info by qstat
 

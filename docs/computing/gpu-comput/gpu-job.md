@@ -1,16 +1,17 @@
 # GPU job
 
-To run GPU calculation, the user needs to specify **number of GPU cards** only. The PBS scheduler will route the job automatically into one of the **`gpu*`** queues.
-
-| available GPU queues | Walltime range | 
-|------------|----------------|
-| gpu@pbs-m1.metacentrum.cz | 00:00:00 - 24:00:00 |
-| gpu\_long@pbs-m1.metacentrum.cz | 24:00:01 - 336:00:00 |
+To run GPU calculation, the user needs to specify **number of GPU cards** only. The PBS scheduler will route the job automatically into one of the **[gpu queues](https://metavo.metacentrum.cz/pbsmon2/queues/list)**.
 
 !!! tip "User group `iti` has a reserved GPU queue"
     Members of the [`iti` group](https://metavo.metacentrum.cz/pbsmon2/group/pbs-m1.metacentrum.cz/iti) (Institute of Theoretical Informatics, University of West Bohemia) have their own GPU cluster `konos` with priority access through direct submit to `iti@pbs-m1.metacentrum.cz` queue.
 
 ## PBS resources
+
+### ngpus
+
+Parameter `ngpus` specifies how many GPU cards the job will use.
+
+    qsub -q gpu -l select=1:ncpus=1:ngpus=2 ... 
 
 ### gpu mem
 

@@ -18,7 +18,6 @@ To use Cuda, you will also need to [accept the license for cuDNN library](https:
 
 ### GPU jobs
 
-- GPU queues: **gpu** (**24 hours max**) and **gpu_long** (**up to 336 hours**), both with open access for all MetaCentrum members
 - GPU jobs on the **konos** cluster can be also run via the priority queue **iti** (queue for users from ITI - Institute of Theoretical Informatics, Univ. of West Bohemia)
 - **zubat** cluster is available for any job which will run 24 hours at most.
 - Users from CEITEC MU and NCBR can run jobs via privileged queues on the **zubat** cluster.
@@ -26,9 +25,9 @@ To use Cuda, you will also need to [accept the license for cuDNN library](https:
 
 **Requesting GPUs**
 
-The key scheduling constraint is to prevent jobs from sharing GPUs. To ensure this always use the `gpu=X` flag in qsub and **request one of the gpu queues** (`gpu`, `gpu_long`, `iti`).
+The key scheduling constraint is to prevent jobs from sharing GPUs. To ensure this always use the `gpu=X` flag in qsub.
 
-    qsub -l select=1:ncpus=1:mem=10gb:ngpus=X -q gpu
+    qsub -l select=1:ncpus=1:mem=10gb:ngpus=X 
 
 where `X` means a number of GPU cards required. By default
 
@@ -38,15 +37,15 @@ If a job requires more GPU cards than it asks (or is available), prolog does not
 
 To plan your job on clusters with certain compute capability, use qsub command like this:
 
-    qsub -q gpu -l select=1:ncpus=1:ngpus=X:gpu_cap=cuda35 <job batch file>
+    qsub -l select=1:ncpus=1:ngpus=X:gpu_cap=cuda35 <job batch file>
 
 Using the PBS parameter `gpu_mem` is possible to specify the **minimum amount of memory** that the GPU card will have.
 
-    qsub -q gpu -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb ...
+    qsub -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb ...
 
 **Example**
 
-    qsub -I -q gpu -l select=1:ncpus=1:ngpus=1:scratch_local=10gb:gpu_mem=10gb -l walltime=24:0:0
+    qsub -I -l select=1:ncpus=1:ngpus=1:scratch_local=10gb:gpu_mem=10gb -l walltime=24:0:0
 
 Interactive job requests 1 machine, 1 CPU and 1 GPU card for 24 hours.
 

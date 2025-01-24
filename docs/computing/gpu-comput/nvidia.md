@@ -32,7 +32,7 @@ In general, the Singularity is run as singularity `run image.SIF` or `singularit
 
 Start interactive job:
 
-    qsub -I -l select=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60:cuda_version=11.0 -q gpu -l walltime=4:00:00
+    qsub -I -l select=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60:cuda_version=11.0 -l walltime=4:00:00
 
 Run singularity image with shell:
 
@@ -47,13 +47,14 @@ You will get a shell inside container and it is ready to run commands, e.g.:
 
 Prepare e.g. runPyTorch\_job.sh script to run calculation within PyTorch image:
 
-    #!/bin/bash
-    #PBS -N PyTorch_Job
-    #PBS -q gpu
-    #PBS -l select=1:ncpus=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60
-    #PBS -l walltime=4:00:00
-    #PBS -m ae
-    singularity run --nv /cvmfs/singularity.metacentrum.cz/NGC/PyTorch\:20.09-py3.SIF /your/work_dir/run_script.sh
+```
+#!/bin/bash
+#PBS -N PyTorch_Job
+#PBS -l select=1:ncpus=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60
+#PBS -l walltime=4:00:00
+#PBS -m ae
+singularity run --nv /cvmfs/singularity.metacentrum.cz/NGC/PyTorch\:20.09-py3.SIF /your/work_dir/run_script.sh
+```
 
 Submit the script in usual way:
 
@@ -63,7 +64,7 @@ Submit the script in usual way:
 
 It is also possible to run NGC images directly from Docker Hub using interactive job.
 
-    qsub -I -l select=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60:cuda_version=11.0 -q gpu -l walltime=4:00:00
+    qsub -I -l select=1:mem=16gb:scratch_local=10gb:ngpus=1:gpu_cap=cuda60:cuda_version=11.0 -l walltime=4:00:00
 
 Within the interactive job, first create **tmp directory** within scratch directory and set `SINGULARITY_TMPDIR` to this director. Default `/tmp` has limited quota.
 

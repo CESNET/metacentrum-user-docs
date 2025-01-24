@@ -131,7 +131,7 @@ Example:
 
 Resource name: `ngpus`. Default value: `0`.
 
-    -l select=ncpus=1:ngpus=2 -q gpu
+    -l select=ncpus=1:ngpus=2 
 
 ### **OS**
 
