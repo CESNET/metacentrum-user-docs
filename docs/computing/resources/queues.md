@@ -1,6 +1,6 @@
 # Queues
 
-## Default queues
+## Default queue
 
 Queues are a basic concept of PBS. When submitting a job, the user normally does not have to specify any queue. There exists a default queue, namely `default@pbs-m1.metacentrum.cz` where the job goes if not specified otherwise. Then it is automatically sorted to respective queues based on duration of the job (walltime) and/or numbers of GPUs.
 
@@ -10,12 +10,9 @@ In some cases, it is possible or even recommended that the user choses a particu
 
 | Queue name | Description |
 |------------|-------------|
-| large\_mem@pbs-m1.metacentrum.cz | Jobs requiring 500 GB or more, up to 1 week walltime |
-| gpu\_dgx@pbs-m1.metacentrum.cz   | [Jobs requiring >= 4 GPUS with NVlink](../../../computing/gpu-comput/dgx) |
-<!--
-TODO - jak s UV frontama, odkud budou routovane a musi si o ne uzivatel zadat?
-| [uv@cerit-pbs.cerit-sc.cz](https://metavo.metacentrum.cz/pbsmon2/queue/uv@cerit-pbs.cerit-sc.cz) | Jobs requiring >100 CPUs OR >500 GB of memory, accessible only from zuphux [frontend](../../../computing/infrastructure/frontends) |
--->
+| [large\_mem@pbs-m1.metacentrum.cz](https://metavo.metacentrum.cz/pbsmon2/queue/large_mem@pbs-m1.metacentrum.cz) | Jobs requiring 500 GB or more, up to 1 week walltime |
+| [gpu\_dgx@pbs-m1.metacentrum.cz](https://metavo.metacentrum.cz/pbsmon2/queue/gpu_dgx@pbs-m1.metacentrum.cz)   | [Jobs requiring >= 4 GPUS with NVlink](../../../computing/gpu-comput/dgx) |
+| [uv18@pbs-m1.metacentrum.cz](https://metavo.metacentrum.cz/pbsmon2/queue/uv18@pbs-m1.metacentrum.cz) | Jobs requiring >100 CPUs OR >500 GB of memory |
 
 ## Queue info by qstat
 

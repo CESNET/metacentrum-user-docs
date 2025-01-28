@@ -6,7 +6,7 @@ At the same time, we are preparing to transfer from [PBS Pro](https://altair.com
 
 A new Open PBS server `pbs-m1.metacentrum.cz` is up and running.
 
-Currently the PBS Pro servers `meta-pbs.metacentrum.cz`, `cerit-pbs.cerit-sc.cz` and `elixir-pbs.elixir-czech.cz` are being decommissioned and their workload will be transferred to `pbs-m1.metacentrum.cz` only.
+Old PBS Pro servers `meta-pbs.metacentrum.cz`, `cerit-pbs.cerit-sc.cz` and `elixir-pbs.elixir-czech.cz` have been decommissioned and their workload was transferred to `pbs-m1.metacentrum.cz`.
 
 ## Elixir users
 
@@ -22,7 +22,7 @@ Users of the `elixir` group shall submit their jobs to reserved queue `elixircz@
 
 ### Python on Debian 12
 
-- typing "python"  on `zenith` will get you 3.x.x version of Python
+- typing "python"  on `zenith` frontend will get you 3.x.x version of Python
 - if you need some 2.x.x version of Python, you have to add it through a module (`module avail python/`)
 
 ### Missing libraries
