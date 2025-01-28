@@ -17,7 +17,7 @@ Parameter `ngpus` specifies how many GPU cards the job will use.
 
 PBS parameter `gpu_mem` specifies minimum amount of memory that the GPU card will have. 
 
-    qsub -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb ...
+    qsub -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb -l walltime=1:00:00
 
 ### gpu\_cap
 
@@ -42,8 +42,8 @@ The requirements can be combined in a comma-separated string.
 
 Example:
 
-    qsub -l select=1:ngpus=1:gpu_cap=\"sm_65,compute_70\":mem=4gb   # 6.5 or 7.0 and higher
-    qsub -l 'select=1:ngpus=1:gpu_cap="sm_65,compute_70":mem=4gb'   # dtto
+    qsub -l select=1:ngpus=1:gpu_cap=\"sm_65,compute_70\":mem=4gb -l walltime=1:00:00  # 6.5 or 7.0 and higher
+    qsub -l 'select=1:ngpus=1:gpu_cap="sm_65,compute_70":mem=4gb' -l walltime=1:00:00  # dtto
 
 !!! note
     Note that the quotes enclosing the `gpu_cap` options must be protected against shell expansion either by escaping them or by enclosing the whole `qsub` command into single quotes.
