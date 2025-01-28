@@ -11,13 +11,13 @@ To run GPU calculation, the user needs to specify **number of GPU cards** only. 
 
 Parameter `ngpus` specifies how many GPU cards the job will use.
 
-    qsub -q gpu -l select=1:ncpus=1:ngpus=2 ... 
+    qsub -l select=1:ncpus=1:ngpus=2 ... 
 
 ### gpu mem
 
 PBS parameter `gpu_mem` specifies minimum amount of memory that the GPU card will have. 
 
-    qsub -q gpu -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb ...
+    qsub -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb ...
 
 ### gpu\_cap
 
