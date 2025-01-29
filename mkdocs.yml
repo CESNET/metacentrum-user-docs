@@ -140,6 +140,7 @@ nav:
     - support/index.md
     - support/faqs.md
     - support/outages.md
+    - support/contribute.md
   - Tutorials: tutorials/index.md
   - 'Related projects': 
     - related/galaxy/index.md
