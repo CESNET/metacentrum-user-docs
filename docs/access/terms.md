@@ -14,7 +14,7 @@ The user account **expires annually on the 2nd of February**. By the end of Dece
 
 If the account is not prolonged till 2nd February, it expires. The data, login and username still exist, however, and can be reactivated upon request. After 3 years of grace period, the expired account is deleted together with all its data.
 
-Expired accounts can also prolonged anytime during the entire year [here]([https://metavo.metacentrum.cz/osobniv3/wayf/proxy.jsp?locale=cs&target=https%3A%2F%2Fsignup.e-infra.cz%2Ffed%2Fregistrar%2F%3Fvo%3Dmeta%26locale%3Dcs](https://metavo.metacentrum.cz/osobniv3/wayf/proxy.jsp?locale=en&target=https%3A%2F%2Fsignup.e-infra.cz%2Ffed%2Fregistrar%2F%3Fvo%3Dmeta%26locale%3Den)).
+Expired accounts can also prolonged anytime during the entire year [here](https://metavo.metacentrum.cz/osobniv3/wayf/proxy.jsp?locale=en&target=https%3A%2F%2Fsignup.e-infra.cz%2Ffed%2Fregistrar%2F%3Fvo%3Dmeta%26locale%3Den).
 
 ### Acknowledgements and publications
 
