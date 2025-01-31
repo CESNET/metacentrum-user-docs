@@ -1,4 +1,5 @@
 # NVIDIA DGX H100 Usage
+
 ## Technical Parameters
 
 The system consists of a single compute node, **capy.cerit-sc.cz**, with the following specifications:
@@ -9,14 +10,12 @@ The system consists of a single compute node, **capy.cerit-sc.cz**, with the fol
 
 ## Access Conditions
 
-> **Note:** Users must demonstrate that their jobs support NVLink and can efficiently utilize at least **2 GPUs**, preferably **4 or all 8 GPUs** simultaneously. A qualified request must be submitted to [meta@cesnet.cz](mailto:meta@cesnet.cz).
-
-Users can apply for computational resources for a **3-month period** through the **Grant Competition**, which is open to research, scientific, and educational organization employees, as well as PhD students.
+Users can apply for computational resources for a **3-month period** through the **DGX Grant Competition**, which is open to research, scientific, and educational organization employees, as well as PhD students.
 
 **Applicants must demonstrate:**
 
 - The ability to utilize **at least 2, preferably 4 or all 8 GPUs**
-- Effective use of **NVLink**
+- Effective use of **NVLink** (Multi-GPU) and **large GPU memory**
 - Research potential and expected results
 
 ### Approval Process
