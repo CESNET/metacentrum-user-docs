@@ -2,7 +2,7 @@
 
 ## Technical Parameters
 
-The system consists of a single compute node, **capy.cerit-sc.cz**, with the following specifications:
+The NVIDIA DGX H100 system consists of a single compute node, **capy.cerit-sc.cz**, with the following specifications:
 
 - **112 CPU cores**
 - **2 TB RAM**
