@@ -29,7 +29,7 @@ The application review consists of **three steps**:
 
 ## OpenAccess Application
 
-- OpenAccess Application requests must follow the specified structure.
+- OpenAccess Application requests must follow the structure specified below.
 - The total length must not exceed **5 pages**, including figures and tables.
 - Submit a **PDF file** with the proposal to [meta@cesnet.cz](mailto:meta@cesnet.cz).
 
