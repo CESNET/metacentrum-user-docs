@@ -32,6 +32,7 @@ The approval process consists of 3 steps
 
  - Open Access Application requests should be structured as follows.
  - Please ensure that the entire application is a maximum of 5 pages, including figures and tables.
+ - Send a PDF with the proposal to <meta@cesnet>.
  
 ### Popular abstract
 
@@ -58,9 +59,9 @@ Justify the requested computational resources. Include an estimation of the requ
 
 ## Usage
 
-The cluster is accessible only via queue `gpu_dgx@pbs-m1.metacentrum.cz`.
+After your request is approved, the cluster is accessible only via queue `gpu_dgx@pbs-m1.metacentrum.cz`.
 
-Submit the job into `gpu_dgx` queue as
+Submit the job into the `gpu_dgx` queue as
 
     qsub -q gpu_dgx@pbs-m1.metacentrum.cz -l select=1:ngpus=4 -l walltime=10:00:00
 
