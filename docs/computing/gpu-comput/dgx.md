@@ -1,75 +1,93 @@
-# NVIDIA DGX H100 usage
+# NVIDIA DGX H100 Usage
+## Technical Parameters
 
-## Technical parameters
+The system consists of a single compute node, **capy.cerit-sc.cz**, with the following specifications:
 
-1 compute node capy.cerit-sc.cz with 
- - 112x CPU cores,
- - 2 TB RAM and
- - 8x NVIDIA H100 GPU accelerators (80 GB GPU MEM each)
+- **112 CPU cores**
+- **2 TB RAM**
+- **8× NVIDIA H100 GPU accelerators** (each with **80 GB GPU memory**)
 
+## Access Conditions
 
-## Access conditions
+> **Note:** Users must demonstrate that their jobs support NVLink and can efficiently utilize at least **4 GPUs**, preferably all **8 GPUs** simultaneously. A qualified request must be submitted to [meta@cesnet.cz](mailto:meta@cesnet.cz).
 
-**!!! note: Users should prove that their jobs support NVLink and can use at least 4 or all 8 GPU cards at once. 
-The qualified request has to be sent to <meta@cesnet>.**
+Users can apply for computational resources for a **3-month period** through the **Grant Competition**, which is open to research, scientific, and educational organization employees, as well as PhD students.
 
-Users can apply for computational resources for a 3-month period in the Grant Competition for research, scientific and educational organisation employees and PhD students.
+**Applicants must demonstrate:**
 
-DGX users need to prove:
+- The ability to utilize **at least 2, preferably 4 or all 8 GPUs**
+- Effective use of **NVLink**
+- Research potential and expected results
 
-  - be able to use all 8 (or at least 4) GPUs 
-  - be able to make effective use of NVLink
-  - research potential and results
+### Approval Process
 
-The approval process consists of 3 steps
+The application review consists of **three steps**:
 
-* PDF file with OpenAccess Application request has to be sent to <meta@cesnet.cz>
-* Internal review
-* Applicants will be notified of the competition results within 5 working days
- 
+1. Submission of a **PDF file** containing the OpenAccess Application request to [meta@cesnet.cz](mailto:meta@cesnet.cz)
+2. **Internal review** of the request
+3. **Notification** of competition results within **5 working days**
 
-## OpenAccess Application 
+## OpenAccess Application
 
- - Open Access Application requests should be structured as follows.
- - Please ensure that the entire application is a maximum of 5 pages, including figures and tables.
- - Send a PDF with the proposal to <meta@cesnet>.
- 
-### Popular abstract
+### Submission Guidelines
 
-Include a popular abstract in a form which is immediately available for publication on the website or in newspapers, etc., outlining the proposed research, the methods to be used, and the expected impact, in language appropriate for the general public.
+- OpenAccess Application requests must follow the specified structure.
+- The total length must not exceed **5 pages**, including figures and tables.
+- Submit a **PDF file** with the proposal to [meta@cesnet.cz](mailto:meta@cesnet.cz).
 
-### Methods and state-of-the-art
+### Popular Abstract
 
-Describe the proposed research and its aims and objectives. Be concise but with enough detail that the reviewers can understand your intent.
+Provide a **popular abstract** that can be published on a website, in newspapers, or similar platforms. This abstract should describe:
 
-Describe if the application is directly related to solving an approved H2020, ERC, or EuroHPC research project, or other peer-reviewed national or international project.
+- The proposed research
+- The methodologies used
+- The expected impact
 
-Describe theoretical and computational methods you plan to employ to achieve your aims and objectives. Compare these to the established state-of-the-art within the field.
+The abstract should be written in a way that is easily understandable by the general public.
 
-Describe planned results, publications, etc.
+### Methods and State-of-the-Art
 
-### Computational approach, parallelization, and scalability
+- Clearly define the research aims and objectives.
+- Provide sufficient detail for reviewers to understand the proposal.
+- Specify if the research is part of an approved **H2020, ERC, EuroHPC**, or other peer-reviewed **national or international projects**.
+- Describe the theoretical and computational methods to be used, comparing them with the current **state-of-the-art**.
+- Outline expected results, including planned publications.
 
-Describe the computational techniques and platforms a.-g. that you will use. Consider including the names of codes, programming languages, libraries, and other software to be used. Describe parallelization and scalability aspects. Mainly, prove that your jobs can use NVLink (4 or 8 GPU cards at once). Provide references and data for your application’s parallel performance, speedup, and scalability if possible.
+### Computational Approach, Parallelization, and Scalability
 
-### Computational resources
+- Describe the **computational techniques** and platforms to be used.
+- Include details on **codes, programming languages, libraries, and other software**.
+- Explain **parallelization and scalability**, especially in relation to NVLink (proving that your jobs can effectively utilize **4 or 8 GPUs** simultaneously).
+- If possible, provide references and data on your application’s **parallel performance, speedup, and scalability**.
 
-Justify the requested computational resources. Include an estimation of the required CPU, RAM, and GPU hours. Provide the basis on which the requested resources were estimated. 
+### Computational Resources
 
+- Justify the **requested computational resources**.
+- Provide an estimate of the required **CPU, RAM, and GPU hours** in total and also for a typical job.
+- Explain how the estimated resources were calculated.
 
 ## Usage
 
-After your request is approved, the cluster is accessible only via queue `gpu_dgx@pbs-m1.metacentrum.cz`.
+Once your request is **approved**, the **DGX H100 cluster** is accessible **only via the `gpu_dgx` queue** on:
 
-Submit the job into the `gpu_dgx` queue as
+    gpu_dgx@pbs-m1.metacentrum.cz
 
-    qsub -q gpu_dgx@pbs-m1.metacentrum.cz -l select=1:ngpus=4 -l walltime=10:00:00
+To submit a job to the **gpu_dgx** queue, use the following command:
+
+```sh
+qsub -q gpu_dgx@pbs-m1.metacentrum.cz -l select=1:ngpus=4 -l walltime=10:00:00
+```
+
+### Example Job Submission
+
+If you require **8 GPUs for 10 hours**, request the entire node by adding the following parameters to your `qsub` command:
+
+```sh
+qsub -q gpu_dgx -l select=1:ngpus=8:ncpus=112:mem=2000g:scratch.ssd=1tb -l place=exclhost -l walltime=10:00:00
+```
+
+For additional support, contact [meta@cesnet.cz](mailto:meta@cesnet.cz).
 
 
-**Example**
-
-If you need 8 GPU cards for 10 hours, you should ask for the whole node by adding the following parameters to your qsub
-
-    qsub -q gpu_dgx -l select=1:ngpus=8:ncpus=112:mem=2000g:scratch.ssd=1tb -l place=exclhost  -l walltime=10:00:00
 
 
