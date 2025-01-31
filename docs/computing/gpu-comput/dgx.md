@@ -29,6 +29,10 @@ The application review consists of **three steps**:
 ## OpenAccess Application
 
 - OpenAccess Application requests must follow the structure specified below.
+  - Popular Abstract
+  - Methods and State-of-the-Art
+  - Computational Approach, Parallelization, and Scalability
+  - Requested Computational Resources
 - The total length must not exceed **5 pages**, including figures and tables.
 - Submit a **PDF file** with the proposal to [meta@cesnet.cz](mailto:meta@cesnet.cz).
 
@@ -57,7 +61,7 @@ The abstract should be written in a way that is easily understandable by the gen
 - Explain **parallelization and scalability**, especially in relation to NVLink (proving that your jobs can effectively utilize **4 or 8 GPUs** simultaneously).
 - If possible, provide references and data on your application’s **parallel performance, speedup, and scalability**.
 
-### Computational Resources
+### Requested Computational Resources
 
 - Justify the **requested computational resources**.
 - Provide an estimate of the required **CPU, RAM, and GPU hours** in total and also for a typical job.
