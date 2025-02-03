@@ -1,0 +1,44 @@
+---
+title: SRA Toolkit
+---
+```bash
+module add mambaforge;
+mamba activate sra-tools-3.0.3   # as an environment
+```
+
+```bash
+module avail sratoolkit/         # as a module                             
+```
+
+[SRA Toolkit](https://github.com/ncbi/sra-tools/wiki/) is  a collection of tools and libraries for using data in the INSDC Sequence Read Archives. Much of the data submitted these days contain alignment information, for example in BAM, Illumina export.txt, and Complete Genomics formats. 
+
+With aligned data, NCBI uses Compression by Reference, which only stores the differences in base pairs between sequence data and the segment it aligns to.
+
+## Usage
+
+### Known issue
+
+If you try to use the tools like:
+
+```
+cd $SCRATCHDIR
+cp -r /storage/brno2/home/$user/data/* .
+fastq-dump --split-3 FILE.sra > out.fastq
+```
+
+you will get the error:
+
+```
+2013-04-16T12:54:30 fastq-dump.2.3.2 err: libs/vfs/resolver.c:790:VResolverAlgRemoteResolve: 
+name not found while resolving tree within virtual file system module - failed to open 'FILE.sra'
+```
+
+**Solution:** 
+
+The tools do not count with the current directory path. So you can repair the computation simply by adding the path to your file:
+
+```bash
+fastq-dump --split-3 ./FILE.sra > out.fastq
+```
+
+

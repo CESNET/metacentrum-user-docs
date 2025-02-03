@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: omero-server
+spec:
+  type: ClusterIP
+  ports:
+  - port: 4064
+    name: ssl
+    targetPort: 4064
+  - port: 4063
+    name: plain
+    targetPort: 4063
+  selector:
+    app: omero-server

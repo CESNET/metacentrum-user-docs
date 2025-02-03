@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vm-pvc-example
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: vm-[namespace].dyn.cloud.e-infra.cz
+spec:
+  type: LoadBalancer
+  selector:
+    app: vm-pvc-example
+  ports:
+  - port: 22
+    targetPort: 2222
+  externalTrafficPolicy: Local
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vm-pvc-example
+spec:
+  selector:
+    matchLabels:
+      app: vm-pvc-example
+  replicas: 1
+  serviceName: vm-pvc-example
+  template:
+    metadata:
+      labels:
+        app: vm-pvc-example
+    spec:
+      terminationGracePeriodSeconds: 5
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: vm-pvc-example
+          image: cerit.io/pub/ssh-base:d10
+          env:
+          - name: SSH_KEY
+            valueFrom:
+              secretKeyRef:
+                key: ssh-publickey
+                name: ssh-publickey
+          ports:
+          - containerPort: 2222
+            name: ssh
+          securityContext:
+            privileged: false
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          resources:
+            limits:
+              cpu: "1"
+              memory: "5Gi"
+              ephemeral-storage: "20Gi"
+              nvidia.com/gpu: 1
+          volumeMounts:
+          - name: home
+            mountPath: /home/user
+          - name: shm
+            mountPath: /dev/shm
+      volumes:
+      - name: shm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi
+  volumeClaimTemplates:
+  - metadata:
+      name: home
+    spec:
+      accessModes: [ "ReadWriteMany" ]
+      storageClassName: "nfs-csi"
+      resources:
+        requests:
+          storage: 8Gi

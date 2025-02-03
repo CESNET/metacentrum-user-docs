@@ -1,0 +1,20 @@
+---
+title: qsub says "script contains cr, lf", what does this mean?
+---
+Described problem is caused by the fact that your batch script was written in non-Unix operational system (Windows) which uses different characters to mark end of a line.
+
+To get rid of the faulty endlines, use `dos2unix` command:
+
+```bash
+(BUSTER)user123@skirit:~$ dos2unix myscriph.sh
+```
+
+To test for the type of endlines, use command `file`:
+
+```bash
+(BUSTER)user123@skirit:~$ file myscriph.sh
+myscript.sh: UTF-8 Unicode text, with CRLF line terminators
+```
+
+If the `file` report `CRLF line terminators`, your script needs to be converted to run on Linux. 
+

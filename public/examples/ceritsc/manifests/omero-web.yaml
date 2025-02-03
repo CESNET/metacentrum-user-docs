@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omero-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omero-web
+  template:
+    metadata:
+      labels:
+        app: omero-web
+    spec:
+      securityContext:
+        fsGroupChangePolicy: OnRootMismatch
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: omero-web
+        image: openmicroscopy/omero-web-standalone
+        imagePullPolicy: IfNotPresent
+        securityContext:                                                          
+          runAsUser: 999 
+          runAsGroup: 998
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        env:
+        - name: OMEROHOST
+          value: omero-server
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        ports:
+        - containerPort: 4080
+          name: web
+        volumeMounts:
+        - name: omero-logs
+          mountPath: /opt/omero/web/OMERO.web/var/log
+      volumes:
+      - name: omero-logs
+        emptyDir: {}

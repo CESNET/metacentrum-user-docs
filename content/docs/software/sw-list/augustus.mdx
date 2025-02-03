@@ -1,0 +1,23 @@
+---
+title: Augustus
+---
+```bash
+module avail augustus/
+```
+
+[Augustus](http://bioinf.uni-greifswald.de/augustus/) is a gene prediction program for eukaryotes. It can be used as an ab initio program, which means it bases its prediction purely on the sequence. AUGUSTUS may also incorporate hints on the gene structure coming from extrinsic sources such as EST, MS/MS, protein alignments and syntenic genomic alignments.
+
+## Usage
+
+You may need to adjust environment variable `AUGUSTUS_CONFIG_PATH` to point to some writable directory with configurations. Eg.:
+
+```bash
+mkdir $SCRATCHDIR/augustus_configs
+cp -r $AUGUSTUS_CONFIG_PATH/* $SCRATCHDIR/augustus_configs/
+export AUGUSTUS_CONFIG_PATH=$SCRATCHDIR/augustus_configs
+```
+
+
+
+
+

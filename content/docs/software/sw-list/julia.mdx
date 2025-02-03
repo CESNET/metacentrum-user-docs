@@ -1,0 +1,46 @@
+---
+title: Julia
+---
+```bash
+module avail julia/
+```
+
+[Julia](https://julialang.org/) is a high-level, high-performance dynamic programming language for numerical computing. It provides a sophisticated compiler, distributed parallel execution, numerical accuracy, and an extensive mathematical function library.
+
+## Usage
+
+Ideal way how to use needed Julia modules is to install them into your home directory.
+
+```
+$ module add julia
+$ export JULIA_PKGDIR=$HOME/.julia   # suppose we are on brno2 storage
+$ julia
+julia> import Pkg
+julia> Pkg.status()
+julia> Pkg.add("MPI")       # install e.g. MPI package
+```
+
+**Julia usage on frontend**
+
+```
+$ export JULIA_PKGDIR=$HOME/.julia   
+$ export JULIA_DEPOT_PATH=$HOME/.julia
+$ export JULIA_PROJECT=$HOME/.julia 
+$ export JULIA_CPU_THREADS=$PBS_NCPUS
+$ export JULIA_CPU_THREADS=1          # we recommend to limit CPU to 1 or 2
+$ julia
+julia> Pkg.status()         # lists MPI package
+```
+
+**Julia usage in a job**
+
+```
+$ export JULIA_PKGDIR=/storage/brno2/home/username123/.julia   
+$ export JULIA_DEPOT_PATH=/storage/brno2/home/username123/.julia
+$ export JULIA_PROJECT=/storage/brno2/home/username123/.julia 
+$ export JULIA_CPU_THREADS=$PBS_NCPUS   # PBS_NCPUS is number of reserved CPUs
+$ julia
+julia> Pkg.status()       # lists MPI package
+
+```
+

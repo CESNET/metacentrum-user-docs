@@ -1,7 +1,0 @@
-# I get "No Kerberos credentials found" error after submitting the script
-
-You need a valid **Kerberos ticket (link do doku sekce Kerberos)**  to submit a job. Normally you ontain a Kerberos ticket when upon login to  a frontend. A ticket is valid for 10 hours. If the user stays logged in for longer time and Kerberos ticket expires meanwhile, the above-mentioned error message will appear.
-
-To check for current Kerberos tickets, use `klist`.
-
-To get a new Kerberos ticket, use `kinit`.

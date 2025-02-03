@@ -1,0 +1,65 @@
+---
+title: Autodock Vina
+---
+```bash
+module avail vina/
+```
+
+[AutoDock](https://vina.scripps.edu/) is a new program for drug discovery, molecular docking and virtual screening. AutoDock Vina achieves an approximately two orders of magnitude speed-up compared with the molecular docking software AutoDock 4, while also significantly improving the accuracy of the binding mode predictions.  
+
+## Usage
+
+**License**
+
+To be able to run Vina, the user must [accept the licence](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_vina). 
+
+### FAQs concerning Vina
+
+**Do I always have to specify the number of CPUs being used by Vina?**
+
+Yes, unless you are using the whole node for that particular job. Vina, if not restricted, automatically claims to use all processors on the node.
+
+**What input format does Vina use for receptor and ligand files?**
+
+The input format is PDBQT format, which is also used by Autodock4. PDBQT format is an extended PDB format with atomic charge and atom type information located in separate columns behind the coordinate columns.
+
+**What is the preferred application for the preparation of PDBQT files?**
+
+AutoDockTools which is a part of MGLTools, web page: http://mgltools.scripps.edu. Search for the detailed instructions on the pdbqt conversion on this web page: http://autodock.scripps.edu/faqs-help/tutorial/using-autodock-4-with-autodocktools. The instructions on the preparation of flexible receptor sidechains are also included.
+
+**What kind of charges should the PDBQT files contain? Gasteiger, RESP on HF/6-31G level?**
+
+The charges may be zero in fact, Vina does not use any charges at all.
+
+**How do I define the search space?**
+
+Vina uses a grid which is defined by its centre and number of points in each dimension. The grid spacing is always set to 1A and its purpose is just to inform Vina about the size of the search space; it has nothing to do with the accuracy of the computation.
+
+**How do I run a calculation?**
+
+The calculation can be set up by using command line arguments or a configuration file. To display the available command line arguments type vina --help. The configuration file syntax is: `command_line_argument = value`, each argument on its separate line. To run a calculation with a config file type `vina --config CONFIG_FILE_NAME`.
+
+Configuration file example:
+
+```
+receptor = ../../1xlw_spo_rigid.pdbqt
+flex = ../../1xlw_spo_flex.pdbqt
+ligand = ../../K05.pdbqt
+center_x = -2.518
+center_y = 4.689
+center_z = -9.073
+size_x = 28
+size_y = 32
+size_z = 28
+out = K05_out.pdbqt
+cpu = 1
+exhaustiveness = 8
+```
+
+**How do display the docking results?** 
+
+Use Pymol. PDBQT files can be directly opened, you have to display them by displaying all files. Use arrows to switch between different ligand binding modes.
+
+**I see incorrectly oriented hydrogens in the ligand and flexible receptor parts. How is this possible?**
+
+Vina uses a united-atom scoring function. In Vina, the degrees of freedom that only move hydrogens, such as the hydroxyl group torsions, are degenerate. Therefore, in the output, some hydrogen atoms can be expected to be positioned randomly (but consistent with the covalent structure). For a united-atom treatment, this is essentially a cosmetic issue. 

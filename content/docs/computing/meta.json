@@ -1,0 +1,12 @@
+{
+  "title": "Computing",
+  "pages": [
+    "concepts",
+    "run-basic-job",
+    "jobs",
+    "infrastructure",
+    "resources",
+    "gpu-comput",
+    "parallel-comput"
+  ]
+}

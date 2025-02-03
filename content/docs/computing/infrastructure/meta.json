@@ -1,0 +1,12 @@
+{
+  "title": "Infrastructure",
+  "pages": [
+    "frontends",
+    "storages",
+    "frontend-storage",
+    "scratch-storages",
+    "mount-storages",
+    "specific-nodes",
+    "decommissioned-storages"
+  ]
+}

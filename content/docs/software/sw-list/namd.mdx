@@ -1,0 +1,33 @@
+---
+title: NAMD
+---
+```bash
+module avail namd/
+module avail namd3.0_alpha9/
+```
+
+[NAMD](http://www.ks.uiuc.edu/Research/namd/) is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. 
+
+NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. 
+
+## Usage
+
+### License
+
+To use the application, you first need to [accept its license](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_namd). 
+
+### Paralellization
+
+NAMD uses special type of parallelization mechanism. Although it depends on OpenMPI, you should use that with special treatment when running through multiple nodes:
+
+```bash
+mpirun --map-by node:PE=$PBS_NCPUS namd2 ++ppn $((PBS_NCPUS-1)) <configuration_file>
+```
+
+It's good to use less nodes with many cores for a good performance.
+
+### NAMD + Orca
+
+For use NAMD with the support of Orca just directly add the path to orca binary to the configuration file and avoid using 'modoule add orca-4.2.1' as this is done automatically via the wrapper script. For details see the [Orca page](../../software/sw-list/orca.md).
+
+For effective run of NAMD + Orca QMMM combination it is necessary to run `namd2` a bit differently: namd2 releases only one processor while running the QM program so the job should have `(namdproc+qmgroups*(orcaprocs-1))` processors in common. Where `orcaprocs` is set by `qmConfigLine "%%pal nprocs XY end"` and `namd2` should be run without `+setcpuaffinity`. 

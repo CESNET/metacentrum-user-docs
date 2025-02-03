@@ -1,0 +1,57 @@
+---
+title: Wolfram Mathematica
+---
+```bash
+module avail mathematica/
+module avail gridmathematica/
+```
+
+[Mathematica](https://www.wolfram.com/mathematica/) is a CAS (Computer Algebra System) like Matlab and Maple. It is able to analyze data sets, solve complex differential equations, and develop an entire solution for fast, high-precision numeric and symbolic computation. Mathematica also provides 2D and 3D data visualization and programming capabilities.
+
+## Licences
+
+<Callout  type="warn" title="Warning">
+```bash
+**MetaCentrum provides no longer MetaCentrum-wide licences for Mathematica**. Currently there are Mathematica 9 licenses limited to UK and JCU members (in [Perun](https://perun.e-infra.cz) listed in `users-uk` and `users-jcu` groups, respectively). Apart from these, the only possibility is that users bring their own (institution's) license. If you are interested in using your Mathematica license within the MetaCentrum infrastructure, contact us for more details at meta@cesnet.cz.
+```
+</Callout>
+
+<Callout  type="info" title="Tip" icon="💡">
+```bash
+To enable computational-intensive computations within Mathematica, one can make use of its parallel/distributed extension called GridMathematica -- see details at [GridMathematica](../../software/sw-list/gridmathematica.md) documentation.
+```
+</Callout>
+
+## Usage
+
+### UK members
+
+```bash
+module add mathematica/9-uk
+math
+```
+
+### JCU members
+
+```bash
+module add mathematica/9-jcu
+math
+```
+
+### Example
+
+Example of interactive use:
+
+```
+$ qsub -I -l select=1:ncpus=1:mem=1gb:scratch_local=1gb:brno=true -l walltime=1:00:00
+$ module add mathematica/11.3
+$ math
+
+In[1]:= 1 + 1
+
+Out[1]= 2
+
+In[2]:= 1 + 2
+
+Out[2]= 3
+```

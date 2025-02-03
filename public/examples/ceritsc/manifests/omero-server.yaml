@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omero-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omero-server
+  template:
+    metadata:
+      labels:
+        app: omero-server
+    spec:
+      securityContext:
+        fsGroupChangePolicy: OnRootMismatch
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: omero-server
+        image: openmicroscopy/omero-server
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: CONFIG_omero_db_user
+          valueFrom:
+            secretKeyRef:
+              name: omero-db-app
+              key: username
+        - name: CONFIG_omero_db_pass
+          valueFrom:
+            secretKeyRef:
+              name: omero-db-app
+              key: password
+        - name: CONFIG_omero_db_name
+          value: omero
+        - name: CONFIG_omero_db_host
+          value: omero-rw
+        - name: ROOTPASS
+          value: omero-root-password
+        securityContext:                                                          
+          runAsUser: 1000 
+          runAsGroup: 997
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1Gi
+          limits:
+            cpu: 1
+            memory: 2Gi
+        ports:
+        - containerPort: 4064
+          name: ssl
+        - containerPort: 4063
+          name: plain
+        volumeMounts:
+        - name: omero-data
+          mountPath: /OMERO
+        - name: omero-logs
+          mountPath: /opt/omero/server/OMERO.server/var
+      volumes:
+      - name: omero-data
+        persistentVolumeClaim:
+          claimName: pvc-omero-data
+      - name: omero-logs
+        emptryDir: {}

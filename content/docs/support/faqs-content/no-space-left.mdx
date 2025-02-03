@@ -1,0 +1,36 @@
+---
+title: My job failed with something like "No space left on device / Input-output error"
+---
+Typically this happens when:
+
+- your job generates large output (.OU) or error (.ER) files into `/var/spool` directory, or 
+- your job generates large temporary file(s) in `/tmp` directory.
+
+Both `/var/spool` and `/tmp` directory are protected by a filesystem quota. On the affected node, your further jobs on the affected machine will not run until you remove the obtruding files.
+
+**How to remove the files:**
+
+1. login onto the affected machine, e.g. `$ ssh user_123@node_123.metacentrum.cz`
+2. list the files in your filesystem quota: `$ check-local-quota`
+3. inspect the files; if they contain valuable data, copy them to your home directory. After that remove them.
+4. check local quota again; there should be no files left
+
+**How to prevent the situation:**
+
+If the files were placed in /tmp directory, add
+
+```bash
+export TMPDIR=$SCRATCHDIR
+```
+
+to the beginning of your batch script. Some applications use variable `TMPDIR` to store temporary files. If the value of `TMPDIR` is not defined, the files are stored in  system `/tmp` directory.
+
+If the problem was caused by large `.OU` or `.ER` files, redirect them to /dev/null directory to a file in your scratch directory, e.g.
+
+```bash
+./your_application ..(options, input files etc)... 2> /dev/null    # redirect .ER to /dev/null
+./your_application ..(options, input files etc)... > $SCRATCHDIR/  # redirect .OU to scratch directory
+```
+
+
+

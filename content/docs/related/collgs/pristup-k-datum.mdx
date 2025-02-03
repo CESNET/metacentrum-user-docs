@@ -1,0 +1,90 @@
+---
+title: Přístup k datům
+---
+Národní uzel umožňuje přístup k datům misí Sentinel všemi běžnými způsoby. V současnosti se na něm neuplatňují žádná rychlostní ani kapacitní omezení.
+
+## Grafické uživatelské rozhraní
+
+Grafické uživatelské rozhraní se softwarem [Sentinel DataHub System](https://github.com/SentinelDataHub/DataHubSystem) se nachází na adrese [https://dhr1.cesnet.cz](https://dhr1.cesnet.cz/). 
+
+![pic](/img/meta/related/collgs/gui-sentinel-data-hub.png)
+
+Podrobný návod k používání webové aplikace se nachází na stránkách [collgs.czechspaceportal.cz](https://collgs.czechspaceportal.cz/uzivatelska-prirucka/manual-ke-collgs/). 
+
+## Strojový přístup
+
+Národní uzel CollGS podporuje strojový přístup protokoly *OData/Solr* nebo *OpenSearch*. Strojový přístup je vhodný pro automatické nástroje i pro dávkové stažení většího množství dat.
+
+Pro psaní jednoduchých skriptů se hodí především nástroje `curl` nebo `wget`. Doporučujeme použití souboru `.netrc` k uložení přihlašovacích údajů.
+
+Serverový systém DataHub Software (DHuS) publikuje dvě různá dotazovací rozhraní: *OData* a *OpenSearch*. Dostupná jsou na těchto URL:
+
+- [https://dhr1.cesnet.cz](https://dhr1.cesnet.cz)
+- [https://dhr1.cesnet.cz/odata/v1](https://dhr1.cesnet.cz/odata/v1)
+
+### Nalezení produktu
+
+Dotaz na dostupné produkty pak může vypadat např. takto:
+
+    curl -n 'https://dhr1.cesnet.cz/search?q=(platformname:Sentinel-2)&start=0&rows=100' > page0.xml
+
+Uvedený příklad stáhne z rozhraní OpenSearch a uloží ve formátu XML soubor s názvem `page0.xml` obsahující prvních sto produktů mise `Sentinel-2`.
+
+Při konstrukci dalších dotazů se postupuje analogicky.
+
+Kompletní dokumentace dotazovacího protokolu je součástí dokumentace [Open Access Hubu programu Copernicus](https://scihub.copernicus.eu/) v kapitole [APIs Overview](https://scihub.copernicus.eu/userguide/APIsOverview).
+
+Obdobný dotaz přes rozhraní OData by vypadal takto:
+
+    curl -n 'https://dhr1.cesnet.cz/odata/v1/Products?$skip=0&$top=100&startswith(Name,%27S2%27)' > page0.xml
+
+Pro dávkové stažení dlaždic podle jednoduchých kritérií lze s úspěchem využít také skript `dhusget` ze sady [podpůrných skriptů pro Sentinel DataHub](https://github.com/SentinelDataHub/Scripts).
+
+Složitější příklad vyhledání produktů podle většího počtu atributů může vyhlížet např. takto:
+
+    curl -sS -n 'https://dhr1.cesnet.cz/search?q=footprint:%22Intersects(50.2350,14.2455)%22%20AND%20platformname:Sentinel-2%20AND%20producttype:S2MSI2Ap%20AND%20beginPosition:%5b2018-09-20T00:00:00.000Z%20TO%20NOW%5d&start=0&rows=100'
+
+Atributy použité v tomto příkladu mají následující význam:
+
+- `Intersects` zeměpisné souřadnice, které má produkt pokrývat. Pozor, nejdříve se zapisuje zeměpisná šířka! Lze použít také datový typ `POLYGON()` pro vymezení oblasti
+- `platformname` Sentinel 1, 2, atd.
+- `producttype` Typ produktu, např. S2MSI1C
+- `beginPosition` Počátek časového intervalu, pro nějž se mají produkty vyhledat.
+- `start` Pořadové číslo prvního produktu, který se má vrátit. Slouží ke stránkování při větším množství výsledků.
+- `rows` Délka stránky, tj. kolik produktů se má vrátit na jeden dotaz.
+
+### Stažení produktu
+
+Běžné řádkové klienty je třeba instruovat, aby použily jméno souboru dodané serverem (Server name), jinak vznikne lokální soubor s názvem `$value`. Tedy např.:
+
+    curl -JOn "https://dhr1.cesnet.cz/odata/v1/Products('9770587e-f17c-4f87-8106-f226c77c4822')/\$value"
+
+Věnujte pozornost správnému ošetření znaku `$`.
+
+Server podporuje též stažení konkrétní komponenty z archivu, tj. není třeba stahovat celý ZIP kvůli získání jednoho spektrálního pásma, či dokonce jednoho metadatového souboru. Následující příklady stáhnou pouze soubor `manifest.safe`, resp. soubor TCI (True Color Image) z L2 produktu platformy Sentinel 2.
+
+    curl -JOn "https://dhr1.cesnet.cz/odata/v1/Products('9770587e-f17c-4f87-8106-f226c77c4822')/Nodes('S2B_MSIL2A_20210614T100029_N0300_R122_T33UVR_20210614T130226.SAFE')/Nodes('manifest.safe')/\$value"
+    curl -JOn "https://dhr1.cesnet.cz/odata/v1/Products('9770587e-f17c-4f87-8106-f226c77c4822')/Nodes('S2B_MSIL2A_20210614T100029_N0300_R122_T33UVR_20210614T130226.SAFE')/Nodes('GRANULE')/Nodes('L2A_T33UVR_A022313_20210614T100222')/Nodes('IMG_DATA')/Nodes('R10m')/Nodes('T33UVR_20210614T100029_TCI_10m.jp2')/\$value"
+
+## Podpora specifických aplikací
+
+Máte-li speciální požadavky nebo potřebujete pomoci s navržením optimální metody přístupu k datům, kontaktujte nás na collgs@cesnet.cz.
+
+Pro konkrétní účely lze dohodnout např.:
+
+- pomoc při návrhu přístupového mechanizmu
+- automatické kopírování nových dat na koncový bod uživatele podle nastavených kritérií např. protokolem SCP.
+- plnění vaší vlastní instance aplikace [Sentinel Data Hub System](https://github.com/SentinelDataHub/DataHubSystem).
+
+## Rozhraní ArcGIS
+
+Ke snímkům z platformy Sentinel 2 lze interaktivně přistupovat též přes webové rozhraní [SW balíku ArcGIS](https://arcgis.cesnet.cz/apps/wabis/): 
+
+![pic](/img/meta/related/collgs/arcgis.png)
+
+## Kontakt
+
+Dotazy i hlášení případných problémů směřujte na adresu collgs@cesnet.cz.
+
+Výpadky nebo plánované odstávky systému budeme oznamovat na [stránce výpadků Meta VO](https://metavo.metacentrum.cz/cs/news/outages.jsp). 
+

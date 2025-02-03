@@ -1,0 +1,25 @@
+---
+title: Platanus
+---
+```bash
+module avail platanus/
+```
+
+[Platanus](http://platanus.bio.titech.ac.jp/) is a novel de novo sequence assembler that can reconstruct genomic sequences of highly heterozygous diploids from massively parallel shotgun sequencing data.
+
+[Platanus-allee (formerly known by Platanus2)](http://platanus.bio.titech.ac.jp/platanus2) is an assembler derived from Platanus assembler, however, it was developed with another concept. Platanus-allee tries to construct each haplotype sequence from the beginning and pair them as homologous chromosomes, while Platanus constructs consensus sequence of homologous chromosomes at first and tries to split into each haplotype sequence. Therefore, Platanus-allee marks better performance for highly heterozygous species genome or highly diverged genomic regions. However, for low heterozygous species genome (as a guide < 1.0 %), Platanus assembler would mark better performance than Platanus-allee. This may be caused by the sequence coverage for the target sequence. Platanus-allee targets each haplotype, therefore, simply speaking, it requires a double number of reads. 
+
+## Usage
+
+Platanus-allee for some tasks require Minimap and/or LongRanger (see below and help).
+
+```
+module add platanus/1.2.4
+platanus # See basic help
+
+# Platanus-allee (Platanus 2)
+module add minimap/2.17 # Only required to use PacBio/Oxford-Nanopore long reads
+module add longranger/2.2.2 # Only required to prepare 10X linked-reads input (barcoded.fastq)
+module add platanus/2.2.2 # Platanus-allee (Platanus 2) itself
+platanus_allee # See basic help
+```

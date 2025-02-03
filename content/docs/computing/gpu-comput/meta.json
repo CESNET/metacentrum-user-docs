@@ -1,0 +1,9 @@
+{
+  "title": "GPU computing",
+  "pages": [
+    "gpu-job",
+    "clusters",
+    "nvidia",
+    "dgx"
+  ]
+}

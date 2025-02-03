@@ -1,0 +1,35 @@
+---
+title: Guppy
+---
+```bash
+module avail guppy/    
+```
+
+[Guppy](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revax_14dec2018/guppy-software-overview) (Oxnanopore) is a data processing toolkit that contains the Oxford Nanopore Technologies' basecalling algorithms, and several bioinformatic post-processing features.
+
+## Usage
+
+### License
+
+To be able to run Guppy, the user must [accept the licence](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_oxnanopore). 
+
+<Callout  type="warn" title="Warning">
+```bash
+Please be aware that `guppy*gpu` versions require [nodes with GPUs](../../computing/gpu-comput/clusters). GPU versions utilise the [Cuda toolkit](../sw-list/cuda) and you have to [accept the license for cuDNN library](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_cudnn).
+```
+</Callout>
+
+### Example
+
+The example below will use one GPU card and consume ~38 GB of GPU physical memory.
+
+```bash
+module add guppy/6.0.6-gpu
+
+guppy_basecaller -i input_fast5 -r -s out_fastq_reads --flowcell FLO-MIN106 --kit SQK-LSK109 -x auto --gpu_runners_per_device 16 --num_callers 16 --chunks_per_runner 2000 --trim_strategy none --disable_qscore_filtering
+```
+
+Physical GPU memory does not work as a PBS parameter `:mem=` and cannot be controlled. Reducing their values will reduce the consumed GPU memory (ie. the calculation can be run on GPUs with smaller memories), but the calculation will be slower. Better performance can be achieved by using scratch on fast SSD discs `:scratch_ssd=`. 
+
+
+

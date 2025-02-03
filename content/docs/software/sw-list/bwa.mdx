@@ -1,0 +1,40 @@
+---
+title: BWA
+---
+```bash
+module avail bwa/       # BWA
+module avail bwa-mem2/  # BWA mem2
+```
+
+[BWA](https://bio-bwa.sourceforge.net/) is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome.
+
+It consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence reads up to 100bp, while the rest two for longer sequences ranged from 70bp to 1Mbp. BWA-MEM and BWA-SW share similar features such as long-read support and split alignment, but BWA-MEM, which is the latest, is generally recommended for high-quality queries as it is faster and more accurate.
+
+[BWA mem2](https://github.com/bwa-mem2/bwa-mem2) is the next version of the BWA-mem algorithm in BWA.
+
+It produces alignment identical to bwa and is ~1.3-3.1x faster depending on the use-case, dataset and the running machine. 
+
+## Usage
+
+### License
+
+The full BWA package is distributed under GNU General Public License version 3 as it uses source codes from BWT-SW which is covered by GPL. Sorting, hash table, BWT and IS libraries are distributed under the MIT license.
+
+- If you use the short-read alignment component, please cite the following paper:<br/> *Li H. and Durbin R. (2009) Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics, 25, 1754-60. [PMID: 19451168]*
+- If you use the long-read component (BWA-SW), please cite:<br/> *Li H. and Durbin R. (2010) Fast and accurate long-read alignment with Burrows-Wheeler transform. Bioinformatics. [PMID: 20080505]*
+
+### Single- and multithread run
+
+```bash
+$ bwa [index|samse|sampe] <options>          # just single-threaded versions
+$ bwa [aln|bwasw] -t $PBS_NUM_PPN <options>  # ALN and BWASW support multi-threaded/parallel processing
+```
+
+### Running BWA-mem2
+
+```bash
+bwa-mem2 version   # Will show the software version
+bwa-mem2 index -p <prefix_name> <in_reference.fasta>
+bwa-mem2 mem <prefix_name> <reads_1.fq/fa> <reads_2.fq/fa> -t $PBS_NUM_PPN > out.sam
+```
+

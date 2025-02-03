@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: omero-web
+spec:
+  type: ClusterIP
+  ports:
+  - port: 4080
+    name: web
+    targetPort: 4080
+  selector:
+    app: omero-web

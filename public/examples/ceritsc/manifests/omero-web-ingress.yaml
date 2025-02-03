@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: omero
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+   - hosts:
+       - "[omero-test].dyn.cloud.e-infra.cz"
+     secretName: [omero-test]-dyn-cloud-e-infra-cz
+  rules:
+  - host: [omero-test].dyn.cloud.e-infra.cz
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: omero-web
+              port:
+                number: 4080

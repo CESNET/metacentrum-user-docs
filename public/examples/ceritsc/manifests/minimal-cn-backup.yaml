@@ -1,0 +1,40 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: test-cluster
+spec:
+  instances: 1
+
+  imageName: 'cerit.io/cloudnative-pg/postgresql:15.0'
+
+  primaryUpdateStrategy: unsupervised
+
+  bootstrap:
+   initdb:
+     database: mydb
+     owner: myowner
+
+  resources:
+    requests:
+      memory: "4096Mi"
+      cpu: 500m
+    limits:
+      memory: "4096Mi"
+      cpu: 1
+
+  storage:
+    size: 10Gi
+    storageClass: nfs-csi
+
+  backup:
+    barmanObjectStore:
+      destinationPath: "s3://BUCKET"
+      endpointURL: "https://S3URL"
+      s3Credentials:
+        accessKeyId:
+          name: aws-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: aws-creds
+          key: ACCESS_SECRET_KEY
+    retentionPolicy: "30d"

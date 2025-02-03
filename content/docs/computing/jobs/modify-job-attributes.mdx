@@ -1,0 +1,71 @@
+---
+title: Modify job attributes
+---
+Users can modify the attributes of the queueing jobs with the `qalter` command. The `qalter` command accomplishes the modifications by sending a modified job batch request to the PBS server, which owns each job. Thus, users must rewrite the entire attribute, including the unchanged parts. To see which attributes can be modified, call the `qalter` command on any frontend server.
+
+<Callout type="info">
+    Only queuing jobs (in the Q state) can be modified using `qalter`. 
+</Callout>
+
+<Callout type="info">
+    A more detailed description of each function can be found in the [official documentation](https://help.altair.com/2024.1.0/PBS%20Professional/PBSReferenceGuide2024.1.pdf#M5.9.31514.PBSHeading1.236.qalter).
+</Callout>
+
+The most frequently corrected attribute is the `-l` (resource list) attribute. Below are a few examples of how to use the `qalter` command and modify this attribute.
+
+The job submitted as
+```bash
+$ qsub -l select=1:ncpus=150:mem=10gb:scratch_local=10gb -l walltime=1:00:00 batch_job_script.sh
+```
+
+will never (will wait indefinitely in the queue) start because the requirement of 150 CPUs (ncpus=150) on one machine (select=1) cannot be met. Thus, the attribute of resources needs to be modified to a reasonable value.
+
+```bash
+$ qalter -l select=1:ncpus=32:mem=10gb:scratch_local=10gb job_ID.pbs-m1.metacentrum.cz
+```
+
+<Callout type="info">
+Please note that the entire attribute needs to be written, including unchanged parts.
+</Callout>
+
+It is also possible to add some new values to the attribute. For example, the `spec` value that determines the speed of the CPU.
+
+```bash
+$ qalter -l select=1:ncpus=150:mem=10gb:scratch_local=10gb:spec=6.9 job_ID.pbs-m1.metacentrum.cz
+```
+
+Or remove. For example, a GPU job submitted with obsolete parameter `gpu_cap=cuda75` will never start
+
+```bash
+$ qsub -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:gpu_cap=cuda75 -l walltime=1:00:00 batch_job_script.sh
+```
+
+and should be removed
+```bash
+$ qalter -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb job_ID.pbs-m1.metacentrum.cz
+```
+or replace with a [valid syntax](https://docs.metacentrum.cz/computing/gpu-comput/gpu-job/#gpu_cap).
+```bash
+$ qalter -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:gpu_cap=compute_75 job_ID.pbs-m1.metacentrum.cz
+```
+Walltime value can be modified as well. But only in the limits of the originally dedicated queue. Job submitted as
+```bash
+$ qsub -l select=1:ncpus=150:mem=10gb:scratch_local=10gb -l walltime=1:00:00 batch_job_script.sh
+```
+will be assigned to the queue `q_2h@pbs-m1.metacentrum.cz` with limits of walltime between 00:00:00 up to 02:00:00 (hh:mm:ss). Between these limits of the queue, the user can modify walltime.
+```bash
+$ qalter -l walltime=01:30:00 job_ID.pbs-m1.metacentrum.cz
+```
+Attempts to increase the walltime behind the upper limit will fail.
+```bash
+$ qalter -l walltime=10:00:00 job_ID.pbs-m1.metacentrum.cz
+qalter: Job violates queue and/or server resource limits job_ID.pbs-m1.metacentrum.cz
+```
+<Callout type="info">
+The walltime of running jobs can be extended with [qextend utility](https://docs.metacentrum.cz/computing/jobs/extend-walltime/).
+</Callout>
+
+Additionally, it can be set that the job will start only if some (one or more) previous job (which can already be running or still queuing) is successfully completed (returns with an exit code of 0). It is called a Job Dependencies. The general usage includes `-W` attribute, followed by syntax `depend=afterok:job_ID` (the job in this argument list must be terminated without errors).
+```bash
+qalter -W depend=afterok:job1_ID.pbs-m1.metacentrum.cz job2_ID.pbs-m1.metacentrum.cz
+```

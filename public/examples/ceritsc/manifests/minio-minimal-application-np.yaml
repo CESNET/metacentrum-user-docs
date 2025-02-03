@@ -1,0 +1,20 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: myapplication-allow-s3
+spec:
+  podSelector:
+    matchLabels:
+      # This NetworkPolicy is applied to `myapplication` Pod
+      app: myapplication
+  policyTypes:
+  - Egress
+  egress:
+    # Enables egress S3 communication from `myapplication` to the `myminio` Tenant
+  - to:
+    - podSelector:
+        matchLabels:
+          app : myminio
+    ports:
+    - protocol: TCP
+      port: 9000

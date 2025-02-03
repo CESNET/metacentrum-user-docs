@@ -1,0 +1,49 @@
+---
+title: Dirac
+---
+```bash
+module avail dirac/
+```
+
+[DIRAC](https://diracprogram.org/) is a quantum chemistry software for computing molecular properties using relativistic quantum chemical methods.
+
+## Usage
+
+### License
+
+To use DIRAC, you have to [read and accept DIRAC's license agreement](https://signup.e-infra.cz/fed/registrar/?vo=meta&group=lic_dirac).  
+
+<Callout type="info" title="Non-commercial usage only">
+```bash
+Please note that academic license of DIRAC permits only non-commercial usage of the software.
+```
+</Callout>
+
+### Compilation details
+
+**DIRAC21.0 dirac/dirac-21.0-intel-19.0.4-ycozknk**
+
+- compiled with Intel CDK 17
+- compiuled with some compile-time parameters tweaked:
+
+    ```
+    src/prp/dcbexp.h: Variable MAXEXP changed from 350 to 800
+    src/include/aovec.h: Variable MXCONT changed from 30 to 3000
+    src/include/mxcent.h: Variable MXCENT changed from 300 to 10000
+    src/x2c/x2c_cfg.F90: Variable x2c_mxcent changed from 300 to 10000
+    src/prp/dcbxpp.h: Variable MAXLPP changed from 40 to 400
+    ```
+ 
+After setting these values in the source files, the program was compiled using these parameters:
+
+```bash
+./setup --mpi --extra-cxx-flags=-mcmodel=medium --extra-cc-flags=-mcmodel=medium --extra-fc-flags=-mcmodel=medium --prefix=/software/dirac/16-newest
+```
+cd build && make depend && make -j && make install
+
+**DIRAC 17**
+
+- compiled with OpenMPI 2.1.1, using the Intel Parallel Studio 2017's C/C++/Fortran compiler.
+- compiled with parallel Intel MKL library, 64-bit integers and tweaked compile-time parameters
+
+

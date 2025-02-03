@@ -1,0 +1,10 @@
+{
+  "title": "Compilers, debuggers",
+  "pages": [
+    "allinea-ddt",
+    "intel",
+    "pgi-cdk",
+    "rstudio",
+    "total-view"
+  ]
+}

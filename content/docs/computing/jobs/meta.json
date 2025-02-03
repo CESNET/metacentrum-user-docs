@@ -1,0 +1,12 @@
+{
+  "title": "Jobs",
+  "pages": [
+    "job-tracking",
+    "extend-walltime",
+    "modify-job-attributes",
+    "trap-command",
+    "job-arrays",
+    "finished-jobs",
+    "email-notif"
+  ]
+}

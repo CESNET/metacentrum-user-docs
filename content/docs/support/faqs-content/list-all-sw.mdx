@@ -1,0 +1,43 @@
+---
+title: Where can I find list of all installed software?
+---
+Currently an explicit list of all software is not included in this documentation.
+
+In MetaCentrum software is organized in so-called *modules*. 
+
+A primary tool to list all software is to [log in to a frontend]() and to type
+
+```bash
+module avail
+```
+
+or
+
+```bash
+module avail -t
+```
+
+The output of `module avail -t` looks like this:
+
+![pic](/img/meta/support/faqs-content/list-all-sw-pic-001.png)
+
+<Callout  type="info" title="Tip" icon="💡">
+```bash
+With this type of output, you can go forward a page by pressing Spacebar key.
+```
+</Callout>
+
+To list all version of a selected software, use `module avail MODULE_NAME/`, e.g.:
+
+![pic](/img/meta/support/faqs-content/list-all-sw-pic-002.png)
+
+<Callout type="info">
+```bash
+You **have to** add the `/` at the end to see all versions.
+```
+</Callout>
+
+Some selected software is provided via [Ondemand](), [related managed services]() and [containers](), too.
+
+To read more on this issue read [How to search for software page]().
+

@@ -1,0 +1,13 @@
+{
+  "title": "Data",
+  "pages": [
+    "types-of-storage",
+    "large-data",
+    "direct-access-storages",
+    "data-sharing",
+    "quotas",
+    "filesender",
+    "metacentrum-backup",
+    "storage-department"
+  ]
+}

@@ -1,0 +1,30 @@
+---
+title: QIIME
+---
+   module avail qiime/ # older version of qiime
+
+   module avail mambaforge/ # as an environment
+
+[QIIME](http://qiime.org/) and [QIIME2](https://qiime2.org/) stands for Quantitative Insights Into Microbial Ecology. QIIME is an open source software package for comparison and analysis of microbial communities, primarily based on high-throughput amplicon sequencing data (such as SSU rRNA) generated on a variety of platforms, but also supporting analysis of other types of data (such as shotgun metagenomic data). 
+
+## Usage
+
+| QIIME version | Installed tools |
+|------|-------|
+| qiime2 | available as part of `mambaforge` and `conda-modules` |
+| qiime-1.9.1 | `biom-format, burrito, burrito-fillings, click, cogent, cycler, decorator, emperor, enum34, future, gdata, ipython, ipython-genutils, matplotlib, natsort, numpy, pandas, pathlib2, pexpect, pickleshare, Pygments, pynast, pyqi, scikit-bio, scipy` |
+| qiime-1.7.0 | `biom-format, blast, Cdbfasta, clearcut, fasttree, matplotlib, PyNAST, pyqi, raxml, RDP, rtax, tax2tree, uclust, usearch` |
+
+Greengenes files are in `/software/qiime/database/gg_13_8_otus`. 
+
+### QIIME2 in Mamba/Conda
+
+Qiime 2 is installed as part of `mambaforge` and `conda-modules`:
+
+```
+module add mambaforge
+mamba env list
+export LANG=C.UTF-8
+mamba activate qiime2-2020.2
+```
+

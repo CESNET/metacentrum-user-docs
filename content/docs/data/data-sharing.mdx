@@ -1,0 +1,125 @@
+---
+title: Data sharing
+---
+Sometimes two or more MetaCentrum users need to work on the same files and directories.
+
+Since setting whole `home` directory as accessible to anyone is considered a security vulnerability (due to the possibility to manipulate sensitive files like .k5login, .bashrc by a third party) such settings are discouraged and are automatically reset.
+
+To make sharing of data possible and at the time safe, we offer two options varying slightly with respect to the expected volume of shared data, namely:
+
+1. sharing based on a **group** (moderate amount of data)
+2. sharing based on **project directory** (large amount of data)
+
+<Callout type="info" title="What is the difference between *group* and *project directory*?">
+With **project directory** the data are not accounted to users' quotas, therefore project directory is best suited for sharing a large volume of data and/or large amount of files which could otherwise fill individual users' quotas easily.<br/> On the other hand, in **sharing based on group** the data are accounted to users quotas based on the ownership of individual files. 
+</Callout>
+
+## Group setup
+
+1. Choose a name for your group and ask us at meta@cesnet.cz to create it
+2. Include a list of members of the group and choose at least one group manager
+
+The group manager can later add/remove members of this group through the [Perun interface](../access/perun).
+
+After the group is created, you will be notified.
+
+Finally, create a directory dedicated for shared data, e.g. `mkdir /storage/CITY/home/USER/shared`.
+
+<Callout type="info" title="Note">
+This directory for shared data needs to be created by the user, and also the name of it can be different.
+</Callout>
+
+## Project directory setup 
+
+1. Choose a name for your group and ask us at meta@cesnet.cz to create it together with a project directory
+2. Include list of members of the group and choose at least one group manager
+
+The group manager can later add/remove members of this group through the [Perun interface](../access/perun).
+
+After the group is created, you will be notified.
+
+There will be also a `/storage/projects/GROUP_NAME` directory created to store the data in.
+
+## Using the shared directory
+
+The usage of shared directory is the same for both shared directories in `/storage/projects` and in `/storage/CITY/home/USER/`.
+
+1. assign the directory to your group (denoted by "MYGROUP")
+```bash
+chgrp -R MYGROUP /storage/CITY/home/USER/shared
+```
+2. set a "sticky bit" (permission atribute) to the directory, so that all the data created within it will belong to the group
+```bash
+chmod g+s /storage/CITY/home/USER/shared
+```
+3. Ensure the correct identity within the system/job environment
+
+When creating files, the system has to know under which group identity the files should be created.
+
+Here, it is necessary to distinguish between the *work on frontends* and *work within running jobs*.
+
+### Identity on frontends
+
+To create files when working on frontends, it is necessary to change your primary group to the requested one:
+```
+newgrp MYGROUP # all the created files will be owned by the MYGROUP group
+umask 002 # will set the access rights of all the newly created files to rwxrwxr-x
+```
+You can include the above lines into system start-up scripts `/storage/*/home/USER/.profile` or equivalent file (e.g. `/storage/*/home/USER/.bash_profile`) so that the correct group is set automatically.
+           
+Alternatively, you can ask us to change your primary group within the whole MetaCentrum infrastructure.
+
+### Identity in running jobs
+
+When creating files within running jobs, it is necessary to have the following lines within your batch script:
+
+```bash
+#!/bin/bash
+#PBS -W umask=002
+#PBS -W group_list=MYGROUP
+```
+- option `-W umask=002` ensures the correct access rights to created files (`rwxrwxr-x`)
+- option `-W group_list=MYGROUP` ensures that all the processes will run under the group `MYGROUP`
+
+these options further ensure an availability of the `$SCRATCHDIR` directory to the group members as well - the directory will be owned by the requested group and the access rights will be rwx:
+
+```bash
+$ qsub -I -W group_list=einfra -W umask=002
+qsub: waiting for job 4025666.pbs-m1.metacentrum.cz to start
+qsub: job 4025666.pbs-m1.metacentrum.cz ready
+
+konos6$ ls -ld $SCRATCHDIR
+drwxrwxr-x 2 makub einfra 6 Feb 13 10:50 /scratch/makub/job_4025666.pbs-m1.metacentrum.cz
+
+konos6$ id
+uid=13153(makub) gid=10002(einfra) groups=10000(meta),10002(einfra),10100(storage)
+```
+
+<Callout  type="warn" title="Warning">
+Because of a bug in the Network File System (NFS) we use, it is necessary to explicitly change the group ownership of the newly created files/directories (at the end of an interactive session or job) by calling the command
+</Callout>
+```bash
+chgrp -R MYGROUP DIRECTORY
+```
+(Otherwise, the data will be saved under your primary group.) Alternatively, you can ask us for changing your primary group throughout the whole MetaCentrum infrastructure.
+
+## `sync_with_group` usage
+
+Some users find changing `umask` inconvenient. For these users we recommend another approach.
+
+1. Copy the files you need to work with from the shared directory elsewhere.
+2. Process the data, create new files etc.
+3. When ready to share the data, send them back into the shared directory by a command
+
+```bash
+sync_with_group group_name source_dir target_dir
+```
+where
+```
+group_name = name of the group the project directory belongs to
+source_dir = the working directory
+target_dir = shared project directory
+```
+{/*
+[NFSv4](https://wiki.metacentrum.cz/wiki/Access_Control_Lists_on_NFSv4)
+*/}

@@ -1,0 +1,10 @@
+{
+  "title": "Resources and queues",
+  "pages": [
+    "resources",
+    "pbs-commands",
+    "qsub-compiler",
+    "queues",
+    "fairshare"
+  ]
+}
