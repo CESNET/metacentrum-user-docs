@@ -37,6 +37,18 @@ When transferring big files, the network interface is the bottleneck, not the ha
 
 Therefore, you do not need to worry about the usage of `tmpfs` or `ramdisk` when transferring big files.
 
+## Utilize compression
+
+When transferring big files, it is a good idea to utilize compression.
+
+You can compress the files before transferring them, effectively reducing the time and resources needed for the transfer.
+
+Choice of the compression algorithm depends on the type of the files you are transferring, there is no one-size-fits-all solution.
+We recommend using the `zstandard` algorithm, as it offers a good balance between compression ratio and decompression speed.
+Depending on the type of your files, you can also consider using the `gzip`, `bzip2`, or `xz` algorithms.
+
+For more information about the compression algorithms, please check this [comparison](https://quixdb.github.io/squash-benchmark/).
+
 ## Use the right tool for the job
 
 When transferring big files, it is important to use the right tool for the job.
