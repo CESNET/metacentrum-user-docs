@@ -6,10 +6,10 @@ To get rid of the faulty endlines, use `dos2unix` command:
 
     (BUSTER)user123@skirit:~$ dos2unix myscriph.sh
 
-To test for the type of endlines, use command `file`:
+To test for the type of endlines, use the command `file`:
 
     (BUSTER)user123@skirit:~$ file myscriph.sh
     myscript.sh: UTF-8 Unicode text, with CRLF line terminators
 
-If the `file` report `CRLF line terminators`, your script needs to be converted to run on Linux. 
+If the `file` command reports `CRLF line terminators`, your script needs to be converted to run on Linux. 
 
