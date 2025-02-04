@@ -26,6 +26,11 @@ You can add `s5cmd` and `rclone` commands directly into your job file.
 !!! warning "Bucket creation"
     Do not forget that the bucket being used for staging MUST exist on the remote S3 data storage. If you plan to stage-out your data into a non-existing bucket the job will fail. You need to prepare the bucket for stage-out in advance. You can use the [official Data Storage Department tutorials](https://docs.du.cesnet.cz/en/object-storage-s3/s3-clients) for particular S3 client.
 
+### Big Data transfers
+
+For **Big Data** sets, we recommend using the `boto3` library or `s5cmd` tool.
+
+For general tips and tricks regarding **Big Data** and **CESNET S3 storage**, please visit the [Big Data Tips and Tricks](big-data-tips-and-tricks.md) page.
 ### S3 service clients
 
 | Binary          | Source code language | Library         | Console usage | Python usage | Fit for Big Data transfers |
@@ -34,6 +39,8 @@ You can add `s5cmd` and `rclone` commands directly into your job file.
 | s3cmd           | Python               | s3cmd           | Yes           | Yes          | No                         |
 | s4cmd           | Python               | [boto3](#boto3) | No            | Yes          | Yes                        |
 | [s5cmd](#s5cmd) | Go                   | --- ? ---       | Yes           | No           | Yes                        |
+
+For further details and more information about all the possible S3 clients, please refer to the [official Data Storage Department tutorials](https://du.cesnet.cz/en/navody/object_storage/cesnet_s3/start).
 
 #### boto3
 
