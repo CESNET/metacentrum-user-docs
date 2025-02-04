@@ -47,6 +47,11 @@ For further details and more information about all the possible S3 clients, plea
 `boto3` is a **Python** library that allows you to interact with the S3 storage.
 You have to use it from your **Python** scripts - it is not a standalone tool like `s3cmd` or `s5cmd`.
 
+[//]: # (TODO: Remove this warning when the issue is resolved.)
+
+!!! warning "Issues with uploads within the latest boto3 versions"
+    There have been some issues lately with the latest releases of the `boto3` library and third-party S3 storage providers (like the CESNET S3 storage).<br/> As of now, the issues still persist with versions `1.36.x` (`1.36.12` to be exact). For this reason, we recommend using the `boto3` library with the version `1.35.99` or lower.<br/> For further information, see this [GitHub issue](https://github.com/boto/boto3/issues/4400).
+
 ##### Installation
 
 In order to use `boto3` library, you need to install it first.
@@ -54,6 +59,14 @@ You can do it by running the following command inside your Python environment:
 
 ```bash
 pip install boto3
+```
+
+[//]: # (TODO: Remove this installation instruction when the issue is resolved.)
+
+Or you can use the specific version of the library:
+
+```bash
+pip install boto3==1.35.99
 ```
 
 ##### Usage
