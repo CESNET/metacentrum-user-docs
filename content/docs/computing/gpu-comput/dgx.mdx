@@ -11,11 +11,11 @@ The system consists of a single compute node, **capy.cerit-sc.cz**, with the fol
 
 ## Access Conditions
 
-Users can apply for computational resources for a **3-month period** through the **DGX Grant Competition**, which is open to research, scientific, and educational organization employees, as well as PhD students.
+Users can apply for computational resources for a **3-month period** through the **DGX Grant Competition**, which is open to research, scientific, and educational organization employees, as well as PhD students. To renew access after its expiration, a new application must be submitted.
 
 **Applicants must demonstrate:**
 
-- The ability to utilize **at least 2, preferably 4 or all 8 GPUs**
+- The ability to utilize **at least 2, but preferably 4 or all 8 GPUs**
 - Effective use of **NVLink** (Multi-GPU) and **large GPU memory**
 - Research potential and expected results
 
@@ -35,7 +35,7 @@ The application review consists of **three steps**:
 
 ### Popular Abstract
 
-Provide a **popular abstract** that can be published on a website, in newspapers, or similar platforms. This abstract should describe:
+Provide a **popular abstract** that can be published on a website, in newspapers, or on similar platforms. This abstract should describe:
 
 - The proposed research
 - The methodologies used
@@ -47,7 +47,7 @@ The abstract should be written in a way that is easily understandable by the gen
 
 - Clearly define the research aims and objectives.
 - Provide sufficient detail for reviewers to understand the proposal.
-- Specify if the research is part of an approved **H2020, ERC, EuroHPC**, or other peer-reviewed **national or international projects**.
+- Specify if the research is part of an approved **H2020, ERC, EuroHPC, GAČR**, or other peer-reviewed **national or international projects**.
 - Describe the theoretical and computational methods to be used, comparing them with the current **state-of-the-art**.
 - Outline expected results, including planned publications.
 
@@ -55,7 +55,7 @@ The abstract should be written in a way that is easily understandable by the gen
 
 - Describe the **computational techniques** and platforms to be used.
 - Include details on **codes, programming languages, libraries, and other software**.
-- Explain **parallelization and scalability**, especially in relation to NVLink (proving that your jobs can effectively utilize **4 or 8 GPUs** simultaneously).
+- Explain **parallelization and scalability**, preferably in relation to NVLink (proving that your jobs can effectively utilize **4 or 8 GPUs** simultaneously).
 - If possible, provide references and data on your application’s **parallel performance, speedup, and scalability**.
 
 ### Computational Resources
@@ -66,10 +66,12 @@ The abstract should be written in a way that is easily understandable by the gen
 
 ## Usage
 
-Once your request is **approved**, the **DGX H100 cluster** is accessible **only via the `gpu_dgx` queue** on:
+Once your request is **approved**, the **DGX H100 cluster** is accessible **only via the `gpu_dgx` queue**:
 ```bash
 gpu_dgx@pbs-m1.metacentrum.cz
 ```
+in shared access mode. 
+
 To submit a job to the **gpu_dgx** queue, use the following command:
 
 ```bash
