@@ -7,7 +7,7 @@ This section describes user authentication in the GSS (Gael Store Service) syste
 
 Both methods require registration.
 
-Instructions on using this software can be found in the section on [working with Sentinel satellite data](./sentinel.md).
+Instructions on using this software can be found in the section on [working with Sentinel satellite data](./sentinel).
 
 ## Graphical Interface
 
@@ -67,8 +67,8 @@ On the _Generate Tokens_ page, the following items are available:
 
 After obtaining an access token, include it in your API requests as an authorization header:
 
-```
-    Authorization: Bearer <access_token>
+```shell
+Authorization: Bearer <access_token>
 ```
 
 Adding this header to your requests allows the API to verify your identity and grant the necessary permissions.
@@ -92,7 +92,7 @@ This request will return a new access token with an 8-hour validity, along with 
 The response in JSON format will look as follows:
 
 ```json
-    {
+{
     "access_token": "eyJh....gywQ",
     "expires_in": 300,
     "refresh_expires_in": 28800,
@@ -102,7 +102,7 @@ The response in JSON format will look as follows:
     "not-before-policy": 0,
     "session_state": "80....ff",
     "scope": "openid email profile"
-    }
+}
 ```
 
 You can use the new access token for further requests in GSS, and replace the old refresh token with the new one.
@@ -132,12 +132,12 @@ Use the _Sign out_ option to log out a specific device, or _Sign out all devices
 If you are already working with tokens from EGI Check-in, it is possible to exchange them for tokens granting access to the GSS system without further login. In this case, send a valid access token issued by EGI Check-in via POST method to the endpoint [https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token) and attach the following to the request body:
 
 ```json
-    {
+{
     "client_id": "token-exchange",
     "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
     "subject_token": {EGI access token},
     "subject_issuer": "https://aai.egi.eu/auth/realms/egi"
-    }
+}
 ```
 
 In the response, you will receive an access token that can be used for GSS API calls.

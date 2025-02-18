@@ -126,20 +126,24 @@ Examples of Filtering and Encoding Special Characters in _curl_:
 
 To download the entire product:
 
-    curl "https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249874447a18)/\$value"  \
-    -H "Authorization: Bearer $ACCESS_TOKEN"  \
-    -o product_odata.zip
+```shell
+curl "https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249874447a18)/\$value"  \
+-H "Authorization: Bearer $ACCESS_TOKEN"  \
+-o product_odata.zip
+```
 
 To download only a part (e.g., the manifest), it is best to download the specific file, like this:
 
-    curl -v $'https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249874447a18)/Nodes(\'S3A_OL_1_EFR____20241008T122148_20241008T122448_20241009T125258_0179_117_380_1800_PS1_O_NT_004.SEN3\')/Nodes(\'xfdumanifest.xml\')/$value'  \
-    -H "Authorization: Bearer $ACCESS_TOKEN"  \
-    -o xfdumanifest.xml
+```shell
+curl -v $'https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249874447a18)/Nodes(\'S3A_OL_1_EFR____20241008T122148_20241008T122448_20241009T125258_0179_117_380_1800_PS1_O_NT_004.SEN3\')/Nodes(\'xfdumanifest.xml\')/$value'  \
+-H "Authorization: Bearer $ACCESS_TOKEN"  \
+-o xfdumanifest.xml
+```
 
 ## STAC Metadata Catalog
 
 To obtain product metadata in STAC format, the catalog is available at [https://stac.cesnet.cz](https://stac.cesnet.cz). 
-You can find the catalog documentation in the [STAC section](./stac.md).
+You can find the catalog documentation in the [STAC section](../stac).
 
 ## Support for Specific Applications
 
