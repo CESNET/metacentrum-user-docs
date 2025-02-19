@@ -40,72 +40,14 @@ For general tips and tricks regarding **Big Data** and **CESNET S3 storage**, pl
 | s4cmd           | Python               | [boto3](#boto3) | No            | Yes          | Yes                        |
 | [s5cmd](#s5cmd) | Go                   | --- ? ---       | Yes           | No           | Yes                        |
 
-For further details and more information about all the possible S3 clients, please refer to the [official Data Storage Department tutorials](https://du.cesnet.cz/en/navody/object_storage/cesnet_s3/start).
+For further details and more information about all the possible S3 clients, please refer to the [official Data Storage Department tutorials](https://docs.du.cesnet.cz/en/docs/object-storage-s3/s3-service).
 
 #### boto3
 
 `boto3` is a **Python** library that allows you to interact with the S3 storage.
 You have to use it from your **Python** scripts - it is not a standalone tool like `s3cmd` or `s5cmd`.
 
-[//]: # (TODO: Remove this warning when the issue is resolved.)
-
-!!! warning "Issues with uploads within the latest boto3 versions"
-    There have been some issues lately with the latest releases of the `boto3` library and third-party S3 storage providers (like the CESNET S3 storage).<br/> As of now, the issues still persist with versions `1.36.x` (`1.36.12` to be exact). For this reason, we recommend using the `boto3` library with the version `1.35.99` or lower.<br/> For further information, see this [GitHub issue](https://github.com/boto/boto3/issues/4400).
-
-##### Installation
-
-In order to use `boto3` library, you need to install it first.
-You can do it by running the following command inside your Python environment:
-
-```bash
-pip install boto3
-```
-
-[//]: # (TODO: Remove this installation instruction when the issue is resolved.)
-
-Or you can use the specific version of the library:
-
-```bash
-pip install boto3==1.35.99
-```
-
-##### Usage
-
-First, you need to create an instance of the `s3 client` object with your credentials and the endpoint URL:
-
-```python
-import boto3
-
-access_key = "********************"
-secret_key = "****************************************"
-endpoint_url = "https://s3.cl4.du.cesnet.cz"
-
-s3 = boto3.client("s3", aws_access_key_id=access_key, aws_secret_access_key=secret_key, endpoint_url=endpoint_url)
-```
-
-(*Side note*: You can use the `~/.aws/credentials` file to store your credentials and use them in your scripts.
-For more information, see the [official boto3 documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html).)
-
-Then you can use the `s3` object to interact with the S3 storage.
-For example, you can **list all the buckets**:
-
-```python
-response = s3.list_buckets()
-for bucket in response["Buckets"]:
-    print(f"{bucket['Name']}")
-```
-
-Or you can **upload** a file to the S3 storage:
-
-```python
-s3.upload_file("/local/path/to/file", "bucket-name", "remote/path/to/object")
-```
-
-Or alternatively, you can **download** an object from the S3 storage (be aware of the parameters order!):
-
-```python
-s3.download_file("bucket-name", "remote/path/to/object", "/local/path/to/file")
-```
+For more details and information about `boto3`, please check the [Data Storage guide](https://docs.du.cesnet.cz/en/docs/object-storage-s3/boto3).
 
 #### s5cmd
 
