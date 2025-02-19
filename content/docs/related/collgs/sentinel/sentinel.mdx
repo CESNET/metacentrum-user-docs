@@ -1,8 +1,6 @@
 ---
-title: Sentinel
+title: Access to Data
 ---
-# Access to Data
-
 The National Node allows access to Sentinel mission data by all common means. Currently, there are no speed or capacity limitations applied to it.
 
 The previous version of the software providing access to Sentinel satellite data, Sentinel DataHub System, which is still available at [https://dhr1.cesnet.cz](https://dhr1.cesnet.cz/), is being replaced by the new GSS (Gael Store Service) software.
@@ -56,7 +54,6 @@ The resulting filter used for the query is displayed below the search bar, from 
 
 ![extended_search.png](/img/meta/related/collgs/sentinel/copsi_extended_search.png)
 
-
 #### Geographical Search
 
 The geographical search panel is located on the screen in the middle right.
@@ -90,6 +87,7 @@ The query interface is accessible at: [https://collgs.cesnet.cz/odata/v1](https:
 For writing simple scripts, tools like `curl` or `wget` are most useful. Authentication for downloading products can no longer be done using a username and password, but it is necessary to use OIDC tokens, which are generated at the token portal address: [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
 
 A more detailed description of authentication can be found in the guide [User Authentication in GSS](./gss_login/).
+
 ### Product Search
 
 The following examples summarize how to construct the URL for searching products in the OData API.
