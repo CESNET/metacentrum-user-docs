@@ -91,7 +91,7 @@ This request will return a new access token with an 8-hour validity, along with 
 
 The response in JSON format will look as follows:
 
-```
+```json
     {
     "access_token": "eyJh....gywQ",
     "expires_in": 300,
@@ -131,7 +131,7 @@ Use the _Sign out_ option to log out a specific device, or _Sign out all devices
 
 If you are already working with tokens from EGI Check-in, it is possible to exchange them for tokens granting access to the GSS system without further login. In this case, send a valid access token issued by EGI Check-in via POST method to the endpoint [https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token) and attach the following to the request body:
 
-```
+```json
     {
     "client_id": "token-exchange",
     "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
