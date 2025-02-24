@@ -17,7 +17,7 @@ const FrontendTable = () => {
       nativeHome: '/storage/praha5-elixir',
       os: 'Debian 12',
       location: 'Praha',
-      note: 'Dedicated to <a href="/access/elixir">Elixir users</a>',
+      note: 'Dedicated to <a href="./access/elixir">Elixir users</a>',
     },
     {
       frontendAddress: 'luna.fzu.cz',
