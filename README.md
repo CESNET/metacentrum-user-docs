@@ -33,13 +33,13 @@ cp -r ${fumadir}/components/* .
 cd ${repodir}
 
 # run the build 
-docker  run -it --rm -p 3000:3000 -e STARTPAGE=/en/docs -v ${repodir}/public:/opt/fumadocs/public -v ${repodir}/components:/opt/fumadocs/components -v ${repodir}/content/docs:/opt/fumadocs/content/docs cerit.io/docs/fuma:v15.0.2 pnpm dev
+docker  run -it --rm -p 3000:3000 -e STARTPAGE=/en/docs -v ${repodir}/public:/opt/fumadocs/public -v ${repodir}/components:/opt/fumadocs/components -v ${repodir}/content/docs:/opt/fumadocs/content/docs cerit.io/docs/fuma:v15.0.12 pnpm dev
 
 # remove again the stuff borrowed from CERIT repo
 cd ${repodir}/components ; rm -r ai ; rm  button.tsx card3.tsx sidebar.tsx toc.tsx
 ```
 
-4. run the script (as sudo if needed); in a browser, see the docs at `http://localhost:3000/en/docs`  
+4. run the script (as sudo if needed); in a browser, see the docs at `http://localhost:3000/en/docs/welcome`  
 
 
 **Notes**
