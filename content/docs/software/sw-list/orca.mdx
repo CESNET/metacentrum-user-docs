@@ -54,7 +54,7 @@ Don't try to run `mpirun -np $NCPUs orca`. ORCA will take care of it if you have
 
 **Usage with NAMD**
 
-[NAMD](../../software/sw-list/namd.md) uses the Orca application for some computation. However, due to different installation methods, both programs usually use different OpenMPI to run. 
+[NAMD](./namd) uses the Orca application for some computation. However, due to different installation methods, both programs usually use different OpenMPI to run. 
 
 In the Orca-4.2.1 module is created a wrapper for `orca` binary to avoid OpenMPI mismatch problems. Now, it should be sufficient to put the path to this orca wrapper to the NAMD configuration file and avoid running `module add orca/4.2.1` in your PBS script. For documentation purposes, the wrapper is this:
 
