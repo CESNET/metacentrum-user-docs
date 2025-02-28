@@ -1,0 +1,52 @@
+---
+title: How to use VSCode to develop on MetaCentrum machines
+---
+
+<Callout type="info" title="Under construction">
+This section is under construction.
+</Callout>
+
+<!--
+ticket https://rt.cesnet.cz/rt/Ticket/Display.html?id=1415487
+-->
+
+<!--
+
+```bash
+#!/bin/bash
+
+echo "Task started at $(date)"
+
+
+mkdir -p "$SCRATCHDIR/.ssh"
+chmod 700 "$SCRATCHDIR/.ssh"
+
+
+
+rm -f "$SCRATCHDIR/.ssh/server_key" "$SCRATCHDIR/.ssh/server_key.pub"
+ssh-keygen -f "$SCRATCHDIR/.ssh/server_key" -N "" -C "VSCode" -q -t ed25519
+echo "SSH key generated"
+
+
+touch "$SCRATCHDIR/.ssh/authorized_keys"
+chmod 600 "$SCRATCHDIR/.ssh/authorized_keys"
+
+PUBKEY='ssh-ed25519 XXXXXXXXXXXXXXXXXXXx XXXX@XXX'
+grep -q "$PUBKEY" "$SCRATCHDIR/.ssh/authorized_keys" || echo "$PUBKEY" >> "$SCRATCHDIR/.ssh/authorized_keys"
+
+echo "Public key added to authorized_keys"
+
+
+PORT=19731
+netstat -tan |grep -q "0.0.0.0:$PORT " && { echo "port $PORT is busy" >&2; exit 1; }
+
+
+echo "Starting SSH server"
+/usr/sbin/sshd -D -p $PORT -o "HostKey $SCRATCHDIR/.ssh/server_key" -o "PermitRootLogin no" -o "PasswordAuthentication no" -o "ChallengeResponseAuthentication no" &
+
+echo "SSH running on $(hostname):$PORT"
+
+echo "Connect to:"
+hostname
+```
+-->
