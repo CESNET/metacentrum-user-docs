@@ -2,6 +2,8 @@
 title: Log in
 ---
 
+## Frontend login
+
 import FrontendTable from '@/components/frontends';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
@@ -62,6 +64,17 @@ A complete list of frontends is given below. You can use any of them. We encoura
 <Callout type="warn" title="Warning">
     The frontend nodes can be used for light pre- and postprocessing and manipulation of data. All other tasks must be submitted as jobs to the batch job system. If you need to run something interactively, submit an interactive job.
 </Callout>
+
+## Web services login
+
+Some web services require user authentication. While for example in [OnDemand service](../ondemand) users use their MetaCentrum login and password, other services login is done through the user's institution identity. 
+
+For example, let's say you are ČZU user wanting to login to see [a list of queues in MetaVO pages](https://metavo.metacentrum.cz/en/pbsmon2/queues/list).
+
+In this case, choose the "ČZU" tab from the list and fill in ČZU credenials, not MetaCentrum login and username. 
+
+![Web login](/img/meta/access/login_web_001.png)
+![Web login](/img/meta/access/login_web_002.png)
 
 ## Kerberos 
 
