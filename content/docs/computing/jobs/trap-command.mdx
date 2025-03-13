@@ -34,7 +34,7 @@ If the copying of `fileXXX` failed, the job will end AND the scratch space will 
 
 The job may be killed either by PBS or by the user (`qdel` command):
 
-![pic](/img/meta/computing/jobs/trap-command-scheme.jpg)
+![pic](/img/meta/computing/jobs/trap-command-scheme_border.jpg)
 
 The batch script receives `SIGTERM` signal. **There is no way how to distinguish whether the job was killed by PBS or by the user.** Upon receiving the `SIGTERM`, the running process may take a variety of actions - it may stop immediately, or it may attempt to clean up *and* stop, or it may do nothing. If the process keeps running, the `SIGTERM` signal is after some delay followed by `SIGKILL` (equivalent to `kill -9`), which stops it immediately.
 

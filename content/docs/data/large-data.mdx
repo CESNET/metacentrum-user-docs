@@ -125,7 +125,7 @@ Example:
 ```bash
 local_user@home_PC:~$ scp MetaUser123@skirit.ics.muni.cz:/storage/brno2/home/user123/foo . # copy file "foo" from brno2 storage through the skirit frontend to a local PC
 ```
-![Copy data to storage through frontend](/img/meta/data/cp-data-through-frontend.jpg)
+![Copy data to storage through frontend](/img/meta/data/cp-data-through-frontend_border.jpg)
 
 <Callout  type="warn" title="Warning">
 As you can see from the picture, all the traffic has to be processed by a frontend (data are not stored on the frontend, but they load its CPUs and RAM), although the frontend is neither the source nor target of the data.
@@ -145,7 +145,7 @@ local_user@home_PC:~$ scp MetaUser123@storage-brno2.metacentrum.cz:~/foo . # cop
 
 The overall scheme can be depicted as below:
 
-![pic](/img/meta/data/cp-data-directly-storage.jpg)
+![pic](/img/meta/data/cp-data-directly-storage_border.jpg)
 
 <Callout  type="warn" title="Warning">
 Do not use frontends to transfer large data. Processes consuming inadequate CPU and RAM frontend capacity will be stopped.
