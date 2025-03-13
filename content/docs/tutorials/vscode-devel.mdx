@@ -9,18 +9,38 @@ This section is under construction.
 {/*
 ticket https://rt.cesnet.cz/rt/Ticket/Display.html?id=1415487
 
+## Problem
+
+see [this ticket](ticket https://rt.cesnet.cz/rt/Ticket/Display.html?id=1415487).
+
+## Solution
+
+1. on your local PC, generate a SSH key pair
+
+ssh-keygen -f /home/username123/.ssh/my_key
+
+
+2. choose a port number between 7000 and 30000 (e.g. 26759) and add the following sections to `.ssh/config` on your PC
+
+```
+Host tarkil.metacentrum.cz # your favourite frontend, e.g. tarkil
+Port 22
+PubkeyAuthentication no
+
+Host *.cerit-sc.cz *.fav.zcu.cz *.fzu.cz *.grid.cesnet.cz *.hw.elixir-czech.cz *.ibot.cas.cz *.ics.muni.cz *.metacentrum.cz *.meta.zcu.cz *.natur.cuni.cz *.nti.tul.cz *.ueb.cas.cz
+Port 26759
+IdentityFile path_to_private_key # Path to private key from step 1
+```
+
+3. within a job, run a following piece of code
+
 
 ```bash
-#!/bin/bash
-
-echo "Task started at $(date)"
-
 
 mkdir -p "$SCRATCHDIR/.ssh"
 chmod 700 "$SCRATCHDIR/.ssh"
 
-
-
+# make a server SSH key pair and store it in a scratch dir
 rm -f "$SCRATCHDIR/.ssh/server_key" "$SCRATCHDIR/.ssh/server_key.pub"
 ssh-keygen -f "$SCRATCHDIR/.ssh/server_key" -N "" -C "VSCode" -q -t ed25519
 echo "SSH key generated"
@@ -29,22 +49,25 @@ echo "SSH key generated"
 touch "$SCRATCHDIR/.ssh/authorized_keys"
 chmod 600 "$SCRATCHDIR/.ssh/authorized_keys"
 
-PUBKEY='ssh-ed25519 XXXXXXXXXXXXXXXXXXXx XXXX@XXX'
+# to $SCRATCHDIR/.ssh/authorized_keys, add public key of my_key (from step 1), e.g.
+PUBKEY='ssh-ed25519 AAAAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX3wN3+QgMAVJERjayo user123@PC'
 grep -q "$PUBKEY" "$SCRATCHDIR/.ssh/authorized_keys" || echo "$PUBKEY" >> "$SCRATCHDIR/.ssh/authorized_keys"
 
 echo "Public key added to authorized_keys"
 
-
-PORT=19731
+# make sure that the chosen port (from step 2) is free
+PORT=26759
 netstat -tan |grep -q "0.0.0.0:$PORT " && { echo "port $PORT is busy" >&2; exit 1; }
 
-
+# on the computational node, start running ssh server demon that listens on $PORT port
 echo "Starting SSH server"
 /usr/sbin/sshd -D -p $PORT -o "HostKey $SCRATCHDIR/.ssh/server_key" -o "PermitRootLogin no" -o "PasswordAuthentication no" -o "ChallengeResponseAuthentication no" &
 
 echo "SSH running on $(hostname):$PORT"
-
-echo "Connect to:"
-hostname
+echo "Connect to:" hostname
 ```
+
+4.  Connect to hostname and PORT through VScode
+
+
 */}
