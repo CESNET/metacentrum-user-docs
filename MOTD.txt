@@ -1,2 +1,57 @@
-This is a MOTD source file.
-TODO přesun z https://wiki.metacentrum.cz/oldwiki/MOTD
+This list is used to display metaMOTD / Tip-of-the-day during login on frontend nodes. Create the file touch ~/.hushmotd to test it. Avoid using URLs, bold/italic, special characters or formatting. You can check the result using:
+
+wget -q https://wiki.metacentrum.cz/wiki/MOTD -O - | grep "<li>" | sed -e "s/.*<li>/%/g" -e "s/<\/li>.*//g" -e "s/%/%\n/g"
+
+General tips
+
+    Do not use frontends for intensive workloads. Allocate a node using an interactive job (qsub -I ...)
+    You can check allocated/available storage in the table above.
+    Something's not working? Before reporting it, please check the Outages section on metavo.metacentrum.cz
+    Most of our storages are _not_ backed up. Please double-check where you store critical data!
+    Home directories are readable for everyone by default - consider protecting your sensitive data with appropriate ACLs.
+
+PBS
+
+    Do you know you can request a minimum processor speed? (i.e. qsub -l select=1:spec=4.8)
+    Do you know you can request a minimum GPU memory? (i.e. qsub -l select=1:gpu_mem=10gb)
+    Use the 'pbs-get-job-history' command to get a wealth of information about pbs jobs, including historical ones.
+    You can avoid submitting to the faulty node using qsub -l select=1:vnode=^short_hostname
+    You can avoid submitting at an unwanted cluster using qsub -l select=1:cluster=^cluster_name
+    Did you know the qextend utility can be used for an additional extension of the walltime for your calculations? Call the 'qextend' command to see the manual.
+    The data quota in /tmp is quite small, about 1 GB. If you need more, set "export TMPDIR=$SCRATCHDIR" in the job.
+
+SW
+
+    Are you missing any SW in the Metacentre? Feel free to ask us (meta@cesnet.cz) to install it!
+    Did you only find an old version of the SW? Feel free to ask us (meta@cesnet.cz) for an update.
+    Do you need some system package (.deb)? Feel free to ask us (meta@cesnet.cz) to install it!
+    Have you ever heard about a Chipster? Chipster is a web-based interactive analysis software for NGS and microarray data. More information at https://docs.metacentrum.cz/related/chipster/.
+
+Singularity
+
+    For the large /tmp directory inside the Singularity image, set SINGULARITY_TMPDIR=$SCRATCHDIR and SINGULARITY_CACHEDIR=$SCRATCHDIR
+
+Storage
+
+    Need more storage space? Let us know (meta@cesnet.cz).
+    NFS is complex and, unfortunately, buggy. If you run into any problems, please let us know.
+    You can download external data using various protocols/commands, i.e. scp, s3cmd, wget...
+    Do you need to back up or archive large amounts of data? Visit web du.cesnet.cz
+    Do you need object storage? Look at web du.cesnet.cz
+    You can quickly move data between our storages using the scp command (e.g. scp storage-plzen1:~/file storage-praha1:~)
+    Need to work with large data stored in /home? Copying them directly from storage hosts can be vastly faster than using NFS mounted /storage
+    You can check your quota on a local disk (typically /tmp or /var/spool/pbs) by using the "check-local-quota" command on the compute node of interest.
+
+GUI
+
+    Need a graphical user interface? Try ondemand.metacentrum.cz, which offers launching PBS tasks, accessing persistent terminals, copying files between our storages, or launching multiple graphical applications in the browser.
+
+HW
+
+    Need more GPU/RAM/storage/CPU? Give us feedback in our annual surveys, we try to buy new HW according to our users' needs.
+    With great computational power comes great responsibility. Be sure that your calculations use dedicated hardware as efficiently as possible.
+
+Courses
+
+    Are you interested in the hands-on course or tailored theoretical lecture for a small group of users? Let us know (meta@cesnet.cz), and we can discuss your needs and possibilities.
+    Explore our past seminars, lectures and hands-on courses with many valuable tips and tricks (https://docs.metacentrum.cz/tutorials/).
