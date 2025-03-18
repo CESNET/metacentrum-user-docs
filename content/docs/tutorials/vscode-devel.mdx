@@ -1,61 +1,66 @@
 ---
-title: How to use VSCode to develop on MetaCentrum machines
+title: VSCode server on MetaCentrum machines
 ---
 
-<Callout type="info" title="Under construction">
-This section is under construction.
+![pic](/img/meta/tutorials/VSCode_logo.png)
+
+When developing with VSCode in MetaCentrum, a straightforward setup like: 
+
+- project dir in `$HOME` dir
+- VSCode server running on frontend
+- connection to frontend through *VSCode remote development*
+
+ can be far too resource-expensive.
+
+<Callout type="warn" title="Frontends are not computing nodes">
+Resource-expensive (CPU, mem) processes running on frontends may be killed without warning.
 </Callout>
 
-{/*
-ticket https://rt.cesnet.cz/rt/Ticket/Display.html?id=1415487
+Therefore, we recommend another setup with the VSCode server running on a computing node within a standard job. 
 
-## Problem
+## VSCode running on a computing node
 
-see [this ticket](ticket https://rt.cesnet.cz/rt/Ticket/Display.html?id=1415487).
-
-## Solution
-
-1. on your local PC, generate a SSH key pair
+1. on your local station, generate a SSH key pair
 
 ssh-keygen -f /home/username123/.ssh/my_key
 
+2. choose a port number between 7000 and 30000 (e.g. 26759) and add the following sections to `.ssh/config` on your local station
 
-2. choose a port number between 7000 and 30000 (e.g. 26759) and add the following sections to `.ssh/config` on your PC
-
-```
+```bash
+# frontend section
 Host tarkil.metacentrum.cz # your favourite frontend, e.g. tarkil
-Port 22
+Port 22                    # keep standard port for ssh
 PubkeyAuthentication no
 
+# all other computing nodes
 Host *.cerit-sc.cz *.fav.zcu.cz *.fzu.cz *.grid.cesnet.cz *.hw.elixir-czech.cz *.ibot.cas.cz *.ics.muni.cz *.metacentrum.cz *.meta.zcu.cz *.natur.cuni.cz *.nti.tul.cz *.ueb.cas.cz
-Port 26759
+Port 26759                       # chosen port number
 IdentityFile path_to_private_key # Path to private key from step 1
 ```
 
-3. within a job, run a following piece of code
+3. within a job, setup direct connection to computing node for *VSCode remote development*
 
 
 ```bash
 
+# make another (server-side) SSH key pair and store it in a scratch dir
 mkdir -p "$SCRATCHDIR/.ssh"
 chmod 700 "$SCRATCHDIR/.ssh"
 
-# make a server SSH key pair and store it in a scratch dir
 rm -f "$SCRATCHDIR/.ssh/server_key" "$SCRATCHDIR/.ssh/server_key.pub"
 ssh-keygen -f "$SCRATCHDIR/.ssh/server_key" -N "" -C "VSCode" -q -t ed25519
 echo "SSH key generated"
 
-
+# to $SCRATCHDIR/.ssh/authorized_keys, add public key from step 1
 touch "$SCRATCHDIR/.ssh/authorized_keys"
 chmod 600 "$SCRATCHDIR/.ssh/authorized_keys"
 
-# to $SCRATCHDIR/.ssh/authorized_keys, add public key of my_key (from step 1), e.g.
 PUBKEY='ssh-ed25519 AAAAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX3wN3+QgMAVJERjayo user123@PC'
 grep -q "$PUBKEY" "$SCRATCHDIR/.ssh/authorized_keys" || echo "$PUBKEY" >> "$SCRATCHDIR/.ssh/authorized_keys"
 
 echo "Public key added to authorized_keys"
 
-# make sure that the chosen port (from step 2) is free
+# make sure that the chosen port is free
 PORT=26759
 netstat -tan |grep -q "0.0.0.0:$PORT " && { echo "port $PORT is busy" >&2; exit 1; }
 
@@ -67,7 +72,9 @@ echo "SSH running on $(hostname):$PORT"
 echo "Connect to:" hostname
 ```
 
-4.  Connect to hostname and PORT through VScode
+4. Through *VSCode remote development*, connect to hostname and PORT.
 
-
+{/*
+ticket https://rt.cesnet.cz/rt/Ticket/Display.html?id=1415487
 */}
+
