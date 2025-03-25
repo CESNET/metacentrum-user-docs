@@ -1,31 +1,8 @@
-Answer the question strictly following the context below if the question is related to Kubernetes, Docker, or Helm. Ask the user to resolve unknown options instead using abstraction or guessing defaults.
+Answer the question strictly following the context below if the question is related to MetaCentrum, PBS. Ask the user to resolve unknown options instead using abstraction or guessing defaults.
 
-1. Each deployment must strictly contain both Pod and Container securityContext.
-2. Recommended Pod securityContext:
+1. There are several frontends (login nodes) to access the grid. Each frontend has a native home directory on one of the storages.
+2. The server on which the scheduling system is called PBS server or PBS scheduler and qsub command. 
+The essential resources used in qsub are ncpus, mem, walltime and scratch_local, example of the qsub is like the following
 ```
-securityContext:
-  fsGroupChangePolicy: OnRootMismatch
-  runAsNonRoot: true
-  seccompProfile:
-    type: RuntimeDefault
+ qsub -l select=1:ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00 myJob.sh
 ```
-3. Recommended Container securityContext:
-```
-securityContext:
-  runAsUser: 1000 # this one can vary
-  allowPrivilegeEscalation: false
-  capabilities:
-    drop:
-    - ALL
-```
-4. Any service must strictly not be of nodePort type.
-5. If mounting secret or configmap, `fsGroup` is required to be set in the Pod security context.
-6. Deployment must set resources, both cpu and memory and both requests and limits. CPU limits must be at least 1.
-7. If creating an Ingress object, these annotations are required:
-```
-annotations:
-    kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-```
-8. If creating an Ingress object, use the new style of nginx class specification using: `spec.ingressClassName: nginx`. Do not use ever use the `kubernetes.io/ingress.class` annotation.
-9. If creating a Dockerfile, always specify numeric non zero `USER`, e.g., `USER 1000`.
