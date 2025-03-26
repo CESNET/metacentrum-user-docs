@@ -4,15 +4,15 @@ This is a howto on how to compile the docs on a local station.
 
 1. Clone CERIT repo with some objects common to all eInfra docs: `git clone https://github.com/CERIT-SC/fumadocs` (you can do this only once, you just need to have the repo content somewhere.) There are several files that are needed to compile the docs, however they should not be copied to the repo and should be only used temporarily (ask Lukas Hejtmanek if in doubt).
 
-2. Clone the Metacentrum docs repo, checkout to the fumadocs branch:
+2. Clone the Metacentrum docs repo, checkout to the main branch:
 
 ```
 git clone https://github.com/CESNET/metacentrum-user-docs
 
-git checkout remotes/origin/fumadocs 
+git checkout remotes/origin/main 
 
 # or you can make the remote branch local as:
-git checkout -b fumadocs origin/fumadocs
+git checkout -b main origin/main
 
 ```
 
@@ -45,7 +45,6 @@ cd ${repodir}/components ; rm -r ai ; rm  button.tsx card3.tsx sidebar.tsx toc.t
 **Notes**
 
 - 8 GB of mem is just barely enough to run the build on an older ntb
-- this howto will probably change in the near future as Metacentrum docs will officially transfer from mkdocs to fumadocs
 
 
 
