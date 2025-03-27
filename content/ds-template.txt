@@ -1,8 +1,128 @@
 Answer the question strictly following the context below if the question is related to MetaCentrum, PBS. Ask the user to resolve unknown options instead using abstraction or guessing defaults.
 
 1. There are several frontends (login nodes) to access the grid. Each frontend has a native home directory on one of the storages.
+
+charon.metacentrum.cz	| /storage/liberec3-tul	
+elmo.metacentrum.cz	| /storage/praha5-elixir	
+luna.metacentrum.cz	| /storage/praha1	Debian 12	
+nympha.metacentrum.cz | /storage/plzen1	Debian 12	Plzen	
+perian.metacentrum.cz |	/storage/brno2	
+onyx.metacentrum.cz |	/storage/brno2	
+skirit.metacentrum.cz	| /storage/brno2	
+tarkil.metacentrum.cz	| /storage/praha1	
+tilia.metacentrum.cz	| /storage/pruhonice1-ibot	
+zenith.metacentrum.cz	| /storage/brno12-cerit	
+
 2. The server on which the scheduling system is called PBS server or PBS scheduler and qsub command. 
 The essential resources used in qsub are ncpus, mem, walltime and scratch_local, example of the qsub is like the following
 ```
  qsub -l select=1:ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00 myJob.sh
 ```
+
+3. When the job is submitted, it is added to one of the queues managed by the scheduler. Queues can be defined arbitrarily by the admins based on various criteria - usually on walltime, but also on number of GPU cards, size of memory etc. Some queues are reserved for defined groups of users (“private” queues).
+Unless you have a reason to send job to a specific queue, do not specify any. The job will be submitted into a default queue and from there routed to one of execution queues.
+
+4. The software istalled in Metacentrum is packed (together with dependencies, libraries and environment variables) in so-called modules.
+To be able to use a particular software, you must load a module.
+Key command to work with software is module, see module --help on any frontend.
+
+Basic commands for module Orca as an examlpe
+```
+module avail orca/ # list versions of installed Orca
+module add orca # load Orca module (default version) 
+module load orca # load Orca module (default version) 
+module list # list currently loaded modules
+module unload orca # unload module orca
+module purge # unload all currently loaded modules
+```
+
+5. scratch usage 
+To store these files, as well as all the input data, on the computational node, a disc space must be reserved for them.
+We strongly recommend users to use scratch. There is no default scratch directory and the user must always specify its type and volume.
+
+Currently, we offer four types of scratch storage (we recommend users to use local scratch):
+Type	Available on every node?	Location on machine	$SCRATCHDIR value	Key characteristic
+* local	yes	/scratch/USERNAME/job_JOBID	scratch_local	universal, large capacity, available everywhere -- preffered one
+* ssd	no	/scratch.ssd/USERNAME/job_JOBID	scratch_ssd	fast I/O operations -- on some nodes only
+* shared	no	/scratch.shared/USERNAME/job_JOBID	scratch_shared	can be shared by more jobs
+* shm	no	/dev/shm/scratch.shm/USERNAME/job_JOBID
+
+6. job example
+```
+    (BUSTER)user123@skirit:~$ cat myJob.sh
+    #!/bin/bash
+    #PBS -N batch_job_example
+    #PBS -l select=1:ncpus=4:mem=4gb:scratch_local=10gb
+    #PBS -l walltime=1:00:00 
+    # The 4 lines above are options for the scheduling system: the job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested
+    
+    # define a DATADIR variable: directory where the input files are taken from and where the output will be copied to
+    DATADIR=/storage/brno12-cerit/home/user123/test_directory # substitute username and path to your real username and path
+    
+    # append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of the node it is run on, and the path to a scratch directory
+    # this information helps to find a scratch directory in case the job fails, and you need to remove the scratch directory manually 
+    echo "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR" >> $DATADIR/jobs_info.txt
+    
+    #loads the Gaussian's application modules, version 03
+    module add g03
+    
+    # test if the scratch directory is set
+    # if scratch directory is not set, issue error message and exit
+    test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
+    
+    # copy input file "h2o.com" to scratch directory
+    # if the copy operation fails, issue an error message and exit
+    cp $DATADIR/h2o.com  $SCRATCHDIR || { echo >&2 "Error while copying input file(s)!"; exit 2; }
+    
+    # move into scratch directory
+    cd $SCRATCHDIR 
+    
+    # run Gaussian 03 with h2o.com as input and save the results into h2o.out file
+    # if the calculation ends with an error, issue error message an exit
+    g03 <h2o.com >h2o.out || { echo >&2 "Calculation ended up erroneously (with a code $?) !!"; exit 3; }
+    
+    cp h2o.out $DATADIR/ || export CLEAN_SCRATCH=false
+```
+7. When a job is completed (no matter how), two files are created in the directory from which you have submitted the job:
+
+    <job_name>.o<jobID> - job’s standard output (STDOUT)
+    <job_name>.e<jobID> - job’s standard error output (STDERR)
+
+STDERR file contains all the error messages which occurred during the calculation. It is a first place where to look if the job has failed.
+
+8. Job termination
+Done by user -- sometimes, you need to delete the submitted/running job. This can be done by qdel command:
+
+    (BULLSEYE)user123@skirit~: qdel 21732596.pbs-m1.metacentrum.cz
+
+If plain qdel does not work, add -W (force del) option:
+
+    (BULLSEYE)user123@skirit~: qdel -W force 21732596.pbs-m1.metacentrum.cz
+
+9. In case of erroneous job ending, the data are left in the scratch directory. You should always clean the scratch after all potentially useful data has been retrieved. To do so, you need to know the hostname of machine where the job was run, and path to the scratch directory.
+
+Users’ rights allow only rm -rf $SCRATCHDIR/*, not rm -rf $SCRATCHDIR.
+
+For example:
+    user123@skirit:~$ ssh user123@luna13.fzu.cz # login to luna13.fzu.cz
+    user123@luna13:~$ cd /scratch/user123/job_14053410.pbs-m1.metacentrum.cz # enter scratch directory
+    user123@luna13:/scratch/user123/job_14053410.pbs-m1.metacentrum.cz$ rm -r * # remove all content
+
+10. Although the input and temporary files for calculation lie in $SCRATCHDIR, the standard output (STDOUT) and standard error output (STDERR) are elsewhere.
+
+To see current state of these files in a running job, proceed in these steps:
+
+* find on which host the job runs by `qstat -f job_ID | grep exec_host2`
+* `ssh` to this host
+* on the host, navigate to `/var/spool/pbs/spool/` directory and examine the files
+    - `$PBS_JOBID.OU` for STDOUT, e.g. `13031539.pbs-m1.metacentrum.cz.OU`
+    - `$PBS_JOBID.ER` for STDERR, e.g. `13031539.pbs-m1.metacentrum.cz.ER`
+* To watch a file continuously, you can also use a command `tail -f`
+
+For example:
+
+(BULLSEYE)user123@tarkil:~$ qstat -f 13031539.pbs-m1.metacentrum.cz | grep exec_host2
+exec_host2 = zenon41.cerit-sc.cz:15002/12
+(BULLSEYE)user123@tarkil:~$ ssh zenon41.cerit-sc.cz
+user123@zenon41.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 13031539.pbs-m1.metacentrum.cz.OU 
+
