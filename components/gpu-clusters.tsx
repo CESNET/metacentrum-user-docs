@@ -27,6 +27,14 @@ const GPUClusterTable = () => {
       memGB: '12',
       cudnn: 'YES',
     },
+     {
+      cluster: 'elbi1.hw.elixir-czech.cz ',
+      nodes: 'elbi1[1].hw.elixir-czech.cz ',
+      gpusPerNode: '2x NVIDIA A100',
+      computeCapability: '8.0',
+      memGB: '40',
+      cudnn: 'YES',
+    },
     {
       cluster: 'fau.natur.cuni.cz',
       nodes: 'fau[1-3].natur.cuni.cz',
