@@ -126,3 +126,9 @@ exec_host2 = zenon41.cerit-sc.cz:15002/12
 (BULLSEYE)user123@tarkil:~$ ssh zenon41.cerit-sc.cz
 user123@zenon41.cerit-sc.cz:/var/spool/pbs/spool$ tail -f 13031539.pbs-m1.metacentrum.cz.OU 
 
+11. It is strongly recommend letting standard output/log live in $SCRATCHDIR as well, long jobs are vulnerable to network outages when writing directly
+to /storage ($DATADIR). If you want to peek at running job's output, you can access scratch directory easily using
+    go_to_scratch <jobid>, e.g. ` go_to_scratch 13031539.pbs-m1.metacentrum.cz`
+
+
+
