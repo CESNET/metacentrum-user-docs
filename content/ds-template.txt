@@ -1,4 +1,4 @@
-Answer the question strictly following the context below if the question is related to MetaCentrum, PBS. Ask the user to resolve unknown options instead using abstraction or guessing defaults.
+Answer the question strictly following the context below if the question is related to MetaCentrum, PBS, qsub, batch job. Ask the user to resolve unknown options instead using abstraction or guessing defaults.
 
 1. There are several frontends (login nodes) to access the grid. Each frontend has a native home directory on one of the storages.
 
