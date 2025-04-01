@@ -6,7 +6,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 ![pic](/img/meta/software/singularity-logo.png)
 
 <Callout type="info" title="What are containers">
-    *Containerization* is a software deployment process that bundles an application's code with all the files and libraries it needs to run on any infrastructure. It makes the application less dependent on the OS and system-wide installed libraries. A particular application packed together with its libraries and other files is a *container*. An **image** is a file sitting somewhere on the disk. A **container** is a runtime instance of an image. 
+*Containerization* is a software deployment process that bundles an application's code with all the files and libraries it needs to run on any infrastructure. It makes the application less dependent on the OS and system-wide installed libraries. A particular application packed together with its libraries and other files is a *container*. An **image** is a file sitting somewhere on the disk. A **container** is a runtime instance of an image. 
 </Callout>
 
 [Singularity](https://docs.sylabs.io/guides/latest/user-guide) is an open-source program for containerization used in MetaCentrum.
@@ -20,7 +20,7 @@ Singularity images (= containers) are commonly suffixed by `.sif`.
 ## Direct Singularity usage (new feature)
 
 <Callout type="info" title="Singularity image can be added as PBS parameter">
-    The Singularity image can now be specified directly upon job submission as a PBS parameter, and the container will be automatically launched when the job starts. This is a new feature (Aug 2024). Keep in mind that this new feature is still in testing mode, and probably some expansion and modifications (e.g. towards parallelized computing) will be still under way. 
+The Singularity image can now be specified directly upon job submission as a PBS parameter, and the container will be automatically launched when the job starts. This is a new feature (Aug 2024). Keep in mind that this new feature is still in testing mode, and probably some expansion and modifications (e.g. towards parallelized computing) will be still under way. 
 </Callout>
 
 Key features:
@@ -72,7 +72,7 @@ Singularity employs a few *paths* to store various temporary files:
 - `TMPDIR`: - squashfs and temporary files, there is limit 1GB by default, if you need more use scratch
 
 <Callout  type="info" title="Tip" icon="💡">
-    If `SCRATCHDIR` exists, Singularity **automatically** exports their variables ` SINGULARITY_TMPDIR` and `SINGULARITY_CACHEDIR`. That is why in the rest of this section the explicit export of these variables is not done.
+If `SCRATCHDIR` exists, Singularity **automatically** exports their variables ` SINGULARITY_TMPDIR` and `SINGULARITY_CACHEDIR`. That is why in the rest of this section the explicit export of these variables is not done.
 </Callout>
 
 ### List options
@@ -114,7 +114,7 @@ Singularity> command_N
 
 
 <Callout type="info" title="Do not use frontends for extensive containers' usage">
-    Apart from light testing and learning, running containers right on frontends is equivalent to **computing on frontend**. This is strongly discouraged. **For an extensive work with containers, use interactive or batch job.**
+Apart from light testing and learning, running containers right on frontends is equivalent to **computing on frontend**. This is strongly discouraged. **For an extensive work with containers, use interactive or batch job.**
 </Callout>
 
 ### Use container in an interactive job
@@ -125,7 +125,7 @@ qsub -l select=1:scratch_local=10gb -l walltime=24:00:00
 ```
 
 <Callout type="info" title="What is the scratch directory good for?">
-    You may need to redirect some Singularity environment variables to store temporary files. To point them to `SCRATCHDIR` is one option. Alternatively you may redirect the Singularity variables to some folder in your home.
+You may need to redirect some Singularity environment variables to store temporary files. To point them to `SCRATCHDIR` is one option. Alternatively you may redirect the Singularity variables to some folder in your home.
 </Callout>
 
 Run the container and open a shell within the container for interactive work:
@@ -144,7 +144,7 @@ As with any other software, it is possible to pass a batch script to a container
 Assume the batch script resides in `/storage/city_N/home/user123/script.sh`.
 
 <Callout type="info" title="Is the batch script for the Singularity application any different from the script for normal application?">
-    In general, no, though for a very simple script, this may be the case. Most often, you will at least need to redirect Singularity environment variables to `SCRATCHDIR`. The `--bind` and `bash -c` commands shown below may be hidden in the script, too.
+In general, no, though for a very simple script, this may be the case. Most often, you will at least need to redirect Singularity environment variables to `SCRATCHDIR`. The `--bind` and `bash -c` commands shown below may be hidden in the script, too.
 </Callout>
 
 **Variant A: put Singularity-specific option on command line**
@@ -415,7 +415,7 @@ Preparing your own Singularity image is intended for experienced users. Reading 
 To build custom image, root privileges are needed, but this can be replaced by User Namespace Remapping. For this purpose MetaCentrum offers a server `builder.metacentrum.cz` with User Namespace Remapping.
 
 <Callout  type="warn" title="Warning">
-    Access to `builder.metacentrum.cz` is not granted automatically. Users intending to build Singularity images have to apply for membership in group `builders` by writing a request to meta@cesnet.cz.
+Access to `builder.metacentrum.cz` is not granted automatically. Users intending to build Singularity images have to apply for membership in group `builders` by writing a request to meta@cesnet.cz.
 </Callout>
 
 Image file is read-only and to modify it you have to use sandbox directory. In this example we use Debian Buster docker image.

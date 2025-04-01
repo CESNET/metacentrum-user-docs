@@ -41,7 +41,7 @@ install ...
 ```
 
 <Callout type="info" title="why do I have to redirect to TMPDIR?">
-    By default the variable TMPDIR points to system directory `/tmp`. This directory is writable to all, but users have a small quota of only 1 GB in `/tmp`. Therefore installations with default value of TMPDIR often fail due to insufficient space.
+By default the variable TMPDIR points to system directory `/tmp`. This directory is writable to all, but users have a small quota of only 1 GB in `/tmp`. Therefore installations with default value of TMPDIR often fail due to insufficient space.
 </Callout>
 
 **Features of local installation:**
@@ -60,11 +60,11 @@ install ...
 - you do not want to interact with User support in any way.
 
 <Callout  type="warn" title="Warning">
-    With software installed in your home directory, the availability is limited to the availability of that particular `/storage/city_XY`. That is why, in case you have tested the software and intend to use it for **long running jobs**, we encourage users to ask us for system wide installation. 
+With software installed in your home directory, the availability is limited to the availability of that particular `/storage/city_XY`. That is why, in case you have tested the software and intend to use it for **long running jobs**, we encourage users to ask us for system wide installation. 
 </Callout>
 
 <Callout  type="info" title="Tip" icon="💡">
-    Often users try to install a minor and easy-looking software locally and fail. **This is very common.** If this happens (and you still want to keep the installation to your home directory), do not hesitate to contact User support at meta@cesnet.cz for help. They will reproduce the errors you get, find a solution and send it back to you in step-by-step guide. *Any installation process, no matter how straightforward it looks at the beginning, can get tricky.*
+Often users try to install a minor and easy-looking software locally and fail. **This is very common.** If this happens (and you still want to keep the installation to your home directory), do not hesitate to contact User support at meta@cesnet.cz for help. They will reproduce the errors you get, find a solution and send it back to you in step-by-step guide. *Any installation process, no matter how straightforward it looks at the beginning, can get tricky.*
 </Callout>
 
 ### System-wide installation
@@ -174,7 +174,7 @@ Users can install **debian packages (.deb)** locally (in the user's home directo
 Sometimes it is fastest solution to get one particular library required by a particular application.
 
 <Callout type="warn" title="Warning">
-    Users cannot use `apt-get install`, `apt install` directly. They can, however, use `apt search`, `apt-get download` and then install the package locally by `dpkg` command. 
+Users cannot use `apt-get install`, `apt install` directly. They can, however, use `apt search`, `apt-get download` and then install the package locally by `dpkg` command. 
 </Callout>
 
 Obtain the package:
@@ -232,7 +232,7 @@ After that don't forget to set `PATH` and `PERL5LIB` to the specified directory 
 ### Python packages
 
 <Callout type="info" title="Use `--user` option rather that `--root` during pip install">
-    A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. You will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
+A very convenient feature is to use the `--user` option of pip install. This will install modules, additional to the available system python install, in the location defined by the `PYTHONUSERBASE` environment variable. You will also need to add them to your path and pythonpath so that they are accessible from any folder you wish to execute your code. For this purpose, `export PATH=$PYTHONUSERBASE/bin:$PATH` and `export PYTHONPATH=$PYTHONUSERBASE/bin:$PYTHONPATH` will do the job.
 </Callout>
 
 *Example: install software package "spektral".*
@@ -293,7 +293,7 @@ python
 ### Conda/Mamba packages
 
 <Callout  type="info" title="Tip" icon="💡">
-    Some of the most popular packages may be already installed - see `module add mambaforge ; mamba env list`.
+Some of the most popular packages may be already installed - see `module add mambaforge ; mamba env list`.
 </Callout>
 
 **Python package installers: Conda, Mamba, Micromamba**
@@ -305,7 +305,7 @@ python
 [Micromamba](https://anaconda.org/conda-forge/micromamba), available through `micromamba` module, is a lightweight and resource-efficient alternative to Mamba. Mamba, while faster than Conda, is still a relatively large application. In contrast, Micromamba is built to be more minimalistic and efficient, making it a suitable choice for resource-constrained environments, such as embedded systems or containers.
 
 <Callout  type="info" title="Tip" icon="💡">
-    We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments.
+We recommend to use `mamba` from `mambaforge` module as a primary installer for new Conda environments.
 </Callout>
 
 *Example: Install package [segemehl](https://anaconda.org/bioconda/segemehl).*
@@ -339,7 +339,7 @@ mamba deactivate
 ```
 
 <Callout  type="info" title="Tip" icon="💡">
-     If you want (esp. for long-running jobs) to make your calculations more robust, e.g. against failure of the network connection to the storage, you can clone your mamba environment directly to the scratch directory: `cd $SCRATCHDIR`<br/> `module add mambaforge`<br/> `mamba create -p $SCRATCHDIR/my_env --clone /storage/city/home/user/ny_env`<br/> `mamba activate $SCRATCHDIR/my_env`
+If you want (esp. for long-running jobs) to make your calculations more robust, e.g. against failure of the network connection to the storage, you can clone your mamba environment directly to the scratch directory: `cd $SCRATCHDIR`<br/> `module add mambaforge`<br/> `mamba create -p $SCRATCHDIR/my_env --clone /storage/city/home/user/ny_env`<br/> `mamba activate $SCRATCHDIR/my_env`
 </Callout>
 
 ### Containers

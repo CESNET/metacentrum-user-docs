@@ -90,9 +90,7 @@ The following Ansys products are available within the MetaCentrum infrastructure
 - **Ansys Mechanical** - product for simulating of structural and thermodynamic tasks. The engineering simulation product provides a complete set of elements behavior, material models and equation solvers for a wide range of mechanical design problems.
 
 <Callout type="info">
-```bash
 All ANSYS tools can utilize at **most 4 local CPUs** for task computation. For more demanding tasks in grid environment it's necessary to use additional tool – **Ansys HPC**. Every ANSYS HPC license allows for distribution of computation to another available (local or remote) processor.
-```
 </Callout>
 
 ### Ansys Fluent
@@ -162,15 +160,11 @@ To utilize homogeneous cluster (fluent cannot optimally use nodes with different
    qsub -l select=N:...:infiniband=^none -l place=group=cluster ...
 
 <Callout  type="info" title="Tip" icon="💡">
-```bash
 To minimalize time needed for communication vith cortex component and increase performace, one can try to increase /solve/set/reporting-interval.
-```
 </Callout>
 
 <Callout  type="info" title="Tip" icon="💡">
-```bash
 Check the scalability of parallel run before spawning at dozens of processors, maybe the 16cpu run is faster then 32cpu one due to big communication overhead. 
-```
 </Callout>
 
 ### Ansys CFX

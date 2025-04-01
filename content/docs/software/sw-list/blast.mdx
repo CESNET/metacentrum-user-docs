@@ -51,9 +51,7 @@ In both cases, refer to the database (`-db` option) within your `blastn`/`blastp
 All available databases are described on the NCBI web. We mirror all of them. If you need to update DBs or add some new ones, please contact the user support meta@cesnet.cz.
 
 <Callout  type="warn" title="Warning">
-```bash
 A new DB release contains very large GI numbers (GenInfo Identifier) which are incompatible with older versions of blast modules. Use the latest version of the blast module to prevent potential incompatibilities. 
-```
 </Callout>
 
 ### Network load optimization
@@ -61,9 +59,7 @@ A new DB release contains very large GI numbers (GenInfo Identifier) which are i
 If you need to run **several BLAST jobs with the same database**, we ask user to optimize the network load by **copying the database only once and using it for all the jobs running on the same node**. 
 
 <Callout type="info">
-```bash
 This requires that you don't clean the content of your scratch directory after the first job is finished!
-```
 </Callout>
 
 This can be done by inserting following construction into the batch script: 

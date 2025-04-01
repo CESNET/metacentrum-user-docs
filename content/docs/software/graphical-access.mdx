@@ -17,7 +17,7 @@ Apart from OnDemand, there are other methods:
 The easiest way how to use GUI applications is by initialization of the entire GUI environment in your favourite web browser.
 
 <Callout type="warn" title="May not work perfectly for all browsers">
-    Access to GUI through web browser may be sensitive to bugs and specific features of individual browsers. Try a different browser if it does not work with your default one.
+Access to GUI through web browser may be sensitive to bugs and specific features of individual browsers. Try a different browser if it does not work with your default one.
 </Callout>
 
 #### Start an interactive job
@@ -376,7 +376,7 @@ For example: We are sitting in front of computer named jenicek and start up X-Wi
 There are X-servers for MS Windows, for example [Xming](http://sourceforge.net/projects/xming/), [Cygwin/X](http://x.cygwin.com/), [X-Win32](https://www.starnet.com/xwin32/), [Exceed](http://connectivity.opentext.com/products/exceed-products.aspx).
 
 <Callout type="info" title="Info">
-    This article describes a **low-level** method of how to run GUI applications on Metacentrum. Only system tools are used and it is therefore always available, but has also a few drawbacks. X-Windows connection will **use all available bandwidth**, can se used to **run a single application** only and if the session crashes, it **cannot be reconnected**. It is fairly useful over a LAN or if you need to run just single application.
+This article describes a **low-level** method of how to run GUI applications on Metacentrum. Only system tools are used and it is therefore always available, but has also a few drawbacks. X-Windows connection will **use all available bandwidth**, can se used to **run a single application** only and if the session crashes, it **cannot be reconnected**. It is fairly useful over a LAN or if you need to run just single application.
 </Callout>
 
 
@@ -416,7 +416,7 @@ and repeat the procedure described above.
 ### Direct connection by X-protocol
 
 <Callout type="info" title="Only for specific usecases">
-    Direct connection is faster than tunneling through SSH, but it cannot be used when NAT (network address translation) is applied, as is typical for routers and local networks. This method is therefore limited only to certain situations and cannot be taken as equivalent of X-protocol tunneling.
+Direct connection is faster than tunneling through SSH, but it cannot be used when NAT (network address translation) is applied, as is typical for routers and local networks. This method is therefore limited only to certain situations and cannot be taken as equivalent of X-protocol tunneling.
 </Callout>
 
 Direct connection by X-protocol is achieved by setting the **DISPLAY** variable on the computing machine to the IP address of your personal machine:

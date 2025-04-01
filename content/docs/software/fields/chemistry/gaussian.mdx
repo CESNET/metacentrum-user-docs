@@ -24,9 +24,7 @@ The license for **Gaussian 16** is limited only to nodes specified in the licens
 ```
 
 <Callout  type="warn" title="Warning">
-```bash
 The purchased licenses permit academic use of the program!
-```
 </Callout>
 
 ## Usage
@@ -36,11 +34,9 @@ The purchased licenses permit academic use of the program!
 - prepare the job description script, where you should specify the computation which should be performed over the input file
 
 <Callout  type="info" title="Tip" icon="💡">
-```bash
 We highly recommend to use the `g09-prepare` (or `g16-prepare`) utility to automatically set the input file's parameters `%nproc` (number of processors), `%mem` (amount of usable memory) and `%rwf` (amount of scratch space - for large computations, the scratch space may also be separated into multiple files, which may be automatically erased by Gaussian during the computation) based on the real resources dedicated for the job. See `g09-prepare -h`.
-    
-```
 </Callout>
+
 For example, such a script may look like this one:
 
 ```
@@ -89,9 +85,7 @@ qsub -l select=1:ncpus=X:mem=Yg:scratch_local=Zg mydescriptionscript.sh
     
 ```
 <Callout type="info">
-```bash
 The Gaussian version purchased by MetaCentrum does not support a distributed run over multiple nodes; thus, use just a single node with multiple processors for your computations...
-```
 </Callout>
 
 

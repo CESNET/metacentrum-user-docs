@@ -98,6 +98,7 @@ uid=13153(makub) gid=10002(einfra) groups=10000(meta),10002(einfra),10100(storag
 <Callout  type="warn" title="Warning">
 Because of a bug in the Network File System (NFS) we use, it is necessary to explicitly change the group ownership of the newly created files/directories (at the end of an interactive session or job) by calling the command
 </Callout>
+
 ```bash
 chgrp -R MYGROUP DIRECTORY
 ```

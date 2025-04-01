@@ -29,9 +29,7 @@ This option is recommended to advanced users or as a fallback option in case OnD
 ## Licences
 
 <Callout  type="warn" title="Warning">
-```bash
 Any of the purchased licenses permit **just an academic use** of the program!
-```
 </Callout>
 
 
@@ -40,9 +38,7 @@ Any of the purchased licenses permit **just an academic use** of the program!
 For versions 9.14 and newer, MetaCentrum offers a license valid for 200 instances of MATLAB and a wide set of its toolboxes.
 
 <Callout type="info">
-```bash
 A default version of Matlab (`module add matlab`) runs also on this 200-pieces license.
-```
 </Callout>
 
 PBS tracks these licenses as a `"matlab"` resource, therefore unless you use older Matlab version, always submit the job as
@@ -52,15 +48,11 @@ qsub ... -l matlab=1 ...   # ask for 1 Matlab license
 
 ```
 <Callout  type="info" title="Tip" icon="💡">
-```bash
 In principle a license reservation is needed both for Matlab core and each one of the toolboxes you will need to use. **However, since the number of respective toolbox licenses is large, it is improbable that they will "run out"**. For most cases, you will be safe with the following simplified version which reserves only the core Matlab license `qsub ... -l matlab=1 ...` .
-```
 </Callout>
 
 <Callout type="warn" title="New license cannot be used outside of MetaCentrum">
-```bash
 This new license comes with stricter conditions than the previous one: it can be used only from MetaCentum IP adresses, i.e. you cannot use it for Matlab running on your desktop/university lecture rooms.
-```
 </Callout>
 
 **Troubleshooting tools**
@@ -130,15 +122,11 @@ To find number of licenses:
 */}
 
 <Callout type="info">
-```bash
 Unless they have a specific reason, **we urge users to use version 9.14 and newer**.
-```
 </Callout>
 
 <Callout  type="warn" title="Warning">
-```bash
 PBS dorces not anymore track the licenses for older Matlab versions, therefore **when you submit the job, do not use the `-l matlab=XX` option**.
-```
 </Callout>
 
 **Troubleshooting tools**
@@ -178,9 +166,7 @@ $ >> license                # should return '84911'
 Users of ZČU (West Bohemian University, Plzeň) have their own license for 10k MATLAB instances. Therefore they should not apply for MetaCentrum PBS resource.
 
 <Callout type="info" title="How do I find out who are ZCU users?">
-```bash
- In [Perun](https://perun.e-infra.cz/), search for group `users-zcu` and see if you are a member.   
-```
+In [Perun](https://perun.e-infra.cz/), search for group `users-zcu` and see if you are a member.   
 </Callout>
 
 ### Bring your own license
