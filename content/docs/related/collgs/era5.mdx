@@ -1,34 +1,34 @@
 ---
 title: ERA5
 ---
-*[ERA5](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) is the fifth generation ECMWF atmospheric reanalysis of the global climate covering the period from January 1940 to present. ERA5 is produced by the Copernicus Climate Change Service (C3S) at ECMWF.*
 
-ERA5 provides hourly estimates of a large number of atmospheric, land and oceanic climate variables.
+*[ERA5](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) is the fifth generation ECMWF atmospheric reanalysis of the global climate covering the period from January 1940 to present. ERA5 is produced by the Copernicus Climate Change Service (C3S) at ECMWF.* It replaces the previous ERA-Interim dataset, offering improved accuracy, higher temporal and spatial resolution, and more comprehensive uncertainty information.
 
-The data cover the Earth on a 30km grid and resolve the atmosphere using 137 levels from the surface up to a height of 80km.
+ERA5 provides hourly estimates of a large number of atmospheric, land and oceanic climate variables. Reanalysis integrates observational data from various sources (e.g., weather stations, satellites, buoys) with a consistent numerical weather prediction model, applying physical laws through a process known as data assimilation. Also it allows for producing data that goes several decades back in time, providing an accurate description of the climate of the past.
 
-ERA5 includes information about uncertainties for all variables at reduced spatial and temporal resolutions.
+At CENSET's MetaCentrum ERA5 is made available with its datasets:
 
-ERA5 is available on:
-
-- Single levels
-- Pressure levels: 1000/975/950/925/900/875/850/825/800/775/750/700/650/600/550/500/450/400/350/300/250/225/200/175/150/125/100/70/50/30/20/10/7/5/3/2/1
+- **Single levels** which can be understanded as a ground-level or near-ground-level weather with spatial resolution of 0.25° x 0.25° (cca. 31 km),
+- **Pressure levels** which can be understanded as wide-atmospherical weather (at hPas 1000/975/950/925/900/875/850/825/800/775/750/700/650/600/550/500/450/400/350/300/250/225/200/175/150/125/100/70/50/30/20/10/7/5/3/2/1) with spatial resolution of 0.25° x 0.25° (cca. 31 km),
+- **Land** which is focused at land surface only weather with spatial resolution of 0.1° x 0.1° (cca. 9 km).
 
 ## Redistribution of ERA5 Data
 
-As part of the ERA5 data distribution, users are provided with the datasets [ERA5 hourly data on single levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview) and [ERA5 hourly data on pressure levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels?tab=overview). These redistributed datasets cover the entire territory of the Czech Republic, specified by the bounding box [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
+As part of the ERA5 data distribution, users are provided with the datasets [ERA5 hourly data on single levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview), [ERA5 hourly data on pressure levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels?tab=overview), and [ERA5-Land hourly data from 1950 to present](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land). These datasets cover the entire territory of the Czech Republic, specified by the bounding box [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
 
-As of today (November 7, 2023), data from October 2023 to August 2018 have been downloaded, and older data is still being downloaded, up to the first available month of January 1940.
+As of today (April 4th, 2025), data from January 2020 to August 2023 have been downloaded, and older data is still being downloaded, up to the first available month of January 1940.
 
 The list of variables included in the datasets is available at the following pages:
 
-- [ERA5 reanalysis-single-levels variables](../../related/collgs/era5_reanalysis-era5-single-levels_variables)
-- [ERA5 reanalysis-pressure-levels variables](../../related/collgs/era5_reanalysis-era5-pressure-levels_variables)
+- [ERA5 reanalysis-single-levels variables](./era5_reanalysis-era5-single-levels_variables)
+- [ERA5 reanalysis-pressure-levels variables](./era5_reanalysis-era5-pressure-levels_variables)
+- [ERA5 Land](./era5_era5-land_variables)
 
 The data is available to the public without the need for registration via the STAC catalog at the following addresses:
 
 - [https://stac.cesnet.cz/collections/reanalysis-era5-single-levels](https://stac.cesnet.cz/collections/reanalysis-era5-single-levels)
 - [https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels](https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels)
+- [https://stac.cesnet.cz/collections/reanalysis-era5-land](https://stac.cesnet.cz/collections/reanalysis-era5-land)
 
 The data is not prepared for specific user queries but is pre-processed. For each available month of the considered dataset, four product types are available:
 
@@ -37,21 +37,15 @@ The data is not prepared for specific user queries but is pre-processed. For eac
 - Ensemble members
 - Ensemble spread
 
-According to the data specification, they can be further modified and adjusted up to three months retrospectively.
+Note: ERA5-Land is available only by Reanalysis dataset.
 
-To reflect this, data is now downloaded up to the end of the month preceding the current month. For example, in November, the last downloaded month will be October. However, it should be noted that this data may still change.
+According to the data specification, they can be further modified and adjusted up to three months retrospectively. To reflect this, data is now downloaded up to the end of the month preceding the current month. For example, in November, the last downloaded month will be October. However, it should be noted that this data may still change. Additionally, the data undergoes an update and finalization process, where the data for the current month is downloaded along with the final data for the previous four months after the 2nd day of the current month. For example, in November, final data for July will be downloaded.
 
-Additionally, the data undergoes an update and finalization process, where the data for the current month is downloaded along with the final data for the previous four months after the 2nd day of the current month. For example, in November, final data for July will be downloaded.
+## Download Procedure and STAC generation
 
-## Download Procedure
+Data for each considered dataset and product type are distributed in `.grib` format and contain complete hourly data for all available variables of the considered day. For the `reanalysis-era5-pressure-levels` dataset, data is also available for all pressure levels.
 
-Data for each considered dataset and product type are distributed in `.grib` format and contain complete hourly data for all available variables of the considered month. For the `reanalysis-era5-pressure-levels` dataset, data is also available for all pressure levels.
-
-Individual months are organized in a flat structure:
-
-`/collections/reanalysis-era5-single-levels/items/YYYY-MM-reanalysis-era5-single-levels`
-
-This API endpoint returns the GeoJSON of the given item, with the *assets* node being significant for downloading the data.
+STAC item is being generated on-site according to general STAC specification. STAC Feature ID is being generated from `[YEAR]_[MONTH]_[DAY]_[AREA_NAME]_[DATASET].[FORMAT_EXTENSION]` for example `2020_01_01_czech_republic_reanalysis.grib`.
 
 The *assets* node consists of four additional nodes, corresponding to the individual product types:
 
@@ -61,6 +55,8 @@ The *assets* node consists of four additional nodes, corresponding to the indivi
 - ensemble-spread
 
 Each of these product-type nodes contains an `href` key that points to the desired `.grib` file.
+
+Since NetCDF is as of now considered as experimental by ECMWF, this format is not mirrored.
 
 ## License
 
