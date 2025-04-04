@@ -1,0 +1,43 @@
+# MetaCentrum's AI Chat Assistance
+
+We are excited to introduce our integrated AI chat feature, designed to enhance your experience when navigating computing and storage options within MetaCentrum. This powerful tool provides instant support and guidance through two distinct models: **Local Search** and **Problem Solver**. Below, you'll find essential information and tips on how to effectively utilize this AI chat for optimal results.
+
+## Understanding the AI Chat Models
+
+### Local Search
+- **Purpose:** This model is specifically tailored to explore and retrieve information from MetaCentrum's local documentation.
+- **Usage:** To activate the Local Search, ensure your queries are structured as direct questions ending with a question mark (`?`). For example:  
+  `What are the available storage options in MetaCenter for large datasets?`
+- **Benefits:** It provides precise answers related to our platform's documentation, ensuring you find relevant internal resources quickly.
+
+### Problem Solver
+- **Functionality:** The Problem Solver is a versatile language model equipped with general knowledge and problem-solving capabilities.  
+- **Use Cases:**  
+  - **Error Troubleshooting:** Users can input error messages or describe issues they encounter during their computing tasks, and the AI will assist in identifying potential solutions.  
+  - **Script Assistance:** It can aid in creating or debugging `qsub` commands or bash scripts for job submissions.  
+  - **General Queries:** Feel free to ask any questions related to computing practices, as the model is trained to provide helpful responses based on common knowledge.  
+- **Context Awareness:** The Problem Solver operates within a predefined context, allowing it to deliver accurate and relevant solutions without searching the local documentation.
+
+## Tips for Effective AI Chat Interaction
+
+Here are some tips to help you get the best results from the AI chat:
+
+- **Be Specific and Clear** Clearly define your problem or question. For example, instead of "I have an issue with my script," try "How can I fix a <code>'permission denied'</code> error in my bash script for job submission?".</p>
+- **Utilize Keywords** Include relevant keywords related to your query. Keywords help the AI understand the context and provide more accurate responses. For example, "MetaCenter storage quota increase request process."</p>
+- **Provide Necessary Details** When seeking help with errors or scripts, share the exact error messages, code snippets, or specific commands you are working with. This enables the Problem Solver to offer tailored solutions.</p>
+- **Ask One Question at a Time** For complex topics, break down your queries into multiple questions. This approach ensures each question receives focused attention from the AI.</p>
+- **Experiment with Different Phrasings** If you don't get the desired result, rephrase your question or provide additional context. The AI chat learns and adapts to various user inputs.</p>
+- **Local Search Question Format** Remember to use the question format for local searches. For instance, "How do I access my stored data remotely?" should be phrased as "How do I access my stored data remotely in MetaCenter?".</p>
+
+
+## How to Start the AI Chat Window
+
+To begin using the AI chat, locate the chat icon positioned in the bottom-right corner of your screen.  
+Click the icon to open the chat window.
+
+> **Note:** Access to the chat requires authentication using your **university account** or MetaCenter account. A valid **MetaCentrum account** is required.
+
+![AI Chat Window Guide](./img/ai-chat.png)
+
+Start by asking a question or describing your computing challenge. The AI chat is ready to provide prompt assistance, whether you need documentation-related information or creative problem-solving support.  
+
