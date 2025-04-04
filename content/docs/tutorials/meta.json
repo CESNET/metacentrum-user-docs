@@ -1,4 +1,7 @@
 {
 	"title": "Tutorials",
-	"pages": ["index"]
+	"pages": [
+		"index",
+		"chat-help"
+	]
 }
