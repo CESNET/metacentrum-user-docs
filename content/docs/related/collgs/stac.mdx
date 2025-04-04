@@ -11,6 +11,8 @@ The catalog is accessible at [https://stac.cesnet.cz/](https://stac.cesnet.cz/).
 
 A detailed specification of the STAC catalog is available at [STAC Specification](https://stacspec.org/en/about/stac-spec/).
 
+Currently, no STAC extensions are explicitly used. However, if you have any suggestions to extend our current implementation, do not hesitate to contact us.
+
 ### **Catalog**
 A STAC catalog is a way of organizing and linking data so that it can be easily browsed and searched. It functions like a list containing data and links to other (sub)catalogs.
 
@@ -91,7 +93,7 @@ print(s1_collection.description)
 
 The [Leafmap](https://leafmap.org/) library is used in Jupyter notebooks for geospatial analysis. It allows you to retrieve coordinates, which can then be utilized when working with the PySTAC library. Another option is to use some online tool such as a [bbox finder](http://bboxfinder.com).
 
-If you already know the coordinates, you can use the `intersects` filter (for point intersection) or the `bbox` filter (for bounding box). The following examples are inspired by the [existing tutorial in English](https://carpentries-incubator.github.io/geospatial-python/instructor/05-access-data.html#search-a-stac-catalog).
+If you already know the coordinates, you can use the `intersects` filter (for point intersection) or the `bbox` filter (for bounding box). The following examples are inspired by the [existing tutorial](https://carpentries-incubator.github.io/geospatial-python/instructor/05-access-data.html#search-a-stac-catalog).
 
 ```python
 from shapely.geometry import Point

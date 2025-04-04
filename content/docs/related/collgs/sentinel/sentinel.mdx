@@ -5,7 +5,9 @@ The National Node allows access to Sentinel mission data by all common means. Cu
 
 The previous version of the software providing access to Sentinel satellite data, Sentinel DataHub System, which is still available at [https://dhr1.cesnet.cz](https://dhr1.cesnet.cz/), is being replaced by the new GSS (Gael Store Service) software.
 
+<Callout type="warn" title="Service migration">
 In the first half of 2025, both systems will be accessible simultaneously, after which GSS will fully replace it.
+</Callout>
 
 One of the changes related to the transition to the new system is, for example, the removal of the ability to log into the graphical interface using a username and password or the introduction of tokens for API communication for machine access.
 
@@ -144,6 +146,9 @@ curl -v $'https://collgs.cesnet.cz/odata/v1/Products(4125df3d-468c-4c3f-b283-249
 
 To obtain product metadata in STAC format, the catalog is available at [https://stac.cesnet.cz](https://stac.cesnet.cz). 
 You can find the catalog documentation in the [STAC section](../stac).
+
+STAC metadata is generated using the stactools Python library. No extensions are explicitly used, however,
+should you have any suggestions on extending the metadata, do not hesitate to reach us at collgs@cesnet.cz.
 
 ## Support for Specific Applications
 
