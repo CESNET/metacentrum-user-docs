@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Banner from '@/public/img/logos/einfra_4loga-zapati.svg';
+import Banner from '@/public/img/logos/einfra_meta-zapati.svg';
 
 export function Footer() {
    return (
