@@ -14,51 +14,55 @@ ERA5 is available on:
 - Single levels
 - Pressure levels: 1000/975/950/925/900/875/850/825/800/775/750/700/650/600/550/500/450/400/350/300/250/225/200/175/150/125/100/70/50/30/20/10/7/5/3/2/1
 
-## Redistribuce ERA5 dat
+## Redistribution of ERA5 Data
 
-V rámci distribuce ERA5 dat jsou uživatelům poskytovány datasety [ERA5 hourly data on single levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview) a [ERA5 hourly data on pressure levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels?tab=overview). Data v těchto redistribuovaných datasetech zahrnují celé území České republiky, jež je specifikováno bounding boxem [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
+As part of the ERA5 data distribution, users are provided with the datasets [ERA5 hourly data on single levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview) and [ERA5 hourly data on pressure levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels?tab=overview). These redistributed datasets cover the entire territory of the Czech Republic, specified by the bounding box [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
 
-K dnešnímu dni (7. listopadu 2023) jsou stažena data od října 2023 do srpna 2018, přičemž jsou stále stahovány starší data, až do prvního poskytovaného měsíce ledna 1940.
+As of today (November 7, 2023), data from October 2023 to August 2018 have been downloaded, and older data is still being downloaded, up to the first available month of January 1940.
 
-Seznamy proměnných, jež jsou v datasetech zahrnuty, jsou dostupné na stránkách:
+The list of variables included in the datasets is available at the following pages:
 
-- [ERA5 reanalysis-single-levels variables](../../related/collgs/ERA5_reanalysis-era5-single-levels_variables)
-- [ERA5 reanalysis-pressure-levels variables](../../related/collgs/ERA5_reanalysis-era5-pressure-levels_variables)
+- [ERA5 reanalysis-single-levels variables](./ERA5_reanalysis-era5-single-levels_variables)
+- [ERA5 reanalysis-pressure-levels variables](./ERA5_reanalysis-era5-pressure-levels_variables)
 
-Veřejnosti jsou data zpřístupněna bez potřeby registrace prostřednictvím STAC katalogu na adresách [https://stac.cesnet.cz/collections/reanalysis-era5-single-levels](https://stac.cesnet.cz/collections/reanalysis-era5-single-levels) a [https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels](https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels).
+The data is available to the public without the need for registration via the STAC catalog at the following addresses:
 
-Data nejsou připravována pro specifický dotaz uživatele, ale jsou předpřipravená, kdy pro každý dostupný měsíc uvažovaného datasetu jsou k dispozici čtyřy produktové typy:
+- [https://stac.cesnet.cz/collections/reanalysis-era5-single-levels](https://stac.cesnet.cz/collections/reanalysis-era5-single-levels)
+- [https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels](https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels)
+
+The data is not prepared for specific user queries but is pre-processed. For each available month of the considered dataset, four product types are available:
 
 - Reanalysis
 - Ensemble mean
 - Ensemble members
 - Ensemble spread
 
-Dle specifikace dat mohou být dále měněna a upravována a to až tři měsíce zpětně.
+According to the data specification, they can be further modified and adjusted up to three months retrospectively.
 
-Pro reflektování této skutečnosti jsou nyní data stahována do konce měsíce předcházejícímu aktuálnímu měsíci. Tedy například v listopadu bude posledním staženým měsícem říjen. Je ale nutné mít na paměti, že tato data se ještě můžou měnit.
+To reflect this, data is now downloaded up to the end of the month preceding the current month. For example, in November, the last downloaded month will be October. However, it should be noted that this data may still change.
 
-Dále pak dochází k aktualizaci a finalizaci dat, kdy je po 2. dni aktuálního měsíce stažen aktuálnímu měsící čtyři měsíce předcházející měsíc s finálními daty. Například tedy v listopadu budou stažena finální data pro červenec.
+Additionally, the data undergoes an update and finalization process, where the data for the current month is downloaded along with the final data for the previous four months after the 2nd day of the current month. For example, in November, final data for July will be downloaded.
 
-## Postup stažení
+## Download Procedure
 
-Data pro každý uvažovaný dataset a produktový typ jsou distribuovány ve formátu `.grib` a obsahují kompletní hodinová data pro všechny dostupné proměnné uvažovaného měsíce a pro dataset `reanalysis-era5-pressure-levels` také pro všechny úrovně tlaku.
+Data for each considered dataset and product type are distributed in `.grib` format and contain complete hourly data for all available variables of the considered month. For the `reanalysis-era5-pressure-levels` dataset, data is also available for all pressure levels.
 
-Jednotlivé měsíce jsou organizovány v ploché struktuře:
+Individual months are organized in a flat structure:
 
 `/collections/reanalysis-era5-single-levels/items/YYYY-MM-reanalysis-era5-single-levels`
 
-Takovýto API endpoint vrací geojson daného itemu, přičemž pro stažení dat je významný node *assets*.
+This API endpoint returns the GeoJSON of the given item, with the *assets* node being significant for downloading the data.
 
-Node *assets* sestává ze čtyř dalších nodů, totiž jednotlivých produktových typů:
+The *assets* node consists of four additional nodes, corresponding to the individual product types:
 
 - reanalysis
 - ensemble-mean
 - ensemble-members
 - ensemble-spread
 
-V každém z těchto nodů produktových typů je obsažen klíč `href` jež odkazuje na požadovaný `.grib` soubor.
+Each of these product-type nodes contains an `href` key that points to the desired `.grib` file.
 
-## Licence
+## License
 
-Data jsou dostupná pod licencí [License to use Copernicus Products](https://www.copernicus.eu/en/access-data/copyright-and-licences).
+The data is available under the [License to use Copernicus Products](https://www.copernicus.eu/en/access-data/copyright-and-licences).
+

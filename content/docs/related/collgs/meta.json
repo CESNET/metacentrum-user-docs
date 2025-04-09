@@ -1,4 +1,4 @@
 {
 	"title": "CollGS",
-	"pages": ["index", "era5", "pristup-k-datum", "datadiscovery"]
+ 	"pages": ["index", "era5", "sentinel", "stac", "landsat", "c-scale-notebooks"]
 }
