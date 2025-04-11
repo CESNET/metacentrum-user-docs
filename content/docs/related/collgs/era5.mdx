@@ -34,8 +34,6 @@ A land-surface-focused dataset providing improved resolution and accuracy over l
 - [Dataset on ECMWF website](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land)
 - STAC: [https://stac.cesnet.cz/collections/reanalysis-era5-land](https://stac.cesnet.cz/collections/reanalysis-era5-land)
 
---
-
 ## Data Redistribution
 
 Redistributed ECMWF datasets are available for the **Czech Republic** national teritory and border areas of neighboring countries, covering the bounding box [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
@@ -69,8 +67,6 @@ According to ECMWF documentation, ERA5 data can be re-processed retrospectively 
 
 For example, in **November**, data from **October** is added, and finalized data for **July** is refreshed.
 
----
-
 ## Downloading Data
 
 Each STAC API item returns a **GeoJSON** with an `assets` node, containing direct `.grib` links for each product type:
@@ -87,8 +83,6 @@ Each STAC API item returns a **GeoJSON** with an `assets` node, containing direc
 "ensemble-spread-netcdf": { "href": null }
 }
 ```
-
----
 
 ## License
 
