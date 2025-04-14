@@ -1,68 +1,89 @@
 ---
 title: ERA5
 ---
-*[ERA5](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) is the fifth generation ECMWF atmospheric reanalysis of the global climate covering the period from January 1940 to present. ERA5 is produced by the Copernicus Climate Change Service (C3S) at ECMWF.*
 
-ERA5 provides hourly estimates of a large number of atmospheric, land and oceanic climate variables.
+*[ERA5](https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5) is the fifth-generation ECMWF atmospheric reanalysis of the global climate, produced by the Copernicus Climate Change Service (C3S). It covers the period from January 1940 to present and provides hourly estimates of a wide range of atmospheric, land, and oceanic variables. ERA5 is available on a 30 km grid and is available up to heihgt of 80 km. ERA5 includes uncertainty estimates at reduced spatial and temporal resolutions and is available in three main dataset.*
 
-The data cover the Earth on a 30km grid and resolve the atmosphere using 137 levels from the surface up to a height of 80km.
+## Available Datasets
 
-ERA5 includes information about uncertainties for all variables at reduced spatial and temporal resolutions.
+### 1. ERA5 Hourly Data on Single Levels
+Provides surface and near-surface variables (e.g., temperature at 2 m, surface pressure, total precipitation).
 
-ERA5 is available on:
+- Grid resolution: cca. 30 km (0,25° x 0,25° grid)
+- Vertical levels: Single level (surface)
+- Coverage: near-surface
+- [Dataset on ECMWF website](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
+- STAC: [https://stac.cesnet.cz/collections/reanalysis-era5-single-levels](https://stac.cesnet.cz/collections/reanalysis-era5-single-levels)
+- [Variables list](./ERA5_reanalysis-era5-single-levels_variables)
 
-- Single levels
-- Pressure levels: 1000/975/950/925/900/875/850/825/800/775/750/700/650/600/550/500/450/400/350/300/250/225/200/175/150/125/100/70/50/30/20/10/7/5/3/2/1
+### 2. ERA5 Hourly Data on Pressure Levels
+Provides data on standard atmospheric pressure levels (e.g., temperature, wind, humidity).
 
-## Redistribution of ERA5 Data
+- Grid resolution: cca. 30 km (0,25° x 0,25° grid)
+- Coverage: vertical on pressure levels from 1 hPa to 1 000 hPa
+- [Dataset on ECMWF website](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels)
+- STAC: [https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels](https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels)
+- [Variables list](./ERA5_reanalysis-era5-pressure-levels_variables)
 
-As part of the ERA5 data distribution, users are provided with the datasets [ERA5 hourly data on single levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview) and [ERA5 hourly data on pressure levels](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-pressure-levels?tab=overview). These redistributed datasets cover the entire territory of the Czech Republic, specified by the bounding box [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
+### 3. ERA5-Land
+A land-surface-focused dataset providing improved resolution and accuracy over land areas by re-running the ERA5 land component. It contains quanitites such as soil moisture & temperature, snow depth, evaporation, runoff, etc.
 
-As of today (November 7, 2023), data from October 2023 to August 2018 have been downloaded, and older data is still being downloaded, up to the first available month of January 1940.
+- Grid resolution: cca. 9 km (0,1° x 0,1° grid)
+- Coverage: Land surfaces only
+- Temporal coverage: From January 1950 to present
+- [Dataset on ECMWF website](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land)
+- STAC: [https://stac.cesnet.cz/collections/reanalysis-era5-land](https://stac.cesnet.cz/collections/reanalysis-era5-land)
 
-The list of variables included in the datasets is available at the following pages:
+## Data Redistribution
 
-- [ERA5 reanalysis-single-levels variables](./ERA5_reanalysis-era5-single-levels_variables)
-- [ERA5 reanalysis-pressure-levels variables](./ERA5_reanalysis-era5-pressure-levels_variables)
+Redistributed ECMWF datasets are available for the **Czech Republic** national teritory and border areas of neighboring countries, covering the bounding box [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
 
-The data is available to the public without the need for registration via the STAC catalog at the following addresses:
+As of **April 11, 2024**, data from **January 2020 to May 2024** has been downloaded, with newer as well as older data still being downloaded and processed back to the earliest available month of each respective dataset.
 
-- [https://stac.cesnet.cz/collections/reanalysis-era5-single-levels](https://stac.cesnet.cz/collections/reanalysis-era5-single-levels)
-- [https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels](https://stac.cesnet.cz/collections/reanalysis-era5-pressure-levels)
 
-The data is not prepared for specific user queries but is pre-processed. For each available month of the considered dataset, four product types are available:
+## Data Availability and Update Policy
+
+Each dataset is provided as complete monthly `.grib` files, organized in STAC catalog by `collection` and `item` in hierarchical structure:
+
+```
+/collections/<dataset-name>/items/YYYY-MM-<dataset-name>
+```
+
+NetCDF format is as of today considered **experimental** by ECMWF and thus it is not being currently downloaded. `href`s to these files are set as `null`!
+
+Datasets for reanalysis on single levels and pressure levels includes **four product types**:
 
 - Reanalysis
 - Ensemble mean
 - Ensemble members
 - Ensemble spread
 
-According to the data specification, they can be further modified and adjusted up to three months retrospectively.
+ERA-5 land includes only **Reanalysis** product type.
 
-To reflect this, data is now downloaded up to the end of the month preceding the current month. For example, in November, the last downloaded month will be October. However, it should be noted that this data may still change.
+According to ECMWF documentation, ERA5 data can be re-processed retrospectively for up to three months. Therefore:
 
-Additionally, the data undergoes an update and finalization process, where the data for the current month is downloaded along with the final data for the previous four months after the 2nd day of the current month. For example, in November, final data for July will be downloaded.
+- **New monthly data** is downloaded up to the **end of the previous month**.
+- **Finalized data** is re-downloaded for the **four months prior**, typically after the 2nd day of the current month.
 
-## Download Procedure
+For example, in **November**, data from **October** is added, and finalized data for **July** is refreshed.
 
-Data for each considered dataset and product type are distributed in `.grib` format and contain complete hourly data for all available variables of the considered month. For the `reanalysis-era5-pressure-levels` dataset, data is also available for all pressure levels.
+## Downloading Data
 
-Individual months are organized in a flat structure:
+Each STAC API item returns a **GeoJSON** with an `assets` node, containing direct `.grib` links for each product type:
 
-`/collections/reanalysis-era5-single-levels/items/YYYY-MM-reanalysis-era5-single-levels`
-
-This API endpoint returns the GeoJSON of the given item, with the *assets* node being significant for downloading the data.
-
-The *assets* node consists of four additional nodes, corresponding to the individual product types:
-
-- reanalysis
-- ensemble-mean
-- ensemble-members
-- ensemble-spread
-
-Each of these product-type nodes contains an `href` key that points to the desired `.grib` file.
+```json
+"assets": {
+"reanalysis-grib": { "href": "..." },
+"ensemble-mean-grib": { "href": "..." },
+"ensemble-members-grib": { "href": "..." },
+"ensemble-spread-grib": { "href": "..." },
+"reanalysis-netcdf": { "href": null },
+"ensemble-mean-netcdf": { "href": null },
+"ensemble-members-netcdf": { "href": null },
+"ensemble-spread-netcdf": { "href": null }
+}
+```
 
 ## License
 
 The data is available under the [License to use Copernicus Products](https://www.copernicus.eu/en/access-data/copyright-and-licences).
-
