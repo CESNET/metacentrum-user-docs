@@ -1,0 +1,235 @@
+---
+title: C-scale image processing
+---
+<a href="https://github.com/CESNET/metacentrum-user-docs/tree/main/public/img/meta/related/notebooks/c-scale-notebooks" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center'}}>
+   <img src="https://img.icons8.com/ios-glyphs/30/000000/github.png" style={{ marginRight: '8px' }} />
+    <span> View full code on GitHub </span>
+</a>
+
+This notebook intends to show how to locate geographical position of the downloaded Sentinel-2 satellite images using OpenStreet maps and how to clip them.
+
+```python
+from IPython.display import Markdown
+import rasterio
+import rasterio.plot as plot
+from rasterio.plot import show
+import os
+
+path = os.path.abspath("")
+path
+```
+
+Locate the folder with the image data.
+
+
+```python
+img_folder = path + '/images/jp2/' 
+
+try:
+    # Attempt to access the folder
+    os.listdir(img_folder)
+    img_name = "TCI.jp2"
+    tci = rasterio.open(img_folder + img_name, driver='JP2OpenJPEG')
+
+except FileNotFoundError:
+    error_message = f"**Error:** The folder '{img_folder}' does not exist. Please create the folder or provide a valid path."
+    display(Markdown(f"<font color='red'>{error_message}</font>"))
+
+except Exception as e:
+    # Handle other potential exceptions
+    print(f"An error occurred: {e}")
+```
+
+We can show satellite image in the notebook, but be careful, it will take about 4 minutes to render!
+
+
+```python
+#%%time
+# This takes quite a long time to execute
+#show(tci)
+```
+
+## Position of selected image in OpenStreet Maps
+
+We can check whether we really downloaded satellite image data of our interest using OpenStreet maps.
+
+In order to show we need to use some predefined functions to play a little bit with the metadata and coordinates of the satellite image.
+
+
+```python
+import folium
+import pandas as pd
+from rasterio import warp
+from cscale_notebooks_functions import reverse_coordinates, to_index, generate_polygon, pol_to_np, pol_to_bounding_box
+```
+
+
+```python
+# original bounds of the image
+bounds_trans_original = warp.transform_bounds(tci.crs,{'init': 'epsg:4326'},
+                                              *tci.bounds)
+
+coordinates_file = 'single_polygon_coords.csv'
+try:
+    # Read the CSV file with original coordinates into a DataFrame
+    df = pd.read_csv(coordinates_file)
+    
+    # Combine X and Y columns into a list of lists
+    coordinates_list = list(df[['X', 'Y']].values.tolist())
+
+except FileNotFoundError:
+    print(f"The file '{coordinates_file}' with image coordinates was not found. The coordinates from TCI image have been used instead.")
+    coordinates_list = generate_polygon(bounds_trans_original)
+
+polyline_polygon_trans_original = folium.PolyLine(reverse_coordinates(coordinates_list),
+                                                  popup="polygon_trans_original",
+                                                  color="green")#"#2ca02c")
+
+mean_lat = (bounds_trans_original[1] + bounds_trans_original[3]) / 2.0
+mean_lng = (bounds_trans_original[0] + bounds_trans_original[2]) / 2.0
+map_bb = folium.Map(location=[mean_lat-0.2,mean_lng+1.5], zoom_start=8)
+map_bb.add_child(polyline_polygon_trans_original)
+map_bb
+```
+
+We can now create our region of interest. Region of interested was created with [geojson.io](https://geojson.io) and we chose Prague for this case.
+
+
+```python
+import geojson
+
+gejson_file = path + "/geojson/prague_map.geojson"
+
+# Open geojson file with GPS coordinates
+with open(gejson_file) as f:
+    gj = geojson.load(f)
+
+# Load coordinates from geojson file
+coor = gj['features'][0]['geometry']['coordinates']
+
+k = 0
+cord = [[0] for i in range(len(coor[0]))]
+for i in range(len(coor)):
+    for j in range(len(coor[0])):
+        cord[k] = coor[i][j]
+        k += 1
+
+polyline_pol_clip = folium.PolyLine(reverse_coordinates(cord), popup="cord",color="red")
+
+mean_lat = (bounds_trans_original[1] + bounds_trans_original[3]) / 2.0
+mean_lng = (bounds_trans_original[0] + bounds_trans_original[2]) / 2.0
+map_bb = folium.Map(location=[mean_lat-0.2,mean_lng+1.5], zoom_start=8)
+map_bb.add_child(polyline_polygon_trans_original)
+map_bb.add_child(polyline_pol_clip)
+map_bb
+```
+
+We can also show the region of interest within the satellite image, but we need to convert the coordinates using some predefined functions
+
+
+```python
+from cscale_notebooks_functions import bbox_converter
+import geopandas as gpd
+
+geo_bbox = path + "/geojson/bbox_map_convert.geojson"
+bbox_converter(gejson_file,geo_bbox,32633)
+gdf = gpd.read_file(geo_bbox)
+```
+
+This takes about 4 min to execute!
+
+
+```python
+%%time
+import matplotlib.pyplot as plt
+
+# This takes quite a long time to execute
+fig, ax = plt.subplots(figsize=(10, 8))
+show(tci,ax=ax)
+gdf.plot(ax=ax, color='red', alpha=.4, aspect=1)
+plt.show()
+```
+
+## Insert clipped Sentinel image in OpenStreet Map
+
+
+```python
+import pyproj
+import numpy as np
+import json
+import rasterio
+from rasterio.plot import show
+from rasterio import windows
+from matplotlib import pyplot as plt
+from cscale_notebooks_functions import clipper
+import os
+
+# Choose folder for clipped images
+path_folder = path + "/images/clipped/"
+```
+
+
+```python
+if os.path.isdir(path_folder) != True:
+    os.mkdir(path_folder)
+clipper(img_folder,geo_bbox,path_folder)
+```
+
+
+```python
+# Clipping images
+clip = path_folder + "TCI.tif"
+plt.figure(figsize=(10,8))
+clipped_img = rasterio.open(clip)
+show(clipped_img)
+```
+
+
+```python
+# Read img and convert to numpy stack
+img = np.stack([clipped_img.read(i) for i in range(1,4)], axis=-1)
+
+bbox = pol_to_bounding_box(cord)
+bounds_trans = warp.transform_bounds({'init': 'epsg:4326'},clipped_img.crs,*bbox)
+pol_bounds_trans = generate_polygon(bounds_trans)
+
+bbox = pol_to_bounding_box(pol_bounds_trans)
+window_same = windows.from_bounds(*bbox,clipped_img.transform)
+transform_window = windows.transform(window_same,clipped_img.transform)
+
+transform,width,height = warp.calculate_default_transform(clipped_img.crs, {"init":"epsg:4326"},
+                                                          img.shape[1],img.shape[0],
+                                                          left=bbox[0],bottom=bbox[1],
+                                                          right=bbox[2],top=bbox[3])
+                                                          #resolution=0.002)
+
+out_array = np.ndarray((img.shape[2],height,width),dtype=img.dtype)
+
+warp.reproject(np.transpose(img,axes=(2,0,1)),
+               out_array,
+               src_crs=clipped_img.crs,
+               dst_crs={"init":"epsg:4326"},
+               src_transform=transform_window,
+               dst_transform=transform,
+               resampling=warp.Resampling.bilinear);
+
+#plt.figure(figsize=(8,8))
+#plot.show(out_array, transform=transform)
+
+bbox_clip = pol_to_bounding_box(cord)
+
+mean_lat = (bounds_trans_original[1] + bounds_trans_original[3]) / 2.0
+mean_lng = (bounds_trans_original[0] + bounds_trans_original[2]) / 2.0
+
+map_bb = folium.Map(location=[mean_lat-0.2,mean_lng+1.5], zoom_start=8)
+
+map_bb.add_child(polyline_polygon_trans_original)
+map_bb.add_child(polyline_pol_clip)
+image_overlay = folium.raster_layers.ImageOverlay(np.transpose(out_array,(1,2,0)),
+                                                  [[bbox_clip[1],
+                                                    bbox_clip[0]],
+                                                   [bbox_clip[3],
+                                                    bbox_clip[2]]])
+map_bb.add_child(image_overlay)
+map_bb
+```

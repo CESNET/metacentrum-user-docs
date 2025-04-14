@@ -1,0 +1,167 @@
+---
+title: C-scale appendix
+---
+<a href="https://github.com/CESNET/metacentrum-user-docs/tree/main/public/img/meta/related/notebooks/c-scale-notebooks" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center'}}>
+   <img src="https://img.icons8.com/ios-glyphs/30/000000/github.png" style={{ marginRight: '8px' }} />
+    <span> View full code on GitHub </span>
+</a>
+
+This notebook intends to show couple ideas how to analyse Sentinel-2 satellite images using different spectral bands and visualising the output.
+
+
+```python
+import os
+import numpy as np
+from matplotlib import pyplot as plt
+from cscale_notebooks_functions import load_sentinel_image, display_rgb, image_rgb, normalized_difference, plot_masked_rgb, resampling
+```
+
+
+```python
+# Choose folder where are your downloaded satelite images  
+img_folder = "/images/clipped/"
+path = os.path.abspath("")
+folder_img = path + img_folder
+```
+
+Different channels has different resolution, so it needs to be resampled in order to be able to put them together. You can check the channel resolution [here](https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial).
+
+In case of L1C data we need to resample channels B05, B06, B11 and B12 with the factor of 2 and B09 with factor 6.
+
+
+```python
+file_temp = "B02.tif"
+file_res = ["B05.tif", "B06.tif", "B11.tif", "B12.tif"]
+```
+
+
+```python
+for n in range(len(file_res)):
+    resampled = resampling(folder_img,file_temp,file_res[n],2)
+```
+
+##### NOTE: In case of L1C data the channel B09 is resampled with factor of 6, whereas L2A data needs resampling of ONLY channel B09 with the factor of 3!
+
+
+```python
+file_temp = "B02.tif"
+file_res = ["B09.tif", "B10.tif"]
+
+for n in range(len(file_res)):
+    resampled_09 = resampling(folder_img,file_temp,file_res[n],6)
+```
+
+##### NOTE: In case of L1C data we need to enter B05_res, B06_res channels. For L2A just B05 and B06.
+
+We can compute spectral index using different bands. In this notebook we calculate Normalized Difference (ND) index using custom function. ND index is defined as:
+
+$$ 
+ND = (Band1 - Band2)/ (Band1 + Band2) 
+$$
+
+Here we calculate two indexes, where different areas are emphasized.
+
+
+```python
+img_rgb = load_sentinel_image(folder_img, ["B02", "B03", "B04"])
+img_nir = load_sentinel_image(folder_img, ["B03", "B04", "B06_res"])
+img_nir2 = load_sentinel_image(folder_img, ["B03", "B04", "B08"])
+
+rgb = image_rgb(img_rgb, 'B04', 'B03', 'B02', alpha=5.)
+nir = image_rgb(img_nir, 'B06_res', 'B04', 'B03', alpha=5.)
+
+# Calculating two indices
+ndvi = normalized_difference(img_nir2, 'B08', 'B04')
+mndwi = normalized_difference(img_nir2, 'B03', 'B08')
+```
+
+
+```python
+from matplotlib import pyplot as plt
+# checking the images
+fig, ax = plt.subplots(2, 2, figsize=(15, 10))
+
+fontsize=16
+ax = ax.flatten()
+
+ax[0].imshow((rgb*255).astype(np.uint8), interpolation='none')
+ax[0].axis('off')
+ax[0].set_title('Color Image', fontsize=fontsize)
+
+ax[1].imshow((nir*255).astype(np.uint8), interpolation='none')
+ax[1].axis('off')
+ax[1].set_title('NIR', fontsize=fontsize)
+
+ax[2].imshow(ndvi, cmap='Greens', interpolation='none')
+ax[2].axis('off')
+ax[2].set_title('NDVI', fontsize=fontsize)
+
+ax[3].imshow(mndwi, cmap='Blues', interpolation='none') # * 255).astype(np.uint8)
+ax[3].axis('off')
+ax[3].set_title('MNDWI', fontsize=fontsize)
+
+plt.subplots_adjust(wspace=0.1, hspace=0.1)
+
+plt.show()
+```
+
+Colour image is a true colour image, what one can observe for example from a plane. NIR image is more sensitive to different kind of vegetation and water areas. NDVI index gives a better response (higher values = greener because of the colormap we applied) over the vegetation areas and the MNDWI has a higher response (higher values = bluer because of the ‘Blues’ colormap) for water areas like rivers.
+
+
+### We can play more with the bands and their order while displaying.
+
+In case of L1C data we need to enter B12_res and B11_res. L2A just B12 and B11.
+
+
+```python
+img = load_sentinel_image(folder_img, ["B03", "B04", "B12_res"])
+rgb = image_rgb(img, 'B12_res', 'B03', 'B04', alpha=5.)
+bgr = image_rgb(img, 'B04', 'B12_res', 'B03', alpha=5.)
+
+fig, ax = plt.subplots(1, 2, figsize=(15, 10))
+ax[0].imshow((rgb* 255).astype(np.uint8), cmap='Greens')
+ax[0].axis('off')
+ax[1].imshow((bgr* 255).astype(np.uint8), cmap='Blues')
+ax[1].axis('off')
+plt.show()
+```
+
+### We can look for parks, water surfaces or buildings in city area
+
+
+```python
+from cscale_notebooks_functions import clipper, coor_converter
+coor_converter("geojson/prague.geojson","geojson/prague_GPScut.geojson",32633)
+Prague_reg = "geojson/prague_GPScut.geojson"
+
+roicut_path = path + "/images/cut_out/"
+if os.path.isdir(roicut_path) != True:
+    os.mkdir(roicut_path)
+
+clipper(folder_img, Prague_reg, roicut_path, whole = "yes")
+```
+
+
+```python
+img = load_sentinel_image(roicut_path, ["B03", "B04", "B09_res"])
+img1 = load_sentinel_image(roicut_path, ["B03", "B04", "B09_res"])
+rgb = image_rgb(img, 'B03', 'B04', 'B09_res', alpha=5.5)
+bgr = image_rgb(img1, 'B04', 'B09_res', 'B03', alpha=5.5)
+
+fig, ax = plt.subplots(1, 2, figsize= (15, 10))
+ax[0].imshow((rgb* 255).astype(np.uint8))
+ax[0].axis('off')
+ax[1].imshow((bgr* 255).astype(np.uint8))
+ax[1].axis('off')
+plt.show()
+```
+
+
+```python
+diff = normalized_difference(img,'B09_res','B03',)
+
+plt.figure(figsize=(10,5))
+plt.imshow(diff, cmap = 'Greens_r')
+plt.axis("off")
+plt.show()
+```

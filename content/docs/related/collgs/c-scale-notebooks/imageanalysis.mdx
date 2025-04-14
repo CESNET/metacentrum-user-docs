@@ -1,0 +1,185 @@
+---
+title: C-scale image analysis
+---
+<a href="https://github.com/CESNET/metacentrum-user-docs/tree/main/public/img/meta/related/notebooks/c-scale-notebooks" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center'}}>
+   <img src="https://img.icons8.com/ios-glyphs/30/000000/github.png" style={{ marginRight: '8px' }} />
+    <span> View full code on GitHub </span>
+</a>
+
+This notebook intends to show couple ideas how to analyse Sentinel-2 satellite images using different spectral bands and visualising the output. First, we narrow down our analysis for a city region.
+
+```python
+import os
+import geopandas as gpd
+import rasterio
+from rasterio.plot import show
+from cscale_notebooks_functions import load_sentinel_image, display_rgb, image_rgb, normalized_difference, plot_masked_rgb, resampling, coor_converter
+```
+
+
+```python
+# Choose folder where are your downloaded satelite images  
+img_folder = "/images/clipped/"
+path = os.path.abspath("")
+folder_img = path + img_folder
+```
+
+
+```python
+coor_converter("geojson/prague.geojson","geojson/prague_GPScut.geojson",32633)
+Prague_reg = "geojson/prague_GPScut.geojson"
+
+gdf = gpd.read_file(Prague_reg)
+rgb_tci = rasterio.open(folder_img + "TCI.tif")
+```
+
+
+```python
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(10, 5))
+show(rgb_tci,ax=ax)
+gdf.plot(ax=ax, color='yellow', alpha=.3, aspect=1)
+plt.axis("off")
+plt.show()
+```
+
+
+```python
+from cscale_notebooks_functions import clipper
+#directory = "Prague_sunny_clipped/"
+roicut_path = path + "/images/cut_out/"
+if os.path.isdir(roicut_path) != True:
+    os.mkdir(roicut_path)
+
+clipper(folder_img, Prague_reg, roicut_path, whole = "yes")
+```
+
+We can create mask for green or water areas using so called indexes, that have a higher response for areas like forrests or rivers, respectively. Setting threshold for these indexes we can display only pixels with higher value representing water area and zero value for the rest. It needs to be adjusted for different data. 
+
+We can compute spectral index using different bands. In this notebook we calculate Normalized Difference (ND) index using custom function. ND index is defined as:
+
+$$ 
+ND = (Band1 - Band2)/ (Band1 + Band2) 
+$$
+
+
+## Setting mask for green areas
+
+Value of masks needs to be adjusted.
+
+
+```python
+import ipywidgets as widgets
+from ipywidgets import interactive
+import numpy as np
+
+img = load_sentinel_image(roicut_path, ["B03", "B04", "B09_res"])
+diff = normalized_difference(img,'B09_res','B03',)
+
+def greenmask(treshold):
+    green_mask = diff > treshold
+    
+    plt.figure(figsize=(10,5))
+    plt.imshow(green_mask)
+    plt.axis("off")
+    plt.show()
+    return green_mask
+
+gm = interactive(greenmask, treshold = (-1.0,1.0,0.01))
+display(gm)
+```
+
+### Overlay image with highlighted green areas.
+
+
+```python
+img_crgb = load_sentinel_image(roicut_path, ["B02", "B03", "B04"])
+mask = gm.result
+shape = img_crgb['B02'].shape
+mask = mask[:shape[0], :shape[1]]
+
+mask = np.where(img_crgb['B02'] == 0, 0, mask)
+ 
+masked_crgb = plot_masked_rgb(red=img_crgb['B04'],
+                             green=img_crgb['B03'],
+                             blue=img_crgb['B02'],
+                             mask=mask,
+                             color_mask=(0.3, 0.7, 0),
+                             transparency=0.1,
+                             brightness=4
+                            )
+
+plt.figure(figsize=(10, 5))
+plt.imshow((masked_crgb * 255).astype(np.uint8))
+plt.axis("off")
+plt.show()
+```
+
+## Setting mask for water areas
+
+
+```python
+img_nir2 = load_sentinel_image(roicut_path, ["B03", "B04", "B08"])
+
+mndwi = normalized_difference(img_nir2, 'B03', 'B08')
+
+def watermask(treshold):
+    water_mask_crgb = mndwi > treshold
+    
+    plt.figure(figsize=(10,5))
+    plt.imshow(water_mask_crgb)
+    plt.axis("off")
+    plt.show()
+    return water_mask_crgb
+
+wm = interactive(watermask, treshold = (-0.5,0.5,0.01))
+display(wm)
+```
+
+## Overlay image with highlighted green and water areas.
+
+
+```python
+mask = wm.result
+masked_rgb_trees = masked_crgb
+shape = masked_rgb_trees[:,:,0].shape
+mask = mask[:shape[0], :shape[1]]
+
+mask = np.where(masked_rgb_trees[:,:,0] == 0, 0, mask)
+
+masked_rgb_wt = plot_masked_rgb(masked_rgb_trees[:,:,0],masked_rgb_trees[:,:,1],masked_rgb_trees[:,:,2],
+                             mask=mask,
+                             color_mask=(0.1, 0.7, 1),
+                             transparency=0,
+                             brightness=4.
+                            )
+
+plt.figure(figsize=(10, 5))
+plt.imshow((masked_rgb_wt * 255).astype(np.uint8))
+plt.axis("off")
+plt.show()
+```
+
+## Saving images into TIF file.
+
+
+```python
+from PIL import Image
+img_overlay = Image.fromarray((masked_rgb_wt * 255).astype(np.uint8), "RGB")
+
+#Choose image name
+image_filename = "Prague_overlay.tif"
+
+img_overlay.save(image_filename)
+print(f"Image has been saved to {image_filename} file")
+```
+
+File can be loaded again using [matplotlib](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html).
+
+
+```python
+image_filename = "Prague_overlay.tif"
+img = plt.imread(image_filename)
+plt.imshow(img)
+```
