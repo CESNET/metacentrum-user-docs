@@ -1,4 +1,4 @@
 {
-	"title": "C-scale data discovery",
-	"pages": ["datadiscovery"]
+	"title": "C-scale tutorials",
+	"pages": ["datadiscovery", "imageprocessing", "imageanalysis", "appendix"]
 }

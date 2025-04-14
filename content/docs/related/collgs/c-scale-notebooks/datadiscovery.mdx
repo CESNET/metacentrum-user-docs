@@ -1,6 +1,11 @@
 ---
 title: C-scale data discovery
 ---
+<a href="https://github.com/CESNET/metacentrum-user-docs/tree/main/public/img/meta/related/notebooks/c-scale-notebooks" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center'}}>
+   <img src="https://img.icons8.com/ios-glyphs/30/000000/github.png" style={{ marginRight: '8px' }} />
+    <span> View full code on GitHub </span>
+</a>
+
 The EO-MQS service is hosted within the C-SCALE federated cloud infrastructure and provides a unified way of discovering Copernicus data available within the federation by making use of the SpatioTemporal Asset Catalog (STAC) specification. The purpose of this notebook is to provide a concise introduction on how to use open-source Python libraries to search for geospatial data exposed by the EO-MQS STAC API.
 
 ## Prerequisites
@@ -526,4 +531,3 @@ from rasterio.plot import show
 tci = rasterio.open(img_folder + img_name, driver='JP2OpenJPEG');
 show(tci)
 ```
-
