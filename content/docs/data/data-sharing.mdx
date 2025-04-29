@@ -121,6 +121,134 @@ group_name = name of the group the project directory belongs to
 source_dir = the working directory
 target_dir = shared project directory
 ```
+
 {/*
-[NFSv4](https://wiki.metacentrum.cz/wiki/Access_Control_Lists_on_NFSv4)
+## NFSv4 usage
+
+Common user requirement is the need to share a certain directory with other users(s). While for more extensive co-operations we recommend to set up a project directory , for smaller-scaled collaborations it is often sufficient to set up access rights accordingly.
+
+On this page we describe how to
+
+- allow a certain user to be able to create, delete and change files and subdirectories in another user's directory, and
+- at the same time limit this privileged access only to this particular user and directory.
+
+<Callout  type="warn" title="Warning">
+Remember that sharing of user passwords is prohibited by [MetaCentrum end-user statement](https://www.metacentrum.cz/en/about/rules/).
+</Callout>
+
+<Callout  type="warn" title="Warning">
+Please note that due to security reasons it is forbidden to grant write permissions to other users or groups of users to a home directory **as a whole**.
+</Callout>
+
+<Callout  type="info">
+Any files you create, no matter whether inside or outside your home directory tree, are still yours and will be included in your quotas. If you produce tons of data in other user's directory, you may run out of your quota without seeing any obvious problem in your home.
+</Callout>
+
+<Callout  type="info">
+within the shared directory, any user to whom you grant access can change, delete or rename the files and directories regardless of their owner. It is upon the collaborating group to ensure all users are able to manipulate data safely and to prevent the risks of unwanted loss of data.
+</Callout>
+
+<Callout  type="info">
+Yes, you can grant access to another user very easily by running `chmod 777`. Doing so is extremely risky, as you grant access to **all** users and anyone can, if only by accident, delete your files.
+</Callout>
+
+<Callout  type="info">
+The `ls -l` command will not list full ACL. You have to use `nfs4_getfacl` command instead. Furthermore, don't use commands like `chmod` (POSIX commands) together with `nfs4_setfacl`.
+</Callout>
+
+### Set up a shared directory
+
+First create the directory to be shared:
+
+```bash
+(BUSTER)melounova@skirit:~$ umask 0002 # set umask to 0002
+(BUSTER)melounova@skirit:~$ mkdir /storage/brno2/home/melounova/shared # create the directory to be shared
+```
+
+**Add group of users**
+
+If you wish to share the directory within a group of users, run the script as
+
+```bash
+(BUSTER)melounova@skirit:~$ share_directory.sh -g GROUPNAME /storage/brno2/home/melounova/shared
+```
+
+In the (improbable) case you yourself do not belong to the group, add also yourself as a particular user:
+
+```bash
+(BUSTER)melounova@skirit:~$ share_directory.sh -u melounova /storage/brno2/home/melounova/shared
+```
+
+**Add particular users**
+
+If you want to share the directory only with selected user, proceed as follows:
+
+```bash
+(BUSTER)melounova@skirit:~$ share_directory.sh -u dummy1 /storage/brno2/home/melounova/shared
+(BUSTER)melounova@skirit:~$ share_directory.sh -u dummy2 /storage/brno2/home/melounova/shared
+...
+(BUSTER)melounova@skirit:~$ share_directory.sh -u dummyN /storage/brno2/home/melounova/shared
+```
+
+Strange as it may seem, you need to grant yourself privileged access to be able to manipulate with files created by another user.
+
+```bash
+(BUSTER)melounova@skirit:~$ share_directory.sh -u melounova /storage/brno2/home/melounova/shared
+```
+
+### Use the shared directory
+
+**Work with files and directories**
+
+Always set your umask to 0002 when working in shared directory:
+
+```bash
+(BUSTER)melounova@skirit:~/shared$ umask 0002 
+(BUSTER)melounova@skirit:~/shared$ mkdir dir1
+```
+
+The same is true for any of your "hosting users":
+
+```bash
+(BUSTER)dummy1@skirit:/storage/brno2/home/melounova/shared$ umask 0002
+(BUSTER)dummy1@skirit:/storage/brno2/home/melounova/shared$ cd dir1 ; touch file001
+```
+
+**What to do if forgot to set umask to 0002?**
+
+If you work in the shared directory with mask set to 0022 (which is the default), the newly created files and directories will not be writable to other users.
+
+Unfortunately the `nfs4_setfacl` seems not to work correctly in recursive mode (there [seems to be a bug in `nfs4_setfacl`](https://forums.opensuse.org/t/nfs-acl/90334)), so the obvious solution like running `nfs4_setfacl -R -a A::dummy1@META:RWX my_shared_dir` recursively will not work in case you have both subdirectories and files in your shared directory. Therefore you have to circumvent the problem by setting the ACL rights for directories and files separately, as in this script:
+
+```bash
+#!/bin/bash
+
+basedir="path/to/shared/directory" 
+userlist="dummy1 dummy2... dummyN" # list of users to allow access to
+
+# setback the RWX right for all files
+for a in `find ${basedir} -type f` ; do
+  for user in ${userlist} ; do
+    nfs4_setfacl -a A::${user}@META:RWX ${a}
+  done
+done
+
+# setback the RWX right for all directories
+for a in `find ${basedir} -type d` ; do
+  for user in ${userlist} ; do
+    nfs4_setfacl -a A:fd:${user}@META:RWX ${a}
+  done
+done
+```
+
+**Submit jobs**
+
+If you submit jobs and wish to copy results to the shared directory, set `umask 0002` somewhere at the beginning of the script. 
 */}
+
+{/*
+[NFSv4](https://wiki.metacentrum.cz/oldwiki/Access_Control_Lists_on_NFSv4)
+*/}
+
+
+
