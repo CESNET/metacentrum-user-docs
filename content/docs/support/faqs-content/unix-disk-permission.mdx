@@ -1,0 +1,19 @@
+---
+title: How to prevent other users from viewing or copying files in your home directory
+---
+
+By default, all volumes follow standard Unix file permissions. 
+Typically, the permissions for user directories and files are set to 755 (i.e., rwxr-xr-x). This setting allows other users to view and copy your files, but not to modify or delete them.
+
+If you prefer to restrict access so that only you can read, write, or execute files in a directory, you can change the permissions using the following command:
+
+```
+chmod 700 <directory>
+```
+
+To apply this restriction to your home directory and your temporary (scratch) directory, run:
+
+```
+chmod 700 /home/$USER
+chmod 700 $SCRATCHDIR
+```
