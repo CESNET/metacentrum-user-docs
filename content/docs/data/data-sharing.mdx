@@ -122,15 +122,11 @@ source_dir = the working directory
 target_dir = shared project directory
 ```
 
-{/*
 ## NFSv4 usage
 
 Common user requirement is the need to share a certain directory with other users(s). While for more extensive co-operations we recommend to set up a project directory , for smaller-scaled collaborations it is often sufficient to set up access rights accordingly.
 
-On this page we describe how to
-
-- allow a certain user to be able to create, delete and change files and subdirectories in another user's directory, and
-- at the same time limit this privileged access only to this particular user and directory.
+This is an alternative way of access control to the above described methods.
 
 <Callout  type="warn" title="Warning">
 Remember that sharing of user passwords is prohibited by [MetaCentrum end-user statement](https://www.metacentrum.cz/en/about/rules/).
@@ -244,11 +240,7 @@ done
 **Submit jobs**
 
 If you submit jobs and wish to copy results to the shared directory, set `umask 0002` somewhere at the beginning of the script. 
-*/}
 
 {/*
 [NFSv4](https://wiki.metacentrum.cz/oldwiki/Access_Control_Lists_on_NFSv4)
 */}
-
-
-
