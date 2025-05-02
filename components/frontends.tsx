@@ -17,7 +17,7 @@ const FrontendTable = () => {
       nativeHome: '/storage/praha5-elixir',
       os: 'Debian 12',
       location: 'Praha',
-      note: 'Dedicated to <a href="./access/elixir">Elixir users</a>',
+      note: 'Dedicated to <a href="https://docs.metacentrum.cz/en/docs/access/elixir">Elixir users</a>',
     },
     {
       frontendAddress: 'luna.fzu.cz',
@@ -41,7 +41,7 @@ const FrontendTable = () => {
       nativeHome: '/storage/brno2',
       os: 'Debian 12',
       location: 'Brno',
-      note: 'Reserved to access <a href="../../../computing/infrastructure/specific-nodes/#oven-node">oven node</a> only',
+      note: 'Reserved to access <a href="https://docs.metacentrum.cz/en/docs/computing/infrastructure/specific-nodes#oven-node">oven node</a> only',
     },
     {
       frontendAddress: 'perian.grid.cesnet.cz',
