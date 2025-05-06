@@ -17,11 +17,11 @@ Singularity images (= containers) are commonly suffixed by `.sif`.
 
 **Singularity can import Docker images without having Docker installed or being a superuser** <br/>- see [the Docker part](#docker-usage).
 
-## Direct Singularity usage (new feature)
+## Launch Singularity directly fron `qsub`
 
-<Callout type="info" title="Singularity image can be added as PBS parameter">
-The Singularity image can now be specified directly upon job submission as a PBS parameter, and the container will be automatically launched when the job starts. This is a new feature (Aug 2024). Keep in mind that this new feature is still in testing mode, and probably some expansion and modifications (e.g. towards parallelized computing) will be still under way. 
-</Callout>
+Any container can be launched from within a job as a separate step. 
+
+The simplest way, however, to run Singularity image is to specify it upon job submission as a PBS parameter, and the container will be automatically launched when the job starts. 
 
 Key features:
 
@@ -31,9 +31,9 @@ Key features:
 - you can also pass the argument inside batch script as  `#PBS -v PBS_SINGULARITY_IMAGE=<singularity_image>`
 - `/var/spool/pbs` and `/etc/pbs.conf` are binded into the container automatically
 
-### Example
+### Example 1: run OS Deb11 in  container
 
-``bash`
+```bash
 # I want to run Deb 11 OS from a container
 
 # Currently, the MetaCentrum OS is Deb 12
@@ -59,7 +59,25 @@ Codename:	bullseye
 Singularity> 
 ```
 
-## Singularity usage (old way)
+### Example 2: dtto on multiple nodes
+
+```bash
+(BOOKWORM)user_123@skirit:~$ cat job.sh 
+#PBS -N test_job
+pbsdsh hostname
+
+(BOOKWORM)user_123@skirit:~$ qsub -v PBS_SINGULARITY_IMAGE=/cvmfs/singularity.metacentrum.cz/Metacentrum/debian11-openpbs.sif -l select=2:ncpus=1:mem=1gb -l place=scatter job.sh 
+10739540.pbs-m1.metacentrum.cz
+```
+Finished job output:
+
+```bash
+(BOOKWORM)user_123@skirit:~$ cat test_job.o10739540 
+elmo1-2.hw.elixir-czech.cz
+elmo2-3.hw.elixir-czech.cz
+```
+
+## Singularity usage 
 
 In the basic usecases of Singularity images covered below we suppose there already exists an image `my_image.sif` we intend to use. 
 
