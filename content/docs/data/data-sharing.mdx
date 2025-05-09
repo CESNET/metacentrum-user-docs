@@ -126,33 +126,25 @@ target_dir = shared project directory
 
 ## NFSv4 usage
 
-Common user requirement is the need to share a certain directory with other users(s). While for more extensive co-operations we recommend to set up a project directory , for smaller-scaled collaborations it is often sufficient to set up access rights accordingly.
+Common user requirement is the need to share a certain directory with other users(s). For more extensive co-operations we recommend setting up a shared project directory, for smaller-scaled collaborations it is often sufficient to set up access rights accordingly.
 
 This is an alternative way of access control to the above described methods.
 
-<Callout  type="warn" title="Warning">
-Remember that sharing of user passwords is prohibited by [MetaCentrum end-user statement](https://www.metacentrum.cz/en/about/rules/).
+<Callout type="warn" title="Warning">
+Plase note that it is prohibited to:
+- share user passwords (see [MetaCentrum end-user statement](https://www.metacentrum.cz/en/about/rules/))
+- grant write permissions to others to a home directory **as a whole**
 </Callout>
 
-<Callout  type="warn" title="Warning">
-Please note that due to security reasons it is forbidden to grant write permissions to other users or groups of users to a home directory **as a whole**.
-</Callout>
+### Before you start
 
-<Callout  type="info">
-Any files you create, no matter whether inside or outside your home directory tree, are still yours and will be included in your quotas. If you produce tons of data in other user's directory, you may run out of your quota without seeing any obvious problem in your home.
-</Callout>
+Below is a couple of things you should be aware of before you start.
 
-<Callout  type="info">
-within the shared directory, any user to whom you grant access can change, delete or rename the files and directories regardless of their owner. It is upon the collaborating group to ensure all users are able to manipulate data safely and to prevent the risks of unwanted loss of data.
-</Callout>
+- Any files you create, no matter whether inside or outside your home directory tree, are still yours and will be included in your quotas. If you produce data in other user's directory, you may run out of your quota without seeing any obvious problem in your home.
+- Within the shared directory, any user to whom you grant access can change, delete or rename the files and directories regardless of their owner. It is upon the collaborating group to ensure all users are able to manipulate data safely and to prevent the risks of unwanted loss of data.
+- If you modify access permissions by running `chmod` or similar command please note that doing so is extremely risky, as you grant access to **all** users and anyone can, if only by accident, delete your files.
+- The `ls -l` command will not list full ACL. You have to use `nfs4_getfacl` command instead. Furthermore, don't use commands like `chmod` (POSIX commands) together with `nfs4_setfacl`.
 
-<Callout  type="info">
-Yes, you can grant access to another user very easily by running `chmod 777`. Doing so is extremely risky, as you grant access to **all** users and anyone can, if only by accident, delete your files.
-</Callout>
-
-<Callout  type="info">
-The `ls -l` command will not list full ACL. You have to use `nfs4_getfacl` command instead. Furthermore, don't use commands like `chmod` (POSIX commands) together with `nfs4_setfacl`.
-</Callout>
 
 ### Set up a shared directory
 
