@@ -1,17 +1,43 @@
 ---
 title: CP2K
 ---
+
 ```bash
 module avail cp2k/
 ```
 
-[CP2K](http://www.cp2k.org) is a program to perform atomistic and molecular simulations of solid state, liquid, molecular, and biological systems. It provides a general framework for different methods such as e.g., density functional theory (DFT) using a mixed Gaussian and plane waves approach (GPW) and classical pair and many-body potentials. 
+[CP2K](http://www.cp2k.org) is a program to perform atomistic and molecular simulations of solid state, liquid, molecular, and biological systems. It provides a general framework for different methods such as e.g., density functional theory (DFT) using a mixed Gaussian and plane waves approach (GPW) and classical pair and many-body potentials.
 
-## Usage
+## Usage – CP2K 2025.1 (Singularity Container)
 
-Initialization makes available also MPI implementation and system variable `CP2K` pointing into CP2K install dir. Usage of one of the tools with sample data:
+The latest version, **CP2K 2025.1**, is available as a **Singularity container**.
 
+### CPU version
+
+To automatically select the optimized container based on CPU capabilities:
+
+```bash
+grep -q 'flags.*avx512f' /proc/cpuinfo && TYP=skylake-avx512 || TYP=generic
+singularity exec /cvmfs/singularity.metacentrum.cz/elixir/cp2k/2025.1-cpu-${TYP}.sif cp2k -h
 ```
+
+### GPU version
+
+To use the GPU-enabled version of CP2K, use the `--nv` flag:
+
+```bash
+singularity exec --nv /cvmfs/singularity.metacentrum.cz/elixir/cp2k/2025.1-gpu.sif cp2k ...
+```
+
+---
+
+## Usage – Classic Module
+
+Initialization also provides an MPI-enabled executable and sets the `CP2K` environment variable pointing to the installation directory.
+
+Example usage with test data:
+
+```bash
 qsub -I -l select=8:ncpus=1:mem=4gb:scratch_local=1gb -l walltime=2:00:00
 module add cp2k-6.1
 cd $SCRATCHDIR
@@ -22,5 +48,9 @@ mpirun cp2k.psmp ./dimer.inp
 
 This application supports parallel computing (MPI, OpenMP) which can have weird consequences.
 
-The MPI parallelism is more robust and efficient enough even with more processes on the same node, that the mixed mode MPI/OpenMP parallelism is not worth trying. Moreover, the calculation crashes when more than 1 OpenMP parallel MPI process runs on the same node (valid for version 4.1). 
+The MPI parallelism is more robust and efficient enough even with more processes on the same node, that the mixed mode MPI/OpenMP parallelism is not worth trying. Moreover, the calculation crashes when more than 1 OpenMP parallel MPI process runs on the same node (valid for version 4.1).
 
+---
+
+
+**Last updated:** May 13, 2025
