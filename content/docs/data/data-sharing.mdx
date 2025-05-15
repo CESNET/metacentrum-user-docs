@@ -145,6 +145,15 @@ Below is a couple of things you should be aware of before you start.
 - If you modify access permissions by running `chmod` or similar command please note that doing so is extremely risky, as you grant access to **all** users and anyone can, if only by accident, delete your files.
 - The `ls -l` command will not list full ACL. You have to use `nfs4_getfacl` command instead. Furthermore, don't use commands like `chmod` (POSIX commands) together with `nfs4_setfacl`.
 
+The NFSv4 ACL usage is faciliated by a `share_directory.sh` script which is automatically loaded into MetaCentrum user environment.
+
+If you are interested in what's inside, you can get the script at `/afs/ics.muni.cz/software/meta-utils/public`:
+
+```bash
+(BOOKWORM)user_123@skirit:~$ whereis share_directory.sh
+share_directory.sh: /afs/ics.muni.cz/software/meta-utils/public/share_directory.sh
+(BOOKWORM)user_123@skirit:~$ 
+```
 
 ### Set up a shared directory
 
