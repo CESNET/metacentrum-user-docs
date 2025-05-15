@@ -1,0 +1,25 @@
+---
+title: How do I disable the Message of the Day?
+---
+
+After logging on some of our [frontends](../../computing/infrastructure/frontends), you are greeted by the system's Message of the Day (aka **MOTD**) with information about your last login, quotas, available CPUs, etc. If you do not want to see this post from some reason, you can turn it off by creating empty `~/.hushlogin` file. 
+
+```bash
+(BOOKWORM)user_123@skirit:~$ touch .hushlogin   # disable MOTD for frontends of /storage/brno2
+(BOOKWORM)user_123@skirit:~$ logout
+```
+ 
+Now when logging to any frontend of `/storage/brno2`, the MOTD will be muted.
+
+<Callout type="warn" title="You need separate `~/.hushlogin` for every `/storage/`">
+For example, `/storage/brno2/home/user_123/.hushlogin` will mute MOTD when logging on **skirit**, **perian** or **oven**, but not e.g. when logging on **tarkil** frontend.
+</Callout>
+
+Removing .hushlogin from your home directory
+
+```bash
+(BOOKWORM)user_123@skirit:~$ rm .hushlogin
+```
+
+will set MOTD to the original state. 
+
