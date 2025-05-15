@@ -1,0 +1,6 @@
+---
+title: If I change input files meanwhile the job waits in queue, which version will be used in the job?
+---
+Input files/directories are copied using `scp` command the moment when the job is being executed at a specific node.
+
+If you change the input while the job is queued, the job will be computed with new inputs.
