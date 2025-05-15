@@ -11,11 +11,11 @@ Users connect to MetaCentrum by using `ssh` to any of the login nodes called **f
 
 ![Grid overall scheme](/img/meta/access/grid-overall-scheme_border.jpg)
 
-In Linux, macOS, Windows PowerShell and MobaXterm the `ssh` command can be given in the terminal.
+In Linux, macOS, Windows PowerShell and MobaXterm, the `ssh` command can be given in the terminal.
 
 <Tabs items={["Linux, macOS, Windows PowerShell and MobaXterm terminal", "Windows PuTTY"]}>
 <Tab value="Linux, macOS, Windows PowerShell and MobaXterm terminal">
-Open the terminal and on CLI type
+Open the terminal and on the CLI type
 
 ```bash
 ssh your_username@frontend
@@ -23,12 +23,12 @@ ssh your_username@frontend
 </Tab>
 <Tab value="Windows PuTTY">
 1. Open PuTTY
-2. Specify frontend name as Host name
-3. Use default port 22
+2. Specify the frontend name as hostname
+3. Use the default port 22
 4. Use SSH connection type, protocol version 2
 5. Click on "Open"
 6. A terminal should appear prompting for your MetaCentrum username and password.
-7. On the command line type
+7. On the command line, type
 
 ```bash
 ssh your_username@frontend
@@ -47,12 +47,12 @@ Are you sure you want to continue connecting (yes/no)?
 Type "yes". The public key of the frontend will be saved to your `~/.ssh/known_hosts` file.
 
 <Callout type="info" title="Tip" icon="💡">
-    Strictly speaking the user should always verify a new key before adding it to a list of known hosts. For a howto on SSH key verification, see [more detailed page on SSH key verification]().
+    Strictly speaking, the user should always verify a new key before adding it to a list of known hosts. For a howto on SSH key verification, see [more detailed page on SSH key verification]().
 </Callout>
 
-Once the terminal connection to a frontend is open you can start using it with the Linux command line tools (bash shell).
+Once the terminal connection to a frontend is open, you can start using it with the Linux command line tools (bash shell).
 
-A complete list of frontends is given below. You can use any of them. We encourage users to pick one that is closest to their physical location (city) to minimize network lag.
+A complete list of frontends is given below. You can use any of them. We encourage users to pick one that is closest to their physical location (city) to minimise network lag.
 
 <Callout type="info" title="Tip" icon="💡">
     In case your favourite frontend is down or going just too slow, do not hesitate to use another one.   
@@ -67,31 +67,31 @@ A complete list of frontends is given below. You can use any of them. We encoura
 
 ## Web services login
 
-Some web services require user authentication. While for example in [OnDemand service](../ondemand) users use their MetaCentrum login and password, other services login is done through the user's institution identity. 
+Some web services require user authentication. While, for example, in [OnDemand service](../ondemand) users use their MetaCentrum login and password, other services login is done through the user's institution identity. 
 
-For example, let's say you are ČZU user wanting to login to see [a list of queues in MetaVO pages](https://metavo.metacentrum.cz/pbsmon2/queues/list).
+For example, let's say you are a ČZU user wanting to log in to see [a list of queues in MetaVO pages](https://metavo.metacentrum.cz/pbsmon2/queues/list).
 
-In this case, choose the "ČZU" tab from the list and fill in ČZU credenials, not MetaCentrum login and username. 
+In this case, choose the "ČZU" tab from the list and fill in ČZU credentials, not MetaCentrum login and username. 
 
 ![Web login](/img/meta/access/login_web_001.png)
 ![Web login](/img/meta/access/login_web_002.png)
 
 ## Kerberos 
 
-After the user enters MetaCentrum infrastructure by logging in, they will need also to be able to move between computational nodes, reach storage spaces residing on different machines etc. It would be very inconvenient to authenticate by password every time. Therefore the authentication of user **within** the MetaCentrum infrastructure is done by [Kerberos protocol](https://en.wikipedia.org/wiki/Kerberos_(protocol)).
+After the user enters the MetaCentrum infrastructure by logging in, they will also need to be able to move between computational nodes, reach storage spaces residing on different machines, etc. It would be very inconvenient to authenticate by password every time. Therefore, the authentication of user **within** the MetaCentrum infrastructure is done by the [Kerberos protocol](https://en.wikipedia.org/wiki/Kerberos_(protocol)).
 
 ![Grid security protocols scheme](/img/meta/access/grid-ssh-kerberos_border.jpg)
 
-After the user logs in, they automatically obtain a **Kerberos tickets**. As long as the ticket is valid, user can move between machines, run jobs, copy files without bothering about the authentication.
+After the user logs in, they automatically obtain a **Kerberos ticket**. As long as the ticket is valid, the user can move between machines, run jobs, and copy files without bothering about the authentication.
 
 <Callout type="warn" title="Warning">
-    The ticket is valid for 10 hours. If you stay logged in for longer, you will need to re-generate your ticket with `kinit` command.
+    The ticket is valid for 10 hours. If you stay logged in for longer, you will need to re-generate your ticket with the `kinit` command.
 </Callout>
 
 **Basic Kerberos commands**
 
 - `klist`  - list all current tickets
 - `kdestroy` -  delete all tickets
-- `kinit` - create new Kerberos ticket
+- `kinit` - create a new Kerberos ticket
 
 It is also possible to install Kerberos on your PC. For more in-depth info, see [Kerberos advanced page](./security/kerberos).
