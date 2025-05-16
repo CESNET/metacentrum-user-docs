@@ -1,0 +1,15 @@
+---
+title: Gaussian computings fail with error message "Erroneous write. Write 8192 instead of 12288"
+---
+Gaussian computings have fallen down immediately after running with error message (every time in different part of the log file) `Erroneous write. Write 8192 instead of 12288.`
+
+Reason of this failure is that your disk is full of undeleted Gaussian helping files. These files are remains from your previous computings which weren't successful. You can avoid this situation by deleting all helping files after the end of computing. The easiest way is to create a own directory for every single computing and to remove this directory in the end of computing.
+
+```bash
+GAUSS_SCRDIR=$SCRATCHDIR
+GAUSS_ARCHDIR=$GAUSS_SCRDIR
+mkdir $GAUSS_SCRDIR
+...
+g03 ...
+rm -rf $GAUSS_SCRDIR
+```

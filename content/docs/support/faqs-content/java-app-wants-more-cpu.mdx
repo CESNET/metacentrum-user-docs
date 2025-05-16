@@ -1,0 +1,16 @@
+---
+title: Java applications require more CPUs than assigned
+---
+Despite setting number of threads/CPUs to the number of CPUs allocated for the job, some Java application may use more CPUs. This is because Java can use additional internal threads on top of those explicitly used by the application and expects no limits by default. 
+
+If you encounter this behaviour, try adding following parameters to java command line (just behind "java"):
+
+```
+-XX:-BackgroundCompilation -XX:ParallelGCThreads=$PBS_NCPUS
+```
+
+or
+
+```
+-XX:-BackgroundCompilation -XX:+UseSerialGC
+```

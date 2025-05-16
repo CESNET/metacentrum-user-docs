@@ -1,0 +1,4 @@
+---
+title: Memory allocation in program Gaussian version G03.E01 does not work
+---
+In case you get warning `buffer allocation failed in ntrext1.` just after running the program, use a directory on a scratch volume (the directory is identified by the `$SCRATCHDIR` environment variable) as a working directory instead of the `home` (there is an error in the new version, that occurs according type of file system). 
