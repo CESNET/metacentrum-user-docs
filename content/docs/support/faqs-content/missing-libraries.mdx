@@ -1,0 +1,27 @@
+---
+title: Missing libraries
+---
+Compatibility issues can arise after the OS (Debian) upgrade on computing nodes. 
+
+If you get error of the type "mising library / XX.so object not found", try to add `debianN/compat` at the start of the job, where `N` = `current Deb version - 1`.
+
+The current version of Debian can be found by `lsb_release -a` command: 
+
+```bash
+(BOOKWORM)user_123@skirit:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Debian
+Description:	Debian GNU/Linux 12 (bookworm)
+Release:	12                              # current version is 12
+Codename:	bookworm
+```
+List backwards-compatibility packages:
+
+```bash
+(BOOKWORM)user_123@skirit:~$ module avail debian
+debian10/  debian11/  debian7/   debian8/   debian9/
+   
+(BOOKWORM)user_123@skirit:~$ module avail debian11/
+-------------- /packages/run/modules-5/debian12avx512 ------------------------
+debian11/compat  
+```
