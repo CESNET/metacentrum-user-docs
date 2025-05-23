@@ -14,54 +14,6 @@ module avail gridmathematica/
 **MetaCentrum no longer provides MetaCentrum-wide licences for Mathematica**. The only possibility is that users bring their own (institution's) license. If you are interested in using your Mathematica license within the MetaCentrum infrastructure, contact us for more details at meta@cesnet.cz.
 </Callout>
 
-
-
-<!---
-<Callout  type="warn" title="Warning">
-**MetaCentrum no longer provides MetaCentrum-wide licences for Mathematica**. Currently, there are Mathematica 9 licenses limited to UK and JCU members (in [Perun](https://perun.e-infra.cz) listed in `users-uk` and `users-jcu` groups, respectively). Apart from these, the only possibility is that users bring their own (institution's) license. If you are interested in using your Mathematica license within the MetaCentrum infrastructure, contact us for more details at meta@cesnet.cz.
-</Callout>
--->
-
-
-
 <Callout  type="info" title="Tip" icon="💡">
 To enable computationally intensive computations within Mathematica, one can make use of its parallel/distributed extension called GridMathematica -- see details at [GridMathematica](content/docs/software/sw-list/gridmathematica.mdx) documentation.
 </Callout>
-
-
-
-<!---
-## Usage
-
-### UK members
-
-```bash
-module add mathematica/9-uk
-math
-```
-
-### JCU members
-
-```bash
-module add mathematica/9-jcu
-math
-```
-
-### Example
-
-Example of interactive use:
-
-```
-$ qsub -I -l select=1:ncpus=1:mem=1gb:scratch_local=1gb:brno=true -l walltime=1:00:00
-$ module add mathematica/11.3
-$ math
-
-In[1]:= 1 + 1
-
-Out[1]= 2
-
-In[2]:= 1 + 2
-
-Out[2]= 3
-```
--->
