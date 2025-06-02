@@ -43,6 +43,16 @@ beast -help
 beast ... -beagle ... XXX.xml
 ```
 
+**Setting of the home directory**
+
+Java and Beast use different methods of getting the home directory. Potential problems may arise while working with locally installed packages and/or on compute nodes with a low home quota for writing. In this case, it may help set
+
+```bash
+export JAVA_TOOL_OPTION="-Duser.home=/storage/city/home/user_name/"
+```
+
+before calling the `beast` binary. Select any storage with a sufficient quota for writing.
+
 ## Beast additional packages
 
 Users can install additional packages available via the `packagemager` command in their home directories. The following example demonstrates the local building of Beast 2.7.7 (distributed as a binary file; no installation is required) and the installation of the SNAPP package. 
