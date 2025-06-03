@@ -1,0 +1,38 @@
+---
+title: VASP
+---
+```bash
+module avail vasp\*
+```
+
+[VAMP/VASP](https://www.vasp.at/) is a package for performing ab-initio quantum-mechanical molecular dynamics (MD) using pseudopotentials and a plane wave basis set. These techniques avoid all problems occurring in the original Car-Parrinello method. 
+
+## Usage
+
+MetaCentrum does not own a licence for all users. According to the VASP licence agreement we can make VASP available to every research group or institution, which proves the licence ownership. Please send us an email address that is registered by the VASP developers and we will make the necessary steps to make the application available to you in the corresponding version. Vasp-utils is without registration, but its use should be cited.
+
+To run paralell program:
+
+```
+#environment initialization 
+lamboot
+cd ...
+mpirun C vasp
+... #also more runs ("C" means run in all allocated processors)
+
+# environment cleaning
+lamhalt
+```
+
+**Vad der Waals kernel usage**
+
+If you need to use Van der Waals kernel, you must copy the file into the directory where the computations will run (typically SCRACHDIR).
+
+The file `vdw_kernel.bindat` is in the src directory.
+
+```
+module display vasp # search for PATH variable
+                    # then go to the PATH directory and search for "src" (usu one level up)
+                    # ls *bindat* - should list vdw_kernel.bindat file
+```
+
