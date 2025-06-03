@@ -53,16 +53,23 @@ The `rsync` command is a more advanced and versatile copying tool. It enables th
 
 **Examples**
 
-Copy directory data to archive:
+Copy directory `dir_A` from `user_123`'s home on `brno12` into a home on `praha5-elixir`:
 
 ```bash
-$ rsync -zvh /storage/brno2/home/user123/data /storage/du-cesnet/home/user123/VO_metacentrum-tape_tape
+ssh storage-praha5-elixir.metacentrum.cz 'rsync -avhP user_123@storage-brno12-cerit.metacentrum.cz:~/dir_A .'
 ```
-
-Copy only the content of directory data to archive:
+where
 
 ```bash
-$ rsync -zvh /storage/brno2/home/user123/data/ /storage/du-cesnet/home/user123/VO_metacentrum-tape_tape
+-a (archive): Preserves permissions, timestamps, symbolic links, and recursively copies directories
+-v (verbose): Shows detailed output during transfer
+-h (human)  : Output numbers in a human-readable format
+-P (progress): Shows progress bar and allows resuming interrupted transfers
+
+# Other useful options:
+-z (compress): Compresses data during transfer to reduce bandwidth
+--delete: Removes files at destination that don't exist at source (use carefully)
+-n (dry-run): Shows what would be transferred without actually doing it
 ```
 
 ### `tar`
