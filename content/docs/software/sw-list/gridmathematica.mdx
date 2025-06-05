@@ -11,138 +11,98 @@ There is no need to change your existing parallel code—just make gridMathemati
 
 ## Usage
 
-### License
+### License Status
 
-We've rented 15 licenses of gridMathematica - each of the licenses enables you to extend the computational power of Mathematica by 16 computational kernels (i.e., you are allowed to use up to 240 kernels in total).
+Although GridMathematica modules are still technically present in the MetaCentrum environment, **all license support for this software expired**, including:
 
-<Callout type="info">
-The purchased licenses permit just an academic use of the program!
-</Callout>
+- the **Mathematica controlling kernel** (frontend),
+- and **GridMathematica compute kernel licenses** (parallel computation).
 
-The gridMathematica version 11 can be used by all the MetaCentrum users.
+> **MetaCentrum does not currently provide any valid license for either Mathematica or GridMathematica.**
 
-The gridMathematica version 9 License Agreement currently restricts the usage of gridMathematica only to members of the following universities:
+As a result, **Mathematica and GridMathematica can no longer be used within MetaCentrum** unless the user provides their own valid activation key for both components.
 
-- ČVUT+VŠCHT (Czech Technical University in Prague and Institute of Chemical Technology in Prague)
-- UK (Charles University in Prague)
-- UTB (Tomas Bata University in Zlin)
-- JCU (University of South Bohemia in Ceske Budejovice)
-- VŠB (Technical University of Ostrava)
+If you or your institution holds a valid *Mathematica Site* or *GridMathematica* license, you may still be able to use MetaCentrum compute nodes by configuring access to your institutional license server.
 
-To allow an access for another academic institutions/universities, it is necessary for them to purchase/rent the Wolfram Mathematica product with an appropriate (Mathematica Site Unlimited) license. 
+---
 
+### Options for Users with Institutional Licenses
 
-<Callout  type="info" title="Tip" icon="💡">
-If you intend to use MetaCentrum's gridMathematica, enabling you to perform more complex computations within Mathematica, please, let us know before the actual purchase/rent. 
-</Callout>
+If you have access to a valid license through your university or department, you can:
 
-Since MetaCentrum does not feature any licence for Wolfram Mathematica controlling kernels, it is possible to use the provided Wolfram gridMathematica just in the following two modes:
+- Run **Mathematica** locally or on MetaCentrum nodes using your institution’s license server,
+- Connect to remote **MetaCentrum compute nodes** manually, using GridMathematica kernels started on demand — *only if your institutional license permits such distributed use*.
 
-- Interactive use, using which you run your copy of the Wolfram Mathematica (with a licence of your home institution) and instruct it to connect to remote computational kernels (Wolfram gridMathematica) running within the MetaCentrum infrastructure (these will be licensed by the MetaCentrum license server).
-
-- Batch use, using which you have to make the license server of your home institution accessible from the MetaCentrum computational nodes. Once being started, the Wolfram Mathematica then asks your license server to obtain a license for its controlling kernel; the licenses for the computational kernels will be obtained from the MetaCentrum license server.
+MetaCentrum does **not** provide license support for Mathematica or GridMathematica compute kernels. The following usage options apply **only if you configure access to your own institutional license server**.
 
 ### Interactive use
 
-Using a MetaCentrum frontend, ask for an interactive job specifying the number of nodes/processors you want to use, and the availability of the gridMathematica license:
+Request an interactive job on a MetaCentrum frontend node with the desired number of CPUs:
 
 ```bash
-qsub -I -l select=X:ncpus=Y:... -l gridmathematica=Z   # Z ... the number of Mathematica Grid servers required for your job (generally, Z=X*Y)
+qsub -I -l select=X:ncpus=Y:... 
 ```
 
-Subsequently, prepare all the information necessary to connect to the remote computational kernels:
+Prepare your environment:
 
-```
+```bash
 module add gridmathematica/9
-## OR use
-# module add mathematica/9-XXX      ## JUST in cases the module for your institution (XXX) exists
+# OR use
+# module add mathematica/9-XXX  # Only if a module for your institution (XXX) exists
 
-# start the computational kernels
-math-grid start    # for more details, see: math-grid --help
+# Start the computational kernels
+math-grid start  # See math-grid --help for options
 ```
 
-copy the output of the `math-grid` command into a clipboard.
+Copy the output of `math-grid` to your local Mathematica notebook and press SHIFT+ENTER to connect.
 
-Start your local Mathematica (Mathematica command for GUI frontend, or math command for a command-line frontend) and open a new worksheet (notebook).
-```bash
-    
-```
-If your home institution does allow to start the Mathematica on the MetaCentrum nodes (i.e., there is a module dedicated for your institution -- e.g., the "mathematica/9-jcu" module for the University of South Bohemia -- see Mathematica), or you have performed an explicit configuration of the license server of your home institution (see below), you can start the controlling Mathematica process (i.e., Mathematica frontend) directly from the established interactive job (and subsequently instruct the controlling process to connect to the started gridMathematica computational kernels).
+You can verify kernel connectivity using:
 
-Copy the output of the math-grid command (mentioned above) into the notebook and press SHIFT+ENTER
-```bash
-    
-```
-Once the commands become executed, there are all the required remote computational kernels prepared for your computations.
-```bash
-    
-```
-The list of running computational processes/kernels can be obtained by entering the Kernels[] command into the Mathematica worksheet.
+```mathematica
+Kernels[]
 
-To check the functionality of parallel processing, enter the following command into the Mathematica's worksheet (and confirm by pressing SHIFT+ENTER):
-
-```
 TableForm[
-          ParallelEvaluate[{$KernelID, $MachineName, $SystemID, $ProcessID, $Version}],
-          TableHeadings -> {None,{"ID","host","OS","process","Mathematica Version"}}]
+  ParallelEvaluate[{$KernelID, $MachineName, $SystemID, $ProcessID, $Version}],
+  TableHeadings -> {None, {"ID", "host", "OS", "process", "Mathematica Version"}}
+]
 ```
 
-Once finished, do not forget to stop the running kernels (command CloseKernels[]) and subsequently to stop the interactive job.
+Don't forget to shut down the kernels using `CloseKernels[]` once your work is done.
 
 ### Batch use
 
-As mentioned above, to allow the batch computations using the provided Wolfram gridMathematica, there is a necessity to obtain a licence for the Wolfram Mathematica controlling process (i.e., the frontend). If your home institution does allow to start the Mathematica on the MetaCentrum nodes (i.e., there is a module dedicated for your institution -- e.g., the `mathematica/9-jcu` module for the University of South Bohemia), this license is available automatically for you. OTHERWISE, you have to perform an explicit configuration to make the Mathematica controlling process asking for a license the license server that is legally available for you.
+You must configure Mathematica to use your institution’s license server.
 
-**How to configure Mathematica controlling kernels to use a specific license server:**
-
-```bash
-in the Mathematica configuration directory (located in your home directory), create a file `$HOME/.Mathematica/Licensing/mathpass`, which will contain an identification of your home institution's license server:
-```
+In `$HOME/.Mathematica/Licensing/mathpass`:
 
 ```bash
-echo '!mylicenseserver.somewhere.cz' >$HOME/.Mathematica/Licensing/mathpass
+echo '!mylicenseserver.somewhere.cz' > $HOME/.Mathematica/Licensing/mathpass
 chmod go= $HOME/.Mathematica/Licensing/mathpass
 ```
 
-**Startup steps:**
+Place your notebook (`*.nb`) on a shared filesystem and wrap it with:
 
-Copy the Mathematica's worksheet containing the intended computation (file `*.nb`) to a MetaCentrum frontend (and save it to a shared filesystem, for example).
-
-Insert the following lines, performing an initialization and releasing of parallel environment at computational nodes, at the beginning/end of your file:
-
-```
+```mathematica
 << "! math-grid start"
-
-... Your parallel computation ...
-
+... Your computation ...
 CloseKernels[]
 ```
 
-Subseqently, prepare a startup script for your job (named, e.g., `startup_script.sh`):
-
-```
-#!/bin/bash
-
-# module add mathematica/9         ## use JUST in cases you have explicitely configured a license server in your $HOME
-# module add mathematica/9-XXX     ## use JUST in cases the module for your institution (XXX) exists
-module add gridmathematica/9
-
-math -run <path_to_your_Mathematica_file
-# ALTERNATIVELY (without implicit outputs): math -script path_to_your_Mathematica_file
-```
-
-Submit the startup script together with a specification of requested resources (number of computational nodes/processors) and gridMathematica license availability:
+Example batch script (`startup_script.sh`):
 
 ```bash
-qsub -l select=X:ncpus=Y:... -l gridmathematica=Z startup_script.sh   
+#!/bin/bash
+module add gridmathematica/9
+math -run < path_to_your_Mathematica_file
+# Or: math -script path_to_your_Mathematica_file
+```
+
+Submit it with:
+
+```bash
+qsub -l select=X:ncpus=Y:... startup_script.sh
 ```
 
 ### Parallel runs
 
-If you have a serial computation, which you want to be run multiple times in parallel (based on the available cores), create a common master-slave computation as follows:
-
-- the slave script will perform the computation
-- the master script will run the slave script on all the available cores, using the ParallelEvaluate function.
-
-
-
+To run serial computations in parallel, split the workload into multiple tasks and use `ParallelEvaluate` to distribute across available kernels.
