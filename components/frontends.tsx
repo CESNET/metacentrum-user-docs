@@ -20,14 +20,6 @@ const FrontendTable = () => {
       note: 'Dedicated to <a href="https://docs.metacentrum.cz/en/docs/access/elixir">Elixir users</a>',
     },
     {
-      frontendAddress: 'luna.fzu.cz',
-      aliasedAs: 'luna.metacentrum.cz',
-      nativeHome: '/storage/praha1',
-      os: 'Debian 12',
-      location: 'Praha',
-      note: 'Reserved for <a href="https://www.fzu.cz/en">FZU</a> users',
-    },
-    {
       frontendAddress: 'nympha.meta.zcu.cz',
       aliasedAs: 'nympha.metacentrum.cz, nympha.zcu.cz, minos.zcu.cz, minos.meta.zcu.cz, alfrid.meta.zcu.cz',
       nativeHome: '/storage/plzen1',
