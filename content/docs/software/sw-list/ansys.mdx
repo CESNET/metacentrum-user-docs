@@ -13,7 +13,7 @@ ANSYS can be run either from module or from a service.
 
 ### OnDemand
 
-ANSYS can be run in a browser as [OnDemand service](https://ondemand.metacentrum.cz). This is the most straighforward and simplest way.
+ANSYS can be run in a browser as [OnDemand service](https://ondemand.metacentrum.cz). This is the most straightforward and simplest way.
 
 ### Kubernetes
 
@@ -60,19 +60,32 @@ Ansys Academic Research Mechanical in quantity of 5 parallel runs
 additional tool Ansys HPC in quantity of 512 pieces (=> cores)
 ```
 
-```bash
+
 Available tools (complete list of available products is HERE):
-    FLUENT : command fluent
-    CFX : command cfx* (e.g. cfx5, cfx5launch, cfx5post, etc.)
-    CFD Post : command cfdpost
-    ICEM-CFD : command icemcfd
-    Workbench : command runwb2
+
+## Ansys Academic Multiphysics Campus Solution (25/250)
+
+This academic license includes access to a comprehensive suite of Ansys tools across structural mechanics, fluid dynamics, electromagnetics, optics, materials, and systems simulation.
+
+| Domain                          | Included Tools                                                                                           | Command(s)                             |
+|---------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------|
+| **Structures & Mechanics**      | Mechanical (MAPDL), Autodyn, Fatigue Module, Aqwa, LS-DYNA, Forming, Motion, Additive, Discovery          | `ansys`, `runwb2`, `autodyn`, `lsdyn`  |
+| **CFD**                         | Fluent, CFX, FENSAP-ICE, Forte, Polyflow, Chemkin, Rocky, Thermal Desktop                                | `fluent`, `cfx5launch`, `rocky`, `cfdpost` |
+| **Electromagnetics & Electronics** | HFSS, Maxwell, SIwave, Icepak, Q3D Extractor, EMC Plus, Charge Plus, RedHawk, PowerArtist               | `ansysedt` (Electronics Desktop)       |
+| **Optics & Photonics**         | Lumerical (FDTD, MODE, INTERCONNECT, Multiphysics), Zemax OpticStudio, SPEOS                             | `fdtd-solutions`, `mode-solutions`, `speos` |
+| **MBSE / Systems Simulation**   | SCADE Suite, ModelCenter, Medini Analyze, SCADE Architect/Display/Test                                   | GUI-based / Project-specific launchers |
+| **Materials (Granta)**         | Selector, Advanced Materials (Metals, Polymers, Composites...), EduPack                                  | `granta-selector`, `edupack`           |
+| **Preprocessing & Interfaces** | Meshing, ICEM CFD, Geometry Translators (CATIA, NX, etc.)                                                | `icemcfd`, `meshing`, `geometrytools`  |
+| **HPC & Parallelization**      | HPC Workgroup, LS-DYNA HPC, optiSLang HPC, Rocky HPC                                                     | Used internally via solvers            |
+
+> License allows **up to 25 simultaneous jobs** and **512 HPC cores** shared across all supported tools.
+
 ```
 
 
 Ask scheduler for licence by adding one of the following options:
+> Each simulation consumes 1 solver license (up to 25 for CFD, 5 for Mechanical) and may use multiple HPC licenses depending on number of CPU cores requested.
 
-```bash
 -l ansys-cfd=1     # 1 license of Ansys CFD
 -l ansys-mechwb=1  # 1 license of Ansys Mechanical Workbench
 -l ansys-anshpc=Z  # Z licenses of Ansys HPC
@@ -128,7 +141,7 @@ module add ansys/18.2
 fluent <version> -g -i input_file  # serial initialization of Fluent
 ```
 
-b) for paralel/distributed computation:
+b) for parallel/distributed computation:
 
 ```
 module add ansys/18.2
@@ -160,7 +173,7 @@ To utilize homogeneous cluster (fluent cannot optimally use nodes with different
    qsub -l select=N:...:infiniband=^none -l place=group=cluster ...
 
 <Callout  type="info" title="Tip" icon="💡">
-To minimalize time needed for communication vith cortex component and increase performace, one can try to increase /solve/set/reporting-interval.
+To minimalize time needed for communication vith cortex component and increase performance, one can try to increase /solve/set/reporting-interval.
 </Callout>
 
 <Callout  type="info" title="Tip" icon="💡">
