@@ -4,7 +4,6 @@ Answer the question strictly following the context below if the question is rela
 
 charon.metacentrum.cz	| /storage/liberec3-tul	
 elmo.metacentrum.cz	| /storage/praha5-elixir	
-luna.metacentrum.cz	| /storage/praha1	Debian 12	
 nympha.metacentrum.cz | /storage/plzen1	Debian 12	Plzen	
 perian.metacentrum.cz |	/storage/brno2	
 onyx.metacentrum.cz |	/storage/brno2	
