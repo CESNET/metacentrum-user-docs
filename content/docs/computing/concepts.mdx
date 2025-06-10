@@ -152,6 +152,10 @@ Most application produce some large temporary files during the calculation.
 
 To store these files, as well as all the input data, on the computational node, a disc space must be reserved for them.
 
+<Callout type="info" title="Direct access to scratch">
+    If your HPC job crashes or fails to copy data back from scratch to your home directory, don't worry! Your output files remain stored in the scratch. To access these files, simply use the command `go_to_scratch <job_number>`, replacing `<job_number>` with your actual job ID. Please retrieve your data promptly since scratch storage is temporary and may be purged after a certain period to free up space for other users.
+</Callout>
+
 This is a purpose of **scratch directory** on computational node.
  
 <Callout  type="warn" title="Warning">
@@ -185,3 +189,4 @@ user123@glados12:~$ echo $SCRATCHDIR
 user123@glados12:~$ cd $SCRATCHDIR
 user123@glados12:/scratch.ssd/user123/job_14429322.pbs-m1.metacentrum.cz$ 
 ```
+
