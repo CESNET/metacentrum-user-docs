@@ -1,28 +1,36 @@
 ---
 title: Matlab
 ---
-```bash
-module avail matlab/
-```
+
 
 [Matlab](http://www.matlab.com) is an integrated system covering tools for symbolic and numeric computations, analyses and data visualizations, modeling and simulations of real processes.
 
 ## Usage
 
-### OnDemand
+There are tree ways how to use Matlab in an graphical interface
 
-The most straightforward and simplest way to run Matlab is through the [OnDemand service](https://ondemand.metacentrum.cz), which allows users to access Matlab directly from their web browser. This option provides an intuitive and user-friendly interface, making it an excellent choice for most users.
+### Option1: Running Matlab in OnDemand
+
+The most straightforward way to run Matlab is through the [OnDemand service](https://ondemand.metacentrum.cz), which allows users to access Matlab directly from their web browser. This option provides an intuitive and user-friendly interface, making it an excellent choice for most users.
 
 Choose `Matlab` button among the `apllications`. 
 
-### As a Jupyter Notebook in Kubernetes
+### Option2: Running Matlab via Jupyter Hub in Kubernetes
 
-Matlab can also be run from the JupyterHub. For detailed instructions on how to use Matlab with Jupyter Notebook, please refer [Jupyter documentation](https://docs.cerit.io/en/docs/web-apps/jupyterhub).
+   * Ease of Use: JupyterHub offers an easy way to launch Matlab directly from your Jupyter Notebook environment.
+   * Data Integration: This method provides seamless integration with MetaCentrum storages, making it convenient for users already working within this ecosystem.
+   * Supported Version: More Matlab versions are supported through this option.
+
+To learn more, see [Jupyter documentation](https://docs.cerit.io/en/docs/web-apps/jupyterhub) where you can find other necessary information.
 
 
-### Remote desktop 
+### Option 3: Running Matlab in Remote desktop using module
 
 Using [Remote desktop](../../../software/graphical-access), Matlab can be also run from a module.
+
+```bash
+module avail matlab/
+```
 
 This option is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service are down.
 
