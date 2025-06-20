@@ -134,7 +134,7 @@ Unless they have a specific reason, **we urge users to use version 9.14 and newe
 </Callout>
 
 <Callout  type="warn" title="Warning">
-PBS dorces not anymore track the licenses for older Matlab versions, therefore **when you submit the job, do not use the `-l matlab=XX` option**.
+PBS scheduler tracks only base licenses for older Matlab versions, not toolboxes. Also, **when you submit the job with old Matlab, use the `-l matlab50=XX` option to request base license,  do not use `-l matlab=XX`**.
 </Callout>
 
 **Troubleshooting tools**
