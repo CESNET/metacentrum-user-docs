@@ -7,13 +7,13 @@ module avail ansys/
 
 [ANSYS](https://customercenter.ansys.com/) is a general nonlinear multiphysics software offering structural and thermodynamic analysis, continuum flow analysis, analysis of electrostatic and electromagnetic fields and acoustic analysis.
 
-ANSYS can be run either from module or from a service.
+ANSYS can be run either from a module or from a service.
 
 ## Usage
 
 ### OnDemand
 
-ANSYS can be run in a browser as [OnDemand service](https://ondemand.metacentrum.cz). This is the most straightforward and simplest way.
+ANSYS can be run in a browser as an [OnDemand service](https://ondemand.metacentrum.cz). This is the most straightforward and simplest way.
 
 ### Kubernetes
 
@@ -21,9 +21,9 @@ Another option is to use [Kubernetes service](https://docs.cerit.io/), which off
 
 ### Module 
 
-Although this application can be used in text-only mode, in most use cases you will need graphical interface. We recommend to use [remote desktop](../../../software/graphical-access). 
+Although this application can be used in text-only mode, in most use cases, you will need a graphical interface. We recommend to use [remote desktop](https://docs.metacentrum.cz/en/docs/software/graphical-access). 
 
-Running ANSYS from a module is recommended to advanced users or as a fallback option in case OnDemand and/or Kubernetes service cannot fulfill the user's requirements.
+Running ANSYS from a module is recommended for advanced users or as a fallback option in case OnDemand and/or Kubernetes service cannot fulfil the user's requirements.
 
 ## License
 
@@ -32,7 +32,7 @@ All installed ANSYS versions are available to all MetaCentrum users without loca
 Check the number of currently available licenses:
 
 ```bash
-module add ansys/2021-R1
+module add ansys
 lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a    # list all licences for all software
 ```
 
@@ -41,7 +41,7 @@ lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a    # list all licences for all soft
 lmutil lmstat -c 1055@lm-brno.ics.muni.cz -a | grep cfd_base
 ```
 
-or you can use Ansys specific license tool
+or you can use the ANSYS specific license tool
 
 ```bash
 `which ansysli_util` -statli 2325@lm-brno.ics.muni.cz -printavail
@@ -55,15 +55,26 @@ or you can use Ansys specific license tool
 Number of available licenses:
 
 ```bash
-Ansys Academic Research CFD (Ansys Fluent + Ansys CFX) in quantity of 25 parallel runs
+Ansys Academic Research CFD (Ansys Fluent + Ansys CFX) in a quantity of 25 parallel runs
 Ansys Academic Research Mechanical in quantity of 5 parallel runs
-additional tool Ansys HPC in quantity of 512 pieces (=> cores)
+additional tool Ansys HPC in quantity of 512 pieces (=CPU cores)
+```
+
+### License for parallel use
+
+Basic licences for ```ansys-cfd``` and ```ansys-mechwb``` include utilisation of four cores (PBS parameter ```ncpus=4```). Fifth and each additional core must be covered by an ```ansys-anshpc``` licence in the ratio of one core to one licence. For example, when the calculation requests 16 cores (PBS parameter ```ncpus=16```), 12 licences of ```ansys-anshpc``` will be needed for this job.
+
+```bash
+#PBS -l select=1:ncpus=16...
+
+#PBS -l ansys-cfd=1
+#PBS -l ansys-anshpc=12
 ```
 
 
-Available tools (complete list of available products is HERE):
+## Available tools
 
-## Ansys Academic Multiphysics Campus Solution (25/250)
+### Ansys Academic Multiphysics Campus Solution (25/250)
 
 This academic license includes access to a comprehensive suite of Ansys tools across structural mechanics, fluid dynamics, electromagnetics, optics, materials, and systems simulation.
 
@@ -73,18 +84,16 @@ This academic license includes access to a comprehensive suite of Ansys tools ac
 | **CFD**                         | Fluent, CFX, FENSAP-ICE, Forte, Polyflow, Chemkin, Rocky, Thermal Desktop                                | `fluent`, `cfx5launch`, `rocky`, `cfdpost` |
 | **Electromagnetics & Electronics** | HFSS, Maxwell, SIwave, Icepak, Q3D Extractor, EMC Plus, Charge Plus, RedHawk, PowerArtist               | `ansysedt` (Electronics Desktop)       |
 | **Optics & Photonics**         | Lumerical (FDTD, MODE, INTERCONNECT, Multiphysics), Zemax OpticStudio, SPEOS                             | `fdtd-solutions`, `mode-solutions`, `speos` |
-| **MBSE / Systems Simulation**   | SCADE Suite, ModelCenter, Medini Analyze, SCADE Architect/Display/Test                                   | GUI-based / Project-specific launchers |
+| **MBSE / Systems Simulation**   | SCADE Suite, ModelCenter, Medini Analyse, SCADE Architect/Display/Test                                   | GUI-based / Project-specific launchers |
 | **Materials (Granta)**         | Selector, Advanced Materials (Metals, Polymers, Composites...), EduPack                                  | `granta-selector`, `edupack`           |
 | **Preprocessing & Interfaces** | Meshing, ICEM CFD, Geometry Translators (CATIA, NX, etc.)                                                | `icemcfd`, `meshing`, `geometrytools`  |
-| **HPC & Parallelization**      | HPC Workgroup, LS-DYNA HPC, optiSLang HPC, Rocky HPC                                                     | Used internally via solvers            |
+| **HPC & Parallelisation**      | HPC Workgroup, LS-DYNA HPC, optiSLang HPC, Rocky HPC                                                     | Used internally via solvers            |
 
 > License allows **up to 25 simultaneous jobs** and **512 HPC cores** shared across all supported tools.
 
 ```
-
-
-Ask scheduler for licence by adding one of the following options:
-> Each simulation consumes 1 solver license (up to 25 for CFD, 5 for Mechanical) and may use multiple HPC licenses depending on number of CPU cores requested.
+Ask the scheduler for a license by adding one of the following options:
+> Each simulation consumes 1 solver license (up to 25 for CFD, 5 for Mechanical) and may use multiple HPC licenses depending on the number of CPU cores requested.
 
 -l ansys-cfd=1     # 1 license of Ansys CFD
 -l ansys-mechwb=1  # 1 license of Ansys Mechanical Workbench
@@ -97,13 +106,13 @@ The following Ansys products are available within the MetaCentrum infrastructure
 
 - **Ansys CFD** - product combining two primary general-purpose fluids simulation products offered by ANSYS - **Ansys Fluent** and **Ansys CFX**.
 ```bash
-- **Ansys Fluent** contains the broad physical modeling capabilities needed to model flow, turbulence, heat transfer, and reactions for industrial applications.
-- **Ansys CFX** is a general purpose fluid dynamics program for simulating all types of models concerning fluid flow, including effects of temperature(conductance, radiance).
+- **Ansys Fluent** contains the broad physical modelling capabilities needed to model flow, turbulence, heat transfer, and reactions for industrial applications.
+- **Ansys CFX** is a general-purpose fluid dynamics program for simulating all types of models concerning fluid flow, including effects of temperature(conductance, radiance).
 ```
-- **Ansys Mechanical** - product for simulating of structural and thermodynamic tasks. The engineering simulation product provides a complete set of elements behavior, material models and equation solvers for a wide range of mechanical design problems.
+- **Ansys Mechanical** - a product for simulating structural and thermodynamic tasks. The engineering simulation product provides a complete set of element behaviour, material models and equation solvers for a wide range of mechanical design problems.
 
 <Callout type="info">
-All ANSYS tools can utilize at **most 4 local CPUs** for task computation. For more demanding tasks in grid environment it's necessary to use additional tool – **Ansys HPC**. Every ANSYS HPC license allows for distribution of computation to another available (local or remote) processor.
+All ANSYS tools can utilise at **most 4 local CPUs** for task computation. For more demanding tasks in a grid environment, it's necessary to use an additional tool – **Ansys HPC**. Every ANSYS HPC license allows for the distribution of computation to another available (local or remote) processor.
 </Callout>
 
 ### Ansys Fluent
@@ -112,15 +121,15 @@ Ansys Fluent supports both interactive and batch use.
 
 **Interactive usage**
 
-For graphic environment, open the GUI interface.
+For the graphic environment, open the GUI interface.
 
-For text-only regime login to a frontend and ask for interactive job in the standard way
+For a text-only regime, log in to a frontend and ask for an interactive job in the standard way
 
 ```
 ssh skirit.ics.muni.cz
 qsub -I -l select=X:ncpus=Y:mem=Zgb  # text-only regime
 ```
-Start Fluent and proceed according to onscreen instructions
+Start Fluent and proceed according to the onscreen instructions
 
 ```
 module add ansys/18.2
@@ -130,9 +139,9 @@ fluent -g # text-only regime
 
 **Batch usage**
 
-Login to a frontend
+Log in to a frontend
 
-Prepare input data and batch script -- in the script, use following commands:
+Prepare input data and batch script -- in the script, use the following commands:
 
 a) for serial computation:
 
@@ -146,10 +155,10 @@ b) for parallel/distributed computation:
 ```
 module add ansys/18.2
 cpus=`cat $PBS_NODEFILE | wc -l`
-fluent <version> -t${cpus} -p -cnf=$PBS_NODEFILE -g < flow.input  # parallel/distributed initialization of Fluent
+fluent <version> -t${cpus} -p -cnf=$PBS_NODEFILE -g < flow.input  # parallel/distributed initialisation of Fluent
 ```
 
-Note: you can get list of available versions by running `$ fluent -v`.
+Note: you can get a list of available versions by running `$ fluent -v`.
 
 Submit the batch script:
 
@@ -159,7 +168,7 @@ skirit$ qsub -l select=X:ncpus=Y:mem=Zgb batch_script.sh
 
 **Parallel batch usage**
 
-It seems that best usage of parallel fluent differs from HW where fluent runs (infiniband vs. omnipath), as a rule of thumb you can use:
+It seems that the best usage of parallel fluent differs from HW, where fluent runs (infiniband vs. omnipath), as a rule of thumb, you can use:
 
 ```
   if test $(sort -u < $PBS_NODEFILE |wc -l) -gt 1 -a -w /dev/hfi1_0;then  
@@ -168,31 +177,31 @@ It seems that best usage of parallel fluent differs from HW where fluent runs (i
   fluent 2ddp -g -t$PBS_RESC_TOTAL_PROCS $MPI_IMP -cnf=$PBS_NODEFILE -i case.jou > case.out 2>&1
 ```
 
-To utilize homogeneous cluster (fluent cannot optimally use nodes with different performance) , one should submit via:
+To utilise a homogeneous cluster (fluent cannot optimally use nodes with different performance), one should submit via:
 
    qsub -l select=N:...:infiniband=^none -l place=group=cluster ...
 
 <Callout  type="info" title="Tip" icon="💡">
-To minimalize time needed for communication vith cortex component and increase performance, one can try to increase /solve/set/reporting-interval.
+To minimise the time needed for communication with the cortex component and increase performance, one can try to increase /solve/set/reporting-interval.
 </Callout>
 
 <Callout  type="info" title="Tip" icon="💡">
-Check the scalability of parallel run before spawning at dozens of processors, maybe the 16cpu run is faster then 32cpu one due to big communication overhead. 
+Check the scalability of parallel run before spawning on dozens of processors, maybe the 16cpu run is faster than the 32cpu one due to the big communication overhead. 
 </Callout>
 
 ### Ansys CFX
 
 **Interactive usage**
 
-For graphic environment, open the GUI interface. 
+For the graphic environment, open the GUI interface. 
 
-For text-only regime login to a frontend and ask for interactive job in the standard way
+For a text-only regime, log in to a frontend and ask for an interactive job in the standard way
 
 ```
 ssh skirit.ics.muni.cz
 qsub -I -l select=X:ncpus=Y:mem=Zgb  # text-only regime
 ```
-Start CFX and proceed according to onscreen instructions
+Start CFX and proceed according to the onscreen instructions
 
 ```
 cfx5 # graphical mode
@@ -201,9 +210,9 @@ cfx5launch # text-only mode
 
 **Batch usage**
 
-Login to a frontend
+Log in to a frontend
 
-Prepare input data and batch script -- in the script, use following commands:
+Prepare input data and batch script -- in the script, use the following commands:
 ```bash
 
 ```
@@ -215,7 +224,7 @@ cfx5pre -batch inputfile.pre [...]
 cfx5solve -def inputfile [...]
 cfdpost -batch inputfile.cse [...]
 ```
-b) for paralel/distributed computation:
+b) for parallel/distributed computation:
 
 ```
 module add ansys/18.2
@@ -234,7 +243,7 @@ skirit$ qsub -l select=X:ncpus=Y:mem=Zgb batch_script.sh
 
 ### Ansys Workbench
 
-For graphic environment, open the GUI interface.
+For the graphic environment, open the GUI interface.
 
 Start Workbench in the graphical mode
 
@@ -244,7 +253,7 @@ runwb2 # graphical mode
 
 ## Documentation
 
-Software documentation is available locally in program's directory:
+Software documentation is available locally in the program's directory:
 
 - version Ansys 18.2: /software/ansys-18.2/doc/readme.html
 - version Ansys 18.0: /software/ansys-18.0/doc/readme.html
