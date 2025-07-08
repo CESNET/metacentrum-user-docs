@@ -21,7 +21,7 @@ Singularity images (= containers) are commonly suffixed by `.sif`.
 
 Any container can be launched from within a job as a separate step. 
 
-The simplest way, however, to run Singularity image is to specify it upon job submission as a PBS parameter, and the container will be automatically launched when the job starts. 
+The simplest way, however, to run a Singularity image is to specify it upon job submission as a PBS parameter, and the container will be automatically launched when the job starts. 
 
 Key features:
 
@@ -242,57 +242,63 @@ These images are placed `/cvmfs/singularity.metacentrum.cz/`.
 ```
     /cvmfs/singularity.metacentrum.cz/
     │
-    ├── BioBakery    
+    ├── BioBakery/    
     │
-    ├── Bioconductor 
+    ├── Bioconductor/ 
     │
-    ├── Biomex 
+    ├── Biomex/ 
     │
-    ├── BioNano  
+    ├── BioNano/  
     │
-    ├── BIOP-Desktop
+    ├── BIOP-Desktop/
     │
-    ├── Braker 
+    ├── Braker/ 
+    │
+    ├── CP2k/
     │
     ├── FEFLOW/
     |    # FEFLOW is a computer program for simulating groundwater flow,
     |    # mass transfer and heat transfer in porous and fractured media
     │
-    ├── GATE	
+    ├── GATE/	
     │
-    ├── HybPiper 
+    ├── HiC-Pro/	
     │
-    ├── KKY/ 
+    ├── HybPiper/ 
+    │
+    ├── KKY/
     |    # KKY directory contains tools prepared specifically for
     |    # Department of Cybernetics (KKY) at University of West Bohemia in Pilsen
     │
-    ├── Metacentrum 
+    ├── Metacentrum/ 
     |    # OSs
     │
-    ├── NGC/ 
+    ├── NGC/
     |    # NGC are GPU-tuned NVIDIA frameworks for deep learning
     |    # packed as containers,
     |    # including NAMD3, OpenCV, PyTorch, qEspresso, TensorFlow 
     │
-    ├── NVIDIA_HPC_SDK/ 
+    ├── NVIDIA_HPC_SDK/
     |    # an NVIDIA comprehensive suite of compilers, libraries and tools for HPC
     │
-    ├── OpenFOAM/ 
+    ├── OpenFOAM/
     |    # OpenFOAM is a software for modelling complex fluid flows,
     |    # chemical reactions, turbulence and heat transfer, 
     |    # solid dynamics, electromagnetics and more.
     │
-    ├── Peregrine/ 
+    ├── Peregrine/
     |    # Peregrine is a fast genome assembler for accurate long reads
     │
-    ├── RepeatExplorer 
+    ├── podmanStore/
+    |
+    ├── RepeatExplorer/
     │
     ├── RNApeg/ 
     |    # RNApeg is an RNA junction calling, correction, and quality-control package
     |
-    ├── Rosetta
+    ├── Rosetta/
     │
-    ├── RoseTTAFold2
+    ├── RoseTTAFold2/
     │
     ├── RStudio/ 
     |    # Integrated development environment (IDE) for R
@@ -301,7 +307,9 @@ These images are placed `/cvmfs/singularity.metacentrum.cz/`.
     |    # Dfam TE Tools is a container
     |    # that includes RepeatMasker, RepeatModeler, and coseg
     │
-    ├── Trinity
+    ├── Trinity/
+    │
+    ├── Trinotate/ 
 ```
 
 
