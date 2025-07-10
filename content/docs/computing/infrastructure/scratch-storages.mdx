@@ -19,7 +19,7 @@ We offer four types of scratch storage:
 - integer type, submitted as `scratch_local=10gb`
 - located in `/scratch/USERNAME/job_JOBID`
 
-### Fast SSD scratche
+### Fast SSD scratch
 
 - PBS resource `scratch_ssd` 
 - located on a small SSD disc
@@ -30,7 +30,7 @@ We offer four types of scratch storage:
 - recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
 - located in `/scratch.ssd/USERNAME/job_JOBID`
 
-### Shared scratche
+### Shared scratch
 
 - PBS resource `scratch_shared`
 - network volume, which is shared between all nodes in a given cluster
@@ -60,7 +60,7 @@ At MetaCentrum, we’ve adopted BeeGFS to meet the increasing challenges of data
 
 Main usecases:
 
-- PBS resource `scratch_shared` together with `cl_bee=True`,for example `qsub -l walltime=1:0:0 -q default@pbs-m1.metacentrum.cz -l select=1:ncpus=1:mem=400mb:scratch_shared=400mb:cl_bee=True`,
+- PBS resource `scratch_shared` **together with** `cl_bee=True`,for example `qsub -l walltime=1:0:0 -q default@pbs-m1.metacentrum.cz -l select=1:ncpus=1:mem=400mb:scratch_shared=400mb:cl_bee=True`,
 - jobs with large files or a huge number of small files; BeeGFS efficiently handles massive datasets,
 - jobs with parallel I/O operation
 - jobs spanning multiple compute nodes
