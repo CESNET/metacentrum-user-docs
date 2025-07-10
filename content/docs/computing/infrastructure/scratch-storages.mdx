@@ -1,51 +1,84 @@
 ---
 title: Scratch storages
 ---
-Scratch storage is a **storage for temporary files for running job**. This storage should be used only during computations and should be freed immediately after your job ends. The location of scratch directory is defined by a system variable `SCRATCHDIR`.
-Scratch types
+Scratch storage is a **storage for temporary files for running job**.
+
+This storage should be used *only during computations* and should be freed immediately after your job ends. 
+
+The location of scratch directory is defined by a system variable `SCRATCHDIR`.
+
+## Scratch types
 
 We offer four types of scratch storage:
-```
-scratch_local
-    available on every node, located on a regular hard disc
-    choose this type as a default if you have no reason to do otherwise
-    integer type, submitted as scratch_local=10gb
-    located in /scratch/USERNAME/job_JOBID
-scratch_ssd
-    located on a small SSD disc
-    ultra fast (compared to local scratch) but smaller in volume
-    integer type, submitted as scratch_ssd=1gb
-    not available on all computational nodes!
-    to check for availability on a particular node, go to https://metavo.metacentrum.cz/pbsmon2/props -> choose a node -> search for scratch_ssd in a grey table
-    recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
-    located in /scratch.ssd/USERNAME/job_JOBID
-scratch_shared
-    network volume, which is shared between all nodes in a given cluster
-    read/write operation slower than on local scratch
-    useful if you need to run more than one application that needs access to the same data
-    integer type, submitted as scratch_shared=10gb
-    not available on all computational nodes!
-    to check for availability on a particular node, go to https://metavo.metacentrum.cz/pbsmon2/props -> choose a node -> search for scratch_shared in a grey table
-    mounted to directory /scratch.shared/USERNAME/job_JOBID
-scratch_shm
-    the scratch directory is in the RAM
-    fastest, but data on scratch do not survive the end/failure of the job
-    use when you need ultra-fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
-    boolean type, submitted as scratch_shm=true
-    maximum size of scratch is defined by the mem (memory) parameter
-    remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
-    mounted to directory /dev/shm/scratch.shm/USERNAME/job_JOBID
-```
+
+### Local scratch on node
+
+- PBS resource `scratch_local`
+- available on every node, located on a regular hard disc
+- choose this type as a default if you have no reason to do otherwise
+- integer type, submitted as `scratch_local=10gb`
+- located in `/scratch/USERNAME/job_JOBID`
+
+### Fast SSD scratche
+
+- PBS resource `scratch_ssd` 
+- located on a small SSD disc
+- ultra fast (compared to local scratch) but smaller in volume
+- integer type, submitted as `scratch_ssd=1gb`
+- not available on all computational nodes!
+- to check for availability on a particular node, go to [https://metavo.metacentrum.cz/pbsmon2/props](https://metavo.metacentrum.cz/pbsmon2/props) -> choose a node -> search for `scratch_ssd` in a grey table
+- recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
+- located in `/scratch.ssd/USERNAME/job_JOBID`
+
+### Shared scratche
+
+- PBS resource `scratch_shared`
+- network volume, which is shared between all nodes in a given cluster
+- read/write operation slower than on local scratch
+- useful if you need to run more than one application that needs access to the same data
+- integer type, submitted as `scratch_shared=10gb`
+- not available on all computational nodes!
+- to check for availability on a particular node, go to [https://metavo.metacentrum.cz/pbsmon2/props](https://metavo.metacentrum.cz/pbsmon2/props) -> choose a node -> search for scratch_shared in a grey table
+- mounted to directory `/scratch.shared/USERNAME/job_JOBID`
+
+### Scratch in RAM
+
+- PBS resource `scratch_shm`
+- the scratch directory is in the RAM
+- fastest, but data on scratch do not survive the end/failure of the job
+- use when you need ultra-fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
+- boolean type, submitted as `scratch_shm=true`
+- maximum size of scratch is defined by the mem (memory) parameter
+- remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
+- mounted to directory `/dev/shm/scratch.shm/USERNAME/job_JOBID`
+
+## Shared scratch on cluster [bee.cerit-sc.cz](https://metavo.metacentrum.cz/pbsmon2/resource/bee.cerit-sc.cz) 
+
+BeeGFS (Beyond Extensible Enterprise File System) is a parallel distributed filesystem designed specifically for the needs of high-performance computing (HPC). It is used in computing clusters, scientific simulations, machine learning, genomics, and everywhere large datasets and fast parallel access are essential.
+
+At MetaCentrum, we’ve adopted BeeGFS to meet the increasing challenges of data-intensive computations on data used by multiple job and/or job arrays. BeeGFS is available as a temporary working directory via the `scratch_shared` resource on cluster [bee.cerit-sc.cz](https://metavo.metacentrum.cz/pbsmon2/resource/bee.cerit-sc.cz).
+
+Main usecases:
+
+- PBS resource `scratch_shared` together with `cl_bee=True`,for example `qsub -l walltime=1:0:0 -q default@pbs-m1.metacentrum.cz -l select=1:ncpus=1:mem=400mb:scratch_shared=400mb:cl_bee=True`,
+- jobs with large files or a huge number of small files; BeeGFS efficiently handles massive datasets,
+- jobs with parallel I/O operation
+- jobs spanning multiple compute nodes
+- array jobs with intermediate results - BeeGFS is well-suited for workflows where subsequent computations can pick up intermediate results left in the scratch directory eliminating the need to copy data to permanent storage or run on the same machine as the previous step.
+
+Read more on [BeeGFS article on eInfra blog](https://blog-dev.cerit.io/blog/beegfs).
 
 <Callout type="info" title="No default scratch">
     For a batch job, you must set the size and type of scratchdir! There is no default type of scratch.
 </Callout>
 
+## Cleaning scratch
+
 Directory `SCRATCHDIR` is not writable, only it's content is. Therefore, you cannot, e.g. do `rm -rf $SCRATCHDIR`, but you can `rm -rf $SCRATCHDIR/*`.
 
 Users should always clear the content of the scratch directory after the job ends to free disc space. Otherwise, this directory will be automatically deleted after 14 days at most (earlier if there is lack of space on disks).
 
-Examples:
+## Examples
 
 Submit batch job with 100 GB scratch on local disc:
 ```bash
