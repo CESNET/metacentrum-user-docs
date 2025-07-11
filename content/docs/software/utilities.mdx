@@ -16,10 +16,7 @@ Usage of these utilities is not necessary to get full-featured MetaCentrum servi
 ## Check local quota
 
 - If you encounter the message "exhausted root filesystem quota" on a specific node, use the `check-local-quota` command to diagnose the issue. This error typically occurs when your jobs generate large output (`.OU`), error (`.ER`), or temporary files in directories like `/var/spool` or `/tmp`.
-
-
 - usage:
-
   Access the Node via SSH:
   ```bash
   $ ssh novak@turin28.metacentrum.cz
@@ -34,4 +31,4 @@ Usage of these utilities is not necessary to get full-featured MetaCentrum servi
   $ rm file_XX
   $ rm -rf directory_XX
   ```
-  - see more on [FAQ/No space left on a node](../support/faqs-content/no-space-left)
+- see more on [FAQ/No space left on device](../support/faqs-content/no-space-left)
