@@ -79,55 +79,8 @@ Resource names: `scratch_local`, `scratch_shared`, `scratch_ssd`, `scratch_shm`.
 
 Default value: none.
 
-We offer four types of scratch storage:
+See [description of scratch types](../../computing/infrastructure/scratch-storages) for more information. 
 
-- `scratch_local`
-    - available on every node, located on regular hard disc
-    - choose this type as a default if you have no reason to do otherwise
-    - located in `/scratch/USERNAME/job_JOBID`
-- `scratch_ssd`
-    - located on small SSD disc
-    - ultra fast (compared to local scratch), but smaller in volume
-    - not available on all computational nodes!
-    - to check for availability on a particular node: see [Node properties on Metavo pages](https://metavo.metacentrum.cz/pbsmon2/props)
-    - recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
-    - located in `/scratch.ssd/USERNAME/job_JOBID`
-- `scratch_shared`
-    - network volume which is shared between all clusters in a given location (city)
-    - read/write operation slower than on local scratch
-    - useful if you need to run more than one application that need access to the same data
-    - not available on all computational nodes!
-    - to check for availability on a particular node: see [Node properties on Metavo pages](https://metavo.metacentrum.cz/pbsmon2/props)
-    - mounted to directory `/scratch.shared/USERNAME/job_JOBID`
-- `scratch_shm`
-    - scratch directory is in RAM
-    - fastest, but data on scratch do not survive the end/failure of the job
-    - use when you need ultra fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
-    - boolean type, submitted as `scratch_shm=true`
-    - maximum size of scratch is defined by mem (memory) parameter
-    - remember to choose mem large enough (to hold both data in scratch and the actual memory requirements for the job)
-    - mounted to directory `/dev/shm/scratch.shm/USERNAME/job_JOBID`
-
-Scratch directory is not writable, only it's content is. Therefore you cannot clean the scratch by `rm -rf $SCRATCHDIR`, but you can do it by `rm -rf $SCRATCHDIR/*`. Users should always clear the content of scratch directory after the job ends to free disc space. Otherwise, this directory will be automatically deleted after approx. 14 days (earlier if there is lack of space on disks).
-
-The most important system variables related to scratch are these:
-
-- `SCRATCHDIR`: path to scratch directory
-- `SCRATCH_TYPE`: type of scratch directory
-- `SCRATCH_VOLUME`: size of scratch directory
-
-Example:
-```bash
-    (BUSTER)user123@skirit:~$ qsub -I -l select=scratch_local=20gb -l walltime=1:00:00
-    qsub: waiting for job 12910867.pbs-m1.metacentrum.cz to start
-    qsub: job 12910867.pbs-m1.metacentrum.cz ready
-    (BULLSEYE)user123@elmo3-3:~$ echo $SCRATCHDIR
-    /scratch/user123/job_12910867.pbs-m1.metacentrum.cz
-    (BULLSEYE)user123@elmo3-3:~$ echo $SCRATCH_TYPE
-    local
-    (BULLSEYE)user123@elmo3-3:~$ echo $SCRATCH_VOLUME
-    21474836480
-```
 ### **Number of GPUs**
 
 Resource name: `ngpus`. Default value: `0`.
