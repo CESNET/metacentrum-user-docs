@@ -2,21 +2,33 @@
 title: Utilities
 ---
 
-MetaCentrum offers various utilities on frontends.
+MetaCentrum offers various utilities on frontends and compute nodes.
 
-Usage of these utilities is not necessary to get full-featured MetaCentrum services, however, it may make the work on the CLI easier.
+Usage of these utilities is not necessary to get full-featured MetaCentrum services. However, it may make the work on the CLI and with the infrastructure easier.
 
 ## Go to scratch
 
-- Command go_to_scratch changes the directory from a frontend to the scratch of a specified job
-- usage: `go_to_scratch [job_ID]`
-- see more on [how to get job ID](../computing/run-basic-job#job-id)
+- Command `go_to_scratch` automatically changes (redirects) the directory from a frontend server to the scratch of the used compute node
+- Usage is `go_to_scratch [job_ID]`
+
+```bash
+  user_name@frontend:~$ go_to_scratch 12345
+  user_name@compute_node:/scratch/user_name/job_12345.pbs-m1$
+  ```
+
+- See more on [how to get job ID](../computing/run-basic-job#job-id)
+- `go_to_scratch` command works only 24 hours after the calculation is done or terminated. After this period, the user needs to use an `ssh` to log in to the compute node and the `cd` command for navigation to the scratch directory.  
+
+  ```bash
+  user_name@frontend:~$ ssh compute_node
+  user_name@compute_node:~$ cd /scratch/user_name/job_ID.pbs-m1
+  ```
 
 
 ## Check local quota
 
 - If you encounter the message "exhausted root filesystem quota" on a specific node, use the check-local-quota command to diagnose the issue. This error typically occurs when your jobs generate large output (`.OU`), error (`.ER`), or temporary files in directories like `/var/spool` or `/tmp`.
-- usage: Access the node via SSH
+- Usage: Access the node via SSH
   ```bash
   $ ssh novak@turin28.metacentrum.cz
   ```
@@ -29,4 +41,4 @@ Usage of these utilities is not necessary to get full-featured MetaCentrum servi
   $ rm file_XX
   $ rm -rf directory_XX
   ```
-- see more on [FAQ/No space left on device](../support/faqs-content/no-space-left)
+- See more on [FAQ/No space left on device](../support/faqs-content/no-space-left)
