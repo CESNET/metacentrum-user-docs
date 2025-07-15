@@ -39,7 +39,8 @@ If, after approval, the application redirects you to a page informing you that y
 
 To download products via the OData API, authentication using an access token must be added to the requests.
 
-Tokens can be obtained at [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
+### Token Portal
+Tokens can be obtained at [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal) after logging via your institution or social login.
 
 ![token_portal_intro.png](/img/meta/related/collgs/sentinel/token_portal_intro.png)
 
@@ -60,6 +61,33 @@ On the _Generate Tokens_ page, the following items are available:
 **Token Exchange Command** - This command allows you to obtain a new access token and refresh token with full validity when the access token expires.
 
 **Token Management Link** - Provides access to the application for managing your account and tokens. Here, you can log out from a device and revoke the refresh token.
+
+### Setting up Basic Auth credentials
+If logging in the Token Portal using your institution/social identity is not convenient for you, you can set up password
+and exchange it together with your username for a token. Directly calling GSS API with username and password is not permitted.
+
+To set up a password, visit the [Account Management Page](https://keycloak.grid.cesnet.cz/realms/collgs/account) in Keycloak
+and log in via your institution login or social identity. 
+
+![keycloak_get_username](/img/meta/related/collgs/sentinel/keycloak_get_username.png)
+In the Personal info tab you can see the username to use in the basic authentication. The username
+is provided by Identity Provider and cannot be changed manually.
+
+![keycloak_change_password_0](/img/meta/related/collgs/sentinel/keycloak_change_password_0.png)
+In the Account security > Signing in tab choose the Set up Password option.
+Then, set up the password.
+
+![keycloak_change_password_1](/img/meta/related/collgs/sentinel/keycloak_change_password_1.png)
+
+Now you can exchange your username and password for access and refresh tokens.
+```shell
+curl --location 'https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=token-exchange' \
+--data-urlencode 'username=YOUR USERNAME' \
+--data-urlencode 'password=YOUR PASSWORD' \
+--data-urlencode 'grant_type=password'
+```
 
 ### How to Work with Tokens
 
@@ -127,7 +155,7 @@ Use the _Sign out_ option to log out a specific device, or _Sign out all devices
 
 ![token_revoke.png](/img/meta/related/collgs/sentinel/token_revoke.png)
 
-### Token Exchange
+### EGI Token Exchange
 
 If you are already working with tokens from EGI Check-in, it is possible to exchange them for tokens granting access to the GSS system without further login. In this case, send a valid access token issued by EGI Check-in via POST method to the endpoint [https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token) and attach the following to the request body:
 
