@@ -86,9 +86,24 @@ The national node CollGS supports machine access via the *OData* protocol. Machi
 
 The query interface is accessible at: [https://collgs.cesnet.cz/odata/v1](https://collgs.cesnet.cz/odata/v1).
 
-For writing simple scripts, tools like `curl` or `wget` are most useful. Authentication for downloading products can no longer be done using a username and password, but it is necessary to use OIDC tokens, which are generated at the token portal address: [https://keycloak.grid.cesnet.cz/token-portal](https://keycloak.grid.cesnet.cz/token-portal).
+Authentication for downloading products can no longer be done using a username and password.
 
-A more detailed description of authentication can be found in the guide [User Authentication in GSS](./gss_login/).
+A more detailed description of the authentication can be found in the guide [User Authentication in GSS](./gss_login#machine-access).
+
+<Callout type="info" title="Pygssearch library">
+GSS has made Python [pygssearch](https://pypi.org/project/pygssearch/) library available for accessing products via OData protocol.
+It simplifies the process of searching and downloading products, supports filters and various output formats.
+</Callout>
+
+If using the pygssearch library, follow the [steps to set up password in Keycloak](./gss_login#setting-up-basic-auth-credentials) and set up your configuration file as follows:
+```text
+[pygssearch]
+service=https://collgs.cesnet.cz/odata/v1
+username=YOUR USERNAME
+password=YOUR PASSWORD
+token_url=https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token
+client_id=token-exchange
+```
 
 ### Product Search
 
