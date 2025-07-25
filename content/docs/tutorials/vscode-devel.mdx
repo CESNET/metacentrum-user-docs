@@ -10,7 +10,7 @@ When developing with VSCode in MetaCentrum, a straightforward setup like:
 - VSCode server running on frontend
 - connection to frontend through *VSCode remote development*
 
- can be far too resource-expensive.
+ can be far too resource-expensive for a frontend shared by many users.
 
 <Callout type="warn" title="Frontends are not computing nodes">
 Resource-expensive (CPU, mem) processes running on frontends may be killed without warning.
@@ -20,6 +20,9 @@ Therefore, we recommend another setup with the VSCode server running on a comput
 
 ## VSCode running on a computing node
 
+VS Code (whole UI and developed application) can be started in a job, e.g. via OpenOndemand service or using "gui" module, if the user has no suitable local workstation to run VSCode's UI (interactive response may suffer due to network load etc.)
+
+## VSCode server running on a computing node, UI on user's workstation
 1. on your local station, generate a SSH key pair
 
 ssh-keygen -f /home/username123/.ssh/my_key
