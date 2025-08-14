@@ -12,6 +12,14 @@ const GPUClusterTable = () => {
       cudnn: 'YES',
     },
     {
+      cluster: 'alfrid.meta.czu.cz',
+      nodes: 'afrid[1-4].meta.czu.cz',
+      gpusPerNode: '2x L40',
+      computeCapability: '8.9',
+      memGB: '46',
+      cudnn: 'YES',
+    },
+    {
       cluster: 'bee.cerit-sc.cz',
       nodes: 'bee[1-10].cerit-sc.cz',
       gpusPerNode: '2x H100 NVL',
@@ -57,6 +65,14 @@ const GPUClusterTable = () => {
       gpusPerNode: '4x A40',
       computeCapability: '8.6',
       memGB: '46',
+      cudnn: 'YES',
+    },
+    {
+      cluster: 'glados.cerit-sc.cz',
+      nodes: 'glados[1-2].cerit-sc.cz',
+      gpusPerNode: '2x GeForce RTX 2080 Ti',
+      computeCapability: '7.5',
+      memGB: '8',
       cudnn: 'YES',
     },
     {
