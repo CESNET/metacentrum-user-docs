@@ -70,7 +70,7 @@ const GPUClusterTable = () => {
     {
       cluster: 'glados.cerit-sc.cz',
       nodes: 'glados[1-2].cerit-sc.cz',
-      gpusPerNode: '2x GeForce RTX 2080 Ti',
+      gpusPerNode: '2x GeForce RTX 2080',
       computeCapability: '7.5',
       memGB: '8',
       cudnn: 'YES',
