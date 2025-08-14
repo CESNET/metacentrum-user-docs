@@ -27,6 +27,14 @@ const GPUClusterTable = () => {
       memGB: '96',
       cudnn: 'YES',
     },
+     {
+      cluster: 'capy.cerit-sc.cz',
+      nodes: 'capy.cerit-sc.cz',
+      gpusPerNode: '8x H100',
+      computeCapability: '9.0',
+      memGB: '82',
+      cudnn: 'YES',
+    },
     {
       cluster: 'cha.natur.cuni.cz',
       nodes: 'cha.natur.cuni.cz',
