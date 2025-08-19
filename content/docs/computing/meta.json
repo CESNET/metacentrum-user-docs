@@ -2,6 +2,7 @@
   "title": "Computing",
   "pages": [
     "concepts",
+    "basic-tutorial",
     "run-basic-job",
     "jobs",
     "infrastructure",
