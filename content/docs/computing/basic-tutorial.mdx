@@ -13,3 +13,22 @@ Sometimes, problems can be too complicated, and error messages can be too crypti
 ## Available software tools
 
 We provide access to several hundred application tools in thousands of individual modules. For this reason, we are unable to periodically monitor and update all of them, and also, our [list of available tools](https://docs.metacentrum.cz/en/docs/software/alphabet) only includes those that require some further description. We rely on our users to [inform us](https://docs.metacentrum.cz/en/docs/support) when a tool needs updating, and we recommend simpler installations in the home directory (with our assistance if required).
+
+## Where is my data located, and why are there so many frontend servers?
+
+The main principle of the grid infrastructure is that it connects various compute clusters that are distributed across the Czech Republic. The same scheme applies to [storage servers](https://docs.metacentrum.cz/en/docs/computing/infrastructure/mount-storages), where data is located, and [frontend servers](https://docs.metacentrum.cz/en/docs/computing/infrastructure/frontends), which are the main access points. This is to distribute the user load across multiple localities and prevent all users from losing access to all data in the event of a technical problem.
+
+Users can, however, use any frontend server to access data on any storage server. Each frontend server is mounted on an individual storage server, and all storage servers are accessible across MetaCentrum. You can use the standard Linux command `cp` to move yourself (or the current working directory) between storage servers. For example, the frontend server `nympha` (`nympha.metacentrum.cz`) is mounted on the storage server `storage-plzen1.metacentrum.cz`, which is accessible from compute nodes and other frontend servers via the path `/storage/plzen1/home/user_name`. However, switching to a different storage server is simple if needed.
+
+```bash
+local_user_name@local_pc_name:~$ ssh user_name@nympha.metacentrum.cz
+...
+(BOOKWORM)user_name@nympha:~$ pwd
+/storage/plzen1/home/user_name
+(BOOKWORM)user_name@nympha:~$ cd /storage/brno2/home/user_name
+(BOOKWORM)user_name@nympha:/storage/brno2/home/user_name$ pwd
+/storage/brno2/home/user_name
+(BOOKWORM)user_name@nympha:/storage/brno2/home/vorel$ cd /storage/brno12-cerit/home/user_name
+(BOOKWORM)user_name@nympha:/storage/brno12-cerit/home/user_name$ pwd
+/storage/brno12-cerit/home/user_name
+```
