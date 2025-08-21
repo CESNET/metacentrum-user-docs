@@ -1,0 +1,12 @@
+[
+        {
+                "type": "assistant",
+                "id": "solver",
+                "name": "Solver",
+                "api_path": "/api/chat-solver",
+                "engine": "openai",
+                "embed": false,
+                "enabled": true,
+                "description": "Answers from AI may be inaccurate, please verify the information.<br/>Ask a direct question or paste an error—only the first question searches the documentation; <b>for a new topic, use the button below.</b>"
+        }
+]
