@@ -10,18 +10,13 @@ module avail kraken2/
 
 ## Database
 
-There is an `nt` Kraken2 database available in a shared location. In order to use it, run
+There are public Kraken2 databases (originally from https://benlangmead.github.io/aws-indexes/) available in a shared location. In order to use one of them, run
 
 ```bash
-kraken2 --db /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20240530
+kraken2 --db /storage/projects-du-praha/Bio_databases/kraken2/CHOSEN_DATABASE
 # includes the NCBI Taxonomy database
 ```
 
-```bash
-# older releases:  
-# /storage/brno12-cerit/projects/Bio_databases/kraken2_nt_20230502
-```
+and request enough memory to contain entire database (e.g. at least `mem=900gb` for `kraken2_nt_20240530` database,please use `du -h` on database directory to get its size), unless only a short query is processed with the `--memory-mapping` option.
 
-and request at least `mem=890gb` for `kraken2_nt_20240530` database (unless only a short query is processed with the `--memory-mapping` option) or `mem=520gb` for `kraken2_nt_20230502` database (unless only a short query is processed with the `--memory-mapping` option). 
-
-For optimal performance of access to this database, we recommend adding `qsub` requirement `cluster=halmir`. This selects machines with the fastest network connection to the database storage.
+For fast access to the largest databases (e.g. kraken2_nt_20240530, k2_gtdb_genome_reps_20250609, k2_core_nt_20250609), we recommend adding `qsub` requirement `cluster=turin`. This selects machines with the fastest network connection to the database storage.
