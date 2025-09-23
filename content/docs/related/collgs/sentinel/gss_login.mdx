@@ -157,7 +157,15 @@ Use the _Sign out_ option to log out a specific device, or _Sign out all devices
 
 ### EGI Token Exchange
 
-If you are already working with tokens from EGI Check-in, it is possible to exchange them for tokens granting access to the GSS system without further login. In this case, send a valid access token issued by EGI Check-in via POST method to the endpoint [https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token) and attach the following to the request body:
+If you are already working with tokens from EGI Check-in, it is possible to exchange them for tokens granting access to the GSS system without further login.
+
+However, it is required to be registered in the EGI's virtual organization dedicated for the CollGS services and renew the membership after 2 years (you will be notified by email when the expiration date is approaching).
+
+You can register at [https://perun.egi.eu/egi/registrar/?vo=eval.c-scale.eu](https://perun.egi.eu/egi/registrar/?vo=eval.c-scale.eu).
+
+The registration will be approved by the administrators.
+
+Once your membership is approved, you can send a valid access token issued by EGI Check-in via POST method to the endpoint [https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token](https://keycloak.grid.cesnet.cz/realms/collgs/protocol/openid-connect/token) and attach the following to the request body:
 
 ```json
 {
