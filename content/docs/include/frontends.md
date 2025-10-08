@@ -1,3 +1,7 @@
+---
+title: Frontends table
+---
+
 |  Frontend address       |  Aliased as |  Native home       |  OS     |  Physically located in |  Note |
 |  -----------------------|-------------|--------------------|---------|------------------------|-------|
 | charon.nti.tul.cz | charon.metacentrum.cz | /storage/liberec3-tul | Debian 12 | Liberec | |
