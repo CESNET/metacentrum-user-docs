@@ -57,24 +57,39 @@ qsub -l 'select=1:ngpus=1:gpu_cap="sm_65,compute_70":mem=4gb' -l walltime=1:00:0
 
 PBS parameter `cuda_version` is version of CUDA installed.
 
-{/*
-## GPU usage attributes
+## GPU usage data
 
-- kde/jak si to zobrazi
-- 
+To be able to monitor GPU usage effectivity, we offer 3 parameters. To find out about them from CLI, use PBS command `qstat -fw`.
 
-`qstat -fw `
+```bash
+(BOOKWORM)user_123@skirit:~$ qstat -fw job_ID | grep gpu
+    resources_used.gpupercent = 332
+    resources_used.gpupowerusage = 38.7777
+    resources_used.gpumemmaxpercent = 149
+```
 
+### gpupercent 
 
-### gpupercent
+- how much the GPU(s) have been used during the job
+- measured in %
 
+<Callout type="alert" title="For more GPUs, the percentages sum up.">
+For jobs with more than 1 GPU, the values for respective card are summed up. I.e. the value can be > 100 %, but not > 100 * `ngpus` %.
+</Callout>
 
 ### gpupowerusage
 
+- how much energy was burned on all GPUs for a given job
+- measured in Wh
 
 ### gpumemmaxpercent
 
-/*}
+- the maximum peak of GPU memory usage
+- measured in %
+
+<Callout type="alert" title="For more GPUs, the percentages sum up.">
+For jobs with more than 1 GPU, the values for respective card are summed up. I.e. the value can be > 100 %, but not > 100 * `ngpus` %.
+</Callout>
 
 ## System variables
 

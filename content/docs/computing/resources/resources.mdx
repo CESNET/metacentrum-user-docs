@@ -145,10 +145,6 @@ How many MPI processes would run on one chunk is specified by `mpiprocs=[number]
 ```
 How many OpenMP threads would run in 1 chunk `ompthreads=[number]`, 2 omp threads on 1 chunks is default behaviour (`ompthreads = ncpus`).
 
-## GPU-related resources
-
-A complete description of GPU-related PBS resources can be foun in [chapter on running GPU jobs](../../computing/gpu-comput/gpu-job).
-
 ## Job-wide resources
 
 ### **Duration**
@@ -178,6 +174,11 @@ Some software requires licence to run. Licence is set by parameter `-l`
 ```bash
     -l select=3:ncpus=1 -l walltime=1:00:00 -l matlab=1 # one licence for Matlab
 ```
+
+## **GPU-related resources**
+
+A complete description of GPU-related PBS resources can be found in [chapter on running GPU jobs](../../computing/gpu-comput/gpu-job).
+
 ## **Paths for output**
 
 By default the job output (output, and error files) is saved in a folder from which the job was submitted (variable `PBS_O_WORKDIR`).
