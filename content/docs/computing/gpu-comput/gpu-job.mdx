@@ -11,7 +11,7 @@ To run GPU calculation, the user needs to specify **number of GPU cards** only. 
 
 ### ngpus
 
-Parameter `ngpus` specifies how many GPU cards the job will use.
+Parameter `ngpus` specifies how many GPU cards the job will use. Default value: `0`.
 ```bash
 qsub -l select=1:ncpus=1:ngpus=2 ... 
 ```
@@ -24,6 +24,7 @@ qsub -l select=1:ncpus=1:ngpus=1:gpu_mem=10gb -l walltime=1:00:00
 ### gpu\_cap
 
 PBS parameter `gpu_cap` is [Cuda compute capability as defined on this page](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities).
+
 
 ### Architecture
 
@@ -55,6 +56,25 @@ qsub -l 'select=1:ngpus=1:gpu_cap="sm_65,compute_70":mem=4gb' -l walltime=1:00:0
 ### cuda\_version
 
 PBS parameter `cuda_version` is version of CUDA installed.
+
+{/*
+## GPU usage attributes
+
+- kde/jak si to zobrazi
+- 
+
+`qstat -fw `
+
+
+### gpupercent
+
+
+### gpupowerusage
+
+
+### gpumemmaxpercent
+
+/*}
 
 ## System variables
 

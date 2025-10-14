@@ -81,12 +81,6 @@ Default value: none.
 
 See [description of scratch types](../../computing/infrastructure/scratch-storages) for more information. 
 
-### **Number of GPUs**
-
-Resource name: `ngpus`. Default value: `0`.
-```bash
-    -l select=ncpus=1:ngpus=2 
-```
 ### **OS**
 
 Resource name: `os`, `osfamily`. 
@@ -150,6 +144,10 @@ How many MPI processes would run on one chunk is specified by `mpiprocs=[number]
     -l select=3:ncpus=2:mpiprocs=2 # 6 MPI processes (nodefile contains 6 lines with names of vnodes), 2 MPI processes always share 1 vnode with 2 CPU
 ```
 How many OpenMP threads would run in 1 chunk `ompthreads=[number]`, 2 omp threads on 1 chunks is default behaviour (`ompthreads = ncpus`).
+
+## GPU-related resources
+
+A complete description of GPU-related PBS resources can be foun in [chapter on running GPU jobs](../../computing/gpu-comput/gpu-job).
 
 ## Job-wide resources
 
