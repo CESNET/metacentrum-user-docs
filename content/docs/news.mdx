@@ -39,7 +39,7 @@ The AI models DeepSeek R1 0528, Qwen3‑Coder‑480B, and GPT‑OSS‑120B a
 ### New GPU Cluster in MetaCentrum
 
 We are pleased to announce that a new computing cluster fobos.meta.zcu.cz has been successfully integrated into the MetaCentrum infrastructure.
-Cluster Specification
+Cluster Specification:
 
     * Number of nodes: 20
     * Total CPU cores: 1920
@@ -62,10 +62,10 @@ A complete list of available computing servers can be found here: [https://metav
 We're pleased to announce the availability of a new fast shared scratch using the parallel distributed file system **BeeGFS on our bee.cerit-sc.cz cluster**. This new resource, available as 'scratch_shared', is specifically designed for high-performance computing (HPC) needs and offers several advantages for data-intensive and compute-intensive applications.
 
 **BeeGFS is ideal for demanding jobs that require:** 
-* Working with **large files or a huge number of small files** – efficiently handle massive datasets, making it an ideal choice for applications that require fast and scalable storage.
-* Utilizing **many threads or processes that read or write in parallel** – enables high-performance and concurrent access to data, making it perfect for applications that require simultaneous reads and writes.
-* Spanning multiple compute nodes – can handle workloads that **span multiple compute nodes**, allowing for seamless scalability and performance.
-* Sequential computations with intermediate results – well-suited for workflows where subsequent computations can pick up intermediate results left in the scratch directory, eliminating the need to copy data to permanent storage or run on the same machine as the previous step.
+* Working with large files or a huge number of small files
+* Utilizing many threads or processes that read or write in parallel
+* Spanning multiple compute nodes
+* Sequential computations with intermediate results 
 
 **Typical Use Cases:**
 * High-Performance Computing (HPC) – BeeGFS is designed to efficiently handle large files and parallel input/output operations, making it an ideal choice for scientific computing workloads.
