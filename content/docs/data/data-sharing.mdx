@@ -5,16 +5,13 @@ Sometimes two or more MetaCentrum users need to work on the same files and direc
 
 Since setting whole `home` directory as accessible to anyone is considered a security vulnerability (due to the possibility to manipulate sensitive files like .k5login, .bashrc by a third party) such settings are discouraged and are automatically reset.
 
-To make sharing of data possible and at the time safe, we offer two options varying slightly with respect to the expected volume of shared data, namely:
+To make sharing of data possible and at the time safe, we offer two options varying slightly with respect to the expected volume of shared data.
 
-1. sharing based on a **group** (moderate amount of data)
-2. sharing based on **project directory** (large amount of data)
+## Group
 
-<Callout type="info" title="What is the difference between *group* and *project directory*?">
-With **project directory** the data are not accounted to users' quotas, therefore project directory is best suited for sharing a large volume of data and/or large amount of files which could otherwise fill individual users' quotas easily.<br/> On the other hand, in **sharing based on group** the data are accounted to users quotas based on the ownership of individual files. 
-</Callout>
+Choose this option if you need to share a moderate amount of data (one that would fit into an individual user's quota). The shared data are accounted to users quotas based on the ownership of individual files. 
 
-## Group setup
+### Initial setup
 
 1. Choose a name for your group and ask us at meta@cesnet.cz to create it
 2. Include a list of members of the group and choose at least one group manager
@@ -29,22 +26,7 @@ Finally, create a directory dedicated for shared data, e.g. `mkdir /storage/CITY
 This directory for shared data needs to be created by the user, and also the name of it can be different.
 </Callout>
 
-## Project directory setup 
-
-1. Choose a name for your group and ask us at meta@cesnet.cz to create it together with a project directory
-2. Include list of members of the group and choose at least one group manager
-
-The group manager can later add/remove members of this group through the [Perun interface](../access/perun).
-
-After the group is created, you will be notified.
-
-There will be also a `/storage/projects/GROUP_NAME` directory created to store the data in.
-
-The [Unix file permissions](https://en.wikipedia.org/wiki/File-system_permissions) for project directory are `770`.
-
-## Using the shared directory
-
-The usage of shared directory is the same for both shared directories in `/storage/projects` and in `/storage/CITY/home/USER/`.
+### Usage
 
 1. assign the directory to your group (denoted by "MYGROUP")
 ```bash
@@ -98,15 +80,10 @@ uid=13153(makub) gid=10002(einfra) groups=10000(meta),10002(einfra),10100(storag
 ```
 
 <Callout  type="warn" title="Warning">
-Because of a bug in the Network File System (NFS) we use, it is necessary to explicitly change the group ownership of the newly created files/directories (at the end of an interactive session or job) by calling the command
+Because of a bug in the Network File System (NFS) we use, it is necessary to explicitly change the group ownership of the newly created files/directories (at the end of an interactive session or job) by calling the command `chgrp -R MYGROUP DIRECTORY`. (Otherwise, the data will be saved under your primary group.) Alternatively, you can ask us for changing your primary group throughout the whole MetaCentrum infrastructure.
 </Callout>
 
-```bash
-chgrp -R MYGROUP DIRECTORY
-```
-(Otherwise, the data will be saved under your primary group.) Alternatively, you can ask us for changing your primary group throughout the whole MetaCentrum infrastructure.
-
-## `sync_with_group` usage
+### `sync_with_group` usage
 
 Some users find changing `umask` inconvenient. For these users we recommend another approach.
 
@@ -124,7 +101,35 @@ source_dir = the working directory
 target_dir = shared project directory
 ```
 
-## NFSv4 usage
+## Project directory
+
+Choose this option if you need to share large amount of data for prolonged time. In project directories, the data are not accounted to users' quotas, therefore project directory is best suited for sharing a large volume of data and/or large amount of files which could otherwise fill individual users' quotas easily.
+
+<Callout type="warning" title="Project directories reside in S3 storage">
+Starting by Q3/2025, the data in project directories were transferred to [object storage (S3) technology](https://docs.du.cesnet.cz/en/docs/object-storage-s3/s3-service), which is different from a filesystem used in MetaCentrum storages. This can lead to some caveats, see [](take care).
+</Callout>
+
+### Initial setup
+
+1. Choose a name for your group and ask us at meta@cesnet.cz to create it together with a project directory
+2. Include list of members of the group and choose at least one group manager
+
+The group manager can later add/remove members of this group through the [Perun interface](../access/perun).
+
+You will be notified after the group and `/storage/projects-du-praha/GROUP_NAME`is created.
+
+### Usage
+
+Due to different style of data storage, the project directories are not fully compatible with Unix file permissions.
+
+Therefore, we recommend to use `sync_with_group` utility (based on `rsync` command) as a replacement for a `cp` and `mv` commands for newly created files in the project directory. 
+
+```bash
+sync_with_group <GROUP_NAME> <FILES_TO_COPY> /storage/projects-du-praha/<PROJECT_DIR_NAME>/
+
+```
+
+## NFSv4
 
 Common user requirement is the need to share a certain directory with other users(s). For more extensive co-operations we recommend setting up a shared project directory, for smaller-scaled collaborations it is often sufficient to set up access rights accordingly.
 
