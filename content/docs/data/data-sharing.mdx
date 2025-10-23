@@ -105,11 +105,13 @@ target_dir = shared project directory
 
 Choose this option if you need to share large amount of data for prolonged time. In project directories, the data are not accounted to users' quotas, therefore project directory is best suited for sharing a large volume of data and/or large amount of files which could otherwise fill individual users' quotas easily.
 
-<Callout type="warning" title="Project directories reside in S3 storage">
-Starting by Q3/2025, the data in project directories were transferred to [object storage (S3) technology](https://docs.du.cesnet.cz/en/docs/object-storage-s3/s3-service), which is different from a filesystem used in MetaCentrum storages. This can lead to some caveats, see [](take care).
+<Callout type="warning" title="Project directories undergo changes currently">
+Due to insufficient space and hardware problems on "classical" NFS MetaCentrum storages, the project directories are being moved currently to different storages with slightly different filesystem (CephFS). Basically, `/storage/projects-du-praha` = CephFS, and `/storage/projects`, resp. `/storage/projects2` = old MetaCentrum NFS.  The changes are consulted with each group individually. Stay tuned!
 </Callout>
 
 ### Initial setup
+
+If you need to setup a new project directory,
 
 1. Choose a name for your group and ask us at meta@cesnet.cz to create it together with a project directory
 2. Include list of members of the group and choose at least one group manager
@@ -120,7 +122,7 @@ You will be notified after the group and `/storage/projects-du-praha/GROUP_NAME`
 
 ### Usage
 
-Due to different style of data storage, the project directories are not fully compatible with Unix file permissions.
+Due to different style of data storage on CephFS, the project directories are not fully compatible with Unix file permissions.
 
 Therefore, we recommend to use `sync_with_group` utility (based on `rsync` command) as a replacement for a `cp` and `mv` commands for newly created files in the project directory. 
 
