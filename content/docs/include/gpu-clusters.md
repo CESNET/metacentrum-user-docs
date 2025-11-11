@@ -5,7 +5,6 @@ title: GPU clusters
 
 | Cluster | Nodes | GPUs per node | Compute capability | Mem [GB] | CuDNN |
 |---------|-------|---------------|--------------------|----------|------|
-| adan.grid.cesnet.cz | adan[1-61].grid.cesnet.cz | 2x Tesla T4 | 7.5 | 16 | YES |
 | alfrid.meta.czu.cz | afrid[1-4].meta.czu.cz | 2x L40 | 8.9 | 46 | YES |
 | bee.cerit-sc.cz | bee[1-10].cerit-sc.cz | 2x H100 NVL | 9.0 | 96 | YES |
 | capy.cerit-sc.cz | capy.cerit-sc.cz | 8x H100 | 9.0 | 82 | YES |
