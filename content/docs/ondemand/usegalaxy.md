@@ -118,11 +118,14 @@ Note: The FTP password you set does not affect your Galaxy web login. Keep it sa
 
 ## References and Use Cases
 
-* (Presentation from MetaCenter HPC Seminar 9/2025)[https://metavo.metacentrum.cz/export/sites/meta/cs/seminars/Seminar2025/Krenek_Galaxy_metausers_2025.pdf]
+* [Presentation from MetaCenter HPC Seminar 9/2025](https://metavo.metacentrum.cz/export/sites/meta/cs/seminars/Seminar2025/Krenek_Galaxy_metausers_2025.pdf)
 
-Those presentations where given at the EOSC Symposium 2025:
-* (4 different Communities (Bio, Astro, Earth, Cimate) doing Imaging data analysis in Galaxy)[https://gxy.io/eosc25]
-* (EarthScience use-case with Vulcanos)[https://gxy.io/plume2bloom]
-* (Polish EOSC Node with a Baltic Sea use case about Harmful Algae Blooms)[https://gxy.io/eosc-node-poland-demo]
-* (Social Science and Humanities about land-use plans and OCR)[https://gxy.io/berd-eosc25]
+Those presentations were given at the EOSC Symposium 2025:
+* [4 different Communities (Bio, Astro, Earth, Climate) doing Imaging data analysis in Galaxy](https://gxy.io/eosc25)
+* [Earth Science use-case with Volcanoes](https://gxy.io/plume2bloom)
+* [Polish EOSC Node with a Baltic Sea use case about Harmful Algae Blooms](https://gxy.io/eosc-node-poland-demo)
+* [Social Science and Humanities about land-use plans and OCR](https://gxy.io/berd-eosc25)
+
+
+
 
