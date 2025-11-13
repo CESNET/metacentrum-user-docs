@@ -18,15 +18,10 @@ It **mirrors the toolset of the global public instances** [usegalaxy.org](https:
 
 Web interface: https://usegalaxy.cz
 
-+-------------------------------+--------------------------------------------------------------+--------------------------------------------------------------+--------------------------------------------+
-| Option                        | Who can use it                                               | How to log in                                                | Typical quota                              |
-+-------------------------------+--------------------------------------------------------------+--------------------------------------------------------------+--------------------------------------------+
-| **MetaCentrum account**       | Anyone with a valid MetaCentrum account (see below)         | Use the MetaCentrum AAI on the Galaxy login page            | 200 GB storage, 10 concurrent jobs         |
-+-------------------------------+--------------------------------------------------------------+--------------------------------------------------------------+--------------------------------------------+
-| **Life‑Science Login (ELIXIR AAI)** | Users registered in the ELIXIR/Life‑Science federated identity system | Click **Life Science Login** on the Galaxy login page | 50 GB storage, 10 concurrent jobs          |
-+-------------------------------+--------------------------------------------------------------+--------------------------------------------------------------+--------------------------------------------+
-
-
+| Option    | Who can use it     | How to log in         | Typical quota       |
+|-----------|--------------------|-----------------------|---------------------|
+| **MetaCentrum account**       | Anyone with a valid MetaCentrum account (see below) | Use the MetaCentrum AAI on the Galaxy login page | 200 GB storage, 10 concurrent jobs   |
+| **Life‑Science Login (ELIXIR AAI)** | Users registered in the ELIXIR/Life‑Science federated identity system | Click **Life Science Login** on the Galaxy login page | 50 GB storage, 10 concurrent jobs  |
 
 ### How to obtain a MetaCentrum account
 * Go to the [MetaCentrum application form](https://metavo.metacentrum.cz/en/application/index.html) 
