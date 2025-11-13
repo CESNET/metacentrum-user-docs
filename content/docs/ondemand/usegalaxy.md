@@ -113,10 +113,12 @@ Note: The FTP password you set does not affect your Galaxy web login. Keep it sa
 +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Request more resources**| Email regalaxy@rt.cesnet.cz with a short description (quota, compute nodes, etc.)                                                                   |
 +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Reset FTP password**   | Follow steps 2‑5 in the FTP Upload table above                                                                                                          |
+| **Reset FTP password**   | Follow steps 2‑4 in the FTP Upload table above                                                                                                          |
 +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ## References and Use Cases
+
+* (Presentation from MetaCenter HPC Seminar 9/2025)[https://metavo.metacentrum.cz/export/sites/meta/cs/seminars/Seminar2025/Krenek_Galaxy_metausers_2025.pdf]
 
 Those presentations where given at the EOSC Symposium 2025:
 * (4 different Communities (Bio, Astro, Earth, Cimate) doing Imaging data analysis in Galaxy)[https://gxy.io/eosc25]
