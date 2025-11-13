@@ -61,17 +61,11 @@ Bookmark the GTN site; most of the tasks you’ll need are already documented th
 
 ### User Quotas
 
-+---------------------------+-------------------------------------------+---------------------------------------------------------------+
 | Resource                  | Limit (standard)                          | How to request more                                            |
-+---------------------------+-------------------------------------------+---------------------------------------------------------------+
-| **Storage**               | 200 GB (MetaCentrum / E‑infra AAI)        | Send a request to **regalaxy@rt.cesnet.cz** with a short      |
-|                           | 50 GB (Life‑Science Login)                | description of your needs.                                    |
-+---------------------------+-------------------------------------------+---------------------------------------------------------------+
-| **Concurrent jobs**       | 10 jobs per user (default)                | Same e‑mail address – we can raise the limit for large        |
-|                           |                                           | projects.                                                      |
-+---------------------------+-------------------------------------------+---------------------------------------------------------------+
+|---------------------------|-------------------------------------------|----------------------------------------------------------------|
+| **Storage**               | 200 GB (MetaCentrum / E‑infra AAI)<br/>50 GB (Life‑Science Login)        | Send a request to **regalaxy@rt.cesnet.cz** with a short<br/>description of your needs.      |
+| **Concurrent jobs**       | 10 jobs per user (default)                | Same e‑mail address – we can raise the limit<br/> for large projects.        |
 | **Maximum single dataset**| 50 GB                                      | Split large files or ask for a temporary increase.            |
-+---------------------------+-------------------------------------------+---------------------------------------------------------------+
 
 If your research requires more storage please reach us at regalaxy@rt.cesnet.cz with description of your needs. All quota changes are evaluated case‑by‑case.
 
@@ -95,21 +89,14 @@ Note: The FTP password you set does not affect your Galaxy web login. Keep it sa
 
 ### Common Tasks at a Glance
 
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Task                     | Quick command / UI steps                                                                                                                                |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Run a tool**           | Upload data → Choose a tool from the left panel → Fill parameters → Click “Run”                                                                      |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Create a workflow**    | History → Click the gear ⚙️ → “Create Workflow” → Add steps → Save                                                                                      |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Share a dataset**      | Click the dataset’s pencil icon → “Share or Publish” → Add a user’s e‑mail or make the dataset public                                                  |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Check job status**     | Top‑right History panel shows running/queued/completed jobs; click the i icon for details                                                          |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Request more resources**| Email regalaxy@rt.cesnet.cz with a short description (quota, compute nodes, etc.)                                                                   |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Reset FTP password**   | Follow steps 2‑4 in the FTP Upload table above                                                                                                          |
-+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Task                     | Quick command / UI steps | 
+|--------------------------|--------------------------| 
+| **Run a tool**           | Upload data → Choose a tool from the left panel → Fill parameters → Click “Run” |
+| **Create a workflow**    | History → Click the gear ⚙️ → “Create Workflow” → Add steps → Save |
+| **Share a dataset**      | Click the dataset’s pencil icon → “Share or Publish” → Add a user’s e‑mail or make the dataset public |
+| **Check job status**     | Top‑right History panel shows running/queued/completed jobs; click the i icon for details |
+| **Request more resources**| Email regalaxy@rt.cesnet.cz with a short description (quota, compute nodes, etc.) |
+| **Reset FTP password**   | Follow steps 2‑4 in the FTP Upload table above |
 
 ## References and Use Cases
 
