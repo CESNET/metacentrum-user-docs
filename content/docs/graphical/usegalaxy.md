@@ -62,8 +62,9 @@ The [Galaxy Training Network GTN](https://training.galaxyproject.org/training-ma
     * Workflow building – creating, sharing, and publishing pipelines
 
 <Callout type="info">
-    Bookmark the GTN site; most of the tasks you’ll need are already documented there.
+Bookmark the GTN site; most of the tasks you’ll need are already documented there.
 </Callout>
+
 
 
 ### User Quotas
@@ -91,7 +92,7 @@ Additional steps are required in order to obtain a password for your FTP access:
 7. Follow the data import process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
 <Callout type="info">
-  Note: The FTP password you set does not affect your Galaxy web login. Keep it safe, but you can reset it at any time via the same password-reset procedure.
+Note: The FTP password you set does not affect your Galaxy web login. Keep it safe, but you can reset it at any time via the same password-reset procedure.
 </Callout>
 
 ### Common Tasks at a Glance
