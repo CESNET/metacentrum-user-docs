@@ -36,8 +36,9 @@ Web interface: https://usegalaxy.cz
 ### Linking your identities (recommended)
 
 <Callout type="info">
-  Tip: If you have both identities, link them in Galaxy. This prevents “missing data” problems when switching between log-ins.
+Tip: If you have both identities, link them in Galaxy. This prevents “missing data” problems when switching between log-ins.
 </Callout>
+
 
 1. Click on *User* in the top menu
 2. Select *Preferences*.
@@ -61,7 +62,7 @@ The [Galaxy Training Network GTN](https://training.galaxyproject.org/training-ma
     * Workflow building – creating, sharing, and publishing pipelines
 
 <Callout type="info">
-  Bookmark the GTN site; most of the tasks you’ll need are already documented there.
+    Bookmark the GTN site; most of the tasks you’ll need are already documented there.
 </Callout>
 
 
