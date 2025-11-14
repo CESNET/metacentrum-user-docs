@@ -34,7 +34,8 @@ Web interface: https://usegalaxy.cz
 * Follow the instructions
 
 ### Linking your identities (recommended)
-<Callout type="tip">
+
+<Callout type="info">
   Tip: If you have both identities, link them in Galaxy. This prevents “missing data” problems when switching between log-ins.
 </Callout>
 
