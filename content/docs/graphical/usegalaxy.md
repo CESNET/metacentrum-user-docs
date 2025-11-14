@@ -68,7 +68,7 @@ The [Galaxy Training Network GTN](https://training.galaxyproject.org/training-ma
 
 | Resource                  | Limit (standard)                          | How to request more                                            |
 |---------------------------|-------------------------------------------|----------------------------------------------------------------|
-| **Storage**               | 200 GB (MetaCentrum / E‑infra AAI)<br/>50 GB (Life‑Science Login)        | Send a request to **regalaxy@rt.cesnet.cz** with a short<br/>description of your needs.      |
+| **Storage**               | 200 GB (MetaCentrum / E‑infra AAI)<br/>50 GB (Life‑Science Login)        | Send a request to **galaxy@cesnet.cz** with a short<br/>description of your needs.      |
 | **Concurrent jobs**       | 10 jobs per user (default)                | Same e‑mail address – we can raise the limit<br/> for large projects.        |
 | **Maximum single dataset**| 50 GB                                      | Split large files or ask for a temporary increase.            |
 
