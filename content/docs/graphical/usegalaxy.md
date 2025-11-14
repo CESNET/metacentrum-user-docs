@@ -4,7 +4,7 @@ title: usegalaxy.cz
 
 [Galaxy](https://galaxyproject.org/) is a **web-based** solution for handling **large scientific datasets**, their computational processing, and tracking through the **provenance** of secondary datasets.
 
-![pic-landing](/img/meta/galaxy/usegalaxy-landing-galaxy.png)
+![pic-landing](/img/meta/galaxy/usegalaxy-landing-page.png)
 
 Having originated in the bioinformatics community, Galaxy spans numerous scientific disciplines (ecology, chemistry, NLP, climate science, social sciences, …). Nowadays, thousands of computational tools are available, supported by dozens of scientific and software development teams.
 
