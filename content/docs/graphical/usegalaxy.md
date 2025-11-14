@@ -53,7 +53,7 @@ The user interface shows:
 ![pic-galaxycz](/img/meta/galaxy/galaxycz.png)
 
 
-The [Galaxy Training Network GTN](https://training.galaxyproject.org/training-material/topics/introduction/) hosts a large collection of tutorials ranging from basic to advanced topics:  
+The [Galaxy Training Network GTN](https://training.galaxyproject.org/training-material/) hosts a large collection of tutorials ranging from basic to advanced topics:  
 
   * Beginner: Introduction to Galaxy – https://training.galaxyproject.org/training-material/topics/introduction/  
   * Data import & export – FTP, HTTP, S3, etc.  
