@@ -1,5 +1,5 @@
 ---
-title: Galaxy
+title: Repeat Explorer
 ---
 [Galaxy](https://galaxyproject.org/) is a web-based platform designed for running computational and statistical analyses with focus on openness and usage of FAIR data. It originally started in biomedical science but nowadays spans numerous scientific domains including ecology, natural language processing, chemistry, climate science, and social sciences.
 
@@ -10,52 +10,6 @@ Besides, [numerous specialized services](https://galaxyproject.org/use/) exist.
 Many quickstart and advanced tutorials are available on [Galaxy Training Network](https://training.galaxyproject.org/training-material/topics/introduction/).
 
 Metacentrum currently maintains 3 independent Galaxy servers: [usegalaxy.cz](#usegalaxycz), [RepeatExplorer](#repeatexplorer), and [UMSA](#umsa).
-
-## usegalaxy.cz
-
-[E-infraCZ](https://e-infra.cz) / [Metacentrum](https://metacentrum.cz) together with [Elixir CZ](https://www.elixir-czech.cz)
-provide the [usegalaxy.cz](https://usegalaxy.cz) service.
-It aims at replicating the functionality (set of available tools in particular) of the worldwide services ([usegalaxy.org](https://usegalaxy.org), [usegalaxy.eu](https://usegalaxy.eu))
-while offering significantly higher user quotas (both computational and storage) to the registered CZ users and their collaborators.
-
-### Federated Login Options
-
-Metacentrum Galaxy provides two convenient options for logging in:
-
-1. **[E-infra AAI](https://aai.cesnet.cz)**
-which is the prefered way for CZ academic users and it grants higher computing and storage quotas automatically.
-2. **[Life Science Login](https://lifescience-ri.eu/ls-login.html)** If you are associated with the LifeScience/Elixir, you can log in using LifeScience AAI.
-This is the same method used by [usegalaxy.eu](https://usegalaxy.eu) and it grants access to the same set of users, with restricted quotas, though.
-
-CZ users, who are able to use E-infra AAI, are able to also log in with Life Science Login in most cases, and they
-are advised to link them together in Galaxy to avoid future confusion (e.g. not being able to access results stored previously).
-
-The following procedure links the identities:
-
-1. Click on *User* in the top menu
-2. Select *Preferences*.
-3. Select *Manage Third-Party Identities*.
-4. Choose the other identity provider and authenticate yourself.
-
-### User Quotas
-
-The Czech national usegalaxy server at usegalaxy.cz offers **200 GB** of free storage quota to users logging in through [E-infra AAI](https://aai.cesnet.cz) or **50GB** to the users with [Life Science Login](https://lifescience-ri.eu/ls-login.html). If your research requires more storage please reach us at regalaxy@rt.cesnet.cz with description of your needs.
-
-There is also a limit on the number of jobs a given user can have running concurrently. The usegalaxy.cz instance has this limit set at **10 jobs** at the moment. Again, please reach out if this is not sufficient for your needs.
-
-Maximum size of a single dataset is limited at 50 GB.
-
-### FTP Access
-
-You can load files into Galaxy using FTP. However due to the nature of federated login additional steps are required in order to obtain password for your FTP access:
-
-1. Log in to usegalaxy.cz using one of the federated login options. At this point you don't have an FTP password yet.
-2. Log out of Galaxy and go to the [Galaxy login](https://usegalaxy.cz/login/) panel and enter your registered email address into the username field.
-3. Click on the `Click here to reset your password` button.
-4. You will receive an email with the reset password link. Check your spam folder if necessary.
-5. Click on the provided link and set up a new password for your FTP access.
-6. Once you have set a new password, you can use your registered email address and the new password to log in to our ftp server at `usegalaxy.cz` and copy your files there.
-7. Follow the data import process described in the [docs](https://galaxyproject.org/ftp-upload/).
 
 ## RepeatExplorer
 
@@ -123,29 +77,3 @@ Using TAREAN for satellite repeat detection and characterization:
 
 > Novak, P., Hostakova, N., Neumann, P., Macas, J. (2024) – DANTE and DANTE_LTR: computational pipelines implementing lineage-centered annotation of LTR-retrotransposons in plant genomes. NAR Genomics and Bioinformatics, Volume 6:3:lqae113, https://doi.org/10.1093/nargab/lqae113
 
-## UMSA
-
-This Galaxy instance provides tools for Untargeted Mass Spectrometry Analysis and we maintain it for our partners at [RECETOX](https://www.recetox.muni.cz/en).
-
-UMSA Galaxy environment is available at [https://galaxy-umsa.grid.cesnet.cz/](https://galaxy-umsa.grid.cesnet.cz/).
-
-### FTP Access
-
-You can load files into this Galaxy using FTP. However due to the nature of federated login additional steps are required in order to obtain password for your FTP access:
-
-1. Log in to galaxy-umsa.grid.cesnet.cz using one of the federated login options. At this point you don't have an FTP password yet.
-2. Log out of Galaxy and go to the [Galaxy login](https://galaxy-umsa.grid.cesnet.cz/login/) panel and enter your registered email address into the username field.
-3. Click on the `Click here to reset your password` button.
-4. You will receive an email with the reset password link. Check your spam folder if necessary.
-5. Click on the provided link and set up a new password for your FTP access.
-6. Once you have set a new password, you can use your registered email address and the new password to log in to our ftp server at `galaxy-umsa.grid.cesnet.cz` and copy your files there.
-7. Follow the data import process described in the [docs](https://galaxyproject.org/ftp-upload/).
-
-## Data Storage Reliability
-
-Data storage of *all our Galaxy instances* is resilient to normal disk failures and common consistency problems
-(e.g. power outages). However all users are advised to back up their high-value data elsewhere.
-
-## Contact & Help
-
-If you need any help or experience tool errors or have unexpected issues with any of the Galaxy instance above please contact us at regalaxy@rt.cesnet.cz.
