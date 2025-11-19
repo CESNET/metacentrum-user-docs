@@ -5,11 +5,11 @@ title: Snakemake
 Snakemake is not installed system-wide as a module. This page collects just a few best practices concerning the data workflow within the MetaCentrum *storage - scratchdir - frontend* context. 
 </Callout>
 
-[Snakemake](https://snakemake.github.io) is a workflow management system for creating reproducible and scalable data analyses. Workflows are described via a human readable, Python-based language. They can be seamlessly scaled to server, cluster, grid and cloud environments, without the need to modify the workflow definition. Snakemake workflows can entail a description of required software, which will be automatically deployed to any execution environment.
+[Snakemake](https://snakemake.github.io) is a workflow management system for creating reproducible and scalable data analyses. Workflows are described via a human readable, Python-based language.
 
 ## Installation
 
-Due to Python compatibility, the recommended way to install Snakemake is in a separated [Mamba/Conda](./mamba) environment:
+To avoid problems with Python incompatibility, the recommended way to install Snakemake is in a separated [Mamba/Conda](./mamba) environment:
 
 ```bash
 (BOOKWORM)user_123@skirit:~$ module add mambaforge
@@ -26,7 +26,7 @@ If there are (large/many) temporary files generated within the Snakemake pipelin
 
 One possibility to do this is [shadow rule](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#shadow-rules).
 
-For example;
+For example, tell `segemehl` to store its temporary files in SCRATCHDIR:
 
 ```bash
 rule segemehl:
@@ -47,7 +47,7 @@ snakemake --shadow-prefix $SCRATCHDIR --snakefile Snakefile  ...
 
 ### `tmpdir` variable usage
 
-The Snakemake `tmpdir` resource automatically leads to setting the `$TMPDIR` (or $TEMP, or $TMP) variable for shell commands, scripts, wrappers and notebooks. The tmpdir resource is automatically used by shell commands, scripts and wrappers to store temporary data. If this argument is not specified at all, Snakemake just uses the tmpdir resource as outlined above. The tmpdir resource can also be overwritten either in a rule, or system-wide.
+The Snakemake `tmpdir` resource automatically leads to `TMPDIR` (or `TEMP`/`TMP`) variable for shell commands, scripts, wrappers and notebooks. The `tmpdir` resource is automatically used by shell commands, scripts and wrappers to store temporary data. If this argument is not specified at all, Snakemake just sets `tmpdir=$TMPDIR`. The `tmpdir` resource can also be overwritten either in a rule, or system-wide.
 
 Define `tmpdir` per rule: 
 
