@@ -3,7 +3,7 @@ title: Terms and conditions
 ---
 ## Usage rules
 
-Access to the MetaCentrum grid computing infrastructure is free of charge for members of academic and non-commercial Czech research institutions with research or educational objectives. If you are interested in using our infrastructure for partial commercial research purposes, please get in touch with us in advance to discuss whether your research project can be conducted at MetaCentrum. Please note that the use of MetaCentrum for purely commercial activities is strictly prohibited, and computing resources cannot be provided for a fee. Foreign colleagues and collaborators who are not affiliated with a Czech research institution can also use the MetaCentrum computing capacity, but only by prior arrangement.
+Access to the MetaCentrum grid computing infrastructure is free of charge for members of academic and non-commercial Czech research institutions with research or educational objectives. If you are interested in using our infrastructure for partial commercial research purposes, please [get in touch with us](https://docs.metacentrum.cz/en/docs/support) in advance to discuss whether your research project can be conducted at MetaCentrum. Please note that the use of MetaCentrum for purely commercial activities is strictly prohibited, and computing resources cannot be provided for a fee. Foreign colleagues and collaborators who are not affiliated with a Czech research institution can also use the MetaCentrum computing capacity, but only by prior arrangement.
 
 MetaCentrum services are available on a "best effort" basis. The operator strives to maintain the availability and security of the service, with essential services running in high-availability mode and automatically monitored. Support is available during the standard working hours.
 
@@ -19,9 +19,9 @@ Expired accounts can be renewed at any time during the year [here](https://metav
 
 ### Acknowledgements and publications
 
-All publications created with the support of MetaCentrum, CERIT-SC and/or Elixir CZ must include the following acknowledgement formula. Please fill in citations of your [publications in our system](https://publications.e-infra.cz/all-publications). As an added bonus, you will receive privileged access to all the resources of the MetaCentrum, CERIT-SC and ELIXIR CZ based on the [fairshare system](https://docs.metacentrum.cz/en/docs/computing/resources/fairshare). 
+All publications created with the support of MetaCentrum, CERIT-SC and/or Elixir CZ must include the following acknowledgement formula. Please fill in citations of your [publications in our system](https://publications.e-infra.cz/all-publications). User publications with acknowledgements are reported to the provider of subsidies that ensure further development of the infrastructure. As an added bonus, you will receive privileged access to all the resources of the MetaCentrum, CERIT-SC and ELIXIR CZ based on the [fairshare system](https://docs.metacentrum.cz/en/docs/computing/resources/fairshare). 
 
-<Callout title="Acknowledgement formula for the service" icon="&#128591;">
+<Callout title="Acknowledgement formula for the MetaCentrum infrastructure" icon="&#128591;">
     Computational resources were provided by the e-INFRA CZ project (ID:90254),
     supported by the Ministry of Education, Youth and Sports of the Czech Republic.
 </Callout>
@@ -34,36 +34,37 @@ All publications created with the support of MetaCentrum, CERIT-SC and/or Elixir
 <Callout type="info">
     In addition to acknowledging the project in your publication, please remember to include the relevant project number (90254 for e-INFRA CZ and/or 90255 for ELIXIR CZ) when exporting your publication to the RIV system.
 </Callout>
- 
+
 ### Research group annual report
 
-We ask research groups to send us the annual report for the past year by the end of January. The report should include:
+We ask research groups to send us their annual reports for the previous year by the end of January. The report should include:
 
-1. Name of the group, contact address
-2. List of the group members
-3. Summary of the group's research interests
-3. Hardware contributed to Metacentrum (if any)
-4. Most often used Metacentrum software
-5. New software developed (if any)
-6. List of research projects that used Metacentrum resources together with a short annotation
-7. List of publications with acknowledgement to Metacentrum/CERIT-SC
+1. The name of the group.
+2. Contact address.
+3. A list of the group members.
+4. A summary of the group’s research interests.
+5. Hardware contributed to Metacentrum (if applicable).
+6. Most frequently used Metacentrum software.
+7. New software developed (if applicable).
+8. A list of research projects that used Metacentrum resources, together with a brief description.
+9. A list of publications with acknowledgement to Metacentrum/CERIT-SC.
 
-Accepted languages are English and Czech. The report can be in any file format. The E-mail address for sending the report is annual-report@metacentrum.cz. 
+Accepted languages are English and Czech. The report can be in any file format. Please send the report to annual-report@metacentrum.cz.
 
 ## Security
 
-The secure and effective utilization of MetaCentrum resources is possible only if some operational rules are fulfilled. Study the security rules for work in MetaCentrum and the network really carefully.
+The secure and effective utilisation of MetaCentrum resources is only possible if specific operational rules are adhered to. Study the brief security rules for working in MetaCentrum and on the network very carefully.
 
-1. Users have to protect their account by a **non-trivial Kerberos password**. The password must not be shared. The password must not be used in open (non-encrypted) protocols as is, e.g. standard unic (non-Kerberized) telnet or ftp.
-   
-2. Non-trivial password is such that it can not be deduced (even after simple mutations) from the data known about the account owner and that is not a name of a person, animal or object (even after simple mutations). The administrators are authorized to perform tests to look for non-trivial passwords; in the case of positive results, they will inform the account owner in a secure way. Following that, the account owner has to change the password immediately (the original account can be locked until the time of password change).
+1. Users must protect their account with a strong Kerberos password. This password must not be shared. It must not be used with open (non-encrypted) protocols, such as standard, non-Kerberised Telnet or FTP.
 
-3. Users are not allowed to share their accounts. If it is necessary to share the account due to some reasons (e.g. software installation), it has to be done using Kerberos (i.e. through the ".k5login" file), and it should also be discussed with specific administrators.
+2. A non-trivial password cannot be deduced from data known about the account owner (even after simple mutations), and is not the name of a person, animal or object (even after simple mutations). Administrators are authorised to perform tests to check for non-trivial passwords. In the event of a positive result, they will inform the account owner securely. The account owner must then change the password immediately (the account may be locked until the password has been changed).
 
-4. If the password is compromised, it is necessary to change it as soon as possible - see [How to change your password](../access/account#password-change).
+3. Users are not permitted to share their accounts, usernames and passwords.
 
-5. Usage of non-secured protocols, telnet, FTP, etc., at other machines is not recommended as well. If this authentication method is used, one has to take into account the lower security level of the specific accout (and disclosure of the password in open form transferred by the network). It is forbidden to use such an account to log in to MetaCentrum through Kerberos or SSH protocol due to the danger of security breach using a weakly secured account followed by usage of fake ssh or fake Kerberos with a trojan horse and, consequently, the danger of breach of MetaCentrum accounts.
+4.  If the password is compromised, it must be changed as soon as possible – see [How to change your password](https://docs.metacentrum.cz/en/docs/access/account#password-change).
 
-6. Strange behaviour of your account, appearance or disappearance of files, unknown processes running under your identity and so on have to be necessarily reported to the administrators of MetaCentrum.
+5. The use of non-secured protocols such as Telnet and FTP on other machines is also not recommended. If this authentication method is used, the lower security level of the specific account must be taken into account (including the possibility of password disclosure during network transmission). Using such an account to log in to MetaCentrum via the Kerberos or SSH protocols is forbidden due to the risk of a security breach involving a weakly secured account, followed by the use of fake SSH or fake Kerberos with a Trojan horse, and consequently the risk of a breach of MetaCentrum accounts.
 
-7. Users are solely responsible for setting the required access rules to control the access to their data. N.B., users' home directories are by default readable to all Metacentrum users. If you want to ensure other users cannot enter your home directory, you must change its access rights.
+6. Any strange behaviour of your account, such as the appearance or disappearance of files, or unknown processes running under your identity, must be [reported to the MetaCentrum administrators](https://docs.metacentrum.cz/en/docs/support).
+
+7. Users are solely responsible for setting the necessary access rules to control access to their data. Please note that users' home directories are readable by all MetaCentrum users by default. To prevent other users from accessing your home directory, you must modify its access rights.
