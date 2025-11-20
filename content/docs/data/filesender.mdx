@@ -52,6 +52,10 @@ Then you can upload the file:
 filesender.py -s "Subject" -r recipient_1@example.org    file.tar.gz     # upload file.tar.gz
 ```
 
+<Callout type="warn" title="Warning">
+Do not specify any username using the `-u` parameter. Filesender uses a different identification method than the Metacentrum login, and the correct value is supplied automatically by the configuration file.
+</Callout>
+
 
 ### Download files
 
