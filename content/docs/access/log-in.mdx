@@ -7,7 +7,11 @@ title: Log in
 import FrontendTable from '@/components/frontends';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
-Users connect to MetaCentrum by using `ssh` to any of the login nodes called **frontends**.
+Users connect to the MetaCentrum system via the `SSH` protocol using any of the login nodes, which are referred to as [**frontend servers**](https://docs.metacentrum.cz/en/docs/computing/infrastructure/frontends). Like most computing and data centres, MetaCentrum's compute nodes run exclusively on Linux (OS Debian).
+
+<Callout type="warn" title="Warning">
+    Frontend servers are virtual machines with very limited computational power. They are primarily used for basic data inspection and manipulation, preparing shell scripts for batch jobs and very short compilations. Do not use them for long or demanding calculations. Use an [interactive](https://docs.metacentrum.cz/en/docs/computing/run-basic-job#interactive-job) or regular [batch](https://docs.metacentrum.cz/en/docs/computing/run-basic-job#batch-job) job instead.
+</Callout>
 
 ![Grid overall scheme](/img/meta/access/grid-overall-scheme_border.jpg)
 
