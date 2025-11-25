@@ -1,6 +1,7 @@
 {
   "title": "Sandbox",
   "pages": [
-    "testpage"
+    "testpage",
+    "module-tab"
   ]
 }
