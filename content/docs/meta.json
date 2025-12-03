@@ -1,7 +1,7 @@
 {
 	"pages": [
-    	"news",
 	"welcome",
+    	"news",
 	"access",
 	"cloud",
 	"kubernetes",
