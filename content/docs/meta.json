@@ -1,17 +1,17 @@
 {
 	"pages": [
     	"news",
-		"welcome",
-		"access",
-		"cloud",
-		"kubernetes",
-		"computing",
-		"data",
-		"software",
-		"graphical",
-		"support",
-		"tutorials",
-		"related"
+	"welcome",
+	"access",
+	"cloud",
+	"kubernetes",
+	"computing",
+	"data",
+	"software",
+	"graphical",
+	"support",
+	"tutorials",
+	"related"
 	]
 }
 
