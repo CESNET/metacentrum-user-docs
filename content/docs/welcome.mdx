@@ -3,22 +3,46 @@ title: MetaCentrum Docs
 icon: Single
 ---
 
-![pic](/img/logos/metacentrum_RGB.png)
+import { Cards3, Card } from '@/components/card3';
+import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit } from 'lucide-react'; 
 
-Welcome to the MetaCentrum grid computing service documentation.
+export default function HomePage() {
+  return (
+    <main className="container relative max-w-[1100px] px-2 py-4 lg:py-16">
+      <h1 className="mb-4 text-2xl font-bold">Welcome to the MetaCentrum documentation!</h1>
+      <p className="text-fd-muted-foreground">
+      The home for the documentation of all MetaCentrum services.
+      </p>
+
+      <Cards3 className="pt-4">
+
+        <Card title="Service A" icon={<Fingerprint/>}>
+          <p><b>Service A</b> is service A.</p>
+          <ul className="pt-2">
+           <li><a href="https://docs.account.e-infra.cz/en/docs/access/account" className="text-fd-primary flex items-center gap-2"><MoveRight /> How to get access</a></li>
+           <li><a href="https://docs.account.e-infra.cz/en/docs/access/account" className="text-fd-primary flex items-center gap-2"><MoveRight /> How to get assess</a></li>
+          </ul>
+
+        </Card>
+      </Cards3>
+
+
+
+![MetaCentrum](/img/meta/welcome/meta-docs-banner.jpg)
 
 List of services:
 
-- Compute cloud
-- Kubernetes
-- MetaCentrum Grid
+- Compute cloud ![Cloud](/img/meta/welcome/openstack.svg)
+- Kubernetes ![Kubernetes](/img/meta/welcome/kubernetes-logo.svg)
+- MetaCentrum Grid ![Grid](/img/meta/welcome/grid.png)
 
 List of other services:
 
-- OnDemand
-- Galaxy (usegalaxy)
-- Elixir
-- Juputer noteboox
+- OnDemand ![OnDemand](/img/meta/welcome/ondemand.jpg)
+- Galaxy (usegalaxy) ![Galaxy](/img/meta/welcome/galaxy.png)
+- Elixir ![Elixir](/img/meta/welcome/elixir_logo.png)
+- Juputer noteboox ![Jupter noteboox](/img/meta/welcome/jupyter.png)
+
 
 
 <center>
@@ -32,3 +56,10 @@ List of other services:
   allowfullscreen>
 </iframe>
 </center>
+
+
+
+    </main>
+  );
+}
+
