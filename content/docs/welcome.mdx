@@ -5,45 +5,77 @@ icon: Single
 
 import { Cards3, Card } from '@/components/card3';
 import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit } from 'lucide-react'; 
+import Image from 'next/image';
+import BannerMeta from '@/public/img/meta/welcome/meta-docs-banner.jpg';
+import BannerCloud from '@/public/img/meta/welcome/openstack.svg';
+import BannerElixir from '@/public/img/meta/welcome/elixir_logo.png';
+import BannerGalaxy from '@/public/img/meta/welcome/galaxy.png';
+import BannerGrid from '@/public/img/meta/welcome/grid.png';
+import BannerJupyter from '@/public/img/meta/welcome/jupyter.png';
+import BannerKubernetes from '@/public/img/meta/welcome/kubernetes-logo.svg';
+import BannerOnDemand from '@/public/img/meta/welcome/ondemand.jpg';
 
 export default function HomePage() {
   return (
     <main className="container relative max-w-[1100px] px-2 py-4 lg:py-16">
+
       <h1 className="mb-4 text-2xl font-bold">Welcome to the MetaCentrum documentation!</h1>
-      <p className="text-fd-muted-foreground">
-      The home for the documentation of all MetaCentrum services.
-      </p>
+
+      <p className="text-fd-muted-foreground"> The home for the documentation of all MetaCentrum services.  </p>
+
+<div>
+This is a <b> normal bold</b> plaintext.
+</div> 
+
+<div className="-mx-3 -mt-3">
+                <Image
+                  src={BannerMeta}
+                  alt="Meta"
+                  width="1200"
+                  height="710"
+                />
+               </div>
+
 
       <Cards3 className="pt-4">
 
-        <Card title="Service A" icon={<Fingerprint/>}>
-          <p><b>Service A</b> is service A.</p>
-          <ul className="pt-2">
-           <li><a href="https://docs.account.e-infra.cz/en/docs/access/account" className="text-fd-primary flex items-center gap-2"><MoveRight /> How to get access</a></li>
-           <li><a href="https://docs.account.e-infra.cz/en/docs/access/account" className="text-fd-primary flex items-center gap-2"><MoveRight /> How to get assess</a></li>
-          </ul>
-
+        <Card title="Cloud" icon={<Fingerprint/>}>
+          <p>What is <b>Cloud</b></p>
+           <div className="-mx-3 -mt-3"> <Image src={BannerCloud} alt="Cloud" /> </div>
+           <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
         </Card>
+
+        <Card title="Kubernetes" icon={<Fingerprint/>}>
+          <p>What is <b>Kubernetes</b></p>
+           <div className="-mx-3 -mt-3"> <Image src={BannerKubernetes} alt="Kubernetes" /> </div>
+           <a href="https://docs.cerit.io/en/docs/platform/overview" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
+        </Card>
+
+        <Card title="Grid" icon={<Fingerprint/>}>
+          <p>What is <b>MetaCentrum Grid</b></p>
+           <div className="-mx-3 -mt-3"> <Image src={BannerGrid} alt="MetaCentrum Grid" /> </div>
+           <a href="./computing/concepts" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
+        </Card>
+
       </Cards3>
 
+      <p>List of other services:</p>
 
+      <Cards3 className="pt-4">
 
-![MetaCentrum](/img/meta/welcome/meta-docs-banner.jpg)
+        <Card title="Galaxy" icon={<Fingerprint/>}>
+          <p>What is <b>Galaxy</b></p>
+           <div className="-mx-3 -mt-3"> <Image src={BannerGalaxy} alt="Galaxy" /> </div>
+           <a href="./graphical/usegalaxy" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Galaxy docs</a>
+        </Card>
 
-List of services:
+        <Card title="Elixir" icon={<Fingerprint/>}>
+          <p>What is <b>Elixir</b></p>
+           <div className="-mx-3 -mt-3"> <Image src={BannerElixir} alt="Elixir" /> </div>
+           <a href="./access/elixir" className="text-fd-primary flex items-center gap-2"><MoveRight />Elixir docs</a>
+        </Card>
 
-- Compute cloud ![Cloud](/img/meta/welcome/openstack.svg)
-- Kubernetes ![Kubernetes](/img/meta/welcome/kubernetes-logo.svg)
-- MetaCentrum Grid ![Grid](/img/meta/welcome/grid.png)
-
-List of other services:
-
-- OnDemand ![OnDemand](/img/meta/welcome/ondemand.jpg)
-- Galaxy (usegalaxy) ![Galaxy](/img/meta/welcome/galaxy.png)
-- Elixir ![Elixir](/img/meta/welcome/elixir_logo.png)
-- Juputer noteboox ![Jupter noteboox](/img/meta/welcome/jupyter.png)
-
-
+      </Cards3>
 
 <center>
 <iframe 
@@ -57,9 +89,10 @@ List of other services:
 </iframe>
 </center>
 
-
-
     </main>
   );
 }
+
+
+
 
