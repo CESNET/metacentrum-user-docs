@@ -18,40 +18,38 @@ import BannerOnDemand from '@/public/img/meta/welcome/ondemand.jpg';
 export default function HomePage() {
   return (
     <main className="container relative max-w-[1100px] px-2 py-4 lg:py-16">
+      <h2 className="mb-4 text-2xl font-bold">Welcome to the MetaCentrum documentation, the home of all MetaCentrum services.</h2>
+      <p> MetaCentrum is: Grid, Cloud, Kubernetes (as universal computing platforms) together with a bunch of more or less specialized services and smaller platforms ... (etc, some description of the MetaCentrum logic).</p> 
 
-      <h1 className="mb-4 text-2xl font-bold">Welcome to the MetaCentrum documentation!</h1>
+      <div className="-mx-3 -mt-3"> <Image src={BannerMeta} alt="Meta" width="1200" height="710" /> </div>
 
-      <p className="text-fd-muted-foreground"> The home for the documentation of all MetaCentrum services.  </p>
-
-<div>
-This is a <b> normal bold</b> plaintext.
-</div> 
-
-<div className="-mx-3 -mt-3">
-                <Image
-                  src={BannerMeta}
-                  alt="Meta"
-                  width="1200"
-                  height="710"
-                />
-               </div>
-
+      <center>
+      <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube-nocookie.com/embed/m_X7faF70LA?si=T17pKjpH_85HbtDq" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+      </center>
 
       <Cards3 className="pt-4">
 
-        <Card title="Cloud" icon={<Fingerprint/>}>
+        <Card title="Cloud" icon={<Cpu/>}>
           <p>What is <b>Cloud</b></p>
            <div className="-mx-3 -mt-3"> <Image src={BannerCloud} alt="Cloud" /> </div>
            <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
         </Card>
 
-        <Card title="Kubernetes" icon={<Fingerprint/>}>
+        <Card title="Kubernetes" icon={<Cpu/>}>
           <p>What is <b>Kubernetes</b></p>
            <div className="-mx-3 -mt-3"> <Image src={BannerKubernetes} alt="Kubernetes" /> </div>
            <a href="https://docs.cerit.io/en/docs/platform/overview" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
         </Card>
 
-        <Card title="Grid" icon={<Fingerprint/>}>
+        <Card title="Grid" icon={<Cpu/>}>
           <p>What is <b>MetaCentrum Grid</b></p>
            <div className="-mx-3 -mt-3"> <Image src={BannerGrid} alt="MetaCentrum Grid" /> </div>
            <a href="./computing/concepts" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
@@ -76,18 +74,6 @@ This is a <b> normal bold</b> plaintext.
         </Card>
 
       </Cards3>
-
-<center>
-<iframe 
-  width="560" 
-  height="315" 
-  src="https://www.youtube-nocookie.com/embed/m_X7faF70LA?si=T17pKjpH_85HbtDq" 
-  title="YouTube video player" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
-</center>
 
     </main>
   );
