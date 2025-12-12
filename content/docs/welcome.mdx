@@ -18,10 +18,11 @@ import BannerOnDemand from '@/public/img/meta/welcome/ondemand.jpg';
 export default function HomePage() {
   return (
     <main className="container relative max-w-[1100px] px-2 py-4 lg:py-16">
-      <h2 className="mb-4 text-2xl font-bold">Welcome to the MetaCentrum documentation, the home of all MetaCentrum services.</h2>
-      <p> MetaCentrum is: Grid, Cloud, Kubernetes (as universal computing platforms) together with a bunch of more or less specialized services and smaller platforms ... (etc, some description of the MetaCentrum logic).</p> 
+      <h3 className="mb-4 text-2xl font-bold">Welcome to the MetaCentrum documentation, the home of all MetaCentrum services.</h3>
+      
+      <p>MetaCentrum is a single point of entry to three computing infrastructures: <b>Grid</b>, <b>Cloud</b>, and <b>Kubernetes</b>, as well as to a number of more specialized services, such as <b>Elixir</b>, <b>Galaxy</b>, <b>OnDemand</b> and <b>Jupyter notebooks</b>.</p>
 
-      <div className="-mx-3 -mt-3"> <Image src={BannerMeta} alt="Meta" width="1200" height="710" /> </div>
+      <p>MetaCentrum is a <b>virtual organization</b>; its platforms and services are operated by <a href="https://www.cesnet.cz/en">CESNET</a> and <a href="https://www.cerit-sc.cz/">CERIT-SC</a> staff.</p>
 
       <center>
       <iframe 
@@ -35,12 +36,14 @@ export default function HomePage() {
       </iframe>
       </center>
 
+      <h3>Major computing infrastructures</h3>
+
       <Cards3 className="pt-4">
 
         <Card title="Cloud" icon={<Cpu/>}>
-          <p>What is <b>Cloud</b></p>
-           <div className="-mx-3 -mt-3"> <Image src={BannerCloud} alt="Cloud" /> </div>
-           <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
+          <p>Virtual loads of virtualized cloud stuff built on Openstack.</p>
+          <div className="-mx-3 -mt-3"> <Image src={BannerCloud} alt="Cloud" /> </div>
+          <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
         </Card>
 
         <Card title="Kubernetes" icon={<Cpu/>}>
@@ -57,7 +60,7 @@ export default function HomePage() {
 
       </Cards3>
 
-      <p>List of other services:</p>
+      <h3>Specific services</h3>
 
       <Cards3 className="pt-4">
 
@@ -74,6 +77,8 @@ export default function HomePage() {
         </Card>
 
       </Cards3>
+
+      <div className="-mx-3 -mt-3"> <Image src={BannerMeta} alt="Meta" width="1200" height="710" /> </div>
 
     </main>
   );
