@@ -3,27 +3,101 @@ title: MetaCentrum Docs
 icon: Single
 ---
 
-![pic](/img/logos/metacentrum_RGB.png)
+import { Cards3, Card } from '@/components/card3';
+import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit } from 'lucide-react'; 
+import Image from 'next/image';
+import BannerMeta from '@/public/img/meta/welcome/meta-docs-banner.jpg';
+import BannerCloud from '@/public/img/meta/welcome/openstack.svg';
+import BannerElixir from '@/public/img/meta/welcome/elixir_logo.png';
+import BannerGalaxy from '@/public/img/meta/welcome/galaxy.png';
+import BannerGrid from '@/public/img/meta/welcome/openPBS-logo.png';
+import BannerJupyter from '@/public/img/meta/welcome/jupyter.png';
+import BannerKubernetes from '@/public/img/meta/welcome/kubernetes-logo.svg';
+import BannerOnDemand from '@/public/img/meta/welcome/ondemand.jpg';
 
-Welcome to the MetaCentrum grid computing service documentation.
+export default function HomePage() {
+  return (
+    <main className="container relative max-w-[1100px] px-2 py-4 lg:py-16">
+      <h3 className="mb-4 text-2xl font-bold">Welcome to the MetaCentrum documentation, the home of all MetaCentrum services.</h3>
+      
+      <a href="https://www.metacentrum.cz/en">MetaCentrum</a> is a single point of entry to three computing infrastructures:
+	 <ul>
+           <li><b>Grid</b> (distributed HPC computing based on OpenPBS),</li>
+           <li><b>Cloud</b>, (Openstack cloud computing + CEPH), and</li>
+           <li><b>Kubernetes</b> (containerized computing),</li>
+	 </ul>
+	 as well as to a number of more specialized services, such as <b>Elixir</b>, <b>Galaxy</b>, <b>OnDemand</b> and <b>Jupyter notebooks</b>.
 
-- To access this service, please refer to the [How to get an account](./access/account) section.
-- To see an overview of the grid's infrastructure, go to the [Basic concepts](./computing/concepts) page.
-- Basic guidelines for running jobs are described in [Userguide on running jobs](./computing/run-basic-job).
-- For information on the rules for working with data, see the [How to work with data](./data/types-of-storage) chapter.
-- A list of the most commonly used software available in MetaCentrum can be found in the [Software](./software/alphabet) section.
-- Contact [user support](./support/) with any enquiries.
-- If you notice any errors in this documentation or if anything is missing, please open an issue or help us fix it in our [GitHub repository](https://github.com/CESNET/metacentrum-user-docs).
+      <p>MetaCentrum is a <b>virtual organization</b>; its platforms and services are operated by joint effort of <a href="https://www.cesnet.cz/en">CESNET</a> and <a href="https://www.cerit-sc.cz/">CERIT-SC</a>.</p>
+
+      <center>
+      <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube-nocookie.com/embed/m_X7faF70LA?si=T17pKjpH_85HbtDq" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+      </center>
+
+      <h3>Major computing infrastructures</h3>
+
+      <Cards3 className="pt-4">
+
+        <Card title="Cloud" icon={<Cpu/>}>
+          OpenStack cloud instances with object storage built on the CEPH storage system.
+          <div className="-mx-3 -mt-3"><Image src={BannerCloud} alt="Cloud" /></div>
+          <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
+        </Card>
+
+        <Card title="Kubernetes" icon={<Cpu/>}>
+          Container platform built on the robust Kubernetes orchestrator and utilizing Docker container images.
+          <div className="-mx-3 -mt-3"> <center><Image width="120" height="120" src={BannerKubernetes} alt="Kubernetes" /></center> </div>
+          <a href="https://docs.cerit.io/en/docs/platform/overview" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
+        </Card>
+
+        <Card title="Grid" icon={<Cpu/>}>
+          Distributed HPC computing built on OpenPBS scheduler and NFS filesystem.
+          <div className="-mx-3 -mt-3"> <Image src={BannerGrid} alt="MetaCentrum Grid" /> </div>
+          <a href="./computing/concepts" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
+        </Card>
+
+      </Cards3>
+
+      <h3>Specific services</h3>
+
+      <Cards3 className="pt-4">
+
+        <Card title="Galaxy" icon={<Fingerprint/>}>
+           Web-based solution for handling large scientific datasets.
+           <div className="-mx-3 -mt-3"> <Image src={BannerGalaxy} alt="Galaxy" /> </div>
+           <a href="./graphical/usegalaxy" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Galaxy docs</a>
+        </Card>
+
+        <Card title="Elixir" icon={<Fingerprint/>}>
+           Group for scientists with research objectives in fields of genomics, proteomics and other life sciences.
+           <div className="-mx-3 -mt-3"> <Image src={BannerElixir} alt="Elixir" /> </div>
+           <a href="./access/elixir" className="text-fd-primary flex items-center gap-2"><MoveRight />Elixir</a>
+        </Card>
+
+        <Card title="Open OnDemand" icon={<Fingerprint/>}>
+           Browser-based graphical access to MetaCentrum Grid and Cloud.
+           <div className="-mx-3 -mt-3"> <Image src={BannerOnDemand} alt="Open OnDemand" /> </div>
+           <a href="./graphical/ondemand" className="text-fd-primary flex items-center gap-2"><MoveRight />OnDemand</a>
+        </Card>
+
+      </Cards3>
+
+      <h3>MetaCentrum: your research, computed</h3>
+
+      <div className="-mx-3 -mt-3"> <Image src={BannerMeta} alt="Meta" width="1200" height="710" /> </div>
+
+    </main>
+  );
+}
 
 
-<center>
-<iframe 
-  width="560" 
-  height="315" 
-  src="https://www.youtube-nocookie.com/embed/m_X7faF70LA?si=T17pKjpH_85HbtDq" 
-  title="YouTube video player" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
-</center>
+
+
