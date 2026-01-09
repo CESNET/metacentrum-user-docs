@@ -6,6 +6,7 @@ title: GPU clusters
 | Cluster | Nodes | GPUs per node | Compute capability | Mem [GB] | CuDNN |
 |---------|-------|---------------|--------------------|----------|------|
 | alfrid.meta.czu.cz | afrid[1-4].meta.czu.cz | 2x L40 | 8.9 | 46 | YES |
+| alfridII.meta.czu.cz | afrid[6-9].meta.czu.cz | 4x L40s | 8.9 | 48 | YES |
 | bee.cerit-sc.cz | bee[1-10].cerit-sc.cz | 2x H100 NVL | 9.0 | 96 | YES |
 | capy.cerit-sc.cz | capy.cerit-sc.cz | 8x H100 | 9.0 | 82 | YES |
 | cha.natur.cuni.cz | cha.natur.cuni.cz | 8x GeForce RTX 2080 Ti | 7.5 | 12 | YES |
