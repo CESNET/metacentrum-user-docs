@@ -38,7 +38,13 @@ A land-surface-focused dataset providing improved resolution and accuracy over l
 
 Redistributed ECMWF datasets are available for the **Czech Republic** national teritory and border areas of neighboring countries, covering the bounding box [48.48, 12.07, 51.08, 19.00](http://bboxfinder.com/#48.480000,12.070000,51.080000,19.00000).
 
-As of **April 11, 2024**, data from **January 2020 to May 2024** has been downloaded, with newer as well as older data still being downloaded and processed back to the earliest available month of each respective dataset.
+As of **January 14, 2026** following data are available at MetaCenter premises:
+
+- Reanalysis ERA5-Land: March 1990 - January 2026
+- Reanalysis ERA5 on single levels: May 2007 - January 2026
+- Reanalysis ERA5 on pressure levels: May 2002 - January 2026
+
+Newer as well as older data is still being downloaded and processed back to the earliest available month of each respective dataset.
 
 
 ## Data Availability and Update Policy
@@ -46,10 +52,12 @@ As of **April 11, 2024**, data from **January 2020 to May 2024** has been downlo
 Each dataset is provided as complete monthly `.grib` files, organized in STAC catalog by `collection` and `item` in hierarchical structure:
 
 ```
-/collections/<dataset-name>/items/YYYY-MM-<dataset-name>
+/collections/<dataset-name>/items/<dataset-name>_<YYYYMMDD>_<area-name>
 ```
 
-NetCDF format is as of today considered **experimental** by ECMWF and thus it is not being currently downloaded. `href`s to these files are set as `null`!
+...where `area-name` is for Czech Republic == `czech-republic`
+
+NetCDF format is as of today considered **experimental** by ECMWF and thus it is not being currently downloaded!
 
 Datasets for reanalysis on single levels and pressure levels includes **four product types**:
 
@@ -73,14 +81,10 @@ Each STAC API item returns a **GeoJSON** with an `assets` node, containing direc
 
 ```json
 "assets": {
-"reanalysis-grib": { "href": "..." },
-"ensemble-mean-grib": { "href": "..." },
-"ensemble-members-grib": { "href": "..." },
-"ensemble-spread-grib": { "href": "..." },
-"reanalysis-netcdf": { "href": null },
-"ensemble-mean-netcdf": { "href": null },
-"ensemble-members-netcdf": { "href": null },
-"ensemble-spread-netcdf": { "href": null }
+  "reanalysis-grib": { "href": "..." },
+  "ensemble-mean-grib": { "href": "..." },
+  "ensemble-members-grib": { "href": "..." },
+  "ensemble-spread-grib": { "href": "..." },
 }
 ```
 
