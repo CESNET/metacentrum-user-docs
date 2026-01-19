@@ -4,3 +4,61 @@ title: Sandbox
 
 This is a page for testing stuff.
 
+import { Cards3, Card } from '@/components/card3';
+import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit } from 'lucide-react'; 
+import Image from 'next/image';
+import BannerCloud from '@/public/img/meta/welcome/openstack.svg';
+import BannerKubernetes from '@/public/img/meta/welcome/kubernetes-logo.svg';
+import BannerGrid from '@/public/img/meta/welcome/openPBS-logo.png';
+
+<Cards3 className="pt-4">
+
+  <Card title="Cloud" icon={<Cpu/>}>
+    OpenStack cloud instances with object storage built on the CEPH storage system.
+    <div className="-mx-3 -mt-3"><Image src={BannerCloud} alt="Cloud" /></div>
+    <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
+  </Card>
+
+  <Card title="Kubernetes" icon={<Cpu/>}>
+    Container platform built on the robust Kubernetes orchestrator and utilizing Docker container images.
+    <div className="-mx-3 -mt-3"> <center><Image width="120" height="120" src={BannerKubernetes} alt="Kubernetes" /></center> </div>
+    <a href="https://docs.cerit.io/en/docs/platform/overview" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
+  </Card>
+
+  <Card title="Grid" icon={<Cpu/>}>
+    Distributed HPC computing built on OpenPBS scheduler and NFS filesystem.
+    <div className="-mx-3 -mt-3"> <Image src={BannerGrid} alt="MetaCentrum Grid" /> </div>
+    <a href="./computing/concepts" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
+  </Card>
+
+</Cards3>
+
+
+From kube-docs:
+
+<Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3">
+
+<Card title="Interactive Apps" icon={<Image src={BannerCloud} alt="Interactive Apps" width="220"/>}>
+  We host managed web applications that require no installation on your site.
+  * Run Jupyter Notebooks with access to our compute resources.
+  * Turn your Git repositories into interactive computational environments.
+  * A web-based UI for AlphaFold to predict protein structures.
+</Card>
+
+<Card title="Kubernetes" icon={<Image src={BannerKubernetes} alt="Kubernetes Logo" width="220"/>}>
+  Our flagship service offers a managed...
+  * Easy Management: Use 
+  * Advanced Capabilities: Full support
+</Card>
+
+  
+<Card title="AI as a Service (AIaaS)"icon={<Image src={BannerGrid} alt="AIaaS" width="220"/>}>
+  Unlock the power of with secure, on-premise access to LLMs and related tools.
+  * Chat & RAG: Use our 
+  * Develop: Integrate AI
+</Card>
+
+</Cards>
+
+## How to Access
+
