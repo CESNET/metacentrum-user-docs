@@ -10,6 +10,9 @@ import Image from 'next/image';
 import BannerCloud from '@/public/img/meta/welcome/openstack.svg';
 import BannerKubernetes from '@/public/img/meta/welcome/kubernetes-logo.svg';
 import BannerGrid from '@/public/img/meta/welcome/openPBS-logo.png';
+import IconCloud from '@/public/img/meta/welcome/icon-openstack.svg';
+import IconKubernetes from '@/public/img/meta/welcome/icon-kubernetes.svg';
+import IconGrid from '@/public/img/meta/welcome/icon-pbs.svg';
 
 <Cards3 className="pt-4">
 
@@ -38,27 +41,24 @@ From kube-docs:
 
 <Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3">
 
-<Card title="Interactive Apps" icon={<Image src={BannerCloud} alt="Interactive Apps" width="220"/>}>
+<Card title="Interactive Apps" icon={<Image src={IconCloud} alt="Interactive Apps" width="220"/>}>
   We host managed web applications that require no installation on your site.
   * Run Jupyter Notebooks with access to our compute resources.
   * Turn your Git repositories into interactive computational environments.
   * A web-based UI for AlphaFold to predict protein structures.
 </Card>
 
-<Card title="Kubernetes" icon={<Image src={BannerKubernetes} alt="Kubernetes Logo" width="220"/>}>
+<Card title="Kubernetes" icon={<Image src={IconKubernetes} alt="Kubernetes Logo" width="220"/>}>
   Our flagship service offers a managed...
   * Easy Management: Use 
   * Advanced Capabilities: Full support
 </Card>
 
-  
-<Card title="AI as a Service (AIaaS)"icon={<Image src={BannerGrid} alt="AIaaS" width="220"/>}>
+<Card title="AI as a Service (AIaaS)"icon={<Image src={IconGrid} alt="AIaaS" width="220"/>}>
   Unlock the power of with secure, on-premise access to LLMs and related tools.
   * Chat & RAG: Use our 
   * Develop: Integrate AI
 </Card>
 
 </Cards>
-
-## How to Access
 

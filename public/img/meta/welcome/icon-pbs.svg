@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Vrstva_1" data-name="Vrstva 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352.44 96.02">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: #fb4516;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        font-family: MyriadPro-Bold, 'Myriad Pro';
+        font-size: 36px;
+        font-weight: 700;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <rect class="cls-2" x="76.21" y="20.79" width="215.41" height="52.88"/>
+  <text class="cls-3" transform="translate(104.71 58.59)"><tspan class="cls-4" x="0" y="0">O</tspan><tspan class="cls-1" x="25.96" y="0">p</tspan><tspan x="47.59" y="0">enPBS</tspan></text>
+</svg>
