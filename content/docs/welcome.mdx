@@ -3,7 +3,7 @@ title: MetaCentrum Docs
 ---
 
 import { Cards3, Card } from '@/components/card3';
-import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit } from 'lucide-react'; 
+import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit, Network, Cloudy, Container, Package } from 'lucide-react'; 
 import Image from 'next/image';
 import BannerMeta from '@/public/img/meta/welcome/meta-docs-banner.jpg';
 import BannerCloud from '@/public/img/meta/welcome/openstack.svg';
@@ -24,19 +24,19 @@ Welcome to the MetaCentrum documentation, the home of all MetaCentrum services.
 
 <Cards3 className="pt-4">
 
-  <Card title="Cloud" icon={<Cpu/>}>
+  <Card title="Cloud" icon={<Cloudy/>}>
     OpenStack cloud instances with object storage built on the CEPH storage system.
     <div className="-mx-3 -mt-3"><Image src={BannerCloud} alt="Cloud" /></div>
     <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
   </Card>
 
-  <Card title="Kubernetes" icon={<Cpu/>}>
+  <Card title="Kubernetes" icon={<Package/>}>
     Container platform built on the robust Kubernetes orchestrator and utilizing Docker container images.
     <div className="-mx-3 -mt-3"> <center><Image width="120" height="120" src={BannerKubernetes} alt="Kubernetes" /></center> </div>
     <a href="https://docs.cerit.io/en/docs/platform/overview" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
   </Card>
 
-  <Card title="Grid" icon={<Cpu/>}>
+  <Card title="Grid" icon={<Network/>}>
     Distributed HPC computing built on OpenPBS scheduler and NFS filesystem.
     <div className="-mx-3 -mt-3"> <Image src={BannerGrid} alt="MetaCentrum Grid" /> </div>
     <a href="./computing/concepts" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
