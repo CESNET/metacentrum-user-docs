@@ -7,6 +7,10 @@ This storage should be used *only during computations* and should be freed immed
 
 The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 
+<Callout type="info" title="No default scratch">
+    For a batch job, you must set the size and type of scratchdir! There is no default type of scratch.
+</Callout>
+
 ## Scratch types
 
 We offer four types of scratch storage:
@@ -67,10 +71,6 @@ Main usecases:
 - array jobs with intermediate results - BeeGFS is well-suited for workflows where subsequent computations can pick up intermediate results left in the scratch directory eliminating the need to copy data to permanent storage or run on the same machine as the previous step.
 
 Read more on [BeeGFS article on eInfra blog](https://blog-dev.cerit.io/blog/beegfs).
-
-<Callout type="info" title="No default scratch">
-    For a batch job, you must set the size and type of scratchdir! There is no default type of scratch.
-</Callout>
 
 ## Cleaning scratch
 
