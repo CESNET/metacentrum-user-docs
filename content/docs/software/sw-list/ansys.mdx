@@ -240,6 +240,23 @@ Start Workbench in the graphical mode
 runwb2 # graphical mode
 ```
 
+### Ansys LS-DYNA
+
+Parallel (single node) computation on N processors:
+
+```
+module add ansys/2025-R2
+#### Run the computation, e.g.
+lsdyna ncpu=$PBS_NCPUS i=myinput.k
+```
+
+Submit the batch script:
+
+```bash
+skirit$ N=4
+skirit$ qsub -l select=1:ompthreads=${N}:mem=Zgb -l ansys-dyna=1  -l ansys-dysmp=$((N-1)) batch_script.sh
+```
+
 ## Documentation
 
 Software documentation is available locally in the program's directory:
