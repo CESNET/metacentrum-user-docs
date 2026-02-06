@@ -125,7 +125,7 @@ The job is then submitted as
 Alternatively, you can specify resources on the command line. In this case, the lines starting by `#PBS` need not to be in the batch script.
 
 ```bash
-    (BUSTER)user123@skirit:~$qsub -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.sh 
+    (BUSTER)user123@skirit:~$ qsub -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.sh 
 ```
 
 <Callout type="info">

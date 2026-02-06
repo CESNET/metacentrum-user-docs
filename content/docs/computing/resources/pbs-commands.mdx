@@ -9,13 +9,51 @@ The most relevant native PBS commands (and related options) are:
 - `qstat` - view current state of jobs
 - `pbsnodes` - get info about current node(s) state and their properties
 
+## PBS commands check for Kerberos ticket
+
+**Since Feb 2026, sll PBS commands prompt for a password in case the [Kerberos ticket](../../access/log-in#kerberos) is missing**
+
+Normally the Kerberos ticket is issued upon login and lasts for 12 hours.
+
+If the PBS command does not find a valid Kerberos ticket, it prompts the user for a password to renew it:
+
+```bash
+(BOOKWORM)user_123@skirit:~$ pbsnodes -v zenon12
+Kerberos Authentication:
+Attempt (1/3): user_123@META's Password: 
+zenon12
+     Mom = zenon12.cerit-sc.cz
+     ntype = PBS
+     state = job-busy
+     ...
+```
+
 ## qsub
 
 Basic command to submit a job.
 
+```bash
+qsub -I -l select=1:ncpus=4:mem=4gb -l walltime=1:00:00 # interactive job
+qsub  -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.sh # batch job
+```
+
+<Callout type="info" title="What if Kerberos ticket expires while the interactive job waits to run?">
+In case the Kerberos ticket expires **after** the qsub command is issued, but **before** the interactive job starts to run, the user is again prompted for password after the job starts:
+</Callout>
+
+```bash
+(BOOKWORM)user_123@skirit:~$ qsub -I -l select=vnode=zenon12
+qsub: waiting for job 117665.pbs-m1.metacentrum.cz to start
+Kerberos Authentication:
+Attempt (1/3): user_123@META's Password: 
+qsub: job 117665.pbs-m1.metacentrum.cz ready
+
+(BOOKWORM)user_123@zenon12:~$ 
+```
+
 ## qdel
 
-The `qdel` command deletes a  queing or running job.
+The `qdel` command deletes a queing or running job.
 
 Examples:
 
