@@ -3,7 +3,6 @@ TAB-separated lines are used to display metaMOTD / Tip-of-the-day during login o
 wget -q https://wiki.metacentrum.cz/wiki/MOTD -O - | grep "<li>" | sed -e "s/.*<li>/%/g" -e "s/<\/li>.*//g" -e "s/%/%\n/g"
 
 Actual theme
-
     Please fill out the user satisfaction survey. If you have already done that, thank you very much for your feedback https://survey.eosc.cz/einfra2025en?utm_source=motd&utm_campaign=metacentrum
 
 
