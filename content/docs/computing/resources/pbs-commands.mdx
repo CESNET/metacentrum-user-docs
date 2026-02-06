@@ -11,7 +11,7 @@ The most relevant native PBS commands (and related options) are:
 
 ## PBS commands check for Kerberos ticket
 
-**Since Feb 2026, sll PBS commands prompt for a password in case the [Kerberos ticket](../../access/log-in#kerberos) is missing**
+**Since Feb 2026, all PBS commands prompt for a password in case the [Kerberos ticket](../../access/log-in#kerberos) is missing**
 
 Normally the Kerberos ticket is issued upon login and lasts for 12 hours.
 
@@ -38,7 +38,7 @@ qsub  -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00 myJob.s
 ```
 
 <Callout type="info" title="What if Kerberos ticket expires while the interactive job waits to run?">
-In case the Kerberos ticket expires **after** the qsub command is issued, but **before** the interactive job starts to run, the user is again prompted for password after the job starts:
+In case the Kerberos ticket expires **after** the qsub command is issued, but **before** the interactive job starts to run, the user is again prompted for password when the job starts:
 </Callout>
 
 ```bash
