@@ -72,7 +72,7 @@ The batch script in the following example is called myJob.sh.
     #PBS -N batch_job_example
     #PBS -l select=1:ncpus=4:mem=4gb:scratch_local=10gb
     #PBS -l walltime=1:00:00 
-    # The 4 lines above are options for the scheduling system: the job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested
+    # The 3 lines above are options for the scheduling system: the job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested
     
     # define a DATADIR variable: directory where the input files are taken from and where the output will be copied to
     DATADIR=/storage/brno12-cerit/home/user123/test_directory # substitute username and path to your real username and path
@@ -165,7 +165,7 @@ An interactive job is requested via `qsub -I` command (uppercase "i").
     >>>
 ``` 
 
-Unless you log out after 1 hour, you will get the following message:
+Unless you log out within the time quota (in this example 2 hours), you will get the following message:
 
 ```bash
     user123@elmo3-1:~$ =>> PBS: job killed: walltime 7230 exceeded limit 7200

@@ -123,7 +123,7 @@ To be able to access your user data you must have valid kerberos ticket. You can
 ```
 kinit user@META
 ```
-Veirfy you can access your home directly:
+Verify you can access your home directly:
 ```
 ls /storage/brno2/home/user123
 ```
@@ -134,7 +134,7 @@ ls /storage/brno2/home/user123
 
 File `/etc/idmapd.conf` sets mapping of NFSv4 identities to local users (NFSv4 works with text principals of kerberos, POSIX interface of file system works with numeral representation of users and groups).
 
-Simple settings `/etc/idmapd.conf` consist on setting of configuration line: `Domain = META`. The users from domain @META will be map throught files `/etc/passwd` and `/etc/group`. So it means that for identity `user_123@META` must exist record in `/etc/passwd` with name user\_123. Ordinary tools (`ls -l`) will show the names properly if the name in given files will be exist for their principal. For nonexisting name will be user mapping choosen as nobody and nogroup.
+Simple configuration of `/etc/idmapd.conf` can look the following way: `Domain = META`. Users from domain @META will be mapped through to files `/etc/passwd` and `/etc/group`. This means that for the identity `user_123@META` there must exist a record in `/etc/passwd` with name `user\_123`. Ordinary tools (`ls -l`) will show the names properly if the name in given files exists for their principal. For nonexisting name user will be mapped as nobody and nogroup.
 
 Example:
 ```bash
