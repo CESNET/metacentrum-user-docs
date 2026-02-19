@@ -67,7 +67,7 @@ You can control MSA speed/quality tradeoff by adding `--db_preset=reduced_dbs` o
 - `reduced_dbs`: This preset is optimized for speed and lower hardware requirements. It runs with a reduced version of the BFD database. It requires 8 CPU cores (vCPUs), 8 GB of RAM, and 600 GB of disk space.
 - `full_dbs`: This runs with all genetic databases used at CASP14.
 
-**Tips and useful information**
+**Comparison between models**
 
 Example of run with different models and speed/quality tradeoff with example file `seq.fasta`, multimer with `multi.fasta`. This test shows difference of RAM consuming a length of run with the same test.
 
@@ -81,4 +81,31 @@ Example of run with different models and speed/quality tradeoff with example fil
 |monomer_ptm 	|reduced_dbs 	|55 GB 		|32 min 	|gita - RTX2080 Ti - 11GB |
 |multimer 	|full_dbs 	|119 GB 	|75 min 	|zia - A100 - 40GB |
 |multimer 	|reduced_dbs 	|40 GB 		|73 min 	|zia - A100 - 40GB |
+
+
+**How to speedup the JACKHMMR step**
+
+The JACKHMMER module quite old and not optimized for current machines, so it is rarely able to utilize more than 3 CPUs, thus making it difficult for Alphafold to use provided CPUs efficiently.  Alphafold increases parallelism by running jackhmmer invocations for various databases concurrently, but it is not perfect since the databases are of different size. Also, there are steps which are not parallel at all, e.g. template search and construction.
+
+There are, however, ways to to improve CPU utilization of your jobs a little:
+
+1. Use unpacked `mmcif` database
+
+```bash
+DATABASES_DIR2="/storage/brno11-elixir/projects/alphafold/alphafold.db-3.0.1
+...
+--db_dir=/public_databases2
+--pdb_database_path=/public_databases2/mmcif_files
+```
+
+2. Avoid JACKHMMR step using unofficial databases
+
+If you do not mind using unofficial databases (related to MMseqs2, not identical to those used by original Alphafold3 with JACKHMMER), there is potential for massive speedup: you can avoid slow JACKHMMER step by preprocessing your input.
+
+Add MSAs from our `mmseqs` server, the use `out.json` with AF3:
+
+``` bash
+mamba activate abcfold-1.0.8
+python $CONDA_PREFIX/lib/python3.11/site-packages/abcfold/scripts/add_mmseqs_msa.py --input_json in.json --output_json out.json --cerit_server
+```
 
