@@ -12,7 +12,7 @@ General tips
     Most of our storages are not backed up. Please double-check where you store critical data!
     Home directories are readable for everyone by default - consider protecting your sensitive data with appropriate ACLs.
     Statistics of usage available at https://metavo.metacentrum.cz/cs/state/stats/2025/index.html
-    Did you try our AI Chat and LLM (AI-as-a-Service)? See https://docs.cerit-sc.cz/en/docs/ai-as-a-service/introduction
+    Have you tried our AI Chat and LLM (AI‑as‑a‑Service) yet? Discover how it works and get started here: https://docs.cerit‑sc.cz/en/docs/ai-as-a-service/introduction
     Looking for the latest updates? Visit our blog at https://blog.e‑infra.cz
 
 PBS
@@ -45,8 +45,9 @@ Storage
 
 GUI
     Need a graphical user interface? Try ondemand.grid.cesnet.cz, which offers launching PBS tasks, accessing persistent terminals, copying files between our storages, or launching multiple graphical applications in the browser.
-    Did you try Galaxy portal usegalaxy.cz https://docs.metacentrum.cz/en/docs/graphical/usegalaxy?
-    Did you try alphafold in GUI? Foldify --> https://docs.cerit.io/en/docs/web-apps/foldify
+    Have you explored the Galaxy portal (usegalaxy.cz) yet? Find out how to get started and make the most of its graphical tools: https://docs.metacentrum.cz/en/docs/graphical/usegalaxy
+    Have you tried AlphaFold through a graphical interface? Give Foldify a spin – the web‑app that lets you run AlphaFold with just a few clicks: https://docs.cerit.io/en/docs/web-apps/foldify
+    
 
 HW
     Need more GPU/RAM/storage/CPU? Give us feedback in our annual surveys, we try to buy new HW according to our users' needs.
