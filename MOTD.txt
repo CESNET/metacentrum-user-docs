@@ -2,8 +2,7 @@ TAB-separated lines are used to display metaMOTD / Tip-of-the-day during login o
 
 wget -q https://wiki.metacentrum.cz/wiki/MOTD -O - | grep "<li>" | sed -e "s/.*<li>/%/g" -e "s/<\/li>.*//g" -e "s/%/%\n/g"
 
-Actual theme
-    Please fill out the user satisfaction survey. If you have already done that, thank you very much for your feedback https://survey.eosc.cz/einfra2025en?utm_source=motd&utm_campaign=metacentrum
+  
 
 
 General tips
@@ -12,6 +11,9 @@ General tips
     Something's not working? Before reporting it, please check the Outages section on metavo.metacentrum.cz
     Most of our storages are not backed up. Please double-check where you store critical data!
     Home directories are readable for everyone by default - consider protecting your sensitive data with appropriate ACLs.
+    Statistics of usage available at https://metavo.metacentrum.cz/cs/state/stats/2025/index.html
+    Did you try our AI Chat and LLM (AI-as-a-Service)? See https://docs.cerit-sc.cz/en/docs/ai-as-a-service/introduction
+    Looking for the latest updates? Visit our blog at https://blog.e‑infra.cz
 
 PBS
     Do you know you can request a minimum processor speed? (i.e. qsub -l select=1:spec=4.8)
@@ -43,6 +45,8 @@ Storage
 
 GUI
     Need a graphical user interface? Try ondemand.grid.cesnet.cz, which offers launching PBS tasks, accessing persistent terminals, copying files between our storages, or launching multiple graphical applications in the browser.
+    Did you try Galaxy portal usegalaxy.cz https://docs.metacentrum.cz/en/docs/graphical/usegalaxy?
+    Did you try alphafold in GUI? Foldify --> https://docs.cerit.io/en/docs/web-apps/foldify
 
 HW
     Need more GPU/RAM/storage/CPU? Give us feedback in our annual surveys, we try to buy new HW according to our users' needs.
