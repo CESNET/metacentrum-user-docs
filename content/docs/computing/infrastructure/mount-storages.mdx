@@ -134,7 +134,7 @@ ls /storage/brno2/home/user123
 
 File `/etc/idmapd.conf` sets mapping of NFSv4 identities to local users (NFSv4 works with text principals of Kerberos, the POSIX interface of the file system works with numerical representation of users and groups).
 
-A simple configuration of `/etc/idmapd.conf` can look the following way: `Domain = META`. Users from the domain @META will be mapped through to files `/etc/passwd` and `/etc/group`. This means that for the identity `user_123@META` there must exist a record in `/etc/passwd` with name the `user\_123`. Ordinary tools (`ls -l`) will show the names properly if the name in the given files exists for their principal. For nonexisting name user will be mapped as nobody and nogroup.
+A simple configuration of `/etc/idmapd.conf` can look the following way: `Domain = META`. Users from the domain @META will be mapped through to files `/etc/passwd` and `/etc/group`. This means that for the identity `user_123@META` there must exist a record in `/etc/passwd` with the name `user\_123`. Ordinary tools (`ls -l`) will show the names properly if the name in the given files exists for their principal. For nonexisting name user will be mapped as nobody and nogroup.
 
 Example:
 ```bash
@@ -148,7 +148,7 @@ drwxr-xr-x 6 user_123 soft-nfs4 54 2008-06-12 14:45 libnfsidmap
 drwxr-xr-x 5 user_123 soft-nfs4 40 2008-06-11 13:12 nsswitch
 ```
 
-Since both a record for user `user\_123@META` exists in `/etc/passwd` and a record for group soft-nfs4@META exists in `/etc/group`, the mapping is created and displayed. There is no record for the user who owns directory `etics` that is why it's shown as `nobody:nogroup`.
+Since both a record for user `user\_123@META` exists in `/etc/passwd` and a record for group soft-nfs4@META exists in `/etc/group`, the mapping is created and displayed. There is no record for the user who owns directory `etics`, that is why it's shown as `nobody:nogroup`.
 
 ### Proper displaying of users and groups names
 
@@ -174,8 +174,7 @@ The existing configuration may be similar. However, new settings must use `mnssw
 
 Restart service idmapd:
 ```
-Debian: /etc/init.d/nfs-common restart,
-opensuse /etc/init.d/idmapd restart or /etc/init.d/nfs restart
+Debian: systemctl restart nfs-idmapd,
 ```
 Now we have cross realm mapping of NFSv4 identities to numerical representation for POSIX interface.
 
