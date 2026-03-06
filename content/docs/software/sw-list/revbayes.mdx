@@ -7,11 +7,11 @@ module avail revbayes/
 
 [RevBayes](https://revbayes.github.io/) is an interactive environment for statistical computation in phylogenetics. 
 
-It is primarily intended for modeling, simulation, and Bayesian inference in evolutionary biology
+It is primarily intended for modelling, simulation, and Bayesian inference in evolutionary biology.
 
 ## Usage
 
-Then you can run the RevBayes environment by issuing command:
+Then you can run the RevBayes environment by issuing the command:
 
 ```bash
 rb-mpi
@@ -19,14 +19,39 @@ rb-mpi
 
 or
 
-m    pirun /software/revbayes-1.0.5/bin/rb-mpi
+```bash
+mpirun /software/revbayes-1.0.5/bin/rb-mpi
+```
+or
+```bash
+rb  # for Singularity/Apptainer images
+```
 
 ### Environment configuration
 
-You can set your configuration by RevBayes inner commands. This configuration is automatically written in file `~/.RevBayes.ini`. Initial RB environment configuration can be set by command:
+You can set your configuration using RevBayes' inner commands. This configuration is automatically written in the file `~/.RevBayes.ini`. The command can set initial RB environment configuration:
 
 ```bash
 rb-mpi /software/revbayes-1.0.5/src_orig/env_setup.nex
 ```
 
+The latest versions of RevBayes are maintained as Singularity/Apptainer images, which are available at:
 
+```bash
+/cvmfs/singularity.metacentrum.cz/RevBayes/
+```
+
+For example, the usage is:
+
+```bash
+/cvmfs/singularity.metacentrum.cz/RevBayes/revbayes-v1.3.2-linux64-singularity.simg rb input.file
+```
+
+Multi-processor calculations can be run as follows:
+
+```bash
+/cvmfs/singularity.metacentrum.cz/RevBayes/revbayes-v1.3.2-linux64-singularity.simg mpirun -n XY rb input.file.
+```
+
+Where `XY` is the number of reserved CPUs (PBS parameter ncpus).
+ 
