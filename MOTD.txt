@@ -2,7 +2,7 @@ TAB-separated lines are used to display metaMOTD / Tip-of-the-day during login o
 
 wget -q https://wiki.metacentrum.cz/wiki/MOTD -O - | grep "<li>" | sed -e "s/.*<li>/%/g" -e "s/<\/li>.*//g" -e "s/%/%\n/g"
 
-  
+test
 
 
 General tips
