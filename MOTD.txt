@@ -57,3 +57,4 @@ Courses
     Are you interested in the hands-on course or tailored theoretical lecture for a small group of users? Let us know (meta@cesnet.cz), and we can discuss your needs and possibilities.
     Explore our past seminars, lectures and hands-on courses with many valuable tips and tricks (https://docs.metacentrum.cz/en/docs/tutorials).
 checkpoint at Thu Mar 12 03:04:31 PM CET 2026
+checkpoint at Thu Mar 12 03:05:15 PM CET 2026
