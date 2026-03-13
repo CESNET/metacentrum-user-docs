@@ -1,9 +1,8 @@
 {
   "title": "Grid computing",
   "pages": [
-    "concepts",
-    "basic-tutorial",
     "run-basic-job",
+    "advanced",
     "jobs",
     "infrastructure",
     "resources",
