@@ -6,32 +6,17 @@ This guide covers advanced topics for running jobs on MetaCentrum. If you're new
 
 ## Kerberos authentication
 
-MetaCentrum uses the **Kerberos protocol** for internal authentication. When you log in, you automatically receive a Kerberos ticket that allows you to move between machines, run jobs, and copy files without repeatedly entering your password.
-
-### Kerberos ticket expiration
-
-<Callout type="warn" title="10-hour limitation">
-    Kerberos tickets are valid for 10 hours. If you stay logged in longer than this, you must regenerate your ticket.
-</Callout>
-
-You'll know your ticket has expired when you see errors like:
-```
-Key has expired @ dir_s_mkdir  - /storage/brno2/home/user_name
-```
-
-### Basic Kerberos commands
+MetaCentrum uses Kerberos for internal authentication. Tickets expire after 10 hours.
 
 ```bash
-klist      # List all current tickets and their expiration times
-kdestroy   # Delete all tickets
-kinit      # Create a new Kerberos ticket (you'll be prompted for password)
+klist      # List tickets
+kdestroy   # Delete tickets
+kinit      # Create new ticket
 ```
 
-### OnDemand and Kerberos
+On ticket expiration, use `kinit` to regenerate. For OnDemand users, restart the web server via **Help → Restart Web Server**.
 
-If you're using the [OnDemand web interface](../graphical/ondemand) and your Kerberos ticket expires during a long session, you cannot simply reload the page. You must click the **Help** button in the menu (upper right corner) and select **Restart Web Server** to renew your ticket.
-
-For more detailed Kerberos information, see the [Kerberos security page](../access/security/kerberos).
+For detailed Kerberos information, see [Kerberos security page](../access/security/kerberos).
 
 ## Detailed resource configuration
 
@@ -61,112 +46,54 @@ According to PBS terminology, a **chunk** is a subset of computational nodes on 
     For most "normal" jobs, the number of chunks is 1 (default value). See [PBS resources guide](./resources/resources) for complex parallel computing scenarios.
 </Callout>
 
-### Scratch directory types
+### Scratch directories
 
-We offer four types of scratch storage for temporary files. For detailed information about each type, see the [Scratch storage guide](./infrastructure/scratch-storages).
+Four scratch types are available. Default: `scratch_local`.
 
-| Type | Available everywhere? | Location | Environment variable | Key characteristic |
-|------|----------------------|----------|---------------------|-------------------|
-| `local` | Yes | `/scratch/USERNAME/job_JOBID` | `scratch_local` | Universal, large capacity |
-| `ssd` | No | `/scratch.ssd/USERNAME/job_JOBID` | `scratch_ssd` | Fast I/O operations |
-| `shared` | No | `/scratch.shared/USERNAME/job_JOBID` | `scratch_shared` | Can be shared by multiple jobs |
-| `shm` | No | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `scratch_shm` | In RAM, ultra-fast |
-
-<Callout  type="warn" title="Warning">
-    There is no default scratch directory. You must always specify its type and volume.
-</Callout>
-
-As a default choice, we recommend **local scratch**:
-
+**Recommended:**
 ```bash
 qsub -I -l select=1:ncpus=2:mem=4gb:scratch_local=1gb -l walltime=2:00:00
 ```
 
-### Accessing the scratch directory
+Access scratch via `$SCRATCHDIR`. Use `go_to_scratch <job_number>` to access scratch after job failure.
 
-Use the `$SCRATCHDIR` environment variable to access your scratch directory:
+For detailed scratch type information, see [Scratch storage guide](./infrastructure/scratch-storages).
 
-```bash
-user123@glados12:~$ echo $SCRATCHDIR
-/scratch.ssd/user123/job_14429322.pbs-m1.metacentrum.cz
-user123@glados12:~$ cd $SCRATCHDIR
-```
+## Interactive jobs
 
-<Callout type="info" title="Access scratch after job failure">
-    If your job crashes or fails to copy data back, your files remain in scratch. Use `go_to_scratch <job_number>` to access them.
-</Callout>
+### Starting interactive jobs
 
-## Interactive jobs in depth
+Request interactive session: `qsub -I -l select=1:ncpus=4 -l walltime=2:00:00`
 
-### Starting an interactive job
+Jobs are auto-terminated when walltime expires.
 
-Interactive jobs are requested via `qsub -I` (uppercase "i"):
+### When useful
 
-```bash
-qsub -I -l select=1:ncpus=4 -l walltime=2:00:00
-qsub: waiting for job 13010171.pbs-m1.metacentrum.cz to start
-qsub: job 13010171.pbs-m1.metacentrum.cz ready
-(BULLSEYE)user123@elmo3-1:~$  # Now on computational node
-```
-
-### When interactive jobs are necessary
-
-- Testing what works (software versions, input data format, bash constructions)
-- Getting initial resource estimates
-- Compiling your own software
-- Processing, moving, or archiving large data volumes
+- Testing software, input formats, resource estimates
+- Compiling, processing/moving large data
 - Running [GUI applications](../software/graphical-access)
 
-### Time quota enforcement
+### Example
 
-If you don't log out within the time quota, the job is automatically terminated:
-
-```bash
-user123@elmo3-1:~$ =>> PBS: job killed: walltime 7230 exceeded limit 7200
-logout
-qsub: job 13010171.pbs-m1.metacentrum.cz completed
-```
-
-### Interactive job example (Python environment setup)
+Interactive jobs are useful for software testing, compiling, and data processing:
 
 ```bash
 qsub -I -l select=1:ncpus=4 -l walltime=2:00:00
-qsub: waiting for job 13010171.pbs-m1.metacentrum.cz to start
-qsub: job 13010171.pbs-m1.metacentrum.cz ready
-
-# Load mamba and create environment
-(BULLSEYE)user123@elmo3-1:~$ module add mambaforge
-(BULLSEYE)user123@elmo3-1:~$ mamba list | grep scipy
-(BULLSEYE)user123@elmo3-1:~$ mamba create -n my_scipy
-...
-(BULLSEYE)user123@elmo3-1:~$ mamba activate my_scipy
-(my_scipy) (BULLSEYE)user123@elmo3-1:~$ mamba install scipy
-...
-(my_scipy) (BULLSEYE)user123@elmo3-1:~$ python
->>> import scipy as sp
->>>
+# Once on compute node:
+module add mambaforge
+mamba create -n my_env
+mamba activate my_env
+python my_script.py
 ```
 
 ## Job ID details
 
-The job ID is a unique identifier crucial for tracking, manipulating, or deleting jobs, and for reporting issues to support.
+Job IDs identify jobs for tracking and management: `13010171.pbs-m1.metacentrum.cz` (full form required).
 
-### Job ID formats
-
-- Short form (sometimes sufficient): `13010171.`
-- Full form (always required): `13010171.pbs-m1.metacentrum.cz`
-
-### Getting your job ID
-
-- After running `qsub` command
-- Inside interactive jobs or batch scripts: `echo $PBS_JOBID`
-- From qstat: `qstat -u your_username @pbs-m1.metacentrum.cz`
-
-```bash
-# Within an interactive job
-(BULLSEYE)user123@elmo3-1:~$ echo $PBS_JOBID
-13010171.pbs-m1.metacentrum.cz
-```
+Get your job ID:
+- After `qsub` command
+- Inside jobs: `echo $PBS_JOBID`
+- From qstat: `qstat -u username`
 
 ## Job monitoring and management
 
@@ -204,13 +131,7 @@ Job ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S 
 11733550.pbs-m1      user123  q_2h     myJob.sh   --    1   1    1gb  00:05 Q  --
 ```
 
-| Header | Meaning |
-|--------|---------|
-| S | Status: Q (queued), R (running), F (finished) |
-| NDS | Number of distinct compute nodes |
-| TSK | Number of tasks (usually equals ncpus) |
-| Memory | Requested memory |
-| Time | Elapsed time |
+Key headers: `S`=status, `NDS`=nodes, `TSK`=tasks, `Memory`=requested memory, `Time`=elapsed.
 
 ### Job deletion
 
@@ -226,197 +147,67 @@ qdel 21732596.pbs-m1.metacentrum.cz
 qdel -W force 21732596.pbs-m1.metacentrum.cz
 ```
 
-## PBS server
+## PBS server and queues
 
-The scheduling system that plans job execution is the **PBS server** (currently running OpenPBS).
+**Essential commands**: `qsub` (submit), `qstat` (query), `qdel` (delete)
 
-### Essential PBS commands
-
-- `qsub` – submit a computational job
-- `qstat` – query status of a job
-- `qdel` – delete a job
-
-The server on which the scheduler runs is `pbs-m1.metacentrum.cz`.
-
-### Queues
-
-Jobs are submitted to queues managed by the scheduler. Queues are typically defined by walltime duration or other criteria (GPUs, memory, user groups).
-
-Unless you have a specific reason, don't specify a queue. Jobs are submitted to a default **routing** queue and then automatically routed to appropriate **execution** queues (e.g., `q_1h`, `q_1d`).
+**Queues**: Jobs route automatically from routing queue to execution queues (`q_1h`, `q_1d`, etc.). Don't specify a queue unless necessary.
 
 <Callout type="info">
-    View all queues at [PBSmon queues list](https://metavo.metacentrum.cz/pbsmon2/queues/list). The routing queue is marked with the routing icon (not to submit directly to execution queues).
+    View all queues at [PBSmon](https://metavo.metacentrum.cz/pbsmon2/queues/list). For more on queues, see [Queues guide](./resources/queues).
 </Callout>
-
-For more on queues, see [Queues guide](./resources/queues).
 
 ## Output files and error handling
 
-### Standard output and error
+When a job completes, two files are created in the submission directory: `jobname.o<jobID>` (STDOUT) and `jobname.e<jobID>` (STDERR). The `.e` file is the first place to look if a job fails.
 
-When a job completes, two files are created in the submission directory:
-
-1. `<job_name>.o<jobID>` – standard output (STDOUT)
-2. `<job_name>.e<jobID>` – standard error (STDERR)
-
-The STDERR file contains all error messages and is the first place to look if a job fails.
-
-### Examining failed jobs
-
-1. Check the `.e` file for error messages
-2. Verify the exit status (see below)
-3. Check if input files exist and are accessible
-4. Verify module loading and software availability
+For detailed output file handling, see [Job tracking guide](./jobs/job-tracking).
 
 ## Exit status interpretation
 
-The exit status (a number) indicates how a job finished. This is meaningful **only for batch jobs** - interactive jobs always have exit status 0.
-
-### Getting exit status
+Exit status indicates how a batch job finished (interactive jobs always return 0).
 
 ```bash
-qstat -xf job_ID | grep Exit_status
-Exit_status = 271
+qstat -xf job_ID | grep Exit_status  # Get exit status
 ```
 
 <Callout type="info">
-    For jobs older than 24 hours, qstat may not show exit status. Use `pbs-get-job-history` utility or check [PBSmon](https://metavo.metacentrum.cz/pbsmon2/jobs/detail).
+    For jobs >24h old, use `pbs-get-job-history` or [PBSmon](https://metavo.metacentrum.cz/pbsmon2/jobs/detail).
 </Callout>
 
-### Exit status ranges
+**Ranges**:
+- `X < 0`: PBS killed job (resource exceeded)
+- `0 <= X < 256`: Shell/top process exit
+- `X >= 256`: OS signal (subtract 256 for signal code; use `kill -l` to list signals)
 
-| Range | Meaning |
-|-------|---------|
-| X &lt; 0 | Job killed by PBS (resource exceeded or other problem) |
-| 0 &lt;= X &lt; 256 | Exit value of shell or top process |
-| X &gt;= 256 | Job killed with OS signal |
+**Common statuses**: `-23`=missing Kerberos, `-25`=exceeded CPUs, `-27`=exceeded memory, `-29`=exceeded walltime, `0`=normal, `271`=SIGTERM (qdel)
 
-### Translating exit status >= 256 to OS signals
+## Scratch cleanup
 
-If exit status >= 256, subtract 256 to get the OS signal code:
+When a job ends with an error, data may remain in scratch. Clean up after retrieving useful data.
 
-```
-PBS exit status - 256 = OS signal code
-```
+### Manual cleanup
 
-For example, exit status 271 means OS signal number 15 (`SIGTERM`).
-
-List all OS signals:
+Log in to the compute node and remove scratch contents:
 
 ```bash
-kill -l
-```
-
-### Common exit statuses
-
-| Job ending type | Exit status |
-|-----------------|-------------|
-| Missing Kerberos credentials | -23 |
-| Job exceeded number of CPUs | -25 |
-| Job exceeded memory | -27 |
-| Job exceeded walltime | -29 |
-| Normal termination | **0** |
-| Job killed by `SIGTERM` (qdel) | 271 |
-
-### Job termination by PBS server
-
-The PBS server monitors resource usage. If a job exceeds its reserved resources, PBS sends a **SIGKILL** signal to terminate it:
-
-```bash
-qstat -x -f 13030457.pbs-m1.metacentrum.cz | grep Exit_status
-    Exit_status = -29  # walltime exceeded
-```
-
-## Manual scratch cleanup
-
-When a job ends with an error, data may remain in the scratch directory. You should clean it up after retrieving any useful data.
-
-### Cleanup procedure
-
-You need:
-- The hostname where the job ran
-- The path to the scratch directory
-
-```bash
-# Log in to the compute node
-user123@skirit:~$ ssh user123@luna13.fzu.cz
-
-# Navigate to scratch directory
-user123@luna13:~$ cd /scratch/user123/job_14053410.pbs-m1.metacentrum.cz
-
-# Remove all contents (not the directory itself)
-user123@luna13:/scratch/user123/job_14053410.pbs-m1.metacentrum.cz$ rm -r *
+ssh user123@node.fzu.cz
+cd /scratch/user123/job_JOBID
+rm -r *
 ```
 
 <Callout type="info">
-    Users have permissions for `rm -rf $SCRATCHDIR/*` but not `rm -rf $SCRATCHDIR`. The scratch directory itself is deleted automatically after some time.
+    Use `go_to_scratch <job_number>` to access scratch after job failure. The scratch directory itself is deleted automatically.
 </Callout>
 
-### Helpful scratch management
-
-**Record scratch info in your job:**
+### Automatic cleanup with trap
 
 ```bash
-DATADIR=/storage/brno12-cerit/home/user123/test_directory
-echo "$PBS_JOBID is running on node `hostname -f` in $SCRATCHDIR" >> $DATADIR/jobs_info.txt
+trap 'clean_scratch' EXIT TERM  # Clean on normal exit or termination
+trap 'echo "$PBS_JOBID failed at $SCRATCHDIR" >> log.txt' TERM  # Log for manual cleanup
 ```
 
-This creates a record that helps you find scratch directories when jobs fail.
-
-**Conditional cleanup:**
-
-```bash
-# Copy output, don't fail if cleanup has issues
-cp h2o.out $DATADIR/ || export CLEAN_SCRATCH=false
-
-# SCRATCH is auto-cleaned only if previous command succeeded
-```
-
-## Advanced scratch management
-
-### Trap command for automatic cleanup
-
-Use the `trap` command to ensure scratch is cleaned up even when jobs fail unexpectedly.
-
-#### Clean on normal exit
-
-```bash
-trap 'clean_scratch' EXIT
-```
-
-This runs when the script finishes normally (or via `exit` command).
-
-#### Clean on job termination
-
-```bash
-trap 'clean_scratch' TERM
-```
-
-This runs when the job receives a SIGTERM signal (either from PBS killing it due to resource limits, or from you using `qdel`).
-
-<Callout type="warn" title="SIGTERM followed by SIGKILL">
-    When SIGTERM is received, you have approximately 10 seconds before SIGKILL terminates the job unconditionally. Cleanup operations must complete within this time.
-</Callout>
-
-#### Combined approach
-
-```bash
-trap 'clean_scratch' EXIT TERM
-```
-
-This cleans scratch for both normal exits and terminations.
-
-#### Recording failure location for manual cleanup
-
-If you need to retrieve data from scratch after failure:
-
-```bash
-trap 'echo "$PBS_JOBID job failed. Retrieve from $SCRATCHDIR on `hostname -f`" >> /storage/.../jobs_info.txt' TERM
-```
-
-This logs the scratch location instead of attempting large file operations that might not complete in time.
-
-For more on trap commands, see [Trap command usage](./jobs/trap-command).
+The `trap` command ensures scratch cleanup even when jobs fail. See [Trap command guide](./jobs/trap-command) for details.
 
 ## Custom output paths
 
@@ -493,144 +284,58 @@ qalter -W depend=afterok:job1_ID.pbs-m1.metacentrum.cz job2_ID.pbs-m1.metacentru
 
 ## Modifying job attributes
 
-You can modify attributes of **queued** jobs (status Q) using the `qalter` command.
-
-<Callout type="info">
-    Only queuing jobs can be modified with `qalter`. For running jobs that need changes, see the "Extend walltime" section below.
-</Callout>
-
-### Common modifications
-
-**Change resource requirements:**
+Modify **queued** jobs (status Q) with `qalter`:
 
 ```bash
-# Original submission
-qsub -l select=1:ncpus=150:mem=10gb -l walltime=1:00:00 job.sh
-
-# This will never start (150 CPUs on one machine is impossible)
 qalter -l select=1:ncpus=32:mem=10gb job_ID.pbs-m1.metacentrum.cz
-```
-
-**Add or modify walltime:**
-
-```bash
 qalter -l walltime=02:00:00 job_ID.pbs-m1.metacentrum.cz
 ```
 
-<Callout type="warn" title="Walltime limits">
-    Walltime can only be modified within the limits of the job's assigned queue. Increasing beyond the queue's maximum will fail.
+<Callout type="warn" title="Limits">
+    Walltime can only be modified within the queue's maximum. You must specify the entire `-l` attribute with `qalter`.
 </Callout>
 
-**Remove obsolete parameters:**
-
-```bash
-# Remove obsolete GPU capability parameter
-qalter -l select=1:ncpus=1:ngpus=1:mem=10gb job_ID.pbs-m1.metacentrum.cz
-```
-
-<Callout type="info">
-    When using `qalter`, you must specify the entire `-l` attribute including unchanged parts.
-</Callout>
-
-For more on modifying job attributes, see [Modify job attributes guide](./jobs/modify-job-attributes).
+For running jobs, see "Extend walltime" below. For more, see [Modify job attributes guide](./jobs/modify-job-attributes).
 
 ## Extend walltime for running jobs
 
-The `qextend` command allows you to extend the walltime of **running** jobs.
-
-### Extending a job
+Extend walltime of **running** jobs with `qextend`:
 
 ```bash
-qextend job_ID.pbs-m1.metacentrum.cz 01:00:00
+qextend job_ID.pbs-m1.metacentrum.cz 01:00:00  # hh:mm:ss or seconds
 ```
 
-Time can be specified as:
-- A single number (seconds)
-- `hh:mm:ss` format
+**Limits**: Max 20 times/month AND 1440 CPU-hours/month (CPU-hours = walltime × ncpus)
 
 ```bash
-(BUSTER)user123@skirit:~$ qextend 8152779.pbs-m1.metacentrum.cz 01:00:00
-The walltime of the job 8152779.pbs-m1.metacentrum.cz has been extended.
-Additional walltime:	01:00:00
-New walltime:		02:00:00
+qextend info  # Check your quota
 ```
 
-### Usage limits
+Array jobs require support contact: meta@cesnet.cz
 
-To prevent abuse, `qextend` is limited by:
-- Maximum 20 times within the last 30 days, **AND**
-- Maximum 1440 CPU-hours of extension within the last 30 days
-
-<Callout type="info">
-    CPU-hours are not walltime hours. For a job running on 8 CPUs, extending by 1 hour uses 8 hours from your fund.
-</Callout>
-
-### Checking your quota
-
-```bash
-qextend info
-```
-
-This shows your:
-- Counter limit (usage count)
-- CPU-time fund (usage in CPU-hours)
-- Available remaining quota
-- When the oldest extension "expires" from the 30-day window
-
-<Callout type="info" title="Exceeded quota">
-    If you hit the monthly limit and still need to extend a job, contact user support at meta@cesnet.cz.
-</Callout>
-
-<Callout type="info" title="Array jobs">
-    `qextend` works only on simple jobs. To extend an array job, contact user support at meta@cesnet.cz.
-</Callout>
-
-For more on extending walltime, see [Extend walltime guide](./jobs/extend-walltime).
+For more, see [Extend walltime guide](./jobs/extend-walltime).
 
 ## Module span management
 
-### Conflicting modules
-
-Loading multiple modules with conflicting dependencies can cause errors. Use subshells to isolate module usage:
+For conflicting modules, use subshells to isolate environments:
 
 ```bash
-# First computation with its own module environment
-(module add python/3.8.0-gcc; python my_script1.py <input1 >output1)
-
-# Second computation with different module environment
-(module add python/3.8.0-gcc-rab6t; python my_script2.py <input2 >output2)
+(module add python/3.8.0-gcc; python script.py)  # Independent module environment
 ```
-
-Each subshell loads its own modules and automatically unloads them when the subshell exits.
-
-### Displaying module information
 
 ```bash
-module display module_name  # Show module details including environment variables
+module display module_name  # Show module details
 ```
 
-Important variables set by modules:
-- `PATH` – path to executables
-- `LD_LIBRARY_PATH` – path to libraries for the linker
-- `LIBRARY_PATH` – path to libraries
+`module display` shows key variables: `PATH`, `LD_LIBRARY_PATH`, `LIBRARY_PATH`.
 
-For more on modules, see [Software modules guide](../software/modules).
+For more, see [Software modules guide](../software/modules).
 
 ## Research group annual report
 
-Research groups are asked to submit annual reports by the end of January. The report should include:
+Submit annual reports by end of January: group name/members/contact, research interests, contributions (hardware, software), projects, publications.
 
-1. Group name
-2. Contact address
-3. List of group members
-4. Summary of research interests
-5. Hardware contributed to MetaCentrum (if applicable)
-6. Most frequently used MetaCentrum software
-7. New software developed (if applicable)
-8. List of research projects using MetaCentrum resources, with brief descriptions
-9. List of publications with MetaCentrum/CERIT-SC acknowledgements
-
-Reports can be in English or Czech, in any file format. Send to [annual-report@metacentrum.cz](mailto:annual-report@metacentrum.cz).
+Send to [annual-report@metacentrum.cz](mailto:annual-report@metacentrum.cz).
 
 ## Additional resources
 
@@ -646,42 +351,10 @@ Reports can be in English or Czech, in any file format. Send to [annual-report@m
 
 ## Web-based job running with usegalaxy.cz
 
-As an alternative to command-line job submission, you can run computational jobs through **usegalaxy.cz**, a web-based platform provided by e-INFRA CZ / MetaCentrum together with ELIXIR CZ.
+As an alternative to command-line job submission, use **usegalaxy.cz** – a web-based platform providing thousands of tools, large data quotas (250 GB for e‑INFRA CZ login), and workflow support.
 
-As an alternative to command-line job submission, you can run computational jobs through **usegalaxy.cz**, a web-based platform provided by e-INFRA CZ / MetaCentrum together with ELIXIR CZ.
+**Access**: https://usegalaxy.cz – log in with e-INFRA CZ or Life Science credentials
 
-### Features
+**When useful**: Web interface preference, available Galaxy tools, workflow building, avoiding script writing
 
-- **Thousands of tools** from various scientific domains (bioinformatics, ecology, chemistry, NLP, climate science, social sciences, and more)
-- **Web interface** – no need to write batch scripts or use command line
-- **Large data quotas** – 250 GB for e‑INFRA CZ login, 50 GB for Life Science login
-- **Workflow support** – create, share, and publish computational pipelines
-- **Intuitive interface** – tools panel, submission forms, and result history
-- **Training resources** – access to Galaxy Training Network tutorials
-
-### Access and quotas
-
-**Website:** https://usegalaxy.cz – log in with e-INFRA CZ or Life Science credentials
-
-| Resource                  | Limit (standard)                          |
-|---------------------------|-------------------------------------------|
-| **Storage**               | 250 GB (e‑INFRA CZ Login)<br/>50 GB (Life Science Login)        |
-| **Concurrent jobs**       | 10 jobs                |
-| **Maximum single dataset**| 50 GB                                      |
-
-### When to use usegalaxy.cz
-
-- You prefer a web interface over command-line tools
-- Your field has Galaxy tools available
-- You need to build and share computational workflows
-- You're working with common bioinformatics or data science tools
-- You want to avoid writing and debugging batch scripts
-
-### Getting more resources
-
-If you need additional storage, compute, or concurrency for your research, contact galaxy@cesnet.cz. The team can also:
-- Install additional tools
-- Help wrap new tools for Galaxy
-- Collaborate on designing workflows
-
-For detailed information about usegalaxy.cz, see the [usegalaxy.cz guide](../graphical/usegalaxy).
+**More resources**: For detailed features and quotas, see [usegalaxy.cz guide](../graphical/usegalaxy).
