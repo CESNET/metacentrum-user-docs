@@ -137,7 +137,7 @@ Alternatively, you can specify resources on the command line. In this case, the 
 An interactive job is requested via `qsub -I` command (uppercase "i").
 
 ```bash
-    (BUSTER)user123@skirit:~$ qsub -I -l select=1:ncpus=4 -l walltime=2:00:00 # submit interactive job 
+    (BUSTER)user123@skirit:~$ qsub -I -l select=1:ncpus=4:mem=10gb:scratch_local=10gb -l walltime=2:00:00 # submit interactive job 
     qsub: waiting for job 13010171.pbs-m1.metacentrum.cz to start
     qsub: job 13010171.pbs-m1.metacentrum.cz ready # 13010171.pbs-m1.metacentrum.cz is the job ID
     (BULLSEYE)user123@elmo3-1:~$ # elmo3-1 is computational node
