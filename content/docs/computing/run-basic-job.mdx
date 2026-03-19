@@ -26,23 +26,25 @@ For the full list of frontends, their locations, and detailed login instructions
 
 MetaCentrum distributed ecosystem consists of **compute clusters** (or "compute nodes", where the HPC computing itself is done), **storage servers** (a space for user data where users' home directories are) and **frontends** (nodes dedicated for logging in).
 
+The operating system used within MetaCentrum is Debian Linux.
+
 Each frontend has a native home directory on a storage server. After logging in, you can access any storage from a given frontend.
 
 Frontends are shared by all users and are **not** intended for heavy computing. Use them only for data preparation, job management, or light compiling.
 
 For detailed infrastructure information see [Frontend & Storage guide](../computing/infrastructure/frontend-storage).
 
-## Basic job concepts
-
-### Batch job vs interactive job
+## Running jobs
 
 **Batch job**: Non-interactive: submit script and it runs independently (primary choice for grid computing)
 
 **Interactive job**: Reserve resources, then work interactively (useful for testing, compiling, running [GUI apps](../software/graphical-access))
 
-## Your first batch job
+### Your first batch job
 
-TODO: something they can copy paste
+<Callout type="info" title="TODO">
+    Substitute the abstracta with some Helloworld script they can copy paste
+</Callout>
 
 ```bash
 #!/bin/bash
@@ -56,10 +58,6 @@ module add software_name
 run_calculation
 cp results.txt $DATADIR/
 clean_scratch
-
-
-
-TODO: substiitute with Hello world script
 ```
 
 Essential resources: `select` (number of chunks), `ncpus`, `mem`, `scratch_local`, `walltime`
@@ -68,27 +66,41 @@ Essential resources: `select` (number of chunks), `ncpus`, `mem`, `scratch_local
 qsub myJob.sh  # submit job, returns job ID
 ```
 
+### Your first interactive job
+
+<Callout type="info" title="TODO">
+    Substitute the abstracta with some Helloworld script they can copy paste
+</Callout>
+
 ## Software modules
 
+Software in MetaCentrum is installed in so-called **modules**. To be able to use a software, you have to load it first by `module add`.
+
 ```bash
-module avail tool/       # list versions
-module add tool          # load default version
-module list              # show loaded modules
+module avail amber/       # list existing versions of "amber" module
+module add amber          # load default version of amber
+module list               # show loaded modules
 ```
 
 <Callout type="info" title="Module search">
-    Use wildcards to search: `module avail *python*`. Add `/` to see versions within a module directory.
+    You can use wildcards to search: `module avail *python*`. Add `/` to see versions within a module directory.
 </Callout>
 
-## Monitoring jobs
+## Job management
 
 ```bash
-qstat -u username       # list your jobs
+qstat -u username          # list your running and queuing jobs
+qstat -x -u username       # list your running, queuing and finished jobs
 ```
 
 Status codes: `Q`=queued, `R`=running, `F`=finished
 
+```bash
+qdel jobID       # delete a job
+```
+
 Output files (in submission directory):
+
 - `jobname.o<jobID>` – standard output
 - `jobname.e<jobID>` – errors (check here first if job fails)
 
@@ -107,6 +119,10 @@ Now that you understand the basics, you can:
 - Check [GPU resources](./gpu-comput)
 - Try usegalaxy.cz [web interface](../graphical/usegalaxy) – an alternative way to run jobs in a web-based platform with workflow support.
 
+<Callout type="info" title="TODO">
+    Review the selected list of advanced topics
+</Callout>
+
 ## Troubleshooting basics
 
 If your job fails:
@@ -119,7 +135,7 @@ For more advanced troubleshooting, see the [Advanced guide](./advanced).
 
 ## Acknowledgements
 
-Publications created with MetaCentrum support must include the e-INFRA CZ acknowledgement (ID:90254) and be submitted to the [publications system](https://publications.e-infra.cz/all-publications). For ELIXIR CZ resources, please use ID:90255.
+Publications created with MetaCentrum support must be submitted to the [publications system](https://publications.e-infra.cz/all-publications) and acknowledged.
 
->Computational resources were provided by the e-INFRA CZ project (ID:90254),
->supported by the Ministry of Education, Youth and Sports of the Czech Republic.
+See [Terms and conditions](../access/terms) for an up-to-date acknowlewdgement wording.
+
