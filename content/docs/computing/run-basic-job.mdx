@@ -24,21 +24,25 @@ For the full list of frontends, their locations, and detailed login instructions
 
 ## Understanding the architecture
 
-MetaCentrum connects distributed compute clusters. Each frontend has a native home directory on a storage server. You can access any storage from any frontend.
+MetaCentrum distributed ecosystem consists of **compute clusters** (or "compute nodes", where the HPC computing itself is done), **storage servers** (a space for user data where users' home directories are) and **frontends** (nodes dedicated for logging in).
 
-Frontends are shared by all users and are **not** intended for heavy computing. Use them only for data preparation, job management, or light compiling. For computing, use batch or interactive jobs.
+Each frontend has a native home directory on a storage server. After logging in, you can access any storage from a given frontend.
 
-For detailed infrastructure information see [Frontend & Storage guide](../infrastructure/frontend-storage).
+Frontends are shared by all users and are **not** intended for heavy computing. Use them only for data preparation, job management, or light compiling.
+
+For detailed infrastructure information see [Frontend & Storage guide](../computing/infrastructure/frontend-storage).
 
 ## Basic job concepts
 
 ### Batch job vs interactive job
 
-**Batch job**: Non-interactive, submit script and it runs independently (primary choice for grid computing)
+**Batch job**: Non-interactive: submit script and it runs independently (primary choice for grid computing)
 
 **Interactive job**: Reserve resources, then work interactively (useful for testing, compiling, running [GUI apps](../software/graphical-access))
 
 ## Your first batch job
+
+TODO: something they can copy paste
 
 ```bash
 #!/bin/bash
@@ -52,6 +56,10 @@ module add software_name
 run_calculation
 cp results.txt $DATADIR/
 clean_scratch
+
+
+
+TODO: substiitute with Hello world script
 ```
 
 Essential resources: `select` (number of chunks), `ncpus`, `mem`, `scratch_local`, `walltime`
