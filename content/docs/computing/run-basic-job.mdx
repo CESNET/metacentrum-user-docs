@@ -42,29 +42,51 @@ For detailed infrastructure information see [Frontend & Storage guide](../comput
 
 ### Your first batch job
 
-<Callout type="info" title="TODO">
-    Substitute the abstracta with some Helloworld script they can copy paste
-</Callout>
+Example: create a file called `batch_job_example.sh` with the following content:
+
 
 ```bash
 #!/bin/bash
-#PBS -N my_job
-#PBS -l select=1:ncpus=4:mem=4gb:scratch_local=10gb -l walltime=1:00:00
 
-DATADIR=/storage/cityXY/home/user/data
-cp $DATADIR/input.txt $SCRATCHDIR
-cd $SCRATCHDIR
-module add software_name
-run_calculation
-cp results.txt $DATADIR/
+# name of the job (not neccessary)
+#PBS -N batch_job_example                           
+
+# reserve 1 CPU, 1 GB RAM, 1 GB disc space
+#PBS -l select=1:ncpus=1:mem=1gb:scratch_local=1gb  
+
+# run the job max 1 hour
+#PBS -l walltime=1:00:00                            
+
+# name of output file
+outfile=output.${PBS_JOBID}
+
+# go to scratchdir 
+cd ${SCRATCHDIR}
+
+# create the output file
+touch ${outfile}
+
+# print out the basic info about the job 
+echo -e "Hello world at `date` from user ${USER}!\n" >> ${outfile}
+echo -e "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR\n" >> ${outfile}
+
+# copy the output file to the directory from where the
+# job was submitted
+cp ${outfile} ${PBS_O_WORKDIR}/
+
+# apply a scratch automatic cleanup utility
+# (though not needed in this case)
 clean_scratch
 ```
-
-Essential resources: `select` (number of chunks), `ncpus`, `mem`, `scratch_local`, `walltime`
+Run the job as
 
 ```bash
-qsub myJob.sh  # submit job, returns job ID
+qsub batch_job_example.sh  # submit job, returns job ID
 ```
+
+After a short time, a new file `output.<jobID>` will appear in the directory from where the job was submitted, as well as default files `batch_job_example.o<jobID>` (STDOUT file) and `batch_job_example.e<jobID>` (STDERR; should be empty).
+
+
 
 ### Your first interactive job
 
