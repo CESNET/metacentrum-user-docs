@@ -17,8 +17,9 @@ In case you want to generate the static pages locally (could be useful for large
 1. Clone the CESNET/metacentrum-user-docs repo `git clone https://github.com/CESNET/metacentrum-user-docs`
 2. Clone CERIT-SC/fumadocs repo with some objects common to all eInfra docs: `git clone https://github.com/CERIT-SC/fumadocs`
 3. Copy the required files `cp -r fumadocs/components/* metacentrum-user-docs/components/`
-4. Run the build
+4. Enter the directory `cd metacentrum-user-docs`
+5. Run the build
 ```bash
-docker  run -it --rm -p 3000:3000 -e STARTPAGE=/en/docs -v metacentrum-user-docs/public:/opt/fumadocs/public -v metacentrum-user-docs/components:/opt/fumadocs/components -v metacentrum-user-docs/content/docs:/opt/fumadocs/content/docs cerit.io/docs/fuma:v16.4.6 pnpm dev
+docker  run -it --rm -p 3000:3000 -e STARTPAGE=/en/docs -v ./public:/opt/fumadocs/public -v ./components:/opt/fumadocs/components -v ./content/docs:/opt/fumadocs/content/docs cerit.io/docs/fuma:v16.4.6 pnpm dev
 ```
-5. Documentation will be available at `http://localhost:3000/en/docs/welcome` and automatically rebuilt on source change
+6. Documentation will be available at `http://localhost:3000/en/docs/welcome` and automatically rebuilt on source change.
