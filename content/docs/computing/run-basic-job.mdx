@@ -86,13 +86,28 @@ qsub batch_job_example.sh  # submit job, returns job ID
 
 After a short time, a new file `output.<jobID>` will appear in the directory from where the job was submitted, as well as default files `batch_job_example.o<jobID>` (STDOUT file) and `batch_job_example.e<jobID>` (STDERR; should be empty).
 
-
-
 ### Your first interactive job
 
-<Callout type="info" title="TODO">
-    Substitute the abstracta with some Helloworld script they can copy paste
-</Callout>
+To run interactive job for 1 hour with 1 CPU, 400 MB RAM and 400 MB storage space:
+
+```bash
+(BOOKWORM)username@skirit:~$ qsub -I  -l select=1:ncpus=1:mem=400mb:scratch_local=400mb -l walltime=01:0:00
+```
+After a while, the job starts and you will be moved to one of compute nodes:
+
+```bash
+qsub: waiting for job 18359645.pbs-m1.metacentrum.cz to start
+qsub: job 18359645.pbs-m1.metacentrum.cz ready
+
+(BOOKWORM)username@tarkil16:~$ hostname
+tarkil16.grid.cesnet.cz
+(BOOKWORM)username@tarkil16:~$ echo $SCRATCHDIR
+/scratch/username/job_18359645.pbs-m1
+(BOOKWORM)username@tarkil16:~$ pwd
+/storage/praha1/home/username
+```
+
+Notice that the `home` directory has changed as well.
 
 ## Software modules
 
