@@ -2,7 +2,7 @@
 title: usegalaxy.cz
 ---
 
-[Galaxy](https://galaxyproject.org/) is a **web-based** solution for handling **large scientific datasets**, their computational processing, and tracking through the **provenance** of secondary datasets.
+[Galaxy](https://galaxyproject.org/) is a web-based platform for accessible, reproducible, and transparent computational research. Used by researchers across the globe to access public infrastructure.
 
 ![pic-landing](/img/meta/galaxy/usegalaxy-landing-page.png)
 
@@ -10,73 +10,47 @@ Having originated in the bioinformatics community, Galaxy spans numerous scienti
 
 The user community is worldwide, with main installations in the US, EU, and Australia, complemented with a network of national installations (usegalaxy.*).
 
-The Czech national service [usegalaxy.cz](https://usegalaxy.cz) is provided by [e-INFRA CZ](https://e-infra.cz) / [MetaCentrum](https://metacentrum.cz) together with [Elixir CZ](https://www.elixir-czech.cz).
+The Czech national service [usegalaxy.cz](https://usegalaxy.cz) is provided by [e-INFRA CZ](https://e-infra.cz) / [MetaCentrum](https://metacentrum.cz) together with [ELIXIR CZ](https://www.elixir-czech.cz).
 
-It **mirrors the toolset of the global public instances** [usegalaxy.org](https://usegalaxy.org), [usegalaxy.eu](https://usegalaxy.eu)) with **much larger quotas for Czech researchers** and their collaborators.
-
+It provides thousands of tools from various scientific domains and offers large data quotas for Czech researchers and their collaborators.
 
 
 ## Accessing usegalaxy.cz
 
-Web interface: https://usegalaxy.cz
+The web interface is available at https://usegalaxy.cz and requires users to log in with either `e-INFRA CZ` or `Life Science login`.
 
-![pic-login](/img/meta/galaxy/login-galaxy.png)
+- e-INFRA CZ login is available to virtually all Czech academia members via their own institutional credentials. It comes with 250 GB storage space on usegalaxy.cz.
+- [ELIXIR/Life‑Science](https://lifescience-ri.eu/ls-login/users/how-to-get-and-use-life-science-id.html) is even wider federation of institutions spanning basically the whole Europe and more. It comes with 50GB of storage quota.
 
+### User Quotas
 
-| Option    | Who can use it     | How to log in         | Typical quota       |
-|-----------|--------------------|-----------------------|---------------------|
-| **MetaCentrum account**       | Anyone with a valid MetaCentrum account (see below) | Use the e-INFRA CZ AAI Login | 200 GB storage, 10 concurrent jobs   |
-| **Life‑Science Login (ELIXIR AAI)** | Users registered in the [ELIXIR/Life‑Science](https://lifescience-ri.eu/ls-login/users/how-to-get-and-use-life-science-id.html) federated identity system | Click **Life Science Login** on the Galaxy login page | 50 GB storage, 10 concurrent jobs  |
+| Resource                  | Limit (standard)                          |
+|---------------------------|-------------------------------------------|
+| **Storage**               | 250 GB (e‑INFRA CZ Login)<br/>50 GB (Life Science Login)        |
+| **Concurrent jobs**       | 10 jobs                |
+| **Maximum single dataset**| 50 GB                                      |
 
-### How to obtain a MetaCentrum account 
-* Go to the [MetaCentrum application form](https://metavo.metacentrum.cz/en/application/index.html) 
-* Sign in via credentials from your institution (Czech academia)
-* Follow the instructions
+### Support requests
 
-### Linking your identities (recommended)
+Please feel free to ask for more resources by emailing galaxy@cesnet.cz.
 
-<Callout type="info">
-Tip: If you have both identities, link them in Galaxy. This prevents “missing data” problems when switching between log-ins.
-</Callout>
-
-
-1. Click on *User* in the top menu
-2. Select *Preferences*.
-3. Select *Manage Third-Party Identities*.
-4. Choose the other identity provider and authenticate yourself.
+Describe your project's needs to us and we will assist with increasing your storage/compute/concurrency or other resource quotas temporarily.
+We can also install more available tools, help you wrap a new tool for Galaxy, or collaborate on designing a workflow.
 
 ## Using usegalaxy.cz
+
 The user interface shows:
 * list of available **tools** (left)
 * **submission form** or **results** of computation (center)
 * **history**, i.e. set of files with their mutual provenance links (right)
 
-
 ![pic-galaxycz](/img/meta/galaxy/galaxycz.png)
-
 
 The [Galaxy Training Network GTN](https://training.galaxyproject.org/training-material/) hosts a large collection of tutorials ranging from basic to advanced topics.  
 
   * [Introduction to Galaxy for beginners](https://training.galaxyproject.org/training-material/topics/introduction/):  
     * Data import & export – FTP, HTTP, S3, etc.  
     * Workflow building – creating, sharing, and publishing pipelines
-
-<Callout type="info">
-Bookmark the GTN site; most of the tasks you’ll need are already documented there.
-</Callout>
-
-
-
-### User Quotas
-
-| Resource                  | Limit (standard)                          | How to request more                                            |
-|---------------------------|-------------------------------------------|----------------------------------------------------------------|
-| **Storage**               | 200 GB (MetaCentrum / E‑infra AAI)<br/>50 GB (Life‑Science Login)        | Send a request to **galaxy@cesnet.cz** with a short<br/>description of your needs.      |
-| **Concurrent jobs**       | 10 jobs per user (default)                | Same e‑mail address – we can raise the limit<br/> for large projects.        |
-| **Maximum single dataset**| 50 GB                                      | Split large files or ask for a temporary increase.            |
-
-If your research requires more storage, please reach out to us at galaxy@cesnet.cz with a description of your needs. All quota changes are evaluated case‑by‑case.
-
 
 ### FTP Upload – Step‑by‑Step
 
@@ -95,27 +69,24 @@ Additional steps are required in order to obtain a password for your FTP access:
 Note: The FTP password you set does not affect your Galaxy web login. Keep it safe, but you can reset it at any time via the same password-reset procedure.
 </Callout>
 
-### Common Tasks at a Glance
+### How to link multiple identities
 
-| Task                     | Quick command / UI steps | 
-|--------------------------|--------------------------| 
-| **Run a tool**           | Upload data → Choose a tool from the left panel → Fill parameters → Click “Run” |
-| **Create a workflow**    | History → Click the gear ⚙️ → “Create Workflow” → Add steps → Save |
-| **Share a dataset**      | Click the dataset’s pencil icon → “Share or Publish” → Add a user’s e‑mail or make the dataset public |
-| **Check job status**     | Top‑right History panel shows running/queued/completed jobs; click the i icon for details |
-| **Request more resources**| Email galaxy@cesnet.cz with a short description (quota, compute nodes, etc.) |
-| **Request another tool** | Email galaxy@cesnet.cz with a short description |
-| **Reset FTP password**   | Follow steps 2‑4 in the FTP Upload table above |
+If you have both e-infra and LSlogin identities you can link them in Galaxy. This prevents problems when switching between log-ins.
+
+1. Click on *User* in the top menu
+2. Select *Preferences*.
+3. Select *Manage Third-Party Identities*.
+4. Choose the other identity provider and authenticate yourself.
 
 ## References and Use Cases
 
 * [Presentation from MetaCenter HPC Seminar 9/2025](https://metavo.metacentrum.cz/export/sites/meta/cs/seminars/Seminar2025/Krenek_Galaxy_metausers_2025.pdf)
 * [National Repository Platform (NRP) Integration](/docs/graphical/galaxy-nrp-integration)
 
-Those video tutorials were given at the EOSC Symposium 2025:
+The following video presentations were delivered during the 2025 EOSC Symposium:
 * [4 different Communities (Bio, Astro, Earth, Climate) doing Imaging data analysis in Galaxy](https://gxy.io/eosc25)
 * [Earth Science use-case with Volcanoes](https://gxy.io/plume2bloom)
-* [Polish EOSC Node with a Baltic Sea use case about Harmful Algae Blooms](https://gxy.io/eosc-node-poland-demo)
+* [Harmful Algae Blooms in the Baltic Sea analysis](https://gxy.io/eosc-node-poland-demo)
 * [Social Science and Humanities about land-use plans and OCR](https://gxy.io/berd-eosc25)
 
 
