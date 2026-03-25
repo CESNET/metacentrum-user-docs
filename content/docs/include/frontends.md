@@ -11,7 +11,7 @@ title: Frontends table
 | oven.metacentrum.cz | | /storage/brno2 | Debian 12 | Brno | [oven node](https://docs.metacentrum.cz/en/docs/computing/infrastructure/specific-nodes#oven-node) only |
 | perian.grid.cesnet.cz | perian.metacentrum.cz, onyx.metacentrum.cz | /storage/brno2 | Debian 12 | Brno | |
 | skirit.grid.cesnet.cz | skirit.metacentrum.cz | /storage/brno2 | Debian 12 | Brno | |
-| skirit-lite.grid.cesnet.cz | skirit-lite.metacentrum.cz | /storage/brno2 | Debian 12 | Brno |for quick job management, script editing, or checking job status |
+| skirit-lite.ics.muni.cz | skirit-lite.metacentrum.cz | /storage/brno2 | Debian 12 | Brno |for quick job management, script editing, or checking job status |
 | tarkil.grid.cesnet.cz | tarkil.metacentrum.cz | /storage/praha1 | Debian 12 | Praha | |
 | tilia.ibot.cas.cz | tilia.metacentrum.cz | /storage/pruhonice1-ibot | Debian 12 | Pruhonice | |
 | zenith.cerit-sc.cz | zenith.metacentrum.cz | /storage/brno12-cerit | Debian 12 | Brno | |
