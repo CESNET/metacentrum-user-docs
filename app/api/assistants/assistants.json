@@ -8,5 +8,49 @@
                 "embed": false,
                 "enabled": true,
                 "description": "Answers from AI may be inaccurate, please verify the information.<br/>Ask a direct question or paste an error—only the first question searches the documentation; <b>for a new topic, use the button below.</b>"
-        }
+        },
+	{
+		"type": "category",
+		"name": "RunLLM",
+		"id": "runllm",
+		"enabled": true,
+		"assistants": [
+			{
+				"type": "assistant",
+				"id": "runllm_1202",
+				"name": "Generic",
+				"api_path": "/api/chat-runllm",
+				"engine": "runllm",
+				"enabled": true,
+                                "description": "Answers from AI may be inaccurate, please verify the information.<br/>Ask a direct question or paste an error—only the first question searches the documentation; <b>for a new topic, use the button below.</b><br/><b>Note: This variant uses an external service. If privacy is a concern, do not use it!</b>"
+			},
+			{
+				"type": "assistant",
+				"id": "runllm_1018",
+				"name": "Docker",
+				"api_path": "/api/chat-runllm",
+				"engine": "runllm",
+				"enabled": true,
+                                "description": "Answers from AI may be inaccurate, please verify the information.<br/>Ask a direct question or paste an error—only the first question searches the documentation; <b>for a new topic, use the button below.</b><br/><b>Note: This variant uses an external service. If privacy is a concern, do not use it!</b>"
+			},
+			{
+				"type": "assistant",
+				"id": "runllm_1086",
+				"name": "Postgres",
+				"api_path": "/api/chat-runllm",
+				"engine": "runllm",
+				"enabled": true,
+                                "description": "Answers from AI may be inaccurate, please verify the information.<br/>Ask a direct question or paste an error—only the first question searches the documentation; <b>for a new topic, use the button below.</b><br/><b>Note: This variant uses an external service. If privacy is a concern, do not use it!</b>"
+			},
+			{
+				"type": "assistant",
+				"id": "runllm_1158",
+				"name": "Nextflow",
+				"api_path": "/api/chat-runllm",
+				"engine": "runllm",
+				"enabled": true,
+                                "description": "Answers from AI may be inaccurate, please verify the information.<br/>Ask a direct question or paste an error—only the first question searches the documentation; <b>for a new topic, use the button below.</b><br/><b>Note: This variant uses an external service. If privacy is a concern, do not use it!</b>"
+			}
+		]
+	}
 ]
