@@ -1,7 +1,0 @@
-{
-  "title": "Security",
-  "pages": [
-    "connect-auth",
-    "kerberos"
-  ]
-}
