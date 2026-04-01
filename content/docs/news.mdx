@@ -9,6 +9,39 @@ Welcome to the MetaCentrum **Grid Computing News**.
 
 <a href="https://docs.cerit-sc.cz/en/docs/news" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes News</a>
 
+## 31/03/2026
+### New Clusters in MetaCentrum: Infrastructure Expansion with CESNET and CERIT-SC Resources
+
+New computing clusters owned by CESNET and CERIT-SC have been integrated into the MetaCentrum infrastructure. This hardware update increases CPU and GPU capacity.
+
+1. Owner: CESNET (hildor[1-20].metacentrum.cz, deimos[1-13].meta.zcu.cz, haldan[1-15].metacentrum.cz), České Budějovice, Plzeň, Brno (48 nodes / 6 144 CPU cores)
+
+2. Owner: CERIT-SC (grogu[1-3].cerit-sc.cz, grogu[4-8].cerit-sc.cz), Brno (8 nodes / 768 CPU cores / 12 GPUs)
+
+Link: [MetaCentrum Hardware List](https://metavo.metacentrum.cz/pbsmon2/hardware)
+
+
+
+## 24/03/2026
+### Skirit Frontend Upgrade and Introduction of "Lite" Version
+As part of our ongoing infrastructure improvements at MetaCentrum, we have completed a major upgrade of the Skirit frontend. To ensure a more stable and powerful environment for your work, we are migrating to new hardware and introducing a specialized lightweight version.
+ 
+**New Skirit: Full Power on New Hardware**
+
+The main frontend `skirit.metacentrum.cz` (alias `skirit.grid.cesnet.cz`) is now running on brand-new, high-performance hardware. This is the primary address we recommend for all new sessions.
+ 
+**New Skirit-Lite for Lightweight Tasks**
+
+The original Skirit hardware is not retiring; instead, it is transitioning into a new role. Under the new hostname skirit-lite.metacentrum.cz, it will serve as a "lightweight" frontend.
+
+* When to use Skirit-Lite? Ideal for quick job management, script editing, or checking job status.
+* When to use Standard Skirit? Recommended for demanding interactive work and operations requiring higher computational power directly on the frontend.
+
+**Important Migration Details**
+
+* SSH Key Changes: Due to the hardware swap and renaming, your SSH client may warn you about changed host keys. This is expected behavior in this case.
+* The work on the frontends will otherwise remain unchanged for users, and home directories will be preserved without any changes. 
+
 
 ## 09/02/2026
 ### Encryption for Interactive Jobs
