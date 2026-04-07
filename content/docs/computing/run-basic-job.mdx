@@ -12,15 +12,7 @@ MetaCentrum provides free computing resources to Czech academic institutions thr
 
 Before getting started you need an active MetaCentrum account (see [Account guide](../access/account)).
 
-## Getting started: Logging in
-
-Once you have an activated account connect to MetaCentrum using SSH with your username. Here we are using the `tarkil.metacentrum.cz` login server (frontend). You can use any frontend, but we recommend choosing one closest to your physical location to minimize network latency.
-
-```bash
-ssh your_username@tarkil.metacentrum.cz
-```
-
-For the full list of frontends, their locations, and detailed login instructions (including Windows/PuTTY), see the [Log in guide](../access/log-in).
+Once your account is activated, you can log in to the MetaCentrum infrastructure and start running jobs.
 
 ## Understanding the architecture
 
@@ -34,84 +26,180 @@ Frontends are shared by all users and are **not** intended for heavy computing. 
 
 For detailed infrastructure information see [Frontend & Storage guide](../computing/infrastructure/frontend-storage).
 
-## Running jobs
+## Running your first job
 
-**Batch job**: Non-interactive: submit script and it runs independently (primary choice for grid computing)
+This tutorial will guide you through the process of running a simple Python script on a compute node.
 
-**Interactive job**: Reserve resources, then work interactively (useful for testing, compiling, running [GUI apps](../software/graphical-access))
+Make sure to replace `myuser` with your username. In the bash commands, the `$` sign is used to indicate the command prompt, while the `>` sign is used to indicate the output of the command.
 
-### Your first batch job
+### 1. Input data
+Copy a **small** input file from your local computer to your _home_ directory via the chosen frontend (e.g., _tarkil_).
 
-Example: create a file called `batch_job_example.sh` with the following content:
+You can read more about handling large files in the [Data guide](../data/large-data) section.
 
+```bash
+user123@home_PC:~$ scp myfile.txt myuser@tarkil.metacentrum.cz:~
+> myuser@tarkil.metacentrum.cz's password:
+> myfile.txt          100%     10     2.9KB/s    00:00
+```
+
+We are using the `tarkil.metacentrum.cz` login server (frontend), however, we recommend choosing the one closest to your physical location to minimize the network latency – you can inspect the [List of Frontends](../computing/infrastructure/frontends).
+
+### 2. Log In
+
+Log in to the frontend server via _ssh_.
+
+```bash
+user123@home_PC:~$ ssh myuser@tarkil.metacentrum.cz
+> myuser@tarkil.metacentrum.cz's password:
+```
+
+For detailed login instructions (including Windows/PuTTY), see the [Log in guide](../access/log-in).
+
+### 3. Prepare a Python script
+
+Prepare a simple Python script that reads the input file and writes the number of lines to the output file.
+
+Either create it using _vim_ or _nano_ directly in your _home_, or copy it from your local computer. Save the script as `counter.py`:
+
+```python
+import sys
+
+infile = sys.argv[1]
+outfile = sys.argv[2]
+
+with open(infile, "r", encoding="utf-8") as f:
+    line_count = sum(1 for _ in f)
+with open(outfile, "w", encoding="utf-8") as f:
+    f.write(str(line_count))
+```
+
+Decide whether you want to run your job as a batch job or in interactive mode.
+
+<Callout type="info">
+    **Batch job**: Non-interactive: submit the script, and it will run independently (primary choice for grid computing).<br />
+    **Interactive job**: Reserve resources, then work interactively (useful for testing, compiling, running [GUI apps](../software/graphical-access)).
+</Callout>
+
+### 4.A Run a batch job
+
+In your _home_ prepare the shell script, which specifies the required resources for PBS, names the job _my_counter_, loads Python module, calls Python script and passes the input file to it, copies the output from scratch to _home_ directory and cleans up the scratch.
+
+The script is saved as `test.sh`:
 
 ```bash
 #!/bin/bash
 
-# name of the job (not neccessary)
-#PBS -N batch_job_example                           
+# run the job max 30 minutes
+#PBS -l walltime=0:30:00
 
-# reserve 1 CPU, 1 GB RAM, 1 GB disc space
+# reserve 1 CPU, 1 GB disc space and 1 GB RAM
 #PBS -l select=1:ncpus=1:mem=1gb:scratch_local=1gb  
 
-# run the job max 1 hour
-#PBS -l walltime=1:00:00                            
+# name of the job (not necessary)
+#PBS -N my_counter
 
-# name of output file
-outfile=output.${PBS_JOBID}
+# name a job info file
+outfile=job_info.${PBS_JOBID}
 
-# go to scratchdir 
+# load the python module
+module load python
+
+# copy the files to the scratch directory
+cp ${PBS_O_WORKDIR}/myfile.txt $SCRATCHDIR
+cp ${PBS_O_WORKDIR}/counter.py} $SCRATCHDIR
+
+# go to the scratchdir 
 cd ${SCRATCHDIR}
 
-# create the output file
+# create the job info file
 touch ${outfile}
 
-# print out the basic info about the job 
+# save a basic info about the job 
 echo -e "Hello world at `date` from user ${USER}!\n" >> ${outfile}
 echo -e "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR\n" >> ${outfile}
 
-# copy the output file to the directory from where the
-# job was submitted
+python counter.py myfile.txt out_count.txt
+
+# copy the outputs back to where qsub was called
 cp ${outfile} ${PBS_O_WORKDIR}/
+cp out_count.txt ${PBS_O_WORKDIR}/
 
 # apply a scratch automatic cleanup utility
-# (though not needed in this case)
 clean_scratch
 ```
-Run the job as
+
+Submit the job to PBS and check its status (`Q`=queued, `R`=running, `F`=finished).
 
 ```bash
-qsub batch_job_example.sh  # submit job, returns job ID
+myuser@tarkil:~$ qsub test.sh
+> 18411451.pbs-m1.metacentrum.cz
+myuser@tarkil:~$ qstat -xu myuser
+> Job ID          Name      User    S
+  -----------  ----------  ------   -
+  18411451...  my_counter  myuser   R
 ```
 
-After a short while these three files will be created in the directory from where the job was submitted:
+After a short while these files will be created in the directory from where the job was submitted:
 
-- `output.<jobID>` (output file your script has explicitly created)
-- `batch_job_example.o<jobID>` (default file with standard output --`STDOUT`)
-- `batch_job_example.e<jobID>` (default file with standard error -- `STDERR`; empty unless job logged errors)
-
-### Your first interactive job
-
-To run interactive job for 1 hour with 1 CPU, 400 MB RAM and 400 MB storage space:
+- `job_info.<jobID>.<server_name>` (output file with job info your batch script has explicitly created)
+- `out_count.txt` (output file created by the Python script with the number of lines in the input file written to it)
+- `my_counter.o<jobID>` (default file with standard output --`STDOUT`)
+- `my_counter.e<jobID>` (default file with standard error -- `STDERR`; empty unless the job logged errors)
 
 ```bash
-$ qsub -I  -l select=1:ncpus=1:mem=400mb:scratch_local=400mb -l walltime=01:0:00
+myuser@tarkil:~$ cat out_count.txt
+> 11
 ```
-After a while, the job starts and you will be moved to one of compute nodes:
+
+### 4.B Run an interactive job
+
+Request resources for the interactive job:
+```bash
+myuser@tarkil:~$ qsub -I -l walltime=00:30:00 -l select=1:ncpus=1:mem=1gb:scratch_local=1gb
+```
+Wait for the job to start – you will be moved to one of the compute nodes, where you can inspect the new environment.
 
 ```bash
-qsub: waiting for job 18359645.pbs-m1.metacentrum.cz to start
-qsub: job 18359645.pbs-m1.metacentrum.cz ready
+> qsub: waiting for job 18359645.pbs-m1.metacentrum.cz to start
+> qsub: job 18359645.pbs-m1.metacentrum.cz ready
 
-$ hostname
-tarkil16.grid.cesnet.cz
-$ echo $SCRATCHDIR
-/scratch/username/job_18359645.pbs-m1
-$ pwd
-/storage/praha1/home/username
+myuser@tarkil16:~$ hostname
+> tarkil16.grid.cesnet.cz
+myuser@tarkil16:~$ echo $SCRATCHDIR
+> /scratch/myuser/job_18359645.pbs-m1
+myuser@tarkil16:~$ pwd
+> /storage/praha1/home/myuser
 ```
 
-Notice that the `home` directory has changed as well.
+Run the commands specified in the batch job (load Python module and copy the files to the scratch directory) and enter the scratch directory.
+
+```bash
+myuser@tarkil16:~$ module load python
+myuser@tarkil16:~$ cp ${PBS_O_WORKDIR}/counter.py $SCRATCHDIR
+myuser@tarkil16:~$ cp ${PBS_O_WORKDIR}/myfile.txt $SCRATCHDIR
+myuser@tarkil16:~$ cd $SCRATCHDIR
+```
+
+Call the Python script with the input file and let it count the lines.
+
+```bash
+myuser@tarkil16:~$ python counter.py myfile.txt out_count.txt
+myuser@tarkil16:~$ cat out_count.txt
+> 11
+```
+
+Copy the output file back to where _qsub_ was run (your _home_) and clean the scratch.
+```bash
+myuser@tarkil16:~$ cp out_count.txt ${PBS_O_WORKDIR}/
+myuser@tarkil16:~$ clean_scratch
+```
+
+## Account maintenance
+
+**Renewal**: Accounts expire February 2nd. You'll be notified by email.
+
+**Security**: Use a strong password and never share credentials. For password changes and complete security rules, see [Account page](../access/account) and [Terms and conditions](../access/terms).
 
 ## Software modules
 
@@ -127,30 +215,6 @@ module list               # show loaded modules
     You can use wildcards to search: `module avail *python*`. Add `/` to see versions within a module directory.
 </Callout>
 
-## Job management
-
-```bash
-qstat -u username          # list your running and queuing jobs
-qstat -x -u username       # list your running, queuing and finished jobs
-```
-
-Status codes: `Q`=queued, `R`=running, `F`=finished
-
-```bash
-qdel jobID       # delete a job
-```
-
-Output files (in submission directory):
-
-- `jobname.o<jobID>` – standard output
-- `jobname.e<jobID>` – errors (check here first if job fails)
-
-## Account maintenance
-
-**Renewal**: Accounts expire February 2nd. You'll be notified by email.
-
-**Security**: Use a strong password and never share credentials. For password changes and complete security rules, see [Account page](../access/account) and [Terms and conditions](../access/terms).
-
 ## Next steps
 
 Now that you understand the basics, you can:
@@ -163,10 +227,10 @@ Now that you understand the basics, you can:
 ## Troubleshooting basics
 
 If your job fails:
-1. Check the error file (`*.e<jobID>`)
-2. Verify your input files exist and have correct permissions
-3. Check if software modules are loaded correctly
-4. Ensure you requested adequate resources (memory, walltime, scratch)
+1. Check the error file (`*.e<jobID>`).
+2. Verify your input files exist and have correct permissions.
+3. Check if software modules are loaded correctly.
+4. Ensure you requested adequate resources (memory, walltime, scratch).
 
 For more advanced troubleshooting, see the [Advanced guide](./advanced).
 
@@ -174,5 +238,5 @@ For more advanced troubleshooting, see the [Advanced guide](./advanced).
 
 Publications created with MetaCentrum support must be submitted to the [publications system](https://publications.e-infra.cz/all-publications) and acknowledged.
 
-See [Terms and conditions](../access/terms) for an up-to-date acknowlewdgement wording.
+See [Terms and conditions](../access/terms) for an up-to-date acknowledgement wording.
 
