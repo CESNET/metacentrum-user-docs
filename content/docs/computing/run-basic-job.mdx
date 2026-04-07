@@ -84,14 +84,18 @@ Run the job as
 qsub batch_job_example.sh  # submit job, returns job ID
 ```
 
-After a short time, a new file `output.<jobID>` will appear in the directory from where the job was submitted, as well as default files `batch_job_example.o<jobID>` (STDOUT file) and `batch_job_example.e<jobID>` (STDERR; should be empty).
+After a short while these three files will be created in the directory from where the job was submitted:
+
+- `output.<jobID>` (output file your script has explicitly created)
+- `batch_job_example.o<jobID>` (default file with standard output --`STDOUT`)
+- `batch_job_example.e<jobID>` (default file with standard error -- `STDERR`; empty unless job logged errors)
 
 ### Your first interactive job
 
 To run interactive job for 1 hour with 1 CPU, 400 MB RAM and 400 MB storage space:
 
 ```bash
-(BOOKWORM)username@skirit:~$ qsub -I  -l select=1:ncpus=1:mem=400mb:scratch_local=400mb -l walltime=01:0:00
+$ qsub -I  -l select=1:ncpus=1:mem=400mb:scratch_local=400mb -l walltime=01:0:00
 ```
 After a while, the job starts and you will be moved to one of compute nodes:
 
@@ -99,11 +103,11 @@ After a while, the job starts and you will be moved to one of compute nodes:
 qsub: waiting for job 18359645.pbs-m1.metacentrum.cz to start
 qsub: job 18359645.pbs-m1.metacentrum.cz ready
 
-(BOOKWORM)username@tarkil16:~$ hostname
+$ hostname
 tarkil16.grid.cesnet.cz
-(BOOKWORM)username@tarkil16:~$ echo $SCRATCHDIR
+$ echo $SCRATCHDIR
 /scratch/username/job_18359645.pbs-m1
-(BOOKWORM)username@tarkil16:~$ pwd
+$ pwd
 /storage/praha1/home/username
 ```
 
