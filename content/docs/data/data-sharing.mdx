@@ -152,7 +152,7 @@ Direct usage of `setfacl` and `getfacl` is possible in MetaCentrum.
 In this tutorial however we describe a `share-dir-nfsfacl` wrapper built over these commands.
 
 ```text
-share-dir-nfsfacl.py [-v] [-n] [-r] ACTION ...
+share-dir-nfsfacl [-v] [-n] [-r] ACTION ...
 
 ACTION forms:
   read      PATH LOGIN|GROUP|@GROUP
@@ -175,37 +175,37 @@ Common flags `-v` (verbose), `-n` (dry-run), `-r` (recursive) are accepted both 
 Share a directory for reading:
 
 ```bash
-share-dir-nfsfacl.py read /home/alice/share bob
+share-dir-nfsfacl read /home/alice/share bob
 ```
 
 Share a directory for read/write access:
 
 ```bash
-share-dir-nfsfacl.py readwrite /home/alice/share bob
+share-dir-nfsfacl readwrite /home/alice/share bob
 ```
 
 Share with a group:
 
 ```bash
-share-dir-nfsfacl.py read /home/alice/share @research
+share-dir-nfsfacl read /home/alice/share @research
 ```
 
 Show current ACLs (formatted):
 
 ```bash
-share-dir-nfsfacl.py show /home/alice/share
+share-dir-nfsfacl show /home/alice/share
 ```
 
 Show raw `getfacl` output:
 
 ```bash
-share-dir-nfsfacl.py show --raw /home/alice/share
+share-dir-nfsfacl show --raw /home/alice/share
 ```
 
 List logged changes:
 
 ```bash
-share-dir-nfsfacl.py list
+share-dir-nfsfacl list
 ```
 
 ### Undo behavior
@@ -213,8 +213,8 @@ share-dir-nfsfacl.py list
 **Basic undo**
 
 ```bash
-share-dir-nfsfacl.py undo /home/alice/share bob
-share-dir-nfsfacl.py undo -r /home/alice/share bob
+share-dir-nfsfacl undo /home/alice/share bob
+share-dir-nfsfacl undo -r /home/alice/share bob
 ```
 
 This removes:
@@ -225,7 +225,7 @@ This removes:
 **Undo including parent directories (dangerous)**
 
 ```bash
-share-dir-nfsfacl.py undo -p /home/alice/share bob
+share-dir-nfsfacl undo -p /home/alice/share bob
 ```
 
 Warning: `-p / --parent` removes the full ACL entry for that subject on parent directories up to the matched allowed root, here `/home/alice`. This can break other sharing setups.
@@ -237,7 +237,7 @@ Undo is best-effort: failures in undo commands are logged as warnings and proces
 Use `-n / --dry-run` with `read`, `readwrite`, or `undo` to preview remote `setfacl` commands without modifying ACLs.
 
 ```bash
-share-dir-nfsfacl.py readwrite -n -r /home/alice/share bob
+share-dir-nfsfacl readwrite -n -r /home/alice/share bob
 ```
 
 ### Verbose logging
