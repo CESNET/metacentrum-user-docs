@@ -1,7 +1,14 @@
 ---
 title: Scratch storages
 ---
-Scratch storage is a **storage for temporary files for running job**.
+Scratch storage is a **storage for temporary files for running job**:
+
+```bash
+...                                  # PBS params etc.
+cp -r ~/input_data_dir/ $SCRATCHDIR/ # copy data into a scratch directory
+cd $SCRATCHDIR                          
+...                                  # run the computing job
+```
 
 This storage should be used *only during computations* and should be freed immediately after your job ends. 
 
