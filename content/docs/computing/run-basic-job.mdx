@@ -12,7 +12,15 @@ MetaCentrum provides free computing resources to Czech academic institutions thr
 
 Before getting started you need an active MetaCentrum account (see [Account guide](../access/account)).
 
-Once your account is activated, you can log in to the MetaCentrum infrastructure and start running jobs.
+## Getting started: Logging in
+
+Once you have an activated account, connect to MetaCentrum using SSH with your username. Here we are using the `tarkil.metacentrum.cz` login server (frontend). You can use any frontend, but we recommend choosing the one closest to your physical location to minimize network latency.
+
+```bash
+ssh your_username@tarkil.metacentrum.cz
+```
+
+For the full list of frontends, their locations, and detailed login instructions (including Windows/PuTTY), see the [Log in guide](../access/log-in).
 
 ## Understanding the architecture
 
@@ -43,8 +51,6 @@ user123@home_PC:~$ scp myfile.txt myuser@tarkil.metacentrum.cz:~
 > myfile.txt          100%     10     2.9KB/s    00:00
 ```
 
-We are using the `tarkil.metacentrum.cz` login server (frontend), however, we recommend choosing the one closest to your physical location to minimize the network latency – you can inspect the [List of Frontends](../computing/infrastructure/frontends).
-
 ### 2. Log In
 
 Log in to the frontend server via _ssh_.
@@ -53,8 +59,6 @@ Log in to the frontend server via _ssh_.
 user123@home_PC:~$ ssh myuser@tarkil.metacentrum.cz
 > myuser@tarkil.metacentrum.cz's password:
 ```
-
-For detailed login instructions (including Windows/PuTTY), see the [Log in guide](../access/log-in).
 
 ### 3. Prepare a Python script
 
@@ -131,6 +135,9 @@ clean_scratch
 
 Submit the job to PBS and check its status (`Q`=queued, `R`=running, `F`=finished).
 
+Some useful PBS commands for managing jobs are `qstat -u username` (lists your running and queuing jobs), `qstat -x -u username` (lists your running, queuing and finished jobs) and
+`qdel jobID` (deletes a job).
+
 ```bash
 myuser@tarkil:~$ qsub test.sh
 > 18411451.pbs-m1.metacentrum.cz
@@ -140,12 +147,24 @@ myuser@tarkil:~$ qstat -xu myuser
   18411451...  my_counter  myuser   R
 ```
 
-After a short while these files will be created in the directory from where the job was submitted:
+<Callout type="info">
+When the job finishes, you can inspect the standard output and error files in the directory from where the job was submitted.
+- `jobname.o<jobID>` – standard output (_STDOUT_).
+- `jobname.e<jobID>` – standard error output (_STDERR_) – check here first if a job fails.
+</Callout>
 
-- `job_info.<jobID>.<server_name>` (output file with job info your batch script has explicitly created)
+When the job finishes, in your _home_ you can inspect the standard output and error files and the output files, which were created by the job.
+
+
+```bash
+myuser@tarkil:~$ ls
+> 18411451.pbs-m1.metacentrum.cz  counter.py  my_counter.o18411451  my_counter.e18411451  out_count.txt  test.sh
+```
+
+- `my_counter.o18411451` (default file with standard output)
+- `my_counter.e18411451` (default file with standard error; empty unless the job logged errors)
+- `18411451.pbs-m1.metacentrum.cz` (output file with job info your batch script has explicitly created)
 - `out_count.txt` (output file created by the Python script with the number of lines in the input file written to it)
-- `my_counter.o<jobID>` (default file with standard output --`STDOUT`)
-- `my_counter.e<jobID>` (default file with standard error -- `STDERR`; empty unless the job logged errors)
 
 ```bash
 myuser@tarkil:~$ cat out_count.txt
