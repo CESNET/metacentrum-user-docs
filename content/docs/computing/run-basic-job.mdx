@@ -85,7 +85,7 @@ Decide whether you want to run your job as a batch job or in interactive mode.
     **Interactive job**: Reserve resources, then work interactively (useful for testing, compiling, running [GUI apps](../software/graphical-access)).
 </Callout>
 
-### 4.A Run a batch job
+### 4. (A) Run as a batch job
 
 In your _home_ prepare the shell script, which specifies the required resources for PBS, names the job _my_counter_, loads Python module, calls Python script and passes the input file to it, copies the output from scratch to _home_ directory and cleans up the scratch.
 
@@ -171,7 +171,9 @@ myuser@tarkil:~$ cat out_count.txt
 > 11
 ```
 
-### 4.B Run an interactive job
+### 5. (B) Run as an interactive job
+
+As an alternative you can run a very similar job interactively.
 
 Request resources for the interactive job:
 ```bash
