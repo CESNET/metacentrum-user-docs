@@ -24,11 +24,11 @@ For the full list of frontends, their locations, and detailed login instructions
 
 ## Understanding the architecture
 
-MetaCentrum distributed ecosystem consists of **compute clusters** (or "compute nodes", where the HPC computing itself is done), **storage servers** (a space for user data where users' home directories are) and **frontends** (nodes dedicated for logging in).
+MetaCentrum distributed ecosystem consists of **compute clusters** (or "compute nodes", where the high performance computing itself is done), **storage servers** (a space for user data where users' home directories are) and **frontends** (nodes dedicated for logging in). 
 
-The operating system used within MetaCentrum is Debian Linux.
+The operating system used within MetaCentrum is Debian Linux. The system you will interact with for scheduling jobs is [Portable Batch System](https://en.wikipedia.org/wiki/Portable_Batch_System) (PBS).
 
-Each frontend has a native home directory on a storage server. After logging in, you can access any storage from a given frontend.
+Each frontend has a native home directory on a storage server. After logging in, you can access any storage from a given frontend. Every compute node has a fast local disk usually referred to as [scratch](../computing/infrastructure/scratch-storages).
 
 Frontends are shared by all users and are **not** intended for heavy computing. Use them only for data preparation, job management, or light compiling.
 
@@ -87,7 +87,15 @@ Decide whether you want to run your job as a batch job or in interactive mode.
 
 ### 4. (A) Run as a batch job
 
-In your _home_ prepare the shell script, which specifies the required resources for PBS, names the job _my_counter_, loads Python module, calls Python script and passes the input file to it, copies the output from scratch to _home_ directory and cleans up the scratch.
+In your _home_ prepare a shell script, which:
+
+- specifies the requested resources for PBS
+- names the job _my_counter_
+- loads Python module
+- copies the script and its inputs to `scratch` (fast disk local to the machine)
+- calls Python script and passes the input file to it
+- copies the output from scratch to _home_ directory
+- cleans up the scratch
 
 The script is saved as `test.sh`:
 
@@ -104,7 +112,7 @@ The script is saved as `test.sh`:
 #PBS -N my_counter
 
 # name a job info file
-outfile=job_info.${PBS_JOBID}
+infofile=job_info.${PBS_JOBID}
 
 # load the python module
 module load python
@@ -117,16 +125,16 @@ cp ${PBS_O_WORKDIR}/counter.py} $SCRATCHDIR
 cd ${SCRATCHDIR}
 
 # create the job info file
-touch ${outfile}
+touch ${infofile}
 
 # save a basic info about the job 
-echo -e "Hello world at `date` from user ${USER}!\n" >> ${outfile}
-echo -e "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR\n" >> ${outfile}
+echo -e "Hello world at `date` from user ${USER}!\n" >> ${infofile}
+echo -e "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR\n" >> ${infofile}
 
 python counter.py myfile.txt out_count.txt
 
 # copy the outputs back to where qsub was called
-cp ${outfile} ${PBS_O_WORKDIR}/
+cp ${infofile} ${PBS_O_WORKDIR}/
 cp out_count.txt ${PBS_O_WORKDIR}/
 
 # apply a scratch automatic cleanup utility
