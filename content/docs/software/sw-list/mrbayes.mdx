@@ -82,6 +82,16 @@ end;
 
 Lines at the and (`sump` and `sumt`) are mostly necessary for 3.2 version, because they summarize the results.
 
+### Multithreading usage
+
+MrBayes can be multithreaded using OpenMPI, which is loaded automatically with the main MrBayes module.
+
+```bash
+mpirun mb input_file.nex
+```
+
+The number of threads used is automatically based on the PBS value `ncpus`.
+
 ### Usage with Parallel
 
 If you need to run more MrBayes runs in parallel (for example for more genes separately), one of possibilities is use of [Parallel](./parallel), which is library allowing user to launch more parallel processes on more CPU cores or computers. Basic use can look like this:
