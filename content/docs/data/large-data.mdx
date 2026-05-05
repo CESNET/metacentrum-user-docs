@@ -41,12 +41,6 @@ Windows users need an SFTP client, we recommend the WinSCP application. Keep in 
 5.    `put target_file` Upload target file to server
 6.    `put -r target_directory` Upload target directory to server
 
-<Callout type="info" title="Bug">
-There is a bug affecting Ubuntu 14.04+ concerning the recursive copy command. If `put -r` fails, create the target directory on the server first to work around this issue.
-</Callout>
-
-![SFTP screenshot bug](/img/meta/data/useful-commands-sftp-bug.png)
-
 ### `rsync`
 
 The `rsync` command is a more advanced and versatile copying tool. It enables the user to synchronize the content of two directories in a more efficient way than scp, because `rsync` copies only the differences between the directories. Therefore it is often used as a tool for regular backups.
