@@ -17,20 +17,27 @@ Apart from the **cerit storages** (those with "cerit" in the name of the server)
 
 On storage servers, only the following commands are available:
 ```
-/usr/bin/scp,
-/usr/lib/sftp-server,
-/bin/cp,
-/bin/ls,
-/bin/tar,
-/bin/cat,
-/bin/dd,
-/bin/rm,
-/bin/mkdir,
-/bin/mv,
-/bin/rmdir,
-/bin/chmod,
-/usr/bin/gzip,
-/usr/bin/gunzip
+cat
+chmod
+cp
+dd
+du
+getfacl
+gunzip
+gzip
+ls
+mkdir
+mv
+ncdu2
+rm
+rmdir
+rsync
+s3cmd
+s5cmd
+scp
+setfacl
+ssh
+tar
 ```
 <Callout type="warn" title="No ssh by login and password to storage-du-cesnet.metacentrum.cz">
 Since April 2023, CESNET Storage department service does not allow to log in to their servers by login and password. To `ssh` to `storage-du-cesnet.metacentrum.cz`, users have to use either Kerberos ticket or ssh keys. See more on [Cesnet Storage Department service pages](https://du.cesnet.cz/en/novinky/start).
