@@ -7,6 +7,7 @@ const StorageTable = () => {
     { server: 'storage-brno11-elixir.metacentrum.cz', directory: '/storage/brno11-elixir/', backupClass: 2, note: 'dedicated to ELIXIR-CZ' },
     { server: 'storage-brno12-cerit.metacentrum.cz', directory: '/storage/brno12-cerit/', backupClass: 2, note: '' },
     { server: 'storage-plzen1.metacentrum.cz', directory: '/storage/plzen1/', backupClass: 2, note: '' },
+    { server: 'storage-plzen2-zcu.metacentrum.cz', directory: '/storage/plzen2-zcu/', backupClass: 3, note: 'dedicated to ZČU groups' },
     { server: 'storage-plzen4-ntis.metacentrum.cz', directory: '/storage/plzen4-ntis/', backupClass: 3, note: 'dedicated to iti/kky groups' },
     { server: 'storage-praha2-natur.metacentrum.cz', directory: '/storage/praha2-natur/', backupClass: 0, note: '' },
     { server: 'storage-praha6-fzu.metacentrum.cz', directory: '/storage/praha6-fzu/', backupClass: 0, note: '' },

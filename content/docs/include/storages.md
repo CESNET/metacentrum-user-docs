@@ -10,6 +10,7 @@ title: Storages table
 | storage-brno11-elixir.metacentrum.cz |  /storage/brno11-elixir/ |  2 |  dedicated to ELIXIR-CZ |
 | storage-brno12-cerit.metacentrum.cz |  /storage/brno12-cerit/ |  2 |   |
 | storage-plzen1.metacentrum.cz |  /storage/plzen1/ |  2 |   |
+| storage-plzen2-zcu.metacentrum.cz |  /storage/plzen2-zcu/ |  3 |  dedicated to ZČU groups |
 | storage-plzen4-ntis.metacentrum.cz |  /storage/plzen4-ntis/ |  3 |  dedicated to iti/kky groups |
 | storage-praha2-natur.metacentrum.cz |  /storage/praha2-natur/ |  0 |   |
 | storage-praha6-fzu.metacentrum.cz |  /storage/praha6-fzu/ |  0 |   |
