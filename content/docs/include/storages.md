@@ -6,7 +6,7 @@ title: Storages table
 
 | Server | Directory | Backup Class | Note |
 |--------|-----------|--------------|------|
-| storage-brno2.metacentrum.cz |  /storage/brno2/ | backupC 2 |   |
+| storage-brno2.metacentrum.cz |  /storage/brno2/ | 2 |   |
 | storage-brno11-elixir.metacentrum.cz |  /storage/brno11-elixir/ |  2 |  dedicated to ELIXIR-CZ |
 | storage-brno12-cerit.metacentrum.cz |  /storage/brno12-cerit/ |  2 |   |
 | storage-plzen1.metacentrum.cz |  /storage/plzen1/ |  2 |   |
