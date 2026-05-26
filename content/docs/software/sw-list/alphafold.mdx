@@ -2,6 +2,8 @@
 title: AlphaFold
 ---
 ```bash
+Alphafold at Kubernetes # Kubernetes Foldify web app
+Alphafold at OnDemand   # MetaCentrum OnDemand web app
 ls /storage/brno11-elixir/projects/alphafold/ # available as Singularity image
 ```
 
@@ -108,4 +110,27 @@ Add MSAs from our `mmseqs` server, the use `out.json` with AF3:
 mamba activate abcfold-1.0.8
 python $CONDA_PREFIX/lib/python3.11/site-packages/abcfold/scripts/add_mmseqs_msa.py --input_json in.json --output_json out.json --cerit_server
 ```
+
+{*/
+## Related apps
+
+### Alphafind
+
+The CERIT-SC has launched the second generation of AlphaFind. This fast and reliable tool for discovering similar protein structures combines massive datasets with advanced machine learning and high-performance computing power. The service is fully and freely available to the wider scientific community.
+
+*What’s new in AlphaFind.v2 ?*
+
+-   Embedding-based index. Each protein (or domain) is converted into a short numerical vector called an "embedding". By storing these vectors in an OpenSearch vector database, k-NN queries can be performed in milliseconds.
+-   Asynchronous precise alignment. Following the initial high-speed search, a precise alignment calculation using US-align and TM-Score is triggered in the background. Results are updated dynamically in the table via "progressive loading," so users do not have to wait for the entire task to complete.
+-   Quality filtering. Before alignment, users can filter out less reliable parts of a structure based on pLDDT thresholds (≥ 70/80/90). This allows the analysis to focus exclusively on highly confident prediction regions.
+-   Multi-domain aggregation. For proteins with multiple domains, matches for individual domains are merged into a single "bag-of-domains" metric, which evaluates total domain coverage and quality.
+-   Interactive 3D visualization. Both the input and the retrieved structures are displayed in the integrated Mol* viewer, which offers smooth rotation, zoom, and the ability to adjust the weight of individual domains in the comparison.
+-   Export and automation. Results can be downloaded in CSV format, shared via a permanent link, or used to launch a new analysis directly from the results table. This facilitates seamless integration into subsequent research pipelines.
+
+For more information visit the [AlphaFind homepage](alphafind.ics.muni.cz).
+
+*/}
+
+
+
 
