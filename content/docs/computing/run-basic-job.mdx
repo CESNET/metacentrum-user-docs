@@ -10,11 +10,13 @@ MetaCentrum provides free computing resources to Czech academic institutions thr
     New users unfamiliar with grid computing environments often have questions. Please [contact user support](../support) if you need help - we're here for you, and your feedback helps us improve the documentation.
 </Callout>
 
-Before getting started you need an active MetaCentrum account (see [Account guide](../access/account)).
+Before getting started, you need an active MetaCentrum account (see [Account guide](../access/account)).
+
+Take a look at our latest [hands-on tutorials](https://github.com/CESNET/metacentrum-hands-on) for beginners, which contain lots of useful tips.
 
 ## Getting started: Logging in
 
-Once you have an activated account, connect to MetaCentrum using SSH with your username. Here we are using the `tarkil.metacentrum.cz` login server (frontend). You can use any frontend, but we recommend choosing the one closest to your physical location to minimize network latency.
+Once you have an activated account, connect to MetaCentrum using SSH with your username. Here we are using the `tarkil.metacentrum.cz` login server (frontend). You can use any frontend, but we recommend choosing the one closest to your physical location to minimise network latency.
 
 ```bash
 ssh your_username@tarkil.metacentrum.cz
@@ -28,11 +30,11 @@ MetaCentrum distributed ecosystem consists of **compute clusters** (or "compute 
 
 The operating system used within MetaCentrum is Debian Linux. The system you will interact with for scheduling jobs is [Portable Batch System](https://en.wikipedia.org/wiki/Portable_Batch_System) (PBS).
 
-Each frontend has a native home directory on a storage server. After logging in, you can access any storage from a given frontend. Every compute node has a fast local disk usually referred to as [scratch](../computing/infrastructure/scratch-storages).
+Each frontend has a native home directory on a storage server. After logging in, you can access any storage from a given frontend. Every compute node has a fast local disk, usually referred to as [scratch](../computing/infrastructure/scratch-storages).
 
 Frontends are shared by all users and are **not** intended for heavy computing. Use them only for data preparation, job management, or light compiling.
 
-For detailed infrastructure information see [Frontend & Storage guide](../computing/infrastructure/frontend-storage).
+For detailed infrastructure information, see [Frontend & Storage guide](../computing/infrastructure/frontend-storage).
 
 ## Running your first job
 
@@ -93,8 +95,8 @@ In your _home_ prepare a shell script, which:
 - names the job _my_counter_
 - loads Python module
 - copies the script and its inputs to `scratch` (fast disk local to the machine)
-- calls Python script and passes the input file to it
-- copies the output from scratch to _home_ directory
+- calls a Python script and passes the input file to it
+- copies the output from scratch to the _home_ directory
 - cleans up the scratch
 
 The script is saved as `test.sh`:
@@ -102,7 +104,7 @@ The script is saved as `test.sh`:
 ```bash
 #!/bin/bash
 
-# run the job max 30 minutes
+# run the job for a max of 30 minutes
 #PBS -l walltime=0:30:00
 
 # reserve 1 CPU, 1 GB disc space and 1 GB RAM
@@ -181,7 +183,7 @@ myuser@tarkil:~$ cat out_count.txt
 
 ### 5. (B) Run as an interactive job
 
-As an alternative you can run a very similar job interactively.
+As an alternative, you can run a very similar job interactively.
 
 Request resources for the interactive job:
 ```bash
@@ -232,7 +234,7 @@ myuser@tarkil16:~$ clean_scratch
 
 ## Software modules
 
-Software in MetaCentrum is installed in so-called **modules**. To be able to use a software, you have to load it first by `module add`.
+Software in MetaCentrum is installed in so-called **modules**. To be able to use software, you have to load it first by `module add`.
 
 ```bash
 module avail amber/       # list existing versions of "amber" module
@@ -258,7 +260,7 @@ Now that you understand the basics, you can:
 
 If your job fails:
 1. Check the error file (`*.e<jobID>`).
-2. Verify your input files exist and have correct permissions.
+2. Verify your input files exist and have the correct permissions.
 3. Check if software modules are loaded correctly.
 4. Ensure you requested adequate resources (memory, walltime, scratch).
 
