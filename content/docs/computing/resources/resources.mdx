@@ -4,7 +4,7 @@ title: PBS resources
 
 There are 4 basic resources to be specified with each job: **ncpus** (number of CPUs), **mem** (size of RAM), **walltime** (maximal duration of the job) and **scratch_XY** (scratch directory; type and size of space for temporary job data).
 
-The basic cxommand for runninng a job is
+The basic command for runninng a job is
 
 ```bash
 qsub  -I -l select=1:ncpus=1 -l walltime=1:00:00 # interactive job
