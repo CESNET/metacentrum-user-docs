@@ -12,7 +12,7 @@ qsub  -l select=1:ncpus=1 -l walltime=1:00:00 batch_job.sh # batch job
 ```
 
 <Callout type="warn" title="There is no default scratch">
-    As opposed to **ncpus**, **mem** and **walltime**, there is no default size for **scratch directory**. A scratch directory is always created with the start of the job, however if you need to guarantee a certain space for data, we strongly recommend to specify type and size of a scratch dir.
+    As opposed to **ncpus**, **mem** and **walltime**, there is no default size for **scratch directory**. If not specified, a symbolic scratch directory is always created with the start of the job, however a very small one. If you need to guarantee a certain space for data, we strongly recommend to specify type and size of a scratch dir.
 </Callout>
 
 For a quick start, download [PBS cheatsheet (2026)](/img/meta/tutorials/PBS_cheatsheet.pdf).
