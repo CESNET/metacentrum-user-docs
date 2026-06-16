@@ -1,6 +1,179 @@
 ---
 title: PBS resources
 ---
+
+There are 4 basic resources to be specified with each job: **ncpus** (number of CPUs), **mem** (size of RAM), **walltime** (maximal duration of the job) and **scratch_XY** (scratch directory; type and size of space for temporary job data).
+
+The basic cxommand for runninng a job is
+
+```bash
+qsub  -I -l select=1:ncpus=1 -l walltime=1:00:00 # interactive job
+qsub  -l select=1:ncpus=1 -l walltime=1:00:00 batch_job.sh # batch job
+```
+
+<Callout type="warn" title="There is no default scratch">
+    As opposed to **ncpus**, **mem** and **walltime**, there is no default size for **scratch directory**. A scratch directory is always created with the start of the job, however if you need to guarantee a certain space for data, we strongly recommend to specify type and size of a scratch dir.
+</Callout>
+
+For a quick start, download [PBS cheatsheet (2026)](/img/meta/tutorials/PBS_cheatsheet.pdf).
+![PBS pdf](/img/meta/tutorials/PBS_cheatsheet_view.png)
+
+## CPUs
+
+Resource name: `ncpus`. Default value: `1`.
+
+Example:
+```bash
+-l select=1:ncpus=2 # request 2 CPUs
+```
+## Memory 
+
+Resource name: `mem`. Default value: `400 MB`.
+
+Example:
+```bash
+-l select=1:ncpus=1:mem=10gb # request 10 GB memory job
+```
+
+For job with large memory usage (>500 GB of RAM), you must use a specific queue. Add `-q large_mem@pbs-m1.metacentrum.cz` to your `qsub` - see [large_mem queue](./queues#specific-queues).
+
+## Walltime
+
+Resource name: `walltime`. Default value: `24:00:00` (24 hours).
+
+Maximal duration of a job is set in format `hh:mm:ss`.
+
+Example:
+```bash
+-l walltime=1:00:00 # one hour job
+```
+Users can to a certain extent prolong walltime in running jobs - see [`qextend` command](../../computing/jobs/extend-walltime)
+
+## Scratch directory
+
+Resource names: `scratch_local`, `scratch_shared`, `scratch_ssd`, `scratch_shm`. 
+
+Default value: none.
+
+See [description of scratch types](../../computing/infrastructure/scratch-storages) for more information. 
+
+## Queue and/or PBS server
+
+Resource name: ``. Default value: ``.
+If you need to send the job to a specific queue and/or specific PBS server, use the `qsub -q` option.
+```bash
+qsub -q queue@server # specific queue on specific server
+qsub -q queue # specific queue on the current (default) server
+qsub -q @server # default queue on specific server
+```
+
+## GPU-related resources
+
+A complete description of GPU-related PBS resources can be found in [chapter on running GPU jobs](../../computing/gpu-comput/gpu-job).
+
+## CPU type
+
+Resource name: `cpu_vendor`. 
+
+In the Metacentrum grid there are both machines with AMD as well as Intel processors. Some software may be sensitive to the processor used (although most applications run seamlessly on both). Therefore you can request a specific CPU vendor:
+```bash
+qsub -l select=1:ncpus=1:cpu_vendor=amd  # use machine with AMD processor
+qsub -l select=1:ncpus=1:cpu_vendor=intel # dtto with Intel
+```
+## CPU speed
+
+Resource name: `spec`. 
+
+CPUs across Metacentrum grid differ in their how fast they are. Therefore they are classed by parameter `spec` according to methodology of [SPEC CPU2017](https://www.spec.org/cpu2017/).  To see the `spec` values, go to [qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) and see the drop-down menu in the `spec` parameter.
+
+Example:
+```bash
+qsub -l select=:spec=4.8 # 1 CPU with speed class 4.8 or higher
+```
+
+## OS
+
+Resource name: `os`, `osfamily`. 
+
+To submit a job to a machine with specific operation system, use `os=OS_name`:
+```bash
+zuphux$ qsub -l select=1:ncpus=2:mem=1gb:scratch_local=1gb:os=debian11 …
+```
+To submit a job to a machine with a specific OS type, use `osfamily=OS_type_name`
+```bash
+zuphux$ qsub -l select=1:ncpus=2:mem=1gb:scratch_local=1gb:osfamily=debian …
+```
+
+## Cluster
+
+Resource name: `cluster`, `cl_NAME`. Default value: none.
+
+PBS allows you to choose a particular cluster (using either resource `cluster` or `cl_NAME`:
+```bash
+qsub -l select=1:ncpus=2:cluster=halmir # run the job on cluster "halmir"
+qsub -l select=1:ncpus=2:cl_halmir=True # same as above
+```
+Alternatively, you can avoid a particular cluster:
+```bash
+qsub -l select=1:ncpus=2:cluster=^halmir 
+qsub -l select=1:ncpus=2:cl_halmir=False
+```
+However it is not possible to combine conditions. If you e.g. want to avoid both `adan` and `halmir`, the following
+```bash
+qsub -l select=1:ncpus=2:cluster=^adan:cluster=^halmir
+```
+will not work. This is based on the principle that in PBS, every resource (in this case `cluster` resource) can be specified only once.
+
+On the other hand, `cl_adan` and `cl_halmir` are different resources, so:
+```bash
+qsub -l select=1:ncpus=2:cl_adan=False:cl_halmir=False
+```
+will work and will avoid both `adan` and `halmir` clusters.
+
+The same can be done with
+```bash
+qsub -l select=1:ncpus=2:cluster=^adan:cl_halmir=False
+```
+
+## Location
+
+Resource names: `brno`, `budejovice`, `liberec`, `olomouc`, `plzen`, `praha`, `pruhonice`, `vestec`.
+
+Default value: none.
+
+As the physical machines are distributed over multiple locations in Czech republic, it may be useful to be able to specify the location of the machine(s)
+```bash
+qsub -l select=1:ncpus=1:brno=True # run on machines located in Brno.
+```
+## MPI processes
+
+Resource name: `mpiprocs`, `ompthreads`. 
+
+How many MPI processes would run on one chunk is specified by `mpiprocs=[number]`:
+```bash
+-l select=3:ncpus=2:mpiprocs=2 # 6 MPI processes (nodefile contains 6 lines with names of vnodes), 2 MPI processes always share 1 vnode with 2 CPU
+```
+How many OpenMP threads would run in 1 chunk `ompthreads=[number]`, 2 omp threads on 1 chunks is default behaviour (`ompthreads = ncpus`).
+
+## Licence
+
+Some software requires licence to run. Licence is set by parameter `-l`
+```bash
+-l select=3:ncpus=1 -l walltime=1:00:00 -l matlab=1 # one licence for Matlab
+```
+
+## Paths for output
+
+By default the job output (output, and error files) is saved in a folder from which the job was submitted (variable `PBS_O_WORKDIR`).
+
+This behaviour for output, resp. error files can be changed by parameters -o, resp -e.
+```
+-o /custom-path/myOutputFile
+-e /custom-path/myErrorFile
+```
+
+{/*
+Chunk vs job - odsunout na konec / do advanced sekce 
 ## Chunk vs job
 
 PBS concept is based on so-called **chunks** as basic computational units. A chunk is further indivisible set of resources placed on the same host . User may require one (default) or more chunks for a job.
@@ -19,172 +192,27 @@ Number of chunks `N` is set with `-l select=[N]:`. When user needs to set up mor
 
 Examples of chunk specification:
 ```bash
-    -l select=:ncpus=2 # one chunk with two CPUs
-    -l select=1:ncpus=2 # same as above
-    -l select=1:ncpus=1+1:ncpus=2 # two chunks, one with one CPU and one with two CPUs
-    -l select=6:ncpus=2:mem=4gb+3:ncpus=8:mem=4GB # six chunks with 2 CPUs and 4 GB of memory each and three chunks with 8 CPUs and 4 GB of memory each
+-l select=:ncpus=2 # one chunk with two CPUs
+-l select=1:ncpus=2 # same as above
+-l select=1:ncpus=1+1:ncpus=2 # two chunks, one with one CPU and one with two CPUs
+-l select=6:ncpus=2:mem=4gb+3:ncpus=8:mem=4GB # six chunks with 2 CPUs and 4 GB of memory each and three chunks with 8 CPUs and 4 GB of memory each
 ```
 Examples of `place` usage:
 ```bash
-    -l select=2:ncpus=1 -l place=pack # two chunks, both must be on one host
-    -l select=2:ncpus=1 -l place=scatter # two chunks which must be on different hosts
-    -l select=2:ncpus=1 -l place=free # two chunks placed arbitrarily according to resource availability on (default)
+-l select=2:ncpus=1 -l place=pack # two chunks, both must be on one host
+-l select=2:ncpus=1 -l place=scatter # two chunks which must be on different hosts
+-l select=2:ncpus=1 -l place=free # two chunks placed arbitrarily according to resource availability on (default)
 ```
 If you are not sure about the number of needed processors, ask for an exclusive reservation of the whole machine:
 ```bash
-    -l select=2:ncpus=1 -l place=exclhost # request whole host allocated to this job (without cpu and mem limit control)
-    -l select=102:place=group=cluster # 102 cpus on one cluster
+-l select=2:ncpus=1 -l place=exclhost # request whole host allocated to this job (without cpu and mem limit control)
+-l select=102:place=group=cluster # 102 cpus on one cluster
 ```
 ## Chunk-wide resources
 
-### **CPUs**
-
-Resource name: `ncpus`. Default value: `1`.
-
-Example:
-```bash
-    -l select=1:ncpus=2 # request 2 CPUs
-```
-### **Memory** 
-
-Resource name: `mem`. Default value: `400 MB`.
-
-Example:
-```bash
-    -l select=1:ncpus=1:mem=10gb # request 10 GB memory job
-```
-
-### **CPU type**
-
-Resource name: `cpu_vendor`. 
-
-In the Metacentrum grid there are both machines with AMD as well as Intel processors. Some software may be sensitive to the processor used (although most applications run seamlessly on both). Therefore you can request a specific CPU vendor:
-```bash
-    qsub -l select=1:ncpus=1:cpu_vendor=amd  # use machine with AMD processor
-    qsub -l select=1:ncpus=1:cpu_vendor=intel # dtto with Intel
-```
-### **CPU speed**
-
-Resource name: `spec`. 
-
-CPUs across Metacentrum grid differ in their how fast they are. Therefore they are classed by parameter `spec` according to methodology of [SPEC CPU2017](https://www.spec.org/cpu2017/).  To see the `spec` values, go to [qsub assembler](https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro) and see the drop-down menu in the `spec` parameter.
-
-Example:
-```bash
-    qsub -l select=:spec=4.8 # 1 CPU with speed class 4.8 or higher
-```
-### **Scratch directory**
-
-Resource names: `scratch_local`, `scratch_shared`, `scratch_ssd`, `scratch_shm`. 
-
-Default value: none.
-
-See [description of scratch types](../../computing/infrastructure/scratch-storages) for more information. 
-
-### **OS**
-
-Resource name: `os`, `osfamily`. 
-
-To submit a job to a machine with specific operation system, use `os=OS_name`:
-```bash
-    zuphux$ qsub -l select=1:ncpus=2:mem=1gb:scratch_local=1gb:os=debian11 …
-```
-To submit a job to a machine with a specific OS type, use `osfamily=OS_type_name`
-```bash
-    zuphux$ qsub -l select=1:ncpus=2:mem=1gb:scratch_local=1gb:osfamily=debian …
-```
-
-### **Cluster**
-
-Resource name: `cluster`, `cl_NAME`. Default value: none.
-
-PBS allows you to choose a particular cluster (using either resource `cluster` or `cl_NAME`:
-```bash
-    qsub -l select=1:ncpus=2:cluster=halmir # run the job on cluster "halmir"
-    qsub -l select=1:ncpus=2:cl_halmir=True # same as above
-```
-Alternatively, you can avoid a particular cluster:
-```bash
-    qsub -l select=1:ncpus=2:cluster=^halmir 
-    qsub -l select=1:ncpus=2:cl_halmir=False
-```
-However it is not possible to combine conditions. If you e.g. want to avoid both `adan` and `halmir`, the following
-```bash
-    qsub -l select=1:ncpus=2:cluster=^adan:cluster=^halmir
-```
-will not work. This is based on the principle that in PBS, every resource (in this case `cluster` resource) can be specified only once.
-
-On the other hand, `cl_adan` and `cl_halmir` are different resources, so:
-```bash
-    qsub -l select=1:ncpus=2:cl_adan=False:cl_halmir=False
-```
-will work and will avoid both `adan` and `halmir` clusters.
-
-The same can be done with
-```bash
-    qsub -l select=1:ncpus=2:cluster=^adan:cl_halmir=False
-```
-
-### **Location**
-
-Resource names: `brno`, `budejovice`, `liberec`, `olomouc`, `plzen`, `praha`, `pruhonice`, `vestec`.
-
-Default value: none.
-
-As the physical machines are distributed over multiple locations in Czech republic, it may be useful to be able to specify the location of the machine(s)
-```bash
-    qsub -l select=1:ncpus=1:brno=True # run on machines located in Brno.
-```
-### **MPI processes**
-
-Resource name: `mpiprocs`, `ompthreads`. 
-
-How many MPI processes would run on one chunk is specified by `mpiprocs=[number]`:
-```bash
-    -l select=3:ncpus=2:mpiprocs=2 # 6 MPI processes (nodefile contains 6 lines with names of vnodes), 2 MPI processes always share 1 vnode with 2 CPU
-```
-How many OpenMP threads would run in 1 chunk `ompthreads=[number]`, 2 omp threads on 1 chunks is default behaviour (`ompthreads = ncpus`).
-
 ## Job-wide resources
 
-### **Duration**
+*/}
 
-Resource name: `walltime`. Default value: `24:00:00` (24 hours).
 
-Maximal duration of a job is set in format `hh:mm:ss`.
 
-Example:
-```bash
-    -l walltime=1:00:00 # one hour job
-```
-Users can to a certain extent prolong walltime in running jobs - see [`qextend` command](../../computing/jobs/extend-walltime)
-
-### **Queue and/or PBS server**
-
-Resource name: ``. Default value: ``.
-If you need to send the job to a specific queue and/or specific PBS server, use the `qsub -q` option.
-```bash
-    qsub -q queue@server # specific queue on specific server
-    qsub -q queue # specific queue on the current (default) server
-    qsub -q @server # default queue on specific server
-```
-### **Licence**
-
-Some software requires licence to run. Licence is set by parameter `-l`
-```bash
-    -l select=3:ncpus=1 -l walltime=1:00:00 -l matlab=1 # one licence for Matlab
-```
-
-## **GPU-related resources**
-
-A complete description of GPU-related PBS resources can be found in [chapter on running GPU jobs](../../computing/gpu-comput/gpu-job).
-
-## **Paths for output**
-
-By default the job output (output, and error files) is saved in a folder from which the job was submitted (variable `PBS_O_WORKDIR`).
-
-This behaviour for output, resp. error files can be changed by parameters -o, resp -e.
-```
-    -o /custom-path/myOutputFile
-    -e /custom-path/myErrorFile
-```
