@@ -1,3 +1,4 @@
+local_build.sh
 components/ai/
 components/button.tsx
 components/card3.tsx
