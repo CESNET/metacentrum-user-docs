@@ -37,7 +37,7 @@ We offer four types of scratch storage:
 - ultra fast (compared to local scratch) but smaller in volume
 - integer type, submitted as `scratch_ssd=1gb`
 - not available on all computational nodes!
-- to check for availability on a particular node, go to [https://metavo.metacentrum.cz/pbsmon2/props](https://metavo.metacentrum.cz/pbsmon2/props) -> choose a node -> search for `scratch_ssd` in a grey table
+- to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch SSD"
 - recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
 - located in `/scratch.ssd/USERNAME/job_JOBID`
 
@@ -49,7 +49,7 @@ We offer four types of scratch storage:
 - useful if you need to run more than one application that needs access to the same data
 - integer type, submitted as `scratch_shared=10gb`
 - not available on all computational nodes!
-- to check for availability on a particular node, go to [https://metavo.metacentrum.cz/pbsmon2/props](https://metavo.metacentrum.cz/pbsmon2/props) -> choose a node -> search for scratch_shared in a grey table
+- to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch Shared"
 - mounted to directory `/scratch.shared/USERNAME/job_JOBID`
 
 ### Scratch in RAM
@@ -63,11 +63,11 @@ We offer four types of scratch storage:
 - remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
 - mounted to directory `/dev/shm/scratch.shm/USERNAME/job_JOBID`
 
-## Shared scratch on cluster [bee.cerit-sc.cz](https://metavo.metacentrum.cz/pbsmon2/resource/bee.cerit-sc.cz) 
+## Shared scratch on cluster [bee.cerit-sc.cz](https://my.metacentrum.cz/clusters/bee.cerit-sc.cz) 
 
 BeeGFS (Beyond Extensible Enterprise File System) is a parallel distributed filesystem designed specifically for the needs of high-performance computing (HPC). It is used in computing clusters, scientific simulations, machine learning, genomics, and everywhere large datasets and fast parallel access are essential.
 
-At MetaCentrum, we’ve adopted BeeGFS to meet the increasing challenges of data-intensive computations on data used by multiple job and/or job arrays. BeeGFS is available as a temporary working directory via the `scratch_shared` resource on cluster [bee.cerit-sc.cz](https://metavo.metacentrum.cz/pbsmon2/resource/bee.cerit-sc.cz).
+At MetaCentrum, we’ve adopted BeeGFS to meet the increasing challenges of data-intensive computations on data used by multiple job and/or job arrays. BeeGFS is available as a temporary working directory via the `scratch_shared` resource on cluster [bee.cerit-sc.cz](https://my.metacentrum.cz/clusters/bee.cerit-sc.cz).
 
 Main usecases:
 
