@@ -35,3 +35,11 @@ This normally happens when the frontend is reinstalled or its key is re-generate
  6. If the strings are different, do not log in and contact our user support.
 
 In case you need to see a list of public keys of all hosts, there is also [a complete list of public keys](https://metavo.metacentrum.cz/ssh_known_hosts) available.
+
+<Callout type="tip">
+To make your PC forget old SSH host key, you need to remove the old fingerprint from your local known_hosts file. Open your Terminal and run:
+```
+ssh-keygen -R [hostname_or_IP]
+```
+Replace [hostname_or_IP] with the server address you are trying to connect to (e.g., `ssh-keygen -R skirit.metacentrum.cz`).
+</Callout>
