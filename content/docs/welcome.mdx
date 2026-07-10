@@ -2,7 +2,7 @@
 title: MetaCentrum Documentation
 ---
 
-import { Cards3, Card } from '@/components/card3';
+import { Cards, Card } from 'fumadocs-ui/components/card';
 import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit, Network, Cloudy, Container, Package } from 'lucide-react'; 
 import Image from 'next/image';
 import BannerMeta from '@/public/img/meta/welcome/meta-docs-banner.jpg';
@@ -22,7 +22,7 @@ MetaCentrum is a single point of entry to three computing infrastructures:
 
 as well as to a number of specialized services, such as <b>Galaxy</b>, <b>OnDemand</b>, and <b>Jupyter notebooks</b>.
 
-<Cards3 className="pt-4">
+<Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3">
 
   <Card title="Cloud" icon={<Cloudy/>}>
     OpenStack cloud instances with object storage built on the CEPH storage system.
@@ -42,9 +42,9 @@ as well as to a number of specialized services, such as <b>Galaxy</b>, <b>OnDema
     <a href="./computing/run-basic-job" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
   </Card>
 
-</Cards3>
+</Cards>
 
-<Cards3 className="pt-4">
+<Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3">
 
   <Card title="Galaxy">
      Web platform for accessible, reproducible, and transparent data analysis backed by MetaCentrum Grid.
@@ -64,7 +64,7 @@ as well as to a number of specialized services, such as <b>Galaxy</b>, <b>OnDema
      <a href="./graphical/ondemand" className="text-fd-primary flex items-center gap-2"><MoveRight />OnDemand</a>
   </Card>
 
-</Cards3>
+</Cards>
 
 <h3>MetaCentrum: your research, computed</h3>
 
