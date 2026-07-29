@@ -46,7 +46,7 @@ The requirements can be combined in a comma-separated string.
 
 Example:
 ```bash
-qsub -l select=1:ngpus=1:gpu_cap=\"sm_65,compute_70\":mem=4gb -l walltime=1:00:00  # 6.5 or 7.0 and higher
+qsub -l select=1:ngpus=1:gpu_cap="sm_65,compute_70":mem=4gb -l walltime=1:00:00  # 6.5 or 7.0 and higher
 qsub -l 'select=1:ngpus=1:gpu_cap="sm_65,compute_70":mem=4gb' -l walltime=1:00:00  # dtto
 ```
 <Callout type="info" title="Note">
