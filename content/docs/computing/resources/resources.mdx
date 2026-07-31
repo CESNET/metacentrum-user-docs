@@ -118,7 +118,7 @@ qsub -l select=1:ncpus=2:cl_halmir=False
 ```
 However it is not possible to combine conditions. If you e.g. want to avoid both `adan` and `halmir`, the following
 ```bash
-qsub -l select=1:ncpus=2:cluster=^adan:cluster=^halmir
+qsub -l select=1:ncpus=2:cluster=^adan:cluster=^halmir # DOES NOT WORK
 ```
 will not work. This is based on the principle that in PBS, every resource (in this case `cluster` resource) can be specified only once.
 
