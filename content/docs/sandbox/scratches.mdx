@@ -1,0 +1,95 @@
+---
+title: Scratch storages II
+---
+Scratch storage is a **storage for temporary files for running job**:
+
+```bash
+...                                  # PBS params etc.
+cp -r ~/input_data_dir/ $SCRATCHDIR/ # copy data into a scratch directory
+cd $SCRATCHDIR                          
+...                                  # run the computing job
+```
+
+This storage should be used *only during computations* and should be freed immediately after your job ends. 
+
+The location of scratch directory is defined by a system variable `SCRATCHDIR`.
+
+<Callout type="info" title="No default scratch">
+    For a batch job, you must set the size and type of scratchdir! There is no default type of scratch.
+</Callout>
+
+## Local scratch on node
+
+- PBS resource `scratch_local`
+- available on every node, located on a regular hard disc
+- choose this type as a default if you have no reason to do otherwise
+- integer type, submitted as `scratch_local=10gb`
+- located in `/scratch/USERNAME/job_JOBID`
+- resource: scratch_local= XY GB
+- /scratch/LOGIN
+- vytvoří ho PBS, kdykoliv po ukončení úlohy může být bez ptaní smazán
+- je na každém stroji
+- funguje pro většinu úloh: když nevíš / nechceš řešit / potřebuješ benchmark / nemáš zvláštní požadavky
+
+## Fast SSD scratch
+
+- PBS resource `scratch_ssd` 
+- located on a small SSD disc
+- ultra fast (compared to local scratch) but smaller in volume
+- integer type, submitted as `scratch_ssd=1gb`
+- not available on all computational nodes!
+- to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch SSD"
+- recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
+- located in `/scratch.ssd/USERNAME/job_JOBID`
+
+
+## Shared scratch
+
+- PBS resource `scratch_shared`
+- network volume, which is shared between all nodes in a given cluster
+- read/write operation slower than on local scratch
+- useful if you need to run more than one application that needs access to the same data
+- integer type, submitted as `scratch_shared=10gb`
+- not available on all computational nodes!
+- to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch Shared"
+- mounted to directory `/scratch.shared/USERNAME/job_JOBID`
+
+## Scratch in RAM
+
+
+- PBS resource `scratch_shm`
+- the scratch directory is in the RAM
+- fastest, but data on scratch do not survive the end/failure of the job
+- use when you need ultra-fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
+- boolean type, submitted as `scratch_shm=true`
+- maximum size of scratch is defined by the mem (memory) parameter
+- remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
+- mounted to directory `/dev/shm/scratch.shm/USERNAME/job_JOBID`
+- resource: scratch_shm=true
+- /dev/shm/scratch.shm/USERNAME/job_JOBID
+
+## Shared scratch
+
+- resource: scratch_shared= XY GB
+- vhodné pro paralelizované úlohy, kde nad více uzly běží procesy nad stejnými daty
+- jobs with large files or a huge number of small files
+- jobs with parallel I/O operation
+- jobs spanning multiple compute nodes
+
+## Multijob scratch
+
+- resource: multijob=[ brno | plzen ]
+- v /scratch.shared/multijob-[brno|plzen]/LOGIN
+- trvanlivý scratch pro práci více samostatných úloh nad stejnými daty
+- má význam pokud jsou data velká a jejich opakované kopírování z/do storage by zabralo znatelnou část běhu úlohy
+- PBS scratchdir nevytváří, var SCRATCHDIR=??? (co bude v proměnné SCRATCHDIR? Jen /scratch.shared/multijob-[brno|plzen]/LOGIN ? Nebo nic?)
+- pro práci s tímto scratchem si uživatel nejdřív musí rozhodnout kde hodlá pracovat a data tam přenést buď nezávisle předem, nebo v rámci první úlohy z dané multijobové série úloh
+- garantuje se určitá trvanlivost dat po XX dní/nesmažeme to bez ptaní, nebude automatické čištění
+
+## Project scratches
+
+- /scratch.shared/PROJECTS
+- vhodny pro sdileni v ramci skupiny
+- perzistentni (maze se v pripade potreby po vyjednavani)
+
+
