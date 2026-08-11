@@ -18,73 +18,71 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
     For a batch job, you must set the size and type of scratchdir! There is no default type of scratch.
 </Callout>
 
-## Local scratch on node
+| PBS resource | Location | Example (interactive job) |
+|--------------|----------|---------|
+| `scratch_local` | `/scratch/USERNAME/job_JOBID` | `qsub -I -l select=1:scratch_local=400mb` |
+| `scratch_ssd` | `/scratch.ssd/USERNAME/job_JOBID` | `qsub -I -l select=1:scratch_ssd=400mb` |
+| `scratch_shm` | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `qsub -I -l select=1:mem=1gb:scratch_shm=true` |
+| `scratch_shared` | `/scratch.shared/USERNAME/job_JOBID` | `qsub -I -l select=1:scratch_shared=400mb` |
+| `multijob` | `/scratch.shared/multijob-[brno|plzen]/USERNAME` | `qsub -I -l select=1:multijob=brno` |
+
+## Local scratch
 
 - PBS resource `scratch_local`
-- available on every node, located on a regular hard disc
-- choose this type as a default if you have no reason to do otherwise
-- integer type, submitted as `scratch_local=10gb`
+- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_local=400mb`
 - located in `/scratch/USERNAME/job_JOBID`
-- resource: scratch_local= XY GB
-- /scratch/LOGIN
-- vytvoří ho PBS, kdykoliv po ukončení úlohy může být bez ptaní smazán
-- je na každém stroji
-- funguje pro většinu úloh: když nevíš / nechceš řešit / potřebuješ benchmark / nemáš zvláštní požadavky
+
+- available on every node
+- choose this type as a default if you have no reason to do otherwise
+- the content can be erased by PBS after job's end
 
 ## Fast SSD scratch
 
-- PBS resource `scratch_ssd` 
+- PBS resource `scratch_ssd`
+- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_ssd=400mb`
+- located in `/scratch.ssd/USERNAME/job_JOBID`
+
 - located on a small SSD disc
 - ultra fast (compared to local scratch) but smaller in volume
-- integer type, submitted as `scratch_ssd=1gb`
 - not available on all computational nodes!
 - to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch SSD"
 - recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
-- located in `/scratch.ssd/USERNAME/job_JOBID`
 
+## Scratch in RAM
+
+- PBS resource `scratch_shm`
+- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shm=true`
+- located in `/dev/shm/scratch.shm/USERNAME/job_JOBID`
+
+- the scratch directory is in the RAM
+- fastest, but data on scratch do not survive the end/failure of the job
+- use when you need ultra-fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
+- maximum size of scratch is defined by the `mem` (memory) parameter
+- remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
 
 ## Shared scratch
 
 - PBS resource `scratch_shared`
+- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shared=400mb`
+- located in `/scratch.shared/USERNAME/job_JOBID`
+
 - network volume, which is shared between all nodes in a given cluster
+- useful for jobs spanning multiple compute nodes with parallel I/O operation
 - read/write operation slower than on local scratch
-- useful if you need to run more than one application that needs access to the same data
-- integer type, submitted as `scratch_shared=10gb`
+- useful if you need to run more parallelized job where processes need to access same data
 - not available on all computational nodes!
 - to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch Shared"
-- mounted to directory `/scratch.shared/USERNAME/job_JOBID`
-
-## Scratch in RAM
-
-
-- PBS resource `scratch_shm`
-- the scratch directory is in the RAM
-- fastest, but data on scratch do not survive the end/failure of the job
-- use when you need ultra-fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
-- boolean type, submitted as `scratch_shm=true`
-- maximum size of scratch is defined by the mem (memory) parameter
-- remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
-- mounted to directory `/dev/shm/scratch.shm/USERNAME/job_JOBID`
-- resource: scratch_shm=true
-- /dev/shm/scratch.shm/USERNAME/job_JOBID
-
-## Shared scratch
-
-- resource: scratch_shared= XY GB
-- vhodné pro paralelizované úlohy, kde nad více uzly běží procesy nad stejnými daty
-- jobs with large files or a huge number of small files
-- jobs with parallel I/O operation
-- jobs spanning multiple compute nodes
 
 ## Multijob scratch
 
-- resource: multijob=[ brno | plzen ]
-- v /scratch.shared/multijob-[brno|plzen]/LOGIN
-- trvanlivý scratch pro práci více samostatných úloh nad stejnými daty
-- má význam pokud jsou data velká a jejich opakované kopírování z/do storage by zabralo znatelnou část běhu úlohy
-- PBS scratchdir nevytváří, var SCRATCHDIR=??? (co bude v proměnné SCRATCHDIR? Jen /scratch.shared/multijob-[brno|plzen]/LOGIN ? Nebo nic?)
-- pro práci s tímto scratchem si uživatel nejdřív musí rozhodnout kde hodlá pracovat a data tam přenést buď nezávisle předem, nebo v rámci první úlohy z dané multijobové série úloh
-- garantuje se určitá trvanlivost dat po XX dní/nesmažeme to bez ptaní, nebude automatické čištění
+- PBS resource `multijob=[ brno | plzen ]`
+- submit as: `qsub -I -l walltime=01:00:00 -l select=1:multijob=brno`
+- located in `/scratch.shared/multijob-[brno|plzen]/USERNAME/`
+
+- persistent scratch for independent consecutive jobs working on same data
+- suitable for jobs working on large messes of data (databases) which take long to copy to/from storage
+- semi-manual` user first creates the scratchdir in a selected location, copies the data etc.
+- PBS **does not** setup the scratch directory; it only directs the job to the location
 
 ## Project scratches
 
