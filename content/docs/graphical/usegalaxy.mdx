@@ -49,34 +49,19 @@ The user interface shows:
 The [Galaxy Training Network GTN](https://training.galaxyproject.org/training-material/) hosts a large collection of tutorials ranging from basic to advanced topics.  
 
   * [Introduction to Galaxy for beginners](https://training.galaxyproject.org/training-material/topics/introduction/):  
-    * Data import & export – FTP, HTTP, S3, etc.  
+    * Data import & export – HTTPs, S3, Invenio, Zenodo, etc.  
     * Workflow building – creating, sharing, and publishing pipelines
-
-### FTP Upload – Step‑by‑Step
-
-Because Galaxy’s federated log‑ins don’t provide an FTP password out of the box, you need to create one first.
-Additional steps are required in order to obtain a password for your FTP access:
-
-1. Log in to [usegalaxy.cz](https://usegalaxy.cz) using one of the federated login options. At this point, you don't have an FTP password yet.
-2. Log out of Galaxy and go to the [Galaxy login](https://usegalaxy.cz/login/) panel and enter your registered email address into the username field.
-3. Click on the `Click here to reset your password` button.
-4. You will receive an email with the reset password link. Check your spam folder if necessary.
-5. Click on the provided link and set up a new password for your FTP access.
-6. Once you have set a new password, you can use your registered email address and the new password to log in to our ftp server at `usegalaxy.cz` and copy your files there.
-7. Follow the data import process described in the [docs](https://galaxyproject.org/ftp-upload/).
-
-<Callout type="info">
-Note: The FTP password you set does not affect your Galaxy web login. Keep it safe, but you can reset it at any time via the same password-reset procedure.
-</Callout>
 
 ### How to link multiple identities
 
-If you have both e-infra and LSlogin identities you can link them in Galaxy. This prevents problems when switching between log-ins.
+For ease of use we **strongly** recommend using a single login identity. However if you use both e-infra and LSlogin identities please link them in your Galaxy. This prevents account duplication problems when switching between logins.
 
 1. Click on *User* in the top menu
 2. Select *Preferences*.
 3. Select *Manage Third-Party Identities*.
 4. Choose the other identity provider and authenticate yourself.
+
+If you already have two accounts linked to different identities please contact us at galaxy@cesnet.cz -- we will help you merge them.
 
 ## References and Use Cases
 
