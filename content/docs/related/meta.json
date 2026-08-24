@@ -1,4 +1,4 @@
 {
 	"title": "Custom services",
-	"pages": ["galaxy", "chipster", "kubernetes", "collgs"]
+	"pages": ["galaxy", "kubernetes", "collgs"]
 }
