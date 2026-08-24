@@ -22,8 +22,7 @@ SW
     Are you missing any SW in the Metacentre? Feel free to ask us (meta@cesnet.cz) to install it!
     Did you only find an old version of the SW? Feel free to ask us (meta@cesnet.cz) for an update.
     Do you need some system package (.deb)? Feel free to ask us (meta@cesnet.cz) to install it!
-    Have you ever heard about a Chipster? Chipster is a web-based interactive analysis software for NGS and microarray data. More information at https://docs.metacentrum.cz/en/docs/related/chipster.
-
+    
 Singularity
     For the large /tmp directory inside the Singularity image, set SINGULARITY_TMPDIR=$SCRATCHDIR and SINGULARITY_CACHEDIR=$SCRATCHDIR
 
