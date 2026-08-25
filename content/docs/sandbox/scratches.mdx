@@ -24,9 +24,11 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 | `scratch_ssd` | `/scratch.ssd/USERNAME/job_JOBID` | `qsub -I -l select=1:scratch_ssd=400mb` |
 | `scratch_shm` | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `qsub -I -l select=1:mem=1gb:scratch_shm=true` |
 | `scratch_shared` | `/scratch.shared/USERNAME/job_JOBID` | `qsub -I -l select=1:scratch_shared=400mb` |
-| `multijob` | `/scratch.shared/multijob-[brno|plzen]/USERNAME` | `qsub -I -l select=1:multijob=brno` |
+| `multijob` | `/scratch.shared/multijob-[brno\|plzen]/USERNAME` | `qsub -I -l select=1:multijob=brno` |
 
-## Local scratch
+## Types of scratch
+
+### Local scratch
 
 - PBS resource `scratch_local`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_local=400mb`
@@ -36,7 +38,7 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 - choose this type as a default if you have no reason to do otherwise
 - the content can be erased by PBS after job's end
 
-## Fast SSD scratch
+### Fast SSD scratch
 
 - PBS resource `scratch_ssd`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_ssd=400mb`
@@ -48,7 +50,7 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 - to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch SSD"
 - recommended in jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
 
-## Scratch in RAM
+### Scratch in RAM
 
 - PBS resource `scratch_shm`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shm=true`
@@ -60,7 +62,7 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 - maximum size of scratch is defined by the `mem` (memory) parameter
 - remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
 
-## Shared scratch
+### Shared scratch
 
 - PBS resource `scratch_shared`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shared=400mb`
@@ -73,21 +75,33 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 - not available on all computational nodes!
 - to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch Shared"
 
-## Multijob scratch
+### Multijob scratch fast
 
 - PBS resource `multijob=[ brno | plzen ]`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:multijob=brno`
-- located in `/scratch.shared/multijob-[brno|plzen]/USERNAME/`
+- located in `/scratch.multijob-[brno|plzen]/USERNAME/`
 
 - persistent scratch for independent consecutive jobs working on same data
-- suitable for jobs working on large messes of data (databases) which take long to copy to/from storage
-- semi-manual` user first creates the scratchdir in a selected location, copies the data etc.
+- suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
+- semi-manual; user first creates the scratchdir in a selected location, copies the data etc.
 - PBS **does not** setup the scratch directory; it only directs the job to the location
 
-## Project scratches
+### Multijob scratch global
 
-- /scratch.shared/PROJECTS
-- vhodny pro sdileni v ramci skupiny
-- perzistentni (maze se v pripade potreby po vyjednavani)
+- PBS resource `multijob=global`
+- submit as: `qsub -I -l walltime=01:00:00 -l select=1:multijob=global`
+- located in `/scratch.multijob-global/USERNAME/`
+
+- persistent scratch for independent consecutive jobs working on same data
+- suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
+- semi-manual; user first creates the scratchdir in a selected location, copies the data etc.
+- PBS **does not** setup the scratch directory; the `multijob=global` currently serves only a journaling purpose
 
 
+{/* 
+## How to choose a scratch
+
+TODO: Mermaid graf výběru
+
+
+*/}
