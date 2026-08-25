@@ -24,7 +24,7 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 | `scratch_ssd` | `/scratch.ssd/USERNAME/job_JOBID` | `qsub -I -l select=1:scratch_ssd=400mb` |
 | `scratch_shm` | `/dev/shm/scratch.shm/USERNAME/job_JOBID` | `qsub -I -l select=1:mem=1gb:scratch_shm=true` |
 | `scratch_shared` | `/scratch.shared/USERNAME/job_JOBID` | `qsub -I -l select=1:scratch_shared=400mb` |
-| `multijob` | `/scratch.shared/multijob-[brno\|plzen]/USERNAME` | `qsub -I -l select=1:multijob=brno` |
+| `multijob` | `/scratch.shared/multijob-[brno\|plzen\|global]/USERNAME` | `qsub -I -l select=1:multijob=brno` |
 
 ## Types of scratch
 
