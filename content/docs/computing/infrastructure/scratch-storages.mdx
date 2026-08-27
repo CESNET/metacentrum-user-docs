@@ -27,8 +27,8 @@ We offer the following types of scratch storage:
 | [Local](#local-scratch) | `scratch_local` | normal | no |  |
 | [SSD](#fast-ssd-scratch) | `scratch_ssd` | fast | no |  |
 | [in RAM](#scratch-in-ram) | `scratch_shm` | ultra fast | no |  |
-| [Shared](#shared-scratch) | `scratch_shared` | slow |  |
-| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | no | will be discontinued |
+| [Shared](#shared-scratch) | `scratch_shared` | slow | no |
+| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | will be discontinued |
 | [Multijob fast](#multijob-scratch-fast) | `multijob` | fast | yes | in preparation |
 | [Multijob global](#multijob-scratch-global) | `multijob` | slow | yes | in preparation |
 
@@ -78,7 +78,7 @@ We offer the following types of scratch storage:
 ### Multijob scratch fast
 
 <Callout type="info" title="Feature in preparation">
-    In preparation.
+    This feature is currently in preparation. Estimated release September-October 2026.
     
 </Callout>
 
@@ -89,14 +89,14 @@ We offer the following types of scratch storage:
 - available only on some nodes
 - fast
 - persistent scratch for independent consecutive jobs working on same data
-- semi-manual; user first creates the scratchdir in a selected location, copies the data etc.
-- PBS **does not** setup the scratch directory; it only directs the job to the location
+- semi-manual setup; user first creates the scratchdir in a selected location, copies the data etc.
+- PBS **does not** create the scratch directory; it only directs the job to the subset of machines that have connection to the already existing scratch either in Brno, or in Plzen
 - suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
 
 ### Multijob scratch global
 
 <Callout type="info" title="Feature in preparation">
-    In preparation.
+    This feature is currently in preparation. Estimated release September-October 2026.
 </Callout>
 
 - PBS resource `multijob=global`
@@ -106,14 +106,14 @@ We offer the following types of scratch storage:
 - available on every node
 - slow
 - persistent scratch for independent consecutive jobs working on same data
-- semi-manual; user first creates the scratchdir in a selected location, copies the data etc.
-- PBS **does not** setup the scratch directory; the `multijob=global` currently serves only a journaling purpose
+- semi-manual setup; user first creates the scratchdir in a selected location, copies the data etc.
+- PBS **does not** create the scratch directory; the `multijob=global` currently serves only a journaling purpose
 - suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
 
 ### Shared scratch on cluster Bee
 
 <Callout type="info" title="Will be discontinued soon">
-    Will be discontinued soon.
+    This type of scratch will be discontinued by September/October 2026.
 </Callout>
 
 BeeGFS (Beyond Extensible Enterprise File System) is a parallel distributed filesystem designed specifically for the needs of high-performance computing (HPC). It is used in computing clusters, scientific simulations, machine learning, genomics, and everywhere large datasets and fast parallel access are essential.
