@@ -51,6 +51,10 @@ Users can to a certain extent prolong walltime in running jobs - see [`qextend` 
 
 Resource names: `scratch_local`, `scratch_shared`, `scratch_ssd`, `scratch_shm`. 
 
+<Callout type="info" title="Multijob scratch (in preparation)">
+    By September/October 2026, a new type of scratch, so-called **multijob scratch** (PBS resource `multijob`) will be released. This scratch is taylored for consecutive, independent jobs working upon the same large datasets. The purpose is to reduce the need to repeatedly copy large data to/from a storage by the start/end of each job.
+</Callout>
+
 Default value: none.
 
 See [description of scratch types](../../computing/infrastructure/scratch-storages) for more information. 
