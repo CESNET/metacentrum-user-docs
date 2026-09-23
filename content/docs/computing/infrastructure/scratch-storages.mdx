@@ -28,7 +28,7 @@ We offer the following types of scratch storage:
 | [SSD](#fast-ssd-scratch) | `scratch_ssd` | fast | no |  |
 | [in RAM](#scratch-in-ram) | `scratch_shm` | ultra fast | no |  |
 | [Shared](#shared-scratch) | `scratch_shared` | fast | no |
-| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | will be accessible as `scratch.multijob-brno` |
+| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | will be accessible as `/scratch/multijob-brno` |
 | [Multijob fast](#multijob-scratch-fast) | `multijob` | fast | yes | in preparation |
 | [Multijob global](#multijob-scratch-global) | `multijob` | slow | yes | in preparation |
 
@@ -84,7 +84,7 @@ We offer the following types of scratch storage:
 
 - PBS resource `multijob=[ brno | plzen ]`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:multijob=brno`
-- located in `/scratch.multijob-[brno|plzen]/USERNAME/`
+- located in `/scratch/multijob-[brno|plzen]/USERNAME/`
 
 - available only on some nodes
 - fast
@@ -101,7 +101,7 @@ We offer the following types of scratch storage:
 
 - PBS resource `multijob=global`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:multijob=global`
-- located in `/scratch.multijob-global/USERNAME/`
+- located in `/scratch/multijob-global/USERNAME/`
 
 - available on every node
 - slow
@@ -113,7 +113,7 @@ We offer the following types of scratch storage:
 ### Shared scratch on cluster Bee
 
 <Callout type="info" title="Will be renamed soon">
-    This scratch will be located in `/scratch.multijob-brno/USERNAME/` by September/October 2026.
+    This scratch will be located in `/scratch/multijob-brno/USERNAME/` by September/October 2026.
 </Callout>
 
 BeeGFS (Beyond Extensible Enterprise File System) is a parallel distributed filesystem designed specifically for the needs of high-performance computing (HPC). It is used in computing clusters, scientific simulations, machine learning, genomics, and everywhere large datasets and fast parallel access are essential.
