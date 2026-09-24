@@ -22,15 +22,15 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 
 We offer the following types of scratch storage:
 
-| Scratch type | PBS resource | Speed | Do data survive end of job? | Note |
+| Scratch type | PBS resource | Speed | Do data survive end of job? | Path |
 |--------------|--------------|-------|-----------------------------|------|
-| [Local](#local-scratch) | `scratch_local` | normal | no |  |
-| [SSD](#fast-ssd-scratch) | `scratch_ssd` | fast | no |  |
-| [in RAM](#scratch-in-ram) | `scratch_shm` | ultra fast | no |  |
-| [Shared](#shared-scratch) | `scratch_shared` | fast | no |
-| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | will be accessible as `/scratch/multijob-brno` |
-| [Multijob fast](#multijob-scratch-fast) | `multijob` | fast | yes | in preparation |
-| [Multijob global](#multijob-scratch-global) | `multijob` | slow | yes | in preparation |
+| [Local](#local-scratch) | `scratch_local` | normal | no | $SCRATCHDIR |
+| [SSD](#fast-ssd-scratch) | `scratch_ssd` | fast | no | $SCRATCHDIR |
+| [in RAM](#scratch-in-ram) | `scratch_shm` | ultra fast | no | $SCRATCHDIR |
+| [Shared](#shared-scratch) | `scratch_shared` | fast | no | SCRATCHDIR |
+| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | data will be moved to `/scratch/multijob-brno` |
+| [Multijob fast](#multijob-scratch-fast) | `multijob` | fast | yes | manual, `/scratch/multijob-[brno|plzen]` |
+| [Multijob global](#multijob-scratch-global) | `multijob` | slow | yes | manual, `scratch-global` |
 
 ### Local scratch
 
@@ -92,6 +92,32 @@ We offer the following types of scratch storage:
 - semi-manual setup; user first creates the scratchdir in a selected location, copies the data etc.
 - PBS **does not** create the scratch directory; it only directs the job to the subset of machines that have connection to the already existing scratch either in Brno, or in Plzen
 - suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
+
+**Example**
+
+The in-between-jobs consistency of path to scratchdir must be kept manually by the user.
+
+```bash
+# Run 1st job
+
+qsub -I -l walltime=01:00:00 -l select=1:multijob=brno
+
+(TRIXIE)user123@bee4:~$ cd /scratch/multijob-brno/user_123/
+(TRIXIE)user123@bee4:~$ mkdir my_new_multijob_project
+(TRIXIE)user123@bee4:~$ SCRATCHDIR=/scratch/multijob-brno/user_123/my_new_multijob_project/
+# cp whatever data to SCRATCHDIR
+# run the job no.1
+(TRIXIE)user123@bee4:~$ exit
+
+# Run another job on the same data
+
+qsub -I -l walltime=01:00:00 -l select=1:multijob=brno # MUST be brno this time
+
+(TRIXIE)user123@bee4:~$ SCRATCHDIR=/scratch/multijob-brno/user_123/my_new_multijob_project/
+(TRIXIE)user123@bee4:~$ cd $SCRATCHDIR
+# run the job no.2
+(TRIXIE)user123@bee4:~$ exit
+```
 
 ### Multijob scratch global
 
