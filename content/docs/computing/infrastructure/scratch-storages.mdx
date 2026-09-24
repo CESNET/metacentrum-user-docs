@@ -27,10 +27,10 @@ We offer the following types of scratch storage:
 | [Local](#local-scratch) | `scratch_local` | normal | no | $SCRATCHDIR |
 | [SSD](#fast-ssd-scratch) | `scratch_ssd` | fast | no | $SCRATCHDIR |
 | [in RAM](#scratch-in-ram) | `scratch_shm` | ultra fast | no | $SCRATCHDIR |
-| [Shared](#shared-scratch) | `scratch_shared` | fast | no | SCRATCHDIR |
-| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | data will be moved to `/scratch/multijob-brno` |
+| [Shared](#shared-scratch) | `scratch_shared` | fast | no | $SCRATCHDIR |
+| [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | data was moved `/scratch/multijob-brno` |
 | [Multijob fast](#multijob-scratch-fast) | `multijob` | fast | yes | manual, `/scratch/multijob-[brno/plzen]` |
-| [Multijob global](#multijob-scratch-global) | `multijob` | slow | yes | manual, `scratch-global` |
+| [Multijob global](#multijob-scratch-global) | `multijob` | slow | yes | manual, `/scratch/multijob-global` |
 
 ### Local scratch
 
