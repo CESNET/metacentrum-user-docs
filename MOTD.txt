@@ -14,6 +14,7 @@ General tips
     Statistics of usage available at https://metavo.metacentrum.cz/cs/state/stats/2025/index.html
     Have you tried our AI Chat and LLM (AI‑as‑a‑Service) yet? Discover how it works and get started here: https://docs.cerit‑sc.cz/en/docs/ai-as-a-service/introduction
     Looking for the latest updates? Visit our blog at https://blog.e‑infra.cz
+    Are you having difficulty with MetaCentrum? Would you prefer to communicate in person rather than via email? Get in touch with one of our many MetaCentrum ambassadors! https://metavo.metacentrum.cz/en/ambasadors/index.html
 
 PBS
     Do you know you can request a minimum processor speed? (i.e. qsub -l select=1:spec=4.8)
