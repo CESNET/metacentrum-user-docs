@@ -4,8 +4,212 @@ title: Sandbox
 
 This is a page for testing stuff.
 
-## Installed as an image
+# Which scratch to use
 
-<include>
-  ../include/images-tab.mdx
-</include>
+Every job needs a place for its temporary files — input copies, intermediate results, final outputs before you save them. That place is **scratch**. Choosing it well is the single biggest performance decision after CPU/memory: the wrong scratch can make a job 10× slower (or lose a day of computation).
+
+This guide walks through every scratch type at MetaCentrum, when to use which, and complete job scripts you can copy.
+
+## The short version
+
+| You need... | Use | PBS resource |
+|---|---|---|
+| Nothing special — a normal job | **Local scratch** (default choice) | `scratch_local=10gb` |
+| Many small files / heavy reading and writing | **SSD scratch** | `scratch_ssd=10gb` |
+| Absolute maximum speed, small data, disposable | **Scratch in RAM** | `scratch_shm=true` (+ big `mem=`) |
+| Same files seen from many nodes of one multi-node job | **Shared scratch** | `scratch_shared=10gb` |
+| Same big data reused by MANY separate jobs (days/weeks) | **Multijob fast scratch** | `multijob=brno` or `multijob=plzen` |
+| Same data, every node, slow is fine | **Multijob global scratch** | `multijob=global` |
+
+All of them appear in your job as the `$SCRATCHDIR` variable (except multijob, where you manage the directory yourself — below).
+
+## What scratch is (and is not)
+
+Scratch is **temporary**. It is fast because it is not backed up, not replicated across sites, and not kept forever:
+
+- **Per-job scratch** (`scratch_local`, `scratch_ssd`, `scratch_shm`, `scratch_shared`) lives exactly as long as your job. When the job ends, PBS may wipe it. Always copy results out at the end of the job script (the [safe template](./safe-template) does this for you).
+- **Multijob scratch** survives between jobs — that is its whole point — but is still scratch: unused files are cleaned automatically (weeks, not years). Real long-term data belongs on [storage](../infrastructure/storages).
+
+<Callout type="info" title="There is no default scratch">
+If you request no scratch at all, `$SCRATCHDIR` points to a plain directory on the node's system disk (`/var/tmp/pbs.<jobid>`) — small and slow. Always ask for a scratch type and size explicitly.
+</Callout>
+
+## 1. Local scratch — the default choice
+
+A slice of the compute node's own disk, reserved for your job.
+
+```bash
+#PBS -l select=1:ncpus=1:mem=4gb:scratch_local=20gb
+```
+
+- **Available:** on every node.
+- **Speed:** moderate (spinning HDD on most nodes).
+- **Lifetime:** the job. PBS runs `clean_scratch` (or wipes the directory) when the job ends.
+- **Use it when:** you have no special reason to use anything else — single-node jobs, ordinary data sizes, applications that read inputs once and write results once.
+
+Inside the job, `$SCRATCHDIR` points to your private directory, e.g. `/scratch/myuser/job_18359645.pbs-m1`. You never type the path yourself.
+
+## 2. SSD scratch — when disk speed is the bottleneck
+
+Same idea as local scratch, but on the node's **SSD** drive.
+
+```bash
+#PBS -l select=1:ncpus=1:mem=4gb:scratch_ssd=20gb
+```
+
+- **Available:** on most but not all nodes (check [my.metacentrum.cz → Machines](https://my.metacentrum.cz/machines), node detail → "Scratch SSD").
+- **Speed:** fast — both many-small-files and large sequential I/O.
+- **Lifetime:** the job, same as local.
+- **Use it when:** the job spends its time reading/writing rather than computing — many small files (genomics tools are notorious), database processing, checkpointing every few minutes. If `qstat -xf` shows little CPU time used but long walltime, suspect I/O — try SSD.
+
+## 3. Scratch in RAM — maximum speed, zero safety
+
+A directory in the node's **memory** (`/dev/shm`). As fast as storage can possibly get.
+
+```bash
+#PBS -l select=1:ncpus=1:mem=20gb:scratch_shm=true
+```
+
+- **Available:** everywhere — but the size comes out of your `mem=` request. Here the 20 GB must hold *both* the program's memory *and* the scratch files.
+- **Speed:** ultra fast (RAM).
+- **Lifetime:** the job — and a **killed or crashed job loses it instantly**.
+- **Use it when:** you need extreme I/O speed for data you can afford to lose or regenerate, e.g. intermediate files that exist only for minutes. Not for anything precious.
+
+## 4. Shared scratch — one directory for a multi-node job
+
+A network volume that **all nodes of your job see at the same path**.
+
+```bash
+#PBS -l select=4:ncpus=8:mem=4gb:scratch_shared=100gb
+```
+
+- **Available:** on nodes that mount the shared volume (check the node list — "Scratch Shared").
+- **Speed:** fast (parallel filesystem), but slower than a local disk for small files.
+- **Lifetime:** the job.
+- **Use it when:** your job spans multiple nodes and the processes on different nodes must read/write the *same* files (e.g. MPI jobs with shared intermediate data, or [job arrays](./job-arrays-guide) where subjob *N* picks up what subjob *N−1* left). In a multi-chunk job every chunk's `$SCRATCHDIR` is the same directory.
+
+<Callout type="warn" title="Copy-out races">
+With arrays or dependencies on shared scratch, several subjobs may finish and copy results at once. Copy to per-subjob names (`result_${PBS_ARRAY_INDEX}.txt`) to avoid subjobs overwriting each other's outputs.
+</Callout>
+
+## 5. Multijob fast scratch — reuse big data across jobs
+
+All the types above vanish when the job ends. But many workflows look like this: copy a 500 GB database to scratch once, then run 300 jobs against it over two weeks. Copying it in and out of every job would cost more than the computation.
+
+**Multijob fast scratch** solves this: a fast, **persistent** scratch that you set up once and keep pointing jobs at.
+
+Two locations, choose the one closer to you (both are fast):
+
+- `multijob=brno` — BeeGFS storage in Brno; path `/scratch/multijob-brno/USERNAME/`
+- `multijob=plzen` — BeeGFS storage in Plzeň; path `/scratch/multijob-plzen/USERNAME/` *(new — being introduced)*
+
+**How it works** — important difference from everything above:
+
+1. PBS does **not** create the directory or set `$SCRATCHDIR` — it only routes your job to nodes that can reach the storage.
+2. You create your working directory there **once**, copy your big data in **once**.
+3. Every subsequent job on that storage just uses the path directly.
+
+**Step by step (interactive session shown; batch jobs work the same):**
+
+```bash
+# First time only: create your project directory and copy the data in.
+# The job below just gets you onto a node that sees the Brno multijob scratch:
+qsub -I -l walltime=1:00:00 -l select=1:ncpus=1:mem=4gb:multijob=brno
+
+# now you are on a compute node with /scratch/multijob-brno mounted
+mkdir -p /scratch/multijob-brno/$USER/myproject
+cp -r ~/mydata/ /scratch/multijob-brno/$USER/myproject/
+exit
+```
+
+```bash
+# Every following job: point SCRATCHDIR at your directory yourself
+cat > job.sh <<'EOF'
+#!/bin/bash
+#PBS -l walltime=4:00:00
+#PBS -l select=1:ncpus=4:mem=16gb:multijob=brno
+#PBS -N reuse_data
+set -e
+module load mytool
+SCRATCHDIR=/scratch/multijob-brno/$USER/myproject   # manual, same as your earlier jobs
+cd $SCRATCHDIR
+mytool --db bigdb.fmi --query queries/q${PBS_ARRAY_INDEX}.fa > hits_${PBS_ARRAY_INDEX}.txt
+EOF
+qsub -J 1-300 job.sh      # array against the data already in place
+```
+
+- **Speed:** fast (BeeGFS parallel filesystem).
+- **Lifetime:** as long as you use it (idle files are cleaned after some weeks).
+- **Availability:** `multijob=brno` on the bee cluster nodes (Brno), `multijob=plzen` on fobos/deimos nodes (Plzeň); `multijob=global` (below) on all nodes.
+- **Use it when:** large masses of data (databases, reference datasets) that take long to copy and are shared by many independent jobs.
+
+<Callout type="info" title="Beta feature">
+Multijob scratch is in beta (submit from skirit, skirit-lite, nympha or perian frontends). The Plzeň variant is new and being introduced gradually — if jobs requesting `multijob=plzen` behave oddly, use `multijob=brno` meanwhile and let us know (meta@cesnet.cz).
+</Callout>
+
+## 6. Multijob global scratch — everywhere, but slow
+
+The same persistent-across-jobs idea, but on a **CephFS** volume mounted on **every node**, at the cost of speed.
+
+```bash
+#PBS -l select=1:ncpus=2:mem=8gb:multijob=global
+SCRATCHDIR=/scratch/multijob-global/$USER/myproject
+```
+
+- **Available:** on every node (jobs are not restricted in placement).
+- **Speed:** slow — the volume is network storage spanning sites.
+- **Use it when:** your persistent working set is read occasionally by many jobs and speed of access doesn't matter — e.g. a shared database, software state, or files consumed by later steps of a [dependency chain](./job-dependencies). For I/O-heavy use, prefer the fast Brno/Plzeň variants.
+
+## Choosing, in one picture
+
+```
+Is the data only needed DURING one job?
+├── yes → single job?
+│     ├── one node:
+│     │     ├── ordinary I/O ................. scratch_local   (default)
+│     │     ├── many files / heavy I/O ....... scratch_ssd
+│     │     └── tiny + hot + disposable ...... scratch_shm (+mem)
+│     └── several nodes, shared files ........ scratch_shared
+└── no  → must survive between jobs (multijob):
+      ├── needs to be fast, Brno or Plzeň OK . multijob=brno / multijob=plzen
+      └── slow access acceptable, any node .... multijob=global
+```
+
+## A full example, end to end
+
+A job that uses local scratch the safe way (the [safe template](./safe-template)):
+
+```bash
+#!/bin/bash
+#PBS -l walltime=2:00:00
+#PBS -l select=1:ncpus=4:mem=8gb:scratch_local=15gb
+#PBS -N my_analysis
+set -e
+trap 'cd ${PBS_O_WORKDIR} && cp -r $SCRATCHDIR emergency_${PBS_JOBID} 2>/dev/null; clean_scratch' TERM
+
+module load mytool
+cd ${PBS_O_WORKDIR}
+cp inputs/* $SCRATCHDIR/
+cd $SCRATCHDIR
+mytool input.dat result.dat        # your computation
+cp result.dat ${PBS_O_WORKDIR}/    # save the result BEFORE ending
+clean_scratch                      # free the scratch for others
+```
+
+Swap `scratch_local=15gb` for `scratch_ssd=15gb` or `scratch_shared=15gb` and nothing else changes — that is the point of `$SCRATCHDIR`.
+
+## Rules of thumb that keep you out of trouble
+
+1. **Ask for scratch explicitly** — no resource means a token default.
+2. **Copy results out before the job ends** — per-job scratch is wiped.
+3. **Size scratch honestly** (`resources_used` in `qstat -xf` shows disk use).
+4. **RAM scratch eats your memory budget** — `mem=` must cover both.
+5. **On shared/multijob scratch, write uniquely-named files** when many jobs run at once.
+
+## Where to go next
+
+- [Safe job script template](./safe-template) — the copy-in/run/copy-out skeleton used above,
+- [Job arrays](./job-arrays-guide) and [job dependencies](./job-dependencies) — the workflows that most benefit from shared/multijob scratch,
+- [Scratch storages](../infrastructure/scratch-storages) — the full reference table with all parameters,
+- [Storages](../infrastructure/storages) — where data that must *not* be temporary lives.
+

@@ -15,12 +15,36 @@ This storage should be used *only during computations* and should be freed immed
 The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 
 <Callout type="info" title="No default scratch">
-    For a batch job, you must set the size and type of scratchdir! There is no default type of scratch.
+    For a batch job, you must set the size and type of scratchdir! There is no default type of scratch. If you request no scratch at all, `$SCRATCHDIR` points to a plain directory on the node's system disk (`/var/tmp/pbs.<jobid>`) — small and slow. Always ask for a scratch type and size explicitly.
 </Callout>
 
-## Scratch types
 
-We offer the following types of scratch storage:
+## Scratch types, the short version
+
+| You need... | Scratch type to use | PBS resource |
+|---|---|---|
+| Nothing special — a normal job | **Local scratch** (default choice) | `scratch_local=10gb` |
+| Many small files / heavy reading and writing | **SSD scratch** | `scratch_ssd=10gb` |
+| Absolute maximum speed, small data, disposable | **Scratch in RAM** | `scratch_shm=true` (+ large `mem=`) |
+| Same files seen from many nodes of one multi-node job | **Shared scratch** | `scratch_shared=10gb` |
+| Same big data reused by many separate jobs, nodes limited, I/O fast | **Multijob fast scratch** | `multijob=brno` or `multijob=plzen` |
+| Same big data reused by many separate jobs, everywhere, I/O slow is OK | **Multijob global scratch** | `multijob=global` |
+
+## Which scratch to use
+
+```
+Is the data only needed DURING one job?
+├── yes, data are for a single job
+│     ├── one node
+│     │     ├── ordinary I/O ....................... scratch_local   (default)
+│     │     ├── many files / heavy I/O ............. scratch_ssd
+│     │     └── ultra fast I/O, moderate data ...... scratch_shm (+mem)
+│     └── several nodes, shared files .............. scratch_shared
+└── no, must survive between jobs
+      ├── needs to be fast, nodes limited to Brno or Plzeň  . multijob=brno / multijob=plzen
+      └── slow access acceptable, available on all nodes .... multijob=global
+```
+## Scratch types - detailed overview
 
 | Scratch type | PBS resource | Speed | Do data survive end of job? | Path |
 |--------------|--------------|-------|-----------------------------|------|
@@ -32,69 +56,84 @@ We offer the following types of scratch storage:
 | [Multijob fast](#multijob-scratch-fast) | `multijob` | fast | yes | manual, `/scratch/multijob-[brno/plzen]` |
 | [Multijob global](#multijob-scratch-global) | `multijob` | slow | yes | manual, `/scratch/multijob-global` |
 
+
 ### Local scratch
 
-- PBS resource `scratch_local`
-- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_local=400mb`
+*The default choice.*
 
-- available on every node
-- speed: moderate (HDD disc)
-- the content can be erased by PBS after job's end
-- choose this type as a default if you have no reason to do otherwise
+- PBS resource `scratch_local`
+```bash
+qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_local=400mb
+```
+- **Availability:** on every node.
+- **Speed:** moderate (spinning HDD on most nodes).
+- **Lifetime:** the job. The content can be erased any time after job's end.
+- **Use it when:** you have no special reason to use anything else — single-node jobs, ordinary data sizes, applications that read inputs once and write results once.
 
 ### Fast SSD scratch
 
-- PBS resource `scratch_ssd`
-- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_ssd=400mb`
+*When disk speed is the bottleneck.*
 
-- not available on all nodes; see [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch SSD"
-- speed: fast (SSD disc), smaller volume than local HDD scratch
-- the content can be erased by PBS after job's end
-- choose for jobs where the bottleneck is disc-related operations (applications that create/read a lot of files)
+- PBS resource `scratch_ssd`
+```bash
+qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_ssd=400mb
+```
+- **Availability:** on most but not all nodes; see [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch SSD".
+- **Speed:** fast (SSD disc), smaller volume than local HDD scratch.
+- **Lifetime:** the job. The content can be erased any time after job's end.
+- **Use it when:** the bottleneck is disc-related operations (applications that create/read a lot of files). If `qstat -xf` shows little CPU time used but long walltime, suspect I/O — try SSD.
 
 ### Scratch in RAM
 
-- PBS resource `scratch_shm`
-- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shm=true`
+*Maximum speed, zero safety.*
 
-- scratch directory in RAM
-- maximum size of scratch is defined by the mem (memory) parameter
-- speed: ultra fast, but data on scratch do not survive the end/failure of the job
-- remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
-- use when you need ultra-fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
+- PBS resource `scratch_shm`
+```bash
+qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shm=true
+```
+- **Availability:** on every node; scratch directory in RAM.
+- **Size:** maximum size of scratch is defined by the mem (memory) parameter. Remember to choose memory large enough (to hold both data in scratch and the actual memory requirements for the job)
+- **Speed:**  as fast as a scratch can possibly get.
+- **Lifetime:** data on scratch do not survive the end/failure of the job.
+- **Use it when:** you need ultra-fast scratch AND when you absolutely don't care about data from failed/killed/ended jobs
 
 ### Shared scratch
 
+*A network volume shared between all nodes in a multi-node job.*
+
 - PBS resource `scratch_shared`
-- submit as: `qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shared=400mb`
-
-- network volume shared between all nodes in a given cluster
-- not available on all computational nodes
-- to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch Shared"
-- speed: read/write operation slower than on local scratch
-- use for jobs spanning multiple compute nodes with parallel I/O operation
-
+```bash
+qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shared=400mb
+```
+- **Availability:** not available on all computational nodes; to check for availability on a particular node, go to [https://my.metacentrum.cz/machines](https://my.metacentrum.cz/machines) -> choose a node -> search for "Scratch Shared".
+- **Speed:** read/write operation slower than on local scratch.
+- **Use it when:** your job spans multiple nodes and the processes on different nodes must read/write the *same* files (e.g. MPI jobs with shared intermediate data, or [job arrays](../jobs/job-arrays) where subjob *N* picks up what subjob *N−1* left).
 
 ### Multijob scratch fast
 
-<Callout type="info" title="Feature in preparation">
+*Reuse big data across jobs, fast, limited nodes.*
+
+<Callout type="info" title="Beta feature">
     This feature is currently in beta now. Currently available from skirit, skirit-lite, nympha and perian frontends.
 </Callout>
 
+<Callout type="warning" title="Manual setup of scratchdir">
+    PBS **does not** create the scratch directory; it only directs the job to the subset of machines that have connection to the already existing scratch either in Brno, or in Plzen. The multijob scratch requires a semi-manual setup: user first creates the scratchdir in a selected location, copies the data etc. In-between-jobs consistency of path to scratchdir must be kept manually by the user.
+</Callout>
+
 - PBS resource `multijob=[ brno | plzen ]`
-- submit as: `qsub -I -l walltime=01:00:00 -l select=1:multijob=brno`
+```bash
+qsub -I -l walltime=01:00:00 -l select=1:multijob=brno
+```
+
 - located in `/scratch/multijob-[brno|plzen]/USERNAME/`
 
-- available only on some nodes
-- fast
-- persistent scratch for independent consecutive jobs working on same data
-- semi-manual setup; user first creates the scratchdir in a selected location, copies the data etc.
-- PBS **does not** create the scratch directory; it only directs the job to the subset of machines that have connection to the already existing scratch either in Brno, or in Plzen
-- suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
+- **Availability:** available only on some nodes located in Brno or Plzen with BeeGFS filesystem.
+- **Speed:** fast (BeeGFS parallel filesystem).
+- **Lifetime:** persistent scratch for independent consecutive jobs working on same data
+- **Use it when:** large masses of data (databases, reference datasets) that take long to copy and are shared by many independent jobs.
 
 **Example**
-
-The in-between-jobs consistency of path to scratchdir must be kept manually by the user.
 
 ```bash
 # Run 1st job
@@ -120,20 +159,24 @@ qsub -I -l walltime=01:00:00 -l select=1:multijob=brno # MUST be brno this time
 
 ### Multijob scratch global
 
-<Callout type="info" title="Feature in preparation">
+*Reuse big data across jobs, slow, on all nodes.*
+
+<Callout type="info" title="Beta feature">
     This feature is currently in beta now. Currently available from skirit, skirit-lite, nympha and perian frontends.
+</Callout>
+
+<Callout type="warning" title="Manual setup of scratchdir">
+    PBS **does not** create the scratch directory; in the case of `multijob_global`, the declaration currently serves for journaling purposes only.
 </Callout>
 
 - PBS resource `multijob=global`
 - submit as: `qsub -I -l walltime=01:00:00 -l select=1:multijob=global`
 - located in `/scratch/multijob-global/USERNAME/`
 
-- available on every node
-- slow
-- persistent scratch for independent consecutive jobs working on same data
-- semi-manual setup; user first creates the scratchdir in a selected location, copies the data etc.
-- PBS **does not** create the scratch directory; the `multijob=global` currently serves only a journaling purpose
-- suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
+- **Availability:** on every node.
+- **Speed:** low (CephFS filesystem).
+- **Lifetime:** persistent scratch for independent consecutive jobs working on same data
+- **Use it when:** suitable for jobs working on large masses of data (databases) which take long to copy to/from storage
 
 ### Shared scratch on cluster Bee
 
