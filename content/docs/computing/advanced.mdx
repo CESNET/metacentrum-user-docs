@@ -151,7 +151,7 @@ qdel -W force 21732596.pbs-m1.metacentrum.cz
 
 **Essential commands**: `qsub` (submit), `qstat` (query), `qdel` (delete)
 
-**Queues**: Jobs route automatically from routing queue to execution queues (`q_1h`, `q_1d`, etc.). Don't specify a queue unless necessary.
+**Queues**: Jobs are routed automatically from the routing queue `default` to the execution queues (`q_2h`, `q_1d`, etc.) by walltime/GPU.
 
 <Callout type="info">
     View all queues at [PBSmon](https://my.metacentrum.cz/queues). For more on queues, see [Queues guide](./resources/queues).
@@ -340,7 +340,7 @@ Send to [annual-report@metacentrum.cz](mailto:annual-report@metacentrum.cz).
 ## Additional resources
 
 - [Parallel computing](./parallel-comput) – for running MPI/OpenMP jobs
-- [GPU computing](./gpu-comput) – for GPU-accelerated workloads
+- [GPU computing](./gpu-comput/gpu-job) – for GPU-accelerated workloads
 - [PBS resources](./resources/resources) – detailed resource specification guide
 - [Job tracking](./jobs/job-tracking) – detailed job monitoring and history
 - [Email notifications](./jobs/email-notif) – configure job status emails
