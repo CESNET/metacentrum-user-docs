@@ -121,6 +121,10 @@ qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shared=400mb
     PBS **does not** create the scratch directory; it only directs the job to the subset of machines that have connection to the already existing scratch either in Brno, or in Plzen. The multijob scratch requires a semi-manual setup: user first creates the scratchdir in a selected location, copies the data etc. In-between-jobs consistency of path to scratchdir must be kept manually by the user.
 </Callout>
 
+<Callout type="warning" title="Data in fast multijob scratch are not backed up">
+    Although the data in multijob scratch are not erased after the end of the job, multijob scratch is still a scratch: **data are not backed up and in case of disc failure, they will be lost**. Please keep this in mind and always keep a backup copy of your input data on your storage/[Object storage](../../data/storage-department).
+</Callout>
+
 - PBS resource `multijob=[ brno | plzen ]`
 ```bash
 qsub -I -l walltime=01:00:00 -l select=1:multijob=brno
@@ -163,6 +167,10 @@ qsub -I -l walltime=01:00:00 -l select=1:multijob=brno # MUST be brno this time
 
 <Callout type="warning" title="Manual setup of scratchdir">
     PBS **does not** create the scratch directory; in the case of `multijob_global`, the declaration currently serves for journaling purposes only.
+</Callout>
+
+<Callout type="warning" title="Global multijob scratch is more resilient than fast multijob scratch">
+    As the implementation and filesystem of global multijob scratch (CEPHfs) is different from the one used for fast multijob scratch (BeeGFS), the data in global multijob scratch are more resilient to disc failure. **We recommend to prefer global multijob scratch for a series of jobs that you plan to submit over prologed period of time.**
 </Callout>
 
 - PBS resource `multijob=global`
