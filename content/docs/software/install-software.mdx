@@ -293,7 +293,7 @@ python
 ### Conda/Mamba packages
 
 <Callout  type="info" title="Tip" icon="💡">
-Some of the most popular packages may be already installed - see `module add mambaforge ; mamba env list`.
+Some of the most popular packages may be already installed - see `mamba env list`.
 </Callout>
 
 **Python package installers: Conda, Mamba, Micromamba**
@@ -311,7 +311,6 @@ We recommend to use `mamba` from `mambaforge` module as a primary installer for 
 *Example: Install package [segemehl](https://anaconda.org/bioconda/segemehl).*
     
 ```bash
-module add mambaforge
 # create new environment called segemehl-0.3.4 (with python 3.8)
 mamba create --prefix /storage/city/home/user_name/segemehl-0.3.4 python=3.8 -y
 # activate the environment
@@ -332,7 +331,6 @@ mamba create --prefix /storage/city/home/user_name/my_new_env -c channel_1 -c ch
 Activate this environment (e.g. within batch jobs) as:
 
 ```bash
-module add mambaforge
 mamba activate /storage/city/home/user_name/segemehl-0.3.4
 segemehl.x ... # run the job
 mamba deactivate
