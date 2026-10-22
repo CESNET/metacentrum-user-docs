@@ -1,0 +1,153 @@
+---
+title: MetaCentrum Documentation
+---
+
+import { Cards, Card } from 'fumadocs-ui/components/card';
+import { Feather, Fingerprint, Cpu, Database, MoveRight, BrainCircuit, Network, Cloudy, Container, Package } from 'lucide-react'; 
+import Image from 'next/image';
+import BannerMeta from '@/public/img/meta/welcome/meta-docs-banner.jpg';
+import BannerCloud from '@/public/img/meta/welcome/openstack.svg';
+import BannerElixir from '@/public/img/meta/welcome/elixir_logo.png';
+import BannerGalaxy from '@/public/img/meta/welcome/galaxy.png';
+import BannerGrid from '@/public/img/meta/welcome/openPBS-logo.png';
+import BannerJupyter from '@/public/img/meta/welcome/jupyter.png';
+import BannerKubernetes from '@/public/img/meta/welcome/kubernetes-logo.svg';
+import BannerOnDemand from '@/public/img/meta/welcome/ondemand.jpg';
+
+A MetaCentrum account is a **single login to the national e-INFRA CZ research infrastructure** — supercomputing, cloud, containers, storage, and AI services, operated jointly by [CESNET](https://www.cesnet.cz/en) and [CERIT-SC](https://www.cerit-sc.cz/).
+
+With one account you can:
+
+- **run compute jobs** on the Grid (HPC clusters with thousands of CPUs and GPUs, OpenPBS scheduler),
+- **open graphical applications** (Matlab, VMD, RStudio, Jupyter...) in your browser via OnDemand,
+- **run notebooks with built-in AI assistants** on the Kubernetes JupyterHub — connected to locally operated LLM models,
+- **deploy your own virtual machines** in the OpenStack Cloud,
+- **run containers at scale** on the Kubernetes platform, with a catalog of ready-to-run applications,
+- **chat with local LLMs and use them via API** (AI as a Service — your data stays in the Czech academic infrastructure),
+- **store and share data**.
+
+## What do you want to do?
+
+| You want to... | Use | Docs |
+|---|---|---|
+| Run scripts/HPC software as batch jobs | [Grid](#grid-hpc) | [MetaCentrum Grid docs](./computing/run-basic-job) |
+| Work in a terminal or GUI app from the browser | [OnDemand](#ondemand) | [OnDemand](./graphical/ondemand) |
+| Run Jupyter/RStudio-style notebooks in browser | [OnDemand](#ondemand) or [JupyterHub](#jupyter-notebooks) | [JupyterHub docs](https://docs.cerit-sc.cz/en/docs/web-apps/jupyterhub) |
+| Do interactive data analysis with an AI assistant in the notebook | [JupyterHub](#jupyter-notebooks) | [JupyterHub docs](https://docs.cerit-sc.cz/en/docs/web-apps/jupyterhub) |
+| Run your own VM with root access | [Cloud](#cloud-openstack) | [Cloud docs](https://docs.platforms.cloud.e-infra.cz/en/docs) |
+| Run containers / microservices at scale | [Kubernetes](#kubernetes) | [Kubernetes docs](https://docs.cerit-sc.cz/en/docs/platform/overview) |
+| Chat with local LLMs or use LLM API in code | [AI as a Service](#ai-as-a-service) | [AIaaS docs](https://docs.cerit-sc.cz/en/docs/ai-as-a-service/introduction) |
+| Reproducible analysis without coding | [Galaxy](#galaxy) | [Galaxy docs](./graphical/usegalaxy) |
+| Store and share large data | Storages + Filesender | [Data docs](./data/types-of-storage) |
+
+## Services
+
+### Grid (HPC)
+
+Distributed HPC computing built on the OpenPBS scheduler: thousands of CPU cores and GPUs, shared home and scratch storages, pre-installed software as modules. The classic way to run computations — submit a job script, it runs on compute nodes.
+
+<Card title="Grid — MetaCentrum HPC" icon={<Network/>}>
+  Batch computing on HPC clusters: CPU and GPU jobs, software modules, parallel computing. Start with [how to run a job](./computing/run-basic-job).
+  <div className="-mx-3 -mt-3"><Image src={BannerGrid} alt="MetaCentrum Grid" /></div>
+  <a href="./computing/run-basic-job" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
+</Card>
+
+### Cloud (OpenStack)
+
+Self-service virtual machines (Linux or Windows) with root access, GPU flavors, and CEPH object storage. Every MetaCentrum account includes a personal project — you spawn, resize, and delete instances yourself from the web console or CLI.
+
+<Card title="Cloud — OpenStack IaaS" icon={<Cloudy/>}>
+  Your own virtual machines with root access, GPU flavors, object storage. Included with every MetaCentrum account.
+  <div className="-mx-3 -mt-3"><Image src={BannerCloud} alt="Cloud" /></div>
+  <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
+</Card>
+
+### Kubernetes
+
+Container platform for running Docker images at scale: namespaces with quotas, GPU access, persistent volumes, and a catalog of ready-to-run applications (see [below](#kubernetes-application-catalog)).
+
+<Card title="Kubernetes — container platform" icon={<Package/>}>
+  Run containers at scale: your own Docker images from the Harbor registry, GPUs, persistent storage, database and queue operators.
+  <div className="-mx-3 -mt-3"> <center><Image width="120" height="120" src={BannerKubernetes} alt="Kubernetes" /> </center> </div>
+  <a href="https://docs.cerit-sc.cz/en/docs/platform/overview" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
+</Card>
+
+### OnDemand
+
+Browser-based access to the Grid: file manager on all storages, shell access to frontends, graphical applications (Matlab, VMD, RStudio, Jupyter...) as interactive jobs, and job submission through the Job Composer. No SSH client or VPN needed — just a browser.
+
+<Card title="OnDemand" icon={<Fingerprint/>}>
+  Browser access to MetaCentrum Grid: files, shell, graphical apps, job submission. Log in with your MetaCentrum account at [ondemand.metacentrum.cz](https://ondemand.metacentrum.cz).
+  <div className="-mx-3 -mt-3"><Image src={BannerOnDemand} alt="Open OnDemand" /></div>
+  <a href="./graphical/ondemand" className="text-fd-primary flex items-center gap-2"><MoveRight />OnDemand docs</a>
+</Card>
+
+### Jupyter notebooks
+
+There are **two ways to run Jupyter**:
+
+1. **OnDemand** ([ondemand.metacentrum.cz](https://ondemand.metacentrum.cz)) — a Jupyter Notebook/Lab session as an interactive Grid job, submitted from the browser. Good for quick work on Grid storages.
+2. **JupyterHub** ([hub.cloud.e-infra.cz](https://hub.cloud.e-infra.cz)) — multi-user Jupyter platform on Kubernetes, with pre-configured images for R, TensorFlow, PyTorch and Matlab. **The advantage: AI-enabled notebook images** (look for the "AI" tag when spawning a server, e.g. *Minimal NB AI*, *Datascience NB AI*) come with a built-in AI coding assistant **connected to local LLMs operated by CERIT-SC** — your prompts and code stay inside the Czech academic infrastructure, no external provider. There is also an image with integrated Claude Code.
+
+### AI as a Service
+
+CERIT-SC operates an on-premise AI platform for researchers: open large language and generative models (DeepSeek, Qwen, Llama and others) running on NVIDIA DGX systems, accessible via web chat or a standard OpenAI-compatible API. Your data never leaves the e-INFRA CZ infrastructure.
+
+<Card title="AI as a Service — local LLMs" icon={<BrainCircuit/>}>
+  Chat with local LLM models at [chat.ai.e-infra.cz](https://chat.ai.e-infra.cz), or use them from your code via the OpenAI-compatible API at llm.ai.e-infra.cz. Included with a MetaCentrum account.
+  <a href="https://docs.cerit-sc.cz/en/docs/ai-as-a-service/introduction" className="text-fd-primary flex items-center gap-2"><MoveRight />AIaaS docs</a>
+</Card>
+
+### Galaxy
+
+Web platform for accessible, reproducible, and transparent data analysis — thousands of tools, no coding required. Backed by MetaCentrum Grid.
+
+<Card title="Galaxy">
+  Reproducible web-based analysis, mainly used in bioinformatics but spanning many disciplines. Czech Galaxy server at [usegalaxy.cz](./graphical/usegalaxy), plus specialized instances (RepeatExplorer, UMSA).
+  <div className="-mx-3 -mt-3"><Image src={BannerGalaxy} alt="Galaxy" /></div>
+  <a href="./related/galaxy" className="text-fd-primary flex items-center gap-2"><MoveRight />Galaxy docs</a>
+</Card>
+
+### Elixir
+
+<Card title="Elixir">
+  Community for scientists with research objectives in genomics, proteomics and other life sciences — brings extra compute resources and tools.
+  <div className="-mx-3 -mt-3"><Image src={BannerElixir} alt="Elixir" /></div>
+  <a href="./access/elixir" className="text-fd-primary flex items-center gap-2"><MoveRight />Elixir</a>
+</Card>
+
+### Storages and data
+
+Shared network storages for home directories, scratch and projects (tens to hundreds of GB quota, backed up), S3-compatible object storage in the Cloud, and Filesender for transferring large files to collaborators. See the [Data section](./data/types-of-storage).
+
+## Kubernetes application catalog
+
+The Kubernetes platform (via the Rancher UI) offers ready-to-run applications — you fill in a deployment form (resources, storage, credentials) and get a running instance with a web address. Highlights:
+
+- **Development**: code-server (VS Code in browser), pycharm
+- **Data science & visualization**: RStudio, knime, paraview, blender, vmd
+- **Databases & storage**: PostgreSQL (CloudNativePG operator), MinIO object storage, pgAdmin, phpMyAdmin, neo4j graph database, filebrowser, ownCloud sync, Samba (Windows network drive over a PVC)
+- **AI**: langflow (visual AI-agent builder), text-generation-webui (Gradio LLM UI)
+- **Engineering & science**: Ansys, Matlab, Scipion (cryo-EM), MaxQuant (proteomics), RIDOM SeqSphere (NGS typing), ShinySOM, Foldify (ColabFold/ESMfold), MPI jobs
+- **Teaching & web**: Moodle, Overleaf, BinderHub (turn a git repository into interactive notebooks at binderhub.cloud.e-infra.cz), Matrix/Element communication
+
+Full catalog with descriptions: [Rancher Applications](https://docs.cerit-sc.cz/en/docs/rancher-apps/rancher-applications). Default project quota: 20 guaranteed CPUs; more on request.
+
+
+<h3>MetaCentrum: your research, computed</h3>
+
+<center>
+<iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube-nocookie.com/embed/m_X7faF70LA?si=T17pKjpH_85HbtDq" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowfullscreen>
+</iframe>
+</center>
+
+<div className="-mx-3 -mt-3"> <Image src={BannerMeta} alt="Meta" width="1200" height="710" /> </div>
+
+<a href="https://www.metacentrum.cz/en">MetaCentrum</a> is a <b>virtual organization</b>; its platforms and services are operated by joint effort of <a href="https://www.cesnet.cz/en">CESNET</a> and <a href="https://www.cerit-sc.cz/">CERIT-SC</a>.

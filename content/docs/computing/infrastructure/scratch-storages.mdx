@@ -24,7 +24,7 @@ The location of scratch directory is defined by a system variable `SCRATCHDIR`.
 | You need... | Scratch type to use | PBS resource |
 |---|---|---|
 | Nothing special — a normal job | **Local scratch** (default choice) | `scratch_local=10gb` |
-| Many small files / heavy reading and writing | **SSD scratch** | `scratch_ssd=10gb` |
+| Many small files / heavy reading and writing | **Local SSD scratch** | `scratch_ssd=10gb` |
 | Absolute maximum speed, small data, disposable | **Scratch in RAM** | `scratch_shm=true` (+ large `mem=`) |
 | Same files seen from many nodes of one multi-node job | **Shared scratch** | `scratch_shared=10gb` |
 | Same big data reused by many separate jobs, nodes limited, I/O fast | **Multijob fast scratch** | `multijob=brno` or `multijob=plzen` |
@@ -49,7 +49,7 @@ Is the data only needed DURING one job?
 | Scratch type | PBS resource | Speed | Do data survive end of job? | Path |
 |--------------|--------------|-------|-----------------------------|------|
 | [Local](#local-scratch) | `scratch_local` | normal | no | $SCRATCHDIR |
-| [SSD](#fast-ssd-scratch) | `scratch_ssd` | fast | no | $SCRATCHDIR |
+| [Local SSD](#fast-ssd-scratch) | `scratch_ssd` | fast | no | $SCRATCHDIR |
 | [in RAM](#scratch-in-ram) | `scratch_shm` | ultra fast | no | $SCRATCHDIR |
 | [Shared](#shared-scratch) | `scratch_shared` | fast | no | $SCRATCHDIR |
 | [Shared scratch on Bee cluster](#shared-scratch-on-cluster-bee) |  `scratch_shared` AND `cl_bee=True` | fast | yes | data was moved `/scratch/multijob-brno` |
@@ -121,6 +121,10 @@ qsub -I -l walltime=01:00:00 -l select=1:ncpus=1:mem=1gb:scratch_shared=400mb
     PBS **does not** create the scratch directory; it only directs the job to the subset of machines that have connection to the already existing scratch either in Brno, or in Plzen. The multijob scratch requires a semi-manual setup: user first creates the scratchdir in a selected location, copies the data etc. In-between-jobs consistency of path to scratchdir must be kept manually by the user.
 </Callout>
 
+<Callout type="warning" title="Data in fast multijob scratch are not backed up">
+    Although the data in multijob scratch are not erased after the end of the job, multijob scratch is still a scratch: **data are not backed up and in case of disc failure, they will be lost**. Please keep this in mind and always keep a backup copy of your input data on your storage/[Object storage](../../data/storage-department).
+</Callout>
+
 - PBS resource `multijob=[ brno | plzen ]`
 ```bash
 qsub -I -l walltime=01:00:00 -l select=1:multijob=brno
@@ -161,12 +165,12 @@ qsub -I -l walltime=01:00:00 -l select=1:multijob=brno # MUST be brno this time
 
 *Reuse big data across jobs, slow, on all nodes.*
 
-<Callout type="info" title="Beta feature">
-    This feature is currently in beta now. Currently available from skirit, skirit-lite, nympha and perian frontends.
-</Callout>
-
 <Callout type="warning" title="Manual setup of scratchdir">
     PBS **does not** create the scratch directory; in the case of `multijob_global`, the declaration currently serves for journaling purposes only.
+</Callout>
+
+<Callout type="warning" title="Global multijob scratch is more resilient than fast multijob scratch">
+    As the implementation and filesystem of global multijob scratch (CEPHfs) is different from the one used for fast multijob scratch (BeeGFS), the data in global multijob scratch are more resilient to disc failure. **We recommend to prefer global multijob scratch for a series of jobs that you plan to submit over prologed period of time.**
 </Callout>
 
 - PBS resource `multijob=global`
