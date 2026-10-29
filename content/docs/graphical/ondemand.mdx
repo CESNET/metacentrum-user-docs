@@ -11,10 +11,10 @@ OnDemand enables users to
 - **run graphical applications**,
 - setup, modify and **run batch jobs**.
 
-Among the pre-installed applications available are Matlab, ANSYS, Jupyter notebook and RStudio server.
-   
+Among the pre-installed applications available are Matlab, ANSYS, Jupyter notebook, RStudio server, VMD and others (see the list below).
+
 <Callout  type="info" title="Authorization">
-**Remember!** OnDemand is a web service, and login is done by the user's [academic identity](./access/log-in#web-services-login).
+**Remember!** OnDemand is a web service, and login is done by the user's [academic identity](./access/log-in#web-services-login). Optionally, when the list of institutions appears, choose **e-INFRA CZ password** and log in with your MetaCentrum username and password.
 </Callout>
 
 Supported browsers are Google Chrome, Mozilla Firefox or Microsoft Edge. 
@@ -26,17 +26,24 @@ Supported browsers are Google Chrome, Mozilla Firefox or Microsoft Edge.
 - **move files** between storages,
 - **edit files** on storages.
 
-In the rolldown menu, there are pre-defined shortcut links to three homes on different storages.
+
+In the rolldown menu, there are pre-defined shortcut links to all your home directories on different storages (Home Directory = brno2 by default, plus brno11-elixir, brno12-cerit, brno3-cerit, budejovice1, liberec3-tul, plzen1, praha1, praha2-natur, praha5-elixir, pruhonice1-ibot) and to the **shared project storages** (`/storage/projects`, `/storage/projects-du-praha`, `/storage/projects2`).
+
 
 ![pic](/img/meta/ondemand/files-rolldown.png)
 
 By default, the **Home Directory** link points to storage **brno2**.
 
+From the Files interface you can also click **Open in Terminal** to open a shell in the directory you are browsing.
+
+![pic](/img/meta/ondemand/files-app.png)
+
 ## Jobs
 
 ### Active jobs
 
-Under this tab, you will find a list of **all running or queued jobs** on the PBS server.
+Under this tab, you will find a list of **all running or queued jobs** on the PBS server. You can filter the view by cluster (MetaCentrum, Skirit, Tarkil, Zenith) and by user (only your jobs vs. all users' jobs).
+
 
 In the contrary to [list of interactive sessions](#my-interactive-sessions), you will see all jobs no matter whether they were submitted via the OnDemand interface or otherwise.
 
@@ -52,13 +59,24 @@ At the bottom of the job details table, you can get the location of the output f
 
 Job composer is a GUI wizard to set up a batch job.
 
+The workflow is: **New Job → From Template** (or From Default Template), pick a template, give the job a name, choose the cluster to submit to, and **Create New Job**:
+
+![pic](/img/meta/ondemand/job-composer-newjob.png)
+
+This copies the template's script (e.g. `main_job.sh`) into a staging directory under `~/ondemand/data/sys/myjobs/projects/default/<id>/`. You can then **Edit Files** (edit the script), set **Job Options**, and click **Submit** — the job goes to the PBS server like any `qsub` job, and its status is shown in the job table (and in [Active jobs](#active-jobs)). Job output files (`.o*` logs and whatever the script writes) appear in the same staging directory.
+
+![pic](/img/meta/ondemand/job-composer.png)
+
+Available system templates include "(default) Metacentrum simple sequential job", "Alphafold Metacentrum job" and "Basic Python Job". You can also create your own templates (**Create Template**) or start a job from a previously run job directory (**From Selected Job**).
+
 ## Clusters
 
 The Clusters tab is OnDemand's way to **provide CLI access** to MetaCentrum [frontends](../computing/infrastructure/frontends). Currently, there are links to:
 
-- **zuphux.metacentrum.cz**
+- **skirit.metacentrum.cz**
+- **tarkil.metacentrum.cz**
 - **perian.metacentrum.cz**
-- **elmo.metacentrum.cz**  
+- **zenith.cerit-sc.cz** 
    
 ![pic](/img/meta/ondemand/clusters-rolldown.png)
 
@@ -68,13 +86,26 @@ Clicking on "Shell access" will open an SSH connection in your browser:
 
 ## Interactive apps
 
-The "Interactive apps" tab lists all **environments**, **shell access** buttons, as well as **graphical software** that can be run from the OnDemand interface.
+The "Interactive apps" tab lists **all graphical software** that can be run as an interactive job, grouped into *Desktops*, *Servers* and *Cloud*:
 
-The "Interactive Apps" tab lists **all graphical software** that can be run as an interactive job.
+**Desktops** (full Linux desktop with VNC):
+Ansys/Ensight, Ansys/Fluent, Ansys/Workbench, BIOP Desktop, CLCgenomicsWB, MZMINE, Matlab, MetaCentrum Desktop, QuPath, VMD Desktop.
+
+**Servers** (application runs in the browser):
+Julia Pluto.jl, Jupyter Notebook/Lab, Jupyter - Evo2 (beta), Matlab webapp (beta), RStudio Server.
+
+**Cloud**:
+Kubernetes on OpenStack - KOST (beta), OpenStack VM (beta).
+
 
 ![pic](/img/meta/ondemand/apps.png)
 
 After it starts, the application runs as an [interactive job](../computing/run-basic-job#interactive-job) on any node within the [MetaCentrum infrastructure](../computing/infrastructure/frontend-storage).
+
+
+When launching an app, you specify the job parameters (number of hours, CPUs, memory, GPUs, local scratch). E.g. the VMD Desktop form allows 1-48 hours, up to 16 GPUs and up to 1000 GB of memory.
+
+![pic](/img/meta/ondemand/vmd-launch-form.png)
 
 In consequence, the location of the home directory (location=`city_XY` in `/storage/city_XY/home/user_123`) can be different for every new run of an application.
 
@@ -94,13 +125,19 @@ You can remove the content of OnDemand data directories, or even the `~/ondemand
 
 Every time you run OnDemand, it will first look for the existing directory `~/ondemand`. When it does not find any, it creates a new one.
 
+<Callout type="info" title="Note">
+    Data of the Job Composer (saved jobs and templates) live in `~/ondemand/data/sys/myjobs/production.sqlite3`. Deleting this file means losing your saved Job Composer jobs.
+</Callout>
+
+
 ### RStudio issues
 
 As the *home-on-any-storage* feature of OnDemand was causing problems for RStudio users, we applied a workaround for this.
 
 The default location *for the RStudio interactive app* is set to `brno2`.
 
-Moreover, users can overwrite this setting by choosing a different location from the drop-down menu:
+
+Moreover, users can overwrite this setting by choosing a different location (**RStudio working directory location**: brno2, plzen1, praha1 or brno12-cerit) from the drop-down menu:
 
 ![pic](/img/meta/ondemand/rstudio-dir-fix.png)
 
@@ -149,3 +186,8 @@ In a long-term open session, Kerber's ticket may expire. This situation is typic
 ```Key has expired @ dir_s_mkdir  - /storage/brno2/home/user_name```
 
 An ordinary page reload is insufficient to renew a user's Kerberos ticket. The user must click the ```Help``` button in the menu (upper right corner) and continue with ```Restart Web Server```.
+
+## See also
+
+- [Developing your own OnDemand apps](./ondemand-app-development) — build and run custom web apps under your account.
+
