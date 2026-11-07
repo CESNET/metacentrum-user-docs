@@ -1,0 +1,130 @@
+---
+title: Galaxy Dataset ↔ Czech Core Metadata Model Mapping
+---
+
+This page describes how the descriptive and provenance metadata of a **Galaxy dataset** map to the [Czech Core Metadata Model (CCMM)](https://techlib.github.io/CCMM/en/), the metadata model used by repositories of the National Repository Platform. It complements the [NRP integration use case](/docs/graphical/galaxy-nrp-integration), which shows how to move data between [usegalaxy.cz](https://usegalaxy.cz) and an NRP repository.
+
+## Mapping table
+
+| Galaxy concept | Description | CCMM concept | Coverage |
+|---|---|---|---|
+| Identifiers (`id`, `uuid`) | Internal and universal dataset identifiers | `Dataset → has identifier` → `Identifier` + `IdentifierScheme` | Good match |
+| Name and annotation (`name`, `annotation`) | User-editable label and free-text note | `Dataset → title` (`dcterms:title`) + `Description` | Good match |
+| Timestamps (`create_time`, `update_time`) | Dataset creation and modification timestamps | `Dataset → has time reference` → `TimeReference` (dateType = Created / Modified) | Good match |
+| Datatype (`file_ext`, `data_type`) | Galaxy datatype string (e.g. `tabular`, `bam`) | `Distribution → has format` → `Format` + `mediaType` | Good match |
+| File size and download link (`file_size`, `download_url`) | Byte count and direct download link | `Distribution-DownloadableFile → byte size` + `accessURL` / `downloadURL` | Good match |
+| Genome build (`genome_build`, also called `dbkey`) | Reference assembly (e.g. `hg38`) | `Dataset → has provenance` → `ProvenanceStatement` (lineage note) | Partial |
+| Creating tool (`tool_id`, `tool_version`) | Identity and version of the creating tool | `ProvenanceStatement` (free text) — no dedicated Tool class in CCMM | Partial |
+| Job parameters (`parameters`) | Full tool run configuration dictionary | `Description` (type = TechnicalInfo) — no structured parameter type | Partial |
+| Input datasets (provenance chain) | Upstream datasets used; recursively resolvable | `Dataset → has related resource` → `RelatedResource` — no typed "derived from" relation | Partial |
+| History (`history_id`, history `name`) | Analytical project context | `ProvenanceStatement` / `Catalogue` — no dedicated project/experiment class | Partial |
+| Creator | Per-dataset author identity | `Agent` (creator/contributor) | Partial |
+| Access and licence (`permissions`) | Dataset sharing and licensing | `Terms of use` + `AccessRights` | Not covered |
+| Subject and keywords (`tags`) | Controlled vocabulary classification | `Dataset → has subject` → `Subject` (FORD/FRASCATI required) — only free-form tags | Not covered |
+
+CCMM covers the descriptive metadata well but has only limited support for computational provenance. Where full provenance is needed, the CCMM record can be accompanied by an [RO-Crate](https://www.researchobject.org/ro-crate/) package, which models Galaxy workflows and tool runs as provenance entities. Galaxy can export a workflow invocation as a Workflow Run RO-Crate, as shown in the [NRP integration use case](/docs/graphical/galaxy-nrp-integration).
+
+## Galaxy API sources
+
+The following [Galaxy API](https://usegalaxy.cz/api/docs) endpoints return the Galaxy concepts listed in the mapping table. `{dataset_id}` is the encoded ID of the history dataset. The `history_id` and `creating_job` (used as `{job_id}`) values are part of the `GET /api/datasets/{dataset_id}` response.
+
+| Endpoint | Response fields | Concepts |
+|---|---|---|
+| `GET /api/datasets/{dataset_id}` | `id`, `uuid`, `name`, `annotation`, `misc_info`, `create_time`, `update_time`, `file_ext`, `data_type`, `file_size`, `download_url`, `genome_build`, `permissions`, `tags` | Dataset identity, descriptive and temporal metadata, format and distribution, genome build, access, subject |
+| `GET /api/jobs/{job_id}` | `tool_id`, `tool_version`, `user_id`, `user_email` | Tool identity, creator |
+| `GET /api/histories/{history_id}/contents/{dataset_id}/provenance` | `parameters`; with `?follow=true` also the provenance of all input datasets | Job parameters, input dataset lineage |
+| `GET /api/histories/{history_id}` | `name`, `annotation` | History context |
+
+## Good matches
+
+### Dataset identity
+
+The dataset details include both an internal `id` and a `uuid`, which together satisfy CCMM's `Identifier` + `IdentifierScheme` pattern. The `uuid` is particularly useful because it is globally unique and can be registered in an external persistent identifier scheme (e.g. a DOI system).
+
+### Descriptive metadata
+
+Galaxy stores a dataset `name` (editable by the user), an `annotation` field, and `misc_info` free-text, which map well to CCMM's `Dataset.title` and the typed `Description` class. CCMM allows descriptions to carry a `DescriptionType` (e.g. "Abstract", "Methods", "TechnicalInfo"), so each Galaxy text field can be stored as a separate description of the appropriate type.
+
+### Temporal metadata
+
+The dataset details include `create_time`, which satisfies CCMM's mandatory `TimeReference` with `dateType = Created`, and `update_time`, which maps to a `TimeReference` with `dateType = Modified`. The `publication_year` required by CCMM can be derived from `create_time`.
+
+### Format and distribution
+
+Galaxy's `file_ext`, `data_type`, `file_size`, and `download_url` fields map directly onto CCMM's `Distribution-DownloadableFile` with `hasFormat`, `byteSize`, `accessURL`, and `downloadURL`. Where a standard IANA media type exists for the Galaxy datatype (e.g. `text/tab-separated-values` for `tabular`), the `mediaType` field can also be populated.
+
+## Partial matches
+
+### Genome build / reference lineage
+
+The `genome_build` / `dbkey` field captures a critical piece of bioinformatics lineage (e.g. `hg38`, `mm10`). CCMM has no dedicated genomics field, so the genome build is recorded in a `ProvenanceStatement` as a lineage note, or encoded as a `Subject` term referencing a genome assembly registry.
+
+### Tool identity (`tool_id`, `tool_version`)
+
+The Galaxy dataset provenance API (available in BioBlend as [`show_dataset_provenance`](https://github.com/galaxyproject/bioblend/blob/f4feff47cb0c5c22f78b92ddfd04b773dfff2a3a/bioblend/galaxy/histories/__init__.py#L529)) returns `tool_id`, `job_id`, `stdout`, `stderr`, and `parameters` (including the input datasets), which together form a detailed record of the computation. The tool version is not part of this response; it is returned by `GET /api/jobs/{job_id}`.
+
+Example provenance response:
+
+```json
+{
+  "id": "6fbd9b2274c62ebe",
+  "job_id": "5471ba76f274f929",
+  "parameters": {
+    "chromInfo": "\"/usr/local/galaxy/galaxy-dist/tool-data/shared/ucsc/chrom/mm9.len\"",
+    "dbkey": "\"mm9\"",
+    "experiment_name": "\"H3K4me3_TAC_MACS2\"",
+    "input_chipseq_file1": { "id": "6f0a311a444290f2", "uuid": "null" },
+    "input_control_file1": {
+      "id": "c21816a91f5dc24e",
+      "uuid": "16f8ee5e-228f-41e2-921e-a07866edce06"
+    },
+    "major_command": "{\"gsize\": \"2716965481.0\", \"bdg\": \"False\", \"__current_case__\": 0, \"advanced_options\": {\"advanced_options_selector\": \"off\", \"__current_case__\": 1}, \"input_chipseq_file1\": 104715, \"xls_to_interval\": \"False\", \"major_command_selector\": \"callpeak\", \"input_control_file1\": 104721, \"pq_options\": {\"pq_options_selector\": \"qvalue\", \"qvalue\": \"0.05\", \"__current_case__\": 1}, \"bw\": \"300\", \"nomodel_type\": {\"nomodel_type_selector\": \"create_model\", \"__current_case__\": 1}}"
+  },
+  "stderr": "",
+  "stdout": "",
+  "tool_id": "toolshed.g2.bx.psu.edu/repos/ziru-zhou/macs2/modencode_peakcalling_macs2/2.0.10.2",
+  "uuid": "5c0c43f5-8d93-44bd-939d-305e82f213c6"
+}
+```
+
+<Callout type="info">
+CCMM has no dedicated "software" or "computational tool" class. The best available mapping is a free-text `ProvenanceStatement` or a `Description` of type "Methods" / "TechnicalInfo". This is a structural gap: the tool used is central to scientific reproducibility, but **CCMM treats provenance as a simple text statement rather than a structured linked object**.
+</Callout>
+
+### Job parameters
+
+The full parameter dictionary from Galaxy's provenance API can be serialised as a JSON string into a `Description` of type "TechnicalInfo".
+
+<Callout type="info">
+CCMM provides no structured parameter/configuration type. Machine-readability and queryability of individual parameter values are therefore lost at the CCMM layer.
+</Callout>
+
+### Input dataset lineage
+
+Galaxy supports recursive provenance — the `?follow=true` query parameter of the provenance endpoint fetches provenance for all input datasets and their inputs, enabling a full lineage graph. CCMM's `hasRelatedResource` can reference related datasets but offers no typed "derived from" or "used as input" relationship.
+
+<Callout type="info">
+Representing the full lineage requires a provenance vocabulary such as PROV-O (the `wasDerivedFrom` and `used` predicates) alongside the CCMM record.
+</Callout>
+
+### History context
+
+Galaxy groups datasets into named, shareable Histories representing an analytical project or experiment. CCMM has no direct analogue for a "project" or "experiment" container at the dataset level — the closest concepts are a `Catalogue` (for a collection) or a text-only `ProvenanceStatement`.
+
+### Creator / author identity
+
+CCMM mandates an `Agent` with a `name` (required `1..1`) and recommends persistent identifiers such as ORCID via the `Identifier` + `IdentifierScheme` pattern. Galaxy tracks which user account created a dataset or ran a job, but does not store author information for the dataset itself. If the user who submits the dataset to the repository owns it and is logged in with e-INFRA CZ AAI, the creator can be filled in automatically from their identity.
+
+## Not covered
+
+### Licence and access rights
+
+Galaxy manages access through internal role-based permissions (controlling which user accounts can view, import, or administer a dataset), but does not attach a formal open licence (e.g. an SPDX identifier like `CC-BY-4.0`) or a COAR access-rights vocabulary term to datasets. CCMM requires `Terms of use` as a mandatory field (`1..1`) and `AccessRights` using values from `http://purl.org/coar/access_right/` (open access, restricted access, etc.).
+
+### Funding information
+
+Galaxy has no mechanism to associate grant numbers, funder names, or award titles with datasets or histories. CCMM's `FundingReference` class captures the funder as an `Agent`, the award title, a local identifier (grant number), and optionally a link to a funding programme. This information must be entered manually when the record is created in the repository.
+
+### Subject / controlled vocabulary
+
+Galaxy supports user-defined free-text tags on datasets and histories, but not controlled vocabulary terms. CCMM mandates at least one `Subject` from the FRASCATI/FORD classification ([SubjectCategory code list](https://vocabs.ccmm.cz/registry/codelist/SubjectCategory/)). Galaxy tags can be added as extra `Subject` entries with a custom scheme, but the mandatory FORD subject must be assigned outside Galaxy.
