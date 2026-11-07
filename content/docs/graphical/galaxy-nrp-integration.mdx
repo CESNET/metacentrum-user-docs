@@ -2,52 +2,52 @@
 title: Using Galaxy in combination with NRP repositories
 ---
 
-This page describes a work-in-progress integration of [usegalaxy.cz](https://usegalaxy.cz) with repositories of the National Repository Platform ([official NRP page](https://www.eosc.cz/en/projects/national-repository-platform-for-research-data-nrp/national-repository-platform)).
+This page describes how to use [usegalaxy.cz](https://usegalaxy.cz) with repositories of the National Repository Platform ([official NRP page](https://www.eosc.cz/en/projects/national-repository-platform-for-research-data-nrp/national-repository-platform)).
 
-# Using the CESNET Invenio CatchAll repository
+## Using the NRP catch-all repository
 
-The following steps will guide you through the process of obtaining data from a CESNET Invenio repository, running a workflow, and exporting the results back. The repository used in this example is available at [https://workflow-repo.test.du.cesnet.cz/](https://workflow-repo.test.du.cesnet.cz/).
+The following steps describe how to obtain data from the NRP catch-all repository, run a workflow, and export the results back. The catch-all repository is available at [https://datarepo.eosc.cz/](https://datarepo.eosc.cz/).
 
-## Step 1: Obtain an Access Token from the Repository
+### Step 1: Obtain an access token from the repository
 
-1.  Navigate to the CESNET Invenio repository at [https://workflow-repo.test.du.cesnet.cz/](https://workflow-repo.test.du.cesnet.cz/).
-2.  Log in with your E-infra AAI credentials.
+1.  Navigate to the NRP catch-all repository at [https://datarepo.eosc.cz/](https://datarepo.eosc.cz/).
+2.  Log in with your e-INFRA CZ AAI credentials.
 3.  Navigate to your profile settings, find the **Applications** section, and choose the option to generate a new personal access token.
 4.  Create a new token with the `user:email` scope.
 5.  Copy the generated token to your clipboard. **Treat this token like a password and keep it secure.**
 
-## Step 2: Store the Token in Galaxy
+### Step 2: Store the token in Galaxy
 
 1.  Log in to your [usegalaxy.cz](https://usegalaxy.cz) account.
 2.  Click on your username in the top menu and select **Preferences**.
 3.  In the user preferences menu, find and click on **Manage Information**.
-4.  Find an entry labeled **Your CESNET-Invenio CatchAll Account** and paste your token into the value field.
-5.  Save the changes. This will securely store your token within Galaxy for later use.
+4.  Find an entry labeled **Your CESNET-Invenio datarepo Account** and paste your token into the value field.
+5.  Save the changes. Galaxy stores the token and uses it to access the repository.
 
-## Step 3: Import Data from the Repository
+### Step 3: Import data from the repository
 
 1.  In the Galaxy interface, go to the **Upload Data** tool in the left-hand tool panel.
 2.  From the upload options, select **Choose remote files**.
-3.  From the available options select **CESNET-Invenio TESTING**.
-4.  You will be presented with the search functionality to find data within the repository at `workflow-repo.test.du.cesnet.cz`.
+3.  From the available options select **CESNET-Invenio datarepo**.
+4.  Search for data in the repository at `datarepo.eosc.cz`.
 5.  Select the desired files and click **Import** to bring them into your Galaxy history.
 
-## Step 4: Run a Workflow
+### Step 4: Run a workflow
 
-1.  With the data in your history, you can now run an analysis.
-2.  You can create a new workflow or import an existing one. For a general guide on using workflows in Galaxy, see the [official documentation](https://galaxyproject.org/learn/g101/workflows/).
-3.  Run the workflow on your imported data.
+Run a workflow on the imported data. You can create a new workflow or import an existing one. For a general guide on using workflows in Galaxy, see the [official documentation](https://galaxyproject.org/learn/g101/workflows/).
 
-## Step 5: Export Workflow Invocation to the Repository
+### Step 5: Export the workflow invocation to the repository
 
-1.  Once the workflow has finished running, you can export the entire workflow invocation, including the results and provenance information.
-2.  Go to **User -> Workflow Invocations** at the top of the Galaxy interface to see a list of your workflow runs. Select the one you want to export.
-3.  Galaxy supports exporting this information in the **RO-Crate** format, which is a standard for packaging research objects.
-4.  From the workflow invocation page, click the **Export** button.
-5.  In the export wizard, configure the following options:
+Once the workflow has finished running, you can export the entire workflow invocation, including the results and provenance information. Galaxy exports it in the [RO-Crate](https://www.researchobject.org/ro-crate/) format, a standard for packaging research objects.
+
+1.  Go to **User** → **Workflow Invocations** at the top of the Galaxy interface to see a list of your workflow runs. Select the one you want to export.
+2.  On the workflow invocation page, click the **Export** button.
+3.  In the export wizard, configure the following options:
     - As the format select **Workflow Run RO-Crate**.
     - For the destination select **RDM repository**.
-    - For creating the record select repository **CESNET-Invenio TESTING**.
+    - For creating the record select repository **CESNET-Invenio datarepo**.
     - Name the record and create it.
     - Finally, export the workflow invocation to the newly created record.
-6.  The workflow invocation will be packaged as an RO-Crate and deposited into the repository. This ensures that your analysis is reproducible and well-documented.
+4.  The workflow invocation is packaged as an RO-Crate and deposited into the repository. This makes your analysis easier to reproduce and documents how the results were produced.
+
+For details on how Galaxy dataset metadata maps to the metadata model used by NRP repositories, see [Galaxy dataset ↔ CCMM mapping](/docs/graphical/galaxy-ccmm-mapping).
