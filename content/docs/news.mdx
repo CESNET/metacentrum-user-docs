@@ -10,6 +10,42 @@ Welcome to the MetaCentrum **Grid Computing News**.
 <a href="https://docs.cerit-sc.cz/en/docs/news" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes News</a>
 <a href="https://metavo.metacentrum.cz/en/news/outages.jsp" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum outages</a>
 
+
+## 16/10/2026
+### Introducing multijob scratch
+
+**Multijob scratch** lets you reuse temporary data across multiple jobs without
+copying it for every run. Choose the storage that suits your workload:
+
+- **Fast scratch** (`multijob=brno` or `multijob=plzen`): high-speed storage for
+  data-intensive jobs running on Brno or Plzeň nodes.
+- **Global scratch** (`multijob=global`): slower storage accessible from every
+  MetaCentrum compute node, suitable for shared files and job pipelines.
+
+Create your project directory once in
+`/scratch/multijob-{brno|plzen|global}/$USER/` and point your jobs to it.
+
+**Multijob scratch is semi-temporary storage.** Transfer final results to regular
+storage and delete your scratch files when your project is complete. 
+
+For examples and guidance, see the
+[scratch storage documentation](..docs/computing/infrastructure/scratch-storages).
+
+
+## 01/09/2026
+### Important security change: Tightening access rights to home directories
+
+Starting **October 5th**, home directories will be accessible only to their
+owners. Permissions for groups and other users will be removed with
+`chmod go-rwx /home/*`. New accounts will use this setting automatically.
+
+To continue sharing files, use `share-dir-nfsfacl` to grant access to specific
+users or groups. Please configure the required permissions as soon as possible.
+
+See [Data sharing using ACL](../docs/data/data-sharing#sharing-with-acl-usage)
+or contact user support for help.
+
+
 ## 28/06/2026
 ### New my.MetaCentrum.cz job monitoring application
 
