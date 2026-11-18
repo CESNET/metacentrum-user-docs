@@ -1,5 +1,6 @@
 ---
 title: MetaCentrum Documentation
+description: Free computing, storage and AI services for Czech academic research
 ---
 
 import { Cards, Card } from 'fumadocs-ui/components/card';
@@ -13,14 +14,21 @@ import BannerGrid from '@/public/img/meta/welcome/openPBS-logo.png';
 import BannerJupyter from '@/public/img/meta/welcome/jupyter.png';
 import BannerKubernetes from '@/public/img/meta/welcome/kubernetes-logo.svg';
 import BannerOnDemand from '@/public/img/meta/welcome/ondemand.jpg';
+import {
+  UserPlus, Terminal, Rocket,
+  Cpu, Monitor, NotebookPen, BrainCircuit, Workflow, Server, Container, HardDrive, Package,
+  LifeBuoy, MessagesSquare, Activity, Newspaper, GraduationCap, Bot,
+} from 'lucide-react';
 
-MetaCentrum is a single point of entry to three computing infrastructures:
+MetaCentrum gives students and researchers at Czech academic institutions **free access to computing power**: 
 
-   * **Grid** (distributed HPC computing based on OpenPBS),
-   * **Cloud**, (Openstack cloud computing + CEPH), and
-   * **Kubernetes** (containerized computing),
+   * **HPC clusters (Grid)** (distributed HPC computing based on OpenPBS),
+   * **Cloud**, (Openstack cloud computing + CEPH), 
+   * **Kubernetes** (container platform),
+   * Ready-made tools such as **Jupyter**, **Galaxy**, and **OnDemand**, and
+   * LLM services
 
-as well as to a number of specialized services, such as <b>Galaxy</b>, <b>OnDemand</b>, and <b>Jupyter notebooks</b>.
+## Services
 
 <Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3">
 
@@ -66,7 +74,128 @@ as well as to a number of specialized services, such as <b>Galaxy</b>, <b>OnDema
 
 </Cards>
 
-<h3>MetaCentrum: your research, computed</h3>
+
+<Callout type="info" title="Publishing results computed here?">
+Please include the [acknowledgement formula](../docs/access/account) in your publications. It supports the future funding of the infrastructure.
+</Callout>
+
+
+
+## New here? Start in three steps
+
+<Cards className="grid-cols-1 gap-4 sm:grid-cols-3">
+
+  <Card title="1. Get an account" icon={<UserPlus />} href="./access/account">
+    Register with your university or institute identity. Applications are approved within a few working days.
+  </Card>
+
+  <Card title="2. Log in" icon={<Terminal />} href="./access/log-in">
+    Connect to a frontend over SSH, or skip the terminal and use OnDemand in your browser.
+  </Card>
+
+  <Card title="3. Run your first job" icon={<Rocket />} href="./computing/run-basic-job">
+    A step-by-step tutorial: upload data, write a batch script, submit it and collect the results.
+  </Card>
+
+</Cards>
+
+
+
+## What do you want to do?
+
+<Cards className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+  <Card title="Run batch jobs on HPC clusters" icon={<Cpu />} href="./computing/run-basic-job">
+    **Grid.** Submit scripts to the OpenPBS scheduler and compute on CPUs or GPUs with hundreds of preinstalled software modules.
+  </Card>
+
+  <Card title="Work with graphical apps in a browser" icon={<Monitor />} href="./graphical/ondemand">
+    **OnDemand.** Matlab, RStudio, Jupyter, a file manager and a shell, with no SSH client needed.
+  </Card>
+
+  <Card title="Use Jupyter notebooks" icon={<NotebookPen />} href="https://docs.cerit.io/en/docs/web-apps/jupyterhub">
+    **JupyterHub.** Prebuilt images for Python, R, PyTorch and TensorFlow, some with a built-in AI assistant.
+  </Card>
+
+  <Card title="Chat with locally hosted AI models" icon={<BrainCircuit />} href="https://docs.cerit.io/en/docs/web-apps/chat-ai">
+    **AI as a Service.** Open LLMs through a web chat or an API. Your data stays inside the academic infrastructure.
+  </Card>
+
+  <Card title="Analyse data without coding" icon={<Workflow />} href="./graphical/usegalaxy">
+    **Galaxy.** Reproducible workflows built from thousands of tools, popular in bioinformatics and beyond.
+  </Card>
+
+  <Card title="Run your own virtual machine" icon={<Server />} href="https://docs.platforms.cloud.e-infra.cz/en/docs">
+    **Cloud.** OpenStack instances with root access, plus object storage built on Ceph.
+  </Card>
+
+  <Card title="Deploy containers and web apps" icon={<Container />} href="https://docs.cerit.io/en/docs/platform/overview">
+    **Kubernetes.** Run Docker images at scale or pick a ready-to-run application from the catalog.
+  </Card>
+
+  <Card title="Store, move and share data" icon={<HardDrive />} href="./data/types-of-storage">
+    **Storage.** Home and scratch directories, large-data transfers, group sharing and quotas.
+  </Card>
+
+  <Card title="Find or install software" icon={<Package />} href="./software/alphabet">
+    **Software.** Browse the module list, run containers, or install your own tools.
+  </Card>
+
+</Cards>
+
+Working in the life sciences? [ELIXIR CZ](./access/elixir) members get additional resources and tools.
+
+## Help and updates
+
+<Cards className="grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+  <Card title="User support" icon={<LifeBuoy />} href="./support">
+    E-mail the support team on working days between 9 a.m. and 5 p.m. We answer in English, Czech and Slovak.
+  </Card>
+
+  <Card title="FAQs" icon={<MessagesSquare />} href="./support/faqs">
+    Quick fixes for the most common login, job and storage problems.
+  </Card>
+
+  <Card title="Outages" icon={<Activity />} href="./support/outages">
+    Planned maintenance and current incidents.
+  </Card>
+
+  <Card title="News" icon={<Newspaper />} href="./news">
+    New hardware, software and features.
+  </Card>
+
+  <Card title="Tutorials" icon={<GraduationCap />} href="./tutorials">
+    Webinars, hands-on courses and a PBS cheatsheet.
+  </Card>
+
+  <Card title="AI chat assistant" icon={<Bot />} href="./tutorials/chat-help">
+    Ask the documentation a question, or paste an error message and get troubleshooting help.
+  </Card>
+
+</Cards>
+
+<Callout type="info" title="Publishing results computed here?">
+  Please include the acknowledgement formula from the [Terms and conditions](./access/terms) in your publications. It supports the future funding of the infrastructure and improves your priority in the fairshare system.
+</Callout>
+
+## About MetaCentrum
+
+
+[MetaCentrum](https://www.metacentrum.cz/en) is a virtual organization within the national e-INFRA CZ research infrastructure. Its platforms and services are operated jointly by [CESNET](https://www.cesnet.cz/en) and [CERIT-SC](https://www.cerit-sc.cz/).
+
+<Image src={BannerMeta} alt="MetaCentrum layers: hardware, infrastructure (OpenPBS, Kubernetes, OpenStack), platforms (Galaxy, Jupyter, OnDemand) and interactive applications" width="1200" height="710" />
+
+<div className="mt-6 flex justify-center">
+  <iframe
+    className="aspect-video w-full max-w-2xl rounded-lg"
+    src="https://www.youtube-nocookie.com/embed/m_X7faF70LA?si=T17pKjpH_85HbtDq"
+    title="MetaCentrum: your research, computed"
+    loading="lazy"
+    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
+</div>
 
 <center>
 <iframe 
