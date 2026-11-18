@@ -25,7 +25,7 @@ Four terms are enough to follow the rest of this guide.
 | --- | --- | --- |
 | **Frontend** | A login server, such as `tarkil.metacentrum.cz` | Prepare files, submit jobs, check results |
 | **Home directory** | Your permanent space on a storage server, such as `/storage/praha1/home/myuser` | Keep scripts, input data and results |
-| **Compute node** | A powerful machine you cannot log in to directly | The scheduler (PBS) runs your job here |
+| **Compute node** | A powerful machine, you cannot send in the job directly | The scheduler (PBS) runs your job here |
 | **Scratch** | A fast [temporary disk](../computing/infrastructure/scratch-storages) on the compute node, available as `$SCRATCHDIR` | The job works here and cleans up when it ends |
 
 ![Overall scheme of the grid](/img/meta/access/grid-overall-scheme_border.jpg)
@@ -149,7 +149,6 @@ More about finding software is in the [Modules guide](../software/modules).
 You can use wildcards to search: `module avail *python*`. Add `/` to see versions within a module directory.
 </Callout>
 
-## Next steps
 
 ## Step 4: Write the job script
 
