@@ -9,6 +9,96 @@ Some software installed in Metacentrum is licensed. Only users with confirmed ag
 Due to the number of available application tools and their versions, we cannot maintain (upgrade) them all periodically. Exceptions are licensed software, compilators, drivers and so on. Softwares are installed/upgraded mainly on personal request at meta@cesnet.cz. We mostly prefer [users' self-installations](./install-software), and we are ready to help with them.
 </Callout>
 
+## Available in OnDemand
+
+[MetaCentrum OnDemand instance](https://ondemand.metacentrum.cz) is a service that enables users to access Metacentrum via web browser.
+
+Apart from other functions, OnDemand can be used to run directly selected pre-installed apps, servers and virtual machines.
+
+### Desktop apps
+
+| Name      | Note |
+|-----------|------|
+| [Alphafold](../software/sw-list/alphafold) | To be run from a Job composer template |
+| [Ansys/\*](../software/sw-list/ansys) | \* = Ensight, Fluent, Workbench  |
+| [BIOP Desktop](https://biop.github.io/biop-desktop-doc/) |  Docker-based virtual desktop environment for bioimage analysis |
+| [CLCgenomicsWB](../software/sw-list/clcgenomicswb/) | An easy-to-use graphical interface for running bioinformatics analyses |
+| [Matlab](../software/sw-list/matlab) |  |
+| [MZMINE](https://mzio.io/mzmine/) | A tool for analysis of instrumental raw imaging data |
+| [QuPath](https://qupath.github.io/) | Open software for bioimage analysis |
+| [VMD Desktop](../software/sw-list/vmd) | VMD (Visual Molecular Dynamics): open-source software for modelling and visualization of biomolecular systems |
+
+### Servers
+
+| Name      | Note |
+|-----------|------|
+| [Julia Pluto.jl](../software/sw-list/julia) | Julia in Pluto.jl interface |
+| [Jupyter Notebook/Lab](../software/sw-list/jupyter) | Jupyter Notebook server |
+| [Matlab Webapp](../software/sw-list/matlab) | |
+| [RStudio server](../software/sw-list/rstudio) | RStudio server w. preinstalled Geospatial and Tensorflow packages |
+
+### Cloud 
+
+OnDemand can be used to run virtual machines deployed to OpenStack accessible via SSH - read more at [MetaCentrum cloud docs](https://docs.platforms.cloud.e-infra.cz/en/docs/overview).
+
+## Available in CERIT-SC Kubernetes Platform
+
+CERIT-SC Kubernetes Platform is a part of MetaCentrum services providing containerized browser-based research applications and AI services.
+
+For full-scale description of apps and services, see [CERIT-SC Kubernetes documentation](https://docs.cerit.io/en/docs/platform/overview).
+
+### Rancher apps
+
+The following are selected ready-to-run [Rancher apps](https://docs.cerit.io/en/docs/rancher-apps/rancher-applications).
+
+| Name | Note |
+|------|------|
+| [Ansys](https://docs.cerit.io/en/docs/rancher-apps/ansys) |  \* = CFX, Fluent, Workbench  |
+| [Grafana](https://docs.cerit.io/en/docs/rancher-apps/grafana) | Metrics and logs analytics and visualization |
+| [Matlab](https://docs.cerit.io/en/docs/rancher-apps/matlab) | Run customizable Rancher app or launch from JupyterHub |
+| [OrthoVenn 3](https://docs.cerit.io/en/docs/rancher-apps/orthovenn) | Web-based tool for whole-genome comparison across multiple species |
+| [RStudio](https://docs.cerit.io/en/docs/rancher-apps/rstudio) | Run customizable Rancher app or launch from JupyterHub | 
+
+### Web apps
+
+| Name | Note |
+|------|------|
+| [Foldify](https://docs.cerit.io/en/docs/web-apps/foldify) | Web application based on Alphafold tools |
+| [BinderHub](https://docs.cerit.io/en/docs/web-apps/binderhub) | Turn git repository into a collection of interactive notebooks |
+| [JupyterHub](https://docs.cerit.io/en/docs/web-apps/jupyterhub) | Instant, browser-based access to interactive computing environments (JupyterLab, RStudio, MATLAB, and VS Code) |
+
+### AI as a service
+
+
+[Matrix / Element communication platform](https://docs.cerit.io/en/docs/web-apps/matrix)
+
+
+<Callout type="info" title="There is more to CERIT-SC services than Kubernetes">
+Apart from containerized apps and AI, CERIT-SC provides also other services, like variety of workflows, tools to setup CI/CD between GitLab and Kubernetes, or cloud computation and storage facility for sensitive (e.g. medical) data aka [Sensitive Cloud](https://docs.cerit.io/en/docs/sensitivecloud/account) 
+</Callout>
+
+
+## Installed as a module
+
+{/*
+<include>
+  ../include/tab-modules.mdx
+</include>
+*/}
+
+## Installed as a Singularity image 
+
+<include>
+  ../include/tab-images.mdx
+</include>
+
+## Installed as mamba envs
+
+<include>
+  ../include/tab-mamba-envs.mdx
+</include>
+
+{/*
 
 ## Other than module install
 
@@ -69,9 +159,5 @@ Due to the number of available application tools and their versions, we cannot m
 - [VMD](./sw-list/vmd)
 
 
-## Installed as a module
-
-<include>
-  ../include/tab-modules.mdx
-</include>
+*/}
 
