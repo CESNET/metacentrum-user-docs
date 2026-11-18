@@ -421,12 +421,6 @@ Not sure about the syntax? The [qsub assembler](https://my.metacentrum.cz/qsub-a
 
 
 
-## Account maintenance
-
-**Renewal**: Accounts expire February 2nd. You'll be notified by email.
-
-**Security**: Use a strong password and never share credentials. For password changes and complete security rules, see [Account page](../access/account) and [Terms and conditions](../access/terms).
-
 
 ## Where to go next
 
@@ -441,6 +435,8 @@ Not sure about the syntax? The [qsub assembler](https://my.metacentrum.cz/qsub-a
 - Read about [parallel computing](./parallel-comput)
 - Check [GPU resources](./gpu-comput/gpu-job)
 - Try usegalaxy.cz [web interface](../graphical/usegalaxy) – an alternative way to run jobs in a web-based platform with workflow support.
+- Account lifecycle - accounts expire February 2nd. You'll be notified by email, ask for its renewal regularly.
+- Use a strong password and never share credentials. For password changes and complete security rules, see [Account page](../access/account) and [Terms and conditions](../access/terms).
 
 
 ## Troubleshooting basics
@@ -452,7 +448,7 @@ If your job fails:
 4. Ensure you requested adequate resources (memory, walltime, scratch).
 
 
-Start with the error file, `jobname.e<jobID>`. The most common problems:
+The most common problems:
 
 | Symptom | Likely cause | What to do |
 | --- | --- | --- |
@@ -464,7 +460,9 @@ Start with the error file, `jobname.e<jobID>`. The most common problems:
 | `qsub` says `script contains cr, lf` | The script was edited on Windows | Convert the line endings; see the [FAQ entry](../support/faqs-content/os-dependent-endlines) |
 | `qdel` does not remove the job | The job is stuck | Use `qdel -W force`; see the [FAQ entry](../support/faqs-content/force-qdel) |
 
-If the job failed and left data in scratch, you can inspect it from the frontend with `go_to_scratch <jobID>` within 24 hours. For jobs older than a day, `pbs-get-job-history <jobID>` retrieves the script and its output; see [Finished jobs](./jobs/finished-jobs).
+If the job failed and left data in scratch, you can inspect it from the frontend with `go_to_scratch <jobID>` within 24 hours. 
+
+For jobs older than a day, `pbs-get-job-history <jobID>` retrieves the script and its output; see [Finished jobs](./jobs/finished-jobs).
 
 For more advanced troubleshooting, see the [Advanced guide](./advanced).
 
