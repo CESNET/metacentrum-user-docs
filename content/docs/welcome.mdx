@@ -30,49 +30,56 @@ MetaCentrum gives researchers at Czech academic institutions **free access to co
 
 ## Services
 
-<Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3">
+<Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3 *:flex *:flex-col [&>*>div:last-child]:flex [&>*>div:last-child]:grow [&>*>div:last-child]:flex-col">
 
-  <Card title="Cloud" icon={<Cloudy/>}>
+  <Card title="Cloud" icon={<Cloudy />}>
+    <Image src={BannerCloud} alt="OpenStack" className="not-prose mb-3 h-14 w-full object-contain" />
     OpenStack cloud instances with object storage built on the CEPH storage system.
-    <div className="-mx-3 -mt-3"><Image src={BannerCloud} alt="Cloud" /></div>
-    <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
+
+    <a href="https://docs.platforms.cloud.e-infra.cz/en/docs" className="mt-auto pt-3 text-fd-primary flex items-center gap-2"><MoveRight />Cloud docs</a>
   </Card>
 
-  <Card title="Kubernetes" icon={<Package/>}>
+  <Card title="Kubernetes" icon={<Container />}>
+    <Image src={BannerKubernetes} alt="Kubernetes" className="not-prose mb-3 h-14 w-full object-contain" />
     Container platform built on the robust Kubernetes orchestrator and utilizing Docker container images.
-    <div className="-mx-3 -mt-3"> <center><Image width="120" height="120" src={BannerKubernetes} alt="Kubernetes" /> </center> </div>
-    <a href="https://docs.cerit.io/en/docs/platform/overview" className="text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
+
+    <a href="https://docs.cerit.io/en/docs/platform/overview" className="mt-auto pt-3 text-fd-primary flex items-center gap-2"><MoveRight />Kubernetes docs</a>
   </Card>
 
-  <Card title="Grid" icon={<Network/>}>
+  <Card title="Grid" icon={<Network />}>
+    <Image src={BannerGrid} alt="OpenPBS" className="not-prose mb-3 h-14 w-full object-contain" />
     Distributed HPC computing built on OpenPBS scheduler and NFS filesystem.
-    <div className="-mx-3 -mt-3"> <Image src={BannerGrid} alt="MetaCentrum Grid" /> </div>
-    <a href="./computing/run-basic-job" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Grid docs</a>
+
+    <a href="./computing/run-basic-job" className="mt-auto pt-3 text-fd-primary flex items-center gap-2"><MoveRight />Grid docs</a>
   </Card>
 
 </Cards>
 
-<Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3">
+<Cards className="pt-4 grid-cols-1 gap-4 sm:grid-cols-3 *:flex *:flex-col [&>*>div:last-child]:flex [&>*>div:last-child]:grow [&>*>div:last-child]:flex-col">
 
   <Card title="Galaxy">
-     Web platform for accessible, reproducible, and transparent data analysis backed by MetaCentrum Grid.
-     <div className="-mx-3 -mt-3"> <Image src={BannerGalaxy} alt="Galaxy" /> </div>
-     <a href="./graphical/usegalaxy" className="text-fd-primary flex items-center gap-2"><MoveRight />MetaCentrum Galaxy docs</a>
+    <Image src={BannerGalaxy} alt="Galaxy" className="not-prose mb-3 h-14 w-full object-contain" />
+    Web platform for accessible, reproducible, and transparent data analysis backed by MetaCentrum Grid.
+
+    <a href="./graphical/usegalaxy" className="mt-auto pt-3 text-fd-primary flex items-center gap-2"><MoveRight />Galaxy docs</a>
   </Card>
 
   <Card title="Elixir">
-     Group for scientists with research objectives in fields of genomics, proteomics and other life sciences.
-     <div className="-mx-3 -mt-3"> <Image src={BannerElixir} alt="Elixir" /> </div>
-     <a href="./access/elixir" className="text-fd-primary flex items-center gap-2"><MoveRight />Elixir</a>
+    <Image src={BannerElixir} alt="ELIXIR Czech Republic" className="not-prose mb-3 h-14 w-full object-contain" />
+    Group for scientists with research objectives in fields of genomics, proteomics and other life sciences.
+
+    <a href="./access/elixir" className="mt-auto pt-3 text-fd-primary flex items-center gap-2"><MoveRight />Elixir docs</a>
   </Card>
 
   <Card title="OnDemand">
-     Browser-based graphical access to MetaCentrum Grid and Cloud.
-     <div className="-mx-3 -mt-3"> <Image src={BannerOnDemand} alt="Open OnDemand" /> </div>
-     <a href="./graphical/ondemand" className="text-fd-primary flex items-center gap-2"><MoveRight />OnDemand</a>
+    <Image src={BannerOnDemand} alt="Open OnDemand" className="not-prose mb-3 h-14 w-full object-contain" />
+    Browser-based graphical access to MetaCentrum Grid and Cloud.
+
+    <a href="./graphical/ondemand" className="mt-auto pt-3 text-fd-primary flex items-center gap-2"><MoveRight />OnDemand docs</a>
   </Card>
 
 </Cards>
+
 
 
 <Callout type="info" title="Publishing results computed here?">
