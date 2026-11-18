@@ -164,7 +164,7 @@ A job script is an ordinary shell script with two parts: lines starting with `#P
 #PBS -l select=1:ncpus=1:mem=1gb:scratch_local=1gb  
 
 # name of the job (not necessary)
-#PBS -N my_counter
+#PBS -N first_job
 
 # stop the script immediately if any command fails,
 # so that errors are visible in the error file
@@ -190,6 +190,7 @@ touch ${infofile}
 echo -e "Hello world at `date` from user ${USER}!\n" >> ${infofile}
 echo -e "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR\n" >> ${infofile}
 
+# Run the computation
 python counter.py myfile.txt out_count.txt
 
 # copy the outputs back to where qsub was called
