@@ -77,7 +77,7 @@ where
 In `/storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive`, create uncompressed archive of the directory `~/my-archive`:
 
 ```bash
-tar cvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tgz ~/my-archive
+tar cvf /storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive/my-archive.tar ~/my-archive
 ```
 
 In `/storage/du-cesnet/home/USER/VO_metacentrum-tape_tape-archive`, create archive of the directory `~/my-archive` and compress it by `gzip` command:
@@ -176,13 +176,13 @@ If you want to move a large amount of data between storages, the setup is simila
 For example, copy file foo from plzen1 to your home at brno2:
 
 ```bash
-ssh MetaUser123@storage-plzen1.metacentrum.cz "scp ~/foo storage-brno6.metacentrum.cz:~/"
+ssh storage-plzen1.metacentrum.cz "scp ~/foo storage-brno2.metacentrum.cz:~/"
 ```
 
 If you are already logged on a frontend, you can simplify (the system will automatically use the same username) the command to:
 
 ```bash
-ssh storage-plzen1.metacentrum.cz "scp ~/foo storage-brno6.metacentrum.cz:~/"
+ssh storage-plzen1.metacentrum.cz "scp ~/foo storage-brno2.metacentrum.cz:~/"
 ```
 
 The examples shown above will run only until you either disconnect or the validity of Kerberos ticket expires. For longer-lasting copy operations, it is a good idea to submit the `scp` command within a job. Prepare a trivial batch script called, e.g. `copy_files.sh`
@@ -193,7 +193,7 @@ The examples shown above will run only until you either disconnect or the validi
 #PBS -l select=1:ncpus=1:scratch_local=2gb
 #PBS -l walltime=15:00:00
 
-ssh storage-plzen1.metacentrum.cz "scp ~/foo storage-brno6.metacentrum.cz:~/"
+ssh storage-plzen1.metacentrum.cz "scp ~/foo storage-brno2.metacentrum.cz:~/"
 ```
 
 and submit it as `qsub copy_files.sh`.
@@ -205,13 +205,13 @@ Another option how to pass data between storages is to use `rsync` command.
 For example, to move all your data from plzen1 to brno12-cerit:
 
 ```bash
-(BUSTER)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
+(TRIXIE)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~ storage-brno12-cerit:~/home_from_plzen1/"
 ```
 
 To move only a selected directory:
 
 ```bash
-(BUSTER)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~/my_dir storage-brno12-cerit:~/my_dir_from_plzen1/"
+(TRIXIE)USERNAME@skirit:~$ ssh storage-plzen1 "rsync -avh ~/my_dir storage-brno12-cerit:~/my_dir_from_plzen1/"
 ```
 
 You can wrap the `rsync` command into a job, too.
@@ -229,5 +229,11 @@ If you then look at the output of the running job, you can check how the data tr
 
 ```bash
 USERNAME@NODE:~$ tail -f /var/spool/pbs/spool/JOB_ID.pbs-m1.metacentrum.cz.OU
+```
+
+**Note:** storages with "cerit" in the name cannot be used as the source this way. To copy data from a CERIT storage, run the command on the target storage instead, e.g.:
+
+```bash
+ssh storage-plzen1.metacentrum.cz "scp storage-brno12-cerit.metacentrum.cz:~/foo ~/" 
 ```
 
