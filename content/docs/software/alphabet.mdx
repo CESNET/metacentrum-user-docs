@@ -1,6 +1,20 @@
 ---
 title: All software
 ---
+
+Pre-installed MetaCentrum software is available in several ways.
+
+The most traditional way is a [module](./modules) installation, which is typically accessed and invoked on CLI in a batch/interactive job - see [Installed as a module](#installed-as-a-module).
+
+Some of the software which requires careful dependency preservation, is offered as containerized [Singularity images](./containers) (CLI) - see [Installed as a Singularity image](#installed-as-a-singularity-image).
+
+Many python-based applications are available also as [mamba environments](./install-software#condamamba-packages) (CLI) - see [Installed as mamba envs](#installed-as-mamba-envs).
+
+The most commonly used software with graphical interface can be run from browser-based platform [MetaCentrum OnDemand](../graphical/ondemand) - see [Available in OnDemand](#available-in-ondemand).
+
+[CERIT-SC Kubernetes platform](https://docs.cerit.io/en/docs/news) offers apart from containerized graphical applications also wide selection of on-premise hosted LLMs - see [Available in CERIT-SC Kubernetes platform](#avail-kube).
+
+
 <Callout type="info" title="Some software is licensed.">
 Some software installed in Metacentrum is licensed. Only users with confirmed aggreement to the license can use this software. List of licenses can be found on the [Licensed software](./licenses).
 </Callout>
@@ -9,6 +23,97 @@ Some software installed in Metacentrum is licensed. Only users with confirmed ag
 Due to the number of available application tools and their versions, we cannot maintain (upgrade) them all periodically. Exceptions are licensed software, compilators, drivers and so on. Softwares are installed/upgraded mainly on personal request at meta@cesnet.cz. We mostly prefer [users' self-installations](./install-software), and we are ready to help with them.
 </Callout>
 
+## Installed as a module
+
+<include>
+  ../include/tab-modules.mdx
+</include>
+
+## Installed as a Singularity image 
+
+<include>
+  ../include/tab-images.mdx
+</include>
+
+## Installed as mamba envs
+
+<include>
+  ../include/tab-mamba-envs.mdx
+</include>
+
+## Available in OnDemand
+
+[MetaCentrum OnDemand instance](https://ondemand.metacentrum.cz) is a service that enables users to access Metacentrum via web browser.
+
+Apart from other functions, OnDemand can be used to run directly selected pre-installed apps, servers and virtual machines.
+
+### Desktop apps
+
+| Name      | Note |
+|-----------|------|
+| [Alphafold](../software/sw-list/alphafold) | To be run from a Job composer template |
+| [Ansys/\*](../software/sw-list/ansys) | \* = Ensight, Fluent, Workbench  |
+| [BIOP Desktop](https://biop.github.io/biop-desktop-doc/) |  Docker-based virtual desktop environment for bioimage analysis |
+| [CLCgenomicsWB](../software/sw-list/clcgenomicswb/) | An easy-to-use graphical interface for running bioinformatics analyses |
+| [Matlab](../software/sw-list/matlab) |  |
+| [MZMINE](https://mzio.io/mzmine/) | A tool for analysis of instrumental raw imaging data |
+| [QuPath](https://qupath.github.io/) | Open software for bioimage analysis |
+| [VMD Desktop](../software/sw-list/vmd) | VMD (Visual Molecular Dynamics): open-source software for modelling and visualization of biomolecular systems |
+
+### Servers
+
+| Name      | Note |
+|-----------|------|
+| [Julia Pluto.jl](../software/sw-list/julia) | Julia in Pluto.jl interface |
+| [Jupyter Notebook/Lab](../software/sw-list/jupyter) | Jupyter Notebook server |
+| [Matlab Webapp](../software/sw-list/matlab) | |
+| [RStudio server](../software/sw-list/rstudio) | RStudio server w. preinstalled Geospatial and Tensorflow packages |
+
+### Cloud 
+
+OnDemand can be used to run virtual machines deployed to OpenStack accessible via SSH - read more at [MetaCentrum cloud docs](https://docs.platforms.cloud.e-infra.cz/en/docs/overview).
+
+## Available in CERIT-SC Kubernetes platform [#avail-kube]
+
+CERIT-SC Kubernetes Platform is a part of MetaCentrum services providing containerized browser-based research applications and AI services.
+
+For full-scale description of apps and services, see [CERIT-SC Kubernetes documentation](https://docs.cerit.io/en/docs/platform/overview).
+
+### Rancher apps
+
+The following are selected ready-to-run [Rancher apps](https://docs.cerit.io/en/docs/rancher-apps/rancher-applications).
+
+| Name | Note |
+|------|------|
+| [Ansys](https://docs.cerit.io/en/docs/rancher-apps/ansys) |  \* = CFX, Fluent, Workbench  |
+| [Grafana](https://docs.cerit.io/en/docs/rancher-apps/grafana) | Metrics and logs analytics and visualization |
+| [Matlab](https://docs.cerit.io/en/docs/rancher-apps/matlab) | Run customizable Rancher app or launch from JupyterHub |
+| [OrthoVenn 3](https://docs.cerit.io/en/docs/rancher-apps/orthovenn) | Web-based tool for whole-genome comparison across multiple species |
+| [RStudio](https://docs.cerit.io/en/docs/rancher-apps/rstudio) | Run customizable Rancher app or launch from JupyterHub | 
+
+### Web apps
+
+| Name | Note |
+|------|------|
+| [Foldify](https://docs.cerit.io/en/docs/web-apps/foldify) | Web application based on Alphafold tools |
+| [BinderHub](https://docs.cerit.io/en/docs/web-apps/binderhub) | Turn git repository into a collection of interactive notebooks |
+| [JupyterHub](https://docs.cerit.io/en/docs/web-apps/jupyterhub) | Instant, browser-based access to interactive computing environments (JupyterLab, RStudio, MATLAB, and VS Code) |
+
+### AI as a service
+
+CERIT-SC hosts large language models for the Czech research and academic community, free of charge and inside the national e-INFRA CZ infrastructure.
+
+Standard hosted models run within e-INFRA CZ. External search tools and separately arranged third-party services can involve sending information outside this infrastructure.
+
+For listing and availability of LLM models, check [LLM models catalog](https://llm.ai.e-infra.cz/status/).
+
+The topic of LLMs is generating significant interest among MetaCentrum users, with an increasing number of questions, discussions, and experiences worth sharing. CERIT-SC has herefore launched a dedicated communication channel on Matrix, a platform similar to Discord that runs locally within the e-INFRA CZ infrastructure. See [Matrix / Element communication platform](https://docs.cerit.io/en/docs/web-apps/matrix) for more.
+
+<Callout type="info" title="There is more to CERIT-SC services than Kubernetes">
+Apart from containerized apps and AI, CERIT-SC provides also other services, like variety of workflows, tools to setup CI/CD between GitLab and Kubernetes, or cloud computation and storage facility for sensitive (e.g. medical) data aka [Sensitive Cloud](https://docs.cerit.io/en/docs/sensitivecloud/account) 
+</Callout>
+
+{/*
 
 ## Other than module install
 
@@ -69,9 +174,5 @@ Due to the number of available application tools and their versions, we cannot m
 - [VMD](./sw-list/vmd)
 
 
-## Installed as a module
-
-<include>
-  ../include/tab-modules.mdx
-</include>
+*/}
 
