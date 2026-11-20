@@ -1,93 +1,109 @@
 ---
 title: myMetaCentrum 
 ---
-**[myMetaCentrum](https://my.metacentrum.cz/personal-view)** is a web service with live data about the jobs, queues and machines' state.
 
-myMetacentrum is especially useful to retireve information about:
+**[myMetaCentrum](https://my.metacentrum.cz)** is a web application with live data about your jobs, the queues, the machines, and your storage quotas on MetaCentrum. The data is refreshed automatically (the freshness of each data source is shown under the menu).
 
-- your running/queing jobs and their states,
-- status of computing nodes,
-- queues and their properties,
-- storage spaces and quotas,
-- cloud projects.
+You can use it to:
 
-Moreover, **an interactive PBS parameter selection tool** (shortly as **qsub assembler**) can be found under the [Qsub assembler](#qsub-assembler) tab.
+- watch your **running and queued jobs** and inspect how efficiently they ran,
+- check which **machines and queues** are free before you submit,
+- build a syntactically correct **`qsub` command** with the Qsub assembler,
+- review your **storage quotas** and free space on `/storage` disks,
+- list your **cloud projects**, **group members**, and **groups**.
+
+
+## Personal View
+
+The landing page summarizes your current state: jobs queued, running, and finished, CPU and GPU utilization, and a list of your recent PBS jobs. Click the **user button** with your login to open the user detail, which shows your membership expiration, fairshare ranking per scheduler server, and yearly usage statistics.
+
+![pic](/img/meta/computing/mymeta-personal-view.png)
+
+![pic](/img/meta/computing/mymeta-user-detail.png)
+
+
 
 ## Qsub assembler
 
-[Qsub assembler](https://my.metacentrum.cz/qsub-assembler) is an online tool to setup syntactically correct qsub commands.
+The [Qsub assembler](https://my.metacentrum.cz/qsub-assembler) is an interactive tool for building a syntactically correct `qsub` command. Select the resources your job needs — walltime, queue, CPU count, RAM, GPU count, scratch type and size, cluster, and advanced properties such as CPU vendor or GPU capabilities — and click **Show Results**.
 
-Apart from obtaining the command, users can see which machines match to their selection criteria and how busy the nodes are at the moment.
+![pic](/img/meta/computing/mymeta-qsubass-form.png)
 
-**Example: I want to setup `qsub` command for 1-GPU job.**
+You get the parameters in two forms: a `qsub` one-liner for the command line, and `#PBS` directives for pasting into a batch script.
 
-*Use the rolldown menu to select the required parameters:*
+```bash
+qsub -l walltime=01:00:00 -q gpu@pbs-m1.metacentrum.cz -l select=1:ncpus=1:mem=1gb:ngpus=1:scratch_local=400mb
+```
 
-![pic](/img/meta/computing/mymeta-qsubass-1.png)
+![pic](/img/meta/computing/mymeta-qsubass-results.png)
 
-*You will get qsub command parameters in both forms, one for pasting into CLI, another for pasting inside the bash script:*
-
-![pic](/img/meta/computing/mymeta-qsubass-2.png)
-
-*Additionally you can see the list of machines that comply to the criteria:*
-
-![pic](/img/meta/computing/mymeta-qsubass-3.png)
+Below the command, the assembler shows **how many machines match your criteria and how busy they are right now** (free, partially free, or occupied), so you can estimate the waiting time before submitting.
 
 ## Machines
 
-You can browse, list and inspect machine properties.
-
-The *Quick links* sidebar on the right groups machines according to their owner institution.
+Browse, list, and inspect all compute nodes. Filter the list by node **state** (free, partially free, occupied, maintenance), by **queue**, **cluster**, or **resource**. The overview shows totals for organizations, clusters, and nodes.
 
 ![pic](/img/meta/computing/mymeta-machines.png)
 
+Clicking a machine opens its detail — CPU model and count, memory, GPUs, local scratch type and free space, and current state.
+
+![pic](/img/meta/computing/mymeta-machine-detail.png)
+
 ## Storage spaces
 
-In the *Storage space* section, you will find overview of your quotas in all homes, 
+The *Storage Spaces* page has two parts:
+
+* **My Storage Quotas** — your used space, soft/hard quotas, and file counts in every home directory.
 
 ![pic](/img/meta/computing/mymeta-storage-1.png)
 
-as well as of how much free space in total remains on `/storage` discs.  
+* **Disk Arrays** — total capacity and free space of the shared `/storage` disks, plus scratch storage notes (data on node scratch is deleted 14 days after the job ends).
 
 ![pic](/img/meta/computing/mymeta-storage-2.png)
 
-## Cloud projects
+## Cloud Projects
 
-myMetaCentrum serves also a list of your projects in cloud and provides a detailed page for each project:
+Lists your virtual-infrastructure projects with their reserved resources; each project has a detail page.
 
 ![pic](/img/meta/computing/mymeta-cloud.png)
 
-## Queues
+## Jobs Queues
 
-Under the *Queues* tab, you can list all the queues.
+The *Jobs Queues* page lists all queues with their properties — priority, time limits, and how many jobs are currently queued and running.
 
 ![pic](/img/meta/computing/mymeta-queues.png)
 
-In the detailed page, you can see e.g. how many jobs are waiting to be run in that particular queue.
+The queue detail shows its limits and the jobs waiting in it, so you can estimate when yours will start.
 
 ![pic](/img/meta/computing/mymeta-queues-2.png)
 
 ## Jobs
 
-See the *My jobs* tab to get list of your jobs
+The *Jobs* page has three tabs: **My Jobs**, **All Jobs**, and **Waiting Jobs**.
 
 ![pic](/img/meta/computing/mymeta-jobs.png)
 
-If you select *All jobs*, you will get list of all jobs currently runnig or waiting in MetaCentrum. most of them will have "Anonym" as a user and job name. this only means that due to GDPR you cannot view the real user and job name.  
+In *All Jobs* you see every job currently running or waiting on the PBS servers. Other users' jobs are displayed as **"Anonym"** — a GDPR measure; you cannot see their real names or usernames.
 
-For a selected job, you can see various details incl how efficient it was
+Clicking a job opens its detail: basic information, resources reserved vs. actually used, and **efficiency messages** that tell you how to tune the job, for example:
+
+> CPU usage is below 75 % (0 %). The job was inefficient. Consider reducing the number of CPUs requested.
+>
+> Job finished way sooner than requested. Consider reducing the requested walltime.
+>
+> Memory usage is below 75 % (14 %). Consider reducing the amount of memory requested.
 
 ![pic](/img/meta/computing/mymeta-jobs-2.png)
 
 ## Users
 
-Under the *Users* tab, you can list all users that you share an UNIX group with - in other words, your collaborators.
+Under *Users* you can list all users who share a UNIX group with you — in other words, your collaborators.
 
 ![pic](/img/meta/computing/mymeta-users.png)
 
 ## Groups
 
-Similarly, under the *Groups* tab, you can list all groups you are a member of.
+Similarly, the *Groups* page lists all groups you are a member of, with their GID and member count.
 
 ![pic](/img/meta/computing/mymeta-groups.png)
 
