@@ -6,26 +6,27 @@ title: VSCode server on MetaCentrum machines
 
 When developing with VSCode in MetaCentrum, a straightforward setup like: 
 
-- project dir in `$HOME` dir
-- VSCode server running on frontend
+- project dir in `$HOME`,
+- VSCode server running on frontend, and
 - connection to frontend through *VSCode remote development*
 
  can be far too resource-expensive for a frontend shared by many users.
 
 <Callout type="warn" title="Frontends are not computing nodes">
-Resource-expensive (CPU, mem) processes running on frontends may be killed without warning.
+Resource-expensive (CPU, mem) processes running on frontends may be killed without warning. The project dir should be located in scratch directory and it should contain only neccessary files for the work at hand.
 </Callout>
 
 Therefore, we recommend another setup with the VSCode server running on a computing node within a standard job. 
 
-## VSCode running on a computing node
+## VSCode on a computing node setup
 
 VS Code (whole UI and developed application) can be started in a job, e.g. via OpenOndemand service or using "gui" module, if the user has no suitable local workstation to run VSCode's UI (interactive response may suffer due to network load etc.)
 
-## VSCode server running on a computing node, UI on user's workstation
 1. on your local station, generate a SSH key pair
 
+```bash
 ssh-keygen -f /home/username123/.ssh/my_key
+```
 
 2. choose a port number between 7000 and 30000 (e.g. 26759) and add the following sections to `.ssh/config` on your local station
 
